@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ====== 기본 SEO 메타 (내용 교체하세요) ====== -->
+<title>최지현 · AI Agent / 백엔드 엔지니어 — Portfolio</title>
+<meta name="description" content="Agent Architect · End-to-End 서비스 · Trusted AI 를 추구하는 AI Agent 엔지니어 포트폴리오." />
+<meta property="og:title" content="최지현 · AI Agent / 백엔드 엔지니어" />
+<meta property="og:description" content="Agent Architect · End-to-End 서비스 · Trusted AI." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="og-image.png" />
+<meta name="theme-color" content="#3a5bd0" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+/* =========================================================
+   TOKENS — Trusted AI 포트폴리오 (라이트 / 다크)
+   ========================================================= */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+
+  --bg:#ffffff;
+  --paper:#ffffff;
+  --panel:#f2f1ec;
+  --ink:#1a1d2b;
+  --line:#e3e1d9;
+  --line-2:#eeece6;
+  --text:#22252f;
+  --muted:#63666f;
+  --faint:#9a9aa0;
+
+  --accent:#3a5bd0;                 /* Trust Blue */
+  --accent-d:#2c47ad;
+  --accent-soft:rgba(58,91,208,.10);
+  --gold:#e0a516;                   /* ★ 모티프 */
+  --gold-soft:rgba(224,165,22,.14);
+  --ok:#1f9d57;
+
+  --shadow-sm:0 1px 2px rgba(20,24,45,.05), 0 6px 20px rgba(20,24,45,.05);
+  --shadow-lg:0 12px 32px rgba(20,24,45,.10), 0 32px 64px rgba(20,24,45,.08);
+  --radius:14px;
+}
+[data-theme="dark"]{
+  --bg:#0e0f16;
+  --paper:#161822;
+  --panel:#1c1f2b;
+  --ink:#eef0f6;
+  --line:#2b2f3d;
+  --line-2:#232734;
+  --text:#e6e8f0;
+  --muted:#9aa0b0;
+  --faint:#6a7080;
+  --accent:#7f9bff;
+  --accent-d:#9fb2ff;
+  --accent-soft:rgba(127,155,255,.14);
+  --gold:#f0bd4a;
+  --gold-soft:rgba(240,189,74,.16);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.4);
+  --shadow-lg:0 14px 40px rgba(0,0,0,.5), 0 36px 70px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;
+  -webkit-font-smoothing:antialiased;transition:background .4s,color .4s;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-d)}
+::selection{background:var(--accent-soft)}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* 별 모티프 */
+.star{color:var(--gold)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 84%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--ink)}
+.brand .star{font-size:16px}
+.brand small{font-weight:400;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.nav-links{display:flex;gap:2px;margin-left:8px}
+.nav-links a{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--muted);padding:8px 11px;border-radius:8px;transition:.2s}
+.nav-links a:hover{color:var(--ink);background:var(--panel)}
+.nav-links a.active{color:var(--accent);background:var(--accent-soft)}
+.nav-tools{margin-left:auto;display:flex;gap:8px}
+.tbtn{height:34px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--text);font-family:var(--mono);font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.tbtn:hover{border-color:var(--accent);color:var(--accent)}
+.tbtn .en{color:var(--faint)}.tbtn.on .ko{color:var(--faint)}.tbtn.on .en{color:var(--text)}
+.tbtn .sun{display:none}[data-theme="dark"] .tbtn .sun{display:inline}[data-theme="dark"] .tbtn .moon{display:none}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* =========================================================
+   섹션 헤더 (★ ABOUT ME ★)
+   ========================================================= */
+section{padding:82px 0}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-kicker{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:clamp(15px,2.4vw,20px);
+  font-weight:700;letter-spacing:.12em;color:var(--ink);text-transform:uppercase}
+.sec-kicker .star{font-size:.9em}
+.sec-desc{color:var(--muted);font-size:15px;margin:12px auto 0;max-width:52ch}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{position:relative;padding:96px 0 84px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0/28px 28px;
+  mask-image:radial-gradient(ellipse 70% 65% at 50% 30%,#000 20%,transparent 72%);opacity:.6}
+.hero .wrap{position:relative;z-index:1;text-align:center}
+.hero-label{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;color:var(--accent);
+  background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:100px;padding:7px 15px;margin-bottom:26px}
+.hero-title{font-size:clamp(46px,11vw,104px);font-weight:800;letter-spacing:-.04em;line-height:.98;margin:0 0 18px;color:var(--ink)}
+.hero-code{font-family:var(--mono);font-size:clamp(14px,2.6vw,20px);font-weight:600;margin:0 0 26px;letter-spacing:-.01em}
+.hero-code .kw{color:#8b5cf6}
+.hero-code .var{color:var(--ink)}
+.hero-code .op{color:var(--faint)}
+.hero-code .str{color:#12a150}
+.hero-code .cm{color:var(--faint);font-weight:400}
+.hero-code .cur{display:inline-block;width:9px;height:1.05em;background:var(--accent);vertical-align:-2px;margin-left:3px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-code .cur{animation:none}}
+.hero-values{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 30px}
+.hval{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;color:var(--text);
+  background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:8px 15px;box-shadow:var(--shadow-sm)}
+.hval .star{font-size:11px}
+.hero-name{font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px}
+.hero-role{font-family:var(--mono);font-size:14px;color:var(--accent);margin:0 0 26px}
+.hero-links{display:flex;flex-wrap:wrap;gap:11px;justify-content:center}
+.hbtn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;font-weight:600;
+  padding:11px 18px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--text);cursor:pointer;transition:transform .15s,border-color .2s,color .2s;box-shadow:var(--shadow-sm)}
+.hbtn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hbtn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hbtn.primary:hover{color:#fff}
+.hbtn .ic{width:16px;height:16px;display:inline-block}
+
+/* =========================================================
+   ABOUT — 3 필러
+   ========================================================= */
+.about-intro{max-width:64ch;margin:0 auto 40px;text-align:center;font-size:17px;color:var(--text)}
+.about-intro b{color:var(--accent);font-weight:700}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative}
+.pillar:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--shadow-lg)}
+.pillar .pno{position:absolute;top:20px;right:22px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+.pillar .pstar{color:var(--gold);font-size:22px;margin-bottom:14px}
+.pillar .pk{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;margin-bottom:6px}
+.pillar h3{margin:0 0 9px;font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.pillar p{margin:0;color:var(--muted);font-size:14px}
+
+/* =========================================================
+   SKILL
+   ========================================================= */
+.skill-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.skill-cols{grid-template-columns:1fr}}
+.skill-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm)}
+.skill-card .sc-h{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:16px;letter-spacing:.04em}
+.skill-card .sc-h .star{color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:12.5px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 13px;transition:.18s cubic-bezier(.34,1.56,.64,1)}
+.chip:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-3px)}
+.chip.key{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));color:var(--accent);font-weight:600}
+.chip.key:hover{color:#fff}
+
+/* =========================================================
+   CAREER & EDUCATION 타임라인
+   ========================================================= */
+.timeline{position:relative;max-width:760px;margin:0 auto;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl{position:relative;padding:0 0 26px 26px}
+.tl::before{content:"";position:absolute;left:-1px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.tl.edu::before{border-color:var(--gold)}
+.tl .tl-date{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:4px}
+.tl.edu .tl-date{color:var(--gold)}
+.tl .tl-tag{font-family:var(--mono);font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:100px;margin-left:8px;border:1px solid var(--line);color:var(--muted)}
+.tl h4{margin:0 0 4px;font-size:16px;font-weight:700;color:var(--ink)}
+.tl p{margin:0;color:var(--muted);font-size:14px}
+.tl .tl-hash{margin-top:7px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.tl-head{cursor:pointer;display:flex;align-items:flex-start;gap:10px;position:relative}
+.tl-head .tl-main{flex:1;min-width:0}
+.tl-caret{flex-shrink:0;margin-top:4px;font-size:11px;color:var(--muted);transition:transform .3s}
+.tl.on .tl-caret{transform:rotate(90deg);color:var(--accent)}
+.tl-detail{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.tl.on .tl-detail{max-height:1400px}
+.tl-detail-in{padding:14px 0 4px;border-top:1px solid var(--line);margin-top:12px}
+.tl-sub{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin:0 0 7px}
+.tl-detail ul{margin:0 0 15px;padding-left:18px}
+.tl-detail li{font-size:13px;color:var(--muted);line-height:1.75}
+.tl-stack{display:flex;flex-wrap:wrap;gap:7px}
+.tl-tech{font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:100px;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.tl-tech.key{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 30%,var(--line));color:var(--accent)}
+
+/* =========================================================
+   PROJECTS — 케이스 스터디
+   ========================================================= */
+.projects{display:flex;flex-direction:column;gap:20px}
+.pcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:border-color .3s,box-shadow .3s}
+.pcard:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:var(--shadow-lg)}
+.pc-top{display:flex;align-items:flex-start;gap:16px;padding:22px 24px;cursor:pointer;transition:background .2s}
+.pc-top:hover{background:var(--panel)}
+.pc-badge{flex:none;width:52px;height:52px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:13px}
+.pc-headings{flex:1;min-width:0}
+.pc-code{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;margin-bottom:4px}
+.pc-title{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin:0 0 8px}
+.pc-hash{display:flex;flex-wrap:wrap;gap:6px}
+.pc-hash span{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+.pc-caret{flex:none;color:var(--faint);font-size:12px;margin-top:6px;transition:transform .3s}
+.pcard.open .pc-caret{transform:rotate(90deg);color:var(--accent)}
+
+.pc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.pcard.open .pc-body{max-height:1400px}
+.pc-inner{padding:4px 24px 24px;border-top:1px solid var(--line-2)}
+.pc-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:start;margin-top:18px}
+@media(max-width:760px){.pc-grid{grid-template-columns:1fr}}
+.block{margin-bottom:18px}
+.block .bh{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.block .bh .star{color:var(--gold)}
+.block p{margin:0;color:var(--text);font-size:14.5px}
+.block ul{margin:8px 0 0;padding:0;list-style:none}
+.block ul li{position:relative;padding-left:20px;color:var(--muted);font-size:14px;margin-bottom:7px}
+.block ul li::before{content:"✦";position:absolute;left:0;top:0;color:var(--gold)}
+.block ul li b{color:var(--text);font-weight:600}
+.impact{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:10px;padding:14px 16px}
+.impact .bh{color:var(--accent)}
+.impact p{color:var(--ink);font-weight:500}
+.metricrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 15px;min-width:100px}
+.metric .mv{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent);line-height:1}
+.metric .ml{font-size:11.5px;color:var(--muted);margin-top:6px}
+
+.pc-figure{border:1px solid var(--line);border-radius:11px;overflow:hidden;min-height:200px;
+  background:repeating-linear-gradient(135deg,var(--panel),var(--panel) 11px,transparent 11px,transparent 22px),var(--paper);
+  display:grid;place-items:center;position:relative;padding:20px}
+.pc-figure .cap{position:absolute;top:11px;left:13px;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.pc-figure .cap2{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:center}
+.pc-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.gobtn{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;font-weight:600;padding:9px 14px;border-radius:9px;border:1px solid var(--line);background:var(--paper);color:var(--text);cursor:pointer;transition:.2s}
+.gobtn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.gobtn.solid{background:var(--accent);color:#fff;border-color:var(--accent)}
+.gobtn.solid:hover{color:#fff}
+.gobtn .ic{width:14px;height:14px;display:inline-block}
+
+/* =========================================================
+   FUTURE PLANS
+   ========================================================= */
+.futures{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.futures{grid-template-columns:1fr}}
+.future{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--radius);padding:24px 22px;transition:transform .25s,box-shadow .25s}
+.future:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.future .fno{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:12px}
+.future h4{margin:0 0 8px;font-size:16px;font-weight:700;color:var(--ink)}
+.future p{margin:0;color:var(--muted);font-size:13.5px}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+.contact{padding-bottom:70px}
+.contact-card{background:var(--ink);color:#fff;border-radius:20px;padding:52px 36px;text-align:center;position:relative;overflow:hidden}
+[data-theme="dark"] .contact-card{background:var(--paper);border:1px solid var(--line)}
+.contact-card .cstar{font-size:26px;color:var(--gold);margin-bottom:16px}
+.contact-card h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px;color:#fff}
+[data-theme="dark"] .contact-card h2{color:var(--ink)}
+.contact-card p{color:rgba(255,255,255,.7);max-width:44ch;margin:0 auto 30px}
+[data-theme="dark"] .contact-card p{color:var(--muted)}
+.clinks{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.clink{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13.5px;font-weight:600;padding:12px 20px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;transition:.2s}
+.clink:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+[data-theme="dark"] .clink{border-color:var(--line);background:var(--panel);color:var(--text)}
+[data-theme="dark"] .clink:hover{border-color:var(--accent);color:var(--accent)}
+.clink .ic{width:17px;height:17px;display:inline-block}
+
+.footer{text-align:center;padding:30px 0;font-family:var(--mono);font-size:12px;color:var(--faint)}
+.footer .star{color:var(--gold)}
+.footer .thanks{font-size:15px;color:var(--ink);font-weight:700;letter-spacing:.1em;margin-bottom:8px}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1 !important;transform:none !important;transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="star">★</span>최지현 <small>· AI Agent</small></a>
+    <nav class="nav-links">
+      <a href="#about" data-ko="소개" data-en="About">소개</a>
+      <a href="#skill" data-ko="스킬" data-en="Skill">스킬</a>
+      <a href="#career" data-ko="경력" data-en="Career">경력</a>
+      <a href="#projects" data-ko="프로젝트" data-en="Projects">프로젝트</a>
+      <a href="#contact" data-ko="연락처" data-en="Contact">연락처</a>
+    </nav>
+    <div class="nav-tools">
+      <button id="langBtn" class="tbtn" aria-label="language"><span class="ko">KO</span><span style="color:var(--faint)">/</span><span class="en">EN</span></button>
+      <button id="themeBtn" class="tbtn" aria-label="theme"><span class="moon">🌙</span><span class="sun">☀</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" style="padding-top:96px">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-label reveal mono">PORTFOLIO · <span data-ko="26.01 기준" data-en="as of 26.01">26.01 기준</span></div>
+    <h1 class="hero-title reveal" data-d="1">PORTFOLIO</h1>
+    <p class="hero-code reveal mono" data-d="1"><span class="kw">const</span> <span class="var">engineer</span> <span class="op">=</span> <span class="str">"최지현"</span><span class="op">;</span> <span class="cm">// Trusted AI Agent</span><span class="cur"></span></p>
+    <div class="hero-values reveal" data-d="1">
+      <span class="hval"><span class="star">★</span> Agent Architect</span>
+      <span class="hval"><span class="star">★</span> <span data-ko="End-to-End 서비스" data-en="End-to-End Service">End-to-End 서비스</span></span>
+      <span class="hval"><span class="star">★</span> Trusted AI</span>
+    </div>
+    <p class="hero-name reveal" data-d="2">최지현 <span style="color:var(--faint);font-weight:400">|</span> <span data-ko="믿음직한 · 도메인 적응력" data-en="Trustworthy · Domain-adaptive">믿음직한 · 도메인 적응력</span></p>
+    <p class="hero-role reveal" data-d="2">AI Agent Engineer · Backend</p>
+    <div class="hero-links reveal" data-d="3">
+      <!-- 포트폴리오 상세: Canva 공유 링크로 교체하세요 -->
+      <a class="hbtn primary" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span><span data-ko="포트폴리오 상세" data-en="Full portfolio">포트폴리오 상세</span></a>
+      <a class="hbtn" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GitHub</a>
+      <a class="hbtn" href="mailto:ttogle918@gmail.com"><span class="ic" data-ic="mail"></span>Email</a>
+      <a class="hbtn" href="https://zena1010.tistory.com" target="_blank" rel="noopener"><span class="ic" data-ic="pen"></span>Blog</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="star">★</span> ABOUT ME <span class="star">★</span></div>
+    </div>
+    <p class="about-intro reveal" data-ko="저는 <b>LangGraph 기반의 Agent System 설계 및 오케스트레이션</b>에 강점을 가진 AI Agent 엔지니어입니다." data-en="I'm an AI Agent engineer strong in <b>LangGraph-based Agent System design & orchestration.</b>">저는 <b>LangGraph 기반의 Agent System 설계 및 오케스트레이션</b>에 강점을 가진 AI Agent 엔지니어입니다.</p>
+    <div class="pillars">
+      <div class="pillar reveal"><span class="pno mono">01</span><div class="pstar">★</div><div class="pk mono" data-ko="구조 설계" data-en="Architecture">구조 설계</div><h3 data-ko="Agent System Design" data-en="Agent System Design">Agent System Design</h3><p data-ko="LangGraph로 비즈니스 문제를 다각도로 분석하고 멀티 에이전트를 조율해 팀 규모 산출물을 1인으로 완성한 경험." data-en="Analyzing problems from multiple angles and orchestrating multi-agent systems with LangGraph to ship team-scale results solo.">LangGraph로 비즈니스 문제를 다각도로 분석하고 멀티 에이전트를 조율해 팀 규모 산출물을 1인으로 완성한 경험.</p></div>
+      <div class="pillar reveal" data-d="1"><span class="pno mono">02</span><div class="pstar">★</div><div class="pk mono" data-ko="신뢰성 (믿음직한)" data-en="Trust">신뢰성 (믿음직한)</div><h3 data-ko="Trusted AI (RAG & Validation)" data-en="Trusted AI">Trusted AI (RAG & Validation)</h3><p data-ko="환각을 기술적으로 방지하고 교차검증·신뢰도 스코어링으로 결과에 근거·출처를 부여해 AI를 맹신하지 않는 설계." data-en="Preventing hallucination and grounding every result with cross-validation, sources, and reliability scoring — never blindly trusting AI.">환각을 기술적으로 방지하고 교차검증·신뢰도 스코어링으로 결과에 근거·출처를 부여해 AI를 맹신하지 않는 설계.</p></div>
+      <div class="pillar reveal" data-d="2"><span class="pno mono">03</span><div class="pstar">★</div><div class="pk mono" data-ko="도메인 (적응력)" data-en="Adaptability">도메인 (적응력)</div><h3 data-ko="End-to-End & Adaptability" data-en="End-to-End & Adaptability">End-to-End & Adaptability</h3><p data-ko="보안·무역·채용 등 생소한 도메인을 빠르게 학습해 데이터부터 배포까지 Full-Stack AI 서비스로 완성." data-en="Rapidly learning unfamiliar domains — security, trade, hiring — to ship full-stack AI services from data to deployment.">보안·무역·채용 등 생소한 도메인을 빠르게 학습해 데이터부터 배포까지 Full-Stack AI 서비스로 완성.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILL ===================== -->
+<section id="skill" style="background:var(--panel)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="star">★</span> SKILL <span class="star">★</span></div>
+      <p class="sec-desc" data-ko="핵심 스택은 강조 표시했습니다." data-en="Core stack is highlighted.">핵심 스택은 강조 표시했습니다.</p>
+    </div>
+    <div class="skill-cols">
+      <div class="skill-card reveal">
+        <div class="sc-h"><span class="star">★</span> Backend / Infra</div>
+        <div class="chips">
+          <span class="chip key">FastAPI (Async)</span><span class="chip">Spring Boot</span><span class="chip">MSA</span><span class="chip">Docker</span><span class="chip">Redis</span><span class="chip">Agent / LLMOps</span>
+        </div>
+      </div>
+      <div class="skill-card reveal" data-d="1">
+        <div class="sc-h"><span class="star">★</span> AI / ML / NLP</div>
+        <div class="chips">
+          <span class="chip key">LangGraph</span><span class="chip key">RAG</span><span class="chip">LangChain</span><span class="chip">GPT-4o</span><span class="chip">SBERT Fine-tuning</span><span class="chip">RandomForest</span><span class="chip">XGBoost</span><span class="chip">Whisper / DeepFace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAREER & EDUCATION ===================== -->
+<section id="career">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="star">★</span> CAREER &amp; EDUCATION <span class="star">★</span></div>
+      <p class="sec-desc" data-ko="실무 경험과 교육 과정을 시간순으로 정리했습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다." data-en="Career and education in chronological order — click an item to expand.">실무 경험과 교육 과정을 시간순으로 정리했습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl reveal">
+        <div class="tl-head"><div class="tl-main"><div class="tl-date mono">2026.03 ~ 현재 <span class="tl-tag">Career</span></div><h4 data-ko="KOSA — AI 교육 보조강사" data-en="KOSA — AI Teaching Assistant">KOSA — AI 교육 보조강사</h4><p data-ko="교강사 대상 AI 개발 역량강화 실습 멘토링·운영 지원. 코드 디버깅, 에러 슈팅, 기술 질의응답." data-en="Mentoring and operations support for AI dev training — code debugging, error shooting, tech Q&A.">교강사 대상 AI 개발 역량강화 실습 멘토링·운영 지원. 코드 디버깅, 에러 슈팅, 기술 질의응답.</p><div class="tl-hash mono">#Mentoring #DevOps</div></div><span class="tl-caret">▶</span></div>
+        <div class="tl-detail"><div class="tl-detail-in">
+          <p class="tl-sub" data-ko="근무 내용" data-en="Role">근무 내용</p>
+          <ul>
+            <li data-ko="보수교육 보조강사로 근무 — 12~20명 수강생의 실습을 실시간 지원." data-en="Teaching assistant for refresher courses — supporting 12–20 students' hands-on labs live.">보수교육 보조강사로 근무 — 12~20명 수강생의 실습을 실시간 지원.</li>
+            <li data-ko="OpenAI Agents SDK 연동 오류, Python STT/TTS 파이프라인 버그, Spring AI 오류 등 실시간 디버깅·트러블슈팅." data-en="Live debugging of OpenAI Agents SDK integration errors, Python STT/TTS pipeline bugs, and Spring AI issues.">OpenAI Agents SDK 연동 오류, Python STT/TTS 파이프라인 버그, Spring AI 오류 등 실시간 디버깅·트러블슈팅.</li>
+            <li data-ko="타인의 코드를 분석하고 문제를 해결하는 커뮤니케이션 역량 확보." data-en="Built communication skills by reading others' code and resolving their problems.">타인의 코드를 분석하고 문제를 해결하는 커뮤니케이션 역량 확보.</li>
+          </ul>
+          <p class="tl-sub" data-ko="담당 강의 (실습 보조)" data-en="Courses (lab support)">담당 강의 (실습 보조)</p>
+          <ul>
+            <li data-ko="<b>Spring AI 기초</b> (26.03.14~15) · OpenAI API, Spring AI, Spring Boot, STS" data-en="<b>Spring AI Basics</b> (Mar 14–15) · OpenAI API, Spring AI, Spring Boot, STS"><b>Spring AI 기초</b> (26.03.14~15) · OpenAI API, Spring AI, Spring Boot, STS</li>
+            <li data-ko="<b>음성으로 제어하는 MCP 기반 대화형 AI 비서앱</b> (26.03.19~20) · OpenAI API, STT, TTS, MCP" data-en="<b>Voice-controlled MCP conversational AI assistant</b> (Mar 19–20) · OpenAI API, STT, TTS, MCP"><b>음성으로 제어하는 MCP 기반 대화형 AI 비서앱</b> (26.03.19~20) · OpenAI API, STT, TTS, MCP</li>
+            <li data-ko="<b>구글 AI Studio — 나노바나나·VEO·AI 앱 배포</b> (26.03.26~27) · OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API" data-en="<b>Google AI Studio — Nano Banana·VEO·app deploy</b> (Mar 26–27) · OpenAI API, Google AI Studio, Nano Banana, VEO, Kakao API"><b>구글 AI Studio — 나노바나나·VEO·AI 앱 배포</b> (26.03.26~27) · OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API</li>
+            <li data-ko="<b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store" data-en="<b>Spring AI Embedding & RAG</b> (Mar 28–29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store"><b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store</li>
+            <li data-ko="<b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05) · Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling" data-en="<b>Spring AI Tool calling & MCP Server</b> (Apr 5) · Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling"><b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05) · Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling</li>
+            <li data-ko="<b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14) · n8n, Docker, Google API(Gmail·Drive), OpenAI" data-en="<b>Workflow-based system design patterns</b> (Apr 13–14) · n8n, Docker, Google API (Gmail·Drive), OpenAI"><b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14) · n8n, Docker, Google API(Gmail·Drive), OpenAI</li>
+            <li data-ko="<b>LLM 기반 자율 에이전트 개발 및 워크플로우 자동화</b> (26.04.18~19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph" data-en="<b>LLM autonomous agents & workflow automation</b> (Apr 18–19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph"><b>LLM 기반 자율 에이전트 개발 및 워크플로우 자동화</b> (26.04.18~19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph</li>
+          </ul>
+          <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+          <div class="tl-stack"><span class="tl-tech key">Spring AI</span><span class="tl-tech key">MCP</span><span class="tl-tech key">LangGraph</span><span class="tl-tech">OpenAI API</span><span class="tl-tech">RAG</span><span class="tl-tech">STT / TTS</span><span class="tl-tech">n8n</span><span class="tl-tech">Docker</span></div>
+        </div></div>
+      </div>
+
+      <div class="tl reveal">
+        <div class="tl-head"><div class="tl-main"><div class="tl-date mono">2025.08 ~ 2025.10 <span class="tl-tag">Education</span></div><h4 data-ko="KOSA Spec-up — K-Bridge" data-en="KOSA Spec-up — K-Bridge">KOSA Spec-up — K-Bridge</h4><p data-ko="통관 법률 도메인 RAG·LangGraph 팀 프로젝트. 요건 분석·판례 교차검증 담당(팀 4인)." data-en="Trade-law RAG/LangGraph team project; owned requirement analysis and precedent cross-validation (team of 4).">통관 법률 도메인 RAG·LangGraph 팀 프로젝트. 요건 분석·판례 교차검증 담당(팀 4인).</p><div class="tl-hash mono">#RAG #LangGraph</div></div><span class="tl-caret">▶</span></div>
+        <div class="tl-detail"><div class="tl-detail-in">
+          <p class="tl-sub" data-ko="커리큘럼 / 프로젝트" data-en="Curriculum / Project">커리큘럼 / 프로젝트</p>
+          <ul>
+            <li data-ko="통관·법률 도메인 RAG·LangGraph 기반 팀 프로젝트" data-en="Customs/legal-domain RAG + LangGraph team project">통관·법률 도메인 RAG·LangGraph 기반 팀 프로젝트</li>
+            <li data-ko="대표 프로젝트: K-Bridge (HS코드 기반 규제 자동 분석)" data-en="Flagship: K-Bridge (HS-code regulation analysis)">대표 프로젝트: K-Bridge (HS코드 기반 규제 자동 분석)</li>
+            <li data-ko="담당: 요건 분석 엔진 · 판례 교차검증 · 프론트 모듈화" data-en="Owned: requirement engine · precedent cross-validation · front modules">담당: 요건 분석 엔진 · 판례 교차검증 · 프론트 모듈화</li>
+          </ul>
+          <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+          <div class="tl-stack"><span class="tl-tech key">RAG</span><span class="tl-tech key">LangGraph</span><span class="tl-tech">FastAPI</span><span class="tl-tech">Spring Boot</span><span class="tl-tech">PostgreSQL</span></div>
+        </div></div>
+      </div>
+
+      <div class="tl edu reveal">
+        <div class="tl-head"><div class="tl-main"><div class="tl-date mono">2025.03 ~ 2025.08 · 960h <span class="tl-tag">Education</span></div><h4 data-ko="KOSA 생성형 AI 과정 — KOCRUIT" data-en="KOSA Gen-AI — KOCRUIT">KOSA 생성형 AI 과정 — KOCRUIT</h4><p data-ko="생성형 AI 응용 개발자 양성 과정(960시간). LangGraph 설계·FastAPI E2E 구현, 과정 1위." data-en="960-hour generative-AI developer program; LangGraph design and FastAPI E2E build — ranked #1.">생성형 AI 응용 개발자 양성 과정(960시간). LangGraph 설계·FastAPI E2E 구현, 과정 1위.</p><div class="tl-hash mono">#SpringBoot #FastAPI</div></div><span class="tl-caret">▶</span></div>
+        <div class="tl-detail"><div class="tl-detail-in">
+          <p class="tl-sub" data-ko="커리큘럼" data-en="Curriculum">커리큘럼</p>
+          <ul>
+            <li data-ko="백엔드: Java · Oracle SQL · Spring RESTful · FastAPI" data-en="Backend: Java · Oracle SQL · Spring RESTful · FastAPI">백엔드: Java · Oracle SQL · Spring RESTful · FastAPI</li>
+            <li data-ko="프론트 & 클라우드: React·Vite · Docker · AWS EC2" data-en="Front & Cloud: React·Vite · Docker · AWS EC2">프론트 & 클라우드: React·Vite · Docker · AWS EC2</li>
+            <li data-ko="생성형 AI: Transformer 구현 · RAG · LangGraph · 프롬프트 방법론" data-en="Gen-AI: Transformer · RAG · LangGraph · prompting">생성형 AI: Transformer 구현 · RAG · LangGraph · 프롬프트 방법론</li>
+            <li data-ko="대표 프로젝트: KOCRUIT (AI 채용 관리, 팀장 · 최종 1위)" data-en="Flagship: KOCRUIT (AI recruiting; team lead, #1)">대표 프로젝트: KOCRUIT (AI 채용 관리, 팀장 · 최종 1위)</li>
+          </ul>
+          <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+          <div class="tl-stack"><span class="tl-tech key">LangGraph</span><span class="tl-tech key">FastAPI</span><span class="tl-tech">Spring Boot</span><span class="tl-tech">GPT-4o</span><span class="tl-tech">Docker</span><span class="tl-tech">AWS</span></div>
+        </div></div>
+      </div>
+
+      <div class="tl reveal">
+        <div class="tl-head"><div class="tl-main"><div class="tl-date mono">2022.09 ~ 2023.03 <span class="tl-tag">Career</span></div><h4 data-ko="비상교육 — AI 연구개발 Cell" data-en="Visang Education — AI R&D Cell">비상교육 — AI 연구개발 Cell</h4><p data-ko="실제 기업 데이터 기반 AI 서비스 PoC(ML/NLP)를 1인 개발, 대표이사 앞 시연." data-en="Solo-built AI service PoCs (ML/NLP) on real enterprise data, demoed to the CEO.">실제 기업 데이터 기반 AI 서비스 PoC(ML/NLP)를 1인 개발, 대표이사 앞 시연.</p><div class="tl-hash mono">#RandomForest #XGBoost</div></div><span class="tl-caret">▶</span></div>
+        <div class="tl-detail"><div class="tl-detail-in">
+          <p class="tl-sub" data-ko="담당 업무 / 프로젝트" data-en="Duties / Projects">담당 업무 / 프로젝트</p>
+          <ul>
+            <li data-ko="AI 서비스 프로토타입 1인 개발 및 경영진 시연 (Google Colab / Python)" data-en="Solo AI service prototyping and exec demos (Colab / Python)">AI 서비스 프로토타입 1인 개발 및 경영진 시연 (Google Colab / Python)</li>
+            <li data-ko="이탈 고객 예측 (RFM·KMeans·RF/XGBoost, 정확도 85.3%)" data-en="Churn prediction (RFM·KMeans·RF/XGBoost, 85.3% acc)">이탈 고객 예측 (RFM·KMeans·RF/XGBoost, 정확도 85.3%)</li>
+            <li data-ko="질문-답변 검색 (SBERT/KoBERT STS 0.90, 개인정보 익명화 10만 1천 건)" data-en="QA retrieval (SBERT/KoBERT STS 0.90, 101K rows anonymized)">질문-답변 검색 (SBERT/KoBERT STS 0.90, 개인정보 익명화 10만 1천 건)</li>
+          </ul>
+          <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+          <div class="tl-stack"><span class="tl-tech key">SBERT</span><span class="tl-tech key">KoBERT</span><span class="tl-tech">XGBoost</span><span class="tl-tech">RandomForest</span><span class="tl-tech">Python</span></div>
+        </div></div>
+      </div>
+
+      <div class="tl edu reveal">
+        <div class="tl-head"><div class="tl-main"><div class="tl-date mono">2021.09 ~ 2022.06 · 1120h <span class="tl-tag">Education</span></div><h4 data-ko="코드스테이츠 — AI 부트캠프" data-en="Code States — AI Bootcamp">코드스테이츠 — AI 부트캠프</h4><p data-ko="ML/DL/NLP 기초 이론(1120시간) 및 기업 협업 프로젝트. 이후 NLP 심화 과정 수료." data-en="ML/DL/NLP fundamentals (1120h) plus industry projects; later completed advanced NLP.">ML/DL/NLP 기초 이론(1120시간) 및 기업 협업 프로젝트. 이후 NLP 심화 과정 수료.</p><div class="tl-hash mono">#SBERT #KoBERT</div></div><span class="tl-caret">▶</span></div>
+        <div class="tl-detail"><div class="tl-detail-in">
+          <p class="tl-sub" data-ko="커리큘럼" data-en="Curriculum">커리큘럼</p>
+          <ul>
+            <li data-ko="ML 통계·미분 · EDA · CLI · Flask · MySQL · MongoDB · ML/DL" data-en="ML stats/calculus · EDA · CLI · Flask · MySQL · MongoDB · ML/DL">ML 통계·미분 · EDA · CLI · Flask · MySQL · MongoDB · ML/DL</li>
+            <li data-ko="NLP 심화: BERT·GPT·BART 학습법, 문장 유사도(STS) fine-tuning" data-en="Advanced NLP: BERT·GPT·BART, sentence-similarity (STS) fine-tuning">NLP 심화: BERT·GPT·BART 학습법, 문장 유사도(STS) fine-tuning</li>
+            <li data-ko="프로젝트: KoBERT 뉴스 보정(기업협업) · 악기 분류 CNN · IoT 이상탐지" data-en="Projects: KoBERT news correction · instrument-classification CNN · IoT anomaly detection">프로젝트: KoBERT 뉴스 보정(기업협업) · 악기 분류 CNN · IoT 이상탐지</li>
+          </ul>
+          <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+          <div class="tl-stack"><span class="tl-tech key">PyTorch</span><span class="tl-tech key">HuggingFace</span><span class="tl-tech">KoBERT</span><span class="tl-tech">Flask</span><span class="tl-tech">MySQL</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects" style="background:var(--panel)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="star">★</span> PROJECTS <span class="star">★</span></div>
+      <p class="sec-desc" data-ko="카드를 클릭하면 문제정의 · 해결방법 · 성과가 펼쳐집니다." data-en="Click a card to expand Problem · Solution · Impact.">카드를 클릭하면 문제정의 · 해결방법 · 성과가 펼쳐집니다.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- PROJECT 01 -->
+      <article class="pcard open reveal">
+        <div class="pc-top">
+          <div class="pc-badge mono">01</div>
+          <div class="pc-headings">
+            <div class="pc-code mono" data-ko="AI 기반 코드 보안 분석 플랫폼" data-en="AI Code Security Platform">AI 기반 코드 보안 분석 플랫폼</div>
+            <h3 class="pc-title">SECUREAI ENGINE</h3>
+            <div class="pc-hash mono"><span>#TrustworthyAI</span><span>#DAST교차검증</span><span>#FalsePositive감소</span><span>#DevSecOps</span></div>
+          </div>
+          <span class="pc-caret">▶</span>
+        </div>
+        <div class="pc-body"><div class="pc-inner">
+          <div class="pc-grid">
+            <div>
+              <div class="block">
+                <div class="bh"><span class="star">◆</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span></div>
+                <p data-ko="LLM 코드 분석 시 발생하는 높은 오탐률(False Positive)과 환각으로 인한 신뢰성 부족." data-en="High false-positive rates and hallucination undermining trust in LLM code analysis.">LLM 코드 분석 시 발생하는 높은 오탐률(False Positive)과 환각으로 인한 신뢰성 부족.</p>
+              </div>
+              <div class="block">
+                <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design Points">설계 포인트</span></div>
+                <ul>
+                  <li data-ko="<b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소." data-en="<b>Framework-aware prompts</b> cut the initial 40–50% false-positive rate."><b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소.</li>
+                  <li data-ko="<b>DAST 샌드박스 교차검증</b>으로 취약점을 실제 익스플로잇으로 증명." data-en="<b>DAST sandbox cross-validation</b> proves vulnerabilities via real exploits."><b>DAST 샌드박스 교차검증</b>으로 취약점을 실제 익스플로잇으로 증명.</li>
+                  <li data-ko="<b>보안 원칙 수호 (ADR-016)</b>: 편의성 대신 핵심 보안 원칙 준수." data-en="<b>Security-first (ADR-016)</b>: chose core security principles over convenience."><b>보안 원칙 수호 (ADR-016)</b>: 편의성 대신 핵심 보안 원칙 준수.</li>
+                </ul>
+              </div>
+              <div class="impact block">
+                <div class="bh"><span class="star">★</span> <span data-ko="성과 (신뢰성 확보)" data-en="Impact">성과 (신뢰성 확보)</span></div>
+                <p data-ko="'찾았다'가 아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보." data-en="Shifted from 'found' to 'proven' — trust ready for real-world adoption.">'찾았다'가 아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보.</p>
+                <div class="metricrow">
+                  <div class="metric"><div class="mv">−<span data-count="45">0</span>%</div><div class="ml" data-ko="오탐률" data-en="false positives">오탐률</div></div>
+                  <div class="metric"><div class="mv"><span data-count="3">0</span>종</div><div class="ml" data-ko="증적 자동화" data-en="compliance docs">증적 자동화</div></div>
+                </div>
+              </div>
+              <div class="pc-actions">
+                <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a>
+                <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span>PPT</a>
+                <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상 보기</span></a>
+              </div>
+            </div>
+            <div class="pc-figure">
+              <span class="cap mono">// diagram.png</span>
+              <span class="cap2 mono" data-ko="여기에 아키텍처/파이프라인<br>다이어그램 이미지" data-en="architecture / pipeline<br>diagram here">여기에 아키텍처/파이프라인<br>다이어그램 이미지</span>
+            </div>
+          </div>
+        </div></div>
+      </article>
+
+      <!-- PROJECT 02 -->
+      <article class="pcard reveal">
+        <div class="pc-top">
+          <div class="pc-badge mono">02</div>
+          <div class="pc-headings">
+            <div class="pc-code mono" data-ko="HS코드 / 규제 자동 분석 RAG Agent" data-en="HS-code / Regulation RAG Agent">HS코드 / 규제 자동 분석 RAG Agent</div>
+            <h3 class="pc-title">K-BRIDGE</h3>
+            <div class="pc-hash mono"><span>#도메인적응력</span><span>#무역행정자동화</span><span>#CrossValidation</span><span>#CoT</span></div>
+          </div>
+          <span class="pc-caret">▶</span>
+        </div>
+        <div class="pc-body"><div class="pc-inner">
+          <div class="pc-grid">
+            <div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span></div><p data-ko="복잡하고 방대한 수출입 규제 문서를 사람이 일일이 확인해야 하는 법적/시간적 리스크." data-en="Legal/time risk of manually checking complex trade regulations.">복잡하고 방대한 수출입 규제 문서를 사람이 일일이 확인해야 하는 법적/시간적 리스크.</p></div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Solution">해결 방법</span></div><ul><li data-ko="<b>Multi-Stage CoT Agent</b>: 규제-절차-리스크-사후관리 4단계 순차 분석 파이프라인." data-en="<b>Multi-Stage CoT Agent</b>: 4-stage sequential analysis pipeline."><b>Multi-Stage CoT Agent</b>: 규제-절차-리스크-사후관리 4단계 순차 분석 파이프라인.</li><li data-ko="<b>Cross-Validation</b>: '요건 분석'·'판례 검증' 병렬 실행 후 논리적 모순을 체크하는 재검증 노드." data-en="<b>Cross-validation</b>: requirement & precedent nodes run in parallel, re-verified for contradictions."><b>Cross-Validation</b>: '요건 분석'·'판례 검증' 병렬 실행 후 논리적 모순을 체크하는 재검증 노드.</li><li data-ko="<b>Hybrid 구조</b>: 공공 API + 검색엔진 결합으로 정보 최신성 확보." data-en="<b>Hybrid</b>: public API + search engine for fresh info."><b>Hybrid 구조</b>: 공공 API + 검색엔진 결합으로 정보 최신성 확보.</li></ul></div>
+              <div class="impact block"><div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과 (Impact)</span></div><p data-ko="규제 불확실성 해소 및 통관 사전 준비 시간 획기적 단축." data-en="Reduced regulatory uncertainty and customs prep time.">규제 불확실성 해소 및 통관 사전 준비 시간 획기적 단축.</p></div>
+              <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/K-Bridge" target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span>PPT</a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+            </div>
+            <div class="pc-figure"><span class="cap mono">// workflow.png</span><span class="cap2 mono" data-ko="여기에 LangGraph<br>워크플로우 이미지" data-en="LangGraph<br>workflow here">여기에 LangGraph<br>워크플로우 이미지</span></div>
+          </div>
+        </div></div>
+      </article>
+
+      <!-- PROJECT 03 -->
+      <article class="pcard reveal">
+        <div class="pc-top">
+          <div class="pc-badge mono">03</div>
+          <div class="pc-headings">
+            <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI Agent 기반 기업용 채용 관리 시스템</div>
+            <h3 class="pc-title">KOCRUIT</h3>
+            <div class="pc-hash mono"><span>#End-to-End</span><span>#Multimodal</span><span>#AgentOrchestration</span><span>#TeamLead</span></div>
+          </div>
+          <span class="pc-caret">▶</span>
+        </div>
+        <div class="pc-body"><div class="pc-inner">
+          <div class="pc-grid">
+            <div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span></div><p data-ko="단순 반복 업무로 인한 채용 리소스 낭비 및 면접관의 주관적 평가 개입." data-en="Wasted hiring resources and subjective interviewer bias.">단순 반복 업무로 인한 채용 리소스 낭비 및 면접관의 주관적 평가 개입.</p></div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 (Agent)" data-en="Solution">해결 방법 (Agent)</span></div><ul><li data-ko="<b>멀티모달 분석</b>: Whisper(음성)+DeepFace(표정) 6차원 정량 평가 리포트." data-en="<b>Multimodal</b>: Whisper + DeepFace → 6-axis quantitative report."><b>멀티모달 분석</b>: Whisper(음성)+DeepFace(표정) 6차원 정량 평가 리포트.</li><li data-ko="<b>LangGraph Orchestration</b>: '분석-전략-생성-검토' 노드 모듈화." data-en="<b>LangGraph Orchestration</b>: modular analyze-strategize-generate-review nodes."><b>LangGraph Orchestration</b>: '분석-전략-생성-검토' 노드 모듈화.</li><li data-ko="<b>FastAPI 마이그레이션</b>: Spring Boot → FastAPI 전환으로 Python 모델 호환·비동기 스트리밍 확보, Redis 캐싱." data-en="<b>FastAPI migration</b>: Spring Boot → FastAPI for Python-model compatibility & async streaming, plus Redis caching."><b>FastAPI 마이그레이션</b>: Spring Boot → FastAPI 전환으로 Python 모델 호환·비동기 스트리밍 확보, Redis 캐싱.</li></ul></div>
+              <div class="impact block"><div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과 (Impact)</span></div><p data-ko="면접 자동화 시스템 구축 및 멀티모달 기반 정량 평가로 업무 시간 단축." data-en="Automated interviews and cut workload with multimodal scoring.">면접 자동화 시스템 구축 및 멀티모달 기반 정량 평가로 업무 시간 단축.</p></div>
+              <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/KOCRUIT" target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn" href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span>PPT</a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+            </div>
+            <div class="pc-figure"><span class="cap mono">// architecture.png</span><span class="cap2 mono" data-ko="여기에 아키텍처<br>다이어그램 이미지" data-en="architecture<br>diagram here">여기에 아키텍처<br>다이어그램 이미지</span></div>
+          </div>
+        </div></div>
+      </article>
+
+      <!-- PROJECT 04 -->
+      <article class="pcard reveal">
+        <div class="pc-top">
+          <div class="pc-badge mono">04</div>
+          <div class="pc-headings">
+            <div class="pc-code mono" data-ko="질문-답변 검색 &amp; 이탈 고객 예측 (실무 NLP·데이터)" data-en="QA Retrieval &amp; Churn Prediction (NLP · Data)">질문-답변 검색 &amp; 이탈 고객 예측 (실무 NLP·데이터)</div>
+            <h3 class="pc-title">VISANG EDUCATION</h3>
+            <div class="pc-hash mono"><span>#DataTrust</span><span>#개인정보익명화</span><span>#SBERT</span><span>#Churn</span></div>
+          </div>
+          <span class="pc-caret">▶</span>
+        </div>
+        <div class="pc-body"><div class="pc-inner">
+          <div class="pc-grid">
+            <div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span></div><p data-ko="강사 부재 시 답변 지연, 그리고 게시판 원천 데이터에 이름·주소·전화번호 등 민감정보가 무작위로 섞여 있는 문제." data-en="Delayed answers when instructors were away, plus raw board data laced with names, addresses, and phone numbers.">강사 부재 시 답변 지연, 그리고 게시판 원천 데이터에 이름·주소·전화번호 등 민감정보가 무작위로 섞여 있는 문제.</p></div>
+              <div class="block"><div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Solution">해결 방법</span></div><ul><li data-ko="<b>QA 검색</b>: SBERT/KoBERT STS Fine-tuning으로 유사 질문 추천·자동 답변 파이프라인 단독 구축." data-en="<b>QA retrieval</b>: SBERT/KoBERT STS fine-tuning for similar-question matching and auto answers, built solo.">SBERT/KoBERT STS Fine-tuning으로 유사 질문 추천·자동 답변 파이프라인 단독 구축.</li><li data-ko="<b>개인정보 익명화</b>: 정규표현식 + NER 직접 조합으로 비정형 개인정보를 익명화(2주간 예외 케이스 반복 해결)." data-en="<b>PII anonymization</b>: regex + NER to mask unstructured personal data over two weeks of edge-case work.">정규표현식 + NER 직접 조합으로 비정형 개인정보 익명화.</li><li data-ko="<b>이탈 예측</b>: RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링, 변수 중요도 해석." data-en="<b>Churn model</b>: RFM features + KMeans + RandomForest/XGBoost with feature-importance analysis.">RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링.</li></ul></div>
+              <div class="impact block"><div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과 (Impact)</span></div><p data-ko="&quot;데이터를 다루는 사람의 기준이 곧 서비스 신뢰&quot;를 체감. 대표이사 앞 시연·발표." data-en="Learned that the handler's standards define service trust. Demoed and presented to the CEO.">"데이터를 다루는 사람의 기준이 곧 서비스 신뢰"를 체감. 대표이사 앞 시연·발표.</p>
+                <div class="metricrow">
+                  <div class="metric"><div class="mv">0.<span data-count="90">0</span></div><div class="ml" data-ko="유사도 정확도" data-en="similarity acc.">유사도 정확도</div></div>
+                  <div class="metric"><div class="mv"><span data-count="101">0</span>K+</div><div class="ml" data-ko="데이터 정제" data-en="rows cleaned">데이터 정제</div></div>
+                  <div class="metric"><div class="mv"><span data-count="85">0</span>%</div><div class="ml" data-ko="이탈 예측" data-en="churn pred.">이탈 예측</div></div>
+                </div>
+              </div>
+              <div class="pc-actions"><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+            </div>
+            <div class="pc-figure"><span class="cap mono">// pipeline.png</span><span class="cap2 mono" data-ko="여기에 익명화/모델링<br>파이프라인 이미지" data-en="anonymization / modeling<br>pipeline here">여기에 익명화/모델링<br>파이프라인 이미지</span></div>
+          </div>
+        </div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FUTURE PLANS ===================== -->
+<section id="future">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="star">★</span> FUTURE PLANS <span class="star">★</span></div>
+      <p class="sec-desc" data-ko="대체 불가능한 AI Service Architect 를 목표합니다." data-en="Aiming to be an irreplaceable AI Service Architect.">대체 불가능한 AI Service Architect 를 목표합니다.</p>
+    </div>
+    <div class="futures">
+      <div class="future reveal"><div class="fno mono">01</div><h4 data-ko="고성능 Agent-Backend 통합 아키텍처" data-en="High-performance Agent-Backend Architecture">고성능 Agent-Backend 통합 아키텍처</h4><p data-ko="LangGraph 상태관리 + FastAPI 비동기로 대규모 트래픽에 견고한 에이전트 시스템." data-en="Robust agent systems at scale via LangGraph state + FastAPI async.">LangGraph 상태관리 + FastAPI 비동기로 대규모 트래픽에 견고한 에이전트 시스템.</p></div>
+      <div class="future reveal" data-d="1"><div class="fno mono">02</div><h4 data-ko="신뢰성 보장 LLMOps 파이프라인" data-en="Reliable LLMOps Pipeline">신뢰성 보장 LLMOps 파이프라인</h4><p data-ko="답변 품질을 정량화하고 지속 개선하는 자동 평가·모니터링 환경 구축." data-en="Automated evaluation & monitoring that quantifies and improves quality.">답변 품질을 정량화하고 지속 개선하는 자동 평가·모니터링 환경 구축.</p></div>
+      <div class="future reveal" data-d="2"><div class="fno mono">03</div><h4 data-ko="Multi-Agent Ecosystem 리더" data-en="Multi-Agent Ecosystem Leader">Multi-Agent Ecosystem 리더</h4><p data-ko="특화 에이전트가 외부 툴·DB와 유연히 상호작용하는 확장형 시스템 설계." data-en="Designing scalable systems of specialized agents interacting with tools & DBs.">특화 에이전트가 외부 툴·DB와 유연히 상호작용하는 확장형 시스템 설계.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="cstar">★</div>
+      <h2 data-ko="함께 만들어요" data-en="Let's build together">함께 만들어요</h2>
+      <p data-ko="새로운 기회와 협업을 언제나 환영합니다. 커피챗이든 채용 제안이든 편하게 연락 주세요." data-en="Always open to new opportunities and collaboration — feel free to reach out anytime.">새로운 기회와 협업을 언제나 환영합니다. 커피챗이든 채용 제안이든 편하게 연락 주세요.</p>
+      <div class="clinks">
+        <a class="clink" href="mailto:ttogle918@gmail.com"><span class="ic" data-ic="mail"></span>ttogle918@gmail.com</a>
+        <a class="clink" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>github.com/ttogle918</a>
+        <a class="clink" href="https://zena1010.tistory.com" target="_blank" rel="noopener"><span class="ic" data-ic="pen"></span>Tistory</a>
+        <a class="clink" href="https://velog.io/@ttogle918/posts" target="_blank" rel="noopener"><span class="ic" data-ic="pen"></span>velog</a>
+        <!-- 포트폴리오 상세: Canva 공유 링크로 교체 -->
+        <a class="clink" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span>Portfolio</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="thanks">THANK YOU <span class="star">★</span></div>
+    <div>© <span id="year">2026</span> 최지현 · AI Service Architect</div>
+  </div>
+</section>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 1. 아이콘 */
+const ICONS={
+  file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>',
+  pen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><circle cx="11" cy="11" r="2"/></svg>',
+  github:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>',
+  play:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg>'
+};
+document.querySelectorAll('[data-ic]').forEach(el=>{const s=ICONS[el.dataset.ic];if(s){el.innerHTML=s;const g=el.querySelector('svg');g.setAttribute('width','100%');g.setAttribute('height','100%');g.style.display='block';}});
+
+/* 2. 언어 (KO/EN) — innerHTML(굵게 등 포함) 지원 */
+const langBtn=document.getElementById('langBtn');
+let lang=localStorage.getItem('lang-v5')||'ko';
+function applyLang(){
+  document.documentElement.lang=lang;
+  langBtn.classList.toggle('on',lang==='en');
+  document.querySelectorAll('[data-ko]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(v!=null)el.innerHTML=v;});
+}
+langBtn.addEventListener('click',()=>{lang=lang==='ko'?'en':'ko';localStorage.setItem('lang-v5',lang);applyLang();});
+applyLang();
+
+/* 3. 테마 */
+const themeBtn=document.getElementById('themeBtn');
+const st=localStorage.getItem('theme-v5'); if(st)document.documentElement.setAttribute('data-theme',st);
+themeBtn.addEventListener('click',()=>{const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme-v5',n);});
+
+/* 4. reveal */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* 5. 카운터 */
+function cnt(el){const t=+el.dataset.count;if(reduce){el.textContent=t;return;}const d=1400,t0=performance.now();(function s(n){const p=Math.min((n-t0)/d,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(s);})(t0);}
+const cIO=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){cnt(e.target);cIO.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cIO.observe(el));
+
+/* 6. 프로젝트 아코디언 */
+document.querySelectorAll('.pcard').forEach(c=>c.querySelector('.pc-top').addEventListener('click',e=>{if(e.target.closest('a,button'))return;c.classList.toggle('open');}));
+document.querySelectorAll('.tl').forEach(t=>{const h=t.querySelector('.tl-head');if(h)h.addEventListener('click',e=>{if(e.target.closest('a,button'))return;t.classList.toggle('on');});});
+
+/* 7. 스크롤스파이 (상단 네비 active) */
+const navLinks=[...document.querySelectorAll('.nav-links a')];
+const secIO=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));}}),{rootMargin:'-45% 0px -50% 0px'});
+['about','skill','career','projects','contact'].forEach(id=>{const el=document.getElementById(id);if(el)secIO.observe(el);});
+
+/* 8. 앵커 스크롤 offset */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2)return;const t=document.querySelector(id);if(!t)return;e.preventDefault();scrollTo({top:t.getBoundingClientRect().top+scrollY-72,behavior:reduce?'auto':'smooth'});}));
+
+/* 9. 연도 + 콘솔 */
+document.getElementById('year').textContent=new Date().getFullYear();
+console.log('%c★ Trusted AI Portfolio v5 ★','color:#3a5bd0;font-size:14px;font-weight:700');
+</script>
+</body>
+</html>
