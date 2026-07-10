@@ -97,7 +97,7 @@ header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 
 .nav-links a:hover{color:var(--ink);background:var(--panel)}
 .nav-links a.active{color:var(--accent);background:var(--accent-soft)}
 .nav-tools{margin-left:auto;display:flex;gap:8px}
-.tbtn{height:34px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--text);font-family:var(--mono);font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.tbtn{height:34px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--text);font-family:var(--mono);font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s;text-decoration:none}
 .tbtn:hover{border-color:var(--accent);color:var(--accent)}
 .tbtn .ic{width:14px;height:14px;display:inline-block}
 .tbtn .en{color:var(--faint)}.tbtn.on .ko{color:var(--faint)}.tbtn.on .en{color:var(--text)}
@@ -351,7 +351,7 @@ section{padding:82px 0}
       <a href="#contact" data-ko="연락처" data-en="Contact">연락처</a>
     </nav>
     <div class="nav-tools">
-      <button id="pdfBtn" class="tbtn" aria-label="download PDF" title="PDF로 저장"><span class="ic" data-ic="download"></span><span data-ko="PDF" data-en="PDF">PDF</span></button>
+      <a id="pdfBtn" class="tbtn" href="uploads/최지현_portfolio.pdf" download="최지현_portfolio.pdf" aria-label="download PDF" title="포트폴리오 PDF 다운로드"><span class="ic" data-ic="download"></span><span data-ko="PDF" data-en="PDF">PDF</span></a>
       <button id="langBtn" class="tbtn" aria-label="language"><span class="ko">KO</span><span style="color:var(--faint)">/</span><span class="en">EN</span></button>
       <button id="themeBtn" class="tbtn" aria-label="theme"><span class="moon">🌙</span><span class="sun">☀</span></button>
     </div>
@@ -743,10 +743,8 @@ const secIO=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){c
 /* 8. 앵커 스크롤 offset */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2)return;const t=document.querySelector(id);if(!t)return;e.preventDefault();scrollTo({top:t.getBoundingClientRect().top+scrollY-72,behavior:reduce?'auto':'smooth'});}));
 
-/* 9. PDF 저장 (브라우저 인쇄 → PDF로 저장) */
-const pdfBtn=document.getElementById('pdfBtn');
-if(pdfBtn)pdfBtn.addEventListener('click',()=>window.print());
-/* 인쇄 직전: 스크롤 안 된 섹션의 카운터가 0으로 찍히지 않도록 최종값 확정 + 모든 reveal 노출 */
+/* 9. PDF 다운로드는 헤더의 <a id="pdfBtn" download>가 직접 처리 (미리 만들어둔 PDF 파일) */
+/* 수동 인쇄(Ctrl+P) 직전: 스크롤 안 된 섹션의 카운터가 0으로 찍히지 않도록 최종값 확정 + 모든 reveal 노출 */
 window.addEventListener('beforeprint',()=>{
   document.querySelectorAll('[data-count]').forEach(el=>{el.textContent=el.dataset.count;});
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
