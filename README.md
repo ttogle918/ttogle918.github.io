@@ -42,8 +42,25 @@ git commit -m "메시지"
 git push origin master
 ```
 
+## 프로젝트 랜딩 페이지
+
+포트폴리오 본문(`index.html`)과 별개로, 개별 프로젝트는 자체 랜딩 페이지를 가집니다.
+
+| 프로젝트 | 경로 | 소스 |
+|---|---|---|
+| **QMesh** (A2A 멀티 에이전트 오케스트레이션) | https://ttogle918.github.io/qmesh/ | `qmesh/index.html` |
+| KeyLens (자격증명 관리) | https://ttogle918.github.io/key-manager/ | 별도 레포 (`key-manager`), `project/key-manager/home/`은 리다이렉트 스텁 |
+
+`qmesh/index.html`도 `index.html`과 같은 방식입니다 — 단일 파일, CSS·JS 인라인, `data-ko`/`data-en`
+속성으로 KO/EN 전환, `data-theme`으로 라이트/다크 전환. 문구를 바꿀 때는 **두 속성과 태그 안쪽 내용을
+함께** 수정하세요.
+
+- 데모 GIF: `qmesh/assets/` (원본은 QMesh 레포 `docs/presentation/assets/`). 용량이 커서 클릭해야
+  내려받도록 지연 로딩합니다.
+- 발표자료: `uploads/QMesh_presentation.pdf` · `.pptx`
+
 ## 남은 작업
 
-- [ ] 프로젝트 카드 다이어그램 이미지 4개 추가
-- [ ] `#` 링크 채우기 (포트폴리오 상세 / PPT / 상세 설명 / 영상)
+- [ ] 프로젝트 카드 다이어그램 이미지 추가 (`.pc-slide`는 아직 캡션 플레이스홀더)
+- [ ] 02~07번 카드의 `#` 링크 채우기 (PPT / 상세 설명 / 영상)
 - [ ] `og-image.png` 및 파비콘 추가

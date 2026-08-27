@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="QMesh — 금융(FinAllQ)·보험(InsuQ)·제조(MaintQ), 스택도 소유권도 다른 세 AI 에이전트를 A2A(Agent-to-Agent) 프로토콜로 잇는 중립 오케스트레이션 허브." />
+<meta property="og:title" content="QMesh — A2A 멀티 에이전트 오케스트레이션 허브" />
+<meta property="og:description" content="MCP는 자기 도구를 쓴다. A2A는 남의 에이전트에게 일을 맡긴다. 세 도메인 에이전트를 표준 Task 계약으로 연결한 기록." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%233A56C8%27/><g stroke=%27%23fff%27 stroke-width=%271.4%27 fill=%27none%27><path d=%27M12 6.5 6 16.5h12z%27/></g><g fill=%27%23fff%27><circle cx=%2712%27 cy=%276.5%27 r=%272%27/><circle cx=%276%27 cy=%2716.5%27 r=%272%27/><circle cx=%2718%27 cy=%2716.5%27 r=%272%27/></g></svg>" />
+<title>QMesh — A2A 멀티 에이전트 오케스트레이션 허브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --ground: #F4F6FA;
+    --panel: #FFFFFF;
+    --panel-2: #EDF1F8;
+    --ink: #10141F;
+    --ink-soft: #414A60;
+    --faint: #6B7488;
+    --line: #DDE3EE;
+    --line-strong: #BFC9DC;
+    --accent: #3A56C8;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #E4EAFB;
+    --cyan: #0E7490;
+    --cyan-soft: #DBEEF4;
+    --warn: #9A6412;
+    --warn-soft: #F7EDD9;
+    --crit: #A93A31;
+    --crit-soft: #F7E4E1;
+    --code-bg: #10141F;
+    --code-ink: #DFE5F2;
+    --card-shadow: 0 1px 2px rgba(16, 20, 31, .04), 0 8px 24px -12px rgba(16, 20, 31, .12);
+
+    --f-body: 'IBM Plex Sans KR', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    --f-mono: 'IBM Plex Mono', ui-monospace, 'JetBrains Mono', 'D2Coding', Consolas, monospace;
+    --w: 1080px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0B0E17;
+      --panel: #131827;
+      --panel-2: #0F1421;
+      --ink: #E8ECF6;
+      --ink-soft: #A6AFC6;
+      --faint: #737C95;
+      --line: #212940;
+      --line-strong: #333D59;
+      --accent: #8AA0FF;
+      --accent-ink: #0A0E1A;
+      --accent-soft: #1A2244;
+      --cyan: #4FD1E5;
+      --cyan-soft: #102B33;
+      --warn: #E0B063;
+      --warn-soft: #2B2313;
+      --crit: #E5716A;
+      --crit-soft: #2C1613;
+      --code-bg: #070A12;
+      --code-ink: #C9D3EA;
+      --card-shadow: 0 1px 2px rgba(0, 0, 0, .34), 0 12px 32px -14px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0B0E17;
+    --panel: #131827;
+    --panel-2: #0F1421;
+    --ink: #E8ECF6;
+    --ink-soft: #A6AFC6;
+    --faint: #737C95;
+    --line: #212940;
+    --line-strong: #333D59;
+    --accent: #8AA0FF;
+    --accent-ink: #0A0E1A;
+    --accent-soft: #1A2244;
+    --cyan: #4FD1E5;
+    --cyan-soft: #102B33;
+    --warn: #E0B063;
+    --warn-soft: #2B2313;
+    --crit: #E5716A;
+    --crit-soft: #2C1613;
+    --code-bg: #070A12;
+    --code-ink: #C9D3EA;
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, .34), 0 12px 32px -14px rgba(0, 0, 0, .6);
+  }
+
+  /* ============ RESET / BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+  }
+  pre, code, .mono { word-break: normal; }
+  .wrap { max-width: var(--w); margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; text-underline-offset: 3px; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  code, .mono { font-family: var(--f-mono); font-variant-ligatures: none; }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  img { max-width: 100%; }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ""; width: 14px; height: 1px; background: var(--accent); display: inline-block; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .nav-in { max-width: var(--w); margin: 0 auto; padding: 13px 24px; display: flex; align-items: center; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16.5px; letter-spacing: -.01em; color: var(--ink); }
+  .brand:hover { text-decoration: none; }
+  .mark { width: 25px; height: 25px; border-radius: 7px; background: var(--accent); display: grid; place-items: center; flex: none; }
+  .mark svg { width: 15px; height: 15px; }
+  .nav-links { margin-left: auto; display: flex; gap: 20px; align-items: center; }
+  .nav-links a { font-family: var(--f-mono); font-size: 12.5px; letter-spacing: .02em; color: var(--faint); }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); text-decoration: none; }
+  .nav-links .gh { color: var(--ink); border: 1px solid var(--line-strong); padding: 6px 12px; border-radius: 6px; }
+  .nav-links .gh:hover { border-color: var(--accent); }
+  @media (max-width: 860px) { .nav-links a:not(.gh) { display: none; } }
+
+  .tbtn {
+    height: 30px; min-width: 30px; padding: 0 8px; border-radius: 7px; border: 1px solid var(--line-strong);
+    background: var(--panel); color: var(--ink-soft); display: grid; place-items: center;
+    cursor: pointer; flex: none; font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .tbtn:hover { border-color: var(--accent); color: var(--ink); }
+  .tbtn svg { width: 15px; height: 15px; }
+  .tbtn .i-sun { display: none; }
+  :root[data-theme="dark"] .tbtn .i-moon { display: none; }
+  :root[data-theme="dark"] .tbtn .i-sun { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tbtn .i-moon { display: none; }
+    :root:not([data-theme="light"]) .tbtn .i-sun { display: block; }
+  }
+
+  /* ============ HERO ============ */
+  .hero { padding: 62px 0 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: center; }
+  @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .hero h1 {
+    font-weight: 700; font-size: clamp(30px, 4.1vw, 46px); line-height: 1.3; letter-spacing: -.02em;
+    margin: 18px 0 20px; max-width: 17ch;
+  }
+  .hero h1 .hl { color: var(--accent); }
+  .hero .sub { font-size: 16px; color: var(--ink-soft); max-width: 48ch; margin-bottom: 26px; line-height: 1.78; }
+  .hero .sub b { color: var(--ink); font-weight: 600; }
+
+  .cta-row { display: flex; gap: 11px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none !important;
+    padding: 11px 19px; border-radius: 7px; font-weight: 600; font-size: 14.5px; font-family: var(--f-body);
+    border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, filter .15s ease, border-color .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.07); }
+  .btn-ghost { border-color: var(--line-strong); color: var(--ink); background: var(--panel); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .cta-note { font-family: var(--f-mono); font-size: 11.5px; color: var(--faint); line-height: 1.7; }
+  .cta-note b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---- hero trace card ---- */
+  .trace {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--card-shadow); overflow: hidden;
+  }
+  .trace-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 11px 16px; border-bottom: 1px solid var(--line); background: var(--panel-2);
+  }
+  .trace-head .dots { display: flex; gap: 6px; }
+  .trace-head .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+  .trace-head .lbl { font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+  .trace-body { padding: 18px 18px 20px; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.95; }
+  .trace-body .k { color: var(--faint); }
+  .trace-body .v { color: var(--ink-soft); }
+  .trace-body .acc { color: var(--accent); }
+  .trace-body .cy { color: var(--cyan); }
+  .trace-body .ok { color: var(--warn); }
+  .trace-hr { border: 0; border-top: 1px dashed var(--line-strong); margin: 12px 0; }
+  .hop { display: flex; align-items: baseline; gap: 8px; opacity: 0; animation: hopIn .45s ease forwards; }
+  .hop:nth-of-type(1) { animation-delay: .25s; }
+  .hop:nth-of-type(2) { animation-delay: .85s; }
+  .hop:nth-of-type(3) { animation-delay: 1.45s; }
+  .hop .arw { color: var(--accent); flex: none; }
+  .hop .ms { margin-left: auto; color: var(--faint); font-size: 11px; }
+  @keyframes hopIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .hop { opacity: 1; animation: none; } }
+  .trace-foot { padding: 10px 16px; border-top: 1px solid var(--line); background: var(--panel-2); font-family: var(--f-mono); font-size: 10.5px; color: var(--faint); }
+  .stage-caption { text-align: center; font-family: var(--f-mono); font-size: 11px; color: var(--faint); margin-top: 12px; }
+
+  /* ============ STAT STRIP ============ */
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--panel); }
+  .stats-in { max-width: var(--w); margin: 0 auto; padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 720px) { .stats-in { grid-template-columns: repeat(2, 1fr); gap: 22px 8px; } }
+  .stat { text-align: center; }
+  .stat b { display: block; font-family: var(--f-mono); font-size: 26px; font-weight: 600; color: var(--ink); }
+  .stat span { font-size: 12px; color: var(--faint); }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 74px 0 0; }
+  .sec-head { max-width: 64ch; margin-bottom: 32px; }
+  .sec-title { font-size: 25px; font-weight: 700; letter-spacing: -.02em; margin: 10px 0 10px; line-height: 1.4; }
+  .sec-sub { color: var(--ink-soft); font-size: 15px; line-height: 1.75; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ---- compare (MCP vs A2A) ---- */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  @media (max-width: 760px) { .compare { grid-template-columns: 1fr; } }
+  .cmp { background: var(--panel); padding: 24px 22px; }
+  .cmp.b { background: var(--panel-2); }
+  .cmp .tag { display: inline-block; margin-bottom: 12px; font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+  .cmp.b .tag { color: var(--accent); }
+  .cmp h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .cmp ul { margin: 0; padding-left: 17px; }
+  .cmp li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 6px; }
+  .cmp li::marker { color: var(--line-strong); }
+
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 22px; }
+  .feat { background: var(--panel); padding: 23px 21px; }
+  .feat .tag { display: inline-block; margin-bottom: 11px; font-family: var(--f-mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+  .feat h3 { font-size: 15px; font-weight: 600; margin-bottom: 7px; }
+  .feat p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.68; }
+
+  /* ---- topology ---- */
+  .topo { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px 16px 12px; box-shadow: var(--card-shadow); }
+  .topo svg { display: block; width: 100%; height: auto; }
+  .topo-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 14px 8px 6px; border-top: 1px solid var(--line); margin-top: 12px; }
+  .topo-legend div { font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: baseline; gap: 8px; }
+  .topo-legend .id { font-family: var(--f-mono); font-size: 11px; color: var(--accent); font-weight: 600; }
+
+  .tbl-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 13.5px; vertical-align: top; }
+  th { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 500; background: var(--panel-2); }
+  tr:last-child td { border-bottom: 0; }
+  td.n { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink-soft); }
+  td b { font-weight: 600; }
+  .ok-b { color: var(--cyan); font-weight: 600; }
+  .wait-b { color: var(--warn); font-weight: 600; }
+
+  /* ---- agent cards ---- */
+  .agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; }
+  .agent { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px 22px 20px; box-shadow: var(--card-shadow); display: flex; flex-direction: column; }
+  .agent-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+  .agent .dom { font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .agent .port { font-family: var(--f-mono); font-size: 11px; color: var(--faint); }
+  .agent h3 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 4px; }
+  .agent .tagline { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; }
+  .agent .blk { margin-bottom: 15px; }
+  .agent .blk h4 { font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 500; margin-bottom: 6px; }
+  .agent .blk p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip { font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-soft); background: var(--panel-2); border: 1px solid var(--line); padding: 2px 7px; border-radius: 4px; }
+  .chip.sk { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+  .rule { border-left: 2px solid var(--accent); background: var(--accent-soft); padding: 10px 13px; border-radius: 0 7px 7px 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.65; }
+  .rule b { color: var(--ink); }
+  .mrow { display: flex; flex-wrap: wrap; gap: 14px 20px; padding-top: 14px; border-top: 1px solid var(--line); margin-top: auto; }
+  .m b { display: block; font-family: var(--f-mono); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .m span { font-size: 11px; color: var(--faint); }
+  .agent .repo { margin-top: 14px; font-family: var(--f-mono); font-size: 12px; }
+
+  /* ---- demos ---- */
+  .demo { margin: 0 0 34px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; box-shadow: var(--card-shadow); }
+  .demo-head { padding: 18px 22px 16px; border-bottom: 1px solid var(--line); }
+  .demo-route { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 9px; }
+  .sid { font-family: var(--f-mono); font-size: 10.5px; font-weight: 600; letter-spacing: .06em; color: var(--accent-ink); background: var(--accent); padding: 2px 8px; border-radius: 4px; }
+  .skill { font-family: var(--f-mono); font-size: 12px; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line); padding: 2px 8px; border-radius: 4px; }
+  .route { font-family: var(--f-mono); font-size: 11.5px; color: var(--faint); }
+  .demo-head h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 7px; }
+  .demo-head p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.72; max-width: 74ch; }
+  .gif-shell {
+    display: block; width: 100%; border: 0; cursor: pointer; background: var(--panel-2);
+    padding: 54px 20px; text-align: center; font-family: var(--f-body); color: var(--ink-soft);
+    transition: background .15s ease;
+  }
+  .gif-shell:hover { background: var(--accent-soft); }
+  .gif-play { display: grid; place-items: center; width: 46px; height: 46px; margin: 0 auto 12px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); }
+  .gif-play svg { width: 17px; height: 17px; margin-left: 2px; }
+  .gif-hint { display: block; font-family: var(--f-mono); font-size: 11.5px; color: var(--faint); letter-spacing: .02em; }
+  .demo img { display: block; width: 100%; height: auto; }
+
+  /* ---- principles ---- */
+  .prin { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+  .prin-item { display: grid; grid-template-columns: 46px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  @media (max-width: 620px) { .prin-item { grid-template-columns: 1fr; gap: 8px; } }
+  .prin-item .no { font-family: var(--f-mono); font-size: 22px; font-weight: 600; color: var(--line-strong); line-height: 1.2; }
+  .prin-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .prin-item p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; max-width: 76ch; }
+  .prin-item p + p { margin-top: 8px; }
+  .prin-item code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; font-size: .92em; color: var(--ink); }
+
+  .note {
+    border-left: 2px solid var(--warn); background: var(--warn-soft);
+    padding: 14px 17px; border-radius: 0 8px 8px 0; margin-top: 24px;
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.75;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ---- status ---- */
+  .roadmap { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .rm-item { display: grid; grid-template-columns: 116px 1fr; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  @media (max-width: 620px) { .rm-item { grid-template-columns: 1fr; gap: 4px; } }
+  .rm-item .st { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; }
+  .st.done { color: var(--cyan); }
+  .st.wip { color: var(--accent); }
+  .st.next { color: var(--warn); }
+  .st.hold { color: var(--crit); }
+  .rm-item h4 { margin: 0 0 3px; font-size: 14.5px; font-weight: 600; }
+  .rm-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
+  .rm-item code { font-family: var(--f-mono); font-size: 12px; color: var(--ink); background: var(--panel-2); padding: 1px 5px; border-radius: 4px; }
+
+  /* ---- docs ---- */
+  .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .doc { background: var(--panel); padding: 22px 21px; display: flex; flex-direction: column; gap: 7px; }
+  .doc .tag { font-family: var(--f-mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+  .doc h3 { font-size: 15px; font-weight: 600; }
+  .doc p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+  .doc .lnks { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 5px; font-family: var(--f-mono); font-size: 12.5px; }
+
+  footer {
+    margin-top: 84px; border-top: 1px solid var(--line); padding: 26px 0 56px;
+    font-size: 12.5px; color: var(--faint); font-family: var(--f-mono);
+    display: flex; gap: 8px 20px; flex-wrap: wrap; align-items: center;
+  }
+  footer a { color: var(--faint); }
+  footer a:hover { color: var(--ink); }
+  footer .sp { margin-left: auto; }
+</style>
+</head>
+<body id="top">
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 6.5 6 16.5h12z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="6.5" r="2.1" fill="#fff"/><circle cx="6" cy="16.5" r="2.1" fill="#fff"/><circle cx="18" cy="16.5" r="2.1" fill="#fff"/></svg>
+      </span>
+      QMesh
+    </a>
+    <span class="nav-links">
+      <a href="#why" data-ko="왜 A2A인가" data-en="Why A2A">왜 A2A인가</a>
+      <a href="#topology" data-ko="토폴로지" data-en="Topology">토폴로지</a>
+      <a href="#agents" data-ko="세 에이전트" data-en="Agents">세 에이전트</a>
+      <a href="#scenarios" data-ko="데모" data-en="Demos">데모</a>
+      <a href="#principles" data-ko="원칙" data-en="Principles">원칙</a>
+      <a href="#status" data-ko="진행 상태" data-en="Status">진행 상태</a>
+      <button class="tbtn" id="langBtn" type="button" aria-label="Language">KO</button>
+      <button class="tbtn" id="themeBtn" type="button" aria-label="Theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="gh" href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">A2A · Agent-to-Agent Protocol</span>
+      <h1 data-ko="에이전트가 <span class=&quot;hl&quot;>다른 회사의 에이전트</span>에게 일을 맡긴다"
+          data-en="One agent hands work to <span class=&quot;hl&quot;>another company's agent</span>">에이전트가 <span class="hl">다른 회사의 에이전트</span>에게 일을 맡긴다</h1>
+      <p class="sub"
+         data-ko="QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b> — 스택도 소유권도 다른 세 AI 에이전트를 A2A 프로토콜로 잇는 <b>중립 오케스트레이션 허브</b>입니다. 세 도메인은 서로의 DB도, 프레임워크도, 내부 프롬프트도 모릅니다. 오직 Agent Card와 표준 Task 스키마로만 대화합니다."
+         data-en="QMesh is a <b>neutral orchestration hub</b> that connects three AI agents with different stacks and different owners — <b>FinAllQ</b> (finance), <b>InsuQ</b> (insurance), <b>MaintQ</b> (manufacturing) — over the A2A protocol. Neither side knows the other's database, framework, or internal prompts. They speak only through Agent Cards and standard Task schemas.">QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b> — 스택도 소유권도 다른 세 AI 에이전트를 A2A 프로토콜로 잇는 <b>중립 오케스트레이션 허브</b>입니다. 세 도메인은 서로의 DB도, 프레임워크도, 내부 프롬프트도 모릅니다. 오직 Agent Card와 표준 Task 스키마로만 대화합니다.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#scenarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg><span data-ko="실동작 데모 보기" data-en="Watch live demos">실동작 데모 보기</span></a>
+        <a class="btn btn-ghost" href="../uploads/QMesh_presentation.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-ko="발표자료 (PPT)" data-en="Slide deck (PPT)">발표자료 (PPT)</span></a>
+        <a class="btn btn-ghost" href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>GitHub</a>
+      </div>
+      <p class="cta-note"
+         data-ko="<b>MCP</b> = 에이전트가 자기 도구를 쓴다 (도메인 내부)<br><b>A2A</b> = 독립된 타사 에이전트에게 Task를 위임한다 (QMesh가 조율)"
+         data-en="<b>MCP</b> = an agent calls its own tools (inside one domain)<br><b>A2A</b> = an agent delegates a Task to an independent third-party agent (QMesh coordinates)"><b>MCP</b> = 에이전트가 자기 도구를 쓴다 (도메인 내부)<br><b>A2A</b> = 독립된 타사 에이전트에게 Task를 위임한다 (QMesh가 조율)</p>
+    </div>
+
+    <div>
+      <div class="trace">
+        <div class="trace-head">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="lbl">cross-domain trace</span>
+        </div>
+        <div class="trace-body">
+          <div><span class="k">POST</span> <span class="acc">/a2a/skills/assess-loan</span></div>
+          <div><span class="k">X-A2A-Partner-Id:</span> <span class="v">maintq</span></div>
+          <div><span class="k">request_chain_id:</span> <span class="cy">CHAIN-LOAN-a0639920</span></div>
+          <hr class="trace-hr" />
+          <div class="hop"><span class="arw">→</span> <span class="v">FinAllQ</span> <span class="k">:9001</span> <span class="k" data-ko="LTV 판정" data-en="LTV check">LTV 판정</span></div>
+          <div class="hop"><span class="arw">&nbsp;&nbsp;→</span> <span class="v">InsuQ</span> <span class="k">:9002</span> <span class="k" data-ko="담보 보험 검증" data-en="collateral cover">담보 보험 검증</span></div>
+          <div class="hop"><span class="arw">←</span> <span class="ok">decision: conditional</span> <span class="ms">1.3s</span></div>
+        </div>
+        <div class="trace-foot" data-ko="※ 2026-08-24 실측 캡처 값. 5억 신청 · 담보 인정액 3억 → 보장 부족으로 조건부."
+             data-en="Measured 2026-08-24. KRW 500M requested against KRW 300M collateral → conditional (insufficient cover).">※ 2026-08-24 실측 캡처 값. 5억 신청 · 담보 인정액 3억 → 보장 부족으로 조건부.</div>
+      </div>
+      <p class="stage-caption" data-ko="하나의 request_chain_id가 홉 전체를 관통한다" data-en="One request_chain_id runs through every hop">하나의 request_chain_id가 홉 전체를 관통한다</p>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stats-in">
+    <div class="stat"><b>3</b><span data-ko="도메인 에이전트" data-en="domain agents">도메인 에이전트</span></div>
+    <div class="stat"><b>13</b><span data-ko="표준 Task 스키마" data-en="standard Task schemas">표준 Task 스키마</span></div>
+    <div class="stat"><b>9</b><span data-ko="크로스도메인 시나리오" data-en="cross-domain scenarios">크로스도메인 시나리오</span></div>
+    <div class="stat"><b>113</b><span data-ko="어댑터 테스트 (QMesh)" data-en="adapter tests (QMesh)">어댑터 테스트 (QMesh)</span></div>
+  </div>
+</div>
+
+<!-- ============ WHY ============ -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="왜 A2A인가" data-en="Why A2A">왜 A2A인가</span>
+      <h2 class="sec-title" data-ko="도구를 부르는 것과, 남의 에이전트에게 맡기는 것은 다르다"
+          data-en="Calling a tool and delegating to someone else's agent are not the same problem">도구를 부르는 것과, 남의 에이전트에게 맡기는 것은 다르다</h2>
+      <p class="sec-sub" data-ko="MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 뒤쪽에는 앞쪽에 없는 것들이 붙는다 — 신원 증명, 사람의 승인 대기, 그리고 끝까지 따라가는 추적."
+         data-en="MCP solves calling your own tools. A2A solves delegating work to an agent owned by someone else — which adds things MCP never needed: proof of identity, waiting on a human approval, and a trace that survives every hop.">MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 뒤쪽에는 앞쪽에 없는 것들이 붙는다 — 신원 증명, 사람의 승인 대기, 그리고 끝까지 따라가는 추적.</p>
+    </div>
+
+    <div class="compare reveal">
+      <div class="cmp">
+        <span class="tag">MCP</span>
+        <h3 data-ko="자기 도구를 쓴다" data-en="Calls its own tools">자기 도구를 쓴다</h3>
+        <ul>
+          <li data-ko="호출 대상은 내 DB, 내 검색엔진, 내 API다. 소유권이 같다." data-en="The target is my DB, my search index, my API. Same owner.">호출 대상은 내 DB, 내 검색엔진, 내 API다. 소유권이 같다.</li>
+          <li data-ko="스키마가 바뀌면 내가 바로 고친다. 조율이 필요 없다." data-en="If the schema changes, I fix it myself. No negotiation.">스키마가 바뀌면 내가 바로 고친다. 조율이 필요 없다.</li>
+          <li data-ko="실패하면 내 문제다. 안에서 재시도하면 끝난다." data-en="A failure is mine. Retry internally and it's over.">실패하면 내 문제다. 안에서 재시도하면 끝난다.</li>
+          <li data-ko="MaintQ의 MCP 도구 20종이 이 층에 있다." data-en="MaintQ's 20 MCP tools live at this layer.">MaintQ의 MCP 도구 20종이 이 층에 있다.</li>
+        </ul>
+      </div>
+      <div class="cmp b">
+        <span class="tag">A2A</span>
+        <h3 data-ko="남의 에이전트에게 맡긴다" data-en="Delegates to another agent">남의 에이전트에게 맡긴다</h3>
+        <ul>
+          <li data-ko="상대의 내부를 모른다. Agent Card에 적힌 스킬만 부를 수 있다." data-en="You don't know their internals. You may call only the skills their Agent Card declares.">상대의 내부를 모른다. Agent Card에 적힌 스킬만 부를 수 있다.</li>
+          <li data-ko="계약(JSON Schema)을 먼저 맺어야 한다. 한쪽이 바꾸면 양쪽이 깨진다." data-en="A contract (JSON Schema) comes first. If one side changes it, both break.">계약(JSON Schema)을 먼저 맺어야 한다. 한쪽이 바꾸면 양쪽이 깨진다.</li>
+          <li data-ko="응답이 즉시 오지 않는다. <code>input-required</code> — 상대 조직의 사람이 결재를 마칠 때까지 기다린다." data-en="The reply may not come at once. <code>input-required</code> — you wait until a human on the other side signs off.">응답이 즉시 오지 않는다. <code>input-required</code> — 상대 조직의 사람이 결재를 마칠 때까지 기다린다.</li>
+          <li data-ko="내가 누구인지(Actor) 증명해야 하고, 무엇을 처리할지(Subject)는 따로 밝혀야 한다." data-en="You must prove who is calling (Actor), and state separately whose data is being touched (Subject).">내가 누구인지(Actor) 증명해야 하고, 무엇을 처리할지(Subject)는 따로 밝혀야 한다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3 reveal">
+      <div class="feat">
+        <span class="tag" data-ko="경계" data-en="Boundary">경계</span>
+        <h3 data-ko="경계의 물리적 증명" data-en="The boundary, made physical">경계의 물리적 증명</h3>
+        <p data-ko="세 프로젝트는 기술 스택도 소유권도 다른 '독립 회사'다. 연결 코드를 어느 한쪽 안에 넣으면 그 순간 경계가 사라진다. 그래서 QMesh를 바깥에 뒀다 — 누구의 소유도 아닌 중립 프로토콜 계층."
+           data-en="The three projects are separate companies with separate stacks and owners. Putting the glue code inside one of them dissolves the boundary. So QMesh sits outside — a protocol layer nobody owns.">세 프로젝트는 기술 스택도 소유권도 다른 '독립 회사'다. 연결 코드를 어느 한쪽 안에 넣으면 그 순간 경계가 사라진다. 그래서 QMesh를 바깥에 뒀다 — 누구의 소유도 아닌 중립 프로토콜 계층.</p>
+      </div>
+      <div class="feat">
+        <span class="tag" data-ko="캡슐화" data-en="Encapsulation">캡슐화</span>
+        <h3 data-ko="블랙박스 유지" data-en="Everything stays a black box">블랙박스 유지</h3>
+        <p data-ko="QMesh는 각 프로젝트의 DB도, 프레임워크도, 내부 프롬프트도 알지 못한다. Java Spring과 Python FastAPI와 LangGraph가 섞여 있어도, 바깥에서 보이는 것은 표준 HTTP 창구 하나뿐이다."
+           data-en="QMesh knows none of the projects' databases, frameworks, or prompts. Java Spring, Python FastAPI and LangGraph coexist behind a single standard HTTP endpoint each.">QMesh는 각 프로젝트의 DB도, 프레임워크도, 내부 프롬프트도 알지 못한다. Java Spring과 Python FastAPI와 LangGraph가 섞여 있어도, 바깥에서 보이는 것은 표준 HTTP 창구 하나뿐이다.</p>
+      </div>
+      <div class="feat">
+        <span class="tag" data-ko="릴리스" data-en="Release">릴리스</span>
+        <h3 data-ko="독립 릴리스" data-en="Independent release cycles">독립 릴리스</h3>
+        <p data-ko="각 도메인은 자기 일정으로 배포한다. QMesh는 그 위에서 크로스도메인 워크플로우만 따로 갱신한다. 실제로 세 레포는 서로 다른 스프린트를 돌면서 동시에 개발됐다."
+           data-en="Each domain ships on its own schedule; QMesh updates only the cross-domain workflows above them. In practice all three repos ran different sprints in parallel.">각 도메인은 자기 일정으로 배포한다. QMesh는 그 위에서 크로스도메인 워크플로우만 따로 갱신한다. 실제로 세 레포는 서로 다른 스프린트를 돌면서 동시에 개발됐다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOPOLOGY ============ -->
+<section id="topology">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="통신 토폴로지" data-en="Topology">통신 토폴로지</span>
+      <h2 class="sec-title" data-ko="완전 삼각형, 그리고 한 번 더 건너가는 멀티홉"
+          data-en="A full triangle — plus one more hop">완전 삼각형, 그리고 한 번 더 건너가는 멀티홉</h2>
+      <p class="sec-sub" data-ko="세 에이전트가 서로 직접 대화한다. MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다 — 최초 요청자는 두 번째 홉이 일어났다는 사실조차 알 필요가 없다."
+         data-en="All three agents talk to each other directly. When MaintQ asks FinAllQ about a loan, FinAllQ turns around and asks InsuQ to verify the collateral cover — the original caller never needs to know the second hop happened.">세 에이전트가 서로 직접 대화한다. MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다 — 최초 요청자는 두 번째 홉이 일어났다는 사실조차 알 필요가 없다.</p>
+    </div>
+
+    <div class="topo reveal">
+      <svg viewBox="0 0 760 470" role="img" aria-label="QMesh A2A topology">
+        <!-- edges -->
+        <g stroke="var(--line-strong)" stroke-width="1.6">
+          <line x1="332" y1="90" x2="152" y2="342"/>
+          <line x1="428" y1="90" x2="608" y2="342"/>
+          <line x1="212" y1="375" x2="548" y2="375"/>
+        </g>
+        <!-- orchestrator dashed -->
+        <g stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 5" opacity=".65">
+          <line x1="380" y1="204" x2="380" y2="92"/>
+          <line x1="322" y1="236" x2="196" y2="340"/>
+          <line x1="438" y1="236" x2="564" y2="340"/>
+        </g>
+
+        <!-- edge labels -->
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)"
+           stroke="var(--panel)" stroke-width="7" paint-order="stroke" text-anchor="middle">
+          <text x="196" y="212" transform="rotate(-54 196 212)">S5 · S6</text>
+          <text x="566" y="212" transform="rotate(54 566 212)">S7 · S11 · S14</text>
+          <text x="380" y="369">S8 · S13</text>
+        </g>
+
+        <!-- MaintQ -->
+        <g>
+          <rect x="288" y="24" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)" stroke-width="1.4"/>
+          <text x="380" y="49" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16" font-weight="700" fill="var(--ink)">MaintQ</text>
+          <text x="380" y="68" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--faint)" data-ko="제조 설비보전 · :9003" data-en="manufacturing · :9003">제조 설비보전 · :9003</text>
+          <text x="380" y="84" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--cyan)">Python FastAPI · MCP</text>
+        </g>
+
+        <!-- FinAllQ -->
+        <g>
+          <rect x="28" y="342" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)" stroke-width="1.4"/>
+          <text x="120" y="367" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16" font-weight="700" fill="var(--ink)">FinAllQ</text>
+          <text x="120" y="386" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--faint)" data-ko="은행 · 증권 · :9001" data-en="banking · brokerage · :9001">은행 · 증권 · :9001</text>
+          <text x="120" y="402" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--cyan)">Java Spring · LangGraph</text>
+        </g>
+
+        <!-- InsuQ -->
+        <g>
+          <rect x="548" y="342" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)" stroke-width="1.4"/>
+          <text x="640" y="367" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16" font-weight="700" fill="var(--ink)">InsuQ</text>
+          <text x="640" y="386" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--faint)" data-ko="기업 · 화재보험 · :9002" data-en="commercial insurance · :9002">기업 · 화재보험 · :9002</text>
+          <text x="640" y="402" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--cyan)">Spring · FastAPI RAG</text>
+        </g>
+
+        <!-- Orchestrator -->
+        <g>
+          <rect x="300" y="204" width="160" height="60" rx="11" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+          <text x="380" y="228" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14" font-weight="700" fill="var(--accent)">QMesh</text>
+          <text x="380" y="247" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--accent)" data-ko="오케스트레이터 · :9000" data-en="orchestrator · :9000">오케스트레이터 · :9000</text>
+        </g>
+
+        <!-- caption -->
+        <text x="380" y="446" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--faint)"
+              data-ko="실선 = A2A 직접 호출 · 점선 = 통합 진입점 및 분산 트레이스 수집(설계)"
+              data-en="solid = direct A2A call · dashed = unified entrypoint &amp; trace collection (designed)">실선 = A2A 직접 호출 · 점선 = 통합 진입점 및 분산 트레이스 수집(설계)</text>
+      </svg>
+
+      <div class="topo-legend">
+        <div><span class="id">S5 · S6</span><span data-ko="발주 승인 → 출금 요청(2단 승인) · 환헤지 상담" data-en="PO approval → withdrawal (two-step) · FX hedge advice">발주 승인 → 출금 요청(2단 승인) · 환헤지 상담</span></div>
+        <div><span class="id">S7 · S11 · S14</span><span data-ko="화재보험 갱신 · 자산변동 통지 · 보험금 청구" data-en="Policy renewal · asset-change notice · claim filing">화재보험 갱신 · 자산변동 통지 · 보험금 청구</span></div>
+        <div><span class="id">S8 · S13</span><span data-ko="담보 대출 심사 중 보험 검증 — 2차 홉 릴레이" data-en="Collateral verification inside loan review — the relay hop">담보 대출 심사 중 보험 검증 — 2차 홉 릴레이</span></div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th data-ko="도메인" data-en="Domain">도메인</th>
+            <th data-ko="에이전트" data-en="Agent">에이전트</th>
+            <th data-ko="기술 스택" data-en="Stack">기술 스택</th>
+            <th data-ko="A2A 창구" data-en="A2A port">A2A 창구</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-ko="조율" data-en="Coordination">조율</td><td><b>QMesh Orchestrator</b></td><td class="n">Python · FastAPI</td><td class="n">:9000</td></tr>
+          <tr><td data-ko="금융" data-en="Finance">금융</td><td><b>FinAllQ</b></td><td class="n">Java 21 · Spring Boot 3 · PostgreSQL · React 19 · LangGraph</td><td class="n">:9001</td></tr>
+          <tr><td data-ko="보험" data-en="Insurance">보험</td><td><b>InsuQ</b></td><td class="n">Java Spring · Python FastAPI · Qdrant · LangGraph</td><td class="n">:9002</td></tr>
+          <tr><td data-ko="제조" data-en="Manufacturing">제조</td><td><b>MaintQ</b></td><td class="n">Python FastAPI · Next.js · PostgreSQL(pgvector) · MCP</td><td class="n">:9003</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note reveal"
+         data-ko="<strong>A2A 통신 자체에는 전용 SDK를 쓰지 않았다.</strong> 네 레포 전부 <code>FastAPI + httpx + pydantic</code>(Python) 또는 Spring MVC 직접 구현으로 JSON Schema 계약을 손으로 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜본 것이 이 프로젝트의 목적이었다."
+         data-en="<strong>No dedicated A2A SDK was used.</strong> All four repos implement the JSON Schema contract by hand — <code>FastAPI + httpx + pydantic</code> in Python, or plain Spring MVC. Writing the protocol rather than importing it was the point of the project."><strong>A2A 통신 자체에는 전용 SDK를 쓰지 않았다.</strong> 네 레포 전부 <code>FastAPI + httpx + pydantic</code>(Python) 또는 Spring MVC 직접 구현으로 JSON Schema 계약을 손으로 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜본 것이 이 프로젝트의 목적이었다.</div>
+  </div>
+</section>
+
+<!-- ============ AGENTS ============ -->
+<section id="agents">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="세 에이전트" data-en="The three agents">세 에이전트</span>
+      <h2 class="sec-title" data-ko="각자 다른 문제를 풀고, 각자 다른 절대 원칙을 지킨다"
+          data-en="Three different problems, three different non-negotiables">각자 다른 문제를 풀고, 각자 다른 절대 원칙을 지킨다</h2>
+      <p class="sec-sub" data-ko="세 프로젝트는 A2A를 위해 급조된 목업이 아니다. 각각 독립적으로 설계·측정·평가된 서비스이고, 그 위에 통신 계층을 얹었다."
+         data-en="None of these is a mock built for the demo. Each was designed, measured and evaluated as a standalone service; the protocol layer was added on top.">세 프로젝트는 A2A를 위해 급조된 목업이 아니다. 각각 독립적으로 설계·측정·평가된 서비스이고, 그 위에 통신 계층을 얹었다.</p>
+    </div>
+
+    <div class="agents reveal">
+
+      <!-- InsuQ -->
+      <article class="agent">
+        <div class="agent-top"><span class="dom" data-ko="보험" data-en="Insurance">보험</span><span class="port">:9002</span></div>
+        <h3>InsuQ</h3>
+        <p class="tagline" data-ko="약관을 근거 조항과 함께 답하는 RAG 에이전트" data-en="A RAG agent that answers policy questions with the clause attached">약관을 근거 조항과 함께 답하는 RAG 에이전트</p>
+
+        <div class="blk">
+          <h4 data-ko="무엇을 푸나" data-en="The problem">무엇을 푸나</h4>
+          <p data-ko="보험 약관은 조항이 서로 얽혀 있고(참조 조항), 보장금액표·감액표가 많으며, 같은 상품도 가입 시점에 따라 보장이 다르다. InsuQ는 약관을 검색 가능한 지식베이스로 만들고 출처 조항을 명시해 답한다. 못 찾으면 '약관에서 확인 불가'라고 밝힌다 — 보험은 오답의 비용이 커서, 틀리게 답하느니 모른다고 답하는 쪽을 택했다."
+             data-en="Policy documents cross-reference each other, hide their limits in tables, and change coverage by enrolment date. InsuQ turns them into a searchable knowledge base and answers with the source clause. When it cannot find one it says so — in insurance a wrong answer costs more than an absent one.">보험 약관은 조항이 서로 얽혀 있고(참조 조항), 보장금액표·감액표가 많으며, 같은 상품도 가입 시점에 따라 보장이 다르다. InsuQ는 약관을 검색 가능한 지식베이스로 만들고 출처 조항을 명시해 답한다. 못 찾으면 '약관에서 확인 불가'라고 밝힌다 — 보험은 오답의 비용이 커서, 틀리게 답하느니 모른다고 답하는 쪽을 택했다.</p>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="스택" data-en="Stack">스택</h4>
+          <div class="chips">
+            <span class="chip">Python FastAPI</span><span class="chip">Java Spring</span><span class="chip">Qdrant</span><span class="chip">LangGraph 0.2</span><span class="chip">Gemini 3.5 Flash</span><span class="chip">nemotron-3-embed-1b (2048D)</span><span class="chip">Next.js</span>
+          </div>
+        </div>
+
+        <div class="blk">
+          <div class="rule" data-ko="<b>절대 원칙 — 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후 인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 둘 다 결정론적이라 예산이 없어도 원칙은 지켜진다."
+               data-en="<b>Non-negotiable — never answer without evidence.</b> Gate ① sits <em>before</em> the LLM call: no hits, no model call. Gate ② verifies citations afterwards and demotes assertive wording to 'undetermined'. Both are deterministic, so the rule holds even with no budget."><b>절대 원칙 — 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후 인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 둘 다 결정론적이라 예산이 없어도 원칙은 지켜진다.</div>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="A2A 스킬 6종" data-en="6 A2A skills">A2A 스킬 6종</h4>
+          <div class="chips">
+            <span class="chip sk">verify-collateral-insurance</span><span class="chip sk">advise-policy-renewal</span><span class="chip sk">notify-asset-change</span><span class="chip sk">notify-risk-change</span><span class="chip sk">claim-insurance</span><span class="chip sk">lookup-clause</span>
+          </div>
+        </div>
+
+        <div class="mrow">
+          <div class="m"><b>0.8333</b><span data-ko="검색 Hit@5" data-en="retrieval Hit@5">검색 Hit@5</span></div>
+          <div class="m"><b>100%</b><span data-ko="거부 정확도" data-en="refusal accuracy">거부 정확도</span></div>
+          <div class="m"><b>0</b><span data-ko="환각 건수" data-en="hallucinations">환각 건수</span></div>
+          <div class="m"><b>10.4s</b><span data-ko="응답 p95" data-en="latency p95">응답 p95</span></div>
+        </div>
+        <div class="repo"><a href="https://github.com/ttogle918/InsuQ" target="_blank" rel="noopener">github.com/ttogle918/InsuQ →</a></div>
+      </article>
+
+      <!-- MaintQ -->
+      <article class="agent">
+        <div class="agent-top"><span class="dom" data-ko="제조" data-en="Manufacturing">제조</span><span class="port">:9003</span></div>
+        <h3>MaintQ</h3>
+        <p class="tagline" data-ko="설비 진단부터 부품 발주까지 잇는 보전 에이전트" data-en="A maintenance agent that runs from fault diagnosis to parts ordering">설비 진단부터 부품 발주까지 잇는 보전 에이전트</p>
+
+        <div class="blk">
+          <h4 data-ko="무엇을 푸나" data-en="The problem">무엇을 푸나</h4>
+          <p data-ko="중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가 계속 바뀌고 단계마다 대기가 생긴다. CMMS는 기록 시스템이고 매뉴얼은 정적 문서다 — MaintQ는 그 사이의 <b>판단</b>을 자동화하고, 판단 결과를 조달 액션까지 연결한다."
+             data-en="In a small factory an inverter fault means 10–30 minutes in a PDF manual, a diagnosis leaning on a veteran's memory, a phone call to check stock, and a purchase order typed into Excel. The medium changes at every step. CMMS is a system of record and the manual is a static document — MaintQ automates the <b>judgement</b> in between, and carries it through to procurement.">중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가 계속 바뀌고 단계마다 대기가 생긴다. CMMS는 기록 시스템이고 매뉴얼은 정적 문서다 — MaintQ는 그 사이의 <b>판단</b>을 자동화하고, 판단 결과를 조달 액션까지 연결한다.</p>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="스택" data-en="Stack">스택</h4>
+          <div class="chips">
+            <span class="chip">Python FastAPI</span><span class="chip">Next.js</span><span class="chip">PostgreSQL · pgvector</span><span class="chip">MCP 도구 20종</span><span class="chip">Gemini 2.5 Flash</span><span class="chip" data-ko="자체 Agent Loop" data-en="hand-rolled agent loop">자체 Agent Loop</span><span class="chip">SSE</span>
+          </div>
+        </div>
+
+        <div class="blk">
+          <div class="rule" data-ko="<b>절대 원칙 — AI는 초안까지만 쓴다.</b> 쓰기 도구 3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은 전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 — 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다."
+               data-en="<b>Non-negotiable — the AI only ever writes a draft.</b> All three write tools can INSERT drafts and hold no UPDATE grant. Approval, rejection and signature go through human-only APIs — enforced at the <em>tool permission</em> level, not in a prompt."><b>절대 원칙 — AI는 초안까지만 쓴다.</b> 쓰기 도구 3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은 전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 — 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다.</div>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="A2A 역할" data-en="A2A role">A2A 역할</h4>
+          <p data-ko="크로스도메인 시나리오 대부분의 <b>발신자(client)</b>다. 설비에서 시작된 사건이 금융·보험으로 번져나가는 구조라, S5~S16의 출발점이 거의 항상 MaintQ다."
+             data-en="MaintQ is the <b>caller</b> in most cross-domain scenarios: an event starts at the equipment and radiates out into finance and insurance, so S5–S16 almost always begin here.">크로스도메인 시나리오 대부분의 <b>발신자(client)</b>다. 설비에서 시작된 사건이 금융·보험으로 번져나가는 구조라, S5~S16의 출발점이 거의 항상 MaintQ다.</p>
+        </div>
+
+        <div class="mrow">
+          <div class="m"><b>90.7%</b><span data-ko="근거 페이지 인용률" data-en="source-page citation">근거 페이지 인용률</span></div>
+          <div class="m"><b>0%</b><span data-ko="미지 코드 환각" data-en="unknown-code hallucination">미지 코드 환각</span></div>
+          <div class="m"><b>100%</b><span data-ko="권한 위반 차단" data-en="privilege violations blocked">권한 위반 차단</span></div>
+        </div>
+        <div class="repo"><a href="https://github.com/ttogle918/MaintQ" target="_blank" rel="noopener">github.com/ttogle918/MaintQ →</a></div>
+      </article>
+
+      <!-- FinAllQ -->
+      <article class="agent">
+        <div class="agent-top"><span class="dom" data-ko="금융" data-en="Finance">금융</span><span class="port">:9001</span></div>
+        <h3>FinAllQ</h3>
+        <p class="tagline" data-ko="은행과 증권을 한 곳에 모은 개인화 금융 비서" data-en="A personal finance assistant that unifies banking and brokerage">은행과 증권을 한 곳에 모은 개인화 금융 비서</p>
+
+        <div class="blk">
+          <h4 data-ko="무엇을 푸나" data-en="The problem">무엇을 푸나</h4>
+          <p data-ko="파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은 Python 마이크로서비스로 격리한 하이브리드 MSA다 — <b>탐지는 빠르고 값싼 ML</b>이, <b>설명은 그래프</b>가 맡는다."
+             data-en="It unifies fragmented banking and brokerage data into one dashboard and automates lending end to end, from application to transfer. A hybrid MSA keeps core transactions in Spring + RDBMS and model serving in a Python microservice — <b>detection runs on cheap fast ML</b>, <b>explanation runs on the graph</b>.">파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은 Python 마이크로서비스로 격리한 하이브리드 MSA다 — <b>탐지는 빠르고 값싼 ML</b>이, <b>설명은 그래프</b>가 맡는다.</p>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="스택" data-en="Stack">스택</h4>
+          <div class="chips">
+            <span class="chip">Java 21 · Spring Boot 3</span><span class="chip">PostgreSQL · Redis</span><span class="chip">React 19 · Vite</span><span class="chip">Python FastAPI</span><span class="chip">LangGraph 1.2</span><span class="chip">Nginx</span>
+          </div>
+        </div>
+
+        <div class="blk">
+          <div class="rule" data-ko="<b>절대 원칙 — 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를 대신 제출하는 기능은 일부러 만들지 않았다</em> — 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다."
+               data-en="<b>Non-negotiable — money never moves without a human.</b> Self-approval is blocked by RBAC and transfers are gated by RFC 6238 TOTP. That is exactly why <em>submitting the TOTP code over A2A was deliberately left unbuilt</em> — a service account entering the code collapses 2FA into 1FA."><b>절대 원칙 — 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를 대신 제출하는 기능은 일부러 만들지 않았다</em> — 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다.</div>
+        </div>
+
+        <div class="blk">
+          <h4 data-ko="A2A 스킬 7종" data-en="7 A2A skills">A2A 스킬 7종</h4>
+          <div class="chips">
+            <span class="chip sk">request-withdrawal</span><span class="chip sk">assess-loan</span><span class="chip sk">advise-hedge</span><span class="chip sk">advise-financing</span><span class="chip sk">advise-replacement-financing</span><span class="chip sk">assess-used-equipment-loan</span><span class="chip sk">request-settlement</span>
+          </div>
+        </div>
+
+        <div class="mrow">
+          <div class="m"><b>1,567</b><span data-ko="테스트 GREEN" data-en="tests green">테스트 GREEN</span></div>
+          <div class="m"><b>0</b><span data-ko="회귀" data-en="regressions">회귀</span></div>
+          <div class="m"><b>0</b><span data-ko="LLM 호출 (규칙기반)" data-en="LLM calls (rule-based)">LLM 호출 (규칙기반)</span></div>
+        </div>
+        <div class="repo"><a href="https://github.com/ttogle918/FinAllQ" target="_blank" rel="noopener">github.com/ttogle918/FinAllQ →</a></div>
+      </article>
+
+    </div>
+
+    <div class="note reveal"
+         data-ko="<strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의 <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에 생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다 — 세 에이전트가 같은 방식으로 만들어졌다고 말하지 않기 위해 적어둔다."
+         data-en="<strong>FinAllQ makes zero LLM calls.</strong> A package-level audit of all four repos (2026-08-24) found its <code>plan</code> and <code>synthesize</code> nodes to be rule-based templates, with FDS and smishing detection running on classical <code>scikit-learn</code>. The decision not to put a generative model in a lending verdict is still visible in the code — noted here so the three agents are not mistaken for one architecture."><strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의 <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에 생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다 — 세 에이전트가 같은 방식으로 만들어졌다고 말하지 않기 위해 적어둔다.</div>
+  </div>
+</section>
+
+<!-- ============ SCENARIOS / DEMOS ============ -->
+<section id="scenarios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="실동작 데모" data-en="Live demos">실동작 데모</span>
+      <h2 class="sec-title" data-ko="실제로 돌아가는 세 개의 홉" data-en="Three hops that actually run">실제로 돌아가는 세 개의 홉</h2>
+      <p class="sec-sub" data-ko="아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목업 응답이나 재현 영상이 아니라, 실 DB·실 인증·실 A2A 호출이 통과한 화면이다."
+         data-en="Every capture below was recorded against the running services on 2026-08-24 — real database, real auth, real A2A calls. None of it is a mock or a re-enactment.">아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목업 응답이나 재현 영상이 아니라, 실 DB·실 인증·실 A2A 호출이 통과한 화면이다.</p>
+    </div>
+
+    <!-- S5 -->
+    <figure class="demo reveal">
+      <div class="demo-head">
+        <div class="demo-route">
+          <span class="sid">S5</span>
+          <span class="skill">request-withdrawal</span>
+          <span class="route">MaintQ :9003 → FinAllQ :9001</span>
+        </div>
+        <h3 data-ko="발주 승인 → 출금 요청 · 자금이동 2단 승인" data-en="PO approval → withdrawal request · two-step money movement">발주 승인 → 출금 요청 · 자금이동 2단 승인</h3>
+        <p data-ko="진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 → <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>요청 부서 승인 → 집행 부서 재무 승인</b> 2단 계단을 거치고, 그 뒤로도 FinAllQ 내부 결재함에서 사람이 한 번 더 결재한다."
+           data-en="Diagnosis (INV-L3-02 · OCT) → draft PO → team-lead approval → finance approval → three documents rendered from live data → A2A withdrawal request → <code>CHAIN-PO-0122-b66672d7 · ok</code> in the <code>/manager/a2a</code> history. Because money moves, it climbs a <b>requesting-department then finance-department</b> staircase — and a human still signs once more inside FinAllQ's own approval queue.">진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 → <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>요청 부서 승인 → 집행 부서 재무 승인</b> 2단 계단을 거치고, 그 뒤로도 FinAllQ 내부 결재함에서 사람이 한 번 더 결재한다.</p>
+      </div>
+      <button class="gif-shell" type="button" data-src="assets/s5-withdrawal.gif" data-alt="request-withdrawal 실동작 캡처">
+        <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="gif-hint" data-ko="클릭해서 재생 · GIF 9.0MB" data-en="Click to play · 9.0MB GIF">클릭해서 재생 · GIF 9.0MB</span>
+      </button>
+    </figure>
+
+    <!-- lookup-clause -->
+    <figure class="demo reveal">
+      <div class="demo-head">
+        <div class="demo-route">
+          <span class="sid" data-ko="단일 홉" data-en="single hop">단일 홉</span>
+          <span class="skill">lookup-clause</span>
+          <span class="route">MaintQ :9003 → InsuQ :9002</span>
+        </div>
+        <h3 data-ko="설비 손해가 약관상 보장되는지, 보험 에이전트에게 직접 묻는다" data-en="Asking the insurance agent directly whether the damage is covered">설비 손해가 약관상 보장되는지, 보험 에이전트에게 직접 묻는다</h3>
+        <p data-ko="정비사가 채팅에 &quot;인버터 과전압 손해가 약관상 보장되나?&quot;라고 물으면 MaintQ가 InsuQ에 <code>lookup-clause</code>를 던지고, InsuQ는 <b>근거 조항 8건을 인용</b>하며 판정은 <b>&quot;판단 유보&quot;</b>로 돌려준다. 실측 9.7초 — 처음엔 에이전트 루프의 전역 타임아웃 10초가 병목이라 계속 끊겼고, 이 도구 하나에만 예외를 둬서 풀었다."
+           data-en="A technician types &quot;is inverter over-voltage damage covered?&quot;; MaintQ throws <code>lookup-clause</code> at InsuQ, which comes back citing <b>eight clauses</b> and a verdict of <b>&quot;undetermined&quot;</b>. Measured at 9.7s — it kept timing out until the agent loop's global 10s cap was given an exception for this one tool.">정비사가 채팅에 "인버터 과전압 손해가 약관상 보장되나?"라고 물으면 MaintQ가 InsuQ에 <code>lookup-clause</code>를 던지고, InsuQ는 <b>근거 조항 8건을 인용</b>하며 판정은 <b>"판단 유보"</b>로 돌려준다. 실측 9.7초 — 처음엔 에이전트 루프의 전역 타임아웃 10초가 병목이라 계속 끊겼고, 이 도구 하나에만 예외를 둬서 풀었다.</p>
+      </div>
+      <button class="gif-shell" type="button" data-src="assets/lookup-clause.gif" data-alt="lookup-clause 실동작 캡처">
+        <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="gif-hint" data-ko="클릭해서 재생 · GIF 4.3MB" data-en="Click to play · 4.3MB GIF">클릭해서 재생 · GIF 4.3MB</span>
+      </button>
+    </figure>
+
+    <!-- S8 -->
+    <figure class="demo reveal">
+      <div class="demo-head">
+        <div class="demo-route">
+          <span class="sid">S8</span>
+          <span class="skill">assess-loan</span>
+          <span class="route">MaintQ :9003 → FinAllQ :9001 → InsuQ :9002</span>
+        </div>
+        <h3 data-ko="멀티홉 릴레이 — 요청자는 두 번째 홉을 모른다" data-en="The relay hop — the caller never sees it">멀티홉 릴레이 — 요청자는 두 번째 홉을 모른다</h3>
+        <p data-ko="5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에 <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서 <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 부결 나는 금액을 골랐다."
+           data-en="A KRW 500M loan against BLD-A (valued at 300M) → FinAllQ runs its own LTV check while asking InsuQ whether the collateral is adequately insured → <b><code>decision: conditional</code> in 1.3s</b> → <code>CHAIN-LOAN-a0639920 · ok</code>. A 50M request would always come back approved, so the failing amount was chosen deliberately to show <b>the verdict logic actually runs</b>.">5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에 <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서 <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 부결 나는 금액을 골랐다.</p>
+      </div>
+      <button class="gif-shell" type="button" data-src="assets/s8-assess-loan.gif" data-alt="assess-loan 멀티홉 실동작 캡처">
+        <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.9MB" data-en="Click to play · 0.9MB GIF">클릭해서 재생 · GIF 0.9MB</span>
+      </button>
+    </figure>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th data-ko="시나리오" data-en="Scenario">시나리오</th>
+            <th data-ko="경로" data-en="Route">경로</th>
+            <th data-ko="성격" data-en="Nature">성격</th>
+            <th data-ko="스킬" data-en="Skill">스킬</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="n"><b>S5</b></td><td data-ko="발주 승인 → 출금 요청" data-en="PO approval → withdrawal">발주 승인 → 출금 요청</td><td class="n">MaintQ → FinAllQ</td><td data-ko="자금이동 (2단 승인)" data-en="money movement (two-step)">자금이동 (2단 승인)</td><td class="n">request-withdrawal</td></tr>
+          <tr><td class="n"><b>S6</b></td><td data-ko="환헤지 · 여유자금 운용 상담" data-en="FX hedge / idle-cash advice">환헤지 · 여유자금 운용 상담</td><td class="n">MaintQ → FinAllQ</td><td data-ko="제안 (위험도 0)" data-en="advice (zero risk)">제안 (위험도 0)</td><td class="n">advise-hedge</td></tr>
+          <tr><td class="n"><b>S7</b></td><td data-ko="화재보험 갱신 (고장이력 연계)" data-en="Fire policy renewal from fault history">화재보험 갱신 (고장이력 연계)</td><td class="n">MaintQ → InsuQ</td><td data-ko="상담 + 데이터 연계" data-en="advice + data linkage">상담 + 데이터 연계</td><td class="n">advise-policy-renewal</td></tr>
+          <tr><td class="n"><b>S8</b></td><td data-ko="담보 대출 심사 시 보험 검증" data-en="Collateral check inside loan review">담보 대출 심사 시 보험 검증</td><td class="n">MaintQ → FinAllQ → InsuQ</td><td data-ko="멀티홉 릴레이" data-en="multi-hop relay">멀티홉 릴레이</td><td class="n">assess-loan</td></tr>
+          <tr><td class="n"><b>S11</b></td><td data-ko="설비 개조 · 폐기 자산변동 통지" data-en="Asset-change notice on retrofit / disposal">설비 개조 · 폐기 자산변동 통지</td><td class="n">MaintQ → InsuQ</td><td data-ko="원장 갱신 통지" data-en="ledger update">원장 갱신 통지</td><td class="n">notify-asset-change</td></tr>
+          <tr><td class="n"><b>S13</b></td><td data-ko="중고설비 담보대출 (비례보상)" data-en="Used-equipment loan (co-insurance)">중고설비 담보대출 (비례보상)</td><td class="n">MaintQ → FinAllQ → InsuQ</td><td data-ko="멀티홉 심사" data-en="multi-hop review">멀티홉 심사</td><td class="n">assess-used-equipment-loan</td></tr>
+          <tr><td class="n"><b>S14</b></td><td data-ko="설비 사고 보험금 청구" data-en="Claim filing after an incident">설비 사고 보험금 청구</td><td class="n">MaintQ → InsuQ</td><td data-ko="청구 접수 · 조사" data-en="intake &amp; investigation">청구 접수 · 조사</td><td class="n">claim-insurance</td></tr>
+          <tr><td class="n"><b>S15</b></td><td data-ko="전손 교체 금융 상담" data-en="Replacement financing after total loss">전손 교체 금융 상담</td><td class="n">MaintQ → FinAllQ</td><td data-ko="연쇄 금융 제안" data-en="chained advice">연쇄 금융 제안</td><td class="n">advise-replacement-financing</td></tr>
+          <tr><td class="n"><b>S16</b></td><td data-ko="신규 설비 도입 자금조달 비교" data-en="Financing comparison for new equipment">신규 설비 도입 자금조달 비교</td><td class="n">MaintQ → FinAllQ</td><td data-ko="비교 상담" data-en="comparison advice">비교 상담</td><td class="n">advise-financing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLES ============ -->
+<section id="principles">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="관통 원칙" data-en="Governing principles">관통 원칙</span>
+      <h2 class="sec-title" data-ko="세 도메인을 가로질러 똑같이 지켜지는 것" data-en="What holds identically across all three domains">세 도메인을 가로질러 똑같이 지켜지는 것</h2>
+      <p class="sec-sub" data-ko="에이전트끼리 자율적으로 대화하게 두면, 사람이 책임지던 판단이 조용히 자동화된다. 이 세 가지는 그 일이 일어나지 않게 하려고 프로토콜 층에 못 박아 둔 규칙이다."
+         data-en="Let agents talk to each other freely and decisions a person used to own quietly become automated. These three rules were nailed into the protocol layer to stop that happening.">에이전트끼리 자율적으로 대화하게 두면, 사람이 책임지던 판단이 조용히 자동화된다. 이 세 가지는 그 일이 일어나지 않게 하려고 프로토콜 층에 못 박아 둔 규칙이다.</p>
+    </div>
+
+    <div class="prin reveal">
+      <div class="prin-item">
+        <div class="no">01</div>
+        <div>
+          <h3 data-ko="돈과 계약이 움직이는 곳에는 반드시 사람의 승인" data-en="Where money or contracts move, a human signs">돈과 계약이 움직이는 곳에는 반드시 사람의 승인</h3>
+          <p data-ko="AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는 작업(S5)은 <b>요청 부서 승인 → 집행 부서 재무 승인</b>의 2단 승인 계단을 거친다."
+             data-en="The agent writes <b>requests, proposals and draft assessments — and stops there</b>. Actual withdrawals, loan disbursements and policy signings happen only after an authorised person decides. Anything that moves funds (S5) climbs a two-step staircase: requesting department, then finance.">AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는 작업(S5)은 <b>요청 부서 승인 → 집행 부서 재무 승인</b>의 2단 승인 계단을 거친다.</p>
+          <p data-ko="A2A 응답의 <code>input-required</code> 상태가 이 대기를 표현한다 — 요청은 성공했지만 아직 끝나지 않았고, 상대 조직의 사람이 결재를 마칠 때까지 기다린다는 뜻이다."
+             data-en="The <code>input-required</code> status carries that wait: the call succeeded but the task is not finished, and it stays open until someone on the other side signs.">A2A 응답의 <code>input-required</code> 상태가 이 대기를 표현한다 — 요청은 성공했지만 아직 끝나지 않았고, 상대 조직의 사람이 결재를 마칠 때까지 기다린다는 뜻이다.</p>
+        </div>
+      </div>
+
+      <div class="prin-item">
+        <div class="no">02</div>
+        <div>
+          <h3 data-ko="누가 부르는가(Actor)와 누구의 데이터인가(Subject)를 분리한다" data-en="Separate who is calling (Actor) from whose data it is (Subject)">누가 부르는가(Actor)와 누구의 데이터인가(Subject)를 분리한다</h3>
+          <p data-ko="<b>Actor</b>는 인증의 문제다 — 비대칭 서명된 파트너 액세스 토큰으로 위조 불가능한 신원을 증명한다. <b>Subject</b>는 인가의 문제다 — 페이로드의 <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면 '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다."
+             data-en="<b>Actor</b> is authentication — an asymmetrically signed partner token proving an identity that cannot be forged. <b>Subject</b> is authorisation — <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code> in the payload naming exactly what is being touched. Conflate them and any authenticated partner can reach any record."><b>Actor</b>는 인증의 문제다 — 비대칭 서명된 파트너 액세스 토큰으로 위조 불가능한 신원을 증명한다. <b>Subject</b>는 인가의 문제다 — 페이로드의 <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면 '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다.</p>
+          <p data-ko="자격증명은 위험도에 따라 3단계로 쪼갰다 — <b>조회/상담</b>(위험도 0, 정보 조회만) · <b>심사</b>(위험도 저, 판정은 하되 실행 권한 없음) · <b>자금이동</b>(위험도 고, <code>input-required</code> 기반 2단 승인 필수)."
+             data-en="Credentials are split into three scopes by risk — <b>lookup/advice</b> (zero risk, read only), <b>assessment</b> (low risk, may judge but not execute), and <b>fund movement</b> (high risk, two-step approval via <code>input-required</code> is mandatory).">자격증명은 위험도에 따라 3단계로 쪼갰다 — <b>조회/상담</b>(위험도 0, 정보 조회만) · <b>심사</b>(위험도 저, 판정은 하되 실행 권한 없음) · <b>자금이동</b>(위험도 고, <code>input-required</code> 기반 2단 승인 필수).</p>
+        </div>
+      </div>
+
+      <div class="prin-item">
+        <div class="no">03</div>
+        <div>
+          <h3 data-ko="멀티홉 여정 하나를 끝까지 따라간다" data-en="One journey, traced end to end">멀티홉 여정 하나를 끝까지 따라간다</h3>
+          <p data-ko="모든 A2A 요청·응답 헤더에 <code>request_chain_id</code>를 전파한다. MaintQ → FinAllQ → InsuQ로 이어지는 여정이 세 조직의 로그에 흩어지지 않고 <b>단일 타임라인</b>으로 묶여 감사 로그에 남는다. 위 데모의 <code>CHAIN-LOAN-a0639920</code>·<code>CHAIN-PO-0122-b66672d7</code>이 그 값이다."
+             data-en="A <code>request_chain_id</code> is propagated through every A2A header. A journey that runs MaintQ → FinAllQ → InsuQ does not scatter across three organisations' logs — it lands in the audit trail as a <b>single timeline</b>. <code>CHAIN-LOAN-a0639920</code> and <code>CHAIN-PO-0122-b66672d7</code> above are those values.">모든 A2A 요청·응답 헤더에 <code>request_chain_id</code>를 전파한다. MaintQ → FinAllQ → InsuQ로 이어지는 여정이 세 조직의 로그에 흩어지지 않고 <b>단일 타임라인</b>으로 묶여 감사 로그에 남는다. 위 데모의 <code>CHAIN-LOAN-a0639920</code>·<code>CHAIN-PO-0122-b66672d7</code>이 그 값이다.</p>
+          <p data-ko="여기에 <code>Idempotency-Key</code> 3중 복합키를 얹어 재시도가 중복 처리로 번지지 않게 했다."
+             data-en="A three-part <code>Idempotency-Key</code> sits on top of it so a retry never becomes a duplicate execution.">여기에 <code>Idempotency-Key</code> 3중 복합키를 얹어 재시도가 중복 처리로 번지지 않게 했다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note reveal"
+         data-ko="<strong>설계와 현실이 어긋났을 때 문서가 아니라 구현을 고쳤다.</strong> 인증은 원래 Basic(client_id/secret) 실토큰 교환을 붙일 계획이었다. 그런데 상대 레포의 인증 필터를 직접 열어 대조해 보니, InsuQ·FinAllQ 양쪽 다 애초에 <code>Authorization: Bearer</code> + <code>X-A2A-Partner-Id</code> 자기신고 헤더만 검사하고 있었고 — FinAllQ→InsuQ 2차 홉은 이미 그 스킴으로 실 성공 중이었다. MaintQ 쪽 <code>credentials.py</code>·<code>auth_header.py</code>를 실제 스킴에 맞춰 다시 썼다."
+         data-en="<strong>When the design and reality disagreed, the implementation was corrected — not the document.</strong> Auth was meant to gain a Basic (client_id/secret) token exchange. Opening the partners' actual filters showed both InsuQ and FinAllQ checking only <code>Authorization: Bearer</code> plus a self-declared <code>X-A2A-Partner-Id</code> — and the FinAllQ→InsuQ relay hop was already succeeding under exactly that scheme. MaintQ's <code>credentials.py</code> and <code>auth_header.py</code> were rewritten to match what was really there."><strong>설계와 현실이 어긋났을 때 문서가 아니라 구현을 고쳤다.</strong> 인증은 원래 Basic(client_id/secret) 실토큰 교환을 붙일 계획이었다. 그런데 상대 레포의 인증 필터를 직접 열어 대조해 보니, InsuQ·FinAllQ 양쪽 다 애초에 <code>Authorization: Bearer</code> + <code>X-A2A-Partner-Id</code> 자기신고 헤더만 검사하고 있었고 — FinAllQ→InsuQ 2차 홉은 이미 그 스킴으로 실 성공 중이었다. MaintQ 쪽 <code>credentials.py</code>·<code>auth_header.py</code>를 실제 스킴에 맞춰 다시 썼다.</div>
+  </div>
+</section>
+
+<!-- ============ METRICS ============ -->
+<section id="metrics">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="측정된 것" data-en="What was measured">측정된 것</span>
+      <h2 class="sec-title" data-ko="달성한 것과, 아직 목표에 못 닿은 것" data-en="What hit the target — and what did not">달성한 것과, 아직 목표에 못 닿은 것</h2>
+      <p class="sec-sub" data-ko="세 프로젝트 모두 평가 하네스로 baseline을 숫자로 고정한 뒤 개선했다. 미달 항목을 지우면 나머지 숫자도 못 믿게 되므로 그대로 둔다."
+         data-en="All three projects pinned a numeric baseline with an evaluation harness before improving anything. The misses are left in — delete them and the rest of the numbers stop being credible either.">세 프로젝트 모두 평가 하네스로 baseline을 숫자로 고정한 뒤 개선했다. 미달 항목을 지우면 나머지 숫자도 못 믿게 되므로 그대로 둔다.</p>
+    </div>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th data-ko="에이전트" data-en="Agent">에이전트</th>
+            <th data-ko="지표" data-en="Metric">지표</th>
+            <th data-ko="결과" data-en="Result">결과</th>
+            <th data-ko="목표" data-en="Target">목표</th>
+            <th data-ko="상태" data-en="Status">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>InsuQ</b></td><td data-ko="검색 성능 Hit@5" data-en="Retrieval Hit@5">검색 성능 Hit@5</td><td class="n">0.8333</td><td class="n">0.85</td><td class="n"><span class="wait-b" data-ko="미달 (1문항)" data-en="short by one item">미달 (1문항)</span></td></tr>
+          <tr><td><b>InsuQ</b></td><td data-ko="거부 정확도" data-en="Refusal accuracy">거부 정확도</td><td class="n">100%</td><td class="n">≥ 90%</td><td class="n"><span class="ok-b" data-ko="초과 달성" data-en="exceeded">초과 달성</span></td></tr>
+          <tr><td><b>InsuQ</b></td><td data-ko="오탐율 (환각)" data-en="Hallucination rate">오탐율 (환각)</td><td class="n">0%</td><td class="n">0%</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>InsuQ</b></td><td data-ko="응답 레이턴시 p95" data-en="Latency p95">응답 레이턴시 p95</td><td class="n">10.4s</td><td class="n">≤ 30s</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>MaintQ</b></td><td data-ko="근거 페이지 인용률" data-en="Source-page citation">근거 페이지 인용률</td><td class="n">90.7%</td><td class="n">100%</td><td class="n"><span class="wait-b" data-ko="미달" data-en="short">미달</span></td></tr>
+          <tr><td><b>MaintQ</b></td><td data-ko="부품 특정 정확률" data-en="Part identification">부품 특정 정확률</td><td class="n">40.0%</td><td class="n">≥ 90%</td><td class="n"><span class="wait-b" data-ko="미달 (원천 데이터 문제)" data-en="short (source-data issue)">미달 (원천 데이터 문제)</span></td></tr>
+          <tr><td><b>MaintQ</b></td><td data-ko="미지 에러코드 환각" data-en="Unknown-code hallucination">미지 에러코드 환각</td><td class="n">0%</td><td class="n">0%</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>MaintQ</b></td><td data-ko="권한 위반 차단" data-en="Privilege violations blocked">권한 위반 차단</td><td class="n">100%</td><td class="n">100%</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>FinAllQ</b></td><td data-ko="테스트 (백엔드 957 · 프론트 480 · 어댑터 130)" data-en="Tests (backend 957 · front 480 · adapter 130)">테스트 (백엔드 957 · 프론트 480 · 어댑터 130)</td><td class="n">1,567</td><td class="n" data-ko="전부 GREEN" data-en="all green">전부 GREEN</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>FinAllQ</b></td><td data-ko="회귀" data-en="Regressions">회귀</td><td class="n">0</td><td class="n">0</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+          <tr><td><b>QMesh</b></td><td data-ko="어댑터 테스트 (finallq_a2a · insuq_a2a)" data-en="Adapter tests (finallq_a2a · insuq_a2a)">어댑터 테스트 (finallq_a2a · insuq_a2a)</td><td class="n">113</td><td class="n" data-ko="전부 GREEN" data-en="all green">전부 GREEN</td><td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note reveal"
+         data-ko="<strong>기각된 개선도 기록으로 남겼다.</strong> InsuQ의 하이브리드 검색(BM25+cross-encoder 리랭커)은 개선을 입증하지 못해 <b>기각</b>했다. 넣으면 좋아 보이는 기법이라도 전/후 지표가 움직이지 않으면 넣지 않는다는 규칙을 그대로 적용한 결과다."
+         data-en="<strong>Rejected improvements are recorded too.</strong> InsuQ's hybrid retrieval (BM25 + cross-encoder reranker) failed to demonstrate a gain and was <b>rejected</b>. A technique that looks good on paper does not ship unless the before/after numbers move."><strong>기각된 개선도 기록으로 남겼다.</strong> InsuQ의 하이브리드 검색(BM25+cross-encoder 리랭커)은 개선을 입증하지 못해 <b>기각</b>했다. 넣으면 좋아 보이는 기법이라도 전/후 지표가 움직이지 않으면 넣지 않는다는 규칙을 그대로 적용한 결과다.</div>
+  </div>
+</section>
+
+<!-- ============ STATUS ============ -->
+<section id="status">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="진행 상태" data-en="Where it stands">진행 상태</span>
+      <h2 class="sec-title" data-ko="지금 도는 것과, 아직 설계인 것" data-en="What runs today, and what is still on paper">지금 도는 것과, 아직 설계인 것</h2>
+      <p class="sec-sub" data-ko="데모에서 구현된 것과 아닌 것이 섞이면 안 된다. 아래는 2026-08-24 기준 실제 상태다."
+         data-en="A demo must never blur what is built and what is not. This is the actual state as of 2026-08-24.">데모에서 구현된 것과 아닌 것이 섞이면 안 된다. 아래는 2026-08-24 기준 실제 상태다.</p>
+    </div>
+
+    <div class="roadmap reveal">
+      <div class="rm-item">
+        <span class="st done" data-ko="계약 확정" data-en="contract fixed">계약 확정</span>
+        <div>
+          <h4 data-ko="Agent Card 3종 · Task JSON Schema 13종" data-en="3 Agent Cards · 13 Task JSON Schemas">Agent Card 3종 · Task JSON Schema 13종</h4>
+          <p data-ko="세 에이전트의 스킬 선언서와 요청/응답 스키마가 QMesh 레포에 SSOT로 고정돼 있다. 어느 도메인도 이 계약을 자기 마음대로 바꿀 수 없다." data-en="Skill declarations and request/response schemas for all three agents are pinned in the QMesh repo as the single source of truth. No domain can change the contract unilaterally.">세 에이전트의 스킬 선언서와 요청/응답 스키마가 QMesh 레포에 SSOT로 고정돼 있다. 어느 도메인도 이 계약을 자기 마음대로 바꿀 수 없다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st done" data-ko="실동작" data-en="running">실동작</span>
+        <div>
+          <h4 data-ko="InsuQ A2A 스킬 5종 — 전부 구현 완료" data-en="InsuQ — all 5 A2A skills implemented">InsuQ A2A 스킬 5종 — 전부 구현 완료</h4>
+          <p data-ko="<code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> · <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code>. 서비스 간 인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함. <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 우회 불가능한 하드 리터럴이다." data-en="Plus service-to-service auth, <code>request_chain_id</code> audit logging, Idempotency-Key infrastructure and a Task lifecycle state machine. <code>claim-insurance</code> carries <code>requires_human_approval:true</code> as a hard literal that cannot be bypassed."><code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> · <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code>. 서비스 간 인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함. <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 우회 불가능한 하드 리터럴이다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st done" data-ko="실동작" data-en="running">실동작</span>
+        <div>
+          <h4 data-ko="FinAllQ 호출부 2종 — 종단 검증 완료" data-en="FinAllQ — 2 call paths verified end to end">FinAllQ 호출부 2종 — 종단 검증 완료</h4>
+          <p data-ko="<code>assess-loan</code>은 InsuQ 2차 홉 호출까지 연결됐고, <code>request-withdrawal</code>은 실 서비스 계정(CORPORATE)으로 종단 실동작을 확인했다. 폴링이 결재대기와 TOTP필요를 <code>pending_action</code>으로 구분한다. 그래도 <b><code>Loan.status</code>는 여전히 <code>UNDER_REVIEW</code></b> — 자동승인은 없다." data-en="<code>assess-loan</code> reaches through to the InsuQ relay hop; <code>request-withdrawal</code> was verified end to end under a real CORPORATE service account, with polling distinguishing approval-pending from TOTP-required via <code>pending_action</code>. Even so, <b><code>Loan.status</code> stays <code>UNDER_REVIEW</code></b> — nothing auto-approves."><code>assess-loan</code>은 InsuQ 2차 홉 호출까지 연결됐고, <code>request-withdrawal</code>은 실 서비스 계정(CORPORATE)으로 종단 실동작을 확인했다. 폴링이 결재대기와 TOTP필요를 <code>pending_action</code>으로 구분한다. 그래도 <b><code>Loan.status</code>는 여전히 <code>UNDER_REVIEW</code></b> — 자동승인은 없다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st done" data-ko="실동작" data-en="running">실동작</span>
+        <div>
+          <h4 data-ko="MaintQ 발신 3경로 — 브라우저 실캡처" data-en="MaintQ — 3 outbound paths captured live">MaintQ 발신 3경로 — 브라우저 실캡처</h4>
+          <p data-ko="<code>request-withdrawal</code>(S5) · <code>lookup-clause</code> · <code>assess-loan</code>(S8 멀티홉). 위 데모 3종이 그 캡처다." data-en="<code>request-withdrawal</code> (S5), <code>lookup-clause</code>, and the S8 multi-hop <code>assess-loan</code> — the three demos above are those captures."><code>request-withdrawal</code>(S5) · <code>lookup-clause</code> · <code>assess-loan</code>(S8 멀티홉). 위 데모 3종이 그 캡처다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st wip" data-ko="프로토타입" data-en="prototype">프로토타입</span>
+        <div>
+          <h4 data-ko="QMesh 레포 안의 어댑터 2종 — 테스트 113건" data-en="Two adapters inside the QMesh repo — 113 tests">QMesh 레포 안의 어댑터 2종 — 테스트 113건</h4>
+          <p data-ko="<code>finallq_a2a</code>(:9101, <code>request-withdrawal</code>·<code>assess-loan</code>) · <code>insuq_a2a</code>(:9102, <code>lookup-clause</code>). 각 도메인 레포에 얹기 전의 참조 구현이다." data-en="<code>finallq_a2a</code> (:9101) and <code>insuq_a2a</code> (:9102) — reference implementations written before being folded into the domain repos."><code>finallq_a2a</code>(:9101, <code>request-withdrawal</code>·<code>assess-loan</code>) · <code>insuq_a2a</code>(:9102, <code>lookup-clause</code>). 각 도메인 레포에 얹기 전의 참조 구현이다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st next" data-ko="다음" data-en="next">다음</span>
+        <div>
+          <h4 data-ko="Orchestrator 본체(:9000) · maintq_a2a 어댑터 · 통합 docker-compose" data-en="The orchestrator itself (:9000) · maintq_a2a adapter · unified docker-compose">Orchestrator 본체(:9000) · maintq_a2a 어댑터 · 통합 docker-compose</h4>
+          <p data-ko="지금은 세 에이전트가 서로 <b>직접</b> 호출한다. 중앙 오케스트레이터와 통합 기동 환경은 아직 설계 단계다 — README의 레포 구조에 적힌 <code>orchestrator/</code>·<code>contracts/</code>는 목표 구조이지 현재 상태가 아니다." data-en="Today the three agents call each other <b>directly</b>. The central orchestrator and the unified compose environment are still designs — the <code>orchestrator/</code> and <code>contracts/</code> trees in the README describe the target layout, not what exists.">지금은 세 에이전트가 서로 <b>직접</b> 호출한다. 중앙 오케스트레이터와 통합 기동 환경은 아직 설계 단계다 — README의 레포 구조에 적힌 <code>orchestrator/</code>·<code>contracts/</code>는 목표 구조이지 현재 상태가 아니다.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <span class="st hold" data-ko="의도적 보류" data-en="deliberately unbuilt">의도적 보류</span>
+        <div>
+          <h4 data-ko="A2A로 TOTP 코드를 대신 제출하는 기능" data-en="Submitting the TOTP code over A2A">A2A로 TOTP 코드를 대신 제출하는 기능</h4>
+          <p data-ko="기술적으로는 만들 수 있다. 만들지 않았다 — CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다. 이건 못 만든 기능이 아니라 지킨 불변식이다." data-en="It is technically buildable and was left unbuilt: if a CORPORATE service account enters the code on the approver's behalf, <b>two-factor authentication collapses into one</b>. This is not a missing feature but an invariant that was kept.">기술적으로는 만들 수 있다. 만들지 않았다 — CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다. 이건 못 만든 기능이 아니라 지킨 불변식이다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCS ============ -->
+<section id="docs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ko="자료" data-en="Materials">자료</span>
+      <h2 class="sec-title" data-ko="더 깊이 보려면" data-en="If you want to go deeper">더 깊이 보려면</h2>
+    </div>
+
+    <div class="docs reveal">
+      <div class="doc">
+        <span class="tag" data-ko="발표자료" data-en="Slide deck">발표자료</span>
+        <h3 data-ko="QMesh 발표 슬라이드" data-en="QMesh presentation">QMesh 발표 슬라이드</h3>
+        <p data-ko="A2A 계약 체결 메커니즘, 세 도메인 아키텍처, 시나리오 데모까지 정리한 발표 자료." data-en="How the A2A contracts were struck, the three domain architectures, and the scenario demos.">A2A 계약 체결 메커니즘, 세 도메인 아키텍처, 시나리오 데모까지 정리한 발표 자료.</p>
+        <div class="lnks">
+          <a href="../uploads/QMesh_presentation.pdf" target="_blank" rel="noopener" data-ko="PDF로 보기 →" data-en="View PDF →">PDF로 보기 →</a>
+          <a href="../uploads/QMesh_presentation.pptx" download data-ko="PPTX 내려받기 →" data-en="Download PPTX →">PPTX 내려받기 →</a>
+        </div>
+      </div>
+      <div class="doc">
+        <span class="tag" data-ko="설계 문서" data-en="Design docs">설계 문서</span>
+        <h3 data-ko="계약 · 신원 · 시나리오 명세" data-en="Contracts, identity, scenarios">계약 · 신원 · 시나리오 명세</h3>
+        <p data-ko="Agent Card 3종, Task JSON Schema 13종, 신원 식별 및 보안 아키텍처 결정서(SSOT), S5~S16 시나리오 상세 명세." data-en="3 Agent Cards, 13 Task JSON Schemas, the identity &amp; security architecture decision record (SSOT), and the full S5–S16 scenario specs.">Agent Card 3종, Task JSON Schema 13종, 신원 식별 및 보안 아키텍처 결정서(SSOT), S5~S16 시나리오 상세 명세.</p>
+        <div class="lnks"><a href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener" data-ko="QMesh 레포 →" data-en="QMesh repo →">QMesh 레포 →</a></div>
+      </div>
+      <div class="doc">
+        <span class="tag" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</span>
+        <h3 data-ko="최지현 — AI Agent 엔지니어" data-en="Jihyun Choi — AI agent engineer">최지현 — AI Agent 엔지니어</h3>
+        <p data-ko="LangGraph 기반 에이전트 시스템 설계와 근거 있는 AI를 다뤄온 기록. 다른 프로젝트도 함께 있습니다." data-en="A record of designing LangGraph-based agent systems and evidence-grounded AI, alongside other projects.">LangGraph 기반 에이전트 시스템 설계와 근거 있는 AI를 다뤄온 기록. 다른 프로젝트도 함께 있습니다.</p>
+        <div class="lnks"><a href="../" data-ko="포트폴리오로 →" data-en="To the portfolio →">포트폴리오로 →</a></div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© <span id="year">2026</span> 최지현 · QMesh</span>
+      <a href="../" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</a>
+      <a href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener">GitHub</a>
+      <a href="../uploads/QMesh_presentation.pdf" target="_blank" rel="noopener" data-ko="발표자료" data-en="Slide deck">발표자료</a>
+      <span class="sp" data-ko="측정 기준일 2026-08-24" data-en="figures as of 2026-08-24">측정 기준일 2026-08-24</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* 언어 (KO/EN) */
+    var langBtn = document.getElementById('langBtn');
+    var lang = localStorage.getItem('qmesh-lang') || 'ko';
+    function applyLang() {
+      document.documentElement.lang = lang;
+      langBtn.textContent = lang === 'ko' ? 'KO' : 'EN';
+      var nodes = document.querySelectorAll('[data-ko]');
+      for (var i = 0; i < nodes.length; i++) {
+        var v = nodes[i].getAttribute('data-' + lang);
+        if (v != null) nodes[i].innerHTML = v;
+      }
+    }
+    langBtn.addEventListener('click', function () {
+      lang = lang === 'ko' ? 'en' : 'ko';
+      localStorage.setItem('qmesh-lang', lang);
+      applyLang();
+    });
+    applyLang();
+
+    /* 테마 */
+    var themeBtn = document.getElementById('themeBtn');
+    var saved = localStorage.getItem('qmesh-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    themeBtn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme');
+      if (!cur) cur = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('qmesh-theme', next);
+    });
+
+    /* reveal — 앵커(#scenarios 등)로 바로 들어와도 빈 화면이 보이지 않게,
+       IO 콜백을 기다리지 않고 뷰포트 안의 요소는 즉시 노출한다 */
+    var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+    function revealVisible() {
+      reveals.forEach(function (el) {
+        if (el.classList.contains('in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+    revealVisible();
+    addEventListener('load', revealVisible);
+    addEventListener('hashchange', function () { requestAnimationFrame(revealVisible); });
+
+    /* GIF 지연 로딩 — 클릭해야 내려받는다 */
+    document.querySelectorAll('.gif-shell').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var img = new Image();
+        img.src = btn.dataset.src;
+        img.alt = btn.dataset.alt || '';
+        img.loading = 'lazy';
+        btn.replaceWith(img);
+      });
+    });
+
+    /* 스크롤스파이 */
+    var navLinks = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+    var secIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var id = e.target.id;
+        navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['why', 'topology', 'agents', 'scenarios', 'principles', 'status'].forEach(function (id) {
+      var el = document.getElementById(id); if (el) secIO.observe(el);
+    });
+
+    /* 앵커 offset */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id.length < 2) return;
+        var t = document.querySelector(id);
+        if (!t) return;
+        e.preventDefault();
+        scrollTo({ top: t.getBoundingClientRect().top + scrollY - 68, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
