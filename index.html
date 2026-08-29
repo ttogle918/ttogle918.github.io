@@ -5,14 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ====== 기본 SEO 메타 (내용 교체하세요) ====== -->
   <title>최지현 · AI Agent / 백엔드 엔지니어 — Portfolio</title>
   <meta name="description" content="Agent Architect · End-to-End 서비스 · Trusted AI 를 추구하는 AI Agent 엔지니어 포트폴리오." />
+  <link rel="canonical" href="https://ttogle918.github.io/" />
+  <meta property="og:site_name" content="최지현 · Portfolio" />
   <meta property="og:title" content="최지현 · AI Agent / 백엔드 엔지니어" />
   <meta property="og:description" content="Agent Architect · End-to-End 서비스 · Trusted AI." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="og-image.png" />
+  <meta property="og:url" content="https://ttogle918.github.io/" />
+  <meta property="og:image" content="https://ttogle918.github.io/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#3a5bd0" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a5bd0'/%3E%3Cpath d='M16 6.5l2.7 6.3 6.8.6-5.1 4.5 1.5 6.6-5.9-3.5-5.9 3.5 1.5-6.6-5.1-4.5 6.8-.6z' fill='%23e0a516'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,6 +53,8 @@
       --gold: #e0a516;
       /* ★ 모티프 */
       --gold-soft: rgba(224, 165, 22, .14);
+      --gold-ink: #8a6d1f;
+      --gold-line: rgba(224, 165, 22, .45);
       --ok: #1f9d57;
 
       --shadow-sm: 0 1px 2px rgba(20, 24, 45, .05), 0 6px 20px rgba(20, 24, 45, .05);
@@ -68,6 +77,8 @@
       --accent-soft: rgba(127, 155, 255, .14);
       --gold: #f0bd4a;
       --gold-soft: rgba(240, 189, 74, .16);
+      --gold-ink: #f0bd4a;
+      --gold-line: rgba(240, 189, 74, .45);
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .4);
       --shadow-lg: 0 14px 40px rgba(0, 0, 0, .5), 0 36px 70px rgba(0, 0, 0, .5);
     }
@@ -886,7 +897,59 @@
       font-weight: 700;
       color: var(--ink);
       letter-spacing: -.01em;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    /* 대표작(AI Agent 설계 프로젝트) 강조 배지 */
+    .pc-featured {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--gold-ink, #8a6d1f);
+      background: var(--gold-soft, #fdf3d7);
+      border: 1px solid var(--gold-line, #ecd9a3);
+      border-radius: 999px;
+      padding: 3px 9px;
+      white-space: nowrap
+    }
+
+    .pcard.featured {
+      border-color: var(--gold-line, #ecd9a3)
+    }
+
+    .pcard.featured .pc-badge {
+      background: var(--gold-soft, #fdf3d7);
+      color: var(--gold-ink, #8a6d1f)
+    }
+
+    /* 카드 메타 — 기간 · 형태 · 역할 */
+    .pc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
       margin: 0 0 8px
+    }
+
+    .pc-meta b {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .pc-meta .sep {
+      color: var(--faint)
     }
 
     .pc-hash {
@@ -1574,6 +1637,7 @@
         <a href="#skill" data-ko="스킬" data-en="Skill">스킬</a>
         <a href="#career" data-ko="경력" data-en="Career">경력</a>
         <a href="#projects" data-ko="프로젝트" data-en="Projects">프로젝트</a>
+        <a href="#future" data-ko="목표" data-en="Future">목표</a>
         <a href="#contact" data-ko="연락처" data-en="Contact">연락처</a>
       </nav>
       <div class="nav-tools">
@@ -1592,7 +1656,7 @@
   <section class="hero" style="padding-top:96px">
     <div class="hero-bg"></div>
     <div class="wrap">
-      <div class="hero-label reveal mono">PORTFOLIO · <span data-ko="26.01 기준" data-en="as of 26.01">26.01 기준</span>
+      <div class="hero-label reveal mono">PORTFOLIO · <span data-ko="26.08 기준" data-en="as of 26.08">26.08 기준</span>
       </div>
       <h1 class="hero-title reveal" data-d="1">PORTFOLIO</h1>
       <p class="hero-code reveal mono" data-d="1">
@@ -1615,9 +1679,8 @@
       </p>
       <p class="hero-role reveal" data-d="2">AI Agent Engineer · Backend</p>
       <div class="hero-links reveal" data-d="3">
-        <!-- 포트폴리오 상세: Canva 공유 링크로 교체하세요 -->
-        <a class="hbtn primary" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span><span
-            data-ko="포트폴리오 상세" data-en="Full portfolio">포트폴리오 상세</span></a>
+        <a class="hbtn primary" href="uploads/최지현_portfolio.pdf" target="_blank" rel="noopener"><span class="ic"
+            data-ic="file"></span><span data-ko="포트폴리오 상세" data-en="Full portfolio">포트폴리오 상세</span></a>
         <a class="hbtn" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic"
             data-ic="github"></span>GitHub</a>
         <a class="hbtn" href="mailto:ttogle918@gmail.com"><span class="ic" data-ic="mail"></span>Email</a>
@@ -1645,9 +1708,9 @@
           <div class="pstar">★</div>
           <div class="pk mono" data-ko="구조 설계" data-en="Architecture">구조 설계</div>
           <h3 data-ko="Agent System Design" data-en="Agent System Design">Agent System Design</h3>
-          <p data-ko="LangGraph로 비즈니스 문제를 다각도로 분석하고 멀티 에이전트를 조율해 팀 규모 산출물을 1인으로 완성한 경험."
-            data-en="Analyzing problems from multiple angles and orchestrating multi-agent systems with LangGraph to ship team-scale results solo.">
-            LangGraph로 비즈니스 문제를 다각도로 분석하고 멀티 에이전트를 조율해 팀 규모 산출물을 1인으로 완성한 경험.</p>
+          <p data-ko="LangGraph·MCP·A2A로 에이전트 간 계약과 경계를 설계하고, 표준 계약만으로 이종 스택을 잇는 구조를 직접 만들어 검증한 경험."
+            data-en="Designing the contracts and boundaries between agents with LangGraph, MCP and A2A — building and verifying a structure that links heterogeneous stacks through the contract alone.">
+            LangGraph·MCP·A2A로 에이전트 간 계약과 경계를 설계하고, 표준 계약만으로 이종 스택을 잇는 구조를 직접 만들어 검증한 경험.</p>
         </div>
         <div class="pillar reveal" data-d="1"><span class="pno mono">02</span>
           <div class="pstar">★</div>
@@ -1661,9 +1724,9 @@
           <div class="pstar">★</div>
           <div class="pk mono" data-ko="도메인 (적응력)" data-en="Adaptability">도메인 (적응력)</div>
           <h3 data-ko="End-to-End & Adaptability" data-en="End-to-End & Adaptability">End-to-End & Adaptability</h3>
-          <p data-ko="보안·무역·채용 등 생소한 도메인을 빠르게 학습해 데이터부터 배포까지 Full-Stack AI 서비스로 완성."
-            data-en="Rapidly learning unfamiliar domains — security, trade, hiring — to ship full-stack AI services from data to deployment.">
-            보안·무역·채용 등 생소한 도메인을 빠르게 학습해 데이터부터 배포까지 Full-Stack AI 서비스로 완성.</p>
+          <p data-ko="보안·무역·채용·제조·보험·금융 — 2025년 이후 낯선 도메인 여섯을 새로 학습해, 데이터 수집부터 배포까지 혼자 끝낸 실행력."
+            data-en="Security, trade, hiring, manufacturing, insurance, finance — six unfamiliar domains picked up since 2025, each carried from data collection to deployment alone.">
+            보안·무역·채용·제조·보험·금융 — 2025년 이후 낯선 도메인 여섯을 새로 학습해, 데이터 수집부터 배포까지 혼자 끝낸 실행력.</p>
         </div>
       </div>
     </div>
@@ -1674,28 +1737,86 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="sec-kicker"><span class="star">★</span> SKILL <span class="star">★</span></div>
-        <p class="sec-desc" data-ko="핵심 스택은 강조 표시했습니다." data-en="Core stack is highlighted.">핵심 스택은 강조 표시했습니다.</p>
+        <p class="sec-desc" data-ko="프로젝트에서 직접 설계·구현한 기술입니다. 핵심 스택은 강조 표시했습니다."
+          data-en="Technologies I designed and built with on real projects — core stack highlighted.">프로젝트에서 직접
+          설계·구현한 기술입니다. 핵심 스택은 강조 표시했습니다.</p>
       </div>
       <div class="skill-cols">
         <div class="skill-card reveal">
-          <div class="sc-h"><span class="star">★</span> Backend / Infra</div>
-          <div class="chips">
-            <span class="chip key">FastAPI (Async)</span><span class="chip">Spring Boot</span><span
-              class="chip">MSA</span><span class="chip">Docker</span><span class="chip">Redis</span><span
-              class="chip">Agent / LLMOps</span>
-          </div>
-        </div>
-        <div class="skill-card reveal" data-d="1">
-          <div class="sc-h"><span class="star">★</span> AI / ML / NLP</div>
+          <div class="sc-h"><span class="star">★</span> <span data-ko="AI 에이전트 · 오케스트레이션"
+              data-en="AI Agent / Orchestration">AI 에이전트 · 오케스트레이션</span></div>
           <div class="chips">
             <span class="chip key">LangGraph</span>
             <span class="chip key">RAG</span>
+            <span class="chip key">MCP / FastMCP</span>
+            <span class="chip key">A2A Protocol</span>
+            <span class="chip key">Claude API</span>
             <span class="chip">LangChain</span>
-            <span class="chip">MCP</span>
-            <span class="chip">SBERT Fine-tuning</span>
-            <span class="chip">RandomForest</span>
-            <span class="chip">XGBoost</span>
-            <span class="chip">Whisper / DeepFace</span>
+            <span class="chip">Claude Code 멀티 에이전트</span>
+            <span class="chip">Hybrid Search · Reranker</span>
+            <span class="chip">pgvector / Qdrant / FAISS</span>
+            <span class="chip">GPT-4o · Gemini</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" data-d="1">
+          <div class="sc-h"><span class="star">★</span> Backend / Infra</div>
+          <div class="chips">
+            <span class="chip key">FastAPI (Async)</span>
+            <span class="chip key">Spring Boot</span>
+            <span class="chip key">PostgreSQL (+pgvector)</span>
+            <span class="chip">MSA</span>
+            <span class="chip">Docker Compose</span>
+            <span class="chip">Redis</span>
+            <span class="chip">SSE · WebSocket</span>
+            <span class="chip">JWT · OAuth2</span>
+            <span class="chip">MySQL · Oracle</span>
+            <span class="chip">AWS EC2 / RDS</span>
+            <span class="chip">GitHub Actions</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" data-d="2">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="ML · NLP · 데이터"
+              data-en="ML / NLP / Data">ML · NLP · 데이터</span></div>
+          <div class="chips">
+            <span class="chip key">SBERT Fine-tuning</span>
+            <span class="chip key">HuggingFace</span>
+            <span class="chip key">XGBoost</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">RandomForest · KMeans</span>
+            <span class="chip">KoBERT</span>
+            <span class="chip">Whisper / Pyannote</span>
+            <span class="chip">NER · 개인정보 익명화</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" data-d="3">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="보안 · 관측성 · 클라이언트"
+              data-en="Security / Observability / Client">보안 · 관측성 · 클라이언트</span></div>
+          <div class="chips">
+            <span class="chip key">SAST / DAST (OWASP ZAP)</span>
+            <span class="chip key">Prometheus · Grafana</span>
+            <span class="chip">Jaeger / OpenTelemetry</span>
+            <span class="chip">AES-256-GCM · Argon2id</span>
+            <span class="chip">CWE / OWASP 매핑</span>
+            <span class="chip">SBOM · NVD CVE</span>
+            <span class="chip">Next.js / React / TS</span>
+            <span class="chip">VSCode Extension</span>
+            <span class="chip">Android (Kotlin·Compose)</span>
+          </div>
+        </div>
+      </div>
+      <div class="skill-cols" style="margin-top:16px">
+        <div class="skill-card reveal">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="학습 중 — NIPA·NVIDIA GPU 가속 AI Agent 과정 (320H)"
+              data-en="Learning now — NIPA·NVIDIA GPU-accelerated AI Agent program (320H)">학습 중 — NIPA·NVIDIA GPU 가속 AI
+              Agent 과정 (320H)</span></div>
+          <div class="chips">
+            <span class="chip">NVIDIA NeMo</span>
+            <span class="chip">NeMo-Agent Toolkit</span>
+            <span class="chip">NeMo Guardrails</span>
+            <span class="chip">TensorRT-LLM</span>
+            <span class="chip">Triton Inference Server</span>
+            <span class="chip">HyDE</span>
+            <span class="chip">LLMOps</span>
           </div>
         </div>
       </div>
@@ -1707,9 +1828,9 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="sec-kicker"><span class="star">★</span> CAREER &amp; EDUCATION <span class="star">★</span></div>
-        <p class="sec-desc" data-ko="실무 경험과 교육 과정을 시간순으로 정리했습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다."
-          data-en="Career and education in chronological order — click an item to expand.">
-          실무 경험과 교육 과정을 시간순으로 정리했습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다.
+        <p class="sec-desc" data-ko="실무 경험·교육 과정·학력을 시간순으로 정리하고, 자격증을 아래에 덧붙였습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다."
+          data-en="Career, education and degree in chronological order, with certificates below — click an item to expand.">
+          실무 경험·교육 과정·학력을 시간순으로 정리하고, 자격증을 아래에 덧붙였습니다. 항목을 클릭하면 상세 내용이 펼쳐집니다.
         </p>
       </div>
       <div class="timeline">
@@ -1744,7 +1865,8 @@
               </ul>
               <p class="tl-sub project" data-ko="프로젝트" data-en="Project">프로젝트</p>
               <ul>
-                <li data-ko="프로젝트: QMesh (A2A 멀티 에이전트 오케스트레이션)" data-en="Flagship: QMesh (A2A multi-agent orchestration)">QMesh</li>
+                <li data-ko="QMesh — A2A 멀티 에이전트 오케스트레이션 허브"
+                  data-en="QMesh — A2A multi-agent orchestration hub">QMesh — A2A 멀티 에이전트 오케스트레이션 허브</li>
                 <li data-ko="1인 프로젝트, 금융·제조·보험 에이전트 간 통신 구현"
                   data-en="1-person project, inter-agent communication for finance, manufacturing, insurance">
                   1인 프로젝트, 금융·제조·보험 에이전트 간 통신 구현</li>
@@ -1772,9 +1894,9 @@
             <div class="tl-main">
               <div class="tl-date mono">2026.03 ~ 현재 <span class="tl-tag">Career</span></div>
               <h4 data-ko="KOSA — AI 교육 보조강사" data-en="KOSA — AI Teaching Assistant">KOSA — AI 교육 보조강사</h4>
-              <p data-ko="교강사 대상 AI 개발 역량강화 실습 멘토링·운영 지원. 코드 디버깅, 에러 슈팅, 기술 질의응답."
-                data-en="Mentoring and operations support for AI dev training — code debugging, error shooting, tech Q&A.">
-                교강사 대상 AI 개발 역량강화 실습 멘토링·운영 지원. 코드 디버깅, 에러 슈팅, 기술 질의응답.</p>
+              <p data-ko="AI 응용 개발 과정 실습 조교 — 코드 디버깅, 에러 슈팅, 기술 질의응답. 수강했던 과정에서 실력을 인정받아 기수마다 다시 섭외되고 있다."
+                data-en="Lab assistant on AI application development courses — debugging, error shooting and technical Q&A. Originally a student on the course, re-invited every cohort since.">
+                AI 응용 개발 과정 실습 조교 — 코드 디버깅, 에러 슈팅, 기술 질의응답. 수강했던 과정에서 실력을 인정받아 기수마다 다시 섭외되고 있다.</p>
               <div class="tl-hash mono">#Mentoring #DevOps</div>
             </div><span class="tl-caret">▶</span>
           </div>
@@ -1829,6 +1951,23 @@
                   <b>LLM 기반 자율 에이전트 개발 및 워크플로우 자동화</b> (26.04.18~19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab,
                   LangGraph
                 </li>
+                <li
+                  data-ko="<b>Spring AI LLM 비전과 멀티미디어 융합</b> · Spring AI, Vision API, 멀티모달 입력 처리"
+                  data-en="<b>Spring AI vision &amp; multimedia</b> · Spring AI, Vision API, multimodal input">
+                  <b>Spring AI LLM 비전과 멀티미디어 융합</b> · Spring AI, Vision API, 멀티모달 입력 처리
+                </li>
+                <li data-ko="<b>멀티미디어 프롬프트 엔지니어링 (PBL)</b> · 이미지·음성 프롬프트 설계 실습"
+                  data-en="<b>Multimedia prompt engineering (PBL)</b> · image and audio prompt design labs">
+                  <b>멀티미디어 프롬프트 엔지니어링 (PBL)</b> · 이미지·음성 프롬프트 설계 실습
+                </li>
+                <li data-ko="<b>생성형 AI를 활용한 정보보안</b> / <b>AI를 활용한 웹 서비스 품질관리</b> · 보안·QA 도메인 적용"
+                  data-en="<b>Generative AI for information security</b> / <b>AI for web service QA</b> · security and QA applications">
+                  <b>생성형 AI를 활용한 정보보안</b> / <b>AI를 활용한 웹 서비스 품질관리</b> · 보안·QA 도메인 적용
+                </li>
+                <li data-ko="<b>노션 데이터베이스 자료 정리 &amp; Google Apps Script 보고서 자동화</b>"
+                  data-en="<b>Notion databases &amp; Google Apps Script report automation</b>">
+                  <b>노션 데이터베이스 자료 정리 &amp; Google Apps Script 보고서 자동화</b>
+                </li>
               </ul>
               <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
               <div class="tl-stack">
@@ -1848,9 +1987,9 @@
           <div class="tl-head">
             <div class="tl-main">
               <div class="tl-date mono">2025.08 ~ 2025.10 <span class="tl-tag">Education</span></div>
-              <h4 data-ko="KOSA Spec-up (실전 프로젝트)" data-en="KOSA Spec-up — K-Bridge">KOSA Spec-up — K-Bridge</h4>
-              <p data-ko="통관 법률 도메인 RAG·LangGraph 팀 프로젝트. 요건 분석·판례 교차검증 담당(팀 4인)."
-                data-en="Trade-law RAG/LangGraph team project; owned requirement analysis and precedent cross-validation (team of 4).">
+              <h4 data-ko="KOSA Spec-up — K-Bridge" data-en="KOSA Spec-up — K-Bridge">KOSA Spec-up — K-Bridge</h4>
+              <p data-ko="K-Bridge : 통관 법률 도메인 RAG·LangGraph 팀 프로젝트. 요건 분석·판례 교차검증 담당(팀 4인)."
+                data-en="K-Bridge: trade-law RAG/LangGraph team project; owned requirement analysis and precedent cross-validation (team of 4).">
                 K-Bridge : 통관 법률 도메인 RAG·LangGraph 팀 프로젝트. 요건 분석·판례 교차검증 담당(팀 4인).</p>
               <div class="tl-hash mono">#RAG #LangGraph</div>
             </div><span class="tl-caret">▶</span>
@@ -1975,11 +2114,53 @@
         <div class="tl edu reveal">
           <div class="tl-head">
             <div class="tl-main">
-              <div class="tl-date mono">2021.09 ~ 2022.06 · 1120h <span class="tl-tag">Education</span></div>
-              <h4 data-ko="코드스테이츠 — AI 부트캠프" data-en="Code States — AI Bootcamp">코드스테이츠 — AI 부트캠프</h4>
-              <p data-ko="ML/DL/NLP 기초 이론(1120시간) 및 기업 협업 프로젝트. 이후 NLP 심화 과정 수료."
-                data-en="ML/DL/NLP fundamentals (1120h) plus industry projects; later completed advanced NLP.">ML/DL/NLP
-                기초 이론(1120시간) 및 기업 협업 프로젝트. 이후 NLP 심화 과정 수료.</p>
+              <div class="tl-date mono">2022.05 ~ 2022.06 · 3주 <span class="tl-tag">Education</span></div>
+              <h4 data-ko="코드스테이츠 — AI 심화 NLP 과정" data-en="Code States — Advanced NLP">코드스테이츠 — AI 심화 NLP 과정</h4>
+              <p data-ko="NLP task SOTA 모델 분석, BERT·GPT·BART 학습법 구분, PyTorch로 문장 유사도(STS) fine-tuning."
+                data-en="Analyzed SOTA NLP models, distinguished BERT/GPT/BART training schemes, fine-tuned sentence similarity (STS) in PyTorch.">NLP
+                task SOTA 모델 분석, BERT·GPT·BART 학습법 구분, PyTorch로 문장 유사도(STS) fine-tuning.</p>
+              <div class="tl-hash mono">#BERT #STS #PyTorch</div>
+            </div><span class="tl-caret">▶</span>
+          </div>
+          <div class="tl-detail">
+            <div class="tl-detail-in">
+              <p class="tl-sub" data-ko="커리큘럼" data-en="Curriculum">커리큘럼</p>
+              <ul>
+                <li data-ko="NLP task별 SOTA 모델 분석 및 Tokenizer 구분"
+                  data-en="SOTA model analysis per NLP task, tokenizer comparison">NLP task별 SOTA 모델 분석 및 Tokenizer 구분
+                </li>
+                <li data-ko="Word / Contextual Embedding(BERT·GPT·BART) 학습 방법 구분"
+                  data-en="Word vs contextual embeddings — BERT, GPT, BART training schemes">Word / Contextual
+                  Embedding(BERT·GPT·BART) 학습 방법 구분</li>
+              </ul>
+
+              <p class="tl-sub project" data-ko="프로젝트" data-en="Project">프로젝트</p>
+              <ul>
+                <li data-ko="NLU 문장 유사도 계산(STS task) — PyTorch로 BERT fine-tuning"
+                  data-en="NLU sentence similarity (STS) — BERT fine-tuning in PyTorch">NLU 문장 유사도 계산(STS task) —
+                  PyTorch로 BERT fine-tuning</li>
+              </ul>
+
+              <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
+              <div class="tl-stack">
+                <span class="tl-tech key">BERT</span>
+                <span class="tl-tech key">STS</span>
+                <span class="tl-tech key">PyTorch</span>
+                <span class="tl-tech">GPT, BART</span>
+                <span class="tl-tech">HuggingFace</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl edu reveal">
+          <div class="tl-head">
+            <div class="tl-main">
+              <div class="tl-date mono">2021.09 ~ 2022.04 · 1120h <span class="tl-tag">Education</span></div>
+              <h4 data-ko="코드스테이츠 — AI 부트캠프 (7기)" data-en="Code States — AI Bootcamp (7th)">코드스테이츠 — AI 부트캠프 (7기)</h4>
+              <p data-ko="Data Analysis / AI / NLP 통합 과정(1120시간, 수료). 기업 협업 프로젝트 포함."
+                data-en="Data Analysis / AI / NLP program (1120h, completed), including an industry collaboration project.">Data
+                Analysis / AI / NLP 통합 과정(1120시간, 수료). 기업 협업 프로젝트 포함.</p>
               <div class="tl-hash mono">#SBERT #KoBERT</div>
             </div><span class="tl-caret">▶</span>
           </div>
@@ -1990,9 +2171,6 @@
                 <li data-ko="ML 통계·미분 · EDA · CLI · Flask · MySQL · MongoDB · ML/DL"
                   data-en="ML stats/calculus · EDA · CLI · Flask · MySQL · MongoDB · ML/DL">ML 통계·미분 · EDA · CLI · Flask
                   · MySQL · MongoDB · ML/DL</li>
-                <li data-ko="NLP 심화: BERT·GPT·BART 학습법, 문장 유사도(STS) fine-tuning"
-                  data-en="Advanced NLP: BERT·GPT·BART, sentence-similarity (STS) fine-tuning">NLP 심화: BERT·GPT·BART
-                  학습법, 문장 유사도(STS) fine-tuning</li>
               </ul>
 
               <p class="tl-sub project" data-ko="프로젝트" data-en="Project">프로젝트</p>
@@ -2018,6 +2196,92 @@
             </div>
           </div>
         </div>
+
+        <div class="tl reveal">
+          <div class="tl-head">
+            <div class="tl-main">
+              <div class="tl-date mono">2019.06 ~ 2019.08 <span class="tl-tag">Career</span></div>
+              <h4 data-ko="세코닉스 — 인사팀 인턴" data-en="Sekonix — HR Intern">세코닉스 — 인사팀 인턴</h4>
+              <p data-ko="신규 입사자 정보 관리 및 ERP 시스템 운영 지원. 당초 6주 인턴이었으나 근무 연장 요청을 받았다."
+                data-en="Onboarding records and ERP operations support; asked to extend beyond the original six-week term.">
+                신규 입사자 정보 관리 및 ERP 시스템 운영 지원. 당초 6주 인턴이었으나 근무 연장 요청을 받았다.</p>
+              <div class="tl-hash mono">#ERP #조직문화</div>
+            </div><span class="tl-caret">&#9654;</span>
+          </div>
+          <div class="tl-detail">
+            <div class="tl-detail-in">
+              <p class="tl-sub" data-ko="근무 내용" data-en="Role">근무 내용</p>
+              <ul>
+                <li data-ko="신규 입사자 정보 관리 · ERP 시스템 운영 지원 (비개발 직무)"
+                  data-en="Managed new-hire records and supported ERP operations (non-engineering role)">신규 입사자 정보 관리 ·
+                  ERP 시스템 운영 지원 (비개발 직무)</li>
+                <li data-ko="첫 회사 경험으로 조직이 어떻게 굴러가는지를 익혔고, 이후 개발 직무를 선택하는 기준이 됐다."
+                  data-en="A first look at how an organization actually runs — which later shaped the decision to move into engineering.">
+                  첫 회사 경험으로 조직이 어떻게 굴러가는지를 익혔고, 이후 개발 직무를 선택하는 기준이 됐다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl edu reveal">
+          <div class="tl-head">
+            <div class="tl-main">
+              <div class="tl-date mono">2015.03 ~ 2020.02 <span class="tl-tag">Education</span></div>
+              <h4 data-ko="명지대학교 (자연캠퍼스) — 컴퓨터공학과 학사"
+                data-en="Myongji University — B.S. in Computer Engineering">명지대학교 (자연캠퍼스) — 컴퓨터공학과 학사</h4>
+              <p data-ko="컴퓨터공학 학사 졸업. 데이터베이스 설계·자료구조·컴퓨터 보안 등 전공 기반 위에 AI를 얹었다."
+                data-en="B.S. in Computer Engineering — the CS foundation (database design, data structures, computer security) that AI was later built on.">컴퓨터공학
+                학사 졸업. 데이터베이스 설계·자료구조·컴퓨터 보안 등 전공 기반 위에 AI를 얹었다.</p>
+              <div class="tl-hash mono">#ComputerEngineering</div>
+            </div><span class="tl-caret">▶</span>
+          </div>
+          <div class="tl-detail">
+            <div class="tl-detail-in">
+              <p class="tl-sub" data-ko="주요 전공 과목" data-en="Key coursework">주요 전공 과목</p>
+              <ul>
+                <li data-ko="데이터베이스설계 · 자료구조 · 컴퓨터아키텍쳐 · 시스템프로그래밍(Linux shell)"
+                  data-en="Database design · Data structures · Computer architecture · Systems programming (Linux shell)">
+                  데이터베이스설계 · 자료구조 · 컴퓨터아키텍쳐 · 시스템프로그래밍(Linux shell)</li>
+                <li data-ko="인공지능(Python·CNN 실습) · 컴퓨터 보안(암호화 개론) · 웹프로그래밍 · 고급객체지향프로그래밍(Java)"
+                  data-en="Artificial intelligence (Python, CNN labs) · Computer security (intro cryptography) · Web programming · Advanced OOP (Java)">
+                  인공지능(Python·CNN 실습) · 컴퓨터 보안(암호화 개론) · 웹프로그래밍 · 고급객체지향프로그래밍(Java)</li>
+              </ul>
+              <p class="tl-sub" data-ko="수상" data-en="Award">수상</p>
+              <ul>
+                <li data-ko="<b>총장상</b> (2019.12) — TOPCIT 우수 성적"
+                  data-en="<b>President's Award</b> (Dec 2019) — for an outstanding TOPCIT score"><b>총장상</b> (2019.12) —
+                  TOPCIT 우수 성적</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-cols" style="margin-top:40px">
+        <div class="skill-card reveal">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="자격증" data-en="Certificate">자격증</span></div>
+          <div class="chips">
+            <span class="chip key" data-ko="정보보안기사 · 2026.07 필기 합격"
+              data-en="Information Security Engineer · written passed 2026.07">정보보안기사 · 2026.07 필기 합격</span>
+            <span class="chip key" data-ko="AI-POT · 2026.07" data-en="AI-POT · 2026.07">AI-POT · 2026.07</span>
+            <span class="chip" data-ko="SQLD · 2023.10" data-en="SQLD · 2023.10">SQLD · 2023.10</span>
+            <span class="chip" data-ko="빅데이터분석기사 · 2022.12"
+              data-en="Big Data Analytics Engineer · 2022.12">빅데이터분석기사 · 2022.12</span>
+            <span class="chip" data-ko="정보처리기사 · 2020.08"
+              data-en="Engineer Information Processing · 2020.08">정보처리기사 · 2020.08</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" data-d="1">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="어학 · 기타" data-en="Language &amp; Etc.">어학 ·
+              기타</span></div>
+          <div class="chips">
+            <span class="chip key" data-ko="OPIc 영어 IH · 2025.09" data-en="OPIc English IH · 2025.09">OPIc 영어 IH ·
+              2025.09</span>
+            <span class="chip" data-ko="한국사능력검정 2급" data-en="Korean History Proficiency, Level 2">한국사능력검정 2급</span>
+            <span class="chip" data-ko="총장상 · 2019.12 (TOPCIT 우수)"
+              data-en="President's Award · 2019.12 (TOPCIT)">총장상 · 2019.12 (TOPCIT 우수)</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2034,13 +2298,14 @@
       <div class="projects">
 
         <!-- PROJECT 01 -->
-        <article class="pcard open reveal">
+        <article class="pcard featured open reveal">
           <div class="pc-top">
             <div class="pc-badge mono">01</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="A2A 멀티 에이전트 오케스트레이션 허브"
                 data-en="A2A Multi-Agent Orchestration Hub">A2A 멀티 에이전트 오케스트레이션 허브</div>
-              <h3 class="pc-title">QMesh</h3>
+              <h3 class="pc-title">QMesh <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
+              <div class="pc-meta" data-ko="2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 프로토콜 설계·오케스트레이터 전담" data-en="Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> protocol design &amp; orchestrator">2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 프로토콜 설계·오케스트레이터 전담</div>
               <div class="pc-hash mono">
                 <span>#A2A</span><span>#MultiAgent</span><span>#ProtocolDesign</span><span>#HumanInTheLoop</span>
               </div>
@@ -2081,13 +2346,38 @@
                       </li>
                     </ul>
                   </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="연결 대상 — 직접 만든 Q 시리즈"
+                        data-en="What it connects — the Q series">연결 대상 — 직접 만든 Q 시리즈</span></div>
+                    <ul>
+                      <li data-ko="<b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, Sprint 4 진행 중 <span class=&quot;mono&quot;>:9001</span>"
+                        data-en="<b>FinAllQ</b> · banking &amp; brokerage assistant — Spring Boot 3 + FastAPI + React 19 hybrid MSA, sprint 4 in progress <span class=&quot;mono&quot;>:9001</span>">
+                        <b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, Sprint 4 진행 중
+                        <span class="mono">:9001</span>
+                      </li>
+                      <li data-ko="<b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답하는 코어 완결·측정 중 (리랭커·MCP 노출은 고도화 예정) <span class=&quot;mono&quot;>:9002</span>"
+                        data-en="<b>InsuQ</b> · policy-clause RAG agent — Qdrant + Nemotron embeddings; the cite-the-clause core is done and being measured (reranker and MCP exposure to follow) <span class=&quot;mono&quot;>:9002</span>">
+                        <b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답하는 코어 완결·측정 중 (리랭커·MCP 노출은 고도화 예정)
+                        <span class="mono">:9002</span>
+                      </li>
+                      <li data-ko="<b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Sprint 16 진행 중 <span class=&quot;mono&quot;>:9003</span>"
+                        data-en="<b>MaintQ</b> · plant-maintenance agent — orchestrates 20 MCP tools (7 core + 13 extended), sprint 16 in progress <span class=&quot;mono&quot;>:9003</span>">
+                        <b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Sprint 16 진행 중
+                        <span class="mono">:9003</span>
+                      </li>
+                      <li data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다."
+                        data-en="All three run on <b>different languages, frameworks and repositories</b> — which is exactly why the link needed a standard contract.">
+                        세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
                       <span class="cap mono">// 01_topology.png</span>
-                      <span class="cap2 mono" data-ko="완전 삼각형 A2A 토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)"
-                        data-en="Full-triangle A2A topology<br>(orchestrator :9000 · domains :9001–:9003)">완전 삼각형 A2A
+                      <span class="cap2 mono" data-ko="A2A 토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)"
+                        data-en="A2A topology<br>(orchestrator :9000 · domains :9001–:9003)">A2A
                         토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)</span>
                     </div>
                     <div class="pc-slide">
@@ -2107,9 +2397,10 @@
                 <div class="impact block">
                   <div class="bh"><span class="star">★</span> <span data-ko="성과 (프로토콜 실증)" data-en="Impact">성과 (프로토콜
                       실증)</span></div>
-                  <p data-ko="세 이종 스택 에이전트가 서로의 내부를 모른 채 표준 계약만으로 협업. 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다."
-                    data-en="Three agents on different stacks collaborate through the contract alone, knowing nothing of each other's internals — single-hop, multi-hop and two-step approval all verified end to end against live data and real auth.">세
-                    이종 스택 에이전트가 서로의 내부를 모른 채 표준 계약만으로 협업. 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다.</p>
+                  <p data-ko="3종 Agent Card와 13종 Task 스키마로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터를 구현해 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다. 제조(MaintQ)는 호출자 측 A2A 도구까지 구현했고, 수신 어댑터가 다음 단계다."
+                    data-en="Three Agent Cards and thirteen Task schemas pin the contract; receiving adapters for the finance and insurance domains are built, and single-hop, multi-hop and two-step approval were each verified end to end against live data and real auth. On the manufacturing side (MaintQ) the calling half is implemented — the receiving adapter is next.">3종
+                    Agent Card와 13종 Task 스키마로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터를 구현해 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다.
+                    제조(MaintQ)는 호출자 측 A2A 도구까지 구현했고, 수신 어댑터가 다음 단계다.</p>
                   <div class="metricrow">
                     <div class="metric">
                       <div class="mv"><span data-count="13">0</span>종</div>
@@ -2141,40 +2432,47 @@
           <div class="pc-top">
             <div class="pc-badge mono">02</div>
             <div class="pc-headings">
-              <div class="pc-code mono" data-ko="Key manager service" data-en="Key manager service">Key manager service
-              </div>
-              <h3 class="pc-title">KEY MANAGER</h3>
+              <div class="pc-code mono" data-ko="키지기 · 개인 개발자용 자격증명 관리 도구"
+                data-en="Kijigi · Local-first Credential Manager">키지기 · 개인 개발자용 자격증명 관리 도구</div>
+              <h3 class="pc-title">KEYLENS</h3>
+              <div class="pc-meta" data-ko="2026.06 ~ 2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 기획·개발·배포 전 과정" data-en="Jun–Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> product, build and release">2026.06 ~ 2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 기획·개발·배포 전 과정</div>
               <div class="pc-hash mono">
-                <span>#Spring Boot</span><span>#RESTfulAPI</span><span>#JPA</span><span>#PostgreSQL</span>
+                <span>#LocalFirst</span><span>#AES-256-GCM</span><span>#OCR분류</span><span>#OpenSource</span>
               </div>
             </div>
-            <span class="pc-caret">▶</span>
+            <span class="pc-caret">&#9654;</span>
           </div>
           <div class="pc-body">
             <div class="pc-inner">
               <div class="pc-grid">
                 <div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span>
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span>
                     </div>
-                    <p data-ko="LLM 코드 분석 시 발생하는 높은 오탐률(False Positive)과 환각으로 인한 신뢰성 부족."
-                      data-en="High false-positive rates and hallucination undermining trust in LLM code analysis.">LLM
-                      코드 분석 시 발생하는 높은 오탐률(False Positive)과 환각으로 인한 신뢰성 부족.</p>
+                    <p data-ko="API 키·토큰·ID가 메모장에 흩어진다. 노션의 database_id·data_source_id·page_id는 전부 같은 32자리 UUID라 값만 봐서는 구분이 안 되고, 정규식 기반 시크릿 스캐너는 정확히 이 지점에서 &quot;여러 후보 가능&quot;이라며 손을 든다."
+                      data-en="API keys, tokens and IDs pile up in scratch files. Notion's database_id, data_source_id and page_id are all the same 32-char UUID — regex-based secret scanners give up right here with &quot;multiple candidates possible&quot;.">API
+                      키·토큰·ID가 메모장에 흩어진다. 노션의 database_id·data_source_id·page_id는 전부 같은 32자리 UUID라 값만 봐서는 구분이 안 되고, 정규식 기반 시크릿
+                      스캐너는 정확히 이 지점에서 "여러 후보 가능"이라며 손을 든다.</p>
                   </div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design Points">설계
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="설계 포인트" data-en="Design Points">설계
                         포인트</span></div>
                     <ul>
-                      <li data-ko="<b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소."
-                        data-en="<b>Framework-aware prompts</b> cut the initial 40–50% false-positive rate.">
-                        <b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소.
+                      <li data-ko="<b>값이 아니라 맥락으로 분류</b>: 접두사가 분명한 키(sk-·ghp_·AKIA)는 정규식으로 즉시 판별하고, 애매한 키는 OCR로 읽은 주변 라벨과 URL 구조로 가린다. 신호가 충돌하면 단정하지 않고 &quot;확인 필요&quot;로 남긴다."
+                        data-en="<b>Classify by context, not by value</b>: prefixed keys (sk-, ghp_, AKIA) resolve by regex; ambiguous ones are judged from OCR'd surrounding labels and URL shape. Conflicting signals are marked &quot;needs review&quot; rather than guessed.">
+                        <b>값이 아니라 맥락으로 분류</b>: 접두사가 분명한 키(sk-·ghp_·AKIA)는 정규식으로 즉시 판별하고, 애매한 키는 OCR로 읽은 주변 라벨과 URL 구조로 가린다. 신호가 충돌하면 단정하지 않고 "확인 필요"로 남긴다.
                       </li>
-                      <li data-ko="<b>DAST 샌드박스 교차검증</b>으로 취약점을 실제 익스플로잇으로 증명."
-                        data-en="<b>DAST sandbox cross-validation</b> proves vulnerabilities via real exploits."><b>DAST
-                          샌드박스 교차검증</b>으로 취약점을 실제 익스플로잇으로 증명.</li>
-                      <li data-ko="<b>보안 원칙 수호 (ADR-016)</b>: 편의성 대신 핵심 보안 원칙 준수."
-                        data-en="<b>Security-first (ADR-016)</b>: chose core security principles over convenience.">
-                        <b>보안 원칙 수호 (ADR-016)</b>: 편의성 대신 핵심 보안 원칙 준수.
+                      <li data-ko="<b>로컬 우선(local-first)</b>: 내가 운영하는 서버가 없다. 마스터 비밀번호에서 Argon2id로 유도한 키로 AES-256-GCM 암호화해 SQLite에 <b>암호문만</b> 저장하고, 외부로 나가는 기능은 전부 사용자가 직접 켜야 하는 옵트인이다."
+                        data-en="<b>Local-first</b>: there is no server of mine to run. Values are sealed with AES-256-GCM under a key derived from the master password via Argon2id and stored as <b>ciphertext only</b> in SQLite; anything that leaves the machine is strictly opt-in.">
+                        <b>로컬 우선(local-first)</b>: 내가 운영하는 서버가 없다. 마스터 비밀번호에서 Argon2id로 유도한 키로 AES-256-GCM 암호화해 SQLite에 <b>암호문만</b> 저장하고, 외부로 나가는 기능은 전부 사용자가 직접 켜야 하는 옵트인이다.
+                      </li>
+                      <li data-ko="<b>삭제까지 책임진다</b>: SQLite 기본 DELETE는 VACUUM 전까지 디스크에 포렌식 복구가 가능하게 남는다 — PRAGMA secure_delete + VACUUM으로 그 잔여까지 지운다."
+                        data-en="<b>Deletion that actually deletes</b>: SQLite's default DELETE leaves forensically recoverable rows until VACUUM — PRAGMA secure_delete + VACUUM wipes that residue too.">
+                        <b>삭제까지 책임진다</b>: SQLite 기본 DELETE는 VACUUM 전까지 디스크에 포렌식 복구가 가능하게 남는다 — PRAGMA secure_delete + VACUUM으로 그 잔여까지 지운다.
+                      </li>
+                      <li data-ko="<b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 9종)."
+                        data-en="<b>One YAML to add a service</b>: key types, labels, URL patterns, env-var names and verification endpoints are declared in YAML — adding a single file updates both backend and frontend (9 services today).">
+                        <b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 9종).
                       </li>
                     </ul>
                   </div>
@@ -2182,50 +2480,48 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// 01_architecture.png</span>
-                      <span class="cap2 mono" data-ko="시스템 전체 아키텍처<br>(Spring Boot + FastAPI + LangGraph)"
-                        data-en="Overall System Architecture<br>(Spring Boot + FastAPI + LangGraph)">시스템 전체
-                        아키텍처<br>(Spring Boot + FastAPI + LangGraph)</span>
+                      <span class="cap mono">// 01_classify.png</span>
+                      <span class="cap2 mono" data-ko="2단계 분류 엔진<br>(값 기반 &#8594; 맥락 기반)"
+                        data-en="Two-stage classifier<br>(value-based &#8594; context-based)">2단계 분류 엔진<br>(값 기반 &#8594;
+                        맥락 기반)</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 02_dast_sandbox.png</span>
-                      <span class="cap2 mono" data-ko="DAST 샌드박스 격리 네트워크<br>&amp; 취약점 교차 검증 파이프라인"
-                        data-en="DAST Sandbox Network<br>&amp; Cross-Validation Pipeline">DAST 샌드박스 격리 네트워크<br>&amp; 취약점
-                        교차 검증 파이프라인</span>
+                      <span class="cap mono">// 02_vault.png</span>
+                      <span class="cap2 mono" data-ko="Argon2id + AES-256-GCM<br>암호화 금고 &amp; 자동 잠금"
+                        data-en="Argon2id + AES-256-GCM<br>vault &amp; auto-lock">Argon2id + AES-256-GCM<br>암호화 금고 &amp;
+                        자동 잠금</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 03_prompt_flow.png</span>
-                      <span class="cap2 mono" data-ko="Framework-Aware 프롬프트<br>오탐 감축 흐름도"
-                        data-en="Framework-Aware Prompt<br>FP Reduction Flow">Framework-Aware 프롬프트<br>오탐 감축 흐름도</span>
+                      <span class="cap mono">// 03_dashboard.png</span>
+                      <span class="cap2 mono" data-ko="프로젝트별 보관함<br>&amp; 만료 임박 정렬"
+                        data-en="Per-project vault<br>&amp; expiry-first sorting">프로젝트별 보관함<br>&amp; 만료 임박 정렬</span>
                     </div>
                   </div>
                 </div>
                 <div class="impact block">
-                  <div class="bh"><span class="star">★</span> <span data-ko="성과 (신뢰성 확보)" data-en="Impact">성과 (신뢰성
-                      확보)</span></div>
-                  <p data-ko="'찾았다'가 아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보."
-                    data-en="Shifted from 'found' to 'proven' — trust ready for real-world adoption.">'찾았다'가 아닌
-                    '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보.</p>
+                  <div class="bh"><span class="star">&#9733;</span> <span data-ko="성과 (공개 배포)" data-en="Impact">성과 (공개
+                      배포)</span></div>
+                  <p data-ko="2026 오픈소스 개발자대회 출품(결과 대기). v0.3.0을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다."
+                    data-en="Submitted to the 2026 Korea Open Source Developer Contest (result pending). v0.3.0 is public under MIT, with a downloadable exe on the project site.">2026
+                    오픈소스 개발자대회 출품(결과 대기). v0.3.0을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다.</p>
                   <div class="metricrow">
                     <div class="metric">
-                      <div class="mv">−<span data-count="45">0</span>%</div>
-                      <div class="ml" data-ko="오탐률" data-en="false positives">오탐률</div>
+                      <div class="mv"><span data-count="9">0</span>종</div>
+                      <div class="ml" data-ko="서비스 지식베이스" data-en="service knowledge base">서비스 지식베이스</div>
                     </div>
                     <div class="metric">
-                      <div class="mv"><span data-count="3">0</span>종</div>
-                      <div class="ml" data-ko="증적 자동화" data-en="compliance docs">증적 자동화</div>
+                      <div class="mv"><span data-count="185">0</span></div>
+                      <div class="ml" data-ko="커밋 (1인 · 2개월)" data-en="commits (solo, 2 months)">커밋 (1인 · 2개월)</div>
                     </div>
                   </div>
                 </div>
                 <div class="pc-actions">
-                  <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span
-                      class="ic" data-ic="github"></span>GITHUB</a>
-                  <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                      data-ic="file"></span>PPT</a>
-                  <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                      data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn"
-                    href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span
-                      data-ko="영상 보기" data-en="Video">영상 보기</span></a>
+                  <a class="gobtn solid" href="https://github.com/ttogle918/key-manager" target="_blank"
+                    rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a>
+                  <a class="gobtn" href="https://ttogle918.github.io/key-manager/" target="_blank" rel="noopener"><span
+                      class="ic" data-ic="download"></span><span data-ko="다운로드" data-en="Download">다운로드</span></a>
+                  <a class="gobtn" href="https://youtu.be/_foWud7ze7Q" target="_blank" rel="noopener"><span class="ic"
+                      data-ic="play"></span><span data-ko="데모 영상" data-en="Demo video">데모 영상</span></a>
                 </div>
               </div>
             </div>
@@ -2237,9 +2533,94 @@
           <div class="pc-top">
             <div class="pc-badge mono">03</div>
             <div class="pc-headings">
+              <div class="pc-code mono" data-ko="에이전트 자율 조달 · 역경매 + 조건부 정산"
+                data-en="Autonomous Agent Procurement · Reverse Auction + Escrow">에이전트 자율 조달 · 역경매 + 조건부 정산</div>
+              <h3 class="pc-title">SPENDQ</h3>
+              <div class="pc-meta" data-ko="2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 해커톤 출품 · 설계·프로토타입" data-en="Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> hackathon entry, design &amp; prototype">2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 해커톤 출품 · 설계·프로토타입</div>
+              <div class="pc-hash mono">
+                <span>#x402</span><span>#A2A</span><span>#Solana</span><span>#해커톤출품</span>
+              </div>
+            </div>
+            <span class="pc-caret">&#9654;</span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-inner">
+              <div class="pc-grid">
+                <div>
+                  <div class="block">
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span>
+                    </div>
+                    <p data-ko="x402는 에이전트 결제의 사실상 표준이 됐지만 일방적이다. 판매자가 가격을 정하고 구매자는 내거나 만다 — 협상도, 경쟁 입찰도, 결제 후 결과가 나빴을 때 되돌릴 방법도 없다."
+                      data-en="x402 became the de-facto standard for agent payments, but it is one-sided: the seller sets the price and the buyer takes it or leaves it. No negotiation, no competitive bidding, and no way back once the money has moved.">x402는
+                      에이전트 결제의 사실상 표준이 됐지만 일방적이다. 판매자가 가격을 정하고 구매자는 내거나 만다 — 협상도, 경쟁 입찰도, 결제 후 결과가 나빴을 때 되돌릴 방법도 없다.</p>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="설계 포인트" data-en="Design Points">설계
+                        포인트</span></div>
+                    <ul>
+                      <li data-ko="<b>역경매</b>: 하나의 필요를 브로드캐스트하면 판매자 에이전트들이 각자 HTTP 402로 응찰하고(가격·리드타임 상이), 정책 엔진이 낙찰한다."
+                        data-en="<b>Reverse auction</b>: one need is broadcast, seller agents bid back over HTTP 402 with differing price and lead time, and a policy engine awards the deal.">
+                        <b>역경매</b>: 하나의 필요를 브로드캐스트하면 판매자 에이전트들이 각자 HTTP 402로 응찰하고(가격·리드타임 상이), 정책 엔진이 낙찰한다.
+                      </li>
+                      <li data-ko="<b>조건부 정산(에스크로)</b>: 결제금을 온체인에 잠그고 인도물 검증을 통과해야 release — 실패하면 자동 환불하고 차순위로 재낙찰한다."
+                        data-en="<b>Conditional settlement</b>: funds are locked on-chain and released only when the delivery passes verification — otherwise auto-refunded and re-awarded to the runner-up.">
+                        <b>조건부 정산(에스크로)</b>: 결제금을 온체인에 잠그고 인도물 검증을 통과해야 release — 실패하면 자동 환불하고 차순위로 재낙찰한다.
+                      </li>
+                      <li data-ko="<b>판단은 LLM, 강제는 체인</b>: 지출 한도를 프롬프트가 아니라 온체인 계정에 둔다. 모델이 환각해도 한도를 넘는 트랜잭션은 체인이 거부한다."
+                        data-en="<b>The model decides, the chain enforces</b>: the spending cap lives in an on-chain account, not in a prompt — a hallucinating model still cannot push a transaction past it.">
+                        <b>판단은 LLM, 강제는 체인</b>: 지출 한도를 프롬프트가 아니라 온체인 계정에 둔다. 모델이 환각해도 한도를 넘는 트랜잭션은 체인이 거부한다.
+                      </li>
+                      <li data-ko="<b>호환이 아니라 확장</b>: 402 협상 봉투는 표준 그대로 두고 정산 스킴만 얹었으며, accepts에 표준 exact를 함께 실어 미지원 상대와도 거래된다."
+                        data-en="<b>An extension, not a fork</b>: the 402 negotiation envelope stays standard and only the settlement scheme is added — the standard exact scheme rides along in accepts so unsupporting peers still transact.">
+                        <b>호환이 아니라 확장</b>: 402 협상 봉투는 표준 그대로 두고 정산 스킴만 얹었으며, accepts에 표준 exact를 함께 실어 미지원 상대와도 거래된다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="pc-figure">
+                  <div class="pc-slides">
+                    <div class="pc-slide active">
+                      <span class="cap mono">// 01_reverse_auction.png</span>
+                      <span class="cap2 mono" data-ko="역경매 라운드<br>(판매자 3종 &#8594; 402 응찰 &#8594; 낙찰)"
+                        data-en="Reverse-auction round<br>(3 sellers &#8594; 402 bids &#8594; award)">역경매 라운드<br>(판매자 3종
+                        &#8594; 402 응찰 &#8594; 낙찰)</span>
+                    </div>
+                    <div class="pc-slide">
+                      <span class="cap mono">// 02_escrow_refund.png</span>
+                      <span class="cap2 mono" data-ko="에스크로 잠금 &#8594; 검증 &#8594;<br>release 또는 자동 환불"
+                        data-en="Escrow lock &#8594; verify &#8594;<br>release or auto-refund">에스크로 잠금 &#8594; 검증
+                        &#8594;<br>release 또는 자동 환불</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="impact block">
+                  <div class="bh"><span class="star">&#9733;</span> <span data-ko="현재 상태" data-en="Status">현재 상태</span>
+                  </div>
+                  <p data-ko="Google Cloud &#215; Solana AI Agentic Hackathon 트랙 C(Multi-Agent Commerce) 출품 프로젝트. 설계 결정 19건(D1~D19)과 trace UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 완료했고, 온체인 프로그램과 에이전트 루프는 구현 중이다. devnet 전용."
+                    data-en="Entry for the Google Cloud &#215; Solana AI Agentic Hackathon, track C (Multi-Agent Commerce). 19 design decisions (D1–D19) and the trace UI prototype — bid board, budget gauge, escrow, kill switch — are done; the on-chain program and agent loop are still in progress. Devnet only.">Google
+                    Cloud &#215; Solana AI Agentic Hackathon 트랙 C(Multi-Agent Commerce) 출품 프로젝트. 설계 결정 19건(D1~D19)과 trace
+                    UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 완료했고, 온체인 프로그램과 에이전트 루프는 구현 중이다. devnet 전용.</p>
+                </div>
+                <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: spendq)
+                       <a class="gobtn" href="project/spendq/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
+                  <div class="pc-actions">
+                  <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span
+                      class="ic" data-ic="github"></span>GITHUB</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 04 -->
+        <article class="pcard featured reveal">
+          <div class="pc-top">
+            <div class="pc-badge mono">04</div>
+            <div class="pc-headings">
               <div class="pc-code mono" data-ko="AI 기반 코드 보안 분석 플랫폼" data-en="AI Code Security Platform">AI 기반 코드 보안 분석
                 플랫폼</div>
-              <h3 class="pc-title">SECUREAI ENGINE</h3>
+              <h3 class="pc-title">SECUREAI ENGINE <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
+              <div class="pc-meta" data-ko="~2026.06 (Sprint 0~11) <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> Claude Code 멀티 에이전트 오케스트레이션 개발" data-en="to Jun 2026 (sprints 0–11) <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> built via Claude Code multi-agent orchestration">~2026.06 (Sprint 0~11) <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> Claude Code 멀티 에이전트 오케스트레이션 개발</div>
               <div class="pc-hash mono">
                 <span>#TrustworthyAI</span><span>#DAST교차검증</span><span>#FalsePositive감소</span><span>#DevSecOps</span>
               </div>
@@ -2272,14 +2653,38 @@
                         data-en="<b>Security-first (ADR-016)</b>: chose core security principles over convenience.">
                         <b>보안 원칙 수호 (ADR-016)</b>: 편의성 대신 핵심 보안 원칙 준수.
                       </li>
+                      <li data-ko="<b>LangGraph 5단계 SAST 파이프라인</b>: scan → 캐시 분기 → Claude 분석 → 취약점 분류 → 패치 생성. checkpointer로 중단·재개를 지원하고, 분석·패치·증적을 기능 단위 Tool로 나눠 에이전트가 호출한다."
+                        data-en="<b>A five-stage LangGraph SAST pipeline</b>: scan → cache branch → Claude analysis → vulnerability classification → patch generation, resumable via checkpointer, with analysis, patching and evidence split into tools the agent calls.">
+                        <b>LangGraph 5단계 SAST 파이프라인</b>: scan → 캐시 분기 → Claude 분석 → 취약점 분류 → 패치 생성. checkpointer로 중단·재개를 지원하고, 분석·패치·증적을 기능 단위 Tool로 나눠 에이전트가 호출한다.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="1인이 팀 규모를 만든 방법"
+                        data-en="How one person shipped team-scale">1인이 팀 규모를 만든 방법</span></div>
+                    <ul>
+                      <li data-ko="<b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 Sprint 0~11 규모를 완주했다."
+                        data-en="<b>Claude Code multi-agent orchestration</b>: main, pm, dev, review and writer roles run in parallel — how one person carried sprints 0 through 11.">
+                        <b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 Sprint 0~11 규모를 완주했다.
+                      </li>
+                      <li data-ko="<b>운영까지 붙였다</b>: Prometheus·Grafana·Jaeger 관측성 스택, SSE(fetch+ReadableStream) + Redis Pub/Sub 실시간 스트리밍, 4중 네트워크 격리, JWT HttpOnly."
+                        data-en="<b>Operations included</b>: a Prometheus/Grafana/Jaeger observability stack, real-time SSE (fetch + ReadableStream) over Redis Pub/Sub, four-way network isolation and HttpOnly JWT."
+                        >
+                        <b>운영까지 붙였다</b>: Prometheus·Grafana·Jaeger 관측성 스택, SSE(fetch+ReadableStream) + Redis Pub/Sub 실시간 스트리밍, 4중 네트워크 격리, JWT HttpOnly.
+                      </li>
+                      <li data-ko="<b>클라이언트 확장</b>: VSCode Extension(인라인 취약점 Diagnostic)과 Android 앱(Kotlin·Compose·FCM)까지 같은 백엔드에 붙였다."
+                        data-en="<b>Client reach</b>: a VSCode extension with inline diagnostics and an Android app (Kotlin, Compose, FCM) both ride the same backend.">
+                        <b>클라이언트 확장</b>: VSCode Extension(인라인 취약점 Diagnostic)과 Android 앱(Kotlin·Compose·FCM)까지 같은 백엔드에 붙였다.
+                      </li>
                     </ul>
                   </div>
                   <div class="impact block">
                     <div class="bh"><span class="star">★</span> <span data-ko="성과 (신뢰성 확보)" data-en="Impact">성과 (신뢰성
                         확보)</span></div>
-                    <p data-ko="'찾았다'가 아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보."
-                      data-en="Shifted from 'found' to 'proven' — trust ready for real-world adoption.">'찾았다'가 아닌
-                      '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보.</p>
+                    <p data-ko="'찾았다'가 아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보. Spring Boot 4/Java 21 · FastAPI · LangGraph · Claude API · PostgreSQL+pgvector · Next.js 15를 1인으로 통합했다."
+                      data-en="Shifted from 'found' to 'proven' — trust ready for real-world adoption. Spring Boot 4 / Java 21, FastAPI, LangGraph, the Claude API, PostgreSQL + pgvector and Next.js 15, integrated by one person.">'찾았다'가
+                      아닌 '증명했다'로 전환하여 실무 즉시 도입 가능한 수준의 AI 신뢰성 확보. Spring Boot 4/Java 21 · FastAPI · LangGraph · Claude
+                      API · PostgreSQL+pgvector · Next.js 15를 1인으로 통합했다.</p>
                     <div class="metricrow">
                       <div class="metric">
                         <div class="mv">−<span data-count="45">0</span>%</div>
@@ -2291,16 +2696,12 @@
                       </div>
                     </div>
                   </div>
+                  <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: secureai)
+                       <a class="gobtn" href="project/secureai/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
                   <div class="pc-actions">
                     <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span
                         class="ic" data-ic="github"></span>GITHUB</a>
-                    <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                        data-ic="file"></span>PPT</a>
-                    <a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                        data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn"
-                      href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span
-                        data-ko="영상 보기" data-en="Video">영상 보기</span></a>
-                  </div>
+                    </div>
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
@@ -2328,14 +2729,15 @@
           </div>
         </article>
 
-        <!-- PROJECT 04 -->
-        <article class="pcard reveal">
+        <!-- PROJECT 05 -->
+        <article class="pcard featured reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">04</div>
+            <div class="pc-badge mono">05</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="HS코드 / 규제 자동 분석 RAG Agent" data-en="HS-code / Regulation RAG Agent">
                 HS코드 / 규제 자동 분석 RAG Agent</div>
-              <h3 class="pc-title">K-BRIDGE</h3>
+              <h3 class="pc-title">K-BRIDGE <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
+              <div class="pc-meta" data-ko="2025.08 ~ 2025.10 <span class=&quot;sep&quot;>·</span> <b>팀 4인 (기여 25%)</b> <span class=&quot;sep&quot;>·</span> 요건 분석 엔진 · 판례 교차검증" data-en="Aug–Oct 2025 <span class=&quot;sep&quot;>·</span> <b>team of 4 (25%)</b> <span class=&quot;sep&quot;>·</span> requirement engine &amp; precedent cross-validation">2025.08 ~ 2025.10 <span class="sep">·</span> <b>팀 4인 (기여 25%)</b> <span class="sep">·</span> 요건 분석 엔진 · 판례 교차검증</div>
               <div class="pc-hash mono">
                 <span>#도메인적응력</span><span>#무역행정자동화</span><span>#CrossValidation</span><span>#CoT</span>
               </div>
@@ -2376,13 +2778,10 @@
                       data-en="Reduced regulatory uncertainty and customs prep time.">규제 불확실성 해소 및 통관 사전 준비 시간 획기적 단축.
                     </p>
                   </div>
+                  <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: k-bridge)
+                       <a class="gobtn" href="project/k-bridge/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
                   <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/K-Bridge"
-                      target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn"
-                      href="#" target="_blank" rel="noopener"><span class="ic" data-ic="file"></span>PPT</a><a
-                      class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span
-                        data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank"
-                      rel="noopener"><span class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상
-                        보기</span></a></div>
+                      target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a></div>
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
@@ -2398,14 +2797,15 @@
           </div>
         </article>
 
-        <!-- PROJECT 05 -->
+        <!-- PROJECT 06 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">05</div>
+            <div class="pc-badge mono">06</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI
                 Agent 기반 기업용 채용 관리 시스템</div>
               <h3 class="pc-title">KOCRUIT</h3>
+              <div class="pc-meta" data-ko="2025.06 ~ 2025.07 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 면접 파트 담당 · 과정 내 1위" data-en="Jun–Jul 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> interview module &amp; ranked #1 in the program">2025.06 ~ 2025.07 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 면접 파트 담당 · 과정 내 1위</div>
               <div class="pc-hash mono">
                 <span>#End-to-End</span><span>#Multimodal</span><span>#AgentOrchestration</span><span>#TeamLead</span>
               </div>
@@ -2448,13 +2848,12 @@
                       data-en="Automated interviews and cut workload with multimodal scoring.">면접 자동화 시스템 구축 및 멀티모달 기반
                       정량 평가로 업무 시간 단축.</p>
                   </div>
+                  <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: kocruit)
+                       <a class="gobtn" href="project/kocruit/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
                   <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/KOCRUIT"
                       target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn"
                       href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view" target="_blank"
-                      rel="noopener"><span class="ic" data-ic="file"></span>PPT</a><a class="gobtn" href="#"
-                      target="_blank" rel="noopener"><span class="ic" data-ic="link"></span><span data-ko="상세 설명"
-                        data-en="Details">상세 설명</span></a><a class="gobtn" href="#" target="_blank" rel="noopener"><span
-                        class="ic" data-ic="play"></span><span data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+                      rel="noopener"><span class="ic" data-ic="file"></span>PPT</a></div>
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
@@ -2470,14 +2869,15 @@
           </div>
         </article>
 
-        <!-- PROJECT 06 -->
+        <!-- PROJECT 07 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">06</div>
+            <div class="pc-badge mono">07</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="비상 교육" data-en="VISANG EDUCATION">
                 비상 교육</div>
               <h3 class="pc-title">질문-답변 검색</h3>
+              <div class="pc-meta" data-ko="2022.12 ~ 2023.03 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연" data-en="Dec 2022 – Mar 2023 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">2022.12 ~ 2023.03 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연</div>
               <div class="pc-hash mono">
                 <span>#DataTrust</span><span>#개인정보익명화</span><span>#SBERT</span><span>#Churn</span>
               </div>
@@ -2524,10 +2924,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pc-actions"><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                        data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn"
-                      href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span
-                        data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+                  <!-- 랜딩 준비되면 아래 pc-actions 주석을 풀어 쓰세요 (slug: visang-qa)
+                  <div class="pc-actions"><a class="gobtn" href="project/visang-qa/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a></div>
+                  -->
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
@@ -2543,15 +2942,16 @@
           </div>
         </article>
 
-        <!-- PROJECT 07 -->
+        <!-- PROJECT 08 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">07</div>
+            <div class="pc-badge mono">08</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="비상 교육" data-en="VISANG EDUCATION">
                 VISANG EDUCATION
               </div>
               <h3 class="pc-title">이탈 고객 예측 (실무 NLP·데이터)</h3>
+              <div class="pc-meta" data-ko="2022.09 ~ 2022.12 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연" data-en="Sep–Dec 2022 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">2022.09 ~ 2022.12 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연</div>
               <div class="pc-hash mono">
                 <span>#Data Preprocessing</span><span>#DecisionTree</span><span>#RandomForest</span><span>#변수중요도</span>
               </div>
@@ -2565,54 +2965,53 @@
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span>
                     </div>
-                    <p data-ko="강사 부재 시 답변 지연, 그리고 게시판 원천 데이터에 이름·주소·전화번호 등 민감정보가 무작위로 섞여 있는 문제."
-                      data-en="Delayed answers when instructors were away, plus raw board data laced with names, addresses, and phone numbers.">
-                      강사 부재 시 답변 지연, 그리고 게시판 원천 데이터에 이름·주소·전화번호 등 민감정보가 무작위로 섞여 있는 문제.</p>
+                    <p data-ko="약정 만료가 다가오는 고객의 이탈을 사후에야 알 수 있어, 리스크 관리도 선제 대응도 불가능한 상태."
+                      data-en="Churn was only visible after the fact as contracts approached expiry — leaving no room for risk management or proactive outreach.">
+                      약정 만료가 다가오는 고객의 이탈을 사후에야 알 수 있어, 리스크 관리도 선제 대응도 불가능한 상태.</p>
                   </div>
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Solution">해결 방법</span>
                     </div>
                     <ul>
-                      <li data-ko="<b>성과 예측</b>: RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링, 변수 중요도 해석."
-                        data-en="<b>Churn model</b>: RFM features + KMeans + RandomForest/XGBoost with feature-importance analysis.">
-                        RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링.</li>
-                      <li data-ko="<b>이탈 예측</b>: RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링, 변수 중요도 해석."
-                        data-en="<b>Churn model</b>: RFM features + KMeans + RandomForest/XGBoost with feature-importance analysis.">
-                        RFM 파생변수 + KMeans + RandomForest·XGBoost 멀티 모델링.</li>
+                      <li data-ko="<b>파생변수 · 군집화</b>: RFM 기반 파생변수를 만들고 KMeans로 고객을 군집화해 모델 입력 품질을 끌어올림."
+                        data-en="<b>Features &amp; clustering</b>: built RFM-based derived features and segmented customers with KMeans to raise input quality.">
+                        <b>파생변수 · 군집화</b>: RFM 기반 파생변수를 만들고 KMeans로 고객을 군집화해 모델 입력 품질을 끌어올림.</li>
+                      <li data-ko="<b>멀티 모델링</b>: RandomForest·XGBoost를 함께 학습해 이탈 예측 정확도 85.3%, 위험군 탐지 정확도 89% 달성."
+                        data-en="<b>Multi-model</b>: RandomForest and XGBoost trained together — 85.3% churn accuracy and 89% at-risk detection.">
+                        <b>멀티 모델링</b>: RandomForest·XGBoost를 함께 학습해 이탈 예측 정확도 85.3%, 위험군 탐지 정확도 89% 달성.</li>
+                      <li data-ko="<b>원인 규명</b>: 변수 중요도(Feature Importance)로 &quot;무엇이 이탈을 만드는가&quot;까지 설명해 실무 조치로 연결."
+                        data-en="<b>Explaining why</b>: feature importance surfaced what actually drives churn, turning the model into an actionable playbook.">
+                        <b>원인 규명</b>: 변수 중요도(Feature Importance)로 "무엇이 이탈을 만드는가"까지 설명해 실무 조치로 연결.</li>
                     </ul>
                   </div>
                   <div class="impact block">
                     <div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과
                         (Impact)</span></div>
-                    <p data-ko="&quot;데이터를 다루는 사람의 기준이 곧 서비스 신뢰&quot;를 체감. 대표이사 앞 시연·발표."
-                      data-en="Learned that the handler's standards define service trust. Demoed and presented to the CEO.">
-                      "데이터를 다루는 사람의 기준이 곧 서비스 신뢰"를 체감. 대표이사 앞 시연·발표.</p>
+                    <p data-ko="예측에서 멈추지 않고 이탈 원인까지 규명해, 약정 만료 전 선제 대응의 근거를 만들었다. 1인 개발 후 대표이사 앞 시연·발표."
+                      data-en="Went past prediction to the causes of churn, giving the business a basis to act before contracts expired. Built solo and presented to the CEO.">
+                      예측에서 멈추지 않고 이탈 원인까지 규명해, 약정 만료 전 선제 대응의 근거를 만들었다. 1인 개발 후 대표이사 앞 시연·발표.</p>
                     <div class="metricrow">
                       <div class="metric">
-                        <div class="mv">0.<span data-count="90">0</span></div>
-                        <div class="ml" data-ko="유사도 정확도" data-en="similarity acc.">유사도 정확도</div>
+                        <div class="mv"><span data-count="85">0</span>.3%</div>
+                        <div class="ml" data-ko="이탈 예측 정확도" data-en="churn accuracy">이탈 예측 정확도</div>
                       </div>
                       <div class="metric">
-                        <div class="mv"><span data-count="101">0</span>K+</div>
-                        <div class="ml" data-ko="데이터 정제" data-en="rows cleaned">데이터 정제</div>
-                      </div>
-                      <div class="metric">
-                        <div class="mv"><span data-count="85">0</span>%</div>
-                        <div class="ml" data-ko="이탈 예측" data-en="churn pred.">이탈 예측</div>
+                        <div class="mv"><span data-count="89">0</span>%</div>
+                        <div class="ml" data-ko="위험군 탐지 정확도" data-en="at-risk detection">위험군 탐지 정확도</div>
                       </div>
                     </div>
                   </div>
-                  <div class="pc-actions"><a class="gobtn" href="#" target="_blank" rel="noopener"><span class="ic"
-                        data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a><a class="gobtn"
-                      href="#" target="_blank" rel="noopener"><span class="ic" data-ic="play"></span><span
-                        data-ko="영상 보기" data-en="Video">영상 보기</span></a></div>
+                  <!-- 랜딩 준비되면 아래 pc-actions 주석을 풀어 쓰세요 (slug: visang-churn)
+                  <div class="pc-actions"><a class="gobtn" href="project/visang-churn/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a></div>
+                  -->
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// pipeline.png</span>
-                      <span class="cap2 mono" data-ko="여기에 익명화/모델링<br>파이프라인 이미지"
-                        data-en="anonymization / modeling<br>pipeline here">여기에 모델링<br>파이프라인 이미지</span>
+                      <span class="cap mono">// churn_pipeline.png</span>
+                      <span class="cap2 mono" data-ko="RFM 파생변수 &#8594; KMeans 군집화<br>&#8594; RF·XGBoost &#8594; 변수 중요도"
+                        data-en="RFM features &#8594; KMeans<br>&#8594; RF/XGBoost &#8594; feature importance">RFM 파생변수
+                        &#8594; KMeans 군집화<br>&#8594; RF·XGBoost &#8594; 변수 중요도</span>
                     </div>
                   </div>
                 </div>
@@ -2678,14 +3077,14 @@
               data-ic="tistory"></span>Tistory</a>
           <a class="clink" href="https://velog.io/@ttogle918/posts" target="_blank" rel="noopener"><span class="ic"
               data-ic="velog"></span>velog</a>
-          <!-- 포트폴리오 상세: Canva 공유 링크로 교체 -->
-          <a class="clink" href="#" target="_blank" rel="noopener"><span class="ic" data-ic="link"></span>Portfolio</a>
+          <a class="clink" href="uploads/최지현_portfolio.pdf" target="_blank" rel="noopener"><span class="ic"
+              data-ic="file"></span>Portfolio (PDF)</a>
         </div>
       </div>
     </div>
     <div class="footer">
       <div class="thanks">THANK YOU <span class="star">★</span></div>
-      <div>© <span id="year">2026</span> 최지현 · AI Service Architect</div>
+      <div>© <span id="year">2026</span> 최지현 · AI Agent Engineer · Backend</div>
     </div>
   </section>
 
@@ -2738,7 +3137,7 @@
     /* 7. 스크롤스파이 (상단 네비 active) */
     const navLinks = [...document.querySelectorAll('.nav-links a')];
     const secIO = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { const id = e.target.id; navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id)); } }), { rootMargin: '-45% 0px -50% 0px' });
-    ['about', 'skill', 'career', 'projects', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) secIO.observe(el); });
+    ['about', 'skill', 'career', 'projects', 'future', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) secIO.observe(el); });
 
     /* 8. 앵커 스크롤 offset */
     document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const id = a.getAttribute('href'); if (id.length < 2) return; const t = document.querySelector(id); if (!t) return; e.preventDefault(); scrollTo({ top: t.getBoundingClientRect().top + scrollY - 72, behavior: reduce ? 'auto' : 'smooth' }); }));

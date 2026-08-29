@@ -46,21 +46,32 @@ git push origin master
 
 포트폴리오 본문(`index.html`)과 별개로, 개별 프로젝트는 자체 랜딩 페이지를 가집니다.
 
-| 프로젝트 | 경로 | 소스 |
-|---|---|---|
-| **QMesh** (A2A 멀티 에이전트 오케스트레이션) | https://ttogle918.github.io/qmesh/ | `qmesh/index.html` |
-| KeyLens (자격증명 관리) | https://ttogle918.github.io/key-manager/ | 별도 레포 (`key-manager`), `project/key-manager/home/`은 리다이렉트 스텁 |
+**📘 규약·현황·연결 절차는 [`project/README.md`](project/README.md)에 정리되어 있습니다.**
+다른 레포에서 읽어도 되도록 그쪽에 몰아뒀으니, 새 랜딩을 만들 때는 그 문서를 보세요.
 
-`qmesh/index.html`도 `index.html`과 같은 방식입니다 — 단일 파일, CSS·JS 인라인, `data-ko`/`data-en`
-속성으로 KO/EN 전환, `data-theme`으로 라이트/다크 전환. 문구를 바꿀 때는 **두 속성과 태그 안쪽 내용을
-함께** 수정하세요.
+요약하면 두 가지 형태만 씁니다.
+
+| 형태 | 경로 | 예시 |
+|---|---|---|
+| **직접 호스팅** | `/<slug>/` → `<slug>/index.html` | `qmesh/` |
+| **리다이렉트 스텁** | `/project/<slug>/` → 외부 레포의 GitHub Pages | `project/key-manager/home/` |
+
+현재 연결된 것은 **QMesh · KeyLens** 2개이고, 나머지 6개는 `index.html`에 붙여넣을 자리만
+주석으로 남아 있습니다 (`랜딩 준비되면`으로 검색).
 
 - 데모 GIF: `qmesh/assets/` (원본은 QMesh 레포 `docs/presentation/assets/`). 용량이 커서 클릭해야
   내려받도록 지연 로딩합니다.
 - 발표자료: `uploads/QMesh_presentation.pdf` · `.pptx`
 
+## 대표작 표시
+
+`★ AI AGENT 대표작` 배지는 AI 에이전트를 직접 설계한 프로젝트에 붙입니다. 현재 **QMesh · SecureAI
+Engine · K-Bridge** 3개입니다. 추가하려면 카드의 `<article>`에 `featured` 클래스를 넣고 제목 옆에
+`<span class="pc-featured">`를 붙이면 됩니다.
+
 ## 남은 작업
 
-- [ ] 프로젝트 카드 다이어그램 이미지 추가 (`.pc-slide`는 아직 캡션 플레이스홀더)
-- [ ] 02~07번 카드의 `#` 링크 채우기 (PPT / 상세 설명 / 영상)
-- [ ] `og-image.png` 및 파비콘 추가
+- [ ] 프로젝트 카드 다이어그램 이미지 추가 (`.pc-slide`는 아직 캡션 플레이스홀더 15개)
+- [ ] 03~08번 랜딩 페이지 제작 후 위 표와 `index.html` 주석 해제
+- [ ] `uploads/최지현_portfolio.pdf` 갱신 (현재 2026-07-09판 — NIPA 과정·QMesh·KeyLens 미반영)
+- [ ] `uploads/QMesh_presentation.pdf` 재출력 (현재 8/24판, `.pptx`는 8/25 최종판)
