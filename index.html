@@ -319,6 +319,15 @@
       max-width: 52ch
     }
 
+    /* 진행 상황 기준일 — 카드의 수치가 언제 것인지 밝힌다 */
+    .sec-asof {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .04em;
+      margin: 8px auto 0;
+      opacity: .72
+    }
+
     /* =========================================================
    HERO
    ========================================================= */
@@ -1656,7 +1665,7 @@
   <section class="hero" style="padding-top:96px">
     <div class="hero-bg"></div>
     <div class="wrap">
-      <div class="hero-label reveal mono">PORTFOLIO · <span data-ko="26.08 기준" data-en="as of 26.08">26.08 기준</span>
+      <div class="hero-label reveal mono">PORTFOLIO · <span class="as-of" data-ko="26.09 기준" data-en="as of 26.09">26.09 기준</span>
       </div>
       <h1 class="hero-title reveal" data-d="1">PORTFOLIO</h1>
       <p class="hero-code reveal mono" data-d="1">
@@ -1838,7 +1847,7 @@
         <div class="tl edu reveal">
           <div class="tl-head">
             <div class="tl-main">
-              <div class="tl-date mono">2026.06 ~ 2026.08(현재 진행) · 320h <span class="tl-tag">Education</span></div>
+              <div class="tl-date mono">2026.06 ~ 2026.08.25(수료) · 320h <span class="tl-tag">Education</span></div>
               <h4 data-ko="[NIPA·NVIDIA] GPU 가속 기반 AI Agent 엔지니어 과정"
                 data-en="[NIPA·NVIDIA] GPU-Accelerated AI Agent Engineering Program">
                 [NIPA·NVIDIA] GPU 가속 기반 AI Agent 엔지니어 과정</h4>
@@ -2293,6 +2302,8 @@
         <div class="sec-kicker"><span class="star">★</span> PROJECTS <span class="star">★</span></div>
         <p class="sec-desc" data-ko="카드를 클릭하면 문제정의 · 해결방법 · 성과가 펼쳐집니다."
           data-en="Click a card to expand Problem · Solution · Impact.">카드를 클릭하면 문제정의 · 해결방법 · 성과가 펼쳐집니다.</p>
+        <p class="sec-asof mono" data-ko="진행 상황 기준일 · 2026.09.04" data-en="Status as of 2026-09-04">진행 상황 기준일 · 2026.09.04</p>
+        <!-- 위 기준일과 히어로 배지는 스크립트 10번의 AS_OF 한 곳에서 덮어쓴다 -->
       </div>
 
       <div class="projects">
@@ -2350,19 +2361,19 @@
                     <div class="bh"><span class="star">◆</span> <span data-ko="연결 대상 — 직접 만든 Q 시리즈"
                         data-en="What it connects — the Q series">연결 대상 — 직접 만든 Q 시리즈</span></div>
                     <ul>
-                      <li data-ko="<b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, Sprint 4 진행 중 <span class=&quot;mono&quot;>:9001</span>"
-                        data-en="<b>FinAllQ</b> · banking &amp; brokerage assistant — Spring Boot 3 + FastAPI + React 19 hybrid MSA, sprint 4 in progress <span class=&quot;mono&quot;>:9001</span>">
-                        <b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, Sprint 4 진행 중
+                      <li data-ko="<b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, A2A 수신 어댑터·FDS·감사 로그 운영 <span class=&quot;mono&quot;>:9001</span>"
+                        data-en="<b>FinAllQ</b> · banking &amp; brokerage assistant — Spring Boot 3 + FastAPI + React 19 hybrid MSA, running its A2A adapter, fraud checks and audit log <span class=&quot;mono&quot;>:9001</span>">
+                        <b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, A2A 수신 어댑터·FDS·감사 로그 운영
                         <span class="mono">:9001</span>
                       </li>
-                      <li data-ko="<b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답하는 코어 완결·측정 중 (리랭커·MCP 노출은 고도화 예정) <span class=&quot;mono&quot;>:9002</span>"
-                        data-en="<b>InsuQ</b> · policy-clause RAG agent — Qdrant + Nemotron embeddings; the cite-the-clause core is done and being measured (reranker and MCP exposure to follow) <span class=&quot;mono&quot;>:9002</span>">
-                        <b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답하는 코어 완결·측정 중 (리랭커·MCP 노출은 고도화 예정)
+                      <li data-ko="<b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답한다. 골든셋 Hit@5 실측 0.81(실손)·0.63(화재·기업성) — 격차 원인 규명 중 <span class=&quot;mono&quot;>:9002</span>"
+                        data-en="<b>InsuQ</b> · policy-clause RAG agent — Qdrant + Nemotron embeddings; the cite-the-clause core is done and measured — Hit@5 0.81 on the indemnity track, 0.63 on fire &amp; commercial property; the gap is under investigation <span class=&quot;mono&quot;>:9002</span>">
+                        <b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답한다. 골든셋 Hit@5 실측 0.81(실손)·0.63(화재·기업성) — 격차 원인 규명 중
                         <span class="mono">:9002</span>
                       </li>
-                      <li data-ko="<b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Sprint 16 진행 중 <span class=&quot;mono&quot;>:9003</span>"
-                        data-en="<b>MaintQ</b> · plant-maintenance agent — orchestrates 20 MCP tools (7 core + 13 extended), sprint 16 in progress <span class=&quot;mono&quot;>:9003</span>">
-                        <b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Sprint 16 진행 중
+                      <li data-ko="<b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Postgres 전환 완료 <span class=&quot;mono&quot;>:9003</span>"
+                        data-en="<b>MaintQ</b> · plant-maintenance agent — orchestrates 20 MCP tools (7 core + 13 extended), now on Postgres <span class=&quot;mono&quot;>:9003</span>">
+                        <b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Postgres 전환 완료
                         <span class="mono">:9003</span>
                       </li>
                       <li data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다."
@@ -2435,7 +2446,7 @@
               <div class="pc-code mono" data-ko="키지기 · 개인 개발자용 자격증명 관리 도구"
                 data-en="Kijigi · Local-first Credential Manager">키지기 · 개인 개발자용 자격증명 관리 도구</div>
               <h3 class="pc-title">KEYLENS</h3>
-              <div class="pc-meta" data-ko="2026.06 ~ 2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 기획·개발·배포 전 과정" data-en="Jun–Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> product, build and release">2026.06 ~ 2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 기획·개발·배포 전 과정</div>
+              <div class="pc-meta" data-ko="2026.06 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 기획·개발·배포 전 과정" data-en="Jun 2026 – ongoing <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> product, build and release">2026.06 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 기획·개발·배포 전 과정</div>
               <div class="pc-hash mono">
                 <span>#LocalFirst</span><span>#AES-256-GCM</span><span>#OCR분류</span><span>#OpenSource</span>
               </div>
@@ -2470,9 +2481,9 @@
                         data-en="<b>Deletion that actually deletes</b>: SQLite's default DELETE leaves forensically recoverable rows until VACUUM — PRAGMA secure_delete + VACUUM wipes that residue too.">
                         <b>삭제까지 책임진다</b>: SQLite 기본 DELETE는 VACUUM 전까지 디스크에 포렌식 복구가 가능하게 남는다 — PRAGMA secure_delete + VACUUM으로 그 잔여까지 지운다.
                       </li>
-                      <li data-ko="<b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 9종)."
-                        data-en="<b>One YAML to add a service</b>: key types, labels, URL patterns, env-var names and verification endpoints are declared in YAML — adding a single file updates both backend and frontend (9 services today).">
-                        <b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 9종).
+                      <li data-ko="<b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 10종)."
+                        data-en="<b>One YAML to add a service</b>: key types, labels, URL patterns, env-var names and verification endpoints are declared in YAML — adding a single file updates both backend and frontend (10 services today).">
+                        <b>YAML 한 장으로 서비스 확장</b>: 키 종류·라벨·URL 패턴·환경변수명·검증 엔드포인트를 YAML로 선언 &#8594; 파일 하나만 추가하면 백엔드·프론트 양쪽에 자동 반영된다(현재 10종).
                       </li>
                     </ul>
                   </div>
@@ -2501,17 +2512,17 @@
                 <div class="impact block">
                   <div class="bh"><span class="star">&#9733;</span> <span data-ko="성과 (공개 배포)" data-en="Impact">성과 (공개
                       배포)</span></div>
-                  <p data-ko="2026 오픈소스 개발자대회 출품(결과 대기). v0.3.0을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다."
-                    data-en="Submitted to the 2026 Korea Open Source Developer Contest (result pending). v0.3.0 is public under MIT, with a downloadable exe on the project site.">2026
-                    오픈소스 개발자대회 출품(결과 대기). v0.3.0을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다.</p>
+                  <p data-ko="2026 오픈소스 개발자대회 출품(결과 대기). v0.5.1을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다."
+                    data-en="Submitted to the 2026 Korea Open Source Developer Contest (result pending). v0.5.1 is public under MIT, with a downloadable exe on the project site.">2026
+                    오픈소스 개발자대회 출품(결과 대기). v0.5.1을 MIT 라이선스로 공개하고, 홈페이지에서 exe를 내려받아 바로 쓸 수 있게 했다.</p>
                   <div class="metricrow">
                     <div class="metric">
-                      <div class="mv"><span data-count="9">0</span>종</div>
+                      <div class="mv"><span data-count="10">0</span>종</div>
                       <div class="ml" data-ko="서비스 지식베이스" data-en="service knowledge base">서비스 지식베이스</div>
                     </div>
                     <div class="metric">
-                      <div class="mv"><span data-count="185">0</span></div>
-                      <div class="ml" data-ko="커밋 (1인 · 2개월)" data-en="commits (solo, 2 months)">커밋 (1인 · 2개월)</div>
+                      <div class="mv"><span data-count="203">0</span></div>
+                      <div class="ml" data-ko="커밋 (1인 · 3개월)" data-en="commits (solo, 3 months)">커밋 (1인 · 3개월)</div>
                     </div>
                   </div>
                 </div>
@@ -2536,9 +2547,9 @@
               <div class="pc-code mono" data-ko="에이전트 자율 조달 · 역경매 + 조건부 정산"
                 data-en="Autonomous Agent Procurement · Reverse Auction + Escrow">에이전트 자율 조달 · 역경매 + 조건부 정산</div>
               <h3 class="pc-title">SPENDQ</h3>
-              <div class="pc-meta" data-ko="2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 해커톤 출품 · 설계·프로토타입" data-en="Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> hackathon entry, design &amp; prototype">2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 해커톤 출품 · 설계·프로토타입</div>
+              <div class="pc-meta" data-ko="2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 개인 설계 프로젝트 · 프로토타입" data-en="Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> personal design project, prototype">2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 개인 설계 프로젝트 · 프로토타입</div>
               <div class="pc-hash mono">
-                <span>#x402</span><span>#A2A</span><span>#Solana</span><span>#해커톤출품</span>
+                <span>#x402</span><span>#A2A</span><span>#Solana</span><span>#Escrow</span>
               </div>
             </div>
             <span class="pc-caret">&#9654;</span>
@@ -2596,10 +2607,10 @@
                 <div class="impact block">
                   <div class="bh"><span class="star">&#9733;</span> <span data-ko="현재 상태" data-en="Status">현재 상태</span>
                   </div>
-                  <p data-ko="Google Cloud &#215; Solana AI Agentic Hackathon 트랙 C(Multi-Agent Commerce) 출품 프로젝트. 설계 결정 19건(D1~D19)과 trace UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 완료했고, 온체인 프로그램과 에이전트 루프는 구현 중이다. devnet 전용."
-                    data-en="Entry for the Google Cloud &#215; Solana AI Agentic Hackathon, track C (Multi-Agent Commerce). 19 design decisions (D1–D19) and the trace UI prototype — bid board, budget gauge, escrow, kill switch — are done; the on-chain program and agent loop are still in progress. Devnet only.">Google
-                    Cloud &#215; Solana AI Agentic Hackathon 트랙 C(Multi-Agent Commerce) 출품 프로젝트. 설계 결정 19건(D1~D19)과 trace
-                    UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 완료했고, 온체인 프로그램과 에이전트 루프는 구현 중이다. devnet 전용.</p>
+                  <p data-ko="에이전트 자율 조달을 x402 위에서 성립시키기 위한 개인 설계 프로젝트. 설계 결정 19건(D1~D19)과 trace UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 만들었다. 온체인 프로그램과 에이전트 루프는 착수 단계에서 멈춰 있다 — 2026.08 시점 상태다. devnet 전용."
+                    data-en="A personal design project on making autonomous agent procurement work on top of x402. Nineteen design decisions (D1–D19) and the trace UI prototype — bid board, budget gauge, escrow, kill switch — are built. The on-chain program and agent loop stopped early; this is its state as of Aug 2026. Devnet only.">에이전트 자율 조달을
+                    x402 위에서 성립시키기 위한 개인 설계 프로젝트. 설계 결정 19건(D1~D19)과 trace
+                    UI 프로토타입(입찰 보드·예산 게이지·에스크로·킬스위치)까지 만들었다. 온체인 프로그램과 에이전트 루프는 착수 단계에서 멈춰 있다 — 2026.08 시점 상태다. devnet 전용.</p>
                 </div>
                 <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: spendq)
                        <a class="gobtn" href="project/spendq/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
@@ -2620,7 +2631,7 @@
               <div class="pc-code mono" data-ko="AI 기반 코드 보안 분석 플랫폼" data-en="AI Code Security Platform">AI 기반 코드 보안 분석
                 플랫폼</div>
               <h3 class="pc-title">SECUREAI ENGINE <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
-              <div class="pc-meta" data-ko="~2026.06 (Sprint 0~11) <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> Claude Code 멀티 에이전트 오케스트레이션 개발" data-en="to Jun 2026 (sprints 0–11) <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> built via Claude Code multi-agent orchestration">~2026.06 (Sprint 0~11) <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> Claude Code 멀티 에이전트 오케스트레이션 개발</div>
+              <div class="pc-meta" data-ko="2026.03 ~ 2026.07 (Sprint 0~30) <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> Claude Code 멀티 에이전트 오케스트레이션 개발" data-en="Mar–Jul 2026 (sprints 0–30) <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> built via Claude Code multi-agent orchestration">2026.03 ~ 2026.07 (Sprint 0~30) <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> Claude Code 멀티 에이전트 오케스트레이션 개발</div>
               <div class="pc-hash mono">
                 <span>#TrustworthyAI</span><span>#DAST교차검증</span><span>#FalsePositive감소</span><span>#DevSecOps</span>
               </div>
@@ -2663,9 +2674,9 @@
                     <div class="bh"><span class="star">◆</span> <span data-ko="1인이 팀 규모를 만든 방법"
                         data-en="How one person shipped team-scale">1인이 팀 규모를 만든 방법</span></div>
                     <ul>
-                      <li data-ko="<b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 Sprint 0~11 규모를 완주했다."
-                        data-en="<b>Claude Code multi-agent orchestration</b>: main, pm, dev, review and writer roles run in parallel — how one person carried sprints 0 through 11.">
-                        <b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 Sprint 0~11 규모를 완주했다.
+                      <li data-ko="<b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 5개월간 Sprint 0~30 · 880커밋을 완주했다."
+                        data-en="<b>Claude Code multi-agent orchestration</b>: main, pm, dev, review and writer roles run in parallel — how one person carried sprints 0 through 30 — 880 commits over five months.">
+                        <b>Claude Code 멀티 에이전트 오케스트레이션</b>: main / pm / dev / review / writer 역할을 나눠 병렬로 굴려 1인으로 5개월간 Sprint 0~30 · 880커밋을 완주했다.
                       </li>
                       <li data-ko="<b>운영까지 붙였다</b>: Prometheus·Grafana·Jaeger 관측성 스택, SSE(fetch+ReadableStream) + Redis Pub/Sub 실시간 스트리밍, 4중 네트워크 격리, JWT HttpOnly."
                         data-en="<b>Operations included</b>: a Prometheus/Grafana/Jaeger observability stack, real-time SSE (fetch + ReadableStream) over Redis Pub/Sub, four-way network isolation and HttpOnly JWT."
@@ -2805,7 +2816,7 @@
               <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI
                 Agent 기반 기업용 채용 관리 시스템</div>
               <h3 class="pc-title">KOCRUIT</h3>
-              <div class="pc-meta" data-ko="2025.06 ~ 2025.07 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 면접 파트 담당 · 과정 내 1위" data-en="Jun–Jul 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> interview module &amp; ranked #1 in the program">2025.06 ~ 2025.07 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 면접 파트 담당 · 과정 내 1위</div>
+              <div class="pc-meta" data-ko="2025.06 ~ 2025.08 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 면접 파트 담당 · 과정 내 1위" data-en="Jun–Aug 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> interview module &amp; ranked #1 in the program">2025.06 ~ 2025.08 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 면접 파트 담당 · 과정 내 1위</div>
               <div class="pc-hash mono">
                 <span>#End-to-End</span><span>#Multimodal</span><span>#AgentOrchestration</span><span>#TeamLead</span>
               </div>
@@ -3149,8 +3160,28 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     });
 
-    /* 10. 연도 + 콘솔 */
+    /* 10. 연도 + 기준일 + 콘솔 */
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* 기준일 SSOT — 프로젝트 카드의 진행 상황 수치가 언제 것인지 밝힌다.
+       레포를 다시 대조해 카드를 갱신할 때 이 한 줄만 고치면 히어로 배지와
+       프로젝트 섹션이 함께 따라온다. 두 곳을 따로 고치다 갈라지는 일을 막는다. */
+    const AS_OF = { y: 2026, m: 9, d: 4 };
+    (() => {
+      const p = n => String(n).padStart(2, '0');
+      const short = { ko: `${p(AS_OF.y % 100)}.${p(AS_OF.m)} 기준`, en: `as of ${p(AS_OF.y % 100)}.${p(AS_OF.m)}` };
+      const full = {
+        ko: `진행 상황 기준일 · ${AS_OF.y}.${p(AS_OF.m)}.${p(AS_OF.d)}`,
+        en: `Status as of ${AS_OF.y}-${p(AS_OF.m)}-${p(AS_OF.d)}`
+      };
+      document.querySelectorAll('.as-of').forEach(el => Object.assign(el.dataset, { ko: short.ko, en: short.en }));
+      document.querySelectorAll('.sec-asof').forEach(el => Object.assign(el.dataset, { ko: full.ko, en: full.en }));
+      /* applyLang()은 이 블록보다 먼저 한 번 돌았으므로 현재 언어로 다시 그린다.
+         이후 언어 전환은 기존 토글이 갱신된 data-ko/data-en을 다시 읽는다. */
+      const cur = document.documentElement.lang === 'en' ? 'en' : 'ko';
+      document.querySelectorAll('.as-of').forEach(el => el.textContent = short[cur]);
+      document.querySelectorAll('.sec-asof').forEach(el => el.textContent = full[cur]);
+    })();
     console.log('%c★ Trusted AI Portfolio v5 ★', 'color:#3a5bd0;font-size:14px;font-weight:700');
 
     /* 11. 이미지 슬라이더 (pc-figure 멀티 이미지 < > 컨트롤) */
