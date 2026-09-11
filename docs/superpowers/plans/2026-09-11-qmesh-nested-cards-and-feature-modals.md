@@ -478,10 +478,23 @@ PY
 - [ ] **Step 4: 원상복구 확인**
 
 ```bash
-git diff --stat index.html
+git checkout -- index.html
+git status --short index.html; echo "exit=$?"
+python -c "d=open('index.html','rb').read(); print('CRLF:', d.count(b'\r\n'), 'bare LF:', d.count(b'\n')-d.count(b'\r\n'))"
 ```
 
-기대: 출력 없음(변경 없음).
+기대: `git status` 출력 없음 · `exit=0` · `bare LF: 0`.
+
+> ⚠️ **함정 (계획 작성 중 실제로 걸렸다).** Python 이 `write_text()` 로 `index.html` 을 다시 쓰면
+> 내용이 같아도 mtime 이 바뀌어 `git status` 가 `M index.html` 로 뜬다. `git diff` 는 비어 있어서
+> "변경 없음"으로 착각하기 쉽다. 이 레포는 작업 트리가 CRLF 이므로 **blob 해시로 확인**하는 것이 확실하다:
+>
+> ```bash
+> test "$(git hash-object index.html)" = "$(git ls-files -s index.html | awk '{print $2}')" \
+>   && echo "내용 동일" || echo "내용이 다르다"
+> ```
+>
+> `git diff --stat` 만 보고 넘어가지 말 것 — `git checkout -- index.html` 로 확실히 되돌린다.
 
 - [ ] **Step 5: 커밋**
 
