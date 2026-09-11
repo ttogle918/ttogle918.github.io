@@ -12,6 +12,49 @@
 
 ---
 
+## 진행 상황 (2026-09-11 중단 시점)
+
+**Task 1~10 완료 · Task 11(종단 검증)만 남음 · 아직 push 하지 않았다.**
+
+| Task | 커밋 | 확인한 것 |
+|---|---|---|
+| 1 자산 | `423e7c4` | 26종 · 26.9MB → 5.7MB(21%) · 원본 없으면 exit 1 · 공개 안전성 육안 확인 |
+| 2 검사 하네스 | `cbeea0e` | 뮤턴트 5종 전부 잡음 |
+| 3 CSS | `a3c8b16` | 기존 카드 8개 무손상 |
+| 4 JS | `673230e` | 초기 GIF 요청 0건 · ESC/배경/✕ · **모달 연 상태 KO/EN 전환** |
+| 5 QMesh | `3a8d09a` | 모달 2 · 3경로→5경로 정정 |
+| 6 FinAllQ | `db90c99` | 모달 7 · 기능 먼저, 그 아래 "왜 LLM이 없는가" |
+| 7 InsuQ | `a005070` | 모달 4 · LangGraph 흐름도 · 다이어그램 CSS 공용화 |
+| 8 MaintQ | `4036680` | 모달 7 · 기능 먼저, 그 아래 MCP |
+| 9 SpendQ + AS_OF | `6ed963b` | 실측 상태로 교체 · 기준일 2026-09-11 |
+| 10 인쇄본 | `635e05d` | 9장 전부 한 페이지에 맞음(297mm 실측) |
+
+**Task 11에서 이미 끝난 것**
+- `tools/check_page.py` 통과
+- `tools/optimize_assets.py` 재실행 후 `git status` 비어 있음(멱등성 확인)
+- 버튼 20 / 모달 20 완전 대응 (양쪽 차집합 0)
+- 모달 20개 전수 열림 · GIF `src` 주입 · 텍스트 겹침 0 · viewBox 넘침 0
+
+**Task 11에서 남은 것** — 아래 Step 3~6
+- 브라우저 전수 확인 7항목(중첩 토글·모달 3경로 닫기·모달 내 언어 전환·GIF 지연 로딩·다크 테마·400px 모바일·인쇄 미리보기)
+- SPEC §3 수치를 `resume/` 원본과 1:1 재대조
+- `README.md` 갱신(`assets/`·`tools/` 규약, AS_OF 예시)
+- **최종 커밋 + `git push origin master`**, 배포본에서 재확인
+
+**재개 방법**
+```bash
+cd /c/Users/ttogl/workspace/ttogle918.github.io
+python -m http.server 8899    # http://localhost:8899/index.html
+python tools/check_page.py
+```
+
+**작업 중 알게 된 것 (재개 시 유의)**
+- Python 이 `index.html` 을 다시 쓰면 내용이 같아도 `git status` 가 `M` 으로 뜬다 — blob 해시로 대조할 것(Task 2 Step 4의 함정 상자 참고)
+- 파일을 건드리는 정규식은 앵커를 좁히고 **적용 전에 매칭 수를 먼저 확인**할 것. 넓은 `<style>.*?</style>` 하나로 메인 스타일시트 2,170줄을 날린 적이 있다(커밋본에서 복구 완료)
+- SVG 안에 `style` 요소를 두면 규칙이 **문서 전역**이 된다. 새 다이어그램은 반드시 `.fdiag .dg-*` 공용 어휘를 쓸 것 — 인라인 스타일을 다시 넣지 말 것
+
+---
+
 ## Global Constraints
 
 이 섹션의 규칙은 **모든 태스크에 암묵적으로 포함**된다.
