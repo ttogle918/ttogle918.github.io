@@ -3409,6 +3409,15 @@
     </div>
   </section>
 
+  <!-- 기능 모달 — 본문을 복제하지 않고 hidden 만 토글한다(applyLang 이 닿아야 한다) -->
+  <div class="fmodal" id="fmodal" hidden>
+    <div class="fmodal-card" role="dialog" aria-modal="true">
+      <button class="fmodal-x" aria-label="Close">&#10005;</button>
+      <div class="fmodal-body">
+      </div>
+    </div>
+  </div>
+
   <script>
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -3454,6 +3463,68 @@
     /* 6. 프로젝트 아코디언 */
     document.querySelectorAll('.pcard').forEach(c => c.querySelector('.pc-top').addEventListener('click', e => { if (e.target.closest('a,button')) return; c.classList.toggle('open'); }));
     document.querySelectorAll('.tl').forEach(t => { const h = t.querySelector('.tl-head'); if (h) h.addEventListener('click', e => { if (e.target.closest('a,button')) return; t.classList.toggle('on'); }); });
+
+    /* 6-a. 하위 프로젝트 카드 (QMesh 안의 FinAllQ·InsuQ·MaintQ)
+       stopPropagation 이 핵심 — 없으면 하위를 열 때 부모 QMesh 카드가 닫힌다. */
+    document.querySelectorAll('.subcard').forEach(sc => {
+      const top = sc.querySelector('.sub-top');
+      if (!top) return;
+      top.addEventListener('click', e => {
+        if (e.target.closest('a,button')) return;
+        e.stopPropagation();
+        sc.classList.toggle('open');
+      });
+    });
+
+    /* 6-b. 기능 모달
+       본문은 처음부터 DOM 에 있고 hidden 만 토글한다 — 복제하면 applyLang() 이
+       닿지 않아 모달 안에서 KO/EN 전환이 죽는다. */
+    (() => {
+      const modal = document.getElementById('fmodal');
+      if (!modal) return;
+      const panes = [...modal.querySelectorAll('.fmodal-body > section')];
+      let lastFocus = null;
+
+      const open = id => {
+        const pane = panes.find(p => p.id === id);
+        if (!pane) return;
+        lastFocus = document.activeElement;
+        panes.forEach(p => { p.hidden = p !== pane; });
+        /* GIF 는 열 때만 로드한다 — 초기 페이지 로딩에 영향을 주지 않는다. */
+        pane.querySelectorAll('img[data-src]').forEach(img => {
+          if (!img.getAttribute('src')) img.setAttribute('src', img.dataset.src);
+        });
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.fmodal-card').scrollTop = 0;
+        (modal.querySelector('.fmodal-x') || modal).focus();
+      };
+
+      const close = () => {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+      };
+
+      document.querySelectorAll('.feat[data-modal]').forEach(btn => {
+        btn.addEventListener('click', e => { e.stopPropagation(); open(btn.dataset.modal); });
+      });
+
+      modal.addEventListener('click', e => { if (e.target === modal) close(); });
+      modal.querySelector('.fmodal-x')?.addEventListener('click', close);
+      document.addEventListener('keydown', e => {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key !== 'Tab') return;
+        /* 포커스 트랩 */
+        const f = [...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')]
+          .filter(el => el.offsetParent !== null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
+    })();
 
     /* 7. 스크롤스파이 (상단 네비 active) */
     const navLinks = [...document.querySelectorAll('.nav-links a')];
