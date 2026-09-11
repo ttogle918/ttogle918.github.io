@@ -1384,8 +1384,10 @@
     }
 
     /* 하위 카드를 품은 카드는 상한을 올린다 — 기본 1400px 이면 중첩이 잘린다.
-       이 파일은 이미 :has() 를 쓰고 있다(.pc-grid:has(.pc-figure.wide)). */
-    .pcard.open .pc-body:has(.subcard) {
+       이 파일은 이미 :has() 를 쓰고 있다(.pc-grid:has(.pc-figure.wide)).
+       항목(.subcard)이 아니라 컨테이너(.subcards)를 본다 — 항목 기준으로 잡으면
+       하위 카드를 비우는 순간 상한이 조용히 1400px 로 되돌아가 본문이 잘린다. */
+    .pcard.open .pc-body:has(.subcards) {
       max-height: 14000px
     }
 
@@ -1498,6 +1500,13 @@
       color: var(--ink);
       margin: 0 0 14px;
       padding-right: 40px
+    }
+
+    /* 전역 `section { padding: 82px 0 }` 가 모달 안 <section> 에도 걸린다 — 리셋한다.
+       (페이지 섹션과 모달 판을 같은 태그로 쓰기 때문이고, 안 풀면 제목 위에 82px 이 뜬다) */
+    .fmodal-body>section {
+      padding: 0;
+      margin: 0
     }
 
     .fmodal-body>section>p {
@@ -1883,7 +1892,7 @@
       /* 접힌 아코디언 전부 펼치기 */
       .pc-body,
       .pcard.open .pc-body,
-      .pcard.open .pc-body:has(.subcard),
+      .pcard.open .pc-body:has(.subcards),
       .sub-body,
       .subcard.open .sub-body {
         max-height: none !important;
@@ -2626,7 +2635,7 @@
               <div class="pc-code mono" data-ko="A2A 멀티 에이전트 오케스트레이션 허브"
                 data-en="A2A Multi-Agent Orchestration Hub">A2A 멀티 에이전트 오케스트레이션 허브</div>
               <h3 class="pc-title">QMesh <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
-              <div class="pc-meta" data-ko="2026.08 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 프로토콜 설계·오케스트레이터 전담" data-en="Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> protocol design &amp; orchestrator">2026.08 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 프로토콜 설계·오케스트레이터 전담</div>
+              <div class="pc-meta" data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 크로스도메인 종단 검증 단독" data-en="Since Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> contract design, adapters and cross-domain verification">2026.08 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 계약 설계 · 어댑터 구현 · 크로스도메인 종단 검증 단독</div>
               <div class="pc-hash mono">
                 <span>#A2A</span><span>#MultiAgent</span><span>#ProtocolDesign</span><span>#HumanInTheLoop</span>
               </div>
@@ -2668,29 +2677,54 @@
                     </ul>
                   </div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="연결 대상 — 직접 만든 Q 시리즈"
-                        data-en="What it connects — the Q series">연결 대상 — 직접 만든 Q 시리즈</span></div>
+                    <div class="bh"><span class="star">◆</span> <span data-ko="구현에서 신경 쓴 것"
+                        data-en="What the implementation guards">구현에서 신경 쓴 것</span></div>
                     <ul>
-                      <li data-ko="<b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, A2A 수신 어댑터·FDS·감사 로그 운영 <span class=&quot;mono&quot;>:9001</span>"
-                        data-en="<b>FinAllQ</b> · banking &amp; brokerage assistant — Spring Boot 3 + FastAPI + React 19 hybrid MSA, running its A2A adapter, fraud checks and audit log <span class=&quot;mono&quot;>:9001</span>">
-                        <b>FinAllQ</b> · 은행·증권 통합 금융 비서 — Spring Boot 3 + FastAPI + React 19 하이브리드 MSA, A2A 수신 어댑터·FDS·감사 로그 운영
-                        <span class="mono">:9001</span>
+                      <li data-ko="<b>상대의 클래스를 import하지 않는다</b>: REST로 받은 JSON을 dict로 매핑한다. 상대 상태값 6종을 계약 3종으로 접되, <b>계약 밖의 값이 오면 조용히 넘기지 않고 예외를 던져</b> 502로 변환한다."
+                        data-en="<b>No importing the other side's classes</b>: REST JSON is mapped as plain dicts. Six of their status values fold into the contract's three — and <b>a value outside the contract raises</b> rather than passing quietly, surfacing as a 502.">
+                        <b>상대의 클래스를 import하지 않는다</b>: REST로 받은 JSON을 dict로 매핑한다. 상대 상태값 6종을 계약 3종으로 접되, <b>계약 밖의 값이 오면 조용히 넘기지 않고 예외를 던져</b> 502로 변환한다.
                       </li>
-                      <li data-ko="<b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답한다. 골든셋 Hit@5 실측 0.81(실손)·0.63(화재·기업성) — 격차 원인 규명 중 <span class=&quot;mono&quot;>:9002</span>"
-                        data-en="<b>InsuQ</b> · policy-clause RAG agent — Qdrant + Nemotron embeddings; the cite-the-clause core is done and measured — Hit@5 0.81 on the indemnity track, 0.63 on fire &amp; commercial property; the gap is under investigation <span class=&quot;mono&quot;>:9002</span>">
-                        <b>InsuQ</b> · 실손 약관 RAG 에이전트 — Qdrant + Nemotron 임베딩, 근거 조항과 함께 답한다. 골든셋 Hit@5 실측 0.81(실손)·0.63(화재·기업성) — 격차 원인 규명 중
-                        <span class="mono">:9002</span>
+                      <li data-ko="<b>트레이스는 경계에서 검사한다</b>: <span class=&quot;mono&quot;>X-Request-Chain-Id</span> 헤더와 body의 <span class=&quot;mono&quot;>request_chain_id</span>가 불일치하면 거부한다 — 전파만으로는 보장되지 않는다."
+                        data-en="<b>Traces are checked at the boundary</b>: a mismatch between the <span class=&quot;mono&quot;>X-Request-Chain-Id</span> header and the body's <span class=&quot;mono&quot;>request_chain_id</span> is rejected — propagation alone guarantees nothing.">
+                        <b>트레이스는 경계에서 검사한다</b>: <span class="mono">X-Request-Chain-Id</span> 헤더와 body의 <span class="mono">request_chain_id</span>가 불일치하면 거부한다 — 전파만으로는 보장되지 않는다.
                       </li>
-                      <li data-ko="<b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Postgres 전환 완료 <span class=&quot;mono&quot;>:9003</span>"
-                        data-en="<b>MaintQ</b> · plant-maintenance agent — orchestrates 20 MCP tools (7 core + 13 extended), now on Postgres <span class=&quot;mono&quot;>:9003</span>">
-                        <b>MaintQ</b> · 제조 설비보전 에이전트 — MCP 도구 20종(코어 7 + 확장 13) 오케스트레이션, Postgres 전환 완료
-                        <span class="mono">:9003</span>
+                      <li data-ko="<b>404와 501을 구분한다</b>: 선언조차 없는 스킬은 <span class=&quot;mono&quot;>404</span>, 선언은 됐지만 아직 구현 안 한 스킬은 <span class=&quot;mono&quot;>501</span>. &quot;그런 건 없다&quot;와 &quot;아직 안 만들었다&quot;는 호출자가 취할 행동이 다르다."
+                        data-en="<b>404 and 501 are different answers</b>: a skill that was never declared returns <span class=&quot;mono&quot;>404</span>; one declared but not yet built returns <span class=&quot;mono&quot;>501</span>. &quot;No such thing&quot; and &quot;not built yet&quot; call for different reactions.">
+                        <b>404와 501을 구분한다</b>: 선언조차 없는 스킬은 <span class="mono">404</span>, 선언은 됐지만 아직 구현 안 한 스킬은 <span class="mono">501</span>. "그런 건 없다"와 "아직 안 만들었다"는 호출자가 취할 행동이 다르다.
                       </li>
-                      <li data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다."
-                        data-en="All three run on <b>different languages, frameworks and repositories</b> — which is exactly why the link needed a standard contract.">
-                        세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다.
+                      <li data-ko="<b>계약 자체를 테스트한다</b>: 두 계약이 서로 다른 인용 정규식을 들고 있으면 <b>InsuQ가 통과시킨 인용을 FinAllQ가 거절하는 조용한 불일치</b>가 생긴다. 그래서 글자 단위로 교차 검증한다."
+                        data-en="<b>The contract itself is tested</b>: if two contracts carry different citation regexes, <b>a citation InsuQ accepts gets rejected by FinAllQ</b> — a silent mismatch. So they are cross-checked character by character.">
+                        <b>계약 자체를 테스트한다</b>: 두 계약이 서로 다른 인용 정규식을 들고 있으면 <b>InsuQ가 통과시킨 인용을 FinAllQ가 거절하는 조용한 불일치</b>가 생긴다. 그래서 글자 단위로 교차 검증한다.
                       </li>
                     </ul>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="관통 원칙 — 돈이 움직이는 곳엔 반드시 사람"
+                        data-en="The through-line — a human signs wherever money moves">관통 원칙 — 돈이 움직이는 곳엔 반드시 사람</span></div>
+                    <ul>
+                      <li data-ko="<b>3단 승인 계단</b>: 출금 요청은 MaintQ 팀장 → MaintQ 재무부(직무분리 검사 포함) → FinAllQ 재무결재. <b>내부 2단 + 상대 1단</b>이다."
+                        data-en="<b>A three-step approval staircase</b>: a withdrawal goes MaintQ team lead → MaintQ finance (with a separation-of-duties check) → FinAllQ finance. <b>Two steps inside, one across.</b>">
+                        <b>3단 승인 계단</b>: 출금 요청은 MaintQ 팀장 → MaintQ 재무부(직무분리 검사 포함) → FinAllQ 재무결재. <b>내부 2단 + 상대 1단</b>이다.
+                      </li>
+                      <li data-ko="<b>A2A 판정은 참고용이다</b>: 여신 화면에서 A2A <span class=&quot;mono&quot;>approved</span>가 자동 반영되지 않는다. <span class=&quot;mono&quot;>Loan.status</span>는 <span class=&quot;mono&quot;>UNDER_REVIEW</span>로 남고 사람이 따로 승인한다."
+                        data-en="<b>An A2A verdict is advisory</b>: an <span class=&quot;mono&quot;>approved</span> never writes itself into the loan screen. <span class=&quot;mono&quot;>Loan.status</span> stays <span class=&quot;mono&quot;>UNDER_REVIEW</span> until a person signs.">
+                        <b>A2A 판정은 참고용이다</b>: 여신 화면에서 A2A <span class="mono">approved</span>가 자동 반영되지 않는다. <span class="mono">Loan.status</span>는 <span class="mono">UNDER_REVIEW</span>로 남고 사람이 따로 승인한다.
+                      </li>
+                      <li data-ko="<b>담보가 풀려도 서명은 사람이</b>: 상대 응답이 처분 차단을 해소해도 결정 문서는 <b>여전히 draft</b>다. 서명 불변식 전수 검사 27조합에서 우회 0건."
+                        data-en="<b>A released lien is not a signature</b>: even when their reply clears the block, the decision document <b>stays a draft</b>. Twenty-seven combinations were swept for a bypass; none exists.">
+                        <b>담보가 풀려도 서명은 사람이</b>: 상대 응답이 처분 차단을 해소해도 결정 문서는 <b>여전히 draft</b>다. 서명 불변식 전수 검사 27조합에서 우회 0건.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="실동작 — 눌러서 보기"
+                        data-en="See it run">실동작 — 눌러서 보기</span></div>
+                    <div class="featlist">
+                      <button class="feat" data-modal="f-qmesh-settlement" data-ko="상대 응답이 내 상태를 바꾼다 (S12)"
+                        data-en="Their reply changes my state (S12)">상대 응답이 내 상태를 바꾼다 (S12)</button>
+                      <button class="feat" data-modal="f-qmesh-inbox" data-ko="상대 회사 결재함에 도착 (S5)"
+                        data-en="Landing in their approval inbox (S5)">상대 회사 결재함에 도착 (S5)</button>
+                    </div>
                   </div>
                 </div>
                 <div class="pc-figure">
@@ -2716,20 +2750,42 @@
                   </div>
                 </div>
                 <div class="impact block">
+                  <div class="bh"><span class="star">★</span> <span data-ko="연결 대상 — 직접 만든 Q 시리즈 3종"
+                      data-en="What it connects — the three Q-series agents">연결 대상 — 직접 만든 Q 시리즈 3종</span></div>
+                  <p data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 주요 기능과 설계가 나온다."
+                    data-en="All three run on <b>different languages, frameworks and repositories</b> — which is exactly why the link needed a standard contract. Expand a card for that project's features and design.">세
+                    프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 주요 기능과 설계가 나온다.</p>
+                  <div class="subcards">
+                    <!-- FinAllQ · InsuQ · MaintQ -->
+                  </div>
+                </div>
+                <div class="impact block">
                   <div class="bh"><span class="star">★</span> <span data-ko="성과 (프로토콜 실증)" data-en="Impact">성과 (프로토콜
                       실증)</span></div>
-                  <p data-ko="3종 Agent Card와 13종 Task 스키마로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터를 구현해 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다. 제조(MaintQ)는 호출자 측 A2A 도구까지 구현했고, 수신 어댑터가 다음 단계다."
-                    data-en="Three Agent Cards and thirteen Task schemas pin the contract; receiving adapters for the finance and insurance domains are built, and single-hop, multi-hop and two-step approval were each verified end to end against live data and real auth. On the manufacturing side (MaintQ) the calling half is implemented — the receiving adapter is next.">3종
-                    Agent Card와 13종 Task 스키마로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터를 구현해 단일 홉·멀티홉·2단 승인 3경로를 실 DB·실 인증으로 종단 검증했다.
-                    제조(MaintQ)는 호출자 측 A2A 도구까지 구현했고, 수신 어댑터가 다음 단계다.</p>
+                  <p data-ko="Agent Card 3종과 Task 스키마 13종으로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터(974행)를 구현해 <b>5개 통신 경로를 실 DB·실 인증으로 종단 검증</b>했다 — 단일 홉·멀티홉·승인 계단·상태 변경, 그리고 FinAllQ가 시작하는 2차 홉 1종. 그중 한 건은 <b>상대 시스템의 실제 클라이언트 코드를 한 글자도 고치지 않고 그대로 호출</b>해 확인했다."
+                    data-en="Three Agent Cards and thirteen Task schemas pin the contract; receiving adapters for the finance and insurance domains (974 lines) let <b>five communication paths be verified end to end against live data and real auth</b> — single hop, multi hop, the approval staircase, a state change, and one second-hop call started by FinAllQ. One of them ran <b>their real client code, unmodified</b>.">Agent
+                    Card 3종과 Task 스키마 13종으로 계약을 고정하고, 금융·보험 두 도메인의 수신 어댑터(974행)를 구현해 <b>5개 통신 경로를 실 DB·실 인증으로 종단 검증</b>했다 — 단일 홉·멀티홉·승인 계단·상태 변경,
+                    그리고 FinAllQ가 시작하는 2차 홉 1종. 그중 한 건은 <b>상대 시스템의 실제 클라이언트 코드를 한 글자도 고치지 않고 그대로 호출</b>해 확인했다.</p>
+                  <p data-ko="<b>아직 안 된 것도 방향까지 적는다.</b> 통합 오케스트레이터(<span class=&quot;mono&quot;>:9000</span>)는 <b>미구현</b>이고 지금 통신은 전부 P2P 직접 호출이다. MaintQ 수신 어댑터는 <b>설계상 없다</b> — 표준 계약이 MaintQ를 client로 배정했다(<span class=&quot;mono&quot;>skills: []</span>). <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다."
+                    data-en="<b>What is missing is stated with its direction.</b> The orchestrator (<span class=&quot;mono&quot;>:9000</span>) is <b>not built</b> — today every call is peer to peer. MaintQ has no receiving adapter <b>by design</b>: the contract assigns it the client role (<span class=&quot;mono&quot;>skills: []</span>). <b>Not a to-do — a decision.</b>"><b>아직
+                    안 된 것도 방향까지 적는다.</b> 통합 오케스트레이터(<span class="mono">:9000</span>)는 <b>미구현</b>이고 지금 통신은 전부 P2P 직접 호출이다. MaintQ 수신 어댑터는 <b>설계상
+                    없다</b> — 표준 계약이 MaintQ를 client로 배정했다(<span class="mono">skills: []</span>). <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다.</p>
                   <div class="metricrow">
                     <div class="metric">
                       <div class="mv"><span data-count="13">0</span>종</div>
                       <div class="ml" data-ko="표준 Task 스키마" data-en="Task schemas">표준 Task 스키마</div>
                     </div>
                     <div class="metric">
-                      <div class="mv"><span data-count="3">0</span>경로</div>
-                      <div class="ml" data-ko="A2A 실동작 검증" data-en="verified A2A paths">A2A 실동작 검증</div>
+                      <div class="mv"><span data-count="3">0</span>종</div>
+                      <div class="ml" data-ko="Agent Card" data-en="Agent Cards">Agent Card</div>
+                    </div>
+                    <div class="metric">
+                      <div class="mv"><span data-count="5">0</span>경로</div>
+                      <div class="ml" data-ko="종단 검증" data-en="verified end to end">종단 검증</div>
+                    </div>
+                    <div class="metric">
+                      <div class="mv"><span data-count="123">0</span>건</div>
+                      <div class="ml" data-ko="어댑터 테스트" data-en="adapter tests">어댑터 테스트</div>
                     </div>
                   </div>
                 </div>
@@ -3414,6 +3470,125 @@
     <div class="fmodal-card" role="dialog" aria-modal="true">
       <button class="fmodal-x" aria-label="Close">&#10005;</button>
       <div class="fmodal-body">
+
+        <!-- ════════ QMESH ════════ -->
+        <section id="f-qmesh-settlement" hidden>
+          <div class="fmodal-kicker mono">QMESH · S12 request-settlement</div>
+          <h4 class="fmodal-title" data-ko="상대 응답이 내 상태를 바꾼다" data-en="Their reply changes my state">상대 응답이 내 상태를 바꾼다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 168" role="img"
+              aria-label="처분 사전판정 BLOCKED에서 A2A 정산을 거쳐 CONDITIONAL로 풀리는 흐름">
+              <style>
+                .qn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+                .qt{font:600 12px var(--sans);fill:var(--ink)}
+                .qs{font:10.5px var(--mono);fill:var(--muted)}
+                .qa{stroke:var(--accent);stroke-width:1.5;fill:none;marker-end:url(#qah)}
+                .qbad{font:600 11px var(--mono);fill:#c0392b}
+                .qok{font:600 11px var(--mono);fill:var(--ok)}
+                .qgold{font:10.5px var(--mono);fill:var(--gold-ink)}
+              </style>
+              <defs>
+                <marker id="qah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
+                </marker>
+              </defs>
+              <rect class="qn" x="4" y="16" width="152" height="48" rx="8" />
+              <text class="qt" x="18" y="38">처분 사전판정</text>
+              <text class="qbad" x="18" y="55">BLOCKED (409)</text>
+              <path class="qa" d="M160 40 H230" />
+              <rect class="qn" x="234" y="16" width="166" height="48" rx="8" />
+              <text class="qt" x="248" y="38">A2A 정산 요청</text>
+              <text class="qs" x="248" y="55">MaintQ → FinAllQ</text>
+              <path class="qa" d="M404 40 H460" />
+              <rect class="qn" x="464" y="16" width="152" height="48" rx="8" />
+              <text class="qt" x="478" y="38">재판정</text>
+              <text class="qok" x="478" y="55">CONDITIONAL (200)</text>
+              <path class="qa" d="M317 68 V104 H84 V68" />
+              <text class="qs" x="96" y="126">lien_released: true → assets.lien_consent_ref 를 채운다</text>
+              <text class="qgold" x="96" y="146">단, 결정 문서는 여전히 draft — 담보만 풀고 서명은 하지 않는다</text>
+            </svg>
+          </div>
+          <p data-ko="MaintQ 발신 스킬 6종 중 <b>유일하게 상대 응답이 내 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다."
+            data-en="The only one of MaintQ's six outbound skills where the reply changes its own state. The others just fetch or notify.">MaintQ
+            발신 스킬 6종 중 <b>유일하게 상대 응답이 내 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다.</p>
+          <ol class="fsteps">
+            <li data-ko="자산을 처분하려 하면 유치권 때문에 사전판정이 <b>BLOCKED</b>(409)로 막힌다."
+              data-en="Disposal is pre-checked and comes back <b>BLOCKED</b> (409) because of the lien.">자산을 처분하려 하면 유치권 때문에 사전판정이
+              <b>BLOCKED</b>(409)로 막힌다.</li>
+            <li data-ko="매각대금 정산과 대출 상환을 FinAllQ에 A2A로 요청한다."
+              data-en="MaintQ asks FinAllQ over A2A to settle the proceeds and repay the loan.">매각대금 정산과 대출 상환을 FinAllQ에 A2A로 요청한다.</li>
+            <li data-ko="응답의 <span class=&quot;mono&quot;>lien_released: true</span>가 <span class=&quot;mono&quot;>assets.lien_consent_ref</span>를 채워 차단을 해소한다."
+              data-en="<span class=&quot;mono&quot;>lien_released: true</span> in the reply fills <span class=&quot;mono&quot;>assets.lien_consent_ref</span> and clears the block.">응답의
+              <span class="mono">lien_released: true</span>가 <span class="mono">assets.lien_consent_ref</span>를 채워 차단을 해소한다.</li>
+            <li data-ko="재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft다</b> — 담보만 풀고 서명은 끝까지 사람이 한다."
+              data-en="The re-check clears to <b>CONDITIONAL</b> (200). <b>The decision document stays a draft</b> — the lien is released, the signature is not.">재판정이
+              <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft다</b> — 담보만 풀고 서명은 끝까지 사람이 한다.</li>
+          </ol>
+          <figure class="fmodal-fig">
+            <img data-src="assets/qmesh/request-settlement.gif" alt="request-settlement end-to-end demo">
+            <figcaption data-ko="실 DB · 실 인증으로 촬영한 종단 검증 경로" data-en="Captured end to end against live data and real auth">실 DB · 실 인증으로 촬영한 종단 검증 경로</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-qmesh-inbox" hidden>
+          <div class="fmodal-kicker mono">QMESH · S5 request-withdrawal</div>
+          <h4 class="fmodal-title" data-ko="상대 회사 결재함에 요청이 도착한다" data-en="The request lands in their approval inbox">상대 회사 결재함에 요청이 도착한다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 150" role="img" aria-label="MaintQ 팀장·재무 승인을 거쳐 A2A로 FinAllQ 재무결재에 도착하는 3단 승인 계단">
+              <style>
+                .in{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+                .it{font:600 11.5px var(--sans);fill:var(--ink)}
+                .is{font:10px var(--mono);fill:var(--muted)}
+                .ia{stroke:var(--accent);stroke-width:1.5;fill:none;marker-end:url(#iah)}
+                .ik{font:600 10px var(--mono);fill:var(--accent)}
+                .ig{fill:none;stroke:var(--gold-line);stroke-width:1.2;stroke-dasharray:5 4}
+              </style>
+              <defs>
+                <marker id="iah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
+                </marker>
+              </defs>
+              <rect class="ig" x="6" y="30" width="316" height="66" rx="10" />
+              <text class="ik" x="16" y="24">MaintQ 내부 — 2단</text>
+              <rect class="in" x="20" y="44" width="132" height="42" rx="8" />
+              <text class="it" x="32" y="62">① 팀장 승인</text>
+              <text class="is" x="32" y="77">기술적 타당성</text>
+              <path class="ia" d="M156 65 H172" />
+              <rect class="in" x="176" y="44" width="132" height="42" rx="8" />
+              <text class="it" x="188" y="62">② 재무부 승인</text>
+              <text class="is" x="188" y="77">SoD · 한도 · FDS</text>
+              <path class="ia" d="M326 65 H372" />
+              <text class="ik" x="330" y="58">A2A</text>
+              <rect class="in" x="376" y="44" width="152" height="42" rx="8" />
+              <text class="it" x="388" y="62">③ FinAllQ 재무결재</text>
+              <text class="is" x="388" y="77">상대 회사 직원이 본다</text>
+              <text class="is" x="20" y="122">요청자 a2a-service@finallq.example · 메모에 MaintQ 진단 근거가 그대로 실린다</text>
+              <text class="is" x="20" y="140" fill="var(--gold-ink)">3단 승인 = MaintQ 내부 2단 + FinAllQ 1단</text>
+            </svg>
+          </div>
+          <p data-ko="A2A가 <b>사람의 승인을 우회하지 않는다</b>는 것을 상대 화면에서 확인한 경로다. 출금 요청은 세 사람의 결재를 지나며, AI는 <b>요청서 초안까지만</b> 만든다."
+            data-en="This is where you can see that A2A does not route around human approval. A withdrawal passes three sign-offs, and the AI only ever drafts the request.">A2A가
+            <b>사람의 승인을 우회하지 않는다</b>는 것을 상대 화면에서 확인한 경로다. 출금 요청은 세 사람의 결재를 지나며, AI는 <b>요청서 초안까지만</b> 만든다.</p>
+          <ol class="fsteps">
+            <li data-ko="설비 진단에서 부품 발주가 승인되면 출금이 필요해진다. MaintQ <b>팀장</b>이 기술적 타당성을 승인한다."
+              data-en="An approved parts order needs money to move. The MaintQ <b>team lead</b> signs off on technical grounds first.">설비 진단에서 부품 발주가 승인되면 출금이 필요해진다. MaintQ
+              <b>팀장</b>이 기술적 타당성을 승인한다.</li>
+            <li data-ko="MaintQ <b>재무부</b>가 예산 한도·1일 누적 한도·이상거래·직무분리 4종을 검사하고 승인한다 — <b>돈을 쓰는 승인과 기술 승인은 다른 사람의 일</b>이다."
+              data-en="MaintQ <b>finance</b> then checks budget cap, daily cumulative cap, fraud signals and separation of duties — <b>spending money is a different person's sign-off</b> from approving the repair.">MaintQ
+              <b>재무부</b>가 예산 한도·1일 누적 한도·이상거래·직무분리 4종을 검사하고 승인한다 — <b>돈을 쓰는 승인과 기술 승인은 다른 사람의 일</b>이다.</li>
+            <li data-ko="그제서야 A2A로 FinAllQ에 출금을 요청한다. 요청은 <span class=&quot;mono&quot;>a2a-service@finallq.example</span> 명의로 들어간다."
+              data-en="Only then does the A2A call go out to FinAllQ, filed under <span class=&quot;mono&quot;>a2a-service@finallq.example</span>.">그제서야 A2A로 FinAllQ에 출금을 요청한다. 요청은
+              <span class="mono">a2a-service@finallq.example</span> 명의로 들어간다.</li>
+            <li data-ko="<b>상대 회사 직원의 결재함에 실제로 뜬다.</b> 메모에 MaintQ의 진단 근거가 그대로 실려 있어, 결재자가 왜 이 돈이 필요한지 보고 판단한다."
+              data-en="<b>It shows up in their employee's inbox.</b> The memo carries MaintQ's diagnostic evidence verbatim, so the approver can see why the money is needed.">
+              <b>상대 회사 직원의 결재함에 실제로 뜬다.</b> 메모에 MaintQ의 진단 근거가 그대로 실려 있어, 결재자가 왜 이 돈이 필요한지 보고 판단한다.</li>
+          </ol>
+          <figure class="fmodal-fig">
+            <img data-src="assets/qmesh/approval-inbox-arrival.gif" alt="A2A request arriving in FinAllQ approval inbox">
+            <figcaption data-ko="상대 시스템에 요청이 도착하는 장면 — 실 인증으로 촬영" data-en="The request arriving on the other system — captured with real auth">상대 시스템에 요청이 도착하는 장면 — 실 인증으로 촬영</figcaption>
+          </figure>
+        </section>
+
       </div>
     </div>
   </div>
