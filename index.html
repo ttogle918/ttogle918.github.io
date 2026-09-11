@@ -56,6 +56,7 @@
       --gold-ink: #8a6d1f;
       --gold-line: rgba(224, 165, 22, .45);
       --ok: #1f9d57;
+      --danger: #c0392b;
 
       --shadow-sm: 0 1px 2px rgba(20, 24, 45, .05), 0 6px 20px rgba(20, 24, 45, .05);
       --shadow-lg: 0 12px 32px rgba(20, 24, 45, .10), 0 32px 64px rgba(20, 24, 45, .08);
@@ -79,6 +80,7 @@
       --gold-soft: rgba(240, 189, 74, .16);
       --gold-ink: #f0bd4a;
       --gold-line: rgba(240, 189, 74, .45);
+      --danger: #ff7a6e;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .4);
       --shadow-lg: 0 14px 40px rgba(0, 0, 0, .5), 0 36px 70px rgba(0, 0, 0, .5);
     }
@@ -1516,6 +1518,74 @@
       margin: 0 0 12px
     }
 
+    /* ─── 다이어그램 공통 어휘 ───
+       SVG 안에 style 요소를 두면 그 규칙은 문서 전역이 된다 — 짧은 클래스명이
+       페이지로 샌다. 실제로 결재함 다이어그램의 `.in` 이 페이지의 `.reveal.in`
+       44개 요소에 fill/stroke 를 흘리고 있었다. 그래서 여기 한 곳에 dg- 접두사로
+       모으고, 모든 다이어그램이 이 어휘만 쓴다. 화살촉 마커도 문서에 하나만 둔다. */
+    .fdiag .dg-box {
+      fill: var(--paper);
+      stroke: var(--line);
+      stroke-width: 1.5
+    }
+
+    .fdiag .dg-hold {
+      fill: var(--gold-soft);
+      stroke: var(--gold-line);
+      stroke-width: 1.5
+    }
+
+    .fdiag .dg-zone {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.2;
+      stroke-dasharray: 5 4
+    }
+
+    .fdiag .dg-zone-gold {
+      fill: none;
+      stroke: var(--gold-line);
+      stroke-width: 1.2;
+      stroke-dasharray: 5 4
+    }
+
+    .fdiag .dg-t {
+      font: 600 11.5px var(--sans);
+      fill: var(--ink)
+    }
+
+    .fdiag .dg-s {
+      font: 10px var(--mono);
+      fill: var(--muted)
+    }
+
+    .fdiag .dg-k {
+      font: 600 10px var(--mono);
+      fill: var(--accent)
+    }
+
+    .fdiag .dg-g {
+      font: 10px var(--mono);
+      fill: var(--gold-ink)
+    }
+
+    .fdiag .dg-bad {
+      font: 600 10px var(--mono);
+      fill: var(--danger)
+    }
+
+    .fdiag .dg-ok {
+      font: 600 10px var(--mono);
+      fill: var(--ok)
+    }
+
+    .fdiag .dg-a {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.4;
+      marker-end: url(#dgArrow)
+    }
+
     /* 다이어그램 — 인라인 SVG. 색은 전부 CSS 변수를 쓴다(다크 대응). */
     .fdiag {
       background: var(--panel);
@@ -2837,6 +2907,169 @@
                       </div>
                     </article>
 
+                    <!-- ── InsuQ ── -->
+                    <article class="subcard">
+                      <div class="sub-top">
+                        <div class="sub-headings">
+                          <div class="sub-code mono" data-ko="보험 약관 분석 · 보장 판정 RAG 에이전트"
+                            data-en="Policy-clause RAG agent">보험 약관 분석 · 보장 판정 RAG 에이전트</div>
+                          <h4 class="sub-title">InsuQ</h4>
+                          <div class="sub-meta" data-ko="2026.07 ~ 진행 중 · 개인 1인 · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js"
+                            data-en="Since Jul 2026 · solo · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js">2026.07 ~ 진행 중 · 개인 1인 · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js</div>
+                        </div>
+                        <span class="sub-caret">&#9654;</span>
+                      </div>
+                      <div class="sub-body">
+                        <div class="sub-inner">
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="이 프로젝트가 잡은 자리"
+                                data-en="The stance">이 프로젝트가 잡은 자리</span></div>
+                            <p data-ko="<b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접 제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다."
+                              data-en="<b>The AI does not rule. It gathers the evidence, hands over the clause verbatim, and a person decides.</b> A wrong coverage verdict is money lost, and an agent has to be able to show the clause to the customer. So the output is never &quot;covered / not covered&quot; but <b>likely, unlikely or withheld — plus the cited clause and what still needs checking</b> — and that shape is <b>enforced by a deterministic gate, not a prompt instruction</b>.">
+                              <b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접 제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다.</p>
+                            <p data-ko="설계사 관점이라 검색도 그 순서를 따른다 — <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span class=&quot;mono&quot;>product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span class=&quot;mono&quot;>refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다."
+                              data-en="Because the user is an agent in front of a customer, retrieval follows that order — <b>scope to the policies the customer actually holds first</b> (<span class=&quot;mono&quot;>product_filter</span>), and when a clause points at another clause, <b>follow those <span class=&quot;mono&quot;>refs</span> and search again</b> (multi-hop) — within the same policy part only, and depth-capped.">설계사
+                              관점이라 검색도 그 순서를 따른다 — <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span class="mono">product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span class="mono">refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다.</p>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="LangGraph 파이프라인"
+                                data-en="The LangGraph pipeline">LangGraph 파이프라인</span></div>
+                            <div class="fdiag">
+                              <svg viewBox="0 0 660 330" role="img"
+                                aria-label="route와 clarify 두 노드로 이루어진 StateGraph와 그 뒤의 검색·멀티홉·생성 파이프라인">
+                                <text class="dg-s" x="14" y="16">질문 + 이미 받은 슬롯</text>
+                                <rect class="dg-zone" x="8" y="26" width="306" height="126" rx="10" />
+                                <text class="dg-k" x="20" y="44">StateGraph — 컴파일된 노드는 이 둘뿐</text>
+                                <rect class="dg-box" x="26" y="54" width="140" height="42" rx="8" />
+                                <text class="dg-t" x="38" y="72">route</text>
+                                <text class="dg-s" x="38" y="87">키워드 → LLM 폴백 1회</text>
+                                <rect class="dg-box" x="26" y="104" width="140" height="38" rx="8" />
+                                <text class="dg-t" x="38" y="121">clarify</text>
+                                <text class="dg-s" x="38" y="135">슬롯 검사</text>
+                                <path class="dg-a" d="M96 98 V102" />
+                                <text class="dg-s" x="176" y="72">SIMPLE_LOOKUP</text>
+                                <text class="dg-s" x="176" y="86">VERDICT</text>
+                                <text class="dg-s" x="176" y="100">CLARIFY</text>
+                                <text class="dg-s" x="176" y="118" fill="var(--faint)">COMPARE → 강등</text>
+                                <path class="dg-a" d="M170 123 H344" />
+                                <text class="dg-k" x="180" y="140">CLARIFY 일 때</text>
+                                <rect class="dg-box" x="348" y="102" width="180" height="42" rx="8" />
+                                <text class="dg-t" x="360" y="120">되묻기 질문</text>
+                                <text class="dg-s" x="360" y="135">LLM 0회 — 순수 조회</text>
+                                <path class="dg-a" d="M96 154 V186" />
+                                <text class="dg-k" x="104" y="174">그 외</text>
+                                <rect class="dg-box" x="26" y="190" width="110" height="40" rx="8" />
+                                <text class="dg-t" x="38" y="215">검색</text>
+                                <path class="dg-a" d="M140 210 H160" />
+                                <rect class="dg-box" x="164" y="190" width="150" height="40" rx="8" />
+                                <text class="dg-t" x="176" y="209">멀티홉</text>
+                                <text class="dg-s" x="176" y="223">refs 따라 재검색</text>
+                                <path class="dg-a" d="M318 210 H338" />
+                                <rect class="dg-box" x="342" y="190" width="110" height="40" rx="8" />
+                                <text class="dg-t" x="354" y="215">생성</text>
+                                <path class="dg-a" d="M397 232 V252" />
+                                <rect class="dg-box" x="26" y="256" width="196" height="50" rx="8" />
+                                <text class="dg-t" x="38" y="275">방어선 ① 근거 한정</text>
+                                <text class="dg-s" x="38" y="292">인용 필수 · 없으면 거부</text>
+                                <rect class="dg-box" x="234" y="256" width="196" height="50" rx="8" />
+                                <text class="dg-t" x="246" y="275">방어선 ② 단정 감지</text>
+                                <text class="dg-s" x="246" y="292">유보(HOLD)로 강등</text>
+                                <rect class="dg-box" x="442" y="256" width="190" height="50" rx="8" />
+                                <text class="dg-t" x="454" y="275">판정 3단계</text>
+                                <text class="dg-s" x="454" y="292">+ 확인 필요 사항</text>
+                                <text class="dg-g" x="442" y="228">점선 밖은 그래프 노드가 아니다</text>
+                              </svg>
+                            </div>
+                            <p data-ko="<b>정확히 적으면 컴파일된 그래프의 노드는 <span class=&quot;mono&quot;>route</span>·<span class=&quot;mono&quot;>clarify</span> 둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 — «LangGraph 노드 4개»라고 쓰면 사실이 아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다)."
+                              data-en="<b>To be exact, the compiled graph has two nodes: <span class=&quot;mono&quot;>route</span> and <span class=&quot;mono&quot;>clarify</span>.</b> Multi-hop and the verdict live in the pipeline behind it — the dashed box is that boundary. Calling it &quot;four LangGraph nodes&quot; would be false. On the clarify branch it <b>never calls the LLM at all</b>: turning slots into questions is a pure lookup.">
+                              <b>정확히 적으면 컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span> 둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 — «LangGraph 노드 4개»라고 쓰면 사실이 아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다).</p>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다"
+                                data-en="Features — click one for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
+                            <div class="featlist">
+                              <button class="feat" data-modal="f-insuq-citation" data-ko="근거 인용 — 조항 원문과 함께"
+                                data-en="Citation — with the clause itself">근거 인용 — 조항 원문과 함께</button>
+                              <button class="feat" data-modal="f-insuq-refusal" data-ko="거부 게이트 — 모르면 거부한다"
+                                data-en="Refusal gate — it declines">거부 게이트 — 모르면 거부한다</button>
+                              <button class="feat" data-modal="f-insuq-clarify" data-ko="되묻기 — 정보가 빠지면"
+                                data-en="Asking back">되묻기 — 정보가 빠지면</button>
+                              <button class="feat" data-modal="f-insuq-claim" data-ko="청구 승인 — 사람 앞에서 멈춘다"
+                                data-en="Claim — it stops for a human">청구 승인 — 사람 앞에서 멈춘다</button>
+                            </div>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것"
+                                data-en="What the design guards">설계에서 신경 쓴 것</span></div>
+                            <ul>
+                              <li data-ko="<b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다."
+                                data-en="<b>Build, measure, then improve with a technique.</b> Every commit message carries its metric, so <b>the git history itself is the improvement story</b>.">
+                                <b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다.
+                              </li>
+                              <li data-ko="<b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은 <b>생성 직전에만</b> 한다."
+                                data-en="<b>Search small, answer big.</b> On structure-aware parent/child chunks, retrieval and ranking run entirely at the <b>child (clause) level</b>; the parent article is expanded <b>only just before generation</b>.">
+                                <b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은 <b>생성 직전에만</b> 한다.
+                              </li>
+                              <li data-ko="<b>인용 대조 키는 <span class=&quot;mono&quot;>(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면, 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 — 한 상품 안에 <span class=&quot;mono&quot;>제1조</span>가 3곳 존재하는 것을 실측으로 확인했다."
+                                data-en="<b>Citations are matched on <span class=&quot;mono&quot;>(policy_part, article_no)</span>.</b> Drop the part and match only the article number, and <b>a hallucinated article from a different part slips through the check</b> — one product really does contain three separate <span class=&quot;mono&quot;>Article 1</span>s.">
+                                <b>인용 대조 키는 <span class="mono">(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면, 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 — 한 상품 안에 <span class="mono">제1조</span>가 3곳 존재하는 것을 실측으로 확인했다.
+                              </li>
+                              <li data-ko="<b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 — <span class=&quot;mono&quot;>&quot;지급 가능합니다&quot;</span>는 잡는데 <span class=&quot;mono&quot;>&quot;지급이 가능합니다&quot;</span>는 통과했다. 고치면서 탐지만 넓히지 않고 <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0)."
+                                data-en="<b>Safety lives on the execution path, not in a document.</b> The no-verdict rule once leaked through a single particle — the matcher caught one phrasing and missed its variant. Fixing it, detection was not merely widened: <b>the false-positive rate was measured alongside</b> — zero new hits across 287 stored answers.">
+                                <b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 — <span class="mono">"지급 가능합니다"</span>는 잡는데 <span class="mono">"지급이 가능합니다"</span>는 통과했다. 고치면서 탐지만 넓히지 않고 <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0).
+                              </li>
+                              <li data-ko="<b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 — 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다."
+                                data-en="<b>The cache must not route around the safety net.</b> Its key carries the product filter, the model, the prompt body and the index version — leave the filter out and &quot;never cite another customer's policy&quot; is bypassed by a cache hit. The evaluation harness is isolated <b>structurally</b>: it never constructs a cache at all.">
+                                <b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 — 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다.
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="측정에서 배운 것"
+                                data-en="What measuring taught">측정에서 배운 것</span></div>
+                            <ul>
+                              <li data-ko="<b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 — 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이다."
+                                data-en="<b>Refusal accuracy is only readable next to over-refusal.</b> Alone, it makes <b>answering nothing</b> the optimum. Swapping in a cheaper generator left retrieval identical to the decimal — but <b>over-refusal jumped from 0 to 0.1852</b>, so it was rejected. The model had not failed to refuse; it had <b>refused what it could have answered</b>.">
+                                <b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 — 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이다.
+                              </li>
+                              <li data-ko="<b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 — 내 가설의 반증)와 cross-encoder 리랭커(품질 1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다."
+                                data-en="<b>Rejections are recorded with the same weight as adoptions.</b> Hybrid BM25 (Hit@5 0.7917 — my own hypothesis, disproved) and the cross-encoder reranker (best quality, p50 <b>98.2s</b>) are not &quot;planned&quot; — they were <b>measured and rejected</b>. Delete them and the next person re-derives the same hypothesis.">
+                                <b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 — 내 가설의 반증)와 cross-encoder 리랭커(품질 1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다.
+                              </li>
+                              <li data-ko="<b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가 골든셋 밖</b>이었다 — «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다."
+                                data-en="<b>A metric that moves is not always the technique.</b> Paying down parsing debt cut dropped parts from 21 to 9 — and Hit@5 did not budge, because <b>the fix lay outside the golden set</b>. &quot;The corpus improved&quot; and &quot;the improvement is measurable&quot; are different sentences.">
+                                <b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가 골든셋 밖</b>이었다 — «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다.
+                              </li>
+                              <li data-ko="<b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를 <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 — 중단돼도 alias는 구버전을 가리킨 채 남는다."
+                                data-en="<b>The incident became structure.</b> A credential left in a dev shell overrode the config and <b>wiped the production index</b> (4,233 chunks). Now the index is <b>date-versioned behind an alias</b>: fill the new version, verify embedding coverage, and only then swap the alias — an interrupted run leaves the alias pointing at the old one.">
+                                <b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를 <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 — 중단돼도 alias는 구버전을 가리킨 채 남는다.
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="impact block">
+                            <div class="bh"><span class="star">★</span> <span data-ko="실측 (2026.09.09)"
+                                data-en="Measured (2026-09-09)">실측 (2026.09.09)</span></div>
+                            <p data-ko="<b>트랙 1 — 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부 0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>."
+                              data-en="<b>Track 1 — indemnity</b> (27 golden-set questions): Hit@5 <b>0.8148</b>, refusal accuracy <b>1.0000</b>, <b>over-refusal 0.0000</b>, clarification accuracy <b>1.0000</b>, p50 latency <b>0.434s</b>.">
+                              <b>트랙 1 — 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부 0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>.</p>
+                            <p data-ko="<b>트랙 4 — 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두 트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> — 인용할 때는 채점 분모를 반드시 함께 읽어야 한다."
+                              data-en="<b>Track 4 — fire &amp; commercial property</b> (52 of 66 questions scored, 6,450 chunks across 7 products): Hit@5 <b>0.6346</b>. ⚠️ <b>The two tracks share neither corpus nor golden set and cannot be placed side by side</b> — always read the denominator with the number.">
+                              <b>트랙 4 — 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두 트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> — 인용할 때는 채점 분모를 반드시 함께 읽어야 한다.</p>
+                            <p data-ko="실험 기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143, 실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변 정확도(LLM-as-judge)는 공란</b>이다 — 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어 <b>재캘리브레이션만으로 복구</b>된다."
+                              data-en="Experiments <b>EXP-001–067</b> · <b>1,771</b> automated tests passing (1,134 / 494 / 143, none failing) · <b>571</b> commits. On A2A, <b>all six inbound skills run live on the Spring backend</b>. 🔴 But <b>answer accuracy (LLM-as-judge) is blank</b>: the grading model vanished with a deprecated gateway account. Twenty-four human-scored items survive, so <b>recalibration alone restores it</b>.">실험
+                              기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143, 실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변 정확도(LLM-as-judge)는 공란</b>이다 — 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어 <b>재캘리브레이션만으로 복구</b>된다.</p>
+                          </div>
+
+                        </div>
+                      </div>
+                    </article>
+
                   </div>
                 </div>
                 <div class="impact block">
@@ -3545,6 +3778,15 @@
     </div>
   </section>
 
+  <!-- 다이어그램 공용 화살촉. SVG 의 id 참조는 문서 전역이라 하나만 두고 전부 공유한다. -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
+      </marker>
+    </defs>
+  </svg>
+
   <!-- 기능 모달 — 본문을 복제하지 않고 hidden 만 토글한다(applyLang 이 닿아야 한다) -->
   <div class="fmodal" id="fmodal" hidden>
     <div class="fmodal-card" role="dialog" aria-modal="true">
@@ -3558,34 +3800,20 @@
           <div class="fdiag">
             <svg viewBox="0 0 620 168" role="img"
               aria-label="처분 사전판정 BLOCKED에서 A2A 정산을 거쳐 CONDITIONAL로 풀리는 흐름">
-              <style>
-                .qn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .qt{font:600 12px var(--sans);fill:var(--ink)}
-                .qs{font:10.5px var(--mono);fill:var(--muted)}
-                .qa{stroke:var(--accent);stroke-width:1.5;fill:none;marker-end:url(#qah)}
-                .qbad{font:600 11px var(--mono);fill:#c0392b}
-                .qok{font:600 11px var(--mono);fill:var(--ok)}
-                .qgold{font:10.5px var(--mono);fill:var(--gold-ink)}
-              </style>
-              <defs>
-                <marker id="qah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="qn" x="4" y="16" width="152" height="48" rx="8" />
-              <text class="qt" x="18" y="38">처분 사전판정</text>
-              <text class="qbad" x="18" y="55">BLOCKED (409)</text>
-              <path class="qa" d="M160 40 H230" />
-              <rect class="qn" x="234" y="16" width="166" height="48" rx="8" />
-              <text class="qt" x="248" y="38">A2A 정산 요청</text>
-              <text class="qs" x="248" y="55">MaintQ → FinAllQ</text>
-              <path class="qa" d="M404 40 H460" />
-              <rect class="qn" x="464" y="16" width="152" height="48" rx="8" />
-              <text class="qt" x="478" y="38">재판정</text>
-              <text class="qok" x="478" y="55">CONDITIONAL (200)</text>
-              <path class="qa" d="M317 68 V104 H84 V68" />
-              <text class="qs" x="96" y="126">lien_released: true → assets.lien_consent_ref 를 채운다</text>
-              <text class="qgold" x="96" y="146">단, 결정 문서는 여전히 draft — 담보만 풀고 서명은 하지 않는다</text>
+              <rect class="dg-box" x="4" y="16" width="152" height="48" rx="8" />
+              <text class="dg-t" x="18" y="38">처분 사전판정</text>
+              <text class="dg-bad" x="18" y="55">BLOCKED (409)</text>
+              <path class="dg-a" d="M160 40 H230" />
+              <rect class="dg-box" x="234" y="16" width="166" height="48" rx="8" />
+              <text class="dg-t" x="248" y="38">A2A 정산 요청</text>
+              <text class="dg-s" x="248" y="55">MaintQ → FinAllQ</text>
+              <path class="dg-a" d="M404 40 H460" />
+              <rect class="dg-box" x="464" y="16" width="152" height="48" rx="8" />
+              <text class="dg-t" x="478" y="38">재판정</text>
+              <text class="dg-ok" x="478" y="55">CONDITIONAL (200)</text>
+              <path class="dg-a" d="M317 68 V104 H84 V68" />
+              <text class="dg-s" x="96" y="126">lien_released: true → assets.lien_consent_ref 를 채운다</text>
+              <text class="dg-g" x="96" y="146">단, 결정 문서는 여전히 draft — 담보만 풀고 서명은 하지 않는다</text>
             </svg>
           </div>
           <p data-ko="MaintQ 발신 스킬 6종 중 <b>유일하게 상대 응답이 내 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다."
@@ -3615,35 +3843,22 @@
           <h4 class="fmodal-title" data-ko="상대 회사 결재함에 요청이 도착한다" data-en="The request lands in their approval inbox">상대 회사 결재함에 요청이 도착한다</h4>
           <div class="fdiag">
             <svg viewBox="0 0 640 150" role="img" aria-label="MaintQ 팀장·재무 승인을 거쳐 A2A로 FinAllQ 재무결재에 도착하는 3단 승인 계단">
-              <style>
-                .in{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .it{font:600 11.5px var(--sans);fill:var(--ink)}
-                .is{font:10px var(--mono);fill:var(--muted)}
-                .ia{stroke:var(--accent);stroke-width:1.5;fill:none;marker-end:url(#iah)}
-                .ik{font:600 10px var(--mono);fill:var(--accent)}
-                .ig{fill:none;stroke:var(--gold-line);stroke-width:1.2;stroke-dasharray:5 4}
-              </style>
-              <defs>
-                <marker id="iah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="ig" x="6" y="30" width="316" height="66" rx="10" />
-              <text class="ik" x="16" y="24">MaintQ 내부 — 2단</text>
-              <rect class="in" x="20" y="44" width="132" height="42" rx="8" />
-              <text class="it" x="32" y="62">① 팀장 승인</text>
-              <text class="is" x="32" y="77">기술적 타당성</text>
-              <path class="ia" d="M156 65 H172" />
-              <rect class="in" x="176" y="44" width="132" height="42" rx="8" />
-              <text class="it" x="188" y="62">② 재무부 승인</text>
-              <text class="is" x="188" y="77">SoD · 한도 · FDS</text>
-              <path class="ia" d="M326 65 H372" />
-              <text class="ik" x="330" y="58">A2A</text>
-              <rect class="in" x="376" y="44" width="152" height="42" rx="8" />
-              <text class="it" x="388" y="62">③ FinAllQ 재무결재</text>
-              <text class="is" x="388" y="77">상대 회사 직원이 본다</text>
-              <text class="is" x="20" y="122">요청자 a2a-service@finallq.example · 메모에 MaintQ 진단 근거가 그대로 실린다</text>
-              <text class="is" x="20" y="140" fill="var(--gold-ink)">3단 승인 = MaintQ 내부 2단 + FinAllQ 1단</text>
+              <rect class="dg-zone-gold" x="6" y="30" width="316" height="66" rx="10" />
+              <text class="dg-k" x="16" y="24">MaintQ 내부 — 2단</text>
+              <rect class="dg-box" x="20" y="44" width="132" height="42" rx="8" />
+              <text class="dg-t" x="32" y="62">① 팀장 승인</text>
+              <text class="dg-s" x="32" y="77">기술적 타당성</text>
+              <path class="dg-a" d="M156 65 H172" />
+              <rect class="dg-box" x="176" y="44" width="132" height="42" rx="8" />
+              <text class="dg-t" x="188" y="62">② 재무부 승인</text>
+              <text class="dg-s" x="188" y="77">SoD · 한도 · FDS</text>
+              <path class="dg-a" d="M326 65 H372" />
+              <text class="dg-k" x="330" y="58">A2A</text>
+              <rect class="dg-box" x="376" y="44" width="152" height="42" rx="8" />
+              <text class="dg-t" x="388" y="62">③ FinAllQ 재무결재</text>
+              <text class="dg-s" x="388" y="77">상대 회사 직원이 본다</text>
+              <text class="dg-s" x="20" y="122">요청자 a2a-service@finallq.example · 메모에 MaintQ 진단 근거가 그대로 실린다</text>
+              <text class="dg-s" x="20" y="140" fill="var(--gold-ink)">3단 승인 = MaintQ 내부 2단 + FinAllQ 1단</text>
             </svg>
           </div>
           <p data-ko="A2A가 <b>사람의 승인을 우회하지 않는다</b>는 것을 상대 화면에서 확인한 경로다. 출금 요청은 세 사람의 결재를 지나며, AI는 <b>요청서 초안까지만</b> 만든다."
@@ -3675,33 +3890,22 @@
           <h4 class="fmodal-title" data-ko="통합 대시보드" data-en="Unified dashboard">통합 대시보드</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 128" role="img" aria-label="은행 계좌와 증권 보유종목을 합산해 오늘 확인할 것으로 보여주는 흐름">
-              <style>
-                .fn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .ft{font:600 11.5px var(--sans);fill:var(--ink)}
-                .fs{font:10px var(--mono);fill:var(--muted)}
-                .fa{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#fah)}
-              </style>
-              <defs>
-                <marker id="fah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="fn" x="4" y="12" width="152" height="38" rx="8" />
-              <text class="ft" x="16" y="30">은행 — 계좌·거래</text>
-              <text class="fs" x="16" y="44">Spring Boot 코어</text>
-              <rect class="fn" x="4" y="62" width="152" height="38" rx="8" />
-              <text class="ft" x="16" y="80">증권 — 보유종목</text>
-              <text class="fs" x="16" y="94">holdings · prices</text>
-              <path class="fa" d="M160 31 H228 V50" />
-              <path class="fa" d="M160 81 H228 V62" />
-              <rect class="fn" x="232" y="36" width="146" height="40" rx="8" />
-              <text class="ft" x="244" y="54">합산 · 룰 판정</text>
-              <text class="fs" x="244" y="69">비율 → 임계값 비교</text>
-              <path class="fa" d="M382 56 H440" />
-              <rect class="fn" x="444" y="26" width="172" height="60" rx="8" />
-              <text class="ft" x="456" y="46">오늘 확인할 것</text>
-              <text class="fs" x="456" y="62">FDS 경보 · 규제 알림</text>
-              <text class="fs" x="456" y="76">심각도순</text>
+              <rect class="dg-box" x="4" y="12" width="152" height="38" rx="8" />
+              <text class="dg-t" x="16" y="30">은행 — 계좌·거래</text>
+              <text class="dg-s" x="16" y="44">Spring Boot 코어</text>
+              <rect class="dg-box" x="4" y="62" width="152" height="38" rx="8" />
+              <text class="dg-t" x="16" y="80">증권 — 보유종목</text>
+              <text class="dg-s" x="16" y="94">holdings · prices</text>
+              <path class="dg-a" d="M160 31 H228 V50" />
+              <path class="dg-a" d="M160 81 H228 V62" />
+              <rect class="dg-box" x="232" y="36" width="146" height="40" rx="8" />
+              <text class="dg-t" x="244" y="54">합산 · 룰 판정</text>
+              <text class="dg-s" x="244" y="69">비율 → 임계값 비교</text>
+              <path class="dg-a" d="M382 56 H440" />
+              <rect class="dg-box" x="444" y="26" width="172" height="60" rx="8" />
+              <text class="dg-t" x="456" y="46">오늘 확인할 것</text>
+              <text class="dg-s" x="456" y="62">FDS 경보 · 규제 알림</text>
+              <text class="dg-s" x="456" y="76">심각도순</text>
             </svg>
           </div>
           <p data-ko="파편화된 은행(자산·보안)과 증권(투자) 데이터를 <b>한 화면에 합산</b>해 보여준다. 여기서 중요한 건 요약이 아니라 <b>경고가 실제 계산 결과라는 점</b>이다 — 상단 카드의 규제 경고는 하드코딩 문구가 아니라 포트폴리오 구성 비율을 계산해 임계값과 비교한 결과다."
@@ -3718,30 +3922,18 @@
           <h4 class="fmodal-title" data-ko="여신 심사 근거 카드" data-en="Loan assessment evidence">여신 심사 근거 카드</h4>
           <div class="fdiag">
             <svg viewBox="0 0 600 140" role="img" aria-label="심사 시점 판정 로직을 쓰기와 읽기가 함께 쓰는 구조">
-              <style>
-                .an{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .at{font:600 11.5px var(--sans);fill:var(--ink)}
-                .as{font:10px var(--mono);fill:var(--muted)}
-                .aa{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#aah)}
-                .ak{font:600 10px var(--mono);fill:var(--accent)}
-              </style>
-              <defs>
-                <marker id="aah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="an" x="186" y="48" width="216" height="46" rx="8" />
-              <text class="at" x="200" y="68">심사 판정 로직 (한 벌)</text>
-              <text class="as" x="200" y="84">한도 사용률 · LTV · 규칙</text>
-              <path class="aa" d="M186 60 H120" />
-              <path class="aa" d="M402 60 H470" />
-              <text class="ak" x="128" y="52">쓰기</text>
-              <text class="ak" x="424" y="52">읽기</text>
-              <rect class="an" x="4" y="14" width="112" height="36" rx="8" />
-              <text class="at" x="16" y="36">심사 실행</text>
-              <rect class="an" x="474" y="14" width="122" height="36" rx="8" />
-              <text class="at" x="486" y="36">근거 보기 카드</text>
-              <text class="as" x="16" y="122">신규 API 도 신규 데이터도 만들지 않았다 — 같은 로직을 두 방향에서 쓴다</text>
+              <rect class="dg-box" x="186" y="48" width="216" height="46" rx="8" />
+              <text class="dg-t" x="200" y="68">심사 판정 로직 (한 벌)</text>
+              <text class="dg-s" x="200" y="84">한도 사용률 · LTV · 규칙</text>
+              <path class="dg-a" d="M186 60 H120" />
+              <path class="dg-a" d="M402 60 H470" />
+              <text class="dg-k" x="128" y="52">쓰기</text>
+              <text class="dg-k" x="424" y="52">읽기</text>
+              <rect class="dg-box" x="4" y="14" width="112" height="36" rx="8" />
+              <text class="dg-t" x="16" y="36">심사 실행</text>
+              <rect class="dg-box" x="474" y="14" width="122" height="36" rx="8" />
+              <text class="dg-t" x="486" y="36">근거 보기 카드</text>
+              <text class="dg-s" x="16" y="122">신규 API 도 신규 데이터도 만들지 않았다 — 같은 로직을 두 방향에서 쓴다</text>
             </svg>
           </div>
           <p data-ko="&quot;근거 보기&quot;를 펼치면 한도(신청 원금 대비 여신 한도 사용률)·담보(LTV)·규칙 판정이 <b>전부 실제 계산값</b>으로 나온다. 특징은 <b>신규 데이터나 별도 API를 만들지 않고 심사 시점과 같은 판정 로직을 재사용</b>했다는 점이다 — 판정 로직이 두 벌이면 화면과 실제 심사가 갈라진다."
@@ -3762,37 +3954,25 @@
           <h4 class="fmodal-title" data-ko="여신 ↔ 이체 연결" data-en="Loan-to-transfer bridge">여신 ↔ 이체 연결</h4>
           <div class="fdiag">
             <svg viewBox="0 0 640 132" role="img" aria-label="서버 집계와 disbursable 판정을 거쳐 이체 폼이 사전채움되는 흐름">
-              <style>
-                .dn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .dt{font:600 11.5px var(--sans);fill:var(--ink)}
-                .ds{font:10px var(--mono);fill:var(--muted)}
-                .da{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#dah)}
-                .dg{font:10px var(--mono);fill:var(--gold-ink)}
-              </style>
-              <defs>
-                <marker id="dah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="dn" x="4" y="14" width="150" height="44" rx="8" />
-              <text class="dt" x="16" y="34">서버 실시간 집계</text>
-              <text class="ds" x="16" y="49">원금·집행액·잔여·건수</text>
-              <path class="da" d="M158 36 H204" />
-              <rect class="dn" x="208" y="14" width="140" height="44" rx="8" />
-              <text class="dt" x="220" y="34">disbursable?</text>
-              <text class="ds" x="220" y="49">승인 + 잔여 &gt; 0</text>
-              <path class="da" d="M352 36 H398" />
-              <rect class="dn" x="402" y="14" width="118" height="44" rx="8" />
-              <text class="dt" x="414" y="34">출금 준비</text>
-              <text class="ds" x="414" y="49">버튼 노출</text>
-              <path class="da" d="M524 36 H566" />
-              <rect class="dn" x="524" y="70" width="112" height="40" rx="8" />
-              <text class="dt" x="536" y="88">이체 폼</text>
-              <text class="ds" x="536" y="103">금액 사전채움</text>
-              <path class="da" d="M570 58 V68" />
-              <text class="dg" x="16" y="84">판정은 서버가, 화면은 결과만 — 프론트에서 복제하지 않는다</text>
-              <text class="ds" x="16" y="104">loanId 는 숨은 연결고리로 함께 실려, 제출 시 서버가 잔여 한도를 다시 검증한다</text>
-              <text class="dg" x="16" y="122">출금·받는 계좌는 사전채움하지 않는다 — 사람이 직접 확인하고 입력한다</text>
+              <rect class="dg-box" x="4" y="14" width="150" height="44" rx="8" />
+              <text class="dg-t" x="16" y="34">서버 실시간 집계</text>
+              <text class="dg-s" x="16" y="49">원금·집행액·잔여·건수</text>
+              <path class="dg-a" d="M158 36 H204" />
+              <rect class="dg-box" x="208" y="14" width="140" height="44" rx="8" />
+              <text class="dg-t" x="220" y="34">disbursable?</text>
+              <text class="dg-s" x="220" y="49">승인 + 잔여 &gt; 0</text>
+              <path class="dg-a" d="M352 36 H398" />
+              <rect class="dg-box" x="402" y="14" width="118" height="44" rx="8" />
+              <text class="dg-t" x="414" y="34">출금 준비</text>
+              <text class="dg-s" x="414" y="49">버튼 노출</text>
+              <path class="dg-a" d="M524 36 H566" />
+              <rect class="dg-box" x="524" y="70" width="112" height="40" rx="8" />
+              <text class="dg-t" x="536" y="88">이체 폼</text>
+              <text class="dg-s" x="536" y="103">금액 사전채움</text>
+              <path class="dg-a" d="M570 58 V68" />
+              <text class="dg-g" x="16" y="84">판정은 서버가, 화면은 결과만 — 프론트에서 복제하지 않는다</text>
+              <text class="dg-s" x="16" y="104">loanId 는 숨은 연결고리로 함께 실려, 제출 시 서버가 잔여 한도를 다시 검증한다</text>
+              <text class="dg-g" x="16" y="122">출금·받는 계좌는 사전채움하지 않는다 — 사람이 직접 확인하고 입력한다</text>
             </svg>
           </div>
           <p data-ko="승인된 여신에서 실제 돈이 나가는 자리를 이은 다리다. 원금·이미 집행된 금액·잔여 한도·이체 건수를 <b>서버가 실시간 집계</b>하고, <span class=&quot;mono&quot;>disbursable === true</span>일 때만 버튼이 나타난다. 이 판정을 <b>프론트에서 복제하지 않고 서버 값을 그대로 신뢰</b>하는 것이 원칙이다."
@@ -3813,31 +3993,19 @@
           <h4 class="fmodal-title" data-ko="기업 이체 결재 — 직무 분리" data-en="Corporate approval — separation of duties">기업 이체 결재 — 직무 분리</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 130" role="img" aria-label="신청자에게는 취소만, 결재는 다른 사람이 하는 구조">
-              <style>
-                .pn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .pt{font:600 11.5px var(--sans);fill:var(--ink)}
-                .ps{font:10px var(--mono);fill:var(--muted)}
-                .pa{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#pah)}
-                .pbad{font:600 10px var(--mono);fill:#c0392b}
-              </style>
-              <defs>
-                <marker id="pah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="pn" x="4" y="16" width="164" height="48" rx="8" />
-              <text class="pt" x="16" y="36">신청자 (demo-employee)</text>
-              <text class="pbad" x="16" y="53">취소만 · 승인 버튼 없음</text>
-              <path class="pa" d="M172 40 H228" />
-              <rect class="pn" x="232" y="16" width="130" height="48" rx="8" />
-              <text class="pt" x="244" y="36">결재 대기</text>
-              <text class="ps" x="244" y="53">PENDING</text>
-              <path class="pa" d="M366 40 H422" />
-              <rect class="pn" x="426" y="16" width="190" height="48" rx="8" />
-              <text class="pt" x="438" y="36">MANAGER 결재함</text>
-              <text class="ps" x="438" y="53">요청자의 1일 한도 사용액 표시</text>
-              <text class="ps" x="16" y="92">기업(CORPORATE) 고객은 요청자와 결재자가 반드시 달라야 한다 — ApprovalPolicy</text>
-              <text class="ps" x="16" y="112">결재자가 승인 전에 한도 여유를 바로 확인할 수 있게 같은 행에 함께 보여준다</text>
+              <rect class="dg-box" x="4" y="16" width="164" height="48" rx="8" />
+              <text class="dg-t" x="16" y="36">신청자 (demo-employee)</text>
+              <text class="dg-bad" x="16" y="53">취소만 · 승인 버튼 없음</text>
+              <path class="dg-a" d="M172 40 H228" />
+              <rect class="dg-box" x="232" y="16" width="130" height="48" rx="8" />
+              <text class="dg-t" x="244" y="36">결재 대기</text>
+              <text class="dg-s" x="244" y="53">PENDING</text>
+              <path class="dg-a" d="M366 40 H422" />
+              <rect class="dg-box" x="426" y="16" width="190" height="48" rx="8" />
+              <text class="dg-t" x="438" y="36">MANAGER 결재함</text>
+              <text class="dg-s" x="438" y="53">요청자의 1일 한도 사용액 표시</text>
+              <text class="dg-s" x="16" y="92">기업(CORPORATE) 고객은 요청자와 결재자가 반드시 달라야 한다 — ApprovalPolicy</text>
+              <text class="dg-s" x="16" y="112">결재자가 승인 전에 한도 여유를 바로 확인할 수 있게 같은 행에 함께 보여준다</text>
             </svg>
           </div>
           <p data-ko="제출 즉시 &quot;결재 대기&quot;로 올라가는데, <b>신청자 본인에게는 취소 버튼만 있고 최종 승인 버튼이 없다.</b> 기업 고객은 요청자와 결재자가 반드시 달라야 하는 직무 분리 규칙(<span class=&quot;mono&quot;>ApprovalPolicy</span>) 때문이다. 결재함에서는 각 행에 <b>요청자의 오늘(KST) 확정분 기준 1일 한도 사용액</b>을 함께 보여줘, 결재자가 승인 전에 한도 여유를 바로 확인한다."
@@ -3858,34 +4026,21 @@
           <h4 class="fmodal-title" data-ko="FDS 고위험 → 2FA 승격" data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 136" role="img" aria-label="결재 승인을 통과해도 FDS가 재평가해 2FA를 요구하는 이중 방어">
-              <style>
-                .xn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .xt{font:600 11.5px var(--sans);fill:var(--ink)}
-                .xs{font:10px var(--mono);fill:var(--muted)}
-                .xa{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#xah)}
-                .xk{font:600 10px var(--mono);fill:var(--accent)}
-                .xbad{font:600 10.5px var(--mono);fill:#c0392b}
-              </style>
-              <defs>
-                <marker id="xah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="xn" x="4" y="18" width="166" height="48" rx="8" />
-              <text class="xt" x="16" y="38">① 결재 승인 — 사람</text>
-              <text class="xs" x="16" y="55">규칙: 한도 · 직무분리</text>
-              <path class="xa" d="M174 42 H226" />
-              <text class="xk" x="180" y="34">통과</text>
-              <rect class="xn" x="230" y="18" width="166" height="48" rx="8" />
-              <text class="xt" x="242" y="38">② FDS 재평가 — 모델</text>
-              <text class="xs" x="242" y="55">IsolationForest + 개인 기준선</text>
-              <path class="xa" d="M400 42 H452" />
-              <text class="xbad" x="404" y="34">고위험</text>
-              <rect class="xn" x="456" y="18" width="160" height="48" rx="8" />
-              <text class="xt" x="468" y="38">TOTP 2FA 필요</text>
-              <text class="xs" x="468" y="55">6자리 코드 입력 전까지 보류</text>
-              <text class="xs" x="16" y="98">결재가 끝나도 자동으로 완료되지 않는다 — 규칙(한도) → 모델(FDS) 두 축이 직렬이다</text>
-              <text class="xs" x="16" y="118">개인 기준선은 사용자별 30일 평균 이체액을 Redis 에 캐시해 쓴다 (전역 임계값이 성립하지 않는다)</text>
+              <rect class="dg-box" x="4" y="18" width="166" height="48" rx="8" />
+              <text class="dg-t" x="16" y="38">① 결재 승인 — 사람</text>
+              <text class="dg-s" x="16" y="55">규칙: 한도 · 직무분리</text>
+              <path class="dg-a" d="M174 42 H226" />
+              <text class="dg-k" x="180" y="34">통과</text>
+              <rect class="dg-box" x="230" y="18" width="166" height="48" rx="8" />
+              <text class="dg-t" x="242" y="38">② FDS 재평가 — 모델</text>
+              <text class="dg-s" x="242" y="55">IsolationForest + 개인 기준선</text>
+              <path class="dg-a" d="M400 42 H452" />
+              <text class="dg-bad" x="404" y="34">고위험</text>
+              <rect class="dg-box" x="456" y="18" width="160" height="48" rx="8" />
+              <text class="dg-t" x="468" y="38">TOTP 2FA 필요</text>
+              <text class="dg-s" x="468" y="55">6자리 코드 입력 전까지 보류</text>
+              <text class="dg-s" x="16" y="98">결재가 끝나도 자동으로 완료되지 않는다 — 규칙(한도) → 모델(FDS) 두 축이 직렬이다</text>
+              <text class="dg-s" x="16" y="118">개인 기준선은 사용자별 30일 평균 이체액을 Redis 에 캐시해 쓴다 (전역 임계값이 성립하지 않는다)</text>
             </svg>
           </div>
           <p data-ko="[승인]을 누르면 <b>결재 축(사람)은 통과하지만</b>, 곧바로 FDS가 <b>별도로 이 거래를 재평가</b>한다. 고위험으로 분류되면 추가 인증(TOTP 2FA)이 필요한 상태로 전환된다 — <b>결재가 끝나도 자동으로 완료되지 않는</b>, 규칙(한도)과 모델(FDS)의 이중 방어가 실제로 작동하는 장면이다."
@@ -3905,31 +4060,19 @@
           <h4 class="fmodal-title" data-ko="스미싱 탐지" data-en="Smishing detection">스미싱 탐지</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 130" role="img" aria-label="문자 입력에서 위험점수와 위험 단어 근거를 내고 이력에 쌓는 흐름">
-              <style>
-                .sn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .st{font:600 11.5px var(--sans);fill:var(--ink)}
-                .ss{font:10px var(--mono);fill:var(--muted)}
-                .sa{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#sah)}
-                .sg{font:10px var(--mono);fill:var(--gold-ink)}
-              </style>
-              <defs>
-                <marker id="sah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="sn" x="4" y="14" width="128" height="42" rx="8" />
-              <text class="st" x="16" y="33">문자 붙여넣기</text>
-              <text class="ss" x="16" y="48">자유 텍스트</text>
-              <path class="sa" d="M136 35 H182" />
-              <rect class="sn" x="186" y="14" width="178" height="42" rx="8" />
-              <text class="st" x="198" y="33">TF-IDF + LogReg</text>
-              <text class="ss" x="198" y="48">문구 변형이 무한하다</text>
-              <path class="sa" d="M368 35 H414" />
-              <rect class="sn" x="418" y="14" width="198" height="42" rx="8" />
-              <text class="st" x="430" y="33">위험점수 + 위험 단어</text>
-              <text class="ss" x="430" y="48">판정만이 아니라 근거를</text>
-              <text class="sg" x="16" y="86">이력의 주체는 JWT 로 서버가 확정한다 — 요청 본문의 자유 문자열로</text>
-              <text class="sg" x="16" y="104">타인의 이력을 조회할 수 없다 (IDOR 방지)</text>
+              <rect class="dg-box" x="4" y="14" width="128" height="42" rx="8" />
+              <text class="dg-t" x="16" y="33">문자 붙여넣기</text>
+              <text class="dg-s" x="16" y="48">자유 텍스트</text>
+              <path class="dg-a" d="M136 35 H182" />
+              <rect class="dg-box" x="186" y="14" width="178" height="42" rx="8" />
+              <text class="dg-t" x="198" y="33">TF-IDF + LogReg</text>
+              <text class="dg-s" x="198" y="48">문구 변형이 무한하다</text>
+              <path class="dg-a" d="M368 35 H414" />
+              <rect class="dg-box" x="418" y="14" width="198" height="42" rx="8" />
+              <text class="dg-t" x="430" y="33">위험점수 + 위험 단어</text>
+              <text class="dg-s" x="430" y="48">판정만이 아니라 근거를</text>
+              <text class="dg-g" x="16" y="86">이력의 주체는 JWT 로 서버가 확정한다 — 요청 본문의 자유 문자열로</text>
+              <text class="dg-g" x="16" y="104">타인의 이력을 조회할 수 없다 (IDOR 방지)</text>
             </svg>
           </div>
           <p data-ko="가짜 은행 문자(계좌 잠금 유도 + 단축 URL 패턴)를 넣으면 <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> 모델이 <span class=&quot;mono&quot;>smishing</span>으로 판정하고 <b>위험점수와 위험 단어를 근거로 함께 제시</b>한다. 여기에 키워드 블랙리스트를 쓰지 않은 이유는 <b>문구 변형이 무한해 즉시 우회되기 때문</b>이다."
@@ -3948,35 +4091,23 @@
           <h4 class="fmodal-title" data-ko="AI 비서 — 정직한 실패" data-en="The assistant fails honestly">AI 비서 — 정직한 실패</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 150" role="img" aria-label="매칭 툴이 없으면 범위 밖이라 답하고, 호출에 실패하면 배너로 알리는 두 경로">
-              <style>
-                .hn{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
-                .ht{font:600 11.5px var(--sans);fill:var(--ink)}
-                .hs{font:10px var(--mono);fill:var(--muted)}
-                .ha{stroke:var(--accent);stroke-width:1.4;fill:none;marker-end:url(#hah)}
-                .hk{font:600 10px var(--mono);fill:var(--accent)}
-              </style>
-              <defs>
-                <marker id="hah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0 10 5 0 10z" fill="var(--accent)" />
-                </marker>
-              </defs>
-              <rect class="hn" x="4" y="50" width="120" height="42" rx="8" />
-              <text class="ht" x="16" y="69">질의</text>
-              <text class="hs" x="16" y="84">자연어</text>
-              <path class="ha" d="M128 71 H174" />
-              <rect class="hn" x="178" y="50" width="130" height="42" rx="8" />
-              <text class="ht" x="190" y="69">툴 매칭</text>
-              <text class="hs" x="190" y="84">키워드 점수</text>
-              <path class="ha" d="M312 62 H366 V40" />
-              <text class="hk" x="316" y="56">없음</text>
-              <path class="ha" d="M312 80 H366 V102" />
-              <text class="hk" x="316" y="96">있음·실패</text>
-              <rect class="hn" x="370" y="8" width="246" height="42" rx="8" />
-              <text class="ht" x="382" y="27">&quot;제가 다룰 수 있는 범위 밖&quot;</text>
-              <text class="hs" x="382" y="42">지어내지 않는다 · 근거 보기로 시도 공개</text>
-              <rect class="hn" x="370" y="94" width="246" height="42" rx="8" />
-              <text class="ht" x="382" y="113">Fail-soft 배너</text>
-              <text class="hs" x="382" y="128">결과를 못 받았다는 사실을 그대로 알린다</text>
+              <rect class="dg-box" x="4" y="50" width="120" height="42" rx="8" />
+              <text class="dg-t" x="16" y="69">질의</text>
+              <text class="dg-s" x="16" y="84">자연어</text>
+              <path class="dg-a" d="M128 71 H174" />
+              <rect class="dg-box" x="178" y="50" width="130" height="42" rx="8" />
+              <text class="dg-t" x="190" y="69">툴 매칭</text>
+              <text class="dg-s" x="190" y="84">키워드 점수</text>
+              <path class="dg-a" d="M312 62 H366 V40" />
+              <text class="dg-k" x="316" y="56">없음</text>
+              <path class="dg-a" d="M312 80 H366 V102" />
+              <text class="dg-k" x="316" y="96">있음·실패</text>
+              <rect class="dg-box" x="370" y="8" width="246" height="42" rx="8" />
+              <text class="dg-t" x="382" y="27">&quot;제가 다룰 수 있는 범위 밖&quot;</text>
+              <text class="dg-s" x="382" y="42">지어내지 않는다 · 근거 보기로 시도 공개</text>
+              <rect class="dg-box" x="370" y="94" width="246" height="42" rx="8" />
+              <text class="dg-t" x="382" y="113">Fail-soft 배너</text>
+              <text class="dg-s" x="382" y="128">결과를 못 받았다는 사실을 그대로 알린다</text>
             </svg>
           </div>
           <p data-ko="<span class=&quot;mono&quot;>/chat</span>은 거래·투자 내역을 규칙 기반으로 읽어 답하는 어시스턴트다(LLM이 아니라 키워드 매칭 + 템플릿 조립). <b>매칭되는 툴이 없는 질문에는 지어내지 않고</b> &quot;제가 다룰 수 있는 범위 밖&quot;이라고 답하며, &quot;근거 보기&quot;로 어떤 처리를 시도했는지 투명하게 노출한다."
@@ -3992,6 +4123,154 @@
           <figure class="fmodal-fig">
             <img data-src="assets/finallq/13_ai_chat_fail_soft.jpg" alt="fail-soft banner">
             <figcaption data-ko="② Fail-soft 배너 — 빠진 기능을 숨기지 않는다" data-en="2 — the fail-soft banner: the gap is stated, not hidden">② Fail-soft 배너 — 빠진 기능을 숨기지 않는다</figcaption>
+          </figure>
+        </section>
+
+        <!-- ════════ INSUQ ════════ -->
+        <section id="f-insuq-citation" hidden>
+          <div class="fmodal-kicker mono">INSUQ · 근거 인용</div>
+          <h4 class="fmodal-title" data-ko="조항 원문과 함께 답한다" data-en="Answering with the clause itself">조항 원문과 함께 답한다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 150" role="img" aria-label="검색 결과를 policy_part와 article_no 두 키로 대조해 인용을 검증하는 흐름">
+              <rect class="dg-box" x="4" y="14" width="126" height="42" rx="8" />
+              <text class="dg-t" x="16" y="33">검색 결과</text>
+              <text class="dg-s" x="16" y="48">자식(항) 레벨</text>
+              <path class="dg-a" d="M134 35 H180" />
+              <rect class="dg-box" x="184" y="14" width="206" height="42" rx="8" />
+              <text class="dg-t" x="196" y="33">인용 대조</text>
+              <text class="dg-s" x="196" y="48">(policy_part, article_no)</text>
+              <path class="dg-a" d="M394 26 H448" />
+              <text class="dg-ok" x="398" y="20">일치</text>
+              <path class="dg-a" d="M394 46 H448" />
+              <text class="dg-bad" x="398" y="62">불일치</text>
+              <rect class="dg-box" x="452" y="4" width="184" height="30" rx="8" />
+              <text class="dg-t" x="464" y="24">답변 + 조항 원문</text>
+              <rect class="dg-box" x="452" y="42" width="184" height="30" rx="8" />
+              <text class="dg-t" x="464" y="62">유보로 강등</text>
+              <text class="dg-s" x="16" y="100">파트를 빼고 조 번호만 맞추면 — 모델이 다른 파트의 같은 조 번호를 지어내도</text>
+              <text class="dg-s" x="16" y="118">환각 탐지를 그대로 통과한다. 한 상품 안에 제1조가 3곳 존재한다(실측).</text>
+              <text class="dg-s" x="16" y="140" fill="var(--gold-ink)">그래서 대조 키에서 policy_part 를 뺄 수 없다</text>
+            </svg>
+          </div>
+          <p data-ko="설계사가 고객 앞에서 <b>조항을 직접 제시</b>할 수 있어야 하므로, 답변에는 근거 조항이 원문 그대로 따라붙는다. 인용이 진짜인지는 <b><span class=&quot;mono&quot;>(policy_part, article_no)</span> 두 키로 대조</b>해 확인하고, 어긋나면 판정을 유보로 강등한다."
+            data-en="An agent has to be able to <b>show the clause to the customer</b>, so every answer carries the source text verbatim. Whether the citation is real is checked <b>against two keys — <span class=&quot;mono&quot;>(policy_part, article_no)</span></b> — and a mismatch demotes the verdict to withheld.">설계사가
+            고객 앞에서 <b>조항을 직접 제시</b>할 수 있어야 하므로, 답변에는 근거 조항이 원문 그대로 따라붙는다. 인용이 진짜인지는 <b><span class="mono">(policy_part, article_no)</span> 두 키로 대조</b>해 확인하고, 어긋나면 판정을 유보로 강등한다.</p>
+          <p data-ko="<b>왜 파트가 키에 들어가는가</b> — 한 약관 안에서 <span class=&quot;mono&quot;>제1조</span>가 보통약관·특약 등 여러 파트에 동시에 존재한다(한 상품에서 3곳 실측). 조 번호만 대조하면 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다. A2A 경계에서도 이 보증이 증발하지 않도록 <b>인용 문자열 형식 자체를 계약에 정규식으로 못박았다</b>."
+            data-en="<b>Why the part belongs in the key</b>: within one policy, <span class=&quot;mono&quot;>Article 1</span> exists in several parts at once — three in a single product, measured. Match the number alone and <b>a fabricated article from another part passes the hallucination check</b>. So that this guarantee survives the A2A boundary, <b>the citation string format itself is pinned in the contract as a regex</b>.">
+            <b>왜 파트가 키에 들어가는가</b> — 한 약관 안에서 <span class="mono">제1조</span>가 보통약관·특약 등 여러 파트에 동시에 존재한다(한 상품에서 3곳 실측). 조 번호만 대조하면 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다. A2A 경계에서도 이 보증이 증발하지 않도록 <b>인용 문자열 형식 자체를 계약에 정규식으로 못박았다</b>.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/insuq/grounded-citation.gif" alt="grounded citation demo">
+            <figcaption data-ko="근거 조항과 함께 답하는 실제 화면" data-en="The answer arriving with its cited clause">근거 조항과 함께 답하는 실제 화면</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-insuq-refusal" hidden>
+          <div class="fmodal-kicker mono">INSUQ · 거부 게이트</div>
+          <h4 class="fmodal-title" data-ko="모르면 거부한다" data-en="It refuses when it cannot cite">모르면 거부한다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 156" role="img" aria-label="근거를 못 찾으면 약관에서 확인 불가로 거부하고, 거부와 과잉거부를 쌍으로 재는 구조">
+              <rect class="dg-box" x="4" y="20" width="130" height="42" rx="8" />
+              <text class="dg-t" x="16" y="39">근거 검색</text>
+              <text class="dg-s" x="16" y="54">약관 코퍼스</text>
+              <path class="dg-a" d="M138 30 H196" />
+              <text class="dg-k" x="142" y="24">있음</text>
+              <path class="dg-a" d="M138 52 H196" />
+              <text class="dg-k" x="142" y="68">없음</text>
+              <rect class="dg-box" x="200" y="8" width="196" height="32" rx="8" />
+              <text class="dg-t" x="212" y="28">근거와 함께 답한다</text>
+              <rect class="dg-box" x="200" y="48" width="196" height="32" rx="8" />
+              <text class="dg-t" x="212" y="68">&quot;약관에서 확인 불가&quot;</text>
+              <rect class="dg-box" x="420" y="8" width="196" height="72" rx="8" />
+              <text class="dg-t" x="432" y="28">두 눈으로 잰다</text>
+              <text class="dg-s" x="432" y="46">거부 정확도 1.0000</text>
+              <text class="dg-s" x="432" y="62">과잉거부 0.0000</text>
+              <text class="dg-g" x="16" y="104">거부 정확도만 보면 «아무것도 안 답하는 것»이 최적이 된다 —</text>
+              <text class="dg-g" x="16" y="122">거부를 강화하면 이 숫자는 오르는데, 답할 수 있는 문항까지 거부해도 움직이지 않는다.</text>
+              <text class="dg-s" x="16" y="146">그래서 반대쪽 눈(과잉거부)이 없으면 이 지표는 읽을 수 없다.</text>
+            </svg>
+          </div>
+          <p data-ko="이 제품의 절대 원칙은 <b>«근거를 못 찾으면 「약관에서 확인 불가」로 거부한다»</b>이다. 기존 보험사 챗봇이 단정을 피하려 면책 문구로만 대응하는 것과 달리, InsuQ는 <b>근거가 있을 때는 조항과 함께 답하고 없을 때만 거부</b>한다."
+            data-en="The product's hard rule is <b>&quot;if it cannot find the basis, it declines — not found in the policy&quot;</b>. Where other insurance chatbots dodge with blanket disclaimers, InsuQ <b>answers with the clause when there is one and declines only when there is not</b>.">이
+            제품의 절대 원칙은 <b>«근거를 못 찾으면 「약관에서 확인 불가」로 거부한다»</b>이다. 기존 보험사 챗봇이 단정을 피하려 면책 문구로만 대응하는 것과 달리, InsuQ는 <b>근거가 있을 때는 조항과 함께 답하고 없을 때만 거부</b>한다.</p>
+          <p data-ko="<b>측정에서 가장 중요하게 배운 게 여기 있다.</b> 거부 정확도만 보면 세 모델이 전부 1.0000으로 합격이다 — 거부를 강화하면 이 숫자는 오르는데, <b>답할 수 있는 문항까지 거부해도 움직이지 않기 때문</b>이다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀었다. 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이고, 그래서 기각했다."
+            data-en="<b>This is where measurement taught the most.</b> On refusal accuracy alone, three different models all score a passing 1.0000 — tightening refusal raises it, and <b>refusing answerable questions never lowers it</b>. Swapping in a cheaper generator left retrieval identical to the decimal while <b>over-refusal jumped from 0 to 0.1852</b>. It had not failed to refuse; it had <b>refused what it could answer</b> — so it was rejected.">
+            <b>측정에서 가장 중요하게 배운 게 여기 있다.</b> 거부 정확도만 보면 세 모델이 전부 1.0000으로 합격이다 — 거부를 강화하면 이 숫자는 오르는데, <b>답할 수 있는 문항까지 거부해도 움직이지 않기 때문</b>이다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀었다. 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이고, 그래서 기각했다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/insuq/refusal-gate.gif" alt="refusal gate demo">
+            <figcaption data-ko="근거가 없을 때 거부하는 실제 화면" data-en="Declining when there is no basis to cite">근거가 없을 때 거부하는 실제 화면</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-insuq-clarify" hidden>
+          <div class="fmodal-kicker mono">INSUQ · 되묻기</div>
+          <h4 class="fmodal-title" data-ko="정보가 빠지면 되묻는다" data-en="It asks back when slots are missing">정보가 빠지면 되묻는다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 150" role="img" aria-label="슬롯이 미충족이면 LLM 없이 확인 질문을 만들고, 충족되면 판정으로 넘기는 흐름">
+              <rect class="dg-box" x="4" y="18" width="182" height="46" rx="8" />
+              <text class="dg-t" x="16" y="38">슬롯 검사</text>
+              <text class="dg-s" x="16" y="54">상품 · 특약 · 가입시기</text>
+              <path class="dg-a" d="M190 30 H252" />
+              <text class="dg-k" x="194" y="24">미충족</text>
+              <path class="dg-a" d="M190 54 H252" />
+              <text class="dg-k" x="194" y="70">충족</text>
+              <rect class="dg-box" x="256" y="8" width="200" height="32" rx="8" />
+              <text class="dg-t" x="268" y="28">확인 질문 생성</text>
+              <rect class="dg-box" x="256" y="50" width="200" height="32" rx="8" />
+              <text class="dg-t" x="268" y="70">판정 파이프라인으로</text>
+              <rect class="dg-box" x="472" y="8" width="144" height="32" rx="8" />
+              <text class="dg-t" x="484" y="28">LLM 0회</text>
+              <path class="dg-a" d="M460 24 H470" />
+              <text class="dg-g" x="16" y="102">슬롯에서 문구를 만드는 것은 순수 조회다 — 되묻는 데 모델이 필요 없다</text>
+              <text class="dg-s" x="16" y="122">실제 질문은 상품·특약·가입시기가 생략된 채 들어온다:</text>
+              <text class="dg-s" x="16" y="140">&quot;허리 아파서 도수치료 받는데 실비 되나요 한도 있나요&quot;</text>
+            </svg>
+          </div>
+          <p data-ko="골든셋을 상상으로 쓰지 않고 <b>지식iN·커뮤니티·금융감독원 FAQ의 실제 질문을 가져왔다.</b> 그러자 구어체에 <b>상품·특약·가입시기가 생략된</b> 질문이 대부분이라는 게 드러났다 — «허리 아파서 도수치료 받는데 실비 되나요 한도 있나요» 같은 식이다. 이런 질문에 바로 답하면 <b>어느 약관 기준인지 모르는 채 답하는 것</b>이 된다."
+            data-en="The golden set was not invented — <b>the questions came from real Q&amp;A boards, communities and the regulator's FAQ.</b> That exposed how most of them are colloquial and <b>omit the product, the rider and the enrolment date</b>. Answering such a question directly means <b>answering without knowing which policy applies</b>.">골든셋을
+            상상으로 쓰지 않고 <b>지식iN·커뮤니티·금융감독원 FAQ의 실제 질문을 가져왔다.</b> 그러자 구어체에 <b>상품·특약·가입시기가 생략된</b> 질문이 대부분이라는 게 드러났다 — «허리 아파서 도수치료 받는데 실비 되나요 한도 있나요» 같은 식이다. 이런 질문에 바로 답하면 <b>어느 약관 기준인지 모르는 채 답하는 것</b>이 된다.</p>
+          <p data-ko="그래서 슬롯이 미충족이면 답 대신 확인 질문을 낸다. 이때 <b>LLM을 한 번도 부르지 않는다</b> — 슬롯에서 문구를 만드는 것은 순수 조회이기 때문이다. 되묻기 정확도는 <b>0.6667 → 1.0000</b>(27문항)."
+            data-en="So when a slot is unfilled it returns a question instead of an answer — and <b>calls the LLM zero times</b>, because turning slots into wording is a pure lookup. Clarification accuracy went <b>0.6667 → 1.0000</b> across 27 questions.">그래서
+            슬롯이 미충족이면 답 대신 확인 질문을 낸다. 이때 <b>LLM을 한 번도 부르지 않는다</b> — 슬롯에서 문구를 만드는 것은 순수 조회이기 때문이다. 되묻기 정확도는 <b>0.6667 → 1.0000</b>(27문항).</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/insuq/ambiguous-domain-merge.gif" alt="clarification demo">
+            <figcaption data-ko="모호한 질문에 되묻는 실제 화면" data-en="Asking back on an ambiguous question">모호한 질문에 되묻는 실제 화면</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-insuq-claim" hidden>
+          <div class="fmodal-kicker mono">INSUQ · claim-insurance</div>
+          <h4 class="fmodal-title" data-ko="사람 앞에서 멈췄다 재개된다" data-en="It stops for a human, then resumes">사람 앞에서 멈췄다 재개된다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 156" role="img" aria-label="보험금 산정 후 input-required로 멈췄다가 심사역 전자서명 승인으로 completed 전이하는 상태머신">
+              <rect class="dg-box" x="4" y="20" width="136" height="44" rx="8" />
+              <text class="dg-t" x="16" y="40">보험금 산정</text>
+              <text class="dg-s" x="16" y="55">결정론적 산술</text>
+              <path class="dg-a" d="M144 42 H186" />
+              <rect class="dg-hold" x="190" y="20" width="150" height="44" rx="8" />
+              <text class="dg-t" x="202" y="40">input-required</text>
+              <text class="dg-s" x="202" y="55">여기서 멈춘다</text>
+              <path class="dg-a" d="M344 42 H386" />
+              <rect class="dg-box" x="390" y="20" width="150" height="44" rx="8" />
+              <text class="dg-t" x="402" y="40">심사역 전자서명</text>
+              <text class="dg-s" x="402" y="55">별도 계정 로그인</text>
+              <path class="dg-a" d="M544 42 H586" />
+              <rect class="dg-box" x="556" y="78" width="80" height="34" rx="8" />
+              <text class="dg-t" x="568" y="99">completed</text>
+              <path class="dg-a" d="M596 66 V76" />
+              <text class="dg-g" x="16" y="100">계약 13종 중 유일하게 input-required 를 쓰는 스킬이다</text>
+              <text class="dg-g" x="16" y="120">requires_human_approval: true 는 계산 경로 없이 리터럴로만 존재한다 — 우회할 수 없다</text>
+              <text class="dg-s" x="16" y="142">전 생애주기를 mock 없이 실제 로그인·API 호출로 검증했고, 산정값은 손계산과 전부 일치했다</text>
+            </svg>
+          </div>
+          <p data-ko="A2A 계약 <b>13종 중 유일하게 <span class=&quot;mono&quot;>input-required</span> 상태를 쓰는 스킬</b>이다. 한 번의 요청/응답으로 끝나지 않고 <b>작업이 사람 앞에서 멈췄다가 재개된다</b> — 보험금을 산정해 Task를 발급하고, 심사역이 로그인해 전자서명으로 승인하면 <span class=&quot;mono&quot;>completed</span>로 전이하고, 호출자가 재폴링해 결과를 수령한다."
+            data-en="Of the thirteen contracted skills, <b>this is the only one that uses the <span class=&quot;mono&quot;>input-required</span> state</b>. It does not finish in one request/response: <b>the task halts in front of a person and resumes</b> — the claim is computed and a task issued, an assessor signs off electronically, the task transitions to <span class=&quot;mono&quot;>completed</span>, and the caller polls again to collect it.">A2A
+            계약 <b>13종 중 유일하게 <span class="mono">input-required</span> 상태를 쓰는 스킬</b>이다. 한 번의 요청/응답으로 끝나지 않고 <b>작업이 사람 앞에서 멈췄다가 재개된다</b> — 보험금을 산정해 Task를 발급하고, 심사역이 로그인해 전자서명으로 승인하면 <span class="mono">completed</span>로 전이하고, 호출자가 재폴링해 결과를 수령한다.</p>
+          <p data-ko="<b>전 생애주기를 mock 없이 실제 로그인·API 호출로 검증</b>했고 산정값은 손계산과 전부 일치했다. <span class=&quot;mono&quot;>requires_human_approval: true</span>는 <b>계산 경로 없이 리터럴로만 존재해 우회할 수 없다</b> — 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼진다."
+            data-en="<b>The whole lifecycle was verified with real logins and real API calls, no mocks</b>, and every computed amount matched a hand calculation. <span class=&quot;mono&quot;>requires_human_approval: true</span> <b>exists as a literal with no code path that could compute it otherwise</b> — a value that can be switched on will eventually be switched off.">
+            <b>전 생애주기를 mock 없이 실제 로그인·API 호출로 검증</b>했고 산정값은 손계산과 전부 일치했다. <span class="mono">requires_human_approval: true</span>는 <b>계산 경로 없이 리터럴로만 존재해 우회할 수 없다</b> — 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼진다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/insuq/claim-approval.gif" alt="claim approval with electronic signature">
+            <figcaption data-ko="심사역 승인함 — 전자서명으로 completed 전이" data-en="The assessor's queue — an electronic signature moves it to completed">심사역 승인함 — 전자서명으로 completed 전이</figcaption>
           </figure>
         </section>
 
