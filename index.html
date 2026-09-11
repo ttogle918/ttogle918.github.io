@@ -1293,6 +1293,305 @@
       margin-top: 20px
     }
 
+    /* ─── 하위 프로젝트 카드 (QMesh 안의 FinAllQ·InsuQ·MaintQ) ───
+       기존 .pcard 아코디언과 같은 토글 패턴. 톤만 한 단계 낮춘다. */
+    .subcards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px
+    }
+
+    .subcard {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent-soft);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .25s
+    }
+
+    .subcard:hover,
+    .subcard.open {
+      border-left-color: var(--accent)
+    }
+
+    .sub-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .sub-top:hover {
+      background: color-mix(in srgb, var(--accent) 4%, transparent)
+    }
+
+    .sub-headings {
+      flex: 1;
+      min-width: 0
+    }
+
+    .sub-code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: .05em;
+      margin-bottom: 3px
+    }
+
+    .sub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 5px
+    }
+
+    .sub-meta {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted)
+    }
+
+    .sub-caret {
+      flex: none;
+      color: var(--faint);
+      font-size: 10px;
+      margin-top: 4px;
+      transition: transform .3s
+    }
+
+    .subcard.open .sub-caret {
+      transform: rotate(90deg);
+      color: var(--accent)
+    }
+
+    .sub-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .subcard.open .sub-body {
+      max-height: 4000px
+    }
+
+    .sub-inner {
+      padding: 2px 16px 18px;
+      border-top: 1px solid var(--line-2)
+    }
+
+    /* 하위 카드를 품은 카드는 상한을 올린다 — 기본 1400px 이면 중첩이 잘린다.
+       이 파일은 이미 :has() 를 쓰고 있다(.pc-grid:has(.pc-figure.wide)). */
+    .pcard.open .pc-body:has(.subcard) {
+      max-height: 14000px
+    }
+
+    /* ─── 기능 목록 (누르면 모달) ─── */
+    .featlist {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 8px;
+      margin-top: 4px
+    }
+
+    .feat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      font: inherit;
+      font-size: 12.5px;
+      color: var(--text);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s, transform .2s
+    }
+
+    .feat:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px)
+    }
+
+    .feat:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .feat::after {
+      content: "\2922";
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint)
+    }
+
+    .feat:hover::after {
+      color: var(--accent)
+    }
+
+    /* ─── 기능 모달 ─── */
+    .fmodal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(10, 12, 20, .55);
+      backdrop-filter: blur(3px)
+    }
+
+    .fmodal[hidden] {
+      display: none
+    }
+
+    .fmodal-card {
+      position: relative;
+      width: min(820px, 100%);
+      max-height: min(88vh, 900px);
+      overflow-y: auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 22px 24px 24px
+    }
+
+    .fmodal-x {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+      transition: color .2s, border-color .2s
+    }
+
+    .fmodal-x:hover {
+      color: var(--accent);
+      border-color: var(--accent)
+    }
+
+    .fmodal-kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: .06em;
+      margin-bottom: 4px
+    }
+
+    .fmodal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 14px;
+      padding-right: 40px
+    }
+
+    .fmodal-body>section>p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text);
+      margin: 0 0 12px
+    }
+
+    /* 다이어그램 — 인라인 SVG. 색은 전부 CSS 변수를 쓴다(다크 대응). */
+    .fdiag {
+      background: var(--panel);
+      border: 1px solid var(--line-2);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+      overflow-x: auto
+    }
+
+    .fdiag svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-width: 420px
+    }
+
+    .fsteps {
+      counter-reset: fstep;
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none
+    }
+
+    .fsteps li {
+      counter-increment: fstep;
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 7px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text)
+    }
+
+    .fsteps li::before {
+      content: counter(fstep);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      display: grid;
+      place-items: center
+    }
+
+    .fmodal-fig {
+      margin: 14px 0 0
+    }
+
+    .fmodal-fig img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel)
+    }
+
+    .fmodal-fig figcaption {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 6px
+    }
+
+    @media (max-width:640px) {
+      .featlist {
+        grid-template-columns: 1fr
+      }
+
+      .fmodal {
+        padding: 12px
+      }
+
+      .fmodal-card {
+        padding: 18px 16px 20px
+      }
+    }
+
     .gobtn {
       display: inline-flex;
       align-items: center;
@@ -1556,11 +1855,19 @@
       header,
       .hero-bg,
       .pc-caret,
+      .sub-caret,
       .tl-caret,
       .pc-actions,
       .hero-links,
+      .fmodal,
       #pdfBtn {
         display: none !important
+      }
+
+      /* 기능 목록은 남긴다 — 인쇄본에서도 "어떤 기능이 있는지"는 정보다.
+         다만 누를 수 없으므로 ⤢ 표식만 지운다. */
+      .feat::after {
+        content: "" !important
       }
 
       /* 애니메이션/등장 효과 무력화 */
@@ -1575,7 +1882,10 @@
 
       /* 접힌 아코디언 전부 펼치기 */
       .pc-body,
-      .pcard.open .pc-body {
+      .pcard.open .pc-body,
+      .pcard.open .pc-body:has(.subcard),
+      .sub-body,
+      .subcard.open .sub-body {
         max-height: none !important;
         overflow: visible !important
       }
