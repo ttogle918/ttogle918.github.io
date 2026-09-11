@@ -3070,6 +3070,128 @@
                       </div>
                     </article>
 
+                    <!-- ── MaintQ ── -->
+                    <article class="subcard">
+                      <div class="sub-top">
+                        <div class="sub-headings">
+                          <div class="sub-code mono" data-ko="제조 설비 진단 · 부품 발주 에이전트"
+                            data-en="Plant maintenance &amp; procurement agent">제조 설비 진단 · 부품 발주 에이전트</div>
+                          <h4 class="sub-title">MaintQ</h4>
+                          <div class="sub-meta" data-ko="2026.07 ~ 진행 중 · 개인 1인 · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js"
+                            data-en="Since Jul 2026 · solo · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js">2026.07 ~ 진행 중 · 개인 1인 · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js</div>
+                        </div>
+                        <span class="sub-caret">&#9654;</span>
+                      </div>
+                      <div class="sub-body">
+                        <div class="sub-inner">
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span></div>
+                            <p data-ko="중소 제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다."
+                              data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b>, leans on a veteran's tacit knowledge for the cause, phones the storeroom for the part, and — if it is out of stock — calls a supplier for a quote and types the order into a spreadsheet. <b>Every step changes hands and medium (PDF → phone → Excel), and every change is a wait.</b> A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">중소
+                              제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다.</p>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 실제 화면이 열립니다"
+                                data-en="Features — click one for the captured screen">주요 기능 — 누르면 실제 화면이 열립니다</span></div>
+                            <div class="featlist">
+                              <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 — 추측하지 않는다"
+                                data-en="Unknown code — no guessing">미지 에러코드 — 추측하지 않는다</button>
+                              <button class="feat" data-modal="f-maintq-alt" data-ko="재고 0 → 호환 대체품"
+                                data-en="Out of stock → alternatives">재고 0 → 호환 대체품</button>
+                              <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류"
+                                data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
+                              <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정"
+                                data-en="Disposal pre-check">처분 사전판정</button>
+                              <button class="feat" data-modal="f-maintq-bundle" data-ko="처분 근거 번들"
+                                data-en="Evidence bundle">처분 근거 번들</button>
+                              <button class="feat" data-modal="f-maintq-deadline" data-ko="법정 기한 · 위험등급"
+                                data-en="Deadlines &amp; risk grade">법정 기한 · 위험등급</button>
+                              <button class="feat" data-modal="f-maintq-expenditure" data-ko="지출 성격 분류"
+                                data-en="Expenditure classification">지출 성격 분류</button>
+                            </div>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="집중한 것 — MCP 도구 설계"
+                                data-en="The focus — MCP tool design">집중한 것 — MCP 도구 설계</span></div>
+                            <ul>
+                              <li data-ko="<b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 — LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다."
+                                data-en="<b>Half of orchestration is the description.</b> Each of the <b>22 tools</b> (7 core + 14 extended + 2 A2A senders) states when to use it <em>and when not to</em> — an LLM's tool choice is only as good as the schema text it reads.">
+                                <b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 — LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다.
+                              </li>
+                              <li data-ko="<b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수 있게</b> 한다."
+                                data-en="<b>Failure comes back as a structured result.</b> Tools return <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span> instead of raising, so the agent can <b>branch</b> — out of stock into alternatives, unknown code into a service referral.">
+                                <b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class="mono">status: ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수 있게</b> 한다.
+                              </li>
+                              <li data-ko="<b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 — UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class=&quot;mono&quot;>requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다."
+                                data-en="<b>Reads and writes are separated.</b> Only <b>three tools write, and all three can only INSERT a draft</b> — there is no UPDATE permission at all, so approving, rejecting and signing happen exclusively through human-only APIs. And <b>identity (<span class=&quot;mono&quot;>requested_by</span>) is injected by the server, not passed as a tool parameter</b>, so the LLM has no path to forge it.">
+                                <b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 — UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class="mono">requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다.
+                              </li>
+                              <li data-ko="<b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수 없다. 평가 스크립트가 <span class=&quot;mono&quot;>/health</span>를 실측해 프로파일이 <span class=&quot;mono&quot;>core</span>가 아니면 <b>스스로 종료</b>한다."
+                                data-en="<b>Extended tools are off by default, and evaluation only counts on the 7 core tools.</b> Score with extras enabled and you cannot separate &quot;the fix worked&quot; from &quot;there were more tools&quot;. The eval script probes <span class=&quot;mono&quot;>/health</span> and <b>aborts itself</b> if the profile is not <span class=&quot;mono&quot;>core</span>.">
+                                <b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수 없다. 평가 스크립트가 <span class="mono">/health</span>를 실측해 프로파일이 <span class="mono">core</span>가 아니면 <b>스스로 종료</b>한다.
+                              </li>
+                              <li data-ko="<b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 — SQLite는 <span class=&quot;mono&quot;>foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기 가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다."
+                                data-en="<b>Permissions are enforced by the database, not a document.</b> The move from SQLite to PostgreSQL was about <b>authority, not speed</b> — SQLite ships with <span class=&quot;mono&quot;>foreign_keys</span> off, so both referential integrity and the write ban rested on a setting. The write guard is now a <b>permanent trigger plus a session GUC</b>, and read-only connections are physically pinned read-only at the transaction level.">
+                                <b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 — SQLite는 <span class="mono">foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기 가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다.
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="측정에서 신경 쓴 것"
+                                data-en="What measuring guards">측정에서 신경 쓴 것</span></div>
+                            <ul>
+                              <li data-ko="<b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을 열어 보니 <b>틀리는 방식이 정반대</b>였다 — 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정). 현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>"
+                                data-en="<b>A single number cancels two failures with opposite risk.</b> Two models scored 45.6% and 51.0% on part identification — &quot;no difference&quot; — until the breakdown showed they <b>fail in opposite ways</b>: one <b>confidently names the wrong part</b>, the other <b>names none</b>. On the floor the first causes a wrong order — cost and downtime — while the second just leaves you without an answer. <b>Fold them together and the more dangerous model looks better.</b>">
+                                <b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을 열어 보니 <b>틀리는 방식이 정반대</b>였다 — 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정). 현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>
+                              </li>
+                              <li data-ko="그래서 실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는 71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지 않는다</b> — <b>위험한 쪽이 줄었다는 것이 요점</b>이다."
+                                data-en="So failures are now tallied on two axes. In a controlled A/B — same day, same 20 questions, same model, <b>prompt only</b> changed, 120 sessions per arm — the total moved 71.1% → 88.9%, but <b>what actually improved is confident-wrong: 16.7% → 1.1%</b>. The no-answer rate went 12.2% → 10.0%, <b>intervals overlapping, so no claim is made</b>. <b>The point is that the dangerous side shrank.</b>">그래서
+                                실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는 71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지 않는다</b> — <b>위험한 쪽이 줄었다는 것이 요점</b>이다.
+                              </li>
+                              <li data-ko="<b>노이즈 바닥을 먼저 쟀다.</b> <span class=&quot;mono&quot;>p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이 40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는 회귀를 보고하게 된다.</b>"
+                                data-en="<b>The noise floor was measured first.</b> A question at <span class=&quot;mono&quot;>p≈0.5</span> still has a <b>40-point 95% CI after twenty runs</b>, and two ten-run batches under identical conditions differed by <b>12 points</b> on citation rate. In other words, <b>quoting a ten-run number reports regressions that do not exist.</b>">
+                                <b>노이즈 바닥을 먼저 쟀다.</b> <span class="mono">p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이 40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는 회귀를 보고하게 된다.</b>
+                              </li>
+                              <li data-ko="<b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> 같은 검사는 정규식이 어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 — 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성 앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다."
+                                data-en="<b>A test that asserts absence passes even when it is blind.</b> A check like <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> <b>passes silently</b> if the regex drifts or a path moves — two such checks were sitting in the suite. Absence checks now carry <b>a positive anchor proving the scanner still sees</b>, and nothing counts as passing until the code is deliberately broken and the check actually goes red.">
+                                <b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class="mono">"X" not in src</span> 같은 검사는 정규식이 어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 — 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성 앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다.
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="impact block">
+                            <div class="bh"><span class="star">★</span> <span data-ko="실측 (2026.09.11)"
+                                data-en="Measured (2026-09-11)">실측 (2026.09.11)</span></div>
+                            <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347) · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한 위반 403 차단 100%</b>는 목표를 달성했다."
+                              data-en="<b>510+</b> commits · design decisions <b>D1–D141</b> documented · a <b>1,559-check</b> regression suite (1,212 contract spikes + 347 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">커밋
+                              <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347) · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한 위반 403 차단 100%</b>는 목표를 달성했다.</p>
+                            <p data-ko="A2A는 <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> — 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class=&quot;mono&quot;>skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다."
+                              data-en="On A2A, <b>all six outbound skills are verified end to end</b>. <b>There is no inbound side by design</b>: the contract assigns MaintQ the client role (Agent Card <span class=&quot;mono&quot;>skills: []</span>) because maintenance is <b>where work begins</b>, not where it lands. <b>Not a to-do — a decision.</b> ⚠️ All data is <b>mock</b> (public manuals plus generated seed) and there are no real users, so this is never described as &quot;in production&quot;.">A2A는
+                              <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> — 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class="mono">skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다.</p>
+                            <div class="metricrow">
+                              <div class="metric">
+                                <div class="mv"><span data-count="22">0</span>종</div>
+                                <div class="ml" data-ko="MCP 도구" data-en="MCP tools">MCP 도구</div>
+                              </div>
+                              <div class="metric">
+                                <div class="mv"><span data-count="1559">0</span>건</div>
+                                <div class="ml" data-ko="회귀 검사" data-en="regression checks">회귀 검사</div>
+                              </div>
+                              <div class="metric">
+                                <div class="mv">D<span data-count="141">0</span></div>
+                                <div class="ml" data-ko="설계 결정 문서화" data-en="design decisions">설계 결정 문서화</div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </article>
+
                   </div>
                 </div>
                 <div class="impact block">
@@ -4271,6 +4393,258 @@
           <figure class="fmodal-fig">
             <img data-src="assets/insuq/claim-approval.gif" alt="claim approval with electronic signature">
             <figcaption data-ko="심사역 승인함 — 전자서명으로 completed 전이" data-en="The assessor's queue — an electronic signature moves it to completed">심사역 승인함 — 전자서명으로 completed 전이</figcaption>
+          </figure>
+        </section>
+
+        <!-- ════════ MAINTQ ════════ -->
+        <section id="f-maintq-unknown" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · S4 실패 처리</div>
+          <h4 class="fmodal-title" data-ko="미지 에러코드 — 추측하지 않는다" data-en="Unknown code — it does not guess">미지 에러코드 — 추측하지 않는다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 128" role="img" aria-label="카탈로그에 없는 에러코드는 유사 코드를 추측하지 않고 A/S 안내로 끝낸다">
+              <rect class="dg-box" x="4" y="16" width="164" height="44" rx="8" />
+              <text class="dg-t" x="16" y="36">lookup_error_code</text>
+              <text class="dg-s" x="16" y="51">RAG 아님 · 정확 조회</text>
+              <path class="dg-a" d="M172 38 H226" />
+              <text class="dg-bad" x="178" y="32">not_found</text>
+              <rect class="dg-box" x="230" y="16" width="176" height="44" rx="8" />
+              <text class="dg-t" x="242" y="36">추측 금지</text>
+              <text class="dg-s" x="242" y="51">유사 코드를 만들지 않는다</text>
+              <path class="dg-a" d="M410 38 H464" />
+              <rect class="dg-box" x="468" y="16" width="148" height="44" rx="8" />
+              <text class="dg-t" x="480" y="36">A/S 안내</text>
+              <text class="dg-s" x="480" y="51">모른다고 답한다</text>
+              <text class="dg-g" x="16" y="88">환각률 0.0% — 도구가 실패했을 때 그 공백을 지식으로 메우지 않는다</text>
+              <text class="dg-s" x="16" y="108">이 원칙은 장애 상황에도 적용된다: 실패한 조회는 실패했다고 말한다</text>
+            </svg>
+          </div>
+          <p data-ko="오케스트레이션 프로젝트에서 <b>실패 처리는 곁가지가 아니라 본체</b>다. 카탈로그에 없는 에러코드를 물으면 <b>비슷한 코드를 지어내지 않고 «모른다»로 답하고</b> A/S 경로를 안내한다."
+            data-en="In an orchestration project, <b>failure handling is the main body of work, not a side branch</b>. Asked about a code that is not in the catalogue, it <b>does not invent a near neighbour — it says it does not know</b> and points at the service route.">오케스트레이션
+            프로젝트에서 <b>실패 처리는 곁가지가 아니라 본체</b>다. 카탈로그에 없는 에러코드를 물으면 <b>비슷한 코드를 지어내지 않고 «모른다»로 답하고</b> A/S 경로를 안내한다.</p>
+          <p data-ko="이걸 가능하게 하는 건 도구 설계다. <span class=&quot;mono&quot;>lookup_error_code</span>는 <b>RAG가 아니라 정확 조회</b>다 — exact match에 RAG를 쓰면 «그럴듯한 다른 코드»가 올라와 오히려 부정확해진다. 그래서 룩업과 RAG를 <b>도구 경계로 못박았다.</b> 환각률 <b>0.0%</b>는 이 분리의 결과다."
+            data-en="What makes that possible is the tool boundary. <span class=&quot;mono&quot;>lookup_error_code</span> is <b>an exact lookup, not RAG</b> — running RAG over an exact-match problem surfaces &quot;a plausible other code&quot; and makes it less accurate. So lookup and RAG are <b>split at the tool level</b>. The <b>0.0%</b> hallucination rate is the result of that split.">이걸
+            가능하게 하는 건 도구 설계다. <span class="mono">lookup_error_code</span>는 <b>RAG가 아니라 정확 조회</b>다 — exact match에 RAG를 쓰면 «그럴듯한 다른 코드»가 올라와 오히려 부정확해진다. 그래서 룩업과 RAG를 <b>도구 경계로 못박았다.</b> 환각률 <b>0.0%</b>는 이 분리의 결과다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/unknown-error-code.gif" alt="unknown error code handling">
+            <figcaption data-ko="시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)" data-en="Captured against seed data and real API responses — nothing staged">시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-alt" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · S2 조건 분기</div>
+          <h4 class="fmodal-title" data-ko="재고 0 → 호환 대체품" data-en="Out of stock → compatible alternatives">재고 0 → 호환 대체품</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 130" role="img" aria-label="재고가 0이면 대체품을 찾아 견적을 비교하고 발주 초안까지 잇는 분기">
+              <rect class="dg-box" x="4" y="14" width="140" height="44" rx="8" />
+              <text class="dg-t" x="16" y="34">search_inventory</text>
+              <text class="dg-bad" x="16" y="50">qty = 0</text>
+              <path class="dg-a" d="M148 36 H196" />
+              <rect class="dg-box" x="200" y="14" width="166" height="44" rx="8" />
+              <text class="dg-t" x="212" y="34">find_alternative_parts</text>
+              <text class="dg-s" x="212" y="50">part_alternatives 기반</text>
+              <path class="dg-a" d="M370 36 H418" />
+              <rect class="dg-box" x="422" y="14" width="140" height="44" rx="8" />
+              <text class="dg-t" x="434" y="34">get_supplier_quotes</text>
+              <text class="dg-s" x="434" y="50">2개 이상이면 비교</text>
+              <path class="dg-a" d="M492 62 V84" />
+              <rect class="dg-box" x="422" y="88" width="140" height="34" rx="8" />
+              <text class="dg-t" x="434" y="109">create_po_draft</text>
+              <text class="dg-g" x="16" y="88">compat_confirmed = false 인 대체품은 제안하지 않는다</text>
+              <text class="dg-s" x="16" y="108">견적이 둘 이상이면 비교해 제시하되, 에이전트 단독 결정은 금지다</text>
+            </svg>
+          </div>
+          <p data-ko="재고가 없을 때 그냥 «없습니다»로 끝내지 않고 <b>호환 대체품으로 분기</b>한다. 대체품도 없으면 에스컬레이션한다. 이 분기가 가능한 이유는 <span class=&quot;mono&quot;>search_inventory</span>가 실패를 예외가 아니라 <b>구조화된 상태값</b>으로 돌려주기 때문이다."
+            data-en="When stock is zero it does not stop at &quot;none available&quot; — it <b>branches into compatible alternatives</b>, and escalates if there are none. The branch is possible because <span class=&quot;mono&quot;>search_inventory</span> returns failure as <b>a structured status</b> rather than an exception.">재고가
+            없을 때 그냥 «없습니다»로 끝내지 않고 <b>호환 대체품으로 분기</b>한다. 대체품도 없으면 에스컬레이션한다. 이 분기가 가능한 이유는 <span class="mono">search_inventory</span>가 실패를 예외가 아니라 <b>구조화된 상태값</b>으로 돌려주기 때문이다.</p>
+          <p data-ko="다만 <b>아무 대체품이나 제안하지 않는다</b> — <span class=&quot;mono&quot;>compat_confirmed = false</span>인 부품은 제안 금지다. 견적도 2개 이상이면 <b>비교해서 제시</b>할 뿐 <b>에이전트가 단독으로 고르지 않는다.</b>"
+            data-en="But it <b>does not offer just any substitute</b>: a part with <span class=&quot;mono&quot;>compat_confirmed = false</span> is barred from suggestion. And when two or more quotes come back it <b>presents the comparison</b> — <b>it does not pick one on its own.</b>">다만
+            <b>아무 대체품이나 제안하지 않는다</b> — <span class="mono">compat_confirmed = false</span>인 부품은 제안 금지다. 견적도 2개 이상이면 <b>비교해서 제시</b>할 뿐 <b>에이전트가 단독으로 고르지 않는다.</b></p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/alternative-parts.gif" alt="alternative parts branch">
+            <figcaption data-ko="시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)" data-en="Captured against seed data and real API responses — nothing staged">시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-repeat" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · S3 이력 기반 판단 + 가드레일</div>
+          <h4 class="fmodal-title" data-ko="반복 고장 감지 → 발주 보류" data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 140" role="img" aria-label="30일 내 3회 반복이면 근본원인 모드로 전환하고 발주를 보류한다">
+              <rect class="dg-box" x="4" y="14" width="128" height="44" rx="8" />
+              <text class="dg-t" x="16" y="34">lookup</text>
+              <text class="dg-s" x="16" y="50">에러코드 조회</text>
+              <path class="dg-a" d="M136 36 H182" />
+              <rect class="dg-box" x="186" y="14" width="176" height="44" rx="8" />
+              <text class="dg-t" x="198" y="34">get_error_history</text>
+              <text class="dg-bad" x="198" y="50">repeated = true · 30일 3회</text>
+              <path class="dg-a" d="M366 36 H412" />
+              <rect class="dg-box" x="416" y="14" width="164" height="44" rx="8" />
+              <text class="dg-t" x="428" y="34">rag_search_manual</text>
+              <text class="dg-s" x="428" y="50">안전 근거 · 페이지 인용</text>
+              <path class="dg-a" d="M498 62 V86" />
+              <rect class="dg-hold" x="416" y="90" width="164" height="36" rx="8" />
+              <text class="dg-t" x="428" y="112">발주 HOLD</text>
+              <text class="dg-g" x="16" y="88">부품 교체만으로 재발할 수 있다 — 근본원인이 확정되기 전에는</text>
+              <text class="dg-g" x="16" y="106">발주서를 생성하지 않는다</text>
+              <text class="dg-s" x="16" y="128">안전 문구는 매뉴얼 근거(페이지) 없이 생성 금지 — 절대 규칙이다</text>
+            </svg>
+          </div>
+          <p data-ko="같은 설비에서 <b>30일 안에 3회</b> 같은 에러가 나면, 에이전트는 부품 교체를 권하는 대신 <b>근본원인 점검 모드로 전환</b>하고 <b>발주를 보류(HOLD)</b>한다. 부품만 갈면 재발할 수 있기 때문이다."
+            data-en="When the same fault appears <b>three times in 30 days</b> on one machine, the agent stops recommending a part swap, <b>switches into root-cause mode</b> and <b>holds the purchase order</b> — replacing the part alone would let it recur.">같은
+            설비에서 <b>30일 안에 3회</b> 같은 에러가 나면, 에이전트는 부품 교체를 권하는 대신 <b>근본원인 점검 모드로 전환</b>하고 <b>발주를 보류(HOLD)</b>한다. 부품만 갈면 재발할 수 있기 때문이다.</p>
+          <p data-ko="함께 붙는 안전 경고에는 <b>절대 규칙</b>이 걸려 있다 — <b>안전 문구는 매뉴얼 근거(페이지) 없이 생성 금지</b>다. 그래서 평가에서 «안전 경고 누락»이 나와도 그것이 <b>고쳐야 할 실패가 아닌 경우</b>가 있다: 에이전트가 매뉴얼을 조회하지 않고 턴을 끝냈다면, 안전 블록을 찍는 것 <b>자체가 규칙 위반</b>이기 때문이다. 고칠 지점은 안전 문구 생성부가 아니라 <b>매뉴얼 미조회 패턴</b> 쪽이다."
+            data-en="The safety warning that accompanies it is bound by <b>a hard rule</b>: <b>no safety text may be generated without a manual citation with a page number</b>. So a &quot;missing safety warning&quot; in the evaluation is <b>not always a failure to fix</b> — if the agent ended its turn without consulting the manual, emitting a safety block <b>would itself break the rule</b>. The thing to fix is the <b>skipped-manual pattern</b>, not the safety text generator.">함께
+            붙는 안전 경고에는 <b>절대 규칙</b>이 걸려 있다 — <b>안전 문구는 매뉴얼 근거(페이지) 없이 생성 금지</b>다. 그래서 평가에서 «안전 경고 누락»이 나와도 그것이 <b>고쳐야 할 실패가 아닌 경우</b>가 있다: 에이전트가 매뉴얼을 조회하지 않고 턴을 끝냈다면, 안전 블록을 찍는 것 <b>자체가 규칙 위반</b>이기 때문이다. 고칠 지점은 안전 문구 생성부가 아니라 <b>매뉴얼 미조회 패턴</b> 쪽이다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/repeat-failure-hold.gif" alt="repeat failure detection and order hold">
+            <figcaption data-ko="안전 경고 → 반복 감지 → 발주 HOLD 전체 흐름" data-en="Safety warning, repeat detection, and the hold — end to end">안전 경고 → 반복 감지 → 발주 HOLD 전체 흐름</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-disposal" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · 자산 생애주기</div>
+          <h4 class="fmodal-title" data-ko="처분 사전판정" data-en="Disposal pre-check">처분 사전판정</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 132" role="img" aria-label="사실이 부족하면 INSUFFICIENT_FACTS로 답하고, 채워지면 CLEAR 판정과 근거 조문을 낸다">
+              <rect class="dg-box" x="4" y="14" width="150" height="44" rx="8" />
+              <text class="dg-t" x="16" y="34">처분 사전판정 요청</text>
+              <text class="dg-s" x="16" y="50">자산 상세 화면</text>
+              <path class="dg-a" d="M158 26 H212" />
+              <text class="dg-bad" x="162" y="20">처분일 없음</text>
+              <path class="dg-a" d="M158 48 H212" />
+              <text class="dg-ok" x="162" y="64">입력 후</text>
+              <rect class="dg-box" x="216" y="4" width="200" height="32" rx="8" />
+              <text class="dg-t" x="228" y="24">INSUFFICIENT_FACTS</text>
+              <rect class="dg-box" x="216" y="44" width="200" height="32" rx="8" />
+              <text class="dg-t" x="228" y="64">CLEAR + 근거 조문</text>
+              <path class="dg-a" d="M420 60 H466" />
+              <rect class="dg-box" x="470" y="40" width="146" height="40" rx="8" />
+              <text class="dg-t" x="482" y="58">고려하지 않은 것</text>
+              <text class="dg-s" x="482" y="73">고지까지 함께</text>
+              <text class="dg-g" x="16" y="104">모르면 «모른다»고 답한다 — 사실이 부족한 상태를 판정으로 덮지 않는다</text>
+              <text class="dg-s" x="16" y="124">판정을 내릴 때도 무엇을 근거로 삼았고 무엇을 보지 않았는지 함께 밝힌다</text>
+            </svg>
+          </div>
+          <p data-ko="자산을 처분해도 되는지 미리 판정한다. 핵심은 <b>사실이 부족할 때의 태도</b>다 — 처분일이 입력되지 않았으면 억지로 판정하지 않고 <b><span class=&quot;mono&quot;>INSUFFICIENT_FACTS</span>로 정직하게</b> 답한다."
+            data-en="It decides in advance whether an asset may be disposed of. What matters is <b>how it behaves when facts are missing</b>: with no disposal date entered it does not force a verdict — it answers <b><span class=&quot;mono&quot;>INSUFFICIENT_FACTS</span>, honestly</b>.">자산을
+            처분해도 되는지 미리 판정한다. 핵심은 <b>사실이 부족할 때의 태도</b>다 — 처분일이 입력되지 않았으면 억지로 판정하지 않고 <b><span class="mono">INSUFFICIENT_FACTS</span>로 정직하게</b> 답한다.</p>
+          <p data-ko="값을 채우면 <span class=&quot;mono&quot;>CLEAR</span> 판정과 <b>근거 조문</b>이 함께 나오는데, 여기에 <b>«고려하지 않은 것» 고지</b>가 따라붙는다. 판정을 내리는 것과 <b>그 판정의 사각지대를 밝히는 것</b>은 다른 일이고, 후자가 없으면 읽는 사람이 판정을 과신한다."
+            data-en="Fill the value in and it returns <span class=&quot;mono&quot;>CLEAR</span> with <b>the clauses it relied on</b> — and alongside them, <b>a note on what it did not consider</b>. Issuing a verdict and <b>disclosing that verdict's blind spots</b> are two different jobs, and without the second the reader over-trusts the first.">값을
+            채우면 <span class="mono">CLEAR</span> 판정과 <b>근거 조문</b>이 함께 나오는데, 여기에 <b>«고려하지 않은 것» 고지</b>가 따라붙는다. 판정을 내리는 것과 <b>그 판정의 사각지대를 밝히는 것</b>은 다른 일이고, 후자가 없으면 읽는 사람이 판정을 과신한다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/disposal-precheck.gif" alt="disposal pre-check">
+            <figcaption data-ko="사실 부족 → 정직한 응답 → 입력 후 판정까지" data-en="Missing facts, an honest answer, then the verdict once filled in">사실 부족 → 정직한 응답 → 입력 후 판정까지</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-bundle" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · bundle_hash</div>
+          <h4 class="fmodal-title" data-ko="처분 근거 번들" data-en="The evidence bundle">처분 근거 번들</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 640 140" role="img" aria-label="다섯 항목을 bundle_hash로 고정하고 룰별 판정 근거를 전부 노출한다">
+              <rect class="dg-box" x="4" y="14" width="92" height="30" rx="8" />
+              <text class="dg-t" x="16" y="34">laws</text>
+              <rect class="dg-box" x="104" y="14" width="92" height="30" rx="8" />
+              <text class="dg-t" x="116" y="34">rules</text>
+              <rect class="dg-box" x="204" y="14" width="104" height="30" rx="8" />
+              <text class="dg-t" x="216" y="34">evaluated</text>
+              <rect class="dg-box" x="316" y="14" width="104" height="30" rx="8" />
+              <text class="dg-t" x="328" y="34">contracts</text>
+              <rect class="dg-box" x="428" y="14" width="92" height="30" rx="8" />
+              <text class="dg-t" x="440" y="34">facts</text>
+              <path class="dg-a" d="M262 48 V70" />
+              <rect class="dg-box" x="166" y="74" width="192" height="38" rx="8" />
+              <text class="dg-t" x="178" y="92">bundle_hash 로 고정</text>
+              <text class="dg-s" x="178" y="106">같은 입력이면 같은 해시</text>
+              <path class="dg-a" d="M362 93 H414" />
+              <rect class="dg-box" x="418" y="70" width="218" height="44" rx="8" />
+              <text class="dg-t" x="430" y="89">룰별 판정 근거 전부 노출</text>
+              <text class="dg-s" x="430" y="105">TRIGGERED · CLEAR · INSUFFICIENT</text>
+              <text class="dg-g" x="16" y="134">결론만 남기면 나중에 «왜 그렇게 판정했나»를 재구성할 수 없다</text>
+            </svg>
+          </div>
+          <p data-ko="처분 판정의 근거를 <b>다섯 항목(법령·룰·평가값·계약·사실)으로 묶고 <span class=&quot;mono&quot;>bundle_hash</span>로 고정</b>한다. 그리고 룰마다 <span class=&quot;mono&quot;>TRIGGERED</span>·<span class=&quot;mono&quot;>CLEAR</span>·<span class=&quot;mono&quot;>INSUFFICIENT_FACTS</span> 중 무엇이었는지를 <b>전부 노출</b>한다 — 걸린 룰만 보여주지 않는다."
+            data-en="The basis for a disposal verdict is <b>bundled into five parts — statutes, rules, evaluated values, contracts, facts — and pinned with a <span class=&quot;mono&quot;>bundle_hash</span></b>. For every rule it exposes <b>which of <span class=&quot;mono&quot;>TRIGGERED</span>, <span class=&quot;mono&quot;>CLEAR</span> or <span class=&quot;mono&quot;>INSUFFICIENT_FACTS</span></b> applied — not only the ones that fired.">처분
+            판정의 근거를 <b>다섯 항목(법령·룰·평가값·계약·사실)으로 묶고 <span class="mono">bundle_hash</span>로 고정</b>한다. 그리고 룰마다 <span class="mono">TRIGGERED</span>·<span class="mono">CLEAR</span>·<span class="mono">INSUFFICIENT_FACTS</span> 중 무엇이었는지를 <b>전부 노출</b>한다 — 걸린 룰만 보여주지 않는다.</p>
+          <p data-ko="<b>결론만 남기면 나중에 «왜 그렇게 판정했나»를 재구성할 수 없다.</b> 해시로 입력을 고정해 두면 같은 입력에 같은 판정이 나오는지 <b>제3자가 재실행해 확인</b>할 수 있다."
+            data-en="<b>Keep only the conclusion and nobody can reconstruct why it was reached.</b> Pinning the inputs with a hash lets <b>a third party re-run it</b> and check that the same inputs still produce the same verdict.">
+            <b>결론만 남기면 나중에 «왜 그렇게 판정했나»를 재구성할 수 없다.</b> 해시로 입력을 고정해 두면 같은 입력에 같은 판정이 나오는지 <b>제3자가 재실행해 확인</b>할 수 있다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/disposal-evidence-bundle.gif" alt="evidence bundle">
+            <figcaption data-ko="5개 항목과 룰별 판정 근거 조회" data-en="The five parts and the per-rule basis">5개 항목과 룰별 판정 근거 조회</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-deadline" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · 보전팀장 콘솔</div>
+          <h4 class="fmodal-title" data-ko="법정 기한 · 건물 위험등급" data-en="Statutory deadlines &amp; building risk grade">법정 기한 · 건물 위험등급</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 132" role="img" aria-label="기한 범위를 넓혀가며 임박 항목을 찾고, 위험등급은 산출식과 함께 자동 반영 안 됨을 고지한다">
+              <rect class="dg-box" x="4" y="14" width="168" height="44" rx="8" />
+              <text class="dg-t" x="16" y="34">track_deadlines</text>
+              <text class="dg-s" x="16" y="50">180 → 365 → 730일</text>
+              <path class="dg-a" d="M176 36 H224" />
+              <rect class="dg-box" x="228" y="14" width="150" height="44" rx="8" />
+              <text class="dg-t" x="240" y="34">임박 항목</text>
+              <text class="dg-s" x="240" y="50">범위를 넓혀가며 탐색</text>
+              <rect class="dg-box" x="4" y="72" width="168" height="44" rx="8" />
+              <text class="dg-t" x="16" y="92">assess_risk_grade</text>
+              <text class="dg-s" x="16" y="108">건물별 위험등급</text>
+              <path class="dg-a" d="M176 94 H224" />
+              <rect class="dg-box" x="228" y="72" width="150" height="44" rx="8" />
+              <text class="dg-t" x="240" y="92">산출식 공개</text>
+              <text class="dg-s" x="240" y="108">어떻게 나온 등급인지</text>
+              <path class="dg-a" d="M382 94 H430" />
+              <rect class="dg-hold" x="434" y="66" width="182" height="56" rx="8" />
+              <text class="dg-t" x="446" y="88">&quot;자동 반영 안 됨&quot; 고지</text>
+              <text class="dg-s" x="446" y="105">등급이 바뀌어도 조치는</text>
+              <text class="dg-s" x="446" y="118">사람이 판단해 넣는다</text>
+            </svg>
+          </div>
+          <p data-ko="법정 기한은 <b>범위를 180일에서 730일까지 넓혀가며</b> 임박한 항목을 찾는다. 한 번에 넓게 보면 급한 것과 먼 것이 섞이기 때문이다."
+            data-en="Statutory deadlines are scanned by <b>widening the window from 180 to 730 days</b>, because looking at the widest range first mixes the urgent in with the distant.">법정 기한은 <b>범위를 180일에서 730일까지 넓혀가며</b> 임박한 항목을 찾는다. 한 번에 넓게 보면 급한 것과 먼 것이 섞이기 때문이다.</p>
+          <p data-ko="건물 위험등급은 <b>산출식을 함께 보여주고</b>, 여기에 <b>«자동 반영 안 됨» 고지</b>가 붙는다. 등급이 계산됐다고 해서 시스템이 알아서 조치하지 않는다는 뜻이다 — <b>계산과 조치를 분리</b>하지 않으면, 읽는 사람이 «시스템이 이미 처리했겠지»라고 넘겨 아무도 손대지 않는 구간이 생긴다."
+            data-en="The building risk grade is shown <b>with the formula that produced it</b>, plus <b>a notice that it is not applied automatically</b> — a computed grade does not mean the system acted on it. <b>Without separating calculation from action</b>, a reader assumes &quot;the system must have handled it&quot; and a gap opens that nobody touches.">건물
+            위험등급은 <b>산출식을 함께 보여주고</b>, 여기에 <b>«자동 반영 안 됨» 고지</b>가 붙는다. 등급이 계산됐다고 해서 시스템이 알아서 조치하지 않는다는 뜻이다 — <b>계산과 조치를 분리</b>하지 않으면, 읽는 사람이 «시스템이 이미 처리했겠지»라고 넘겨 아무도 손대지 않는 구간이 생긴다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/deadline-risk-grade.gif" alt="deadline tracking and risk grade">
+            <figcaption data-ko="기한 범위 확대 탐색 → 위험등급 산출식 · 고지" data-en="Widening the deadline window, then the grade formula and its notice">기한 범위 확대 탐색 → 위험등급 산출식 · 고지</figcaption>
+          </figure>
+        </section>
+
+        <section id="f-maintq-expenditure" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · 재무담당 콘솔</div>
+          <h4 class="fmodal-title" data-ko="지출 성격 분류 — 단정하지 않는다" data-en="Expenditure classification — it declines to rule">지출 성격 분류 — 단정하지 않는다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 132" role="img" aria-label="경계 사례에서는 자본적·수익적 지출을 단정하지 않고 판단 유보로 답한다">
+              <rect class="dg-box" x="4" y="16" width="176" height="44" rx="8" />
+              <text class="dg-t" x="16" y="36">classify_expenditure</text>
+              <text class="dg-s" x="16" y="52">핵심부품 원상복구 사례</text>
+              <path class="dg-a" d="M184 26 H238" />
+              <text class="dg-ok" x="190" y="20">명확</text>
+              <path class="dg-a" d="M184 50 H238" />
+              <text class="dg-bad" x="190" y="66">경계</text>
+              <rect class="dg-box" x="242" y="6" width="190" height="30" rx="8" />
+              <text class="dg-t" x="254" y="26">자본적 / 수익적 분류</text>
+              <rect class="dg-hold" x="242" y="44" width="190" height="34" rx="8" />
+              <text class="dg-t" x="254" y="65">판단 유보</text>
+              <path class="dg-a" d="M436 61 H482" />
+              <rect class="dg-box" x="486" y="42" width="130" height="38" rx="8" />
+              <text class="dg-t" x="498" y="60">전문가 검토 필요</text>
+              <text class="dg-s" x="498" y="74">사람에게 넘긴다</text>
+              <text class="dg-g" x="16" y="102">회계 판단은 틀리면 세무 리스크가 된다 — 애매한 것을 애매하다고 말하는 것이</text>
+              <text class="dg-g" x="16" y="120">틀린 답을 자신 있게 말하는 것보다 쓸모 있다</text>
+            </svg>
+          </div>
+          <p data-ko="설비 지출이 <b>자본적 지출</b>(자산으로 잡아 감가상각)인지 <b>수익적 지출</b>(당기 비용)인지는 회계·세무 판단이고, <b>틀리면 세무 리스크</b>가 된다."
+            data-en="Whether a maintenance spend is <b>capital expenditure</b> (capitalised and depreciated) or <b>revenue expenditure</b> (expensed this period) is an accounting and tax judgement — and <b>getting it wrong creates tax exposure</b>.">설비
+            지출이 <b>자본적 지출</b>(자산으로 잡아 감가상각)인지 <b>수익적 지출</b>(당기 비용)인지는 회계·세무 판단이고, <b>틀리면 세무 리스크</b>가 된다.</p>
+          <p data-ko="그래서 핵심부품 원상복구 같은 <b>경계 사례에서는 단정하지 않고 «판단 유보 — 전문가 검토 필요»</b>로 답한다. <b>애매한 것을 애매하다고 말하는 편이 틀린 답을 자신 있게 말하는 것보다 쓸모 있다</b>는 판단이고, 이 프로젝트가 여러 기능에서 반복해 적용한 원칙이다."
+            data-en="So in <b>borderline cases</b> — restoring a core component, say — it does not rule: it answers <b>&quot;withheld — needs expert review&quot;</b>. <b>Saying that something is ambiguous is more useful than confidently saying the wrong thing</b>, and that principle recurs across this project's features.">그래서
+            핵심부품 원상복구 같은 <b>경계 사례에서는 단정하지 않고 «판단 유보 — 전문가 검토 필요»</b>로 답한다. <b>애매한 것을 애매하다고 말하는 편이 틀린 답을 자신 있게 말하는 것보다 쓸모 있다</b>는 판단이고, 이 프로젝트가 여러 기능에서 반복해 적용한 원칙이다.</p>
+          <figure class="fmodal-fig">
+            <img data-src="assets/maintq/expenditure-classification.gif" alt="expenditure classification withheld">
+            <figcaption data-ko="경계 사례 — 단정 대신 판단 유보" data-en="A borderline case: withheld rather than ruled">경계 사례 — 단정 대신 판단 유보</figcaption>
           </figure>
         </section>
 
