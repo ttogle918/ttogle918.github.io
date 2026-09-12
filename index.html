@@ -2819,6 +2819,8 @@
                         data-en="Their reply changes my state (S12)">상대 응답이 내 상태를 바꾼다 (S12)</button>
                       <button class="feat" data-modal="f-qmesh-inbox" data-ko="상대 회사 결재함에 도착 (S5)"
                         data-en="Landing in their approval inbox (S5)">상대 회사 결재함에 도착 (S5)</button>
+                      <button class="feat" data-modal="f-qmesh-guard" data-ko="경계에서 무엇이 막는가"
+                        data-en="What guards the boundary">경계에서 무엇이 막는가</button>
                     </div>
                   </div>
                 </div>
@@ -5320,6 +5322,61 @@
             data-en="But “likely to leave” alone gives nobody anything to do. Only with <b>feature importance</b> — what actually drives the churn — can someone decide what to change <b>before the contract expires</b>. The point was never the prediction; it was <b>producing grounds to act.</b>">다만
             «떠날 것 같다»만으로는 할 수 있는 일이 없다. <b>변수 중요도</b>로 무엇이 이탈을 만드는지까지 내야 담당자가 <b>약정 만료 전에</b> 무엇을 건드릴지 정할 수 있다 — 예측이 아니라
             <b>조치의 근거</b>를 만드는 것이 이 프로젝트의 목적이었다.</p>
+        </section>
+
+        <section id="f-qmesh-guard" hidden>
+          <div class="fmodal-kicker mono">QMESH · 경계</div>
+          <h4 class="fmodal-title" data-ko="경계에서 무엇이 막는가" data-en="What guards the boundary">경계에서 무엇이 막는가</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 300" role="img" aria-label="세 도메인 에이전트를 둘러싼 경계에 신원·계약·추적·사람 승인 네 개의 관문이 걸려 있다">
+              <rect class="dg-box" x="90" y="10" width="210" height="44" rx="8" />
+              <text class="dg-t" x="102" y="30">신원</text>
+              <text class="dg-s" x="102" y="47">Actor / Subject 분리</text>
+              <rect class="dg-box" x="320" y="10" width="210" height="44" rx="8" />
+              <text class="dg-t" x="332" y="30">계약</text>
+              <text class="dg-s" x="332" y="47">스키마 밖 값이면 502</text>
+              <path class="dg-a" d="M195 54 V62" />
+              <path class="dg-a" d="M425 54 V62" />
+
+              <rect class="dg-zone" x="90" y="66" width="440" height="170" rx="20" />
+              <text class="dg-k" x="102" y="86">A2A 경계 — 세 도메인</text>
+              <rect class="dg-box" x="107" y="120" width="118" height="52" rx="8" />
+              <text class="dg-t" x="119" y="142">MaintQ</text>
+              <text class="dg-s" x="119" y="160">:9003 제조</text>
+              <path class="dg-a" d="M229 146 H247" />
+              <rect class="dg-box" x="251" y="120" width="118" height="52" rx="8" />
+              <text class="dg-t" x="263" y="142">FinAllQ</text>
+              <text class="dg-s" x="263" y="160">:9001 금융</text>
+              <path class="dg-a" d="M373 146 H391" />
+              <rect class="dg-box" x="395" y="120" width="118" height="52" rx="8" />
+              <text class="dg-t" x="407" y="142">InsuQ</text>
+              <text class="dg-s" x="407" y="160">:9002 보험</text>
+              <text class="dg-s" x="107" y="200">계약은 이 안에서 공유하고, 관문은 밖에서 건다</text>
+              <text class="dg-s" x="107" y="220">경계를 넘는 모든 호출이 네 관문을 지난다</text>
+
+              <path class="dg-a" d="M195 246 V238" />
+              <path class="dg-a" d="M425 246 V238" />
+              <rect class="dg-box" x="90" y="250" width="210" height="44" rx="8" />
+              <text class="dg-t" x="102" y="270">추적</text>
+              <text class="dg-s" x="102" y="287">헤더와 body 불일치면 거부</text>
+              <rect class="dg-hold" x="320" y="250" width="210" height="44" rx="8" />
+              <text class="dg-t" x="332" y="270">사람</text>
+              <text class="dg-s" x="332" y="287">자금이동은 3단 승인</text>
+            </svg>
+          </div>
+          <p data-ko="세 도메인은 스택도 소유권도 다르다. 그래서 «서로 믿는다»를 전제로 두지 않고, <b>경계에 관문을 걸었다.</b> 안쪽에서 공유하는 것은 계약(Agent Card 3종 · Task 스키마 13종)뿐이고, 경계를 넘는 호출은 예외 없이 네 관문을 지난다."
+            data-en="The three domains share neither stack nor owner, so nothing here assumes mutual trust — <b>the gates sit on the boundary.</b> What is shared inside is only the contract (three Agent Cards, thirteen Task schemas); every call that crosses the boundary passes all four gates.">세
+            도메인은 스택도 소유권도 다르다. 그래서 «서로 믿는다»를 전제로 두지 않고, <b>경계에 관문을 걸었다.</b> 안쪽에서 공유하는 것은 계약(Agent Card 3종 · Task 스키마
+            13종)뿐이고, 경계를 넘는 호출은 예외 없이 네 관문을 지난다.</p>
+          <p data-ko="<b>신원</b>은 인증(누가 부르나)과 인가(누구 데이터인가)를 나누고 위험도별 3단 스코프를 준다. <b>계약</b>은 스키마 밖의 값이 오면 조용히 넘기지 않고 예외를 던져 502로 바꾼다. <b>추적</b>은 <span class=&quot;mono&quot;>X-Request-Chain-Id</span> 헤더와 body 의 값이 어긋나면 거부한다 — 전파만으로는 보장되지 않기 때문이다."
+            data-en="<b>Identity</b> separates authentication (who is calling) from authorization (whose data), with three credential scopes by risk. <b>Contract</b> refuses to pass an out-of-schema value quietly: it raises and becomes a 502. <b>Trace</b> rejects a call when the <span class=&quot;mono&quot;>X-Request-Chain-Id</span> header disagrees with the body — propagation alone guarantees nothing."><b>신원</b>은
+            인증(누가 부르나)과 인가(누구 데이터인가)를 나누고 위험도별 3단 스코프를 준다. <b>계약</b>은 스키마 밖의 값이 오면 조용히 넘기지 않고 예외를 던져 502로 바꾼다.
+            <b>추적</b>은 <span class="mono">X-Request-Chain-Id</span> 헤더와 body 의 값이 어긋나면 거부한다 — 전파만으로는 보장되지 않기
+            때문이다.</p>
+          <p data-ko="네 번째 관문만 성격이 다르다. 앞의 셋은 기계가 막지만 <b>«사람»은 일부러 자동화하지 않은 자리</b>다 — 자금이동은 요청 부서 → 집행 부서 재무 → 상대 회사 재무결재로 3단을 밟는다. 프롬프트가 아니라 <b>도구 권한 수준에서 강제</b>했다. AI 는 초안까지만 쓴다."
+            data-en="The fourth gate is different in kind. The first three are enforced by machines; <b>“people” is the seat deliberately left un-automated</b> — moving money climbs three steps: requesting team → their finance → the counterparty's finance. It is enforced <b>at the tool-permission level, not in a prompt.</b> The AI writes the draft and stops.">네
+            번째 관문만 성격이 다르다. 앞의 셋은 기계가 막지만 <b>«사람»은 일부러 자동화하지 않은 자리</b>다 — 자금이동은 요청 부서 → 집행 부서 재무 → 상대 회사 재무결재로 3단을 밟는다.
+            프롬프트가 아니라 <b>도구 권한 수준에서 강제</b>했다. AI 는 초안까지만 쓴다.</p>
         </section>
 
       </div>
