@@ -44,6 +44,7 @@ GIFS: dict[str, str] = {
     "insuq/ambiguous-domain-merge.gif": "A2A_Q/docs/presentation/assets/insuq-qa-ambiguous-domain-merge.gif",
     "insuq/claim-approval.gif": "A2A_Q/docs/presentation/assets/insuq-pro-inbox-claim-approval.gif",
     "qmesh/request-settlement.gif": "A2A_Q/docs/presentation/assets/04-maintq-finallq-request-settlement.gif",
+    "qmesh/multihop-assess-loan.gif": "A2A_Q/docs/presentation/assets/03-maintq-finallq-insuq-assess-loan.gif",
     "qmesh/approval-inbox-arrival.gif": "A2A_Q/docs/presentation/assets/02b-finallq-approval-inbox-a2a-arrival.gif",
 }
 
@@ -64,6 +65,32 @@ FINALLQ: dict[str, str] = {
     "12_ai_chat_out_of_scope.jpg": "12_ai_chat_out_of_scope_260823_223051.jpg",
     "13_ai_chat_fail_soft.jpg": "13_ai_chat_fail_soft_260823_223159.jpg",
 }
+
+
+# 아키텍처·흐름도 PNG 는 열어서 읽는 그림이라 GIF 보다 넉넉히 남긴다.
+# 카드에서는 max-height:180px 썸네일이지만, 새 탭으로 열면 글자가 읽혀야 한다.
+MAXW_DIAG = 1600
+DIAG_COLORS = 256
+
+DIAGRAMS: dict[str, str] = {
+    "kbridge/workflow.png": "LawGenie/meeting-notes/architecture/workflow.png",
+}
+
+
+def shrink_png(src: Path, maxw: int = MAXW_DIAG, colors: int = DIAG_COLORS) -> bytes:
+    """다이어그램 PNG 를 흰 배경에 합성 → 축소 → 팔레트화.
+
+    투명 배경을 그대로 두면 다크 테마에서 검은 글씨가 검은 배경에 얹혀 안 보인다.
+    다이어그램은 색 수가 적어 팔레트화 손실이 눈에 띄지 않는다(실측 540KB -> 83KB).
+    """
+    im = Image.open(src).convert("RGBA")
+    bg = Image.new("RGBA", im.size, (255, 255, 255, 255))
+    im = Image.alpha_composite(bg, im).convert("RGB")
+    if im.width > maxw:
+        im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.quantize(colors=colors, method=Image.MEDIANCUT).save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
 
 
 def shrink_gif(src: Path, maxw: int = MAXW, colors: int = COLORS) -> bytes:
@@ -95,6 +122,20 @@ def main() -> int:
         dest = SITE / "assets" / dest_rel
         dest.parent.mkdir(parents=True, exist_ok=True)
         data = shrink_gif(src)
+        dest.write_bytes(data)
+        before, after = src.stat().st_size, len(data)
+        total_before += before
+        total_after += after
+        print(f"  {dest_rel:42s} {before/1e6:5.2f}MB -> {after/1e6:5.2f}MB ({after/before*100:3.0f}%)")
+
+    for dest_rel, src_rel in DIAGRAMS.items():
+        src = WS / src_rel
+        if not src.exists():
+            missing.append(src_rel)
+            continue
+        dest = SITE / "assets" / dest_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        data = shrink_png(src)
         dest.write_bytes(data)
         before, after = src.stat().st_size, len(data)
         total_before += before

@@ -2813,7 +2813,8 @@
                         토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 02_multihop_trace.png</span>
+                      <img data-src="assets/qmesh/multihop-assess-loan.gif"
+                        alt="MaintQ 에서 시작한 요청이 FinAllQ 를 거쳐 InsuQ 까지 이어지는 멀티홉 릴레이">
                       <span class="cap2 mono" data-ko="MaintQ → FinAllQ → InsuQ 멀티홉 릴레이<br>&amp; request_chain_id 전파"
                         data-en="MaintQ → FinAllQ → InsuQ relay hop<br>&amp; request_chain_id propagation">MaintQ → FinAllQ →
                         InsuQ 멀티홉 릴레이<br>&amp; request_chain_id 전파</span>
@@ -3653,9 +3654,10 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// workflow.png</span>
-                      <span class="cap2 mono" data-ko="여기에 LangGraph<br>워크플로우 이미지"
-                        data-en="LangGraph<br>workflow here">여기에 LangGraph<br>워크플로우 이미지</span>
+                      <img data-src="assets/kbridge/workflow.png"
+                        alt="수입 요건 분석 LangGraph 워크플로우 전체 흐름도">
+                      <span class="cap2 mono" data-ko="수입 요건 분석 LangGraph 워크플로우"
+                        data-en="Import-requirement analysis workflow (LangGraph)">수입 요건 분석 LangGraph 워크플로우</span>
                     </div>
                   </div>
                 </div>
@@ -4743,6 +4745,19 @@
     /* 4. reveal */
     const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* 4-a. 카드 본문 그림 — 화면에 들어올 때 받아온다.
+       모달은 열 때 주입하지만(9절) 카드 그림에는 여는 동작이 없다.
+       접힌 카드의 .pc-figure 는 높이가 0 이라 교차하지 않으므로,
+       펼치고 스크롤해 눈에 들어온 순간에만 요청이 나간다 — 초기 로딩은 0 건. */
+    const figIO = new IntersectionObserver((es) => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('img[data-src]').forEach(img => {
+        if (!img.getAttribute('src')) img.setAttribute('src', img.dataset.src);
+      });
+      figIO.unobserve(e.target);
+    }), { rootMargin: '200px 0px' });
+    document.querySelectorAll('.pc-figure').forEach(el => figIO.observe(el));
 
     /* 5. 카운터 */
     function cnt(el) { const t = +el.dataset.count; if (reduce) { el.textContent = t; return; } const d = 1400, t0 = performance.now(); (function s(n) { const p = Math.min((n - t0) / d, 1); el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(s); })(t0); }
