@@ -6,6 +6,8 @@ public 인 이 레포에 담는 것이 곧 선택적 공개다. (설계서 §2)
 
 원본은 각 프로젝트 레포에 그대로 남는다 — 화질이 아쉬우면 MAXW 를 올려
 다시 돌리면 된다. 멱등하다.
+
+필요 패키지: Pillow, opencv-python(cv2). ffmpeg 는 쓰지 않는다.
 """
 from __future__ import annotations
 
@@ -21,6 +23,7 @@ import shutil
 import sys
 from pathlib import Path
 
+import cv2
 from PIL import Image, ImageSequence
 
 # 모달 표시 폭은 최대 ~760px 다. 900px 면 고해상도 화면에서도 충분하고,
@@ -80,6 +83,56 @@ DIAGRAMS: dict[str, str] = {
 }
 
 
+# 시연 영상에서 잘라낸 GIF. GIF 원본이 없고 mp4 밖에 없는 프로젝트용.
+# 화면이 2748x1530 으로 조밀해서 기존 GIF 규칙(900px/128색)으로는 4MB 를 넘는다.
+# 800px/64색/5fps 로 낮춰 기존 최대치(request-settlement 1.17MB) 수준에 맞췄다.
+CLIP_MAXW = 800
+CLIP_COLORS = 64
+CLIP_FPS = 5
+
+KBRIDGE_DEMO = "LawGenie/K-Bridge Ecommerce/시연영상—2025-10-13 150029.mp4"
+
+CLIPS: dict[str, tuple[str, float, float]] = {
+    # 대상 파일: (원본 영상, 시작초, 끝초)
+    "kbridge/requirement-verdict.gif": (KBRIDGE_DEMO, 96.0, 101.0),
+    "kbridge/precedent-cross.gif": (KBRIDGE_DEMO, 106.0, 111.0),
+}
+
+
+def clip_to_gif(src: Path, start: float, end: float,
+                fps_out: int = CLIP_FPS, maxw: int = CLIP_MAXW,
+                colors: int = CLIP_COLORS) -> bytes:
+    """영상의 [start, end) 구간을 GIF 로 굽는다 (OpenCV 로 읽고 Pillow 로 씀).
+
+    ffmpeg 를 쓰지 않는다 — 이 환경에 없다. cv2 만으로 프레임을 뽑는다.
+    """
+    cap = cv2.VideoCapture(str(src))
+    if not cap.isOpened():
+        raise RuntimeError(f"영상을 열 수 없다: {src}")
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    frames: list[Image.Image] = []
+    t = start
+    while t < end:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, int(round(t * fps)))
+        ok, img = cap.read()
+        if not ok:
+            break
+        im = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        if im.width > maxw:
+            im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+        frames.append(im.convert("P", palette=Image.ADAPTIVE, colors=colors))
+        t += 1 / fps_out
+    cap.release()
+    if not frames:
+        raise RuntimeError(f"프레임을 못 읽었다: {src} [{start}~{end}]")
+    buf = io.BytesIO()
+    frames[0].save(
+        buf, format="GIF", save_all=True, append_images=frames[1:],
+        duration=int(1000 / fps_out), loop=0, optimize=True, disposal=2,
+    )
+    return buf.getvalue()
+
+
 def shrink_png(src: Path, maxw: int = MAXW_DIAG, colors: int = DIAG_COLORS) -> bytes:
     """다이어그램 PNG 를 흰 배경에 합성 → 축소 → 팔레트화.
 
@@ -130,6 +183,20 @@ def main() -> int:
         total_before += before
         total_after += after
         print(f"  {dest_rel:42s} {before/1e6:5.2f}MB -> {after/1e6:5.2f}MB ({after/before*100:3.0f}%)")
+
+    for dest_rel, (src_rel, a, b) in CLIPS.items():
+        src = WS / src_rel
+        if not src.exists():
+            missing.append(src_rel)
+            continue
+        dest = SITE / "assets" / dest_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        data = clip_to_gif(src, a, b)
+        dest.write_bytes(data)
+        before, after = src.stat().st_size, len(data)
+        total_before += before
+        total_after += after
+        print(f"  {dest_rel:42s} {before/1e6:5.1f}MB 영상 -> {after/1e6:5.2f}MB ({a:.0f}~{b:.0f}초)")
 
     for dest_rel, src_rel in DIAGRAMS.items():
         src = WS / src_rel
