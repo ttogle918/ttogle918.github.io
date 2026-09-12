@@ -84,7 +84,38 @@ DIAGRAMS: dict[str, str] = {
     "kbridge/system_architecture.png": "LawGenie/meeting-notes/architecture/system_architecture.png",
     "kbridge/product_registration_flow.png":
         "LawGenie/meeting-notes/architecture/product_registration_requirement_workflowflow.png",
+    # 도식이 아니라 Docker Desktop 컨테이너 목록이다 — 실제로 뜬 스택을 보여준다.
+    "secureai/stack.png": "secureai-editor/docs/demo/architecture_layers_docker.png",
 }
+
+SECUREAI_DEMO = "secureai-editor/docs/demo/01_Kkebi_SAST-PATCH-PR_녹음 2026-06-28 115918.mp4"
+
+# 영상에서 뽑은 정지 프레임. 이 데모는 내레이션이라 대부분 멈춰 있어 GIF 로 만들면
+# 움직임 없이 용량만 커진다(실측 1.5~3.9MB). 한 장씩 PNG 로 뽑으면 170KB 안쪽이다.
+SHOTS: dict[str, tuple[str, float]] = {
+    # 대상 파일: (원본 영상, 초)
+    "secureai/vulnerabilities.png": (SECUREAI_DEMO, 110.0),
+    "secureai/auto-pr.png": (SECUREAI_DEMO, 228.0),
+}
+
+
+def frame_to_png(src: Path, sec: float,
+                 maxw: int = MAXW_DIAG, colors: int = DIAG_COLORS) -> bytes:
+    """영상의 sec 지점 한 프레임을 PNG 로 굽는다."""
+    cap = cv2.VideoCapture(str(src))
+    if not cap.isOpened():
+        raise RuntimeError(f"영상을 열 수 없다: {src}")
+    cap.set(cv2.CAP_PROP_POS_FRAMES, int(sec * cap.get(cv2.CAP_PROP_FPS)))
+    ok, img = cap.read()
+    cap.release()
+    if not ok:
+        raise RuntimeError(f"프레임을 못 읽었다: {src} @{sec}s")
+    im = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    if im.width > maxw:
+        im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.quantize(colors=colors, method=Image.MEDIANCUT).save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
 
 
 # 시연 영상에서 잘라낸 GIF. GIF 원본이 없고 mp4 밖에 없는 프로젝트용.
@@ -187,6 +218,19 @@ def main() -> int:
         total_before += before
         total_after += after
         print(f"  {dest_rel:42s} {before/1e6:5.2f}MB -> {after/1e6:5.2f}MB ({after/before*100:3.0f}%)")
+
+    for dest_rel, (src_rel, sec) in SHOTS.items():
+        src = WS / src_rel
+        if not src.exists():
+            missing.append(src_rel)
+            continue
+        dest = SITE / "assets" / dest_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        data = frame_to_png(src, sec)
+        dest.write_bytes(data)
+        total_before += src.stat().st_size
+        total_after += len(data)
+        print(f"  {dest_rel:42s} 영상 {sec:.0f}초 -> {len(data)/1e3:5.0f}KB")
 
     for dest_rel, (src_rel, a, b) in CLIPS.items():
         src = WS / src_rel

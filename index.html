@@ -3571,28 +3571,32 @@
                   <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: secureai)
                        <a class="gobtn" href="project/secureai/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
                   <div class="pc-actions">
-                    <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span
+                    <a class="gobtn solid" href="https://github.com/ttogle918/kkebi" target="_blank" rel="noopener"><span
                         class="ic" data-ic="github"></span>GITHUB</a>
                     </div>
                 </div>
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// 01_architecture.png</span>
-                      <span class="cap2 mono" data-ko="시스템 전체 아키텍처<br>(Spring Boot + FastAPI + LangGraph)"
-                        data-en="Overall System Architecture<br>(Spring Boot + FastAPI + LangGraph)">시스템 전체
-                        아키텍처<br>(Spring Boot + FastAPI + LangGraph)</span>
+                      <img data-src="assets/secureai/vulnerabilities.png"
+                        alt="코드 옆에 취약점 9종이 심각도별로 분류되고 패치 완료 배지가 붙은 화면">
+                      <span class="cap2 mono" data-ko="취약점 9종을 심각도로 나누고<br>패치까지 붙인다"
+                        data-en="Nine findings sorted by severity<br>each with its patch">취약점 9종을 심각도로 나누고<br>패치까지
+                        붙인다</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 02_dast_sandbox.png</span>
-                      <span class="cap2 mono" data-ko="DAST 샌드박스 격리 네트워크<br>&amp; 취약점 교차 검증 파이프라인"
-                        data-en="DAST Sandbox Network<br>&amp; Cross-Validation Pipeline">DAST 샌드박스 격리 네트워크<br>&amp; 취약점
-                        교차 검증 파이프라인</span>
+                      <img data-src="assets/secureai/auto-pr.png"
+                        alt="생성한 패치가 GitHub 풀 리퀘스트로 올라간 화면 — 봇이 열었고 자동 병합은 꺼져 있다">
+                      <span class="cap2 mono" data-ko="패치를 GitHub PR 로 올린다<br>자동 병합은 꺼 둔다"
+                        data-en="Patches land as a GitHub PR<br>auto-merge stays off">패치를 GitHub PR 로 올린다<br>자동 병합은 꺼
+                        둔다</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 03_prompt_flow.png</span>
-                      <span class="cap2 mono" data-ko="Framework-Aware 프롬프트<br>오탐 감축 흐름도"
-                        data-en="Framework-Aware Prompt<br>FP Reduction Flow">Framework-Aware 프롬프트<br>오탐 감축 흐름도</span>
+                      <img data-src="assets/secureai/stack.png"
+                        alt="Docker Desktop 에 떠 있는 컨테이너 목록 — 백엔드·AI 엔진·관측 스택">
+                      <span class="cap2 mono" data-ko="실제로 뜬 컨테이너 11종<br>관측(Grafana·Loki·Jaeger)까지"
+                        data-en="Eleven containers actually running<br>observability included">실제로 뜬 컨테이너
+                        11종<br>관측(Grafana·Loki·Jaeger)까지</span>
                     </div>
                   </div>
                 </div>
