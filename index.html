@@ -1197,6 +1197,24 @@
       border-radius: 6px;
     }
 
+    /* 카드 그림 자리에 들어가는 작은 도식.
+       .fdiag 어휘(.dg-*)를 그대로 쓰되, 패널 배경과 여백은 슬라이드가 이미
+       갖고 있으므로 지운다. 모달용보다 글자가 커야 300px 폭에서 읽힌다. */
+    .pc-slide .fdiag {
+      background: none;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      overflow: visible
+    }
+
+    .pc-slide .fdiag svg {
+      min-width: 0;
+      max-height: 172px
+    }
+
     .pc-figure.wide {
       min-height: 280px;
     }
@@ -2807,10 +2825,28 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// 01_topology.png</span>
-                      <span class="cap2 mono" data-ko="A2A 토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)"
-                        data-en="A2A topology<br>(orchestrator :9000 · domains :9001–:9003)">A2A
-                        토폴로지<br>(Orchestrator :9000 · 도메인 :9001~:9003)</span>
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 200" role="img" aria-label="세 도메인 에이전트가 서로 직접 호출하고, 통합 오케스트레이터 자리는 아직 비어 있다">
+                          <rect class="dg-zone" x="100" y="6" width="200" height="40" rx="8" />
+                          <text class="dg-t" x="112" y="26">Orchestrator :9000</text>
+                          <text class="dg-s" x="112" y="41">아직 없다</text>
+                          <rect class="dg-box" x="10" y="90" width="112" height="52" rx="8" />
+                          <text class="dg-t" x="20" y="112">MaintQ</text>
+                          <text class="dg-s" x="20" y="130">:9003 제조</text>
+                          <path class="dg-a" d="M126 116 H140" />
+                          <rect class="dg-box" x="144" y="90" width="112" height="52" rx="8" />
+                          <text class="dg-t" x="154" y="112">FinAllQ</text>
+                          <text class="dg-s" x="154" y="130">:9001 금융</text>
+                          <path class="dg-a" d="M260 116 H274" />
+                          <rect class="dg-box" x="278" y="90" width="112" height="52" rx="8" />
+                          <text class="dg-t" x="288" y="112">InsuQ</text>
+                          <text class="dg-s" x="288" y="130">:9002 보험</text>
+                          <text class="dg-g" x="10" y="170">지금은 P2P 직접 호출</text>
+                          <text class="dg-s" x="10" y="190">허브 자리는 비워 두고 계약만 먼저 고정했다</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="세 도메인이 서로 직접 부른다"
+                        data-en="Three domains call each other directly">세 도메인이 서로 직접 부른다</span>
                     </div>
                     <div class="pc-slide">
                       <img data-src="assets/qmesh/multihop-assess-loan.gif"
@@ -2820,10 +2856,29 @@
                         InsuQ 멀티홉 릴레이<br>&amp; request_chain_id 전파</span>
                     </div>
                     <div class="pc-slide">
-                      <span class="cap mono">// 03_identity_scope.png</span>
-                      <span class="cap2 mono" data-ko="Actor/Subject 신원 분리<br>&amp; 위험도별 3단 자격증명 스코프"
-                        data-en="Actor/Subject identity split<br>&amp; three credential scopes by risk">Actor/Subject 신원
-                        분리<br>&amp; 위험도별 3단 자격증명 스코프</span>
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 190" role="img" aria-label="인증과 인가를 나누고 위험도가 높아질수록 좁은 자격증명 스코프를 준다">
+                          <rect class="dg-box" x="10" y="8" width="180" height="48" rx="8" />
+                          <text class="dg-t" x="22" y="30">Actor — 인증</text>
+                          <text class="dg-s" x="22" y="47">누가 부르나</text>
+                          <rect class="dg-box" x="210" y="8" width="180" height="48" rx="8" />
+                          <text class="dg-t" x="222" y="30">Subject — 인가</text>
+                          <text class="dg-s" x="222" y="47">누구 데이터인가</text>
+                          <text class="dg-k" x="10" y="76">위험도별 3단 스코프</text>
+                          <rect class="dg-box" x="10" y="84" width="112" height="40" rx="8" />
+                          <text class="dg-s" x="22" y="109">조회</text>
+                          <path class="dg-a" d="M126 104 H140" />
+                          <rect class="dg-box" x="144" y="84" width="112" height="40" rx="8" />
+                          <text class="dg-s" x="156" y="109">심사</text>
+                          <path class="dg-a" d="M260 104 H274" />
+                          <rect class="dg-hold" x="278" y="84" width="112" height="40" rx="8" />
+                          <text class="dg-s" x="290" y="109">자금이동</text>
+                          <text class="dg-g" x="10" y="152">돈에 가까울수록 좁은 스코프</text>
+                          <text class="dg-s" x="10" y="172">인증과 인가를 나눠 남의 데이터를 못 보게 한다</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="인증과 인가를 나눈다"
+                        data-en="Authentication split from authorization">인증과 인가를 나눈다</span>
                     </div>
                   </div>
                 </div>
@@ -3907,10 +3962,28 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// qa_pipeline</span>
-                      <span class="cap2 mono" data-ko="수집 → 필터링 → SBERT 매칭<br>→ 익명화 → 자동 등록"
-                        data-en="collect → filter → SBERT match<br>→ anonymise → auto-post">수집 → 필터링 → SBERT 매칭<br>→ 익명화 →
-                        자동 등록</span>
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 150" role="img" aria-label="10만 건을 걸러 SBERT 로 유사 질문을 찾고 익명화해 자동 등록한다">
+                          <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="38">게시글 10만 건</text>
+                          <text class="dg-s" x="22" y="54">원천 데이터</text>
+                          <path class="dg-a" d="M194 38 H206" />
+                          <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="38">1차 필터링</text>
+                          <text class="dg-s" x="222" y="54">감성 · 욕설 · 이벤트</text>
+                          <path class="dg-a" d="M300 64 V74 H100 V80" />
+                          <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="106">SBERT 매칭</text>
+                          <text class="dg-s" x="22" y="122">유사도 0.9 이상</text>
+                          <path class="dg-a" d="M194 106 H206" />
+                          <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="106">익명화 → 자동 등록</text>
+                          <text class="dg-s" x="222" y="122">정규식 + NER</text>
+                          <text class="dg-g" x="10" y="146">10만 건에서 핵심 질문 1,028건만 남겼다</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="수집 → 필터링 → 매칭 → 익명화"
+                        data-en="collect → filter → match → anonymise">수집 → 필터링 → 매칭 → 익명화</span>
                     </div>
                   </div>
                 </div>
@@ -3993,10 +4066,28 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// churn_pipeline.png</span>
-                      <span class="cap2 mono" data-ko="RFM 파생변수 &#8594; KMeans 군집화<br>&#8594; RF·XGBoost &#8594; 변수 중요도"
-                        data-en="RFM features &#8594; KMeans<br>&#8594; RF/XGBoost &#8594; feature importance">RFM 파생변수
-                        &#8594; KMeans 군집화<br>&#8594; RF·XGBoost &#8594; 변수 중요도</span>
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 150" role="img" aria-label="RFM 파생변수와 군집화를 거쳐 모델을 학습하고 변수 중요도로 선제 대응 근거를 만든다">
+                          <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="38">RFM 파생변수</text>
+                          <text class="dg-s" x="22" y="54">최근성 · 빈도 · 금액</text>
+                          <path class="dg-a" d="M194 38 H206" />
+                          <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="38">KMeans 군집화</text>
+                          <text class="dg-s" x="222" y="54">고객 세분화</text>
+                          <path class="dg-a" d="M300 64 V74 H100 V80" />
+                          <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="106">RF · XGBoost</text>
+                          <text class="dg-s" x="22" y="122">이탈 85.3%</text>
+                          <path class="dg-a" d="M194 106 H206" />
+                          <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="106">변수 중요도</text>
+                          <text class="dg-s" x="222" y="122">선제 대응 근거</text>
+                          <text class="dg-g" x="10" y="146">예측에서 멈추지 않고 원인까지 냈다</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="파생변수 → 군집화 → 모델 → 원인"
+                        data-en="features → clusters → model → causes">파생변수 → 군집화 → 모델 → 원인</span>
                     </div>
                   </div>
                 </div>
