@@ -79,6 +79,8 @@ FINALLQ: dict[str, str] = {
 MAXW_DIAG = 1600
 DIAG_COLORS = 256
 
+SPENDQ_SHOTS = "//wsl.localhost/Ubuntu/home/hyun/spendq/docs/cuecard/shots/"
+
 DIAGRAMS: dict[str, str] = {
     "kbridge/workflow.png": "LawGenie/meeting-notes/architecture/workflow.png",
     "kbridge/system_architecture.png": "LawGenie/meeting-notes/architecture/system_architecture.png",
@@ -86,6 +88,11 @@ DIAGRAMS: dict[str, str] = {
         "LawGenie/meeting-notes/architecture/product_registration_requirement_workflowflow.png",
     # 도식이 아니라 Docker Desktop 컨테이너 목록이다 — 실제로 뜬 스택을 보여준다.
     "secureai/stack.png": "secureai-editor/docs/demo/architecture_layers_docker.png",
+    # SpendQ 는 WSL 안에 산다. UNC 경로는 절대경로라 WS / rel 이 그대로 받는다.
+    # docs/cuecard/ 의 촬영 큐카드가 각 장이 무슨 장면인지 적어 둔 «테이크 실물»이다.
+    "spendq/auction.png": SPENDQ_SHOTS + "console.png",
+    "spendq/refund.png": SPENDQ_SHOTS + "learn.png",
+    "spendq/chain-blocks.png": SPENDQ_SHOTS + "explorer-fail.png",
 }
 
 SECUREAI_DEMO = "secureai-editor/docs/demo/01_Kkebi_SAST-PATCH-PR_녹음 2026-06-28 115918.mp4"
