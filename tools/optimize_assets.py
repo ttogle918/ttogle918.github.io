@@ -48,6 +48,10 @@ GIFS: dict[str, str] = {
     "insuq/claim-approval.gif": "A2A_Q/docs/presentation/assets/insuq-pro-inbox-claim-approval.gif",
     "qmesh/request-settlement.gif": "A2A_Q/docs/presentation/assets/04-maintq-finallq-request-settlement.gif",
     "qmesh/multihop-assess-loan.gif": "A2A_Q/docs/presentation/assets/03-maintq-finallq-insuq-assess-loan.gif",
+    # KeyLens 는 레포에 데모 GIF 가 이미 있다 — 값은 전부 더미다(docs/demo/README.md).
+    "keylens/classify.gif": "key-manager/docs/demo/demo.gif",
+    "keylens/env-import.gif": "key-manager/docs/demo/env-import-walkthrough.gif",
+    "keylens/features.gif": "key-manager/docs/demo/feature-walkthrough.gif",
     "qmesh/approval-inbox-arrival.gif": "A2A_Q/docs/presentation/assets/02b-finallq-approval-inbox-a2a-arrival.gif",
 }
 
