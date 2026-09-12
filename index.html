@@ -3663,7 +3663,7 @@
                   </div>
                   <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: k-bridge)
                        <a class="gobtn" href="project/k-bridge/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
-                  <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/K-Bridge"
+                  <div class="pc-actions"><a class="gobtn solid" href="https://github.com/Suracle/ai-engine"
                       target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a></div>
                 </div>
                 <div class="pc-figure">
@@ -3849,6 +3849,14 @@
                         정규표현식 + NER 직접 조합으로 비정형 개인정보 익명화.</li>
                     </ul>
                   </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 흐름이 열립니다"
+                        data-en="Key flow — tap to open">주요 기능 — 누르면 흐름이 열립니다</span></div>
+                    <div class="featlist">
+                      <button class="feat" data-modal="f-visang-qa" data-ko="수집부터 자동 등록까지"
+                        data-en="From collection to auto-posting">수집부터 자동 등록까지</button>
+                    </div>
+                  </div>
                   <div class="impact block">
                     <div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과
                         (Impact)</span></div>
@@ -3873,9 +3881,10 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// pipeline.png</span>
-                      <span class="cap2 mono" data-ko="여기에 익명화/모델링<br>파이프라인 이미지"
-                        data-en="anonymization / modeling<br>pipeline here">여기에 익명화/모델링<br>파이프라인 이미지</span>
+                      <span class="cap mono">// qa_pipeline</span>
+                      <span class="cap2 mono" data-ko="수집 → 필터링 → SBERT 매칭<br>→ 익명화 → 자동 등록"
+                        data-en="collect → filter → SBERT match<br>→ anonymise → auto-post">수집 → 필터링 → SBERT 매칭<br>→ 익명화 →
+                        자동 등록</span>
                     </div>
                   </div>
                 </div>
@@ -5065,6 +5074,63 @@
             data-en="For a new item it pulls the <b>top five similar rulings</b>, sorts them into successes, failures and cases needing review, and produces insights, risks and recommended actions. Ask about the same HS code again and a <b>seven-day memory cache</b> answers without re-collecting — rulings do not change often.">새
             품목이 들어오면 <b>유사 판례 top 5</b>를 찾아 성공·실패·검토 사례로 분류하고, 인사이트와 리스크, 권장 조치를 낸다. 같은 HS코드를 다시 물으면 <b>메모리 캐시(7일 TTL)</b>가
             수집 없이 바로 답한다 — 판례는 자주 바뀌지 않기 때문이다.</p>
+        </section>
+
+        <section id="f-visang-qa" hidden>
+          <div class="fmodal-kicker mono">비상교육 · 질문-답변</div>
+          <h4 class="fmodal-title" data-ko="수집부터 자동 등록까지" data-en="From collection to auto-posting">수집부터 자동 등록까지</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 232" role="img" aria-label="게시글을 모아 비질문성 글을 걸러내고 SBERT 로 유사 질문을 찾아 답변을 추출한 뒤 개인정보를 익명화해 자동 등록한다">
+              <rect class="dg-box" x="4" y="26" width="130" height="50" rx="8" />
+              <text class="dg-t" x="16" y="47">게시글 수집</text>
+              <text class="dg-s" x="16" y="64">10만 건</text>
+              <path class="dg-a" d="M138 51 H156" />
+              <rect class="dg-box" x="160" y="26" width="140" height="50" rx="8" />
+              <text class="dg-t" x="172" y="47">1차 필터링</text>
+              <text class="dg-s" x="172" y="64">감성 · 욕설 · 이벤트</text>
+              <path class="dg-a" d="M304 51 H322" />
+              <rect class="dg-box" x="326" y="26" width="140" height="50" rx="8" />
+              <text class="dg-t" x="338" y="47">SBERT 임베딩</text>
+              <text class="dg-s" x="338" y="64">STS 파인튜닝</text>
+              <path class="dg-a" d="M470 51 H488" />
+              <rect class="dg-box" x="492" y="26" width="124" height="50" rx="8" />
+              <text class="dg-t" x="504" y="47">유사도 매칭</text>
+              <text class="dg-s" x="504" y="64">상위 3개</text>
+
+              <path class="dg-a" d="M230 80 V84" />
+              <rect class="dg-box" x="160" y="88" width="140" height="30" rx="6" />
+              <text class="dg-bad" x="172" y="108">제거 — 비질문성</text>
+
+              <path class="dg-a" d="M554 80 V126 H94 V130" />
+
+              <rect class="dg-box" x="4" y="134" width="180" height="50" rx="8" />
+              <text class="dg-t" x="16" y="155">기존 답변 추출</text>
+              <text class="dg-s" x="16" y="172">Sim ≥ 0.9</text>
+              <path class="dg-a" d="M188 159 H206" />
+              <rect class="dg-box" x="210" y="134" width="200" height="50" rx="8" />
+              <text class="dg-t" x="222" y="155">개인정보 익명화</text>
+              <text class="dg-s" x="222" y="172">정규식 + NER</text>
+              <path class="dg-a" d="M414 159 H432" />
+              <rect class="dg-hold" x="436" y="134" width="180" height="50" rx="8" />
+              <text class="dg-t" x="448" y="155">자동 답변 등록</text>
+              <text class="dg-s" x="448" y="172">사람 개입 0</text>
+
+              <text class="dg-g" x="4" y="204">10만 건에서 핵심 질문 1,028건만 남겼다 — 밀도를 100배 넘게 올렸다</text>
+              <text class="dg-s" x="4" y="222">정규식이 놓치는 문장 속 이름·주소는 NER 이 잡는다</text>
+            </svg>
+          </div>
+          <p data-ko="게시판에는 질문보다 <b>이벤트성 글·욕설·단순 비방</b>이 훨씬 많다. 그래서 첫 관문이 «답할 가치가 있는 질문인가»를 가리는 일이었다. 키워드 매칭만으로는 부족해 <b>감성 분석과 욕설 사전, 이벤트 문구 패턴을 겹쳐</b> 걸렀고, 그 결과 <b>10만 건에서 핵심 질문 1,028건</b>만 남았다."
+            data-en="A board carries far more giveaways, abuse and complaints than actual questions, so the first gate was deciding <b>what deserves an answer</b>. Keyword matching alone was not enough: <b>sentiment analysis, a profanity lexicon and event-phrase patterns</b> were layered together, leaving <b>1,028 real questions out of 100,000 posts.</b>">게시판에는
+            질문보다 <b>이벤트성 글·욕설·단순 비방</b>이 훨씬 많다. 그래서 첫 관문이 «답할 가치가 있는 질문인가»를 가리는 일이었다. 키워드 매칭만으로는 부족해 <b>감성 분석과 욕설 사전, 이벤트
+            문구 패턴을 겹쳐</b> 걸렀고, 그 결과 <b>10만 건에서 핵심 질문 1,028건</b>만 남았다.</p>
+          <p data-ko="남은 질문은 <b>SBERT 를 STS 로 파인튜닝</b>해 문맥적 의미로 비교한다 — 단어가 겹치는지가 아니라 <b>같은 것을 묻고 있는지</b>를 본다. 유사도 <b>0.9 이상</b>이면 기존 우수 답변을 꺼내 상위 3개를 추천한다."
+            data-en="What survives is compared by meaning, using <b>SBERT fine-tuned for STS</b> — not whether the words overlap but whether <b>the same thing is being asked</b>. Above <b>0.9 similarity</b> it pulls an existing good answer and recommends the top three.">남은
+            질문은 <b>SBERT 를 STS 로 파인튜닝</b>해 문맥적 의미로 비교한다 — 단어가 겹치는지가 아니라 <b>같은 것을 묻고 있는지</b>를 본다. 유사도 <b>0.9 이상</b>이면 기존 우수
+            답변을 꺼내 상위 3개를 추천한다.</p>
+          <p data-ko="마지막 관문이 익명화다. 전화번호·이메일처럼 <b>모양이 정해진 것은 정규표현식</b>으로 잡지만, 문장 속에 자연스럽게 섞인 이름과 주소는 규칙으로 안 잡힌다. 그래서 <b>NER 을 겹쳐</b> 이중으로 처리했다 — <b>규칙이 놓치는 자리를 모델이 메우는</b> 구조다."
+            data-en="The last gate is anonymisation. Phone numbers and emails have <b>a fixed shape, so a regex catches them</b>; names and addresses woven into a sentence do not. <b>NER is layered on top</b> for a second pass — <b>the model covers what the rules miss.</b>">마지막
+            관문이 익명화다. 전화번호·이메일처럼 <b>모양이 정해진 것은 정규표현식</b>으로 잡지만, 문장 속에 자연스럽게 섞인 이름과 주소는 규칙으로 안 잡힌다. 그래서 <b>NER 을 겹쳐</b> 이중으로
+            처리했다 — <b>규칙이 놓치는 자리를 모델이 메우는</b> 구조다.</p>
         </section>
 
       </div>
