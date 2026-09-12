@@ -1021,6 +1021,13 @@
       grid-column: 1 / -1;
     }
 
+    /* 그리드 아이템의 기본 min-width:auto 는 min-content 다 — 안에 든 다이어그램 SVG
+       (min-width:420px)가 좁은 화면에서 트랙을 밀어올려 카드 본문이 잘렸다.
+       0 으로 낮춰야 .fdiag 의 overflow-x:auto 가 제 일을 한다. */
+    .pc-grid > * {
+      min-width: 0;
+    }
+
     /* 가로로 넓은 아키텍처 다이어그램용 (wide) */
     .pc-grid:has(.pc-figure.wide),
     .pc-grid.wide {
@@ -4196,19 +4203,19 @@
           <h4 class="fmodal-title" data-ko="FDS 고위험 → 2FA 승격" data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 136" role="img" aria-label="결재 승인을 통과해도 FDS가 재평가해 2FA를 요구하는 이중 방어">
-              <rect class="dg-box" x="4" y="18" width="166" height="48" rx="8" />
+              <rect class="dg-box" x="4" y="18" width="136" height="48" rx="8" />
               <text class="dg-t" x="16" y="38">① 결재 승인 — 사람</text>
               <text class="dg-s" x="16" y="55">규칙: 한도 · 직무분리</text>
-              <path class="dg-a" d="M174 42 H226" />
-              <text class="dg-k" x="180" y="34">통과</text>
-              <rect class="dg-box" x="230" y="18" width="166" height="48" rx="8" />
-              <text class="dg-t" x="242" y="38">② FDS 재평가 — 모델</text>
-              <text class="dg-s" x="242" y="55">IsolationForest + 개인 기준선</text>
-              <path class="dg-a" d="M400 42 H452" />
-              <text class="dg-bad" x="404" y="34">고위험</text>
-              <rect class="dg-box" x="456" y="18" width="160" height="48" rx="8" />
-              <text class="dg-t" x="468" y="38">TOTP 2FA 필요</text>
-              <text class="dg-s" x="468" y="55">6자리 코드 입력 전까지 보류</text>
+              <path class="dg-a" d="M144 42 H194" />
+              <text class="dg-k" x="158" y="34">통과</text>
+              <rect class="dg-box" x="198" y="18" width="189" height="48" rx="8" />
+              <text class="dg-t" x="210" y="38">② FDS 재평가 — 모델</text>
+              <text class="dg-s" x="210" y="55">IsolationForest + 개인 기준선</text>
+              <path class="dg-a" d="M391 42 H445" />
+              <text class="dg-bad" x="402" y="34">고위험</text>
+              <rect class="dg-box" x="449" y="18" width="167" height="48" rx="8" />
+              <text class="dg-t" x="461" y="38">TOTP 2FA 필요</text>
+              <text class="dg-s" x="461" y="55">6자리 코드 입력 전까지 보류</text>
               <text class="dg-s" x="16" y="98">결재가 끝나도 자동으로 완료되지 않는다 — 규칙(한도) → 모델(FDS) 두 축이 직렬이다</text>
               <text class="dg-s" x="16" y="118">개인 기준선은 사용자별 30일 평균 이체액을 Redis 에 캐시해 쓴다 (전역 임계값이 성립하지 않는다)</text>
             </svg>
@@ -4453,11 +4460,11 @@
               <rect class="dg-box" x="4" y="16" width="164" height="44" rx="8" />
               <text class="dg-t" x="16" y="36">lookup_error_code</text>
               <text class="dg-s" x="16" y="51">RAG 아님 · 정확 조회</text>
-              <path class="dg-a" d="M172 38 H226" />
-              <text class="dg-bad" x="178" y="32">not_found</text>
-              <rect class="dg-box" x="230" y="16" width="176" height="44" rx="8" />
-              <text class="dg-t" x="242" y="36">추측 금지</text>
-              <text class="dg-s" x="242" y="51">유사 코드를 만들지 않는다</text>
+              <path class="dg-a" d="M172 38 H234" />
+              <text class="dg-bad" x="176" y="32">not_found</text>
+              <rect class="dg-box" x="238" y="16" width="168" height="44" rx="8" />
+              <text class="dg-t" x="250" y="36">추측 금지</text>
+              <text class="dg-s" x="250" y="51">유사 코드를 만들지 않는다</text>
               <path class="dg-a" d="M410 38 H464" />
               <rect class="dg-box" x="468" y="16" width="148" height="44" rx="8" />
               <text class="dg-t" x="480" y="36">A/S 안내</text>
@@ -4554,13 +4561,13 @@
           <h4 class="fmodal-title" data-ko="처분 사전판정" data-en="Disposal pre-check">처분 사전판정</h4>
           <div class="fdiag">
             <svg viewBox="0 0 620 132" role="img" aria-label="사실이 부족하면 INSUFFICIENT_FACTS로 답하고, 채워지면 CLEAR 판정과 근거 조문을 낸다">
-              <rect class="dg-box" x="4" y="14" width="150" height="44" rx="8" />
+              <rect class="dg-box" x="4" y="14" width="134" height="44" rx="8" />
               <text class="dg-t" x="16" y="34">처분 사전판정 요청</text>
               <text class="dg-s" x="16" y="50">자산 상세 화면</text>
-              <path class="dg-a" d="M158 26 H212" />
-              <text class="dg-bad" x="162" y="20">처분일 없음</text>
-              <path class="dg-a" d="M158 48 H212" />
-              <text class="dg-ok" x="162" y="64">입력 후</text>
+              <path class="dg-a" d="M142 26 H212" />
+              <text class="dg-bad" x="148" y="20">처분일 없음</text>
+              <path class="dg-a" d="M142 48 H212" />
+              <text class="dg-ok" x="158" y="64">입력 후</text>
               <rect class="dg-box" x="216" y="4" width="200" height="32" rx="8" />
               <text class="dg-t" x="228" y="24">INSUFFICIENT_FACTS</text>
               <rect class="dg-box" x="216" y="44" width="200" height="32" rx="8" />
@@ -4643,10 +4650,10 @@
               <text class="dg-t" x="240" y="92">산출식 공개</text>
               <text class="dg-s" x="240" y="108">어떻게 나온 등급인지</text>
               <path class="dg-a" d="M382 94 H430" />
-              <rect class="dg-hold" x="434" y="66" width="182" height="56" rx="8" />
-              <text class="dg-t" x="446" y="88">&quot;자동 반영 안 됨&quot; 고지</text>
-              <text class="dg-s" x="446" y="105">등급이 바뀌어도 조치는</text>
-              <text class="dg-s" x="446" y="118">사람이 판단해 넣는다</text>
+              <rect class="dg-hold" x="434" y="62" width="182" height="64" rx="8" />
+              <text class="dg-t" x="446" y="82">&quot;자동 반영 안 됨&quot; 고지</text>
+              <text class="dg-s" x="446" y="99">등급이 바뀌어도 조치는</text>
+              <text class="dg-s" x="446" y="116">사람이 판단해 넣는다</text>
             </svg>
           </div>
           <p data-ko="법정 기한은 <b>범위를 180일에서 730일까지 넓혀가며</b> 임박한 항목을 찾는다. 한 번에 넓게 보면 급한 것과 먼 것이 섞이기 때문이다."
