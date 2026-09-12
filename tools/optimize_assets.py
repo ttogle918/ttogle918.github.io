@@ -74,6 +74,9 @@ DIAG_COLORS = 256
 
 DIAGRAMS: dict[str, str] = {
     "kbridge/workflow.png": "LawGenie/meeting-notes/architecture/workflow.png",
+    "kbridge/system_architecture.png": "LawGenie/meeting-notes/architecture/system_architecture.png",
+    "kbridge/product_registration_flow.png":
+        "LawGenie/meeting-notes/architecture/product_registration_requirement_workflowflow.png",
 }
 
 

@@ -3639,12 +3639,27 @@
                         검색엔진 결합으로 정보 최신성 확보.</li>
                     </ul>
                   </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 흐름이 열립니다"
+                        data-en="Key flows — tap to open">주요 기능 — 누르면 흐름이 열립니다</span></div>
+                    <div class="featlist">
+                      <button class="feat" data-modal="f-kbridge-verify" data-ko="판정에 신뢰도 등급을 붙인다"
+                        data-en="Every verdict carries a confidence grade">판정에 신뢰도 등급을 붙인다</button>
+                      <button class="feat" data-modal="f-kbridge-precedent" data-ko="판례 분석 파이프라인"
+                        data-en="Precedent analysis pipeline">판례 분석 파이프라인</button>
+                    </div>
+                  </div>
                   <div class="impact block">
-                    <div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과
-                        (Impact)</span></div>
-                    <p data-ko="규제 불확실성 해소 및 통관 사전 준비 시간 획기적 단축."
-                      data-en="Reduced regulatory uncertainty and customs prep time.">규제 불확실성 해소 및 통관 사전 준비 시간 획기적 단축.
-                    </p>
+                    <div class="bh"><span class="star">★</span> <span data-ko="만든 것" data-en="What was built">만든
+                        것</span></div>
+                    <p data-ko="수입 요건 분석 <b>LangGraph 6노드</b> 워크플로우 · 노드 5 내부에 <b>병렬 분석 4축</b>(세부규정·시험절차·처벌·유효기간)과 <b>검증 3종</b> · 판례 파이프라인(CBP 수집 → HQ/NY 번호 추출 → FAISS <b>256차원</b> 색인 → 유사 판례 top 5) · 최종 리포트 <b>15개 섹션</b> · 연동 규제 기관 <b>9곳</b> · HTS <b>30,067 레코드</b> 색인."
+                      data-en="A <b>six-node LangGraph</b> workflow for import requirements; node 5 runs <b>four analyses in parallel</b> (rules, testing, penalties, validity) plus <b>three verification passes</b>; a precedent pipeline (CBP collection → HQ/NY number extraction → <b>256-dim</b> FAISS index → top-5 similar rulings); a <b>15-section</b> final report; <b>nine</b> agencies wired in; <b>30,067</b> HTS records indexed.">수입
+                      요건 분석 <b>LangGraph 6노드</b> 워크플로우 · 노드 5 내부에 <b>병렬 분석 4축</b>(세부규정·시험절차·처벌·유효기간)과 <b>검증 3종</b> · 판례
+                      파이프라인(CBP 수집 → HQ/NY 번호 추출 → FAISS <b>256차원</b> 색인 → 유사 판례 top 5) · 최종 리포트 <b>15개 섹션</b> · 연동 규제 기관
+                      <b>9곳</b> · HTS <b>30,067 레코드</b> 색인.</p>
+                    <p data-ko="⚠️ 여기엔 «얼마나 빨라졌다»가 없다. 팀 과제로 끝나 <b>운영 계측을 하지 못했다.</b>"
+                      data-en="⚠️ There is no “how much faster” here. It ended as a team assignment, so <b>it was never measured in production.</b>">⚠️
+                      여기엔 «얼마나 빨라졌다»가 없다. 팀 과제로 끝나 <b>운영 계측을 하지 못했다.</b></p>
                   </div>
                   <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: k-bridge)
                        <a class="gobtn" href="project/k-bridge/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
@@ -3658,6 +3673,18 @@
                         alt="수입 요건 분석 LangGraph 워크플로우 전체 흐름도">
                       <span class="cap2 mono" data-ko="수입 요건 분석 LangGraph 워크플로우"
                         data-en="Import-requirement analysis workflow (LangGraph)">수입 요건 분석 LangGraph 워크플로우</span>
+                    </div>
+                    <div class="pc-slide">
+                      <img data-src="assets/kbridge/system_architecture.png"
+                        alt="AI 엔진·백엔드·프론트로 나뉜 전체 시스템 구성도">
+                      <span class="cap2 mono" data-ko="전체 시스템 구성"
+                        data-en="Overall system architecture">전체 시스템 구성</span>
+                    </div>
+                    <div class="pc-slide">
+                      <img data-src="assets/kbridge/product_registration_flow.png"
+                        alt="상품 등록에서 요건 분석까지 이어지는 전체 흐름">
+                      <span class="cap2 mono" data-ko="상품 등록 → 요건 분석 전체 흐름"
+                        data-en="Product registration → requirement analysis">상품 등록 → 요건 분석 전체 흐름</span>
                     </div>
                   </div>
                 </div>
@@ -3674,9 +3701,9 @@
               <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI
                 Agent 기반 기업용 채용 관리 시스템</div>
               <h3 class="pc-title">KOCRUIT</h3>
-              <div class="pc-meta" data-ko="2025.06 ~ 2025.07 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 면접 파트 담당 · 과정 내 1위" data-en="Jun–Jul 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> interview module &amp; ranked #1 in the program">2025.06 ~ 2025.07 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 면접 파트 담당 · 과정 내 1위</div>
+              <div class="pc-meta" data-ko="2025.06 ~ <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위" data-en="Since Jun 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">2025.06 ~ <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
               <div class="pc-hash mono">
-                <span>#End-to-End</span><span>#Multimodal</span><span>#AgentOrchestration</span><span>#TeamLead</span>
+                <span>#Multimodal</span><span>#LangGraph</span><span>#MSA</span><span>#TeamLead</span>
               </div>
             </div>
             <span class="pc-caret">▶</span>
@@ -3686,36 +3713,75 @@
               <div class="pc-grid">
                 <div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="문제 정의" data-en="Problem">문제 정의</span>
+                    <div class="bh"><span class="star">◆</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span>
                     </div>
-                    <p data-ko="단순 반복 업무로 인한 채용 리소스 낭비 및 면접관의 주관적 평가 개입."
-                      data-en="Wasted hiring resources and subjective interviewer bias.">단순 반복 업무로 인한 채용 리소스 낭비 및 면접관의
-                      주관적 평가 개입.</p>
+                    <p data-ko="서류 검토와 면접 기록은 사람 손이 많이 가고, 면접관마다 평가 기준도 다르다. AI 로 돕되 <b>AI 가 합·불을 정하지는 않게</b> 만드는 것이 목표였다 — AI 는 점수와 근거를 내고, 최종 판단은 사람이 한다."
+                      data-en="Screening and interview note-taking eat hours, and every interviewer grades differently. The goal was to help with AI while making sure <b>the AI never decides pass or fail</b>: it produces scores and evidence, a person makes the call.">서류
+                      검토와 면접 기록은 사람 손이 많이 가고, 면접관마다 평가 기준도 다르다. AI 로 돕되 <b>AI 가 합·불을 정하지는 않게</b> 만드는 것이 목표였다 — AI 는 점수와 근거를
+                      내고, 최종 판단은 사람이 한다.</p>
                   </div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 (Agent)" data-en="Solution">해결 방법
-                        (Agent)</span></div>
+                    <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design">설계 포인트</span>
+                    </div>
                     <ul>
-                      <li data-ko="<b>멀티모달 분석</b>: Whisper(음성)+DeepFace(표정) 6차원 정량 평가 리포트."
-                        data-en="<b>Multimodal</b>: Whisper + DeepFace → 6-axis quantitative report."><b>멀티모달 분석</b>:
-                        Whisper(음성)+DeepFace(표정) 6차원 정량 평가 리포트.</li>
-                      <li data-ko="<b>LangGraph Orchestration</b>: '분석-전략-생성-검토' 노드 모듈화."
-                        data-en="<b>LangGraph Orchestration</b>: modular analyze-strategize-generate-review nodes.">
-                        <b>LangGraph Orchestration</b>: '분석-전략-생성-검토' 노드 모듈화.
-                      </li>
-                      <li
-                        data-ko="<b>FastAPI 마이그레이션</b>: Spring Boot → FastAPI 전환으로 Python 모델 호환·비동기 스트리밍 확보, Redis 캐싱."
-                        data-en="<b>FastAPI migration</b>: Spring Boot → FastAPI for Python-model compatibility & async streaming, plus Redis caching.">
-                        <b>FastAPI 마이그레이션</b>: Spring Boot → FastAPI 전환으로 Python 모델 호환·비동기 스트리밍 확보, Redis 캐싱.
-                      </li>
+                      <li data-ko="<b>상태 관리와 무상태 분석을 가른다</b>: 세션·WebSocket·DB 는 백엔드(:8000)가, STT·평가 같은 분석은 Agent(:8001)가 맡는다. Agent 에서 <span class=&quot;mono&quot;>websockets</span> 의존성을 제거해 이 경계를 코드로 강제했다."
+                        data-en="<b>State on one side, stateless analysis on the other</b>: the backend (:8000) owns sessions, WebSockets and the DB; the agent (:8001) does STT and scoring. Removing the <span class=&quot;mono&quot;>websockets</span> dependency from the agent enforces that line in code."><b>상태
+                        관리와 무상태 분석을 가른다</b>: 세션·WebSocket·DB 는 백엔드(:8000)가, STT·평가 같은 분석은 Agent(:8001)가 맡는다. Agent 에서 <span
+                          class="mono">websockets</span> 의존성을 제거해 이 경계를 코드로 강제했다.</li>
+                      <li data-ko="<b>스택 충돌이 서비스 경계를 정했다</b>: Whisper·pyannote(PyTorch)와 MediaPipe·DeepFace(TensorFlow)가 한 프로세스에서 충돌해 컨테이너를 갈랐다. 유행이 아니라 문제가 먼저였다."
+                        data-en="<b>A dependency clash drew the service boundary</b>: Whisper and pyannote (PyTorch) collide with MediaPipe and DeepFace (TensorFlow) in one process, so they run in separate containers. The problem came first, not the pattern."><b>스택
+                        충돌이 서비스 경계를 정했다</b>: Whisper·pyannote(PyTorch)와 MediaPipe·DeepFace(TensorFlow)가 한 프로세스에서 충돌해 컨테이너를 갈랐다.
+                        유행이 아니라 문제가 먼저였다.</li>
+                      <li data-ko="<b>질문은 면접 전에 미리 만든다</b>: 면접 중에 생성까지 하면 지연이 대화를 끊는다. 스케줄러가 지원 시점에 질문과 평가 키트를 만들어 둔다."
+                        data-en="<b>Questions are generated before the interview</b>: generating them live would put latency in the middle of a conversation. A scheduler builds the questions and the evaluation kit when the application arrives."><b>질문은
+                        면접 전에 미리 만든다</b>: 면접 중에 생성까지 하면 지연이 대화를 끊는다. 스케줄러가 지원 시점에 질문과 평가 키트를 만들어 둔다.</li>
+                      <li data-ko="<b>LLM 제공자를 한 줄로 바꾼다</b>: 모든 호출이 <span class=&quot;mono&quot;>agent/utils/llm.py</span> 팩토리를 지나 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 중 하나를 고른다. 제공자 장애 때 실제로 갈아끼웠다."
+                        data-en="<b>The LLM provider swaps in one line</b>: every call goes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory and picks one of <span class=&quot;mono&quot;>nvidia | ollama | openai</span>. When a provider went down, it really was swapped."><b>LLM
+                        제공자를 한 줄로 바꾼다</b>: 모든 호출이 <span class="mono">agent/utils/llm.py</span> 팩토리를 지나 <span
+                          class="mono">nvidia | ollama | openai</span> 중 하나를 고른다. 제공자 장애 때 실제로 갈아끼웠다.</li>
                     </ul>
                   </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="구현에서 신경 쓴 것" data-en="In practice">구현에서
+                        신경 쓴 것</span></div>
+                    <ul>
+                      <li data-ko="<b>스키마를 바꾸되 계약은 지켰다</b>: 전형 단계를 <span class=&quot;mono&quot;>application</span> 테이블 컬럼으로 쌓던 걸 1:N <span class=&quot;mono&quot;>application_stage</span> 로 분리하면서, 구 컬럼명은 SQLAlchemy <span class=&quot;mono&quot;>@property</span> 로 가상화했다 — <b>프론트를 한 줄도 고치지 않고</b> 옮겼다."
+                        data-en="<b>The data model changed; the contract did not</b>: stage columns piled onto <span class=&quot;mono&quot;>application</span> moved into a 1:N <span class=&quot;mono&quot;>application_stage</span> table, with the old column names virtualised through SQLAlchemy <span class=&quot;mono&quot;>@property</span> — <b>the frontend needed no edits at all.</b>"><b>스키마를
+                        바꾸되 계약은 지켰다</b>: 전형 단계를 <span class="mono">application</span> 테이블 컬럼으로 쌓던 걸 1:N <span
+                          class="mono">application_stage</span> 로 분리하면서, 구 컬럼명은 SQLAlchemy <span
+                          class="mono">@property</span> 로 가상화했다 — <b>프론트를 한 줄도 고치지 않고</b> 옮겼다.</li>
+                      <li data-ko="<b>중복 호출을 세 겹으로 막는다</b>: 함수와 인자를 SHA-256 으로 해싱한 키의 <span class=&quot;mono&quot;>@redis_cache</span>(TTL 24h), 작업 난이도별 모델 티어링, 생성 결과의 DB 영속화."
+                        data-en="<b>Three layers against duplicate calls</b>: a <span class=&quot;mono&quot;>@redis_cache</span> keyed on a SHA-256 of function and arguments (TTL 24h), model tiering by task difficulty, and persisting generated results in the DB."><b>중복
+                        호출을 세 겹으로 막는다</b>: 함수와 인자를 SHA-256 으로 해싱한 키의 <span class="mono">@redis_cache</span>(TTL 24h), 작업
+                        난이도별 모델 티어링, 생성 결과의 DB 영속화.</li>
+                      <li data-ko="<b>고치기 전에 깨진 걸 알 수단부터</b>: 백엔드에 테스트가 하나도 없어, OpenAPI 계약을 본문 지문(sha1)으로 식별하는 스냅샷 도구와 pytest <b>11개</b>를 먼저 세우고 면접 질문 도메인을 4계층으로 분해했다."
+                        data-en="<b>A safety net before touching the code</b>: the backend had no tests at all, so a contract-snapshot tool that fingerprints OpenAPI components by body hash, plus <b>11</b> pytest cases, came first — then the interview-question domain was split into four layers."><b>고치기
+                        전에 깨진 걸 알 수단부터</b>: 백엔드에 테스트가 하나도 없어, OpenAPI 계약을 본문 지문(sha1)으로 식별하는 스냅샷 도구와 pytest <b>11개</b>를 먼저
+                        세우고 면접 질문 도메인을 4계층으로 분해했다.</li>
+                    </ul>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 흐름이 열립니다"
+                        data-en="Key flows — tap to open">주요 기능 — 누르면 흐름이 열립니다</span></div>
+                    <div class="featlist">
+                      <button class="feat" data-modal="f-kocruit-interview" data-ko="면접 모듈 — 전 · 중 · 후"
+                        data-en="Interview module — before, during, after">면접 모듈 — 전 · 중 · 후</button>
+                      <button class="feat" data-modal="f-kocruit-question" data-ko="면접 질문 생성"
+                        data-en="Interview question generation">면접 질문 생성</button>
+                      <button class="feat" data-modal="f-kocruit-realtime" data-ko="실시간 면접 처리"
+                        data-en="Real-time interview processing">실시간 면접 처리</button>
+                      <button class="feat" data-modal="f-kocruit-architecture" data-ko="전체 아키텍처"
+                        data-en="Overall architecture">전체 아키텍처</button>
+                    </div>
+                  </div>
                   <div class="impact block">
-                    <div class="bh"><span class="star">★</span> <span data-ko="성과 (Impact)" data-en="Impact">성과
-                        (Impact)</span></div>
-                    <p data-ko="면접 자동화 시스템 구축 및 멀티모달 기반 정량 평가로 업무 시간 단축."
-                      data-en="Automated interviews and cut workload with multimodal scoring.">면접 자동화 시스템 구축 및 멀티모달 기반
-                      정량 평가로 업무 시간 단축.</p>
+                    <div class="bh"><span class="star">★</span> <span data-ko="만든 것" data-en="What was built">만든
+                        것</span></div>
+                    <p data-ko="<b>6서비스</b> Docker Compose 구성 · DB <b>60테이블</b> · API 를 평면 <b>34개</b> 라우터에서 <b>도메인 8패키지</b>로 재배치 · 백엔드에서 AI/ML 의존성 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 Agent REST <b>15개</b>로 이관 · 서류평가 상시 LLM 호출 <b>9회 → 4회</b>, gpt-4o <b>9경로 중 8곳</b>을 4o-mini 로 (면접 답변 정밀 분석 1곳만 4o 유지)."
+                      data-en="<b>Six services</b> under Docker Compose · <b>60</b> DB tables · APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · standing LLM calls per applicant cut <b>9 → 4</b>, with <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o).">
+                      <b>6서비스</b> Docker Compose 구성 · DB <b>60테이블</b> · API 를 평면 <b>34개</b> 라우터에서 <b>도메인 8패키지</b>로 재배치 ·
+                      백엔드에서 AI/ML 의존성 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 Agent REST <b>15개</b>로 이관 · 서류평가 상시 LLM 호출
+                      <b>9회 → 4회</b>, gpt-4o <b>9경로 중 8곳</b>을 4o-mini 로 (면접 답변 정밀 분석 1곳만 4o 유지).</p>
                   </div>
                   <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: kocruit)
                        <a class="gobtn" href="project/kocruit/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
@@ -3727,9 +3793,16 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
-                      <span class="cap mono">// architecture.png</span>
-                      <span class="cap2 mono" data-ko="여기에 아키텍처<br>다이어그램 이미지" data-en="architecture<br>diagram here">여기에
-                        아키텍처<br>다이어그램 이미지</span>
+                      <span class="cap mono">// interview_pipeline</span>
+                      <span class="cap2 mono" data-ko="면접 전 질문 생성 · 면접 중 실시간 평가<br>· 면접 후 리포트"
+                        data-en="Questions before · live scoring during<br>· report after">면접 전 질문 생성 · 면접 중 실시간 평가<br>·
+                        면접 후 리포트</span>
+                    </div>
+                    <div class="pc-slide">
+                      <span class="cap mono">// service_boundary</span>
+                      <span class="cap2 mono" data-ko="백엔드 :8000 는 상태를 들고<br>Agent :8001 은 분석만 한다"
+                        data-en="Backend :8000 holds state<br>agent :8001 only analyses">백엔드 :8000 는 상태를 들고<br>Agent :8001
+                        은 분석만 한다</span>
                     </div>
                   </div>
                 </div>
@@ -4703,6 +4776,295 @@
             <img data-src="assets/maintq/expenditure-classification.gif" alt="expenditure classification withheld">
             <figcaption data-ko="경계 사례 — 단정 대신 판단 유보" data-en="A borderline case: withheld rather than ruled">경계 사례 — 단정 대신 판단 유보</figcaption>
           </figure>
+        </section>
+
+        <section id="f-kocruit-interview" hidden>
+          <div class="fmodal-kicker mono">KOCRUIT · 면접 모듈</div>
+          <h4 class="fmodal-title" data-ko="면접 전 · 중 · 후" data-en="Before, during, after the interview">면접 전 · 중 · 후</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 368" role="img" aria-label="면접 전 질문 생성, 면접 중 실시간 처리, 면접 후 리포트 생성으로 나뉜 면접 모듈 아키텍처">
+              <rect class="dg-zone" x="4" y="18" width="612" height="78" rx="10" />
+              <text class="dg-k" x="14" y="32">PRE — 면접 전</text>
+              <rect class="dg-box" x="14" y="42" width="130" height="44" rx="8" />
+              <text class="dg-t" x="24" y="62">공고 · 지원</text>
+              <text class="dg-s" x="24" y="78">Application</text>
+              <path class="dg-a" d="M148 64 H166" />
+              <rect class="dg-box" x="170" y="42" width="130" height="44" rx="8" />
+              <text class="dg-t" x="180" y="62">스케줄러</text>
+              <text class="dg-s" x="180" y="78">APScheduler</text>
+              <path class="dg-a" d="M304 64 H322" />
+              <rect class="dg-box" x="326" y="42" width="130" height="44" rx="8" />
+              <text class="dg-t" x="336" y="62">질문 생성 Agent</text>
+              <text class="dg-s" x="336" y="78">LangGraph</text>
+              <path class="dg-a" d="M460 64 H478" />
+              <rect class="dg-box" x="482" y="42" width="130" height="44" rx="8" />
+              <text class="dg-t" x="492" y="62">질문 DB</text>
+              <text class="dg-s" x="492" y="78">미리 저장</text>
+              <rect class="dg-zone" x="4" y="110" width="612" height="136" rx="10" />
+              <text class="dg-k" x="14" y="124">LIVE — 면접 중</text>
+              <rect class="dg-box" x="14" y="150" width="120" height="64" rx="8" />
+              <text class="dg-t" x="24" y="174">지원자</text>
+              <text class="dg-s" x="24" y="192">MediaRecorder</text>
+              <path class="dg-a" d="M138 180 H160" />
+              <rect class="dg-box" x="164" y="134" width="196" height="88" rx="8" />
+              <text class="dg-t" x="176" y="156">Backend WebSocket</text>
+              <text class="dg-s" x="176" y="176">/ws/interview/{id}</text>
+              <text class="dg-s" x="176" y="192">Connection Manager</text>
+              <text class="dg-s" x="176" y="208">Audio Processor</text>
+              <path class="dg-a" d="M364 180 H386" />
+              <rect class="dg-box" x="390" y="134" width="212" height="88" rx="8" />
+              <text class="dg-t" x="402" y="156">AI Agent 서비스</text>
+              <text class="dg-s" x="402" y="176">Whisper STT</text>
+              <text class="dg-s" x="402" y="192">실시간 평가</text>
+              <text class="dg-s" x="402" y="208">HTTP POST 로 위임</text>
+              <text class="dg-s" x="14" y="238">결과 JSON 은 같은 경로로 되돌아가 브로드캐스트된다</text>
+              <rect class="dg-zone" x="4" y="260" width="612" height="78" rx="10" />
+              <text class="dg-k" x="14" y="274">POST — 면접 후</text>
+              <rect class="dg-box" x="14" y="284" width="180" height="44" rx="8" />
+              <text class="dg-t" x="26" y="311">세션 종료</text>
+              <path class="dg-a" d="M198 306 H216" />
+              <rect class="dg-box" x="220" y="284" width="180" height="44" rx="8" />
+              <text class="dg-t" x="232" y="311">최종 평가</text>
+              <path class="dg-a" d="M404 306 H422" />
+              <rect class="dg-hold" x="426" y="284" width="180" height="44" rx="8" />
+              <text class="dg-t" x="438" y="305">리포트 생성</text>
+              <text class="dg-s" x="438" y="321">사람이 읽고 판단</text>
+              <text class="dg-g" x="4" y="360">질문은 면접 전에 미리 만들어 둔다 — 면접 중에 생성까지 하면 지연이 대화를 끊는다</text>
+            </svg>
+          </div>
+          <p data-ko="면접을 <b>세 구간으로 나눠</b> 설계했다. 지원이 들어오면 스케줄러가 질문과 평가 키트를 <b>미리</b> 만들어 두고, 면접 중에는 평가만 한다 — 대화 도중에 생성까지 하면 그 지연이 그대로 어색한 침묵이 된다."
+            data-en="The interview is designed in <b>three phases</b>. When an application arrives a scheduler builds the questions and the evaluation kit <b>in advance</b>; during the interview it only scores. Generating mid-conversation would turn latency into awkward silence.">면접을
+            <b>세 구간으로 나눠</b> 설계했다. 지원이 들어오면 스케줄러가 질문과 평가 키트를 <b>미리</b> 만들어 두고, 면접 중에는 평가만 한다 — 대화 도중에 생성까지 하면 그 지연이 그대로 어색한
+            침묵이 된다.</p>
+          <p data-ko="면접 중 경로가 이 설계의 핵심이다. 지원자의 오디오는 <b>백엔드 WebSocket</b>이 받아 세션으로 관리하고, 판정은 <b>무상태 Agent</b>에 HTTP 로 위임한다. 결과 JSON 은 같은 경로로 되돌아가 브로드캐스트된다. Agent 는 상태를 들지 않으므로 단독으로 늘릴 수 있다."
+            data-en="The live path is the heart of it. Candidate audio arrives at the <b>backend WebSocket</b>, which owns the session, and scoring is delegated over HTTP to the <b>stateless agent</b>. The result JSON returns along the same path and is broadcast. Because the agent holds no state, it scales on its own.">면접
+            중 경로가 이 설계의 핵심이다. 지원자의 오디오는 <b>백엔드 WebSocket</b>이 받아 세션으로 관리하고, 판정은 <b>무상태 Agent</b>에 HTTP 로 위임한다. 결과 JSON 은 같은
+            경로로 되돌아가 브로드캐스트된다. Agent 는 상태를 들지 않으므로 단독으로 늘릴 수 있다.</p>
+          <p data-ko="면접이 끝나면 그때 최종 평가와 리포트를 만든다. <b>리포트는 판정문이 아니라 읽을 자료다</b> — 점수와 근거를 구조화해 내보내고, 합·불은 사람이 정한다."
+            data-en="When the session ends, the final evaluation and report are produced. <b>The report is reading material, not a verdict</b>: scores and evidence are structured for a person, who decides pass or fail.">면접이
+            끝나면 그때 최종 평가와 리포트를 만든다. <b>리포트는 판정문이 아니라 읽을 자료다</b> — 점수와 근거를 구조화해 내보내고, 합·불은 사람이 정한다.</p>
+        </section>
+
+        <section id="f-kocruit-question" hidden>
+          <div class="fmodal-kicker mono">KOCRUIT · 질문 생성</div>
+          <h4 class="fmodal-title" data-ko="지원자마다 경로가 갈린다" data-en="The path forks per applicant">지원자마다 경로가 갈린다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 208" role="img" aria-label="요건 분석에서 포트폴리오와 이력서를 거쳐 질문을 만들고 평가 키트까지 붙여 JSON 으로 낸다">
+              <rect class="dg-box" x="4" y="26" width="150" height="52" rx="8" />
+              <text class="dg-t" x="16" y="48">요건 분석</text>
+              <text class="dg-s" x="16" y="66">공고 · 이력서</text>
+              <path class="dg-a" d="M158 52 H180" />
+              <rect class="dg-box" x="184" y="26" width="180" height="52" rx="8" />
+              <text class="dg-t" x="196" y="48">포트폴리오 분석</text>
+              <text class="dg-s" x="196" y="66">프로젝트 · 스킬 추출</text>
+              <path class="dg-a" d="M368 52 H390" />
+              <rect class="dg-box" x="394" y="26" width="222" height="52" rx="8" />
+              <text class="dg-t" x="406" y="48">이력서 분석</text>
+              <text class="dg-s" x="406" y="66">분석된 프로필</text>
+              <path class="dg-a" d="M505 82 V92 H104 V100" />
+              <rect class="dg-box" x="4" y="104" width="200" height="60" rx="8" />
+              <text class="dg-t" x="16" y="126">질문 생성</text>
+              <text class="dg-s" x="16" y="144">공통 · 개인</text>
+              <text class="dg-s" x="16" y="158">직무 · 회사</text>
+              <path class="dg-a" d="M208 134 H230" />
+              <rect class="dg-box" x="234" y="104" width="200" height="60" rx="8" />
+              <text class="dg-t" x="246" y="126">평가 키트</text>
+              <text class="dg-s" x="246" y="144">체크리스트 · 가이드라인</text>
+              <text class="dg-s" x="246" y="158">평가 기준</text>
+              <path class="dg-a" d="M438 134 H460" />
+              <rect class="dg-hold" x="464" y="104" width="152" height="60" rx="8" />
+              <text class="dg-t" x="476" y="132">최종 JSON</text>
+              <text class="dg-s" x="476" y="150">질문 + 평가 키트</text>
+              <text class="dg-s" x="4" y="184">포트폴리오가 없으면 이력서 분석으로 바로 간다</text>
+              <text class="dg-g" x="4" y="202">참조: agent/agents/interview_question_workflow.py</text>
+            </svg>
+          </div>
+          <p data-ko="모든 지원자에게 같은 질문을 내면 면접이 형식이 된다. 그래서 <b>가진 자료에 따라 경로를 나눴다</b> — 포트폴리오가 있으면 프로젝트와 스킬을 먼저 뽑아 이력서 분석에 얹고, 없으면 이력서만으로 간다."
+            data-en="Asking every candidate the same questions turns the interview into a formality, so <b>the path forks on what the applicant supplied</b>: with a portfolio, projects and skills are extracted first and folded into the résumé analysis; without one, the résumé alone carries it.">모든
+            지원자에게 같은 질문을 내면 면접이 형식이 된다. 그래서 <b>가진 자료에 따라 경로를 나눴다</b> — 포트폴리오가 있으면 프로젝트와 스킬을 먼저 뽑아 이력서 분석에 얹고, 없으면 이력서만으로
+            간다.</p>
+          <p data-ko="질문은 <b>공통 → 개인 → 직무 → 회사</b> 순으로 쌓는다. 그리고 질문만 내지 않고 <b>체크리스트 · 가이드라인 · 평가 기준</b>을 함께 만든다 — 면접관마다 기준이 달라지는 문제가 여기서 줄어든다."
+            data-en="Questions stack in order: <b>common → personal → role → company</b>. And it does not stop at questions — a <b>checklist, guideline and scoring criteria</b> come with them, which is where interviewer-to-interviewer variance starts to shrink.">질문은
+            <b>공통 → 개인 → 직무 → 회사</b> 순으로 쌓는다. 그리고 질문만 내지 않고 <b>체크리스트 · 가이드라인 · 평가 기준</b>을 함께 만든다 — 면접관마다 기준이 달라지는 문제가 여기서
+            줄어든다.</p>
+        </section>
+
+        <section id="f-kocruit-realtime" hidden>
+          <div class="fmodal-kicker mono">KOCRUIT · 실시간 처리</div>
+          <h4 class="fmodal-title" data-ko="진행 중엔 모으기만 한다" data-en="During the session it only collects">진행 중엔 모으기만 한다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 174" role="img" aria-label="세션 초기화와 시나리오 생성 뒤 음성·행동·검사를 실시간 수집하고 세션이 끝나면 최종 채점한다">
+              <rect class="dg-box" x="4" y="44" width="124" height="52" rx="8" />
+              <text class="dg-t" x="16" y="66">세션 초기화</text>
+              <text class="dg-s" x="16" y="84">직무 정보 로드</text>
+              <path class="dg-a" d="M132 70 H150" />
+              <rect class="dg-box" x="154" y="44" width="124" height="52" rx="8" />
+              <text class="dg-t" x="166" y="66">시나리오 생성</text>
+              <text class="dg-s" x="166" y="84">면접 준비</text>
+              <path class="dg-a" d="M282 70 H300" />
+              <text class="dg-k" x="304" y="24">실시간 처리 — 수집만</text>
+              <rect class="dg-box" x="304" y="30" width="150" height="26" rx="6" />
+              <text class="dg-s" x="316" y="47">음성 분석</text>
+              <rect class="dg-box" x="304" y="60" width="150" height="26" rx="6" />
+              <text class="dg-s" x="316" y="77">행동 분석</text>
+              <rect class="dg-box" x="304" y="90" width="150" height="26" rx="6" />
+              <text class="dg-s" x="316" y="107">게임 · 검사 분석</text>
+              <path class="dg-a" d="M458 70 H476" />
+              <rect class="dg-hold" x="480" y="44" width="136" height="52" rx="8" />
+              <text class="dg-t" x="492" y="66">최종 채점</text>
+              <text class="dg-s" x="492" y="84">리포트 · 점수</text>
+              <text class="dg-g" x="4" y="146">세션이 끝나야 점수를 낸다 — 진행 중엔 수집과 분석만 한다</text>
+              <text class="dg-s" x="4" y="166">참조: agent/agents/ai_interview_workflow.py</text>
+            </svg>
+          </div>
+          <p data-ko="면접이 도는 동안에는 <b>음성 · 행동 · 게임과 검사</b> 세 축을 모으기만 한다. 점수는 <b>세션이 끝난 뒤</b> 한 번에 낸다 — 진행 중에 채점까지 끼우면 그 계산이 응답을 늦추고, 늦어진 응답은 면접의 흐름을 끊는다."
+            data-en="While the interview runs it only collects across three axes — <b>voice, behaviour, and the games and tests</b>. Scoring happens once, <b>after the session ends</b>: folding it into the live loop would slow responses, and a slow response breaks the interview's rhythm.">면접이
+            도는 동안에는 <b>음성 · 행동 · 게임과 검사</b> 세 축을 모으기만 한다. 점수는 <b>세션이 끝난 뒤</b> 한 번에 낸다 — 진행 중에 채점까지 끼우면 그 계산이 응답을 늦추고, 늦어진
+            응답은 면접의 흐름을 끊는다.</p>
+          <p data-ko="세션을 열 때 직무 정보를 먼저 읽고 시나리오를 만들어 둔다. 면접이 시작된 뒤에는 <b>새로 만들어야 하는 것이 없도록</b> 준비를 앞으로 당겨 놓는 것이 이 흐름의 요지다."
+            data-en="Opening a session loads the role information and builds the scenario first. The point of this flow is to pull preparation forward so that, once the interview starts, <b>nothing has to be created from scratch.</b>">세션을
+            열 때 직무 정보를 먼저 읽고 시나리오를 만들어 둔다. 면접이 시작된 뒤에는 <b>새로 만들어야 하는 것이 없도록</b> 준비를 앞으로 당겨 놓는 것이 이 흐름의 요지다.</p>
+        </section>
+
+        <section id="f-kocruit-architecture" hidden>
+          <div class="fmodal-kicker mono">KOCRUIT · 전체 구성</div>
+          <h4 class="fmodal-title" data-ko="상태를 드는 쪽과 분석만 하는 쪽" data-en="What holds state, what only analyses">상태를 드는 쪽과 분석만 하는 쪽</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 300" role="img" aria-label="클라이언트, 백엔드 8000, AI Agent 8001, 데이터 계층과 외부 LLM 제공자로 이루어진 전체 구성">
+              <rect class="dg-zone" x="4" y="18" width="112" height="104" rx="10" />
+              <text class="dg-k" x="12" y="32">클라이언트</text>
+              <rect class="dg-box" x="12" y="40" width="96" height="32" rx="6" />
+              <text class="dg-s" x="22" y="60">사용자</text>
+              <rect class="dg-box" x="12" y="80" width="96" height="32" rx="6" />
+              <text class="dg-s" x="22" y="100">관리자</text>
+              <path class="dg-a" d="M118 70 H132" />
+              <rect class="dg-zone" x="136" y="18" width="222" height="158" rx="10" />
+              <text class="dg-k" x="146" y="32">백엔드 :8000</text>
+              <rect class="dg-box" x="146" y="40" width="202" height="46" rx="8" />
+              <text class="dg-t" x="158" y="62">FastAPI</text>
+              <text class="dg-s" x="158" y="79">Auth · APScheduler · WS</text>
+              <rect class="dg-box" x="146" y="96" width="202" height="68" rx="8" />
+              <text class="dg-t" x="158" y="118">핵심 서비스</text>
+              <text class="dg-s" x="158" y="136">지원 · 면접</text>
+              <text class="dg-s" x="158" y="154">채용 · 서류</text>
+              <path class="dg-a" d="M362 90 H376" />
+              <rect class="dg-zone" x="380" y="18" width="236" height="158" rx="10" />
+              <text class="dg-k" x="390" y="32">AI AGENT :8001</text>
+              <rect class="dg-box" x="390" y="40" width="216" height="46" rx="8" />
+              <text class="dg-t" x="402" y="62">Agent API</text>
+              <text class="dg-s" x="402" y="79">LangGraph 오케스트레이터</text>
+              <rect class="dg-box" x="390" y="96" width="216" height="68" rx="8" />
+              <text class="dg-t" x="402" y="118">에이전트</text>
+              <text class="dg-s" x="402" y="136">질문 생성 · 면접 평가</text>
+              <text class="dg-s" x="402" y="154">이력서 분석 · 필기 채점</text>
+              <path class="dg-a" d="M247 180 V196" />
+              <path class="dg-a" d="M498 180 V196" />
+              <rect class="dg-zone" x="136" y="200" width="222" height="76" rx="10" />
+              <text class="dg-k" x="146" y="214">데이터</text>
+              <rect class="dg-box" x="146" y="222" width="100" height="46" rx="8" />
+              <text class="dg-t" x="156" y="242">MySQL 8.0</text>
+              <text class="dg-s" x="156" y="259">AWS RDS</text>
+              <rect class="dg-box" x="254" y="222" width="94" height="46" rx="8" />
+              <text class="dg-t" x="264" y="242">ChromaDB</text>
+              <text class="dg-s" x="264" y="259">벡터</text>
+              <rect class="dg-zone-gold" x="380" y="200" width="236" height="76" rx="10" />
+              <text class="dg-g" x="390" y="214">외부 — 교체 가능</text>
+              <rect class="dg-hold" x="390" y="222" width="216" height="46" rx="8" />
+              <text class="dg-t" x="402" y="242">LLM 제공자</text>
+              <text class="dg-s" x="402" y="259">nvidia | ollama | openai</text>
+              <text class="dg-g" x="4" y="294">제공자 교체는 agent/utils/llm.py 팩토리에 env 한 줄 — 장애 때 실제로 갈아끼웠다</text>
+            </svg>
+          </div>
+          <p data-ko="서비스를 나눈 기준은 규모가 아니라 <b>«상태를 드느냐»</b>다. 세션·WebSocket·DB 처럼 상태가 붙는 일은 백엔드(<span class=&quot;mono&quot;>:8000</span>)가, STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class=&quot;mono&quot;>:8001</span>)가 맡는다. Agent 에서 <span class=&quot;mono&quot;>websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다."
+            data-en="Services were split by <b>whether they hold state</b>, not by size. Anything stateful — sessions, WebSockets, the database — lives in the backend (<span class=&quot;mono&quot;>:8000</span>); anything that just takes input and answers — STT, scoring — lives in the agent (<span class=&quot;mono&quot;>:8001</span>). Removing the <span class=&quot;mono&quot;>websockets</span> dependency from the agent leaves that boundary in the code rather than in a document.">서비스를
+            나눈 기준은 규모가 아니라 <b>«상태를 드느냐»</b>다. 세션·WebSocket·DB 처럼 상태가 붙는 일은 백엔드(<span class="mono">:8000</span>)가,
+            STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class="mono">:8001</span>)가 맡는다. Agent 에서 <span
+              class="mono">websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다.</p>
+          <p data-ko="LLM 은 특정 제공자에 묶지 않았다. 모든 호출이 <span class=&quot;mono&quot;>agent/utils/llm.py</span> 팩토리를 지나므로 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로 갈아끼운 경로</b>다."
+            data-en="The LLM is not bound to one vendor. Every call passes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory, so moving between <span class=&quot;mono&quot;>nvidia | ollama | openai</span> is <b>one environment variable</b>. This is not a contingency on paper — <b>it was actually used when a provider went down.</b>">LLM
+            은 특정 제공자에 묶지 않았다. 모든 호출이 <span class="mono">agent/utils/llm.py</span> 팩토리를 지나므로 <span
+              class="mono">nvidia | ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로
+            갈아끼운 경로</b>다.</p>
+        </section>
+
+        <section id="f-kbridge-verify" hidden>
+          <div class="fmodal-kicker mono">K-BRIDGE · 신뢰도</div>
+          <h4 class="fmodal-title" data-ko="판정에 등급을 붙인다" data-en="Every verdict carries a grade">판정에 등급을 붙인다</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 194" role="img" aria-label="네 축을 병렬로 분석한 뒤 요약과 교차 검증을 거쳐 통합 신뢰도 등급을 낸다">
+              <rect class="dg-zone" x="4" y="26" width="170" height="126" rx="10" />
+              <text class="dg-k" x="12" y="20">병렬 · asyncio.gather</text>
+              <rect class="dg-box" x="14" y="34" width="150" height="26" rx="6" />
+              <text class="dg-s" x="26" y="51">세부규정</text>
+              <rect class="dg-box" x="14" y="64" width="150" height="26" rx="6" />
+              <text class="dg-s" x="26" y="81">시험절차</text>
+              <rect class="dg-box" x="14" y="94" width="150" height="26" rx="6" />
+              <text class="dg-s" x="26" y="111">처벌</text>
+              <rect class="dg-box" x="14" y="124" width="150" height="26" rx="6" />
+              <text class="dg-s" x="26" y="141">유효기간</text>
+              <path class="dg-a" d="M178 66 H214" />
+              <rect class="dg-box" x="218" y="44" width="150" height="44" rx="8" />
+              <text class="dg-t" x="230" y="64">LLM 요약</text>
+              <text class="dg-s" x="230" y="80">gpt-4o-mini · 영/한</text>
+              <path class="dg-a" d="M293 92 V100" />
+              <rect class="dg-box" x="218" y="104" width="150" height="44" rx="8" />
+              <text class="dg-t" x="230" y="124">교차 검증</text>
+              <text class="dg-s" x="230" y="140">기관 간 충돌 감지</text>
+              <path class="dg-a" d="M372 126 H406" />
+              <rect class="dg-hold" x="410" y="52" width="206" height="92" rx="8" />
+              <text class="dg-t" x="422" y="74">통합 신뢰도</text>
+              <text class="dg-s" x="422" y="92">판례 40 + 교차 30 + 출처 30</text>
+              <text class="dg-ok" x="422" y="112">RELIABLE</text>
+              <text class="dg-bad" x="422" y="130">NEEDS_REVIEW · UNRELIABLE</text>
+              <text class="dg-g" x="4" y="182">근거 없이 «이게 맞다»고 말하지 않게 하는 장치다</text>
+            </svg>
+          </div>
+          <p data-ko="규제를 잘못 안내하면 통관이 막힌다. 그래서 답을 내는 것보다 <b>«이 답을 얼마나 믿어도 되는지»를 함께 내는 쪽</b>에 무게를 뒀다. 요건 분석의 다섯째 노드 안에서 네 축(세부규정·시험절차·처벌·유효기간)을 <span class=&quot;mono&quot;>asyncio.gather</span> 로 동시에 돌린 뒤, 세 가지 검증을 통과시킨다."
+            data-en="Bad regulatory guidance stops a shipment at the border, so the weight went not on producing an answer but on <b>saying how far the answer can be trusted</b>. Inside the fifth node, four axes — rules, testing, penalties, validity — run together under <span class=&quot;mono&quot;>asyncio.gather</span>, then pass three verification steps.">규제를
+            잘못 안내하면 통관이 막힌다. 그래서 답을 내는 것보다 <b>«이 답을 얼마나 믿어도 되는지»를 함께 내는 쪽</b>에 무게를 뒀다. 요건 분석의 다섯째 노드 안에서 네
+            축(세부규정·시험절차·처벌·유효기간)을 <span class="mono">asyncio.gather</span> 로 동시에 돌린 뒤, 세 가지 검증을 통과시킨다.</p>
+          <p data-ko="검증은 <b>기관 간 규정이 서로 어긋나는지</b>(교차 검증)와 <b>과거 판례와 얼마나 맞는지</b>(판례 검증) 두 방향으로 한다. 그 둘에 출처 신뢰도를 더해 <b>판례 40% + 교차 30% + 출처 30%</b>로 통합 점수를 내고, 결과를 <span class=&quot;mono&quot;>RELIABLE</span> · <span class=&quot;mono&quot;>NEEDS_REVIEW</span> · <span class=&quot;mono&quot;>UNRELIABLE</span> 셋 중 하나로 표시한다."
+            data-en="Verification runs in two directions: whether agencies <b>contradict each other</b> (cross-validation) and how well the answer <b>matches past rulings</b> (precedent validation). Adding source reliability, the composite is <b>40% precedent + 30% cross + 30% source</b>, and the result is labelled <span class=&quot;mono&quot;>RELIABLE</span>, <span class=&quot;mono&quot;>NEEDS_REVIEW</span> or <span class=&quot;mono&quot;>UNRELIABLE</span>.">검증은
+            <b>기관 간 규정이 서로 어긋나는지</b>(교차 검증)와 <b>과거 판례와 얼마나 맞는지</b>(판례 검증) 두 방향으로 한다. 그 둘에 출처 신뢰도를 더해 <b>판례 40% + 교차 30% +
+            출처 30%</b>로 통합 점수를 내고, 결과를 <span class="mono">RELIABLE</span> · <span class="mono">NEEDS_REVIEW</span> ·
+            <span class="mono">UNRELIABLE</span> 셋 중 하나로 표시한다.</p>
+        </section>
+
+        <section id="f-kbridge-precedent" hidden>
+          <div class="fmodal-kicker mono">K-BRIDGE · 판례</div>
+          <h4 class="fmodal-title" data-ko="판례 분석 파이프라인" data-en="Precedent analysis pipeline">판례 분석 파이프라인</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 156" role="img" aria-label="CBP 판례를 수집해 번호와 상태를 뽑고 FAISS 로 색인한 뒤 유사 판례를 패턴 분석한다">
+              <rect class="dg-box" x="4" y="26" width="142" height="62" rx="8" />
+              <text class="dg-t" x="16" y="47">CBP 판례 수집</text>
+              <text class="dg-s" x="16" y="63">rulings.cbp.gov</text>
+              <text class="dg-s" x="16" y="79">Tavily 검색</text>
+              <path class="dg-a" d="M150 57 H168" />
+              <rect class="dg-box" x="172" y="26" width="142" height="62" rx="8" />
+              <text class="dg-t" x="184" y="47">번호 · 상태 추출</text>
+              <text class="dg-s" x="184" y="63">HQ/NY 정규식</text>
+              <text class="dg-s" x="184" y="79">승인 · 거부 판정</text>
+              <path class="dg-a" d="M318 57 H336" />
+              <rect class="dg-box" x="340" y="26" width="132" height="62" rx="8" />
+              <text class="dg-t" x="352" y="47">FAISS 색인</text>
+              <text class="dg-s" x="352" y="63">256차원</text>
+              <text class="dg-s" x="352" y="79">유사 판례 top 5</text>
+              <path class="dg-a" d="M476 57 H494" />
+              <rect class="dg-box" x="498" y="26" width="118" height="62" rx="8" />
+              <text class="dg-t" x="510" y="47">패턴 분석</text>
+              <text class="dg-s" x="510" y="63">gpt-4o-mini</text>
+              <text class="dg-g" x="4" y="118">메모리 캐시 7일 TTL — 같은 HS코드는 수집 없이 즉시 답한다</text>
+              <text class="dg-s" x="4" y="140">성공 · 실패 · 검토로 분류해 인사이트와 리스크, 권장 조치를 낸다</text>
+            </svg>
+          </div>
+          <p data-ko="규정만 읽어서는 <b>실제로 어떻게 판정되는지</b>를 알 수 없다. 그래서 미국 세관(CBP)이 내린 판정문을 따로 모은다. 검색으로 걷어온 문서에서 <span class=&quot;mono&quot;>HQ</span>/<span class=&quot;mono&quot;>NY</span> 번호를 정규식으로 뽑고 승인·거부 상태를 판정해, <b>FAISS 256차원</b> 벡터로 색인한다."
+            data-en="Reading the rules does not tell you <b>how they are actually applied</b>, so CBP rulings are collected separately. Documents pulled in by search have their <span class=&quot;mono&quot;>HQ</span>/<span class=&quot;mono&quot;>NY</span> numbers extracted by regex and their approve/deny status determined, then they are indexed as <b>256-dimension FAISS</b> vectors.">규정만
+            읽어서는 <b>실제로 어떻게 판정되는지</b>를 알 수 없다. 그래서 미국 세관(CBP)이 내린 판정문을 따로 모은다. 검색으로 걷어온 문서에서 <span class="mono">HQ</span>/<span
+              class="mono">NY</span> 번호를 정규식으로 뽑고 승인·거부 상태를 판정해, <b>FAISS 256차원</b> 벡터로 색인한다.</p>
+          <p data-ko="새 품목이 들어오면 <b>유사 판례 top 5</b>를 찾아 성공·실패·검토 사례로 분류하고, 인사이트와 리스크, 권장 조치를 낸다. 같은 HS코드를 다시 물으면 <b>메모리 캐시(7일 TTL)</b>가 수집 없이 바로 답한다 — 판례는 자주 바뀌지 않기 때문이다."
+            data-en="For a new item it pulls the <b>top five similar rulings</b>, sorts them into successes, failures and cases needing review, and produces insights, risks and recommended actions. Ask about the same HS code again and a <b>seven-day memory cache</b> answers without re-collecting — rulings do not change often.">새
+            품목이 들어오면 <b>유사 판례 top 5</b>를 찾아 성공·실패·검토 사례로 분류하고, 인사이트와 리스크, 권장 조치를 낸다. 같은 HS코드를 다시 물으면 <b>메모리 캐시(7일 TTL)</b>가
+            수집 없이 바로 답한다 — 판례는 자주 바뀌지 않기 때문이다.</p>
         </section>
 
       </div>

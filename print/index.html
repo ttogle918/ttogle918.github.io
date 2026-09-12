@@ -1320,6 +1320,14 @@
               <li><b>Hybrid 구조</b> — 공공 API와 검색엔진을 결합해 정보 최신성을 확보했다.</li>
             </ul>
           </div>
+
+          <div class="block" style="margin-bottom:0">
+            <div class="bh">만든 것</div>
+            <p class="body-t">수입 요건 분석 LangGraph 6노드 · 노드 5 내부에 병렬 분석 4축과 검증 3종 · 판례
+              파이프라인(CBP 수집 → FAISS 256차원 색인 → 유사 판례 top 5) · 리포트 15개 섹션 · 연동 기관 9곳 ·
+              HTS 30,067 레코드. 판정에는 신뢰도 등급(판례 40% + 교차 30% + 출처 30%)을 붙인다.
+              <b>운영 계측은 하지 못했다</b> — 팀 과제로 끝났다.</p>
+          </div>
         </div>
 
         <div class="half">
@@ -1327,24 +1335,35 @@
             <div class="p-idx">05</div>
             <div>
               <div class="p-name">KOCRUIT</div>
-              <div class="p-role mono">2025.06 ~ 2025.07 · 팀장 (기여 40%) · 면접 파트 담당 · 과정 내 1위</div>
+              <div class="p-role mono">2025.06 ~ · 팀장 (기여 40%) · 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
             </div>
           </div>
           <div class="p-kicker">AI Agent 기반 기업용 채용 관리 시스템</div>
 
           <div class="block">
             <div class="bh">문제 정의</div>
-            <p class="body-t">단순 반복 업무로 인한 채용 리소스 낭비와 면접관의 주관적 평가 개입.</p>
+            <p class="body-t">서류 검토와 면접 기록은 사람 손이 많이 가고, 면접관마다 평가 기준도 다르다.
+              AI로 돕되 AI가 합·불을 정하지는 않게 만드는 것이 목표였다.</p>
           </div>
 
           <div class="block" style="margin-bottom:0">
             <div class="bh">해결 방법</div>
             <ul class="pts">
-              <li><b>멀티모달 분석</b> — Whisper(음성) + DeepFace(표정)로 6차원 정량 평가 리포트를 만들었다.</li>
-              <li><b>LangGraph Orchestration</b> — ‘분석 → 전략 → 생성 → 검토’ 노드를 모듈화했다.</li>
-              <li><b>FastAPI 마이그레이션</b> — Spring Boot에서 전환해 Python 모델 호환과 비동기 스트리밍을 확보하고
-                Redis 캐싱을 붙였다.</li>
+              <li><b>상태와 무상태를 가른다</b> — 세션 · WebSocket · DB는 백엔드(:8000)가, STT · 평가는
+                Agent(:8001)가 맡는다. Agent에서 websockets 의존성을 제거해 경계를 코드로 강제했다.</li>
+              <li><b>스택 충돌이 서비스 경계를 정했다</b> — Whisper · pyannote(PyTorch)와
+                MediaPipe · DeepFace(TensorFlow)가 한 프로세스에서 충돌해 컨테이너를 갈랐다.</li>
+              <li><b>질문은 면접 전에 미리 만든다</b> — 면접 중에 생성까지 하면 지연이 대화를 끊는다.</li>
+              <li><b>LLM 제공자를 한 줄로 바꾼다</b> — 모든 호출이 팩토리를 지나 nvidia · ollama · openai 중
+                하나를 고른다. 제공자 장애 때 실제로 갈아끼웠다.</li>
             </ul>
+          </div>
+
+          <div class="block" style="margin-bottom:0">
+            <div class="bh">만든 것</div>
+            <p class="body-t">6서비스 구성 · DB 60테이블 · API를 평면 34개 라우터에서 도메인 8패키지로 재배치 ·
+              백엔드에서 AI/ML 의존성 10종을 걷어내 Agent REST 15개로 이관 · 서류평가 상시 LLM 호출 9회 → 4회,
+              gpt-4o 9경로 중 8곳을 4o-mini로.</p>
           </div>
         </div>
       </div>
