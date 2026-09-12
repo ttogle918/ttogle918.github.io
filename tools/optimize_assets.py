@@ -99,10 +99,18 @@ SECUREAI_DEMO = "secureai-editor/docs/demo/01_Kkebi_SAST-PATCH-PR_녹음 2026-06
 
 # 영상에서 뽑은 정지 프레임. 이 데모는 내레이션이라 대부분 멈춰 있어 GIF 로 만들면
 # 움직임 없이 용량만 커진다(실측 1.5~3.9MB). 한 장씩 PNG 로 뽑으면 170KB 안쪽이다.
+KOCRUIT_DEMO = "forked_kocruit/KOSA-FINAL-PROJECT-02/docs/kocruit시연_최지현.mp4"
+
 SHOTS: dict[str, tuple[str, float]] = {
     # 대상 파일: (원본 영상, 초)
     "secureai/vulnerabilities.png": (SECUREAI_DEMO, 110.0),
     "secureai/auto-pr.png": (SECUREAI_DEMO, 228.0),
+    # KOCRUIT 시연본. 데이터가 전부 더미다("데모 모드 · 시연용 데이터" 배지, example.com).
+    # 같은 레포 data/ 의 실명 면접 녹화 3종과는 다른 파일이다 — 그쪽은 쓰지 않는다.
+    # 영상 뒷부분에 미완성 화면(Total 0 Stages · AI SCORE −)이 있어 초를 골라 뽑는다.
+    "kocruit/live-scoring.png": (KOCRUIT_DEMO, 43.0),
+    "kocruit/ai-report.png": (KOCRUIT_DEMO, 130.0),
+    "kocruit/process-tracking.png": (KOCRUIT_DEMO, 125.0),
 }
 
 
