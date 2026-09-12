@@ -3672,9 +3672,144 @@
         </article>
 
         <!-- PROJECT 05 -->
-        <article class="pcard featured reveal">
+        <article class="pcard reveal">
           <div class="pc-top">
             <div class="pc-badge mono">05</div>
+            <div class="pc-headings">
+              <div class="pc-code mono" data-ko="여덟 레포에 같은 규약으로 깐 에이전트 하네스"
+                data-en="One agent harness, eight repositories">여덟 레포에 같은 규약으로 깐 에이전트 하네스</div>
+              <h3 class="pc-title">AI 하네스 엔지니어링</h3>
+              <div class="pc-meta" data-ko="프로젝트를 만들면서 함께 만든 것 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 8개 레포에 적용" data-en="Built alongside the projects <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> deployed across 8 repositories">프로젝트를 만들면서 함께 만든 것 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 8개 레포에 적용</div>
+              <div class="pc-hash mono">
+                <span>#Harness</span><span>#SubAgent</span><span>#Hooks</span><span>#HumanInTheLoop</span>
+              </div>
+            </div>
+            <span class="pc-caret">▶</span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-inner">
+              <div class="pc-grid">
+                <div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="해결한 문제" data-en="Problem">해결한 문제</span>
+                    </div>
+                    <p data-ko="코딩 에이전트는 시킨 일은 잘하는데 <b>시키지 말아야 할 일을 모른다.</b> 범위 밖 기능을 끌어오고, 기대 정답을 고쳐 테스트를 통과시키고, 검토를 맡긴 에이전트가 자기 손으로 코드를 고쳐놓는다. 프로젝트마다 같은 사고가 반복됐다."
+                      data-en="A coding agent does what it is told; <b>what it does not know is what it must not do.</b> It pulls in out-of-scope features, edits the expected answers so the tests pass, and the agent asked to review quietly rewrites the code itself. The same accidents kept repeating on every project.">코딩
+                      에이전트는 시킨 일은 잘하는데 <b>시키지 말아야 할 일을 모른다.</b> 범위 밖 기능을 끌어오고, 기대 정답을 고쳐 테스트를 통과시키고, 검토를 맡긴 에이전트가 자기 손으로
+                      코드를 고쳐놓는다. 프로젝트마다 같은 사고가 반복됐다.</p>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design">설계 포인트</span>
+                    </div>
+                    <ul>
+                      <li data-ko="<b>역할을 말이 아니라 권한으로 강제한다</b>: <span class=&quot;mono&quot;>reviewer</span> 에게는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 준다 — 고칠 수단이 없으니 «고쳐놨다»가 나올 수 없다. <span class=&quot;mono&quot;>pm</span> 은 <span class=&quot;mono&quot;>Write</span> 는 있어도 <span class=&quot;mono&quot;>Edit · Bash</span> 가 없어 계획 문서만 쓴다."
+                        data-en="<b>Roles enforced by permissions, not by instructions</b>: <span class=&quot;mono&quot;>reviewer</span> gets only <span class=&quot;mono&quot;>Read · Grep · Glob</span> — with no means to edit, “I fixed it for you” cannot happen. <span class=&quot;mono&quot;>pm</span> has <span class=&quot;mono&quot;>Write</span> but no <span class=&quot;mono&quot;>Edit · Bash</span>, so it can only produce plans."><b>역할을
+                        말이 아니라 권한으로 강제한다</b>: <span class="mono">reviewer</span> 에게는 <span class="mono">Read · Grep ·
+                          Glob</span> 만 준다 — 고칠 수단이 없으니 «고쳐놨다»가 나올 수 없다. <span class="mono">pm</span> 은 <span
+                          class="mono">Write</span> 는 있어도 <span class="mono">Edit · Bash</span> 가 없어 계획 문서만 쓴다.</li>
+                      <li data-ko="<b>손대면 안 되는 것은 훅으로 막는다</b>: <span class=&quot;mono&quot;>PreToolUse</span> 훅이 매뉴얼 원본(<span class=&quot;mono&quot;>data/raw/</span>)과 <b>기대 정답</b>(<span class=&quot;mono&quot;>eval/testset.json</span>) 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 차단한다. 예외는 <b>파일명 정확 일치로만</b> 준다 — 모델이 채점표를 고쳐 시험에 통과하는 길을 닫았다."
+                        data-en="<b>What must not be touched is blocked by a hook</b>: a <span class=&quot;mono&quot;>PreToolUse</span> hook rejects writes to the source manuals (<span class=&quot;mono&quot;>data/raw/</span>) and to the <b>expected answers</b> (<span class=&quot;mono&quot;>eval/testset.json</span>) with <span class=&quot;mono&quot;>exit 2</span>. Exceptions are granted <b>by exact filename only</b> — closing the route where a model edits the answer key to pass."><b>손대면
+                        안 되는 것은 훅으로 막는다</b>: <span class="mono">PreToolUse</span> 훅이 매뉴얼 원본(<span
+                          class="mono">data/raw/</span>)과 <b>기대 정답</b>(<span class="mono">eval/testset.json</span>) 쓰기를
+                        <span class="mono">exit 2</span> 로 차단한다. 예외는 <b>파일명 정확 일치로만</b> 준다 — 모델이 채점표를 고쳐 시험에 통과하는 길을
+                        닫았다.</li>
+                      <li data-ko="<b>판단은 상위 모델, 실행은 하위 모델</b>: 계획(<span class=&quot;mono&quot;>pm</span>)과 검토(<span class=&quot;mono&quot;>reviewer</span>)만 상위 모델에 두고, 구현·추출·평가는 하위 모델이 맡는다. 비용이 아니라 <b>어디서 틀리면 비싼가</b>로 나눴다."
+                        data-en="<b>Judgment on the larger model, execution on the smaller</b>: only planning (<span class=&quot;mono&quot;>pm</span>) and review (<span class=&quot;mono&quot;>reviewer</span>) run on the larger model; implementation, extraction and evaluation run on the smaller one. The split is not by cost but by <b>where a mistake is expensive.</b>"><b>판단은
+                        상위 모델, 실행은 하위 모델</b>: 계획(<span class="mono">pm</span>)과 검토(<span
+                          class="mono">reviewer</span>)만 상위 모델에 두고, 구현·추출·평가는 하위 모델이 맡는다. 비용이 아니라 <b>어디서 틀리면 비싼가</b>로
+                        나눴다.</li>
+                      <li data-ko="<b>마지막은 사람이 멈춰 세운다</b>: <span class=&quot;mono&quot;>/stage</span> 는 구현 → 회귀 → 검토 → 커밋까지 자동으로 가고, <b>수동 체크리스트를 출력한 뒤 멈춘다.</b> 제품에 건 원칙(AI 는 초안까지)을 에이전트에게도 그대로 걸었다."
+                        data-en="<b>A person stops it at the end</b>: <span class=&quot;mono&quot;>/stage</span> runs implement → regression → review → commit on its own, then <b>prints a manual checklist and halts.</b> The rule the products live by — the AI writes the draft and stops — applies to the agent too."><b>마지막은
+                        사람이 멈춰 세운다</b>: <span class="mono">/stage</span> 는 구현 → 회귀 → 검토 → 커밋까지 자동으로 가고, <b>수동 체크리스트를
+                        출력한 뒤 멈춘다.</b> 제품에 건 원칙(AI 는 초안까지)을 에이전트에게도 그대로 걸었다.</li>
+                    </ul>
+                  </div>
+                  <div class="block">
+                    <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 흐름이 열립니다"
+                        data-en="Key flow — tap to open">주요 기능 — 누르면 흐름이 열립니다</span></div>
+                    <div class="featlist">
+                      <button class="feat" data-modal="f-harness-ring" data-ko="코드를 두르는 하네스"
+                        data-en="The harness around the code">코드를 두르는 하네스</button>
+                    </div>
+                  </div>
+                  <div class="impact block">
+                    <div class="bh"><span class="star">★</span> <span data-ko="만든 것" data-en="What was built">만든
+                        것</span></div>
+                    <p data-ko="<span class=&quot;mono&quot;>CLAUDE.md</span> <b>8개</b> · 서브에이전트 <b>37종</b> · 스킬 <b>21종</b> · 슬래시 명령 <b>46종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class=&quot;mono&quot;>pm · dev · reviewer · tester · logger</span>)과 <b>같은 수명주기</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 공유하고, 도메인별로만 늘린다 — MaintQ 는 <span class=&quot;mono&quot;>data-extractor · eval-runner · tool-builder</span>, InsuQ 는 <span class=&quot;mono&quot;>evaluator</span>."
+                      data-en="<b>Eight</b> <span class=&quot;mono&quot;>CLAUDE.md</span> files · <b>37</b> sub-agents · <b>21</b> skills · <b>46</b> slash commands · <b>2</b> hooks. Five projects share <b>the same five roles</b> (<span class=&quot;mono&quot;>pm · dev · reviewer · tester · logger</span>) and <b>the same lifecycle</b> (<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>), extending only per domain — MaintQ adds <span class=&quot;mono&quot;>data-extractor · eval-runner · tool-builder</span>, InsuQ adds <span class=&quot;mono&quot;>evaluator</span>.">
+                      <span class="mono">CLAUDE.md</span> <b>8개</b> · 서브에이전트 <b>37종</b> · 스킬 <b>21종</b> · 슬래시 명령
+                      <b>46종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class="mono">pm · dev · reviewer ·
+                        tester · logger</span>)과 <b>같은 수명주기</b>(<span class="mono">sprint → stage → checkpoint →
+                        done</span>)를 공유하고, 도메인별로만 늘린다 — MaintQ 는 <span class="mono">data-extractor · eval-runner ·
+                        tool-builder</span>, InsuQ 는 <span class="mono">evaluator</span>.</p>
+                    <p data-ko="이 포트폴리오도 같은 방식으로 만들었다 — <span class=&quot;mono&quot;>tools/check_page.py</span> 가 브라우저를 열기 전에 구조 불변식 5종을 검사하고, 설계서 → 계획서 → 태스크 순으로 진행한다."
+                      data-en="This portfolio was built the same way — <span class=&quot;mono&quot;>tools/check_page.py</span> checks five structural invariants before a browser is ever opened, and the work runs design doc → plan → tasks.">이
+                      포트폴리오도 같은 방식으로 만들었다 — <span class="mono">tools/check_page.py</span> 가 브라우저를 열기 전에 구조 불변식 5종을
+                      검사하고, 설계서 → 계획서 → 태스크 순으로 진행한다.</p>
+                  </div>
+                </div>
+                <div class="pc-figure">
+                  <div class="pc-slides">
+                    <div class="pc-slide active">
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 212" role="img" aria-label="프로젝트 코드를 하네스가 두르고 계획·검토·구현·회귀 네 역할이 바깥에서 안으로 작용한다">
+                          <rect class="dg-box" x="14" y="8" width="176" height="36" rx="8" />
+                          <text class="dg-t" x="26" y="31">pm — 계획</text>
+                          <rect class="dg-box" x="210" y="8" width="176" height="36" rx="8" />
+                          <text class="dg-t" x="222" y="31">reviewer — 검토</text>
+                          <path class="dg-a" d="M102 44 V52" />
+                          <path class="dg-a" d="M298 44 V52" />
+                          <rect class="dg-zone" x="14" y="56" width="372" height="98" rx="16" />
+                          <text class="dg-k" x="24" y="74">하네스</text>
+                          <rect class="dg-box" x="110" y="86" width="180" height="48" rx="8" />
+                          <text class="dg-t" x="122" y="108">프로젝트 코드</text>
+                          <text class="dg-s" x="122" y="126">8개 레포</text>
+                          <path class="dg-a" d="M102 166 V158" />
+                          <path class="dg-a" d="M298 166 V158" />
+                          <rect class="dg-box" x="14" y="168" width="176" height="36" rx="8" />
+                          <text class="dg-t" x="26" y="191">dev — 구현</text>
+                          <rect class="dg-hold" x="210" y="168" width="176" height="36" rx="8" />
+                          <text class="dg-t" x="222" y="191">tester — 회귀</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="역할이 코드를 두른다"
+                        data-en="Roles wrap the code">역할이 코드를 두른다</span>
+                    </div>
+                    <div class="pc-slide">
+                      <div class="fdiag">
+                        <svg viewBox="0 0 400 150" role="img" aria-label="스프린트에서 스테이지, 체크포인트를 거쳐 사람이 확인하는 완료까지의 수명주기">
+                          <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="38">/sprint</text>
+                          <text class="dg-s" x="22" y="54">계획을 세운다</text>
+                          <path class="dg-a" d="M194 38 H206" />
+                          <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="38">/stage</text>
+                          <text class="dg-s" x="222" y="54">구현 → 회귀 → 검토</text>
+                          <path class="dg-a" d="M300 64 V74 H100 V80" />
+                          <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="22" y="106">/checkpoint</text>
+                          <text class="dg-s" x="22" y="122">기록을 남긴다</text>
+                          <path class="dg-a" d="M194 106 H206" />
+                          <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                          <text class="dg-t" x="222" y="106">/done</text>
+                          <text class="dg-s" x="222" y="122">사람이 확인한다</text>
+                          <text class="dg-g" x="10" y="146">자동은 커밋까지 — 체크리스트에서 멈춘다</text>
+                        </svg>
+                      </div>
+                      <span class="cap2 mono" data-ko="sprint → stage → checkpoint → done"
+                        data-en="sprint → stage → checkpoint → done">sprint → stage → checkpoint → done</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 06 -->
+        <article class="pcard featured reveal">
+          <div class="pc-top">
+            <div class="pc-badge mono">06</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="HS코드 / 규제 자동 분석 RAG Agent" data-en="HS-code / Regulation RAG Agent">
                 HS코드 / 규제 자동 분석 RAG Agent</div>
@@ -3767,10 +3902,10 @@
           </div>
         </article>
 
-        <!-- PROJECT 06 -->
+        <!-- PROJECT 07 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">06</div>
+            <div class="pc-badge mono">07</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI
                 Agent 기반 기업용 채용 관리 시스템</div>
@@ -3894,10 +4029,10 @@
           </div>
         </article>
 
-        <!-- PROJECT 07 -->
+        <!-- PROJECT 08 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">07</div>
+            <div class="pc-badge mono">08</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="비상 교육" data-en="VISANG EDUCATION">
                 비상 교육</div>
@@ -3994,10 +4129,10 @@
           </div>
         </article>
 
-        <!-- PROJECT 08 -->
+        <!-- PROJECT 09 -->
         <article class="pcard reveal">
           <div class="pc-top">
-            <div class="pc-badge mono">08</div>
+            <div class="pc-badge mono">09</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="비상 교육" data-en="VISANG EDUCATION">
                 VISANG EDUCATION
@@ -5377,6 +5512,53 @@
             data-en="The fourth gate is different in kind. The first three are enforced by machines; <b>“people” is the seat deliberately left un-automated</b> — moving money climbs three steps: requesting team → their finance → the counterparty's finance. It is enforced <b>at the tool-permission level, not in a prompt.</b> The AI writes the draft and stops.">네
             번째 관문만 성격이 다르다. 앞의 셋은 기계가 막지만 <b>«사람»은 일부러 자동화하지 않은 자리</b>다 — 자금이동은 요청 부서 → 집행 부서 재무 → 상대 회사 재무결재로 3단을 밟는다.
             프롬프트가 아니라 <b>도구 권한 수준에서 강제</b>했다. AI 는 초안까지만 쓴다.</p>
+        </section>
+
+        <section id="f-harness-ring" hidden>
+          <div class="fmodal-kicker mono">하네스 · 경계</div>
+          <h4 class="fmodal-title" data-ko="코드를 두르는 하네스" data-en="The harness around the code">코드를 두르는 하네스</h4>
+          <div class="fdiag">
+            <svg viewBox="0 0 620 300" role="img" aria-label="프로젝트 코드를 하네스가 두르고, 역할 권한과 훅과 사람 확인이 경계에서 작용한다">
+              <rect class="dg-box" x="90" y="10" width="210" height="44" rx="8" />
+              <text class="dg-t" x="102" y="30">pm — 계획만</text>
+              <text class="dg-s" x="102" y="47">Read · Grep · Glob · Write</text>
+              <rect class="dg-box" x="320" y="10" width="210" height="44" rx="8" />
+              <text class="dg-t" x="332" y="30">reviewer — 검토만</text>
+              <text class="dg-s" x="332" y="47">Read · Grep · Glob</text>
+              <path class="dg-a" d="M195 54 V62" />
+              <path class="dg-a" d="M425 54 V62" />
+
+              <rect class="dg-zone" x="90" y="66" width="440" height="170" rx="20" />
+              <text class="dg-k" x="102" y="86">하네스 경계</text>
+              <rect class="dg-box" x="150" y="112" width="320" height="60" rx="8" />
+              <text class="dg-t" x="164" y="136">프로젝트 코드</text>
+              <text class="dg-s" x="164" y="156">여덟 레포가 같은 규약을 쓴다</text>
+              <text class="dg-s" x="102" y="200">역할마다 도구를 좁혀 준다 — 못 하는 일은 시킬 수도 없다</text>
+              <text class="dg-s" x="102" y="220">공유하는 것은 5역할과 수명주기, 도메인 지식은 각자</text>
+
+              <path class="dg-a" d="M195 246 V238" />
+              <path class="dg-a" d="M425 246 V238" />
+              <rect class="dg-box" x="90" y="250" width="210" height="44" rx="8" />
+              <text class="dg-t" x="102" y="270">훅 — 기계가 막는다</text>
+              <text class="dg-bad" x="102" y="287">기대 정답 쓰기 exit 2</text>
+              <rect class="dg-hold" x="320" y="250" width="210" height="44" rx="8" />
+              <text class="dg-t" x="332" y="270">사람 — 마지막에 멈춘다</text>
+              <text class="dg-s" x="332" y="287">수동 체크리스트</text>
+            </svg>
+          </div>
+          <p data-ko="에이전트에게 «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> — <span class=&quot;mono&quot;>reviewer</span> 는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다."
+            data-en="Telling an agent “only review” is not enough; given a long enough context it will edit anyway. So <b>the constraint lives in the tools, not the prompt</b> — <span class=&quot;mono&quot;>reviewer</span> holds only <span class=&quot;mono&quot;>Read · Grep · Glob</span>. There is simply no way to edit.">에이전트에게
+            «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> — <span
+              class="mono">reviewer</span> 는 <span class="mono">Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다.</p>
+          <p data-ko="가장 위험한 건 <b>모델이 채점표를 고치는 것</b>이다. 테스트가 빨간불이면 코드를 고치는 대신 기대 정답을 바꾸면 초록불이 된다. <span class=&quot;mono&quot;>PreToolUse</span> 훅이 <span class=&quot;mono&quot;>eval/testset.json</span> 과 매뉴얼 원본 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 끊고, 그 이유를 에이전트에게 되돌려준다. 예외는 <b>파일명 정확 일치로만</b> 열어 뒀다."
+            data-en="The dangerous move is <b>editing the answer key</b>: when a test is red, changing the expected value is easier than fixing the code. A <span class=&quot;mono&quot;>PreToolUse</span> hook cuts writes to <span class=&quot;mono&quot;>eval/testset.json</span> and to the source manuals with <span class=&quot;mono&quot;>exit 2</span>, handing the reason back to the agent. Exceptions are opened <b>by exact filename only.</b>">가장
+            위험한 건 <b>모델이 채점표를 고치는 것</b>이다. 테스트가 빨간불이면 코드를 고치는 대신 기대 정답을 바꾸면 초록불이 된다. <span
+              class="mono">PreToolUse</span> 훅이 <span class="mono">eval/testset.json</span> 과 매뉴얼 원본 쓰기를 <span
+              class="mono">exit 2</span> 로 끊고, 그 이유를 에이전트에게 되돌려준다. 예외는 <b>파일명 정확 일치로만</b> 열어 뒀다.</p>
+          <p data-ko="마지막 관문은 사람이다. <span class=&quot;mono&quot;>/stage</span> 는 구현·회귀·검토·커밋까지 혼자 가지만, 끝에서 <b>수동 체크리스트를 출력하고 멈춘다.</b> 제품 카드마다 «AI 는 초안까지»라고 써 놓고 정작 그 제품을 만드는 자리에서 자동으로 흘려보내면 앞뒤가 맞지 않는다고 봤다."
+            data-en="The last gate is a person. <span class=&quot;mono&quot;>/stage</span> goes all the way through implement, regression, review and commit by itself — and then <b>prints a manual checklist and stops.</b> Writing “the AI only drafts” on every product card while letting the build itself run unattended would not add up.">마지막
+            관문은 사람이다. <span class="mono">/stage</span> 는 구현·회귀·검토·커밋까지 혼자 가지만, 끝에서 <b>수동 체크리스트를 출력하고 멈춘다.</b> 제품
+            카드마다 «AI 는 초안까지»라고 써 놓고 정작 그 제품을 만드는 자리에서 자동으로 흘려보내면 앞뒤가 맞지 않는다고 봤다.</p>
         </section>
 
       </div>
