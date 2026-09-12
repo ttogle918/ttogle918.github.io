@@ -1293,12 +1293,84 @@
       <div class="sheet-foot"><span>KeyLens · Local-first Credential Vault</span><span>06</span></div>
     </section>
 
+    <!-- ============ 5b · AI 하네스 엔지니어링 ============ -->
+    <section class="sheet">
+      <div class="proj">
+        <div class="p-head">
+          <div class="p-idx">04</div>
+          <div>
+            <div class="p-name">AI 하네스 엔지니어링</div>
+            <div class="p-role mono">프로젝트를 만들면서 함께 만든 것 · 개인 1인 · 8개 레포에 적용</div>
+          </div>
+        </div>
+
+        <div class="p-kicker">여덟 레포에 같은 규약으로 깐 에이전트 하네스</div>
+
+        <div class="block">
+          <div class="bh">해결한 문제</div>
+          <p class="body-t">
+            코딩 에이전트는 시킨 일은 잘하는데 <b>시키지 말아야 할 일을 모른다.</b> 범위 밖 기능을 끌어오고,
+            기대 정답을 고쳐 테스트를 통과시키고, 검토를 맡긴 에이전트가 자기 손으로 코드를 고쳐놓는다.
+            프로젝트마다 같은 사고가 반복됐다.
+          </p>
+        </div>
+
+        <div class="block">
+          <div class="bh">설계 포인트</div>
+          <ul class="pts">
+            <li><b>통제를 세 층으로 나눴다</b> — 프롬프트(<span class="mono">CLAUDE.md</span> 8 · 스킬 21 · 명령 46)는
+              여덟 레포 전부에, 설정(도구 권한)은 세 곳에, 코드(훅)는 한 곳에 걸었다. 전부 아래층까지 내리지
+              않았다. <b>위험이 큰 프로젝트일수록 더 아래로 내렸다.</b></li>
+            <li><b>MaintQ — 코드까지 내려간 유일한 곳</b> — 감전 · 화상 위험이 실재하는 장비를 다뤄 프롬프트로는
+              부족했다. <span class="mono">PreToolUse</span> 훅이 매뉴얼 원본과 기대 정답(<span
+                class="mono">eval/testset.json</span>) 쓰기를 <span class="mono">exit 2</span>로 끊는다 — 모델이 채점표를
+              고쳐 시험에 통과하는 길을 닫았다. <span class="mono">reviewer</span>에게는 <span class="mono">Read · Grep ·
+                Glob</span>만 줘서 고칠 수단 자체를 없앴다.</li>
+            <li><b>key-manager — 제품 약속을 에이전트에게도</b> — 자격증명 관리 도구라 “키는 밖으로 안 나간다”가 제품의
+              약속이다. <span class="mono">permissions.deny</span> 15건으로 <span class="mono">.env</span>와 금고 DB
+              읽기를 막았다.</li>
+            <li><b>마지막은 사람이 멈춰 세운다</b> — <span class="mono">/stage</span>는 구현 → 회귀 → 검토 → 커밋까지
+              자동으로 가고, 수동 체크리스트를 출력한 뒤 멈춘다. 제품에 건 원칙(AI는 초안까지)을 에이전트에게도
+              그대로 걸었다.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="bh">만든 것</div>
+          <p class="body-t">
+            다섯 프로젝트가 같은 5역할(<span class="mono">pm · dev · reviewer · tester · logger</span>)과 같은
+            수명주기(<span class="mono">sprint → stage → checkpoint → done</span>)를 공유하고, 도메인별로만 늘린다 —
+            MaintQ는 <span class="mono">data-extractor · eval-runner · tool-builder</span>, InsuQ는
+            <span class="mono">evaluator</span>. 이 포트폴리오도 같은 방식으로 만들었다 —
+            <span class="mono">tools/check_page.py</span>가 브라우저를 열기 전에 구조 불변식 5종을 검사한다.
+          </p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <div class="mv">37<small>종</small></div>
+            <div class="ml">서브에이전트</div>
+          </div>
+          <div class="metric">
+            <div class="mv">67<small>종</small></div>
+            <div class="ml">스킬 21 · 명령 46</div>
+          </div>
+          <div class="metric">
+            <div class="mv">8<small>개</small></div>
+            <div class="ml">적용 레포</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-foot"><span>AI 하네스 엔지니어링 · 코드를 두르는 규약</span><span>07</span></div>
+    </section>
+
     <!-- ============ 6 · K-Bridge + KOCRUIT ============ -->
     <section class="sheet">
       <div class="duo">
         <div class="half">
           <div class="p-head">
-            <div class="p-idx">04</div>
+            <div class="p-idx">05</div>
             <div>
               <div class="p-name">K-Bridge <span class="flag">★ AI AGENT 대표작</span></div>
               <div class="p-role mono">2025.08 ~ 2025.10 · 팀 4인 (기여 25%) · 요건 분석 엔진 · 판례 교차검증</div>
@@ -1332,7 +1404,7 @@
 
         <div class="half">
           <div class="p-head">
-            <div class="p-idx">05</div>
+            <div class="p-idx">06</div>
             <div>
               <div class="p-name">KOCRUIT</div>
               <div class="p-role mono">2025.06 ~ · 팀장 (기여 40%) · 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
@@ -1368,7 +1440,7 @@
         </div>
       </div>
 
-      <div class="sheet-foot"><span>K-Bridge · KOCRUIT</span><span>07</span></div>
+      <div class="sheet-foot"><span>K-Bridge · KOCRUIT</span><span>08</span></div>
     </section>
 
     <!-- ============ 7 · 실무 + SpendQ ============ -->
@@ -1376,7 +1448,7 @@
       <div class="duo">
         <div class="half">
           <div class="p-head">
-            <div class="p-idx">06</div>
+            <div class="p-idx">07</div>
             <div>
               <div class="p-name">비상교육 — AI 연구개발 Cell</div>
               <div class="p-role mono">2022.09 ~ 2023.03 · 실제 기업 데이터 기반 PoC 1인 개발</div>
@@ -1405,7 +1477,7 @@
 
         <div class="half">
           <div class="p-head">
-            <div class="p-idx">07</div>
+            <div class="p-idx">08</div>
             <div>
               <div class="p-name">SpendQ</div>
               <div class="p-role mono">2026.08 · 개인 1인 · 개인 설계 프로젝트 · 프로토타입</div>
@@ -1454,7 +1526,7 @@
         </div>
       </div>
 
-      <div class="sheet-foot"><span>비상교육 · SpendQ</span><span>08</span></div>
+      <div class="sheet-foot"><span>비상교육 · SpendQ</span><span>09</span></div>
     </section>
 
     <!-- ============ 8 · 경력 · 교육 · 자격증 ============ -->
@@ -1572,7 +1644,7 @@
 
       <div class="sheet-foot">
         <span>ttogle918.github.io · github.com/ttogle918 · zena101096@naver.com</span>
-        <span>09</span>
+        <span>10</span>
       </div>
     </section>
 

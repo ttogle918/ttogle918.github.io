@@ -3702,22 +3702,23 @@
                     <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design">설계 포인트</span>
                     </div>
                     <ul>
-                      <li data-ko="<b>역할을 말이 아니라 권한으로 강제한다</b>: <span class=&quot;mono&quot;>reviewer</span> 에게는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 준다 — 고칠 수단이 없으니 «고쳐놨다»가 나올 수 없다. <span class=&quot;mono&quot;>pm</span> 은 <span class=&quot;mono&quot;>Write</span> 는 있어도 <span class=&quot;mono&quot;>Edit · Bash</span> 가 없어 계획 문서만 쓴다."
-                        data-en="<b>Roles enforced by permissions, not by instructions</b>: <span class=&quot;mono&quot;>reviewer</span> gets only <span class=&quot;mono&quot;>Read · Grep · Glob</span> — with no means to edit, “I fixed it for you” cannot happen. <span class=&quot;mono&quot;>pm</span> has <span class=&quot;mono&quot;>Write</span> but no <span class=&quot;mono&quot;>Edit · Bash</span>, so it can only produce plans."><b>역할을
-                        말이 아니라 권한으로 강제한다</b>: <span class="mono">reviewer</span> 에게는 <span class="mono">Read · Grep ·
-                          Glob</span> 만 준다 — 고칠 수단이 없으니 «고쳐놨다»가 나올 수 없다. <span class="mono">pm</span> 은 <span
-                          class="mono">Write</span> 는 있어도 <span class="mono">Edit · Bash</span> 가 없어 계획 문서만 쓴다.</li>
-                      <li data-ko="<b>손대면 안 되는 것은 훅으로 막는다</b>: <span class=&quot;mono&quot;>PreToolUse</span> 훅이 매뉴얼 원본(<span class=&quot;mono&quot;>data/raw/</span>)과 <b>기대 정답</b>(<span class=&quot;mono&quot;>eval/testset.json</span>) 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 차단한다. 예외는 <b>파일명 정확 일치로만</b> 준다 — 모델이 채점표를 고쳐 시험에 통과하는 길을 닫았다."
-                        data-en="<b>What must not be touched is blocked by a hook</b>: a <span class=&quot;mono&quot;>PreToolUse</span> hook rejects writes to the source manuals (<span class=&quot;mono&quot;>data/raw/</span>) and to the <b>expected answers</b> (<span class=&quot;mono&quot;>eval/testset.json</span>) with <span class=&quot;mono&quot;>exit 2</span>. Exceptions are granted <b>by exact filename only</b> — closing the route where a model edits the answer key to pass."><b>손대면
-                        안 되는 것은 훅으로 막는다</b>: <span class="mono">PreToolUse</span> 훅이 매뉴얼 원본(<span
-                          class="mono">data/raw/</span>)과 <b>기대 정답</b>(<span class="mono">eval/testset.json</span>) 쓰기를
-                        <span class="mono">exit 2</span> 로 차단한다. 예외는 <b>파일명 정확 일치로만</b> 준다 — 모델이 채점표를 고쳐 시험에 통과하는 길을
-                        닫았다.</li>
-                      <li data-ko="<b>판단은 상위 모델, 실행은 하위 모델</b>: 계획(<span class=&quot;mono&quot;>pm</span>)과 검토(<span class=&quot;mono&quot;>reviewer</span>)만 상위 모델에 두고, 구현·추출·평가는 하위 모델이 맡는다. 비용이 아니라 <b>어디서 틀리면 비싼가</b>로 나눴다."
-                        data-en="<b>Judgment on the larger model, execution on the smaller</b>: only planning (<span class=&quot;mono&quot;>pm</span>) and review (<span class=&quot;mono&quot;>reviewer</span>) run on the larger model; implementation, extraction and evaluation run on the smaller one. The split is not by cost but by <b>where a mistake is expensive.</b>"><b>판단은
-                        상위 모델, 실행은 하위 모델</b>: 계획(<span class="mono">pm</span>)과 검토(<span
-                          class="mono">reviewer</span>)만 상위 모델에 두고, 구현·추출·평가는 하위 모델이 맡는다. 비용이 아니라 <b>어디서 틀리면 비싼가</b>로
-                        나눴다.</li>
+                      <li data-ko="<b>통제를 세 층으로 나눴다</b>: 프롬프트(<span class=&quot;mono&quot;>CLAUDE.md</span> 8 · 스킬 21 · 명령 46)는 여덟 레포 전부에, 설정(도구 권한)은 <b>세 곳</b>에, 코드(훅)는 <b>한 곳</b>에 걸었다. 전부 아래층까지 내리지 않았다 — <b>위험이 큰 프로젝트일수록 더 아래로 내렸다.</b>"
+                        data-en="<b>Control split across three layers</b>: prompts (<span class=&quot;mono&quot;>CLAUDE.md</span> ×8, 21 skills, 46 commands) across all eight repos; configuration (tool permissions) in <b>three</b>; code (hooks) in <b>one</b>. Not everything went to the bottom layer — <b>the riskier the project, the further down the control went.</b>"><b>통제를
+                        세 층으로 나눴다</b>: 프롬프트(<span class="mono">CLAUDE.md</span> 8 · 스킬 21 · 명령 46)는 여덟 레포 전부에,
+                        설정(도구 권한)은 <b>세 곳</b>에, 코드(훅)는 <b>한 곳</b>에 걸었다. 전부 아래층까지 내리지 않았다 — <b>위험이 큰 프로젝트일수록 더 아래로
+                        내렸다.</b></li>
+                      <li data-ko="<b>MaintQ — 코드까지 내려간 유일한 곳</b>: 감전·화상 위험이 실재하는 장비를 다뤄 프롬프트로는 부족했다. <span class=&quot;mono&quot;>PreToolUse</span> 훅이 매뉴얼 원본과 <b>기대 정답</b>(<span class=&quot;mono&quot;>eval/testset.json</span>) 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 끊는다 — 모델이 채점표를 고쳐 시험에 통과하는 길을 닫았다. <span class=&quot;mono&quot;>reviewer</span> 에게는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 줘서 고칠 수단 자체를 없앴다."
+                        data-en="<b>MaintQ — the only one taken down to code</b>: it handles equipment where shock and burn risk are real, so prompts were not enough. A <span class=&quot;mono&quot;>PreToolUse</span> hook cuts writes to the source manuals and to the <b>expected answers</b> (<span class=&quot;mono&quot;>eval/testset.json</span>) with <span class=&quot;mono&quot;>exit 2</span> — closing the route where a model edits the answer key to pass. <span class=&quot;mono&quot;>reviewer</span> gets only <span class=&quot;mono&quot;>Read · Grep · Glob</span>, so there is no means to edit at all."><b>MaintQ
+                        — 코드까지 내려간 유일한 곳</b>: 감전·화상 위험이 실재하는 장비를 다뤄 프롬프트로는 부족했다. <span
+                          class="mono">PreToolUse</span> 훅이 매뉴얼 원본과 <b>기대 정답</b>(<span
+                          class="mono">eval/testset.json</span>) 쓰기를 <span class="mono">exit 2</span> 로 끊는다 — 모델이 채점표를
+                        고쳐 시험에 통과하는 길을 닫았다. <span class="mono">reviewer</span> 에게는 <span class="mono">Read · Grep ·
+                          Glob</span> 만 줘서 고칠 수단 자체를 없앴다.</li>
+                      <li data-ko="<b>key-manager — 제품 약속을 에이전트에게도 건다</b>: 자격증명 관리 도구라 «키는 밖으로 안 나간다»가 제품의 약속이다. 그래서 <span class=&quot;mono&quot;>permissions.deny</span> <b>15건</b>으로 <span class=&quot;mono&quot;>.env</span> 와 금고 DB 읽기를 막았다 — 사람에게 건 규칙을 코딩 에이전트에게도 그대로 걸었다."
+                        data-en="<b>key-manager — the product's promise applied to the agent</b>: it is a credential manager, so “keys never leave” is the promise. <b>Fifteen</b> <span class=&quot;mono&quot;>permissions.deny</span> rules block reading <span class=&quot;mono&quot;>.env</span> files and the vault database — the rule written for people applies to the coding agent too."><b>key-manager
+                        — 제품 약속을 에이전트에게도 건다</b>: 자격증명 관리 도구라 «키는 밖으로 안 나간다»가 제품의 약속이다. 그래서 <span
+                          class="mono">permissions.deny</span> <b>15건</b>으로 <span class="mono">.env</span> 와 금고 DB 읽기를
+                        막았다 — 사람에게 건 규칙을 코딩 에이전트에게도 그대로 걸었다.</li>
                       <li data-ko="<b>마지막은 사람이 멈춰 세운다</b>: <span class=&quot;mono&quot;>/stage</span> 는 구현 → 회귀 → 검토 → 커밋까지 자동으로 가고, <b>수동 체크리스트를 출력한 뒤 멈춘다.</b> 제품에 건 원칙(AI 는 초안까지)을 에이전트에게도 그대로 걸었다."
                         data-en="<b>A person stops it at the end</b>: <span class=&quot;mono&quot;>/stage</span> runs implement → regression → review → commit on its own, then <b>prints a manual checklist and halts.</b> The rule the products live by — the AI writes the draft and stops — applies to the agent too."><b>마지막은
                         사람이 멈춰 세운다</b>: <span class="mono">/stage</span> 는 구현 → 회귀 → 검토 → 커밋까지 자동으로 가고, <b>수동 체크리스트를
@@ -3735,10 +3736,10 @@
                   <div class="impact block">
                     <div class="bh"><span class="star">★</span> <span data-ko="만든 것" data-en="What was built">만든
                         것</span></div>
-                    <p data-ko="<span class=&quot;mono&quot;>CLAUDE.md</span> <b>8개</b> · 서브에이전트 <b>37종</b> · 스킬 <b>21종</b> · 슬래시 명령 <b>46종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class=&quot;mono&quot;>pm · dev · reviewer · tester · logger</span>)과 <b>같은 수명주기</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 공유하고, 도메인별로만 늘린다 — MaintQ 는 <span class=&quot;mono&quot;>data-extractor · eval-runner · tool-builder</span>, InsuQ 는 <span class=&quot;mono&quot;>evaluator</span>."
+                    <p data-ko="<span class=&quot;mono&quot;>CLAUDE.md</span> <b>8개</b> · 서브에이전트 <b>37종</b> · 스킬 <b>21종</b> · 슬래시 명령 <b>46종</b> · 도구 권한을 좁힌 에이전트 <b>6종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class=&quot;mono&quot;>pm · dev · reviewer · tester · logger</span>)과 <b>같은 수명주기</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 공유하고, 도메인별로만 늘린다 — MaintQ 는 <span class=&quot;mono&quot;>data-extractor · eval-runner · tool-builder</span>, InsuQ 는 <span class=&quot;mono&quot;>evaluator</span>."
                       data-en="<b>Eight</b> <span class=&quot;mono&quot;>CLAUDE.md</span> files · <b>37</b> sub-agents · <b>21</b> skills · <b>46</b> slash commands · <b>2</b> hooks. Five projects share <b>the same five roles</b> (<span class=&quot;mono&quot;>pm · dev · reviewer · tester · logger</span>) and <b>the same lifecycle</b> (<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>), extending only per domain — MaintQ adds <span class=&quot;mono&quot;>data-extractor · eval-runner · tool-builder</span>, InsuQ adds <span class=&quot;mono&quot;>evaluator</span>.">
                       <span class="mono">CLAUDE.md</span> <b>8개</b> · 서브에이전트 <b>37종</b> · 스킬 <b>21종</b> · 슬래시 명령
-                      <b>46종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class="mono">pm · dev · reviewer ·
+                      <b>46종</b> · 도구 권한을 좁힌 에이전트 <b>6종</b> · 훅 <b>2종</b>. 다섯 프로젝트가 <b>같은 5역할</b>(<span class="mono">pm · dev · reviewer ·
                         tester · logger</span>)과 <b>같은 수명주기</b>(<span class="mono">sprint → stage → checkpoint →
                         done</span>)를 공유하고, 도메인별로만 늘린다 — MaintQ 는 <span class="mono">data-extractor · eval-runner ·
                         tool-builder</span>, InsuQ 는 <span class="mono">evaluator</span>.</p>
