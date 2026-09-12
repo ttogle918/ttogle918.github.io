@@ -38,10 +38,10 @@ python -m http.server 8000
 밝히는 기준일은 스크립트 10번의 상수 한 곳에 있습니다.
 
 ```js
-const AS_OF = { y: 2026, m: 9, d: 4 };
+const AS_OF = { y: 2026, m: 9, d: 11 };
 ```
 
-여기서 히어로 배지(`.as-of` — `26.09 기준`)와 프로젝트 섹션(`.sec-asof` — `2026.09.04`)을
+여기서 히어로 배지(`.as-of` — `26.09 기준`)와 프로젝트 섹션(`.sec-asof` — `2026.09.11`)을
 **함께** 렌더합니다. 카드 수치를 갱신했다면 **이 한 줄만 고치면 두 곳이 따라옵니다.**
 두 곳을 따로 고치지 마세요 — 갈라집니다.
 
@@ -50,6 +50,39 @@ const AS_OF = { y: 2026, m: 9, d: 4 };
 > "A2A 수신 어댑터·FDS·감사 로그 운영"처럼 **한동안 변하지 않는 사실**로 쓰세요.
 
 감사 이력과 판단 근거: [`docs/superpowers/specs/2026-09-04-portfolio-content-audit-design.md`](docs/superpowers/specs/2026-09-04-portfolio-content-audit-design.md)
+
+### 데모 자산 (`assets/`)
+
+프로젝트 카드의 **기능 모달**에 들어가는 실제 화면 캡처·GIF 26종이 `assets/<프로젝트>/`에 있습니다.
+원본은 각 프로젝트 레포(전부 private)에 그대로 있고, 그중 **골라 담은 것만** 이 public 레포에
+들어옵니다 — 파일 단위 선택적 공개입니다.
+
+```bash
+python tools/optimize_assets.py   # 원본 → assets/ 재생성 (26.9MB → 5.7MB)
+```
+
+`assets/`를 직접 손대지 마세요. 자산을 바꿀 때는 **원본 레포를 고친 뒤 이 스크립트를 다시**
+돌립니다. 멱등하므로 내용이 같으면 실행 후 `git status`가 비어 있습니다. 원본을 못 찾으면
+조용히 넘어가지 않고 그 자리에서 실패합니다.
+
+모달 이미지는 **모달을 열 때** `data-src` → `src`로 바꿔 받아옵니다. 첫 화면에서는 한 건도
+내려받지 않습니다 (마크업에 `src`를 직접 쓰면 이 규약이 깨집니다).
+
+### 구조 검사 (`tools/check_page.py`)
+
+브라우저를 열기 전에는 보이지 않는 결함 5종을 잡습니다. **본문을 고쳤으면 커밋 전에 돌리세요.**
+
+```bash
+python tools/check_page.py        # index.html · print/index.html
+```
+
+| | 검사 | 놓치면 |
+|---|---|---|
+| C1 | `data-modal="X"` 에 대응하는 `id="X"` | 모달이 안 열린다 |
+| C2 | `data-ko` / `data-en` 이 쌍인가 | 전환할 때 문구가 사라진다 |
+| C3 | `data-ko` 안에 `<img>`·`<svg>` 가 없는가 | `applyLang()` 이 `innerHTML` 로 지운다 |
+| C4 | `data-src` 경로의 파일이 실재하는가 | 죽은 이미지 |
+| C5 | 모달 `section` 안에 `data-count` 가 없는가 | 숨김 상태에선 발화하지 않아 `0` 으로 남는다 |
 
 ## 배포
 
