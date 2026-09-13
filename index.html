@@ -2854,8 +2854,7 @@
         <div class="sec-kicker"><span class="star">★</span> PROJECTS <span class="star">★</span></div>
         <p class="sec-desc" data-ko="카드를 클릭하면 문제 · 해결 방법 · 설계 · 결과가 펼쳐집니다."
           data-en="Click a card to expand Problem · Approach · Design notes · Results.">카드를 클릭하면 문제 · 해결 방법 · 설계 · 결과가 펼쳐집니다.</p>
-        <p class="sec-asof mono" data-ko="진행 상황 기준일 · 2026.09.11" data-en="Status as of 2026-09-11">진행 상황 기준일 ·
-          2026.09.11</p>
+        <p class="sec-asof mono" data-ko="진행 상황 기준일 · 2026.09.13" data-en="Status as of 2026-09-13">진행 상황 기준일 · 2026.09.13</p>
         <!-- 위 기준일과 히어로 배지는 스크립트 10번의 AS_OF 한 곳에서 덮어쓴다 -->
       </div>
 
@@ -6631,7 +6630,7 @@
     /* 기준일 SSOT - 프로젝트 카드의 진행 상황 수치가 언제 것인지 밝힌다.
        레포를 다시 대조해 카드를 갱신할 때 이 한 줄만 고치면 히어로 배지와
        프로젝트 섹션이 함께 따라온다. 두 곳을 따로 고치다 갈라지는 일을 막는다. */
-    const AS_OF = { y: 2026, m: 9, d: 11 };
+    const AS_OF = { y: 2026, m: 9, d: 13 };
     (() => {
       const p = n => String(n).padStart(2, '0');
       const short = { ko: `${p(AS_OF.y % 100)}.${p(AS_OF.m)} 기준`, en: `as of ${p(AS_OF.y % 100)}.${p(AS_OF.m)}` };

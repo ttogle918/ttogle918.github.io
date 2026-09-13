@@ -38,10 +38,10 @@ python -m http.server 8000
 밝히는 기준일은 스크립트 10번의 상수 한 곳에 있습니다.
 
 ```js
-const AS_OF = { y: 2026, m: 9, d: 11 };
+const AS_OF = { y: 2026, m: 9, d: 13 };
 ```
 
-여기서 히어로 배지(`.as-of` - `26.09 기준`)와 프로젝트 섹션(`.sec-asof` - `2026.09.11`)을
+여기서 히어로 배지(`.as-of` - `26.09 기준`)와 프로젝트 섹션(`.sec-asof` - `2026.09.13`)을
 **함께** 렌더합니다. 카드 수치를 갱신했다면 **이 한 줄만 고치면 두 곳이 따라옵니다.**
 두 곳을 따로 고치지 마세요 - 갈라집니다.
 
@@ -128,9 +128,8 @@ Engine · K-Bridge** 3개입니다. 추가하려면 카드의 `<article>`에 `fe
 
 **막힌 것 - 사람이 정해야 함**
 
-- [ ] 🔴 **`uploads/최지현_portfolio.pdf` 갱신** (현재 2026-07-09판) - 헤더 PDF 버튼이 이 파일을
-  그대로 내려줍니다. `print/index.html`은 10장(하네스 04번 장 포함)까지 맞춰 뒀으니
-  **인쇄본을 손본 뒤 PDF로 변환**하면 됩니다. 지금은 사이트와 PDF가 서로 다른 말을 합니다.
+- [x] **`uploads/최지현_portfolio.pdf` 갱신** (2026-09-13판, A4 10장) - 헤더 PDF 버튼이 이 파일을
+  그대로 내려줍니다. 인쇄본(`print/index.html`)을 고친 뒤 `python tools/build_pdf.py` 로 다시 굽습니다.
 - [ ] **SpendQ 카드 GitHub 링크가 계정 최상위**(`github.com/ttogle918`)입니다. 어느 레포인지
   정해지면 K-Bridge(`Suracle/ai-engine`)·SecureAI(`ttogle918/kkebi`)처럼 바꿉니다.
 - [ ] **KOCRUIT 「AI Interviewer Persona」 실동작 확인** - v2 설계도에는 AI가 스스로 꼬리질문을
