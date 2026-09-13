@@ -1028,14 +1028,16 @@
       min-width: 0;
     }
 
-    /* 가로로 넓은 아키텍처 다이어그램용 (wide) */
-    .pc-grid:has(.pc-figure.wide),
+    /* 가로로 넓은 아키텍처 다이어그램용 (wide)
+       자식 결합자(>)가 핵심 — QMesh 카드는 하위 카드 안에도 .pc-figure 를 품는다.
+       후손으로 잡으면 하위 카드 그림 하나가 wide 가 되는 순간 QMesh 본문 전체가 1열로 무너진다. */
+    .pc-grid:has(> .pc-figure.wide),
     .pc-grid.wide {
       grid-template-columns: 1fr;
     }
 
-    .pc-grid:has(.pc-figure.wide) .pc-figure,
-    .pc-grid.wide .pc-figure,
+    .pc-grid:has(> .pc-figure.wide) > .pc-figure,
+    .pc-grid.wide > .pc-figure,
     .pc-figure.wide {
       grid-column: 1 / -1;
     }
@@ -1190,11 +1192,13 @@
       pointer-events: auto;
     }
 
+    /* 투명 PNG 는 뒤의 빗금 무늬가 비쳐 글자가 묻힌다 — 테마 바탕색(흰색/검정)을 깐다. */
     .pc-slide img {
       max-width: 100%;
       max-height: 180px;
       object-fit: contain;
       border-radius: 6px;
+      background: var(--bg);
     }
 
     /* 카드 그림 자리에 들어가는 작은 도식.
@@ -1414,6 +1418,15 @@
        이 파일은 이미 :has() 를 쓰고 있다(.pc-grid:has(.pc-figure.wide)).
        항목(.subcard)이 아니라 컨테이너(.subcards)를 본다 — 항목 기준으로 잡으면
        하위 카드를 비우는 순간 상한이 조용히 1400px 로 되돌아가 본문이 잘린다. */
+    /* 하위 카드의 «주요 기능 + 그림» 한 줄 — QMesh 카드와 같은 .pc-grid 를 쓰되 간격만 좁힌다. */
+    .sub-grid {
+      margin: 14px 0 18px
+    }
+
+    .sub-grid > .block {
+      margin-bottom: 0
+    }
+
     .pcard.open .pc-body:has(.subcards) {
       max-height: 14000px
     }
@@ -1672,7 +1685,7 @@
       height: auto;
       border: 1px solid var(--line);
       border-radius: 10px;
-      background: var(--panel)
+      background: var(--bg)
     }
 
     .fmodal-fig figcaption {
@@ -2910,24 +2923,48 @@
                       <div class="sub-body">
                         <div class="sub-inner">
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다"
-                                data-en="Features — click one for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
-                            <div class="featlist">
-                              <button class="feat" data-modal="f-finallq-dashboard" data-ko="통합 대시보드"
-                                data-en="Unified dashboard">통합 대시보드</button>
-                              <button class="feat" data-modal="f-finallq-assessment" data-ko="여신 심사 근거 카드"
-                                data-en="Loan assessment evidence">여신 심사 근거 카드</button>
-                              <button class="feat" data-modal="f-finallq-disbursement" data-ko="여신 ↔ 이체 연결"
-                                data-en="Loan-to-transfer bridge">여신 ↔ 이체 연결</button>
-                              <button class="feat" data-modal="f-finallq-approval" data-ko="기업 이체 결재 (직무 분리)"
-                                data-en="Corporate approval (SoD)">기업 이체 결재 (직무 분리)</button>
-                              <button class="feat" data-modal="f-finallq-fds" data-ko="FDS 고위험 → 2FA 승격"
-                                data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</button>
-                              <button class="feat" data-modal="f-finallq-smishing" data-ko="스미싱 탐지"
-                                data-en="Smishing detection">스미싱 탐지</button>
-                              <button class="feat" data-modal="f-finallq-failsoft" data-ko="AI 비서 — 정직한 실패"
-                                data-en="Assistant — honest failure">AI 비서 — 정직한 실패</button>
+                          <div class="pc-grid sub-grid">
+                            <div class="block">
+                              <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다"
+                                  data-en="Features — click one for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
+                              <div class="featlist">
+                                <button class="feat" data-modal="f-finallq-dashboard" data-ko="통합 대시보드"
+                                  data-en="Unified dashboard">통합 대시보드</button>
+                                <button class="feat" data-modal="f-finallq-assessment" data-ko="여신 심사 근거 카드"
+                                  data-en="Loan assessment evidence">여신 심사 근거 카드</button>
+                                <button class="feat" data-modal="f-finallq-disbursement" data-ko="여신 ↔ 이체 연결"
+                                  data-en="Loan-to-transfer bridge">여신 ↔ 이체 연결</button>
+                                <button class="feat" data-modal="f-finallq-approval" data-ko="기업 이체 결재 (직무 분리)"
+                                  data-en="Corporate approval (SoD)">기업 이체 결재 (직무 분리)</button>
+                                <button class="feat" data-modal="f-finallq-fds" data-ko="FDS 고위험 → 2FA 승격"
+                                  data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</button>
+                                <button class="feat" data-modal="f-finallq-smishing" data-ko="스미싱 탐지"
+                                  data-en="Smishing detection">스미싱 탐지</button>
+                                <button class="feat" data-modal="f-finallq-failsoft" data-ko="AI 비서 — 정직한 실패"
+                                  data-en="Assistant — honest failure">AI 비서 — 정직한 실패</button>
+                              </div>
+                            </div>
+                            <div class="pc-figure">
+                              <div class="pc-slides">
+                                <div class="pc-slide active">
+                                  <img data-src="assets/finallq/02_dashboard.jpg"
+                                    alt="은행과 증권 데이터를 한 화면에 합산한 FinAllQ 통합 대시보드">
+                                  <span class="cap2 mono" data-ko="통합 대시보드<br>배포 환경 실측 캡처"
+                                    data-en="Unified dashboard<br>captured on the deployed environment">통합 대시보드<br>배포 환경 실측 캡처</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/finallq/04_loan_assessment.jpg"
+                                    alt="한도·LTV·규칙 판정을 계산값으로 보여 주는 여신 심사 근거 카드">
+                                  <span class="cap2 mono" data-ko="여신 심사 근거 카드<br>한도·LTV·규칙 판정이 실제 계산값으로"
+                                    data-en="Loan assessment evidence<br>limit, LTV and rule verdicts, all computed">여신 심사 근거 카드<br>한도·LTV·규칙 판정이 실제 계산값으로</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/finallq/08_manager_approval_queue.jpg"
+                                    alt="요청자별 1일 한도 사용액을 함께 보여 주는 MANAGER 결재함">
+                                  <span class="cap2 mono" data-ko="MANAGER 결재함<br>신청자는 취소만, 승인은 다른 사람이"
+                                    data-en="The manager's approval queue<br>requesters can only cancel">MANAGER 결재함<br>신청자는 취소만, 승인은 다른 사람이</span>
+                                </div>
+                              </div>
                             </div>
                           </div>
 
@@ -3055,18 +3092,42 @@
                               <b>정확히 적으면 컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span> 둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 — «LangGraph 노드 4개»라고 쓰면 사실이 아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다).</p>
                           </div>
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다"
-                                data-en="Features — click one for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
-                            <div class="featlist">
-                              <button class="feat" data-modal="f-insuq-citation" data-ko="근거 인용 — 조항 원문과 함께"
-                                data-en="Citation — with the clause itself">근거 인용 — 조항 원문과 함께</button>
-                              <button class="feat" data-modal="f-insuq-refusal" data-ko="거부 게이트 — 모르면 거부한다"
-                                data-en="Refusal gate — it declines">거부 게이트 — 모르면 거부한다</button>
-                              <button class="feat" data-modal="f-insuq-clarify" data-ko="되묻기 — 정보가 빠지면"
-                                data-en="Asking back">되묻기 — 정보가 빠지면</button>
-                              <button class="feat" data-modal="f-insuq-claim" data-ko="청구 승인 — 사람 앞에서 멈춘다"
-                                data-en="Claim — it stops for a human">청구 승인 — 사람 앞에서 멈춘다</button>
+                          <div class="pc-grid sub-grid">
+                            <div class="block">
+                              <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다"
+                                  data-en="Features — click one for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
+                              <div class="featlist">
+                                <button class="feat" data-modal="f-insuq-citation" data-ko="근거 인용 — 조항 원문과 함께"
+                                  data-en="Citation — with the clause itself">근거 인용 — 조항 원문과 함께</button>
+                                <button class="feat" data-modal="f-insuq-refusal" data-ko="거부 게이트 — 모르면 거부한다"
+                                  data-en="Refusal gate — it declines">거부 게이트 — 모르면 거부한다</button>
+                                <button class="feat" data-modal="f-insuq-clarify" data-ko="되묻기 — 정보가 빠지면"
+                                  data-en="Asking back">되묻기 — 정보가 빠지면</button>
+                                <button class="feat" data-modal="f-insuq-claim" data-ko="청구 승인 — 사람 앞에서 멈춘다"
+                                  data-en="Claim — it stops for a human">청구 승인 — 사람 앞에서 멈춘다</button>
+                              </div>
+                            </div>
+                            <div class="pc-figure">
+                              <div class="pc-slides">
+                                <div class="pc-slide active">
+                                  <img data-src="assets/insuq/grounded-citation.gif"
+                                    alt="근거 조항 원문과 함께 답하는 InsuQ 화면">
+                                  <span class="cap2 mono" data-ko="근거 조항 원문과 함께 답한다"
+                                    data-en="Answers arrive with the clause itself">근거 조항 원문과 함께 답한다</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/insuq/refusal-gate.gif"
+                                    alt="인용할 근거가 없어 답을 거부하는 InsuQ 화면">
+                                  <span class="cap2 mono" data-ko="근거가 없으면 거부한다"
+                                    data-en="No basis to cite, so it declines">근거가 없으면 거부한다</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/insuq/claim-approval.gif"
+                                    alt="심사역이 전자서명으로 청구를 승인하는 승인함 화면">
+                                  <span class="cap2 mono" data-ko="청구 승인은 사람 앞에서 멈춘다<br>전자서명으로 completed 전이"
+                                    data-en="Claims stop for a human<br>an e-signature moves it to completed">청구 승인은 사람 앞에서 멈춘다<br>전자서명으로 completed 전이</span>
+                                </div>
+                              </div>
                             </div>
                           </div>
 
@@ -3160,24 +3221,48 @@
                               제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다.</p>
                           </div>
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 실제 화면이 열립니다"
-                                data-en="Features — click one for the captured screen">주요 기능 — 누르면 실제 화면이 열립니다</span></div>
-                            <div class="featlist">
-                              <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 — 추측하지 않는다"
-                                data-en="Unknown code — no guessing">미지 에러코드 — 추측하지 않는다</button>
-                              <button class="feat" data-modal="f-maintq-alt" data-ko="재고 0 → 호환 대체품"
-                                data-en="Out of stock → alternatives">재고 0 → 호환 대체품</button>
-                              <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류"
-                                data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
-                              <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정"
-                                data-en="Disposal pre-check">처분 사전판정</button>
-                              <button class="feat" data-modal="f-maintq-bundle" data-ko="처분 근거 번들"
-                                data-en="Evidence bundle">처분 근거 번들</button>
-                              <button class="feat" data-modal="f-maintq-deadline" data-ko="법정 기한 · 위험등급"
-                                data-en="Deadlines &amp; risk grade">법정 기한 · 위험등급</button>
-                              <button class="feat" data-modal="f-maintq-expenditure" data-ko="지출 성격 분류"
-                                data-en="Expenditure classification">지출 성격 분류</button>
+                          <div class="pc-grid sub-grid">
+                            <div class="block">
+                              <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 — 누르면 실제 화면이 열립니다"
+                                  data-en="Features — click one for the captured screen">주요 기능 — 누르면 실제 화면이 열립니다</span></div>
+                              <div class="featlist">
+                                <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 — 추측하지 않는다"
+                                  data-en="Unknown code — no guessing">미지 에러코드 — 추측하지 않는다</button>
+                                <button class="feat" data-modal="f-maintq-alt" data-ko="재고 0 → 호환 대체품"
+                                  data-en="Out of stock → alternatives">재고 0 → 호환 대체품</button>
+                                <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류"
+                                  data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
+                                <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정"
+                                  data-en="Disposal pre-check">처분 사전판정</button>
+                                <button class="feat" data-modal="f-maintq-bundle" data-ko="처분 근거 번들"
+                                  data-en="Evidence bundle">처분 근거 번들</button>
+                                <button class="feat" data-modal="f-maintq-deadline" data-ko="법정 기한 · 위험등급"
+                                  data-en="Deadlines &amp; risk grade">법정 기한 · 위험등급</button>
+                                <button class="feat" data-modal="f-maintq-expenditure" data-ko="지출 성격 분류"
+                                  data-en="Expenditure classification">지출 성격 분류</button>
+                              </div>
+                            </div>
+                            <div class="pc-figure">
+                              <div class="pc-slides">
+                                <div class="pc-slide active">
+                                  <img data-src="assets/maintq/unknown-error-code.gif"
+                                    alt="매뉴얼에 없는 에러코드를 추측하지 않고 모른다고 답하는 MaintQ 화면">
+                                  <span class="cap2 mono" data-ko="매뉴얼에 없는 에러코드<br>추측하지 않는다"
+                                    data-en="An error code not in the manual<br>no guessing">매뉴얼에 없는 에러코드<br>추측하지 않는다</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/maintq/repeat-failure-hold.gif"
+                                    alt="같은 설비의 반복 고장을 감지해 부품 발주를 보류하는 MaintQ 화면">
+                                  <span class="cap2 mono" data-ko="반복 고장 감지 → 발주 HOLD"
+                                    data-en="Repeat failure detected → order on hold">반복 고장 감지 → 발주 HOLD</span>
+                                </div>
+                                <div class="pc-slide">
+                                  <img data-src="assets/maintq/disposal-precheck.gif"
+                                    alt="사실이 모자라면 판정을 미루고 입력을 받은 뒤 판정하는 처분 사전판정 화면">
+                                  <span class="cap2 mono" data-ko="처분 사전판정<br>사실이 모자라면 판정하지 않는다"
+                                    data-en="Disposal pre-check<br>no verdict until the facts are in">처분 사전판정<br>사실이 모자라면 판정하지 않는다</span>
+                                </div>
+                              </div>
                             </div>
                           </div>
 
@@ -3420,7 +3505,7 @@
               <div class="pc-code mono" data-ko="에이전트 자율 조달 · 역경매 + 조건부 정산"
                 data-en="Autonomous Agent Procurement · Reverse Auction + Escrow">에이전트 자율 조달 · 역경매 + 조건부 정산</div>
               <h3 class="pc-title">SPENDQ</h3>
-              <div class="pc-meta" data-ko="2026.08 ~ 09 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 실작업 7일 · 커밋 99건 · 온체인·백엔드·프론트·배포 단독" data-en="Aug–Sep 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> 7 working days · 99 commits · on-chain, backend, frontend and deploy">2026.08 ~ 09 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 실작업 7일 · 커밋 99건 · 온체인·백엔드·프론트·배포 단독</div>
+              <div class="pc-meta" data-ko="2026.08 ~ 09 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 실작업 7일 · 커밋 105건 · 온체인·백엔드·프론트·배포 단독" data-en="Aug–Sep 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> 7 working days · 105 commits · on-chain, backend, frontend and deploy">2026.08 ~ 09 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 실작업 7일 · 커밋 105건 · 온체인·백엔드·프론트·배포 단독</div>
               <div class="pc-hash mono">
                 <span>#x402</span><span>#A2A</span><span>#Solana</span><span>#Escrow</span><span>#Gemini</span><span>#CloudRun</span>
               </div>
@@ -3509,14 +3594,14 @@
                   </ul>
                 </div>
                 <div class="impact block">
-                  <div class="bh"><span class="star">&#9733;</span> <span data-ko="현재 상태 (2026.09.10 실측)"
-                      data-en="Status (measured 2026-09-10)">현재 상태 (2026.09.10 실측)</span></div>
+                  <div class="bh"><span class="star">&#9733;</span> <span data-ko="현재 상태 (2026.09.12 실측)"
+                      data-en="Status (measured 2026-09-12)">현재 상태 (2026.09.12 실측)</span></div>
                   <p data-ko="백엔드·온체인·프론트·배포까지 게이트를 두고 전건 통과했고, <b>Cloud Run 6서비스가 devnet에 라이브</b>로 떠 있다(구매 에이전트 · 판매자 3종 · 검증기 · 프론트 콘솔). 오프체인 테스트 <b>297건 전건 통과</b> · 온체인 22건 · Anchor 프로그램 600행(명령 7종 · 에러 코드 12종) · 설계 결정 <b>D1~D19</b>. 전 과정에서 <b>사람 승인은 0회</b>다."
                     data-en="Backend, on-chain, frontend and deployment all passed their gates, and <b>six Cloud Run services are live on devnet</b> — the buyer agent, three sellers, the verifier and the console. <b>297 off-chain tests pass</b>, plus 22 on-chain; the Anchor program is 600 lines with 7 instructions and 12 error codes; design decisions <b>D1–D19</b>. The whole loop runs with <b>zero human approvals</b>.">백엔드·온체인·프론트·배포까지
                     게이트를 두고 전건 통과했고, <b>Cloud Run 6서비스가 devnet에 라이브</b>로 떠 있다(구매 에이전트 · 판매자 3종 · 검증기 · 프론트 콘솔). 오프체인 테스트 <b>297건 전건 통과</b> · 온체인 22건 · Anchor 프로그램 600행(명령 7종 · 에러 코드 12종) · 설계 결정 <b>D1~D19</b>. 전 과정에서 <b>사람 승인은 0회</b>다.</p>
-                  <p data-ko="<b>남은 것은 대회 제출물 중 데모 영상과 PPT 2종이다</b> — 촬영 리허설(3라운드 풀런 ×2)까지 통과해 서사가 재현되는 것을 확인했고, 촬영 절차·큐시트가 확정돼 있다. <b>devnet 전용</b>이고 실거래·실사용 데이터는 없다. 부분 정산·분쟁 조정 경로는 범위 밖으로 선언했다."
-                    data-en="<b>What remains are two competition deliverables: the demo video and the deck.</b> Filming rehearsals — three full rounds, twice — reproduced the same narrative, and the shoot procedure and cue sheet are fixed. It is <b>devnet only</b>, with no real transactions or users. Partial settlement and a dispute path were declared out of scope.">
-                    <b>남은 것은 대회 제출물 중 데모 영상과 PPT 2종이다</b> — 촬영 리허설(3라운드 풀런 ×2)까지 통과해 서사가 재현되는 것을 확인했고, 촬영 절차·큐시트가 확정돼 있다. <b>devnet 전용</b>이고 실거래·실사용 데이터는 없다. 부분 정산·분쟁 조정 경로는 범위 밖으로 선언했다.</p>
+                  <p data-ko="<b>2026.09.12 데모 본촬영을 완주했고, 남은 것은 영상 편집과 PPT다.</b> 3라운드가 <b>43초</b>에 끝났고 화면의 숫자가 온체인 실측(<span class=&quot;mono&quot;>spent_today</span> 142.88/500)과 문자 그대로 일치했다. 수수료 지불자를 전수 대조하니 <b>사람이 서명한 건 한도를 거는 1건뿐</b>(구매 승인이 아니다)이고, 에스크로 개설은 에이전트가, 정산·환불은 검증자가 냈다 — 권한 분리가 계정 구조가 아니라 <b>트랜잭션으로 체인에 남는다</b>. 대회에는 <b>출품하지 않기로</b> 했다. <b>devnet 전용</b>이고 실거래·실사용 데이터는 없다. 부분 정산·분쟁 조정 경로는 범위 밖으로 선언했다."
+                    data-en="<b>The demo was filmed end to end on 2026-09-12; editing and the deck remain.</b> Three rounds finished in <b>43 seconds</b>, and the numbers on screen matched the on-chain state (<span class=&quot;mono&quot;>spent_today</span> 142.88/500) character for character. Checking every fee payer shows <b>a person signed exactly one transaction — setting the limit, not approving a purchase</b>; the agent paid to open escrows and the verifier paid to release or refund — so the separation of powers is <b>recorded on-chain as transactions</b>, not just as account structure. It was <b>not entered</b> in the competition. It is <b>devnet only</b>, with no real transactions or users. Partial settlement and a dispute path were declared out of scope.">
+                    <b>2026.09.12 데모 본촬영을 완주했고, 남은 것은 영상 편집과 PPT다.</b> 3라운드가 <b>43초</b>에 끝났고 화면의 숫자가 온체인 실측(<span class="mono">spent_today</span> 142.88/500)과 문자 그대로 일치했다. 수수료 지불자를 전수 대조하니 <b>사람이 서명한 건 한도를 거는 1건뿐</b>(구매 승인이 아니다)이고, 에스크로 개설은 에이전트가, 정산·환불은 검증자가 냈다 — 권한 분리가 계정 구조가 아니라 <b>트랜잭션으로 체인에 남는다</b>. 대회에는 <b>출품하지 않기로</b> 했다. <b>devnet 전용</b>이고 실거래·실사용 데이터는 없다. 부분 정산·분쟁 조정 경로는 범위 밖으로 선언했다.</p>
                   <p class="mono" style="font-size:11px;color:var(--muted);margin-top:10px"
                     data-ko="※ 즉시정산 할인 −6.0%는 우리가 600bps로 설정한 값이 그대로 적용된 결과이지 시장에서 얻어낸 절감이 아니다. 재입찰 절감은 미측정이 아니라 측정 결과가 0이다(역경매가 매번 1라운드에 끝나 재입찰이 발화하지 않는다)."
                     data-en="Note: the −6.0% early-settlement discount is our own 600bps setting applied as-is, not a saving negotiated in a market. Renegotiation savings are not unmeasured — they measured zero, because the auction closes in one round and re-bidding never fires.">※
@@ -3540,13 +3625,17 @@
                     </div>
                   </div>
                 </div>
-                <!-- 데모 영상 촬영이 끝나면: assets/spendq/ 에 넣고 위 featlist 패턴으로 모달을 붙이세요.
-                     리허설은 통과했고 촬영 절차·큐시트가 확정돼 있습니다 (설계서 §3-E).
+                <!-- 데모 영상 편집이 끝나면: assets/spendq/ 에 넣고 위 featlist 패턴으로 모달을 붙이세요.
+                     본촬영은 2026-09-12 완주했고 원본 녹화는 SpendQ 레포 docs/cuecard/ 에 있습니다(미편집·미커밋).
                      랜딩이 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: spendq)
                        <a class="gobtn" href="project/spendq/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
                   <div class="pc-actions">
                   <a class="gobtn solid" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span
                       class="ic" data-ic="github"></span>GITHUB</a>
+                  <!-- README 의 「라이브 URL」 표가 정본. 프론트는 반드시 -gvqa74mxaq-du 주소로 연다 —
+                       Cloud Run 이 주는 두 번째 URL 로 열면 CORS 에 막혀 화면만 뜨고 이벤트가 오지 않는다. -->
+                  <a class="gobtn" href="https://spendq-frontend-gvqa74mxaq-du.a.run.app" target="_blank" rel="noopener"><span
+                      class="ic" data-ic="link"></span><span data-ko="라이브 데모 (devnet)" data-en="Live demo (devnet)">라이브 데모 (devnet)</span></a>
                 </div>
               </div>
             </div>
