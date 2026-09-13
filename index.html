@@ -998,8 +998,10 @@
       transition: max-height .5s cubic-bezier(.22, 1, .36, 1)
     }
 
+    /* 펼침 애니메이션용 상한. 본문보다 작으면 조용히 잘린다 — 폭 400px 에서 SpendQ 본문이 2,700px 를 넘는다(실측).
+       너무 크면 접힐 때 애니메이션이 늦게 시작하므로 넉넉한 정도로만 둔다. */
     .pcard.open .pc-body {
-      max-height: 1400px
+      max-height: 4000px
     }
 
     .pc-inner {
@@ -1045,6 +1047,73 @@
     @media(max-width:760px) {
       .pc-grid {
         grid-template-columns: 1fr
+      }
+    }
+
+    /* 프로젝트 카드 본문 배치 — «해결한 문제 | 그림» 한 줄, 그 아래는 전부 한 줄 전체 폭.
+       카드마다 왼쪽 묶음(div)에 든 블록 수가 다르다(성과·버튼까지 든 카드도 있다).
+       HTML 을 카드마다 옮기지 않고, 묶음을 display:contents 로 풀어 블록을 그리드 항목으로 올린다.
+       첫 블록과 그림만 1행에 못박으면 나머지는 문서 순서대로 2행부터 채워진다.
+       .pc-inner > 로 한정 — QMesh 하위 카드의 .sub-grid 는 건드리지 않는다. */
+    .pc-inner>.pc-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 28px
+    }
+
+    .pc-inner>.pc-grid>div:not([class]) {
+      display: contents
+    }
+
+    .pc-inner>.pc-grid>*,
+    .pc-inner>.pc-grid>div:not([class])>* {
+      grid-column: 1 / -1
+    }
+
+    .pc-inner>.pc-grid>div:not([class])>.block:first-child {
+      grid-column: 1;
+      grid-row: 1
+    }
+
+    .pc-inner>.pc-grid>.pc-figure {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: stretch;
+      margin-bottom: 18px
+    }
+
+    .pc-inner>.pc-grid>.pc-figure .pc-slides {
+      min-height: 350px
+    }
+
+    .pc-inner>.pc-grid>.pc-figure .pc-slide {
+      padding: 20px 18px 30px
+    }
+
+    .pc-inner>.pc-grid>.pc-figure .pc-slide img {
+      max-height: 250px;
+      cursor: zoom-in
+    }
+
+    .pc-inner>.pc-grid>.pc-figure .pc-slide .fdiag svg {
+      max-height: 240px
+    }
+
+    @media(max-width:760px) {
+      .pc-inner>.pc-grid>div:not([class])>.block:first-child {
+        grid-column: 1 / -1
+      }
+
+      .pc-inner>.pc-grid>.pc-figure {
+        grid-column: 1 / -1;
+        grid-row: 2
+      }
+
+      .pc-inner>.pc-grid>.pc-figure .pc-slides {
+        min-height: 290px
+      }
+
+      .pc-inner>.pc-grid>.pc-figure .pc-slide img {
+        max-height: 190px
       }
     }
 
@@ -3561,6 +3630,12 @@
                 <div class="pc-figure">
                   <div class="pc-slides">
                     <div class="pc-slide active">
+                      <img data-src="assets/spendq/architecture.png"
+                        alt="구매 에이전트가 판매자 3사와 x402로 협상하고, 검증기와 Solana 프로그램의 Budget·Escrow 계정으로 정산하는 SpendQ 시스템 구성도">
+                      <span class="cap2 mono" data-ko="시스템 구성<br>오프체인 5서비스 + 콘솔 · 한도와 금고는 체인에"
+                        data-en="System overview<br>five off-chain services plus a console · limits and vault on-chain">시스템 구성<br>오프체인 5서비스 + 콘솔 · 한도와 금고는 체인에</span>
+                    </div>
+                    <div class="pc-slide">
                       <img data-src="assets/spendq/auction.png"
                         alt="판매자 3사가 응찰하고 정책 엔진이 낙찰 근거와 함께 한 곳을 고른 역경매 화면">
                       <span class="cap2 mono" data-ko="3사가 응찰하고 정책 엔진이 고른다<br>탈락 사유까지 화면에 남는다"
@@ -5995,6 +6070,15 @@
       document.querySelectorAll('.sec-asof').forEach(el => el.textContent = full[cur]);
     })();
     console.log('%c★ Trusted AI Portfolio v5 ★', 'color:#3a5bd0;font-size:14px;font-weight:700');
+
+    /* 11-0. 카드 그림은 반쪽 칸에 들어가 구성도 글자가 작다 — 누르면 원본을 새 탭으로 연다. */
+    document.querySelectorAll('.pc-slide img').forEach(img => {
+      img.addEventListener('click', e => {
+        e.stopPropagation();
+        const src = img.currentSrc || img.getAttribute('src') || img.dataset.src;
+        if (src) window.open(src, '_blank', 'noopener');
+      });
+    });
 
     /* 11. 이미지 슬라이더 (pc-figure 멀티 이미지 < > 컨트롤) */
     document.querySelectorAll('.pc-figure').forEach(fig => {

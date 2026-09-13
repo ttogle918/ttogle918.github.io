@@ -1,0 +1,52 @@
+%% SpendQ 시스템 구성 — 원본은 SpendQ 레포 docs/03_ARCHITECTURE.md §2.
+%% 포트폴리오판에서 원본과 다르게 그린 것 (2026-09-13 코드로 확인):
+%%   - domain :8003(MaintQ 연동)을 뺐다 — Day 5 선택 항목이고 Cloud Run 6서비스에 없다
+%%   - PRG → frontend «이벤트 구독»을 뺐다 — frontend 는 buyer SSE 만 받는다(lib/sse.ts)
+%%   - Gemini 를 넣었다 — buyer 로그 [gemini] node=spec backend=vertex (검사 카탈로그 내 선택, D18)
+%%   - 사람의 유일한 서명(한도 설정)을 넣었다 — 본촬영 수수료 지불자 전수 대조 결과
+flowchart LR
+    U["조달 요청<br/>FAN-IG5-01 × 2 · 7일 이내"] --> BUY
+
+    subgraph OFF["오프체인 · Cloud Run"]
+        BUY["<b>buyer</b><br/>구매 에이전트<br/>역경매 루프 + 정책 엔진"]
+        SA["<b>seller A</b><br/>빠름 · 비쌈"]
+        SB["<b>seller B</b><br/>느림 · 쌈"]
+        SC["<b>seller C</b><br/>최저가 · 불량"]
+        VER["<b>verifier</b><br/>결정론적 검증"]
+        FE["<b>frontend</b><br/>에이전트 콘솔"]
+    end
+
+    GEM["<b>Gemini</b> · Vertex AI<br/>검사 카탈로그 안에서<br/>추가 검사 선택"]
+
+    subgraph ON["온체인 · Solana devnet"]
+        PRG["<b>spendq 프로그램</b><br/>Anchor · 명령 7종"]
+        BGT[("<b>Budget PDA</b><br/>일일 · 건당 한도<br/>오늘 사용액")]
+        ESC[("<b>Escrow PDA</b><br/>개인키 없는 금고")]
+    end
+
+    H["사람<br/>한도 설정 서명 1회"]
+
+    BUY <-->|"A2A 발견 · x402<br/>402 → 서명 → 200"| SA
+    BUY <-->|x402| SB
+    BUY <-->|x402| SC
+    BUY -.->|기대 스펙| GEM
+    BUY -->|open_escrow| PRG
+    BUY -->|인도물 판정 요청| VER
+    VER -->|"release / refund"| PRG
+    PRG --- BGT
+    PRG --- ESC
+    H -.-> BGT
+    BUY -.->|SSE| FE
+
+    classDef agent fill:#E8EEFF,stroke:#4A63C9,color:#1B2559;
+    classDef seller fill:#F4F5F7,stroke:#9AA1AD,color:#2B2F36;
+    classDef bad fill:#FDF0E3,stroke:#B36A1E,color:#5C340C;
+    classDef chain fill:#E1F5EE,stroke:#0F6E56,color:#04342C;
+    classDef human fill:#FFF6D6,stroke:#B08A1E,color:#4A3A08;
+    classDef ext fill:#F3EEFF,stroke:#7A5BC7,color:#2E1F5C;
+    class BUY,VER,FE agent
+    class SA,SB seller
+    class SC bad
+    class PRG,BGT,ESC chain
+    class H,U human
+    class GEM ext
