@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 from PIL import Image, ImageSequence
 
 # 모달 표시 폭은 최대 ~760px 다. 900px 면 고해상도 화면에서도 충분하고,
@@ -142,43 +143,83 @@ CLIP_FPS = 5
 
 KBRIDGE_DEMO = "LawGenie/K-Bridge Ecommerce/시연영상—2025-10-13 150029.mp4"
 
-CLIPS: dict[str, tuple[str, float, float]] = {
-    # 대상 파일: (원본 영상, 시작초, 끝초)
+# SpendQ 촬영 원본(미편집). 09-12 11:14 녹화가 43초 완주한 본 테이크이고,
+# 13:16 녹화는 prove:limit 증명 스크립트를 터미널에서 돌린 장면이다.
+# 같은 녹화의 Explorer 장면은 클러스터가 Mainnet 으로 잡혀 «Signature is not valid» 라 쓰지 않는다.
+SPENDQ_CUE = "//wsl.localhost/Ubuntu/home/hyun/spendq/docs/cuecard/"
+SPENDQ_TAKE = SPENDQ_CUE + "화면 녹화 중 2026-09-12 111417.mp4"
+SPENDQ_PROVE = SPENDQ_CUE + "화면 녹화 중 2026-09-12 131649.mp4"
+
+# 콘솔 본문만 남긴다(좌우 빈 여백 · 테마 버튼 줄 아래 빈 공간 제외).
+# hold: 콘솔은 이벤트 사이에 멈춰 있다 — 같은 프레임을 합쳐 한 장을 길게 보여 준다(실측 3.8MB -> 아래).
+SPENDQ_CONSOLE = {"crop": (0.085, 0.0, 0.9, 0.78), "hold": True}
+
+CLIPS: dict[str, tuple] = {
+    # 대상 파일: (원본 영상, 시작초, 끝초[, {crop: (좌,상,우,하) 비율, hold: 정지 구간 합치기}])
     "kbridge/requirement-verdict.gif": (KBRIDGE_DEMO, 96.0, 101.0),
     "kbridge/precedent-cross.gif": (KBRIDGE_DEMO, 106.0, 111.0),
+    # R1 — 3사 응찰 → A사 낙찰 → 에스크로 잠금 → 검증 통과 → 정산
+    "spendq/r1-auction-settle.gif": (SPENDQ_TAKE, 2.0, 14.6, SPENDQ_CONSOLE),
+    # R2 → R3 — C사 최저가 낙찰 → 검증 2/8 → 자동 환불 → 다음 라운드에서 C사 탈락.
+    # 큐카드: 환불과 학습이 붙어 있어야 «그냥 환불 기능»이 아니라 «실수하고 회복했다»가 된다.
+    # 48초부터 화면이 스크롤되므로 그 앞에서 끊는다.
+    "spendq/r2-refund-learn.gif": (SPENDQ_TAKE, 21.0, 47.0, SPENDQ_CONSOLE),
+    # 앱 정책검사를 건너뛰고 체인에 직접 방송 → PerTxLimitExceeded(6000). 출력이 화면 위쪽에 몰려 있다.
+    "spendq/prove-limit.gif": (SPENDQ_PROVE, 0.0, 6.0, {"crop": (0.0, 0.0, 1.0, 0.6), "hold": True}),
 }
 
 
 def clip_to_gif(src: Path, start: float, end: float,
+                crop: tuple[float, float, float, float] | None = None,
+                hold: bool = False,
                 fps_out: int = CLIP_FPS, maxw: int = CLIP_MAXW,
                 colors: int = CLIP_COLORS) -> bytes:
     """영상의 [start, end) 구간을 GIF 로 굽는다 (OpenCV 로 읽고 Pillow 로 씀).
 
     ffmpeg 를 쓰지 않는다 — 이 환경에 없다. cv2 만으로 프레임을 뽑는다.
+    crop 은 (좌, 상, 우, 하) 비율 — 녹화마다 해상도가 달라 픽셀로 적지 않는다.
+    hold 면 직전 프레임과 거의 같은 프레임은 버리고 직전 프레임의 표시 시간을 늘린다.
     """
     cap = cv2.VideoCapture(str(src))
     if not cap.isOpened():
         raise RuntimeError(f"영상을 열 수 없다: {src}")
     fps = cap.get(cv2.CAP_PROP_FPS)
     frames: list[Image.Image] = []
+    durations: list[int] = []
+    step = int(1000 / fps_out)
+    prev = None
     t = start
     while t < end:
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(round(t * fps)))
         ok, img = cap.read()
         if not ok:
             break
+        t += 1 / fps_out
         im = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        if crop:
+            w, h = im.size
+            im = im.crop((round(crop[0] * w), round(crop[1] * h), round(crop[2] * w), round(crop[3] * h)))
         if im.width > maxw:
             im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+        if hold and prev is not None:
+            # 축소 후 픽셀 평균 차이. 커서 깜빡임 정도(<0.3)는 같은 장면으로 본다.
+            diff = cv2.absdiff(cv2.cvtColor(np.asarray(im), cv2.COLOR_RGB2GRAY),
+                               cv2.cvtColor(np.asarray(prev), cv2.COLOR_RGB2GRAY)).mean()
+            if diff < 0.3:
+                durations[-1] += step
+                continue
+        prev = im
         frames.append(im.convert("P", palette=Image.ADAPTIVE, colors=colors))
-        t += 1 / fps_out
+        durations.append(step)
     cap.release()
     if not frames:
         raise RuntimeError(f"프레임을 못 읽었다: {src} [{start}~{end}]")
+    if hold:
+        durations[-1] = max(durations[-1], 2500)  # 마지막 장면(결론)에서 반복 전에 머문다
     buf = io.BytesIO()
     frames[0].save(
         buf, format="GIF", save_all=True, append_images=frames[1:],
-        duration=int(1000 / fps_out), loop=0, optimize=True, disposal=2,
+        duration=durations if hold else step, loop=0, optimize=True, disposal=2,
     )
     return buf.getvalue()
 
@@ -247,14 +288,14 @@ def main() -> int:
         total_after += len(data)
         print(f"  {dest_rel:42s} 영상 {sec:.0f}초 -> {len(data)/1e3:5.0f}KB")
 
-    for dest_rel, (src_rel, a, b) in CLIPS.items():
+    for dest_rel, (src_rel, a, b, *opts) in CLIPS.items():
         src = WS / src_rel
         if not src.exists():
             missing.append(src_rel)
             continue
         dest = SITE / "assets" / dest_rel
         dest.parent.mkdir(parents=True, exist_ok=True)
-        data = clip_to_gif(src, a, b)
+        data = clip_to_gif(src, a, b, **(opts[0] if opts else {}))
         dest.write_bytes(data)
         before, after = src.stat().st_size, len(data)
         total_before += before
