@@ -4,7 +4,7 @@
 다른 레포에서 이 문서만 읽어도 자기 랜딩 페이지를 어디에 어떻게 두면 되는지 알 수 있도록 썼습니다.
 
 - 포트폴리오 본문: <https://ttogle918.github.io> (레포 `ttogle918/ttogle918.github.io`, `index.html` 단일 파일)
-- 이 디렉터리: `project/` — 외부 레포 Pages로 보내는 **리다이렉트 스텁**들이 사는 곳
+- 이 디렉터리: `project/` -- 외부 레포 Pages로 보내는 **리다이렉트 스텁**들이 사는 곳
 
 ---
 
@@ -35,25 +35,25 @@
 |---|---|---|---|---|---|
 | 01 | QMesh | `qmesh` | A | <https://ttogle918.github.io/qmesh/> | ✅ |
 | 02 | KeyLens (키지기) | `key-manager` | B | <https://ttogle918.github.io/key-manager/> | ✅ |
-| 03 | SpendQ | `spendq` | 미정 | — | ⬜ |
-| 04 | SecureAI Engine | `secureai` | 미정 | — | ⬜ |
-| 05 | K-Bridge | `k-bridge` | 미정 | — | ⬜ |
-| 06 | KOCRUIT | `kocruit` | 미정 | — | ⬜ |
-| 07 | 질문-답변 검색 (비상교육) | `visang-qa` | 미정 | — | ⬜ |
-| 08 | 이탈 고객 예측 (비상교육) | `visang-churn` | 미정 | — | ⬜ |
+| 03 | SpendQ | `spendq` | 미정 | -- | ⬜ |
+| 04 | SecureAI Engine | `secureai` | 미정 | -- | ⬜ |
+| 05 | K-Bridge | `k-bridge` | 미정 | -- | ⬜ |
+| 06 | KOCRUIT | `kocruit` | 미정 | -- | ⬜ |
+| 07 | 질문-답변 검색 (비상교육) | `visang-qa` | 미정 | -- | ⬜ |
+| 08 | 이탈 고객 예측 (비상교육) | `visang-churn` | 미정 | -- | ⬜ |
 
 번호는 포트폴리오 `index.html`의 프로젝트 카드 번호와 같습니다 (최신순).
 
 ---
 
-## 3. 연결하는 법 — 2단계
+## 3. 연결하는 법 -- 2단계
 
 ### 1단계. 랜딩을 배치한다
 
-**A(직접 호스팅)를 고른 경우** — 포트폴리오 레포에 `<slug>/index.html`을 만듭니다.
+**A(직접 호스팅)를 고른 경우** -- 포트폴리오 레포에 `<slug>/index.html`을 만듭니다.
 `qmesh/index.html`을 복사해서 내용만 바꾸는 게 가장 빠릅니다. 작성 규칙은 아래 4장 참고.
 
-**B(리다이렉트 스텁)를 고른 경우** — `project/<slug>/index.html`에 아래를 넣습니다.
+**B(리다이렉트 스텁)를 고른 경우** -- `project/<slug>/index.html`에 아래를 넣습니다.
 `project/key-manager/home/index.html`을 복사해 **3군데(URL 2번, 표시 문구)** 만 바꾸면 됩니다.
 
 ```html
@@ -62,7 +62,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>프로젝트명 — 프로젝트 페이지로 이동 중</title>
+<title>프로젝트명 -- 프로젝트 페이지로 이동 중</title>
 <meta name="description" content="한 줄 소개." />
 <link rel="canonical" href="https://ttogle918.github.io/<slug>/" />
 <meta http-equiv="refresh" content="0; url=https://ttogle918.github.io/<slug>/" />

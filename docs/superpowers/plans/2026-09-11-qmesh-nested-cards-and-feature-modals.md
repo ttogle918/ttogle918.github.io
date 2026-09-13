@@ -8,7 +8,7 @@
 
 **Tech Stack:** 순수 HTML/CSS/JS (인라인, 빌드 없음) · Python 3.13 + Pillow 12.3.0 (자산 최적화·검증 스크립트)
 
-**설계서:** [`docs/superpowers/specs/2026-09-11-qmesh-nested-cards-and-feature-modals-design.md`](../specs/2026-09-11-qmesh-nested-cards-and-feature-modals-design.md) — 이하 **SPEC**. 콘텐츠 사실은 전부 SPEC §3에 있다.
+**설계서:** [`docs/superpowers/specs/2026-09-11-qmesh-nested-cards-and-feature-modals-design.md`](../specs/2026-09-11-qmesh-nested-cards-and-feature-modals-design.md) -- 이하 **SPEC**. 콘텐츠 사실은 전부 SPEC §3에 있다.
 
 ---
 
@@ -39,19 +39,19 @@
 
 | Step | 커밋 | 결과 |
 |---|---|---|
-| 3 브라우저 전수 | `0a79ee8` | 7항목 전부 통과 — **결함 5종을 찾아 고쳤다**(아래) |
-| 4 사실 대조 | — | SPEC §3 수치 15종이 `index.html` 에 전부 있고 분모가 함께 적혀 있다 |
+| 3 브라우저 전수 | `0a79ee8` | 7항목 전부 통과 -- **결함 5종을 찾아 고쳤다**(아래) |
+| 4 사실 대조 | -- | SPEC §3 수치 15종이 `index.html` 에 전부 있고 분모가 함께 적혀 있다 |
 | 5 README | `04f1f36` | `assets/`·`tools/` 규약 + AS_OF 예시를 09-11 로 |
-| 6 배포 | — | push 후 배포본에서 1·2·4 재확인 |
+| 6 배포 | -- | push 후 배포본에서 1·2·4 재확인 |
 
-**Step 3 에서 찾은 결함 5종** — 전부 이번 작업이 만든 것이었다
+**Step 3 에서 찾은 결함 5종** -- 전부 이번 작업이 만든 것이었다
 
 1. **FinAllQ FDS** 부제 «IsolationForest + 개인 기준선» 이 박스를 11px 넘고 «고위험»
    화살표 라벨과 충돌 → 세 박스 폭을 136/189/167 로 재배분
 2. **MaintQ 미지코드** «not_found» 가 다음 박스에 2px 물림
 3. **MaintQ 처분** «처분일 없음» 이 다음 박스에 5px 물림
 4. **MaintQ 법정기한** 3줄 라벨이 상자 아래 경계에 1px 까지 붙음 → 상자 56→64
-5. **400px 에서 QMesh 카드 본문이 잘림** — `.pc-grid` 아이템의 기본 `min-width:auto`
+5. **400px 에서 QMesh 카드 본문이 잘림** -- `.pc-grid` 아이템의 기본 `min-width:auto`
    가 min-content 라, 안에 든 다이어그램 SVG(`min-width:420px`)가 트랙을 520px 로
    밀어올렸다. `.pc-body` 가 `overflow-x:hidden` 이라 **스크롤바도 없이 그냥 잘렸다.**
    `.pc-grid > * { min-width: 0 }` 한 줄로 트랙이 287px 로 접히고 `.fdiag` 의
@@ -61,10 +61,10 @@
 
 `python -m http.server 8899` 로 띄우고 브라우저에서 실측했다.
 
-- 다이어그램 겹침은 눈이 아니라 **`getBBox()` 로 판정**했다 — 텍스트 상자가 rect 경계를
+- 다이어그램 겹침은 눈이 아니라 **`getBBox()` 로 판정**했다 -- 텍스트 상자가 rect 경계를
   넘는지, 텍스트끼리 교차하는지, viewBox 를 넘는지 3가지. 2px 물림은 눈으로 못 잡는다.
 - **창 리사이즈(`resize_window`)가 이 환경에서 뷰포트에 반영되지 않았다.** 400px 검증은
-  **`<iframe width="400">` 안에 페이지를 띄워서** 했다 — iframe 은 자체 뷰포트를 가지므로
+  **`<iframe width="400">` 안에 페이지를 띄워서** 했다 -- iframe 은 자체 뷰포트를 가지므로
   미디어 쿼리가 실제로 반응한다. 1280px iframe 을 나란히 띄워 데스크톱 무손상도 같이 봤다.
 - 인쇄는 Ctrl+P 미리보기 대신 **`@media print` 블록을 CSSOM 에서 뽑아 일반 규칙으로 주입**해
   확인했다(인쇄 대화상자는 브라우저 세션을 막는다). `.fmodal` → `display:none`,
@@ -72,9 +72,9 @@
 
 **남은 확인 (사람만 할 수 있는 것)**
 
-- SPEC §3 수치의 **`resume/` 원본 1:1 재대조** — `resume/` 는 이 레포에 없다. SPEC 과
+- SPEC §3 수치의 **`resume/` 원본 1:1 재대조** -- `resume/` 는 이 레포에 없다. SPEC 과
   `index.html` 사이의 일치까지만 기계로 확인했다.
-- **모달을 연 상태에서 KO/EN 토글을 누르는 것은 UI 로는 불가능하다** — 오버레이
+- **모달을 연 상태에서 KO/EN 토글을 누르는 것은 UI 로는 불가능하다** -- 오버레이
   (`z-index:200`)가 헤더(`100`)를 덮어 그 자리를 누르면 배경 클릭으로 모달이 닫힌다.
   `applyLang()` 이 모달 본문에 닿는지(20개 KO→EN→KO 왕복, 자산 유실 0)는 확인했으므로
   기능은 성립한다. 모달 안에 언어 버튼을 둘지는 후속 판단.
@@ -87,9 +87,9 @@ python tools/check_page.py
 ```
 
 **작업 중 알게 된 것 (재개 시 유의)**
-- Python 이 `index.html` 을 다시 쓰면 내용이 같아도 `git status` 가 `M` 으로 뜬다 — blob 해시로 대조할 것(Task 2 Step 4의 함정 상자 참고)
+- Python 이 `index.html` 을 다시 쓰면 내용이 같아도 `git status` 가 `M` 으로 뜬다 -- blob 해시로 대조할 것(Task 2 Step 4의 함정 상자 참고)
 - 파일을 건드리는 정규식은 앵커를 좁히고 **적용 전에 매칭 수를 먼저 확인**할 것. 넓은 `<style>.*?</style>` 하나로 메인 스타일시트 2,170줄을 날린 적이 있다(커밋본에서 복구 완료)
-- SVG 안에 `style` 요소를 두면 규칙이 **문서 전역**이 된다. 새 다이어그램은 반드시 `.fdiag .dg-*` 공용 어휘를 쓸 것 — 인라인 스타일을 다시 넣지 말 것
+- SVG 안에 `style` 요소를 두면 규칙이 **문서 전역**이 된다. 새 다이어그램은 반드시 `.fdiag .dg-*` 공용 어휘를 쓸 것 -- 인라인 스타일을 다시 넣지 말 것
 
 ---
 
@@ -101,12 +101,12 @@ python tools/check_page.py
 2. 모든 사용자 문구는 `data-ko` / `data-en` **두 속성 + 태그 안쪽 내용** 3곳을 함께 쓴다.
 3. **모달 본문은 복제하지 않는다.** `cloneNode`로 만든 노드는 `applyLang()`을 못 받는다.
 4. **모달 안에 `data-count`를 쓰지 않는다.** 카운터 IntersectionObserver는 `display:none` 상태에서 발화하지 않는다. 모달 수치는 정적 텍스트로 적는다.
-5. 색은 전부 CSS 변수를 쓴다: `--ink` `--text` `--muted` `--faint` `--line` `--line-2` `--panel` `--paper` `--accent` `--accent-soft` `--gold` `--gold-soft` `--gold-ink` `--gold-line` `--ok` `--mono` `--radius`. SVG는 `currentColor`와 이 변수만 쓴다 — 하드코딩 색상 금지(다크 테마에서 깨진다).
-6. **스프린트 번호를 카드 본문에 쓰지 않는다** (README 경고 — "Sprint 4"가 6일 만에 "Sprint 21"이 됐다).
-7. **분모가 다른 수치를 나란히 놓지 않는다** — InsuQ 트랙1(27문항)/트랙4(52문항), QMesh "5경로"(검증된 통신 경로)/"6종"(MaintQ 발신 스킬 수).
+5. 색은 전부 CSS 변수를 쓴다: `--ink` `--text` `--muted` `--faint` `--line` `--line-2` `--panel` `--paper` `--accent` `--accent-soft` `--gold` `--gold-soft` `--gold-ink` `--gold-line` `--ok` `--mono` `--radius`. SVG는 `currentColor`와 이 변수만 쓴다 -- 하드코딩 색상 금지(다크 테마에서 깨진다).
+6. **스프린트 번호를 카드 본문에 쓰지 않는다** (README 경고 -- "Sprint 4"가 6일 만에 "Sprint 21"이 됐다).
+7. **분모가 다른 수치를 나란히 놓지 않는다** -- InsuQ 트랙1(27문항)/트랙4(52문항), QMesh "5경로"(검증된 통신 경로)/"6종"(MaintQ 발신 스킬 수).
 8. 기간은 SPEC §3을 따른다. git 날짜로 단언하지 않는다.
 9. **Python 스크립트는 stdout/stderr 를 UTF-8 로 재설정한다.** Windows 기본 콘솔이 cp949 라
-   한국어·em dash(`—`)를 출력하는 순간 `UnicodeEncodeError` 로 죽는다(실측 확인). 두 스크립트 모두
+   한국어·em dash(`--`)를 출력하는 순간 `UnicodeEncodeError` 로 죽는다(실측 확인). 두 스크립트 모두
    `from __future__ import annotations` 바로 아래에 다음을 넣는다:
    ```python
    import sys as _sys
@@ -179,7 +179,7 @@ python tools/check_page.py
 raw 핫링크도 Pages 리다이렉트도 성립하지 않는다. 파일 단위로 고른 것만
 public 인 이 레포에 담는 것이 곧 선택적 공개다. (설계서 §2)
 
-원본은 각 프로젝트 레포에 그대로 남는다 — 화질이 아쉬우면 MAXW 를 올려
+원본은 각 프로젝트 레포에 그대로 남는다 -- 화질이 아쉬우면 MAXW 를 올려
 다시 돌리면 된다. 멱등하다.
 """
 from __future__ import annotations
@@ -314,7 +314,7 @@ cd /c/Users/ttogl/workspace/ttogle918.github.io && python tools/optimize_assets.
 기대: 26개 줄이 출력되고 마지막에 `합계 26.9MB -> 5.x MB (20%)`, 종료 코드 0.
 (검증된 비율: `disposal-precheck` 21% · `alternative-parts` 24% · `grounded-citation` 13% · `request-settlement` 19%)
 
-- [ ] **Step 3: 실패 경로 확인 — 원본이 없으면 죽는가**
+- [ ] **Step 3: 실패 경로 확인 -- 원본이 없으면 죽는가**
 
 ```bash
 python - <<'PY'
@@ -330,7 +330,7 @@ rm tools/_tmp_check.py
 ```
 
 기대: `원본을 찾지 못했다:` 와 `exit=1`.
-**이 확인을 건너뛰지 말 것** — 원본 경로가 바뀌어도 조용히 통과하면 자산이 빈 채로 배포된다.
+**이 확인을 건너뛰지 말 것** -- 원본 경로가 바뀌어도 조용히 통과하면 자산이 빈 채로 배포된다.
 
 - [ ] **Step 4: 공개 안전성 육안 확인**
 
@@ -340,7 +340,7 @@ du -sh assets
 ```
 
 26개 파일이 전부 있는지, 합계가 6MB 이하인지 확인한다.
-**그 다음 `assets/finallq/*.jpg` 13장과 GIF 몇 개를 실제로 열어 본다** — 이 레포는 public 이므로
+**그 다음 `assets/finallq/*.jpg` 13장과 GIF 몇 개를 실제로 열어 본다** -- 이 레포는 public 이므로
 실제 자격증명·실고객 데이터가 찍혀 있지 않은지 눈으로 본다. (문서상으로는 전부 목업·시드다)
 
 - [ ] **Step 5: 커밋**
@@ -352,7 +352,7 @@ git commit -m "$(cat <<'EOF'
 
 MaintQ 7 · InsuQ 4 · QMesh 2 GIF 와 FinAllQ 화면 13장.
 네 소스 레포가 전부 private 이라 raw 핫링크도 Pages 리다이렉트도
-성립하지 않는다 — 파일 단위로 골라 담는 것이 곧 선택적 공개다.
+성립하지 않는다 -- 파일 단위로 골라 담는 것이 곧 선택적 공개다.
 
 Pillow 로 폭 900px 제한 + 팔레트 128색. 원본은 각 레포에 그대로 남는다.
 
@@ -372,7 +372,7 @@ EOF
 - Create: `tools/check_page.py`
 
 **Interfaces:**
-- Produces: `python tools/check_page.py` — 위반 시 종료 코드 1 + 위반 목록.
+- Produces: `python tools/check_page.py` -- 위반 시 종료 코드 1 + 위반 목록.
 
 검사 5종:
 
@@ -483,12 +483,12 @@ def check(path: Path) -> list[str]:
     for msg, line in c.lang_issues:                                  # C2
         out.append(f"{rel}:{line}  C2 {msg}")
     for msg, line in c.media_in_lang:                                # C3
-        out.append(f"{rel}:{line}  C3 {msg} — applyLang() 이 innerHTML 로 지운다")
+        out.append(f"{rel}:{line}  C3 {msg} -- applyLang() 이 innerHTML 로 지운다")
     for src, line in c.srcs:                                         # C4
         if not (SITE / src).exists():
             out.append(f"{rel}:{line}  C4 data-src=\"{src}\" 파일이 없다")
     for msg, line in c.count_in_modal:                               # C5
-        out.append(f"{rel}:{line}  C5 {msg} — 숨김 상태에선 발화하지 않아 0 으로 남는다")
+        out.append(f"{rel}:{line}  C5 {msg} -- 숨김 상태에선 발화하지 않아 0 으로 남는다")
     return out
 
 
@@ -506,7 +506,7 @@ def main() -> int:
         for p in problems:
             print(f"  {p}", file=sys.stderr)
         return 1
-    print(f"통과 — {', '.join(TARGETS)} 구조 불변식 5종 이상 없음")
+    print(f"통과 -- {', '.join(TARGETS)} 구조 불변식 5종 이상 없음")
     return 0
 
 
@@ -514,14 +514,14 @@ if __name__ == "__main__":
     raise SystemExit(main())
 ```
 
-- [ ] **Step 2: 현재 상태로 실행 — 기준선 확보**
+- [ ] **Step 2: 현재 상태로 실행 -- 기준선 확보**
 
 ```bash
 python tools/check_page.py; echo "exit=$?"
 ```
 
 기대: `통과` + `exit=0`. **여기서 위반이 나오면 기존 파일에 이미 문제가 있는 것**이므로,
-그 위반을 먼저 기록하고(고치지는 말 것 — 이번 범위 밖일 수 있다) 진행한다.
+그 위반을 먼저 기록하고(고치지는 말 것 -- 이번 범위 밖일 수 있다) 진행한다.
 
 - [ ] **Step 3: 검사가 실제로 잡는지 확인 (뮤턴트)**
 
@@ -575,14 +575,14 @@ python -c "d=open('index.html','rb').read(); print('CRLF:', d.count(b'\r\n'), 'b
 >   && echo "내용 동일" || echo "내용이 다르다"
 > ```
 >
-> `git diff --stat` 만 보고 넘어가지 말 것 — `git checkout -- index.html` 로 확실히 되돌린다.
+> `git diff --stat` 만 보고 넘어가지 말 것 -- `git checkout -- index.html` 로 확실히 되돌린다.
 
 - [ ] **Step 5: 커밋**
 
 ```bash
 git add tools/check_page.py
 git commit -m "$(cat <<'EOF'
-구조 검사 하네스 추가 — 브라우저를 열기 전엔 안 보이는 5종을 잡는다
+구조 검사 하네스 추가 -- 브라우저를 열기 전엔 안 보이는 5종을 잡는다
 
 C1 data-modal 대응 id · C2 data-ko/en 쌍 · C3 data-ko 안의 <img>/<svg>
 (applyLang 이 innerHTML 로 지운다) · C4 죽은 data-src · C5 모달 안 data-count
@@ -601,7 +601,7 @@ EOF
 ## Task 3: 하위 드롭다운 · 모달 CSS
 
 **Files:**
-- Modify: `index.html` — `.pc-actions` 규칙 뒤 (현재 `index.html:1289` 근처), 인쇄 블록 앞
+- Modify: `index.html` -- `.pc-actions` 규칙 뒤 (현재 `index.html:1289` 근처), 인쇄 블록 앞
 
 **Interfaces:**
 - Produces: 클래스 `.subcard` `.sub-top` `.sub-badge` `.sub-headings` `.sub-code` `.sub-title` `.sub-meta` `.sub-caret` `.sub-body` `.sub-inner` `.featlist` `.feat` `.fmodal` `.fmodal-card` `.fmodal-head` `.fmodal-x` `.fmodal-body` `.fmodal-fig` `.fdiag` `.fsteps`
@@ -704,7 +704,7 @@ EOF
       border-top: 1px solid var(--line-2)
     }
 
-    /* 하위 카드를 품은 카드는 상한을 올린다 — 기본 1400px 이면 중첩이 잘린다.
+    /* 하위 카드를 품은 카드는 상한을 올린다 -- 기본 1400px 이면 중첩이 잘린다.
        이 파일은 이미 :has() 를 쓰고 있다(.pc-grid:has(.pc-figure.wide)). */
     .pcard.open .pc-body:has(.subcard) {
       max-height: 14000px
@@ -827,7 +827,7 @@ EOF
       padding-right: 40px
     }
 
-    /* 다이어그램 — 인라인 SVG. 색은 전부 CSS 변수를 쓴다(다크 대응). */
+    /* 다이어그램 -- 인라인 SVG. 색은 전부 CSS 변수를 쓴다(다크 대응). */
     .fdiag {
       background: var(--panel);
       border: 1px solid var(--line-2);
@@ -947,7 +947,7 @@ EOF
 ```
 
 기능 목록은 인쇄본에 **남긴다**(모달은 안 나오지만 "어떤 기능이 있는지"는 정보다).
-다만 `⤢` 표식은 인쇄에서 의미가 없으므로 지운다 — 위 숨김 블록 뒤에 추가:
+다만 `⤢` 표식은 인쇄에서 의미가 없으므로 지운다 -- 위 숨김 블록 뒤에 추가:
 
 ```css
       .feat::after {
@@ -962,7 +962,7 @@ python tools/check_page.py && start index.html
 ```
 
 기대: `통과`. 브라우저에서 **아직 시각적 변화는 없다**(마크업이 없으므로). 기존 카드가
-깨지지 않았는지만 본다 — 프로젝트 카드 8개가 평소대로 열리고 닫히면 통과.
+깨지지 않았는지만 본다 -- 프로젝트 카드 8개가 평소대로 열리고 닫히면 통과.
 
 - [ ] **Step 5: 커밋**
 
@@ -972,7 +972,7 @@ git commit -m "$(cat <<'EOF'
 하위 카드·기능 모달 CSS 추가 (마크업은 다음 커밋)
 
 .subcard 는 기존 .pcard 토글 패턴을 그대로 쓰고 톤만 낮췄다.
-:has(.subcard) 인 카드만 max-height 상한을 올린다 — 기본 1400px 이면
+:has(.subcard) 인 카드만 max-height 상한을 올린다 -- 기본 1400px 이면
 중첩이 잘린다. 인쇄에선 하위 카드를 펼치고 모달과 ⤢ 표식을 숨긴다.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
@@ -986,7 +986,7 @@ EOF
 ## Task 4: 하위 드롭다운 · 모달 JS
 
 **Files:**
-- Modify: `index.html` — `/* 6. 프로젝트 아코디언 */` 블록 (현재 `index.html:3145-3146`) 바로 뒤
+- Modify: `index.html` -- `/* 6. 프로젝트 아코디언 */` 블록 (현재 `index.html:3145-3146`) 바로 뒤
 
 **Interfaces:**
 - Consumes: Task 3 의 클래스. Task 5~8 이 만들 `.feat[data-modal]` 과 `#fmodal` / `.fmodal-body > section[id^="f-"]`.
@@ -998,7 +998,7 @@ EOF
 
 ```js
     /* 6-a. 하위 프로젝트 카드 (QMesh 안의 FinAllQ·InsuQ·MaintQ)
-       stopPropagation 이 핵심 — 없으면 하위를 열 때 부모 QMesh 카드가 닫힌다. */
+       stopPropagation 이 핵심 -- 없으면 하위를 열 때 부모 QMesh 카드가 닫힌다. */
     document.querySelectorAll('.subcard').forEach(sc => {
       const top = sc.querySelector('.sub-top');
       if (!top) return;
@@ -1010,7 +1010,7 @@ EOF
     });
 
     /* 6-b. 기능 모달
-       본문은 처음부터 DOM 에 있고 hidden 만 토글한다 — 복제하면 applyLang() 이
+       본문은 처음부터 DOM 에 있고 hidden 만 토글한다 -- 복제하면 applyLang() 이
        닿지 않아 모달 안에서 KO/EN 전환이 죽는다. */
     (() => {
       const modal = document.getElementById('fmodal');
@@ -1023,7 +1023,7 @@ EOF
         if (!pane) return;
         lastFocus = document.activeElement;
         panes.forEach(p => { p.hidden = p !== pane; });
-        /* GIF 는 열 때만 로드한다 — 초기 페이지 로딩에 영향을 주지 않는다. */
+        /* GIF 는 열 때만 로드한다 -- 초기 페이지 로딩에 영향을 주지 않는다. */
         pane.querySelectorAll('img[data-src]').forEach(img => {
           if (!img.getAttribute('src')) img.setAttribute('src', img.dataset.src);
         });
@@ -1121,7 +1121,7 @@ grep -n "f-tmp" index.html
 python tools/check_page.py && git add index.html && git commit -m "$(cat <<'EOF'
 하위 카드 토글 + 기능 모달 JS 추가
 
-하위 카드 클릭에 stopPropagation 을 건다 — 없으면 하위를 열 때 부모
+하위 카드 클릭에 stopPropagation 을 건다 -- 없으면 하위를 열 때 부모
 QMesh 카드가 닫힌다. 모달은 복제하지 않고 hidden 만 토글한다: 복제하면
 applyLang() 이 닿지 않아 모달 안에서 언어 전환이 죽는다.
 GIF 는 모달을 열 때만 src 를 주입해 초기 로딩에 영향을 주지 않는다.
@@ -1145,8 +1145,8 @@ EOF
 **Interfaces:**
 - Consumes: Task 3 CSS, Task 4 JS, Task 1 자산 `assets/qmesh/*.gif`
 - Produces:
-  - `#fmodal` 컨테이너 — Task 6·7·8 이 `.fmodal-body` 안에 `<section>` 을 추가한다
-  - `<div class="subcards">` 컨테이너 — Task 6·7·8 이 `.subcard` 를 추가한다
+  - `#fmodal` 컨테이너 -- Task 6·7·8 이 `.fmodal-body` 안에 `<section>` 을 추가한다
+  - `<div class="subcards">` 컨테이너 -- Task 6·7·8 이 `.subcard` 를 추가한다
 
 콘텐츠 사실은 **SPEC §3-A 표**를 그대로 옮긴다.
 
@@ -1155,7 +1155,7 @@ EOF
 `<footer` 바로 앞에 삽입. `.fmodal-body` 는 지금은 비어 있고 이 태스크에서 2개를 채운다.
 
 ```html
-  <!-- 기능 모달 — 본문을 복제하지 않고 hidden 만 토글한다(applyLang 이 닿아야 한다) -->
+  <!-- 기능 모달 -- 본문을 복제하지 않고 hidden 만 토글한다(applyLang 이 닿아야 한다) -->
   <div class="fmodal" id="fmodal" hidden>
     <div class="fmodal-card" role="dialog" aria-modal="true">
       <button class="fmodal-x" aria-label="Close">&#10005;</button>
@@ -1172,15 +1172,15 @@ EOF
 | 유지 | 바꿈 |
 |---|---|
 | `pc-top` 전체 (배지·제목·배지·해시태그) | `pc-meta` 기간을 `2026.08~` 로 (SPEC §3-A) |
-| `pc-figure` 슬라이드 3종 | — |
-| `pc-actions` 전체 | — |
-| | "해결한 문제" — SPEC §3-A 1행 |
-| | "계약 설계 결정" ul 4개 — SPEC §3-A ①②③④ |
+| `pc-figure` 슬라이드 3종 | -- |
+| `pc-actions` 전체 | -- |
+| | "해결한 문제" -- SPEC §3-A 1행 |
+| | "계약 설계 결정" ul 4개 -- SPEC §3-A ①②③④ |
 | | **"연결 대상" ul 삭제 → `<div class="subcards">` 로 교체** |
-| | "구현" 블록 신설 — SPEC §3-A 구현행 |
-| | "관통 원칙(HITL)" 블록 신설 — SPEC §3-A HITL행 |
-| | `impact` 문단 — SPEC §3-A 성과+아직 안 된 것 |
-| | `metricrow` — 13종 / 3종 / **5경로** / 123건 |
+| | "구현" 블록 신설 -- SPEC §3-A 구현행 |
+| | "관통 원칙(HITL)" 블록 신설 -- SPEC §3-A HITL행 |
+| | `impact` 문단 -- SPEC §3-A 성과+아직 안 된 것 |
+| | `metricrow` -- 13종 / 3종 / **5경로** / 123건 |
 | | 기능 모달 2종 `featlist` |
 
 `metricrow` 는 기존 2개에서 4개로 늘린다:
@@ -1210,7 +1210,7 @@ EOF
 
 ```html
                   <div class="block">
-                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="실동작 — 눌러서 보기" data-en="See it run">실동작 — 눌러서 보기</span></div>
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="실동작 -- 눌러서 보기" data-en="See it run">실동작 -- 눌러서 보기</span></div>
                     <div class="featlist">
                       <button class="feat" data-modal="f-qmesh-settlement" data-ko="상대 응답이 내 상태를 바꾼다 (S12)" data-en="Their reply changes my state (S12)">상대 응답이 내 상태를 바꾼다 (S12)</button>
                       <button class="feat" data-modal="f-qmesh-inbox" data-ko="상대 회사 결재함에 도착 (S5)" data-en="Arriving in their approval inbox (S5)">상대 회사 결재함에 도착 (S5)</button>
@@ -1220,13 +1220,13 @@ EOF
 
 - [ ] **Step 3: 하위 카드 컨테이너 삽입**
 
-"연결 대상 — 직접 만든 Q 시리즈" `<ul>` 이 있던 자리에:
+"연결 대상 -- 직접 만든 Q 시리즈" `<ul>` 이 있던 자리에:
 
 ```html
                   <div class="block">
-                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="연결 대상 — 직접 만든 Q 시리즈 3종" data-en="What it connects — the three Q-series agents">연결 대상 — 직접 만든 Q 시리즈 3종</span></div>
-                    <p data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 기능과 설계가 나온다."
-                      data-en="All three run on <b>different languages, frameworks and repositories</b> — which is exactly why the link needed a standard contract. Expand a card for that project's features and design.">세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> — 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 기능과 설계가 나온다.</p>
+                    <div class="bh"><span class="star">&#9670;</span> <span data-ko="연결 대상 -- 직접 만든 Q 시리즈 3종" data-en="What it connects -- the three Q-series agents">연결 대상 -- 직접 만든 Q 시리즈 3종</span></div>
+                    <p data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> -- 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 기능과 설계가 나온다."
+                      data-en="All three run on <b>different languages, frameworks and repositories</b> -- which is exactly why the link needed a standard contract. Expand a card for that project's features and design.">세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> -- 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 기능과 설계가 나온다.</p>
                     <div class="subcards">
                       <!-- Task 6: FinAllQ · Task 7: InsuQ · Task 8: MaintQ -->
                     </div>
@@ -1235,7 +1235,7 @@ EOF
 
 - [ ] **Step 4: 모달 2종 작성**
 
-`.fmodal-body` 안에 추가. 두 모달 모두 이 구조를 따른다 —
+`.fmodal-body` 안에 추가. 두 모달 모두 이 구조를 따른다 --
 **`data-ko` 는 텍스트 말단에만** 붙인다(`<figure>`·`<div class="fdiag">` 에는 절대 붙이지 않는다).
 
 ```html
@@ -1259,7 +1259,7 @@ EOF
               <path class="a" d="M404 43 H462"/>
               <rect class="n" x="466" y="20" width="150" height="46"/><text class="t" x="478" y="40">재판정</text><text class="ok" x="478" y="57">CONDITIONAL (200)</text>
               <path class="a" d="M318 70 V104 H160" /><text class="s" x="170" y="118">lien_released: true → assets.lien_consent_ref</text>
-              <text class="s" x="170" y="136" fill="var(--gold-ink)">단, 결정 문서는 여전히 draft — 서명은 사람이</text>
+              <text class="s" x="170" y="136" fill="var(--gold-ink)">단, 결정 문서는 여전히 draft -- 서명은 사람이</text>
             </svg>
           </div>
           <p data-ko="발신 스킬 6종 중 <b>유일하게 상대 응답이 MaintQ 자신의 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다."
@@ -1268,7 +1268,7 @@ EOF
             <li data-ko="자산 처분을 시도하면 유치권 때문에 사전판정이 <b>BLOCKED</b>(409)로 막힌다." data-en="Disposal is pre-checked and comes back <b>BLOCKED</b> (409) because of the lien.">자산 처분을 시도하면 유치권 때문에 사전판정이 <b>BLOCKED</b>(409)로 막힌다.</li>
             <li data-ko="매각대금 정산·대출상환을 FinAllQ에 A2A로 요청한다." data-en="MaintQ asks FinAllQ over A2A to settle the proceeds and repay the loan.">매각대금 정산·대출상환을 FinAllQ에 A2A로 요청한다.</li>
             <li data-ko="응답의 <span class=&quot;mono&quot;>lien_released: true</span>가 <span class=&quot;mono&quot;>assets.lien_consent_ref</span>를 채워 차단을 해소한다." data-en="<span class=&quot;mono&quot;>lien_released: true</span> in the reply fills <span class=&quot;mono&quot;>assets.lien_consent_ref</span> and clears the block.">응답의 <span class="mono">lien_released: true</span>가 <span class="mono">assets.lien_consent_ref</span>를 채워 차단을 해소한다.</li>
-            <li data-ko="재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft</b> — 담보만 풀고 서명은 하지 않는다." data-en="The re-check clears to <b>CONDITIONAL</b> (200). <b>The decision document stays a draft</b> — the lien is released, the signature is not.">재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft</b> — 담보만 풀고 서명은 하지 않는다.</li>
+            <li data-ko="재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft</b> -- 담보만 풀고 서명은 하지 않는다." data-en="The re-check clears to <b>CONDITIONAL</b> (200). <b>The decision document stays a draft</b> -- the lien is released, the signature is not.">재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft</b> -- 담보만 풀고 서명은 하지 않는다.</li>
           </ol>
           <figure class="fmodal-fig">
             <img data-src="assets/qmesh/request-settlement.gif" alt="request-settlement demo">
@@ -1282,7 +1282,7 @@ EOF
 - 제목: KO `상대 회사 결재함에 요청이 도착한다` / EN `The request lands in their approval inbox`
 - 다이어그램: `MaintQ 팀장 승인 → MaintQ 재무 승인(SoD) → [A2A] → FinAllQ 재무결재` 4단 가로 흐름.
   마지막 칸 아래에 `3단 승인 = MaintQ 내부 2단 + FinAllQ 1단` 캡션
-- 본문: SPEC §3-A HITL 행 — 요청자가 `a2a-service@finallq.example` 로 뜨고 메모에 MaintQ 진단 근거가 그대로 실린다
+- 본문: SPEC §3-A HITL 행 -- 요청자가 `a2a-service@finallq.example` 로 뜨고 메모에 MaintQ 진단 근거가 그대로 실린다
 - `assets/qmesh/approval-inbox-arrival.gif`
 
 - [ ] **Step 5: 검증 + 커밋**
@@ -1302,7 +1302,7 @@ QMesh 카드를 A2A 이야기에 집중하도록 재작성 + 모달 2종
 rejected 를 계약에 · 인용 정규식 고정)를 본문으로 올리고, 불릿 3줄이던
 "연결 대상"을 하위 카드 자리로 바꿨다.
 
-성과 표기를 정정했다 — 종단 검증 3경로 -> 5경로(실측). 오케스트레이터
+성과 표기를 정정했다 -- 종단 검증 3경로 -> 5경로(실측). 오케스트레이터
 :9000 미구현과 MaintQ 수신이 "설계상 없음"(미착수 아님)인 것을 명시.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
@@ -1316,13 +1316,13 @@ EOF
 ## Task 6: FinAllQ 하위 카드 + 기능 모달 7종
 
 **Files:**
-- Modify: `index.html` — Task 5 의 `<div class="subcards">` 안 (첫 번째), `.fmodal-body` 안
+- Modify: `index.html` -- Task 5 의 `<div class="subcards">` 안 (첫 번째), `.fmodal-body` 안
 
 **Interfaces:**
 - Consumes: `assets/finallq/*.jpg` (13장)
 - Produces: `.subcard` 1개, `section#f-finallq-*` 7개
 
-**순서가 핵심이다 — 기능 목록이 먼저, "왜 LLM이 없는가"가 그 아래.** (사용자 확정)
+**순서가 핵심이다 -- 기능 목록이 먼저, "왜 LLM이 없는가"가 그 아래.** (사용자 확정)
 
 - [ ] **Step 1: 하위 카드 골격**
 
@@ -1349,7 +1349,7 @@ EOF
 
 ```html
                             <div class="block">
-                              <div class="bh"><span class="star">&#9670;</span> <span data-ko="주요 기능 — 누르면 화면과 흐름이 열립니다" data-en="Features — click for the screen and the flow">주요 기능 — 누르면 화면과 흐름이 열립니다</span></div>
+                              <div class="bh"><span class="star">&#9670;</span> <span data-ko="주요 기능 -- 누르면 화면과 흐름이 열립니다" data-en="Features -- click for the screen and the flow">주요 기능 -- 누르면 화면과 흐름이 열립니다</span></div>
                               <div class="featlist">
                                 <button class="feat" data-modal="f-finallq-dashboard" data-ko="통합 대시보드" data-en="Unified dashboard">통합 대시보드</button>
                                 <button class="feat" data-modal="f-finallq-assessment" data-ko="여신 심사 근거 카드" data-en="Loan assessment evidence">여신 심사 근거 카드</button>
@@ -1357,7 +1357,7 @@ EOF
                                 <button class="feat" data-modal="f-finallq-approval" data-ko="기업 이체 결재 (직무 분리)" data-en="Corporate approval (SoD)">기업 이체 결재 (직무 분리)</button>
                                 <button class="feat" data-modal="f-finallq-fds" data-ko="FDS 고위험 → 2FA 승격" data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</button>
                                 <button class="feat" data-modal="f-finallq-smishing" data-ko="스미싱 탐지" data-en="Smishing detection">스미싱 탐지</button>
-                                <button class="feat" data-modal="f-finallq-failsoft" data-ko="AI 비서 — 정직한 실패" data-en="Assistant — honest failure">AI 비서 — 정직한 실패</button>
+                                <button class="feat" data-modal="f-finallq-failsoft" data-ko="AI 비서 -- 정직한 실패" data-en="Assistant -- honest failure">AI 비서 -- 정직한 실패</button>
                               </div>
                             </div>
 ```
@@ -1365,10 +1365,10 @@ EOF
 - [ ] **Step 3: ② "AI 비서인데 왜 LLM이 없는가" 블록 (기능 아래)**
 
 `<div class="block">` 안에 `<ul>` 로. 내용은 **SPEC §3-B 하단 불릿 6개**를 그대로 옮긴다.
-제목: KO `AI 비서인데 왜 LLM이 없는가` / EN `An AI assistant with no LLM — on purpose`.
+제목: KO `AI 비서인데 왜 LLM이 없는가` / EN `An AI assistant with no LLM -- on purpose`.
 
 마지막 불릿은 반드시 **정직 표기**를 포함한다:
-> FDS 필수 게이트는 **구현돼 있으나 현재 미발동** — `_TRANSFER_TOOL_NAMES`가 빈 집합이다.
+> FDS 필수 게이트는 **구현돼 있으나 현재 미발동** -- `_TRANSFER_TOOL_NAMES`가 빈 집합이다.
 > 오케스트레이터에 송금 툴이 아직 없어 규칙과 자리만 먼저 만들어 뒀고, 코드 주석과 백로그에 함께 적어 뒀다.
 
 - [ ] **Step 4: ③ A2A + ④ 계측 `impact` 블록**
@@ -1387,13 +1387,13 @@ Task 5 Step 4 의 `<section>` 구조를 그대로 따른다. 각 모달의 확�
 
 | id | kicker | 제목 KO / EN | 다이어그램 | 본문 근거 | 이미지 |
 |---|---|---|---|---|---|
-| `f-finallq-dashboard` | `FINALLQ · /` | 통합 대시보드 / Unified dashboard | `은행 계좌 + 증권 보유종목 → 합산 뷰 → FDS 경보·규제 알림(심각도순)` | SPEC §3-B 1행 — 규제 경고는 하드코딩 문구가 아니라 **포트폴리오 비율을 임계값과 비교한 실제 룰 판정** | `02_dashboard.jpg` |
-| `f-finallq-assessment` | `FINALLQ · /loan/applications` | 여신 심사 근거 카드 / Loan assessment evidence | `심사 시점 판정 로직 ─┬─ 쓰기(심사) └─ 읽기(근거 카드)` — 한 로직을 둘이 공유 | SPEC §3-B 2행 — 한도·LTV·규칙 판정이 전부 실제 계산값. 신규 API를 만들지 않고 **심사와 같은 로직을 재사용** | `03_loan_list.jpg` · `04_loan_assessment.jpg` |
-| `f-finallq-disbursement` | `FINALLQ · 여신 → 이체` | 여신 ↔ 이체 연결 / Loan-to-transfer bridge | `서버 집계(원금·집행액·잔여) → disbursable? → [출금 준비] → 이체 폼 사전채움 → 제출 시 서버가 잔여 한도 재검증` | SPEC §3-B 3행 — **판정은 서버가, 화면은 결과만**. 출금·수취 계좌는 사전채움하지 않는다(사람이 직접 확인) | `05_loan_disbursement.jpg` · `06_transfer_apply_form.jpg` |
-| `f-finallq-approval` | `FINALLQ · ApprovalPolicy` | 기업 이체 결재 — 직무 분리 / Corporate approval — separation of duties | `신청자(취소만 가능) → 결재 대기 → MANAGER 결재함(요청자 1일 한도 사용액 표시)` | SPEC §3-B 4행 — 신청자에게 **승인 버튼이 없다**. 기업 고객은 요청자≠결재자가 강제된다 | `07_transfer_pending_approval.jpg` · `08_manager_approval_queue.jpg` |
-| `f-finallq-fds` | `FINALLQ · 이중 방어` | FDS 고위험 → 2FA 승격 / FDS high risk → 2FA | `결재 승인(사람) ─통과─→ FDS 재평가(모델) ─고위험─→ TOTP 2FA 필요` — 두 축이 직렬 | SPEC §3-B 5행 — 결재가 끝나도 **자동 완료되지 않는다**. 규칙(한도)→모델(FDS) 이중 방어 | `09_transfer_2fa_required.jpg` |
-| `f-finallq-smishing` | `FINALLQ · /security` | 스미싱 탐지 / Smishing detection | `문자 입력 → TF-IDF + LogisticRegression → 위험점수 + 위험 단어 근거 → 이력(JWT 주체로 서버 확정)` | SPEC §3-B 6행 — 요청 본문의 자유 문자열로 **타인 이력을 조회할 수 없다**(IDOR 방지) | `10_smishing_empty.jpg` · `11_smishing_result.jpg` |
-| `f-finallq-failsoft` | `FINALLQ · /chat` | AI 비서 — 정직한 실패 / The assistant fails honestly | `질의 → 툴 매칭 ─없음─→ "범위 밖" + 근거 공개` / `─있음·실패─→ Fail-soft 배너` | SPEC §3-B 7행 — 지어내지 않는다. **빠진 기능을 조용히 숨기지 않는다** | `12_ai_chat_out_of_scope.jpg` · `13_ai_chat_fail_soft.jpg` |
+| `f-finallq-dashboard` | `FINALLQ · /` | 통합 대시보드 / Unified dashboard | `은행 계좌 + 증권 보유종목 → 합산 뷰 → FDS 경보·규제 알림(심각도순)` | SPEC §3-B 1행 -- 규제 경고는 하드코딩 문구가 아니라 **포트폴리오 비율을 임계값과 비교한 실제 룰 판정** | `02_dashboard.jpg` |
+| `f-finallq-assessment` | `FINALLQ · /loan/applications` | 여신 심사 근거 카드 / Loan assessment evidence | `심사 시점 판정 로직 ─┬─ 쓰기(심사) └─ 읽기(근거 카드)` -- 한 로직을 둘이 공유 | SPEC §3-B 2행 -- 한도·LTV·규칙 판정이 전부 실제 계산값. 신규 API를 만들지 않고 **심사와 같은 로직을 재사용** | `03_loan_list.jpg` · `04_loan_assessment.jpg` |
+| `f-finallq-disbursement` | `FINALLQ · 여신 → 이체` | 여신 ↔ 이체 연결 / Loan-to-transfer bridge | `서버 집계(원금·집행액·잔여) → disbursable? → [출금 준비] → 이체 폼 사전채움 → 제출 시 서버가 잔여 한도 재검증` | SPEC §3-B 3행 -- **판정은 서버가, 화면은 결과만**. 출금·수취 계좌는 사전채움하지 않는다(사람이 직접 확인) | `05_loan_disbursement.jpg` · `06_transfer_apply_form.jpg` |
+| `f-finallq-approval` | `FINALLQ · ApprovalPolicy` | 기업 이체 결재 -- 직무 분리 / Corporate approval -- separation of duties | `신청자(취소만 가능) → 결재 대기 → MANAGER 결재함(요청자 1일 한도 사용액 표시)` | SPEC §3-B 4행 -- 신청자에게 **승인 버튼이 없다**. 기업 고객은 요청자≠결재자가 강제된다 | `07_transfer_pending_approval.jpg` · `08_manager_approval_queue.jpg` |
+| `f-finallq-fds` | `FINALLQ · 이중 방어` | FDS 고위험 → 2FA 승격 / FDS high risk → 2FA | `결재 승인(사람) ─통과─→ FDS 재평가(모델) ─고위험─→ TOTP 2FA 필요` -- 두 축이 직렬 | SPEC §3-B 5행 -- 결재가 끝나도 **자동 완료되지 않는다**. 규칙(한도)→모델(FDS) 이중 방어 | `09_transfer_2fa_required.jpg` |
+| `f-finallq-smishing` | `FINALLQ · /security` | 스미싱 탐지 / Smishing detection | `문자 입력 → TF-IDF + LogisticRegression → 위험점수 + 위험 단어 근거 → 이력(JWT 주체로 서버 확정)` | SPEC §3-B 6행 -- 요청 본문의 자유 문자열로 **타인 이력을 조회할 수 없다**(IDOR 방지) | `10_smishing_empty.jpg` · `11_smishing_result.jpg` |
+| `f-finallq-failsoft` | `FINALLQ · /chat` | AI 비서 -- 정직한 실패 / The assistant fails honestly | `질의 → 툴 매칭 ─없음─→ "범위 밖" + 근거 공개` / `─있음·실패─→ Fail-soft 배너` | SPEC §3-B 7행 -- 지어내지 않는다. **빠진 기능을 조용히 숨기지 않는다** | `12_ai_chat_out_of_scope.jpg` · `13_ai_chat_fail_soft.jpg` |
 
 이미지가 2장인 모달은 `<figure class="fmodal-fig">` 를 2개 연달아 둔다.
 
@@ -1415,7 +1415,7 @@ FinAllQ 하위 카드 + 기능 모달 7종
 대신 공을 들인 가드레일 4종.
 
 FDS 필수 게이트는 "구현됨·현재 미발동"으로 정직하게 적었다
-(_TRANSFER_TOOL_NAMES 가 빈 집합 — 송금 툴이 아직 없다).
+(_TRANSFER_TOOL_NAMES 가 빈 집합 -- 송금 툴이 아직 없다).
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_0178E3o2o2BuCsyArzc1XSsr
@@ -1428,7 +1428,7 @@ EOF
 ## Task 7: InsuQ 하위 카드 + LangGraph 흐름도 + 모달 4종
 
 **Files:**
-- Modify: `index.html` — `<div class="subcards">` 안 (두 번째), `.fmodal-body` 안
+- Modify: `index.html` -- `<div class="subcards">` 안 (두 번째), `.fmodal-body` 안
 
 **Interfaces:**
 - Consumes: `assets/insuq/*.gif` (4종)
@@ -1442,10 +1442,10 @@ EOF
 본문 첫 블록은 **한 줄 정의**:
 > **"AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다."**
 
-바로 이어 SPEC §3-C "설계사 관점의 검색" 2줄 — `product_filter` 로 먼저 좁히고,
+바로 이어 SPEC §3-C "설계사 관점의 검색" 2줄 -- `product_filter` 로 먼저 좁히고,
 조문이 다른 조문을 참조하면 그 `refs` 를 따라 재검색(같은 파트 안에서만, 깊이 제한).
 
-- [ ] **Step 2: LangGraph 흐름도 — 카드 본문에 인라인 SVG (모달 아님)**
+- [ ] **Step 2: LangGraph 흐름도 -- 카드 본문에 인라인 SVG (모달 아님)**
 
 **주의 (SPEC §3-C 경고):** 컴파일된 `StateGraph` 의 노드는 `route` 와 `clarify` **둘뿐**이다.
 멀티홉·판정은 그래프 노드가 아니라 그 뒤 파이프라인(`answer_question_stream`)에 있다.
@@ -1467,12 +1467,12 @@ EOF
                                   <defs><marker id="ih" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="var(--accent)"/></marker></defs>
                                   <!-- StateGraph 경계 -->
                                   <rect class="g" x="8" y="34" width="300" height="118" rx="10"/>
-                                  <text class="k" x="18" y="28">StateGraph — 노드는 이 둘뿐</text>
+                                  <text class="k" x="18" y="28">StateGraph -- 노드는 이 둘뿐</text>
                                   <rect class="n" x="26" y="48" width="130" height="42" rx="8"/><text class="t" x="38" y="66">route</text><text class="s" x="38" y="81">키워드 → LLM 1회</text>
                                   <rect class="n" x="26" y="102" width="130" height="42" rx="8"/><text class="t" x="38" y="120">clarify</text><text class="s" x="38" y="135">슬롯 검사</text>
                                   <path class="a" d="M91 92 V100"/>
                                   <!-- 되묻기 -->
-                                  <rect class="n" x="330" y="48" width="180" height="42" rx="8"/><text class="t" x="342" y="66">되묻기 질문</text><text class="s" x="342" y="81">LLM 0회 — 순수 조회</text>
+                                  <rect class="n" x="330" y="48" width="180" height="42" rx="8"/><text class="t" x="342" y="66">되묻기 질문</text><text class="s" x="342" y="81">LLM 0회 -- 순수 조회</text>
                                   <path class="a" d="M160 123 H330 V92"/><text class="k" x="196" y="118">CLARIFY</text>
                                   <!-- 본 파이프라인 -->
                                   <rect class="n" x="26" y="186" width="118" height="40" rx="8"/><text class="t" x="38" y="211">검색</text>
@@ -1486,8 +1486,8 @@ EOF
                                   <path class="a" d="M393 228 V250"/>
                                 </svg>
                               </div>
-                              <p data-ko="컴파일된 그래프의 노드는 <span class=&quot;mono&quot;>route</span>·<span class=&quot;mono&quot;>clarify</span> <b>둘뿐</b>이고, 멀티홉·판정은 그 뒤 파이프라인에 있다 — 점선이 그 경계다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 문구를 만드는 건 순수 조회다)."
-                                data-en="The compiled graph has exactly two nodes — <span class=&quot;mono&quot;>route</span> and <span class=&quot;mono&quot;>clarify</span>; multi-hop and verdict live in the pipeline behind it, and the dashed box marks that boundary. On the clarify branch it never calls the LLM at all — turning slots into questions is a pure lookup.">컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span> <b>둘뿐</b>이고, 멀티홉·판정은 그 뒤 파이프라인에 있다 — 점선이 그 경계다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 문구를 만드는 건 순수 조회다).</p>
+                              <p data-ko="컴파일된 그래프의 노드는 <span class=&quot;mono&quot;>route</span>·<span class=&quot;mono&quot;>clarify</span> <b>둘뿐</b>이고, 멀티홉·판정은 그 뒤 파이프라인에 있다 -- 점선이 그 경계다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 문구를 만드는 건 순수 조회다)."
+                                data-en="The compiled graph has exactly two nodes -- <span class=&quot;mono&quot;>route</span> and <span class=&quot;mono&quot;>clarify</span>; multi-hop and verdict live in the pipeline behind it, and the dashed box marks that boundary. On the clarify branch it never calls the LLM at all -- turning slots into questions is a pure lookup.">컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span> <b>둘뿐</b>이고, 멀티홉·판정은 그 뒤 파이프라인에 있다 -- 점선이 그 경계다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 문구를 만드는 건 순수 조회다).</p>
                             </div>
 ```
 
@@ -1499,17 +1499,17 @@ SPEC §3-C 의 "설계 포인트" 5개와 "신경 쓴 점" 4개를 각각 `<ul>`
 
 | id | kicker | 제목 KO / EN | 다이어그램 | 근거 | GIF |
 |---|---|---|---|---|---|
-| `f-insuq-citation` | `INSUQ · 근거 인용` | 조항 원문과 함께 답한다 / Answering with the clause itself | `질문 → 검색 → 인용 대조 키 (policy_part, article_no) → 답변 + 조항 원문` | 파트를 빼면 다른 파트의 같은 조 번호를 지어내도 탐지를 통과한다 — 한 상품 안에 `제1조`가 3곳 존재(실측) | `grounded-citation.gif` |
-| `f-insuq-refusal` | `INSUQ · 거부 게이트` | 모르면 거부한다 / It refuses when it cannot cite | `근거 검색 → 없음 → "약관에서 확인 불가"` (거부 1.0000 / **과잉거부 0.0000**) | 거부 정확도는 반드시 과잉거부와 쌍으로 본다 — 한쪽만 보면 아무것도 안 답하는 게 최적이 된다 | `refusal-gate.gif` |
+| `f-insuq-citation` | `INSUQ · 근거 인용` | 조항 원문과 함께 답한다 / Answering with the clause itself | `질문 → 검색 → 인용 대조 키 (policy_part, article_no) → 답변 + 조항 원문` | 파트를 빼면 다른 파트의 같은 조 번호를 지어내도 탐지를 통과한다 -- 한 상품 안에 `제1조`가 3곳 존재(실측) | `grounded-citation.gif` |
+| `f-insuq-refusal` | `INSUQ · 거부 게이트` | 모르면 거부한다 / It refuses when it cannot cite | `근거 검색 → 없음 → "약관에서 확인 불가"` (거부 1.0000 / **과잉거부 0.0000**) | 거부 정확도는 반드시 과잉거부와 쌍으로 본다 -- 한쪽만 보면 아무것도 안 답하는 게 최적이 된다 | `refusal-gate.gif` |
 | `f-insuq-clarify` | `INSUQ · 되묻기` | 정보가 빠지면 되묻는다 / It asks back when slots are missing | `질문 → 슬롯(상품·특약·가입시기) 검사 → 미충족 → 확인 질문 (LLM 0회)` | 실제 질문은 상품·특약·가입시기가 생략된 채 들어온다. 되묻기 정확도 **1.0000**(27문항) | `ambiguous-domain-merge.gif` |
 | `f-insuq-claim` | `INSUQ · claim-insurance` | 사람 앞에서 멈췄다 재개된다 / It stops for a human, then resumes | `산정(결정론적 산술) → status=input-required → 심사역 로그인 → 전자서명 승인 → completed → 재폴링 수령` | 계약 13종 중 **유일하게 `input-required`를 쓰는 스킬**. `requires_human_approval: true`는 계산 경로 없이 **리터럴로만 존재해 우회할 수 없다** | `claim-approval.gif` |
 
-- [ ] **Step 5: `impact` 블록 — 실측**
+- [ ] **Step 5: `impact` 블록 -- 실측**
 
 **⚠️ 트랙1과 트랙4를 나란히 놓지 않는다.** 두 문장으로 분리하고 각각 분모를 함께 적는다.
 judge 공란을 반드시 포함한다. SPEC §3-C "실측" 4줄 그대로.
 
-`metricrow` 는 트랙1 기준 3개만 — `0.81`(Hit@5, 실손 27문항) · `0.00`(과잉거부) · `67`(실험 건수).
+`metricrow` 는 트랙1 기준 3개만 -- `0.81`(Hit@5, 실손 27문항) · `0.00`(과잉거부) · `67`(실험 건수).
 소수 값은 `data-count` 가 정수만 다루므로 **정적 텍스트로 적는다**(Global Constraint 4 와 별개로,
 카운터는 정수 전용이다).
 
@@ -1525,11 +1525,11 @@ python tools/check_page.py && start index.html
 git add index.html && git commit -m "$(cat <<'EOF'
 InsuQ 하위 카드 + LangGraph 흐름도 + 기능 모달 4종
 
-RAG 에 집중했다 — AI 가 판정하지 않고 근거를 모아 원문 그대로 주며,
+RAG 에 집중했다 -- AI 가 판정하지 않고 근거를 모아 원문 그대로 주며,
 판단은 사람이 한다. 가입 상품으로 먼저 좁히고 조문의 refs 를 따라 재검색.
 
 흐름도는 그래프 경계를 점선으로 그렸다. 컴파일된 StateGraph 의 노드는
-route·clarify 둘뿐이고 멀티홉·판정은 그 뒤 파이프라인에 있다 —
+route·clarify 둘뿐이고 멀티홉·판정은 그 뒤 파이프라인에 있다 --
 "LangGraph 노드 4개"로 쓰면 사실이 아니다.
 
 트랙1(27문항)과 트랙4(52문항)를 나란히 놓지 않았고, 답변 정확도는
@@ -1546,7 +1546,7 @@ EOF
 ## Task 8: MaintQ 하위 카드 + 기능 모달 7종
 
 **Files:**
-- Modify: `index.html` — `<div class="subcards">` 안 (세 번째), `.fmodal-body` 안
+- Modify: `index.html` -- `<div class="subcards">` 안 (세 번째), `.fmodal-body` 안
 
 **Interfaces:**
 - Consumes: `assets/maintq/*.gif` (7종)
@@ -1563,7 +1563,7 @@ EOF
 
 ```html
                               <div class="featlist">
-                                <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 — 추측하지 않는다" data-en="Unknown code — no guessing">미지 에러코드 — 추측하지 않는다</button>
+                                <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 -- 추측하지 않는다" data-en="Unknown code -- no guessing">미지 에러코드 -- 추측하지 않는다</button>
                                 <button class="feat" data-modal="f-maintq-alt" data-ko="호환 대체품 분기" data-en="Compatible alternatives">호환 대체품 분기</button>
                                 <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류" data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
                                 <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정" data-en="Disposal pre-check">처분 사전판정</button>
@@ -1573,9 +1573,9 @@ EOF
                               </div>
 ```
 
-- [ ] **Step 3: ② "집중한 것 — MCP 도구 설계" 블록 (기능 아래)**
+- [ ] **Step 3: ② "집중한 것 -- MCP 도구 설계" 블록 (기능 아래)**
 
-SPEC §3-D 의 MCP 불릿 6개를 `<ul>` 로. 제목 KO `집중한 것 — MCP 도구 설계` / EN `The focus — MCP tool design`.
+SPEC §3-D 의 MCP 불릿 6개를 `<ul>` 로. 제목 KO `집중한 것 -- MCP 도구 설계` / EN `The focus -- MCP tool design`.
 
 - [ ] **Step 4: ③ 신경 쓴 점 블록**
 
@@ -1585,16 +1585,16 @@ SPEC §3-D "신경 쓴 점" 3개.
 
 | id | kicker | 제목 KO | 다이어그램 | GIF |
 |---|---|---|---|---|
-| `f-maintq-unknown` | `MAINTQ · S4` | 미지 에러코드 — 추측하지 않는다 | `lookup_error_code → not_found → A/S 안내` (환각률 **0.0%**) | `unknown-error-code.gif` |
+| `f-maintq-unknown` | `MAINTQ · S4` | 미지 에러코드 -- 추측하지 않는다 | `lookup_error_code → not_found → A/S 안내` (환각률 **0.0%**) | `unknown-error-code.gif` |
 | `f-maintq-alt` | `MAINTQ · S2` | 재고 0 → 호환 대체품 | `search_inventory(qty=0) → find_alternative_parts → get_supplier_quotes → create_po_draft` | `alternative-parts.gif` |
 | `f-maintq-repeat` | `MAINTQ · S3` | 반복 고장 감지 → 발주 보류 | `lookup → get_error_history(repeated=true, 30일 3회) → rag_search_manual(안전 근거) → 발주 HOLD` | `repeat-failure-hold.gif` |
 | `f-maintq-disposal` | `MAINTQ · 자산 생애주기` | 처분 사전판정 | `처분일 미입력 → INSUFFICIENT_FACTS` / `입력 → CLEAR + 근거 조문 + "고려하지 않은 것" 고지` | `disposal-precheck.gif` |
 | `f-maintq-bundle` | `MAINTQ · bundle_hash` | 처분 근거 번들 | `laws · rules · evaluated · contracts · facts 5종 → bundle_hash 로 고정 → 룰별 TRIGGERED/CLEAR/INSUFFICIENT_FACTS` | `disposal-evidence-bundle.gif` |
 | `f-maintq-deadline` | `MAINTQ · 보전팀장 콘솔` | 법정 기한 · 건물 위험등급 | `track_deadlines(180~730일) → 임박 항목` / `assess_risk_grade → 산출식 + "자동 반영 안 됨" 고지` | `deadline-risk-grade.gif` |
-| `f-maintq-expenditure` | `MAINTQ · 재무담당 콘솔` | 지출 성격 분류 | `경계 사례 → 자본적/수익적 단정 금지 → "판단 유보 — 전문가 검토 필요"` | `expenditure-classification.gif` |
+| `f-maintq-expenditure` | `MAINTQ · 재무담당 콘솔` | 지출 성격 분류 | `경계 사례 → 자본적/수익적 단정 금지 → "판단 유보 -- 전문가 검토 필요"` | `expenditure-classification.gif` |
 
 모든 모달의 `figcaption` 에 공통으로 넣는다:
-KO `시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)` / EN `Captured against seed data and real API responses — nothing staged`
+KO `시드 데이터 그대로, 실제 API 응답으로 촬영 (연출 없음)` / EN `Captured against seed data and real API responses -- nothing staged`
 
 - [ ] **Step 6: `impact` 블록 + A2A**
 
@@ -1619,7 +1619,7 @@ description 이 오케스트레이션의 절반 · 실패도 status 로 반환 �
 쓰기 3종 전부 INSERT 전용 · 신원은 서버 주입 · 확장 도구는 기본 비활성 ·
 권한을 문서가 아니라 DB 트리거로 강제.
 
-평가 축 이야기를 넣었다 — 합계 71.1->88.9 가 아니라 오특정 16.7%->1.1%
+평가 축 이야기를 넣었다 -- 합계 71.1->88.9 가 아니라 오특정 16.7%->1.1%
 가 실제로 고친 것이다. 수신 어댑터는 "설계상 없음"(미착수 아님).
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
@@ -1634,7 +1634,7 @@ EOF
 
 **Files:**
 - Modify: `index.html:2542-2625` (PROJECT 03 카드)
-- Modify: `index.html` — `AS_OF` 상수 (현재 `index.html:3172`)
+- Modify: `index.html` -- `AS_OF` 상수 (현재 `index.html:3172`)
 
 - [ ] **Step 1: `pc-meta` 기간 교체**
 
@@ -1645,7 +1645,7 @@ KO `2026.08~09 · 개인 1인 · 실작업 7일 · 커밋 99건` / EN `Aug–Sep
 
 현재 내용이 정확하므로 그대로 둔다. 단 4번째 불릿의 "호환이 아니라 확장"은 유지.
 
-- [ ] **Step 3: 기능 목록 블록 신설 (모달 없음 — GIF 미촬영)**
+- [ ] **Step 3: 기능 목록 블록 신설 (모달 없음 -- GIF 미촬영)**
 
 GIF 가 없으므로 **모달 대신 정적 목록**으로 둔다. `.feat` 대신 일반 `<ul>` 을 쓴다
 (누를 수 없는 것을 누를 수 있게 보이면 안 된다).
@@ -1686,7 +1686,7 @@ GIF 가 없으므로 **모달 대신 정적 목록**으로 둔다. `.feat` 대�
 
 ```html
                 <!-- 데모 영상 촬영 완료되면 아래를 featlist 로 바꾸고 모달을 추가하세요 (assets/spendq/).
-                     리허설은 통과했고 촬영 절차·큐시트가 확정돼 있습니다 — 설계서 §3-E 참고. -->
+                     리허설은 통과했고 촬영 절차·큐시트가 확정돼 있습니다 -- 설계서 §3-E 참고. -->
 ```
 
 - [ ] **Step 6: `AS_OF` 갱신**
@@ -1750,14 +1750,14 @@ grep -n "qn\|FinAllQ\|InsuQ\|MaintQ\|SpendQ" print/index.html | head -30
 인쇄본이므로 GIF·SVG 없이 **텍스트만**. 각 프로젝트당 대략:
 
 - 한 줄 정의 + 기간
-- 주요 기능 (FinAllQ 7 / InsuQ 4 / MaintQ 7) — 한 줄씩
-- 집중한 것 (FinAllQ: 왜 LLM이 없는가 / InsuQ: RAG 측정 / MaintQ: MCP 설계) — 2~3줄
+- 주요 기능 (FinAllQ 7 / InsuQ 4 / MaintQ 7) -- 한 줄씩
+- 집중한 것 (FinAllQ: 왜 LLM이 없는가 / InsuQ: RAG 측정 / MaintQ: MCP 설계) -- 2~3줄
 - 실측 수치 한 줄
 
 - [ ] **Step 3: QMesh 성과 문단 정정**
 
 `print/index.html:1082` 근처의 *"제조(MaintQ)는 호출자 측 A2A 도구까지 구현했고, 수신 어댑터가 다음 단계다"* 를
-SPEC §3-A 에 맞춰 고친다 — 수신 어댑터는 **설계상 없음**(하지 않기로 한 일)이지 다음 단계가 아니다.
+SPEC §3-A 에 맞춰 고친다 -- 수신 어댑터는 **설계상 없음**(하지 않기로 한 일)이지 다음 단계가 아니다.
 "3경로"도 **5경로**로 정정한다.
 
 - [ ] **Step 4: SpendQ 블록 교체**
@@ -1788,7 +1788,7 @@ git add print/index.html && git commit -m "$(cat <<'EOF'
 Q 시리즈 3종을 기능 목록 + 집중한 것 + 실측으로 펼쳐 실었다
 (인쇄본은 중첩 드롭다운도 모달도 쓰지 않는다).
 
-QMesh 성과를 정정했다 — 3경로 -> 5경로, 그리고 MaintQ 수신 어댑터는
+QMesh 성과를 정정했다 -- 3경로 -> 5경로, 그리고 MaintQ 수신 어댑터는
 "다음 단계"가 아니라 설계상 하지 않기로 한 일이다. SpendQ 도 실측 상태로.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
@@ -1832,13 +1832,13 @@ PY
 
 `start index.html` 후 SPEC §6 표를 그대로 밟는다:
 
-1. **중첩 토글** — QMesh 를 열고 하위 3개를 각각 열었다 닫는다. **부모가 닫히지 않고 본문이 잘리지 않는다**
-2. **모달 20개** — 전부 열리고 ESC·배경·✕ 3경로로 닫힌다
-3. **모달 언어** — 모달을 **연 상태에서** KO/EN 전환 → 문구가 바뀐다
-4. **GIF 지연 로딩** — Network 탭에서 초기 `.gif` 요청 **0건**, 모달을 열면 그때 뜬다
-5. **테마** — 다크로 전환해 SVG 다이어그램 4종(QMesh 2 · InsuQ 1 · FinAllQ 7 · MaintQ 7)이 전부 읽힌다
-6. **모바일** — 개발자 도구를 400px 폭으로 놓고 가로 스크롤이 생기지 않는지 본다
-7. **인쇄** — Ctrl+P 미리보기에서 하위 카드가 펼쳐지고 모달이 안 나온다
+1. **중첩 토글** -- QMesh 를 열고 하위 3개를 각각 열었다 닫는다. **부모가 닫히지 않고 본문이 잘리지 않는다**
+2. **모달 20개** -- 전부 열리고 ESC·배경·✕ 3경로로 닫힌다
+3. **모달 언어** -- 모달을 **연 상태에서** KO/EN 전환 → 문구가 바뀐다
+4. **GIF 지연 로딩** -- Network 탭에서 초기 `.gif` 요청 **0건**, 모달을 열면 그때 뜬다
+5. **테마** -- 다크로 전환해 SVG 다이어그램 4종(QMesh 2 · InsuQ 1 · FinAllQ 7 · MaintQ 7)이 전부 읽힌다
+6. **모바일** -- 개발자 도구를 400px 폭으로 놓고 가로 스크롤이 생기지 않는지 본다
+7. **인쇄** -- Ctrl+P 미리보기에서 하위 카드가 펼쳐지고 모달이 안 나온다
 
 - [x] **Step 4: 사실 대조**
 
@@ -1892,12 +1892,12 @@ push 후 1~3분 뒤 `https://ttogle918.github.io` 에서 Step 3 의 1·2·4 를 
 | §4-5 기준일 | Task 9 Step 6 |
 | §5 표기 규약 | Global Constraints 6·7·8 |
 | §6 검증 | Task 11 |
-| §7 후속 | 범위 밖 — 계획에 없음 (의도) |
+| §7 후속 | 범위 밖 -- 계획에 없음 (의도) |
 
 **빠진 것 없음.**
 
-**타입·이름 일관성** — 클래스명은 Task 3 에서 정의하고 Task 4~8 이 그대로 쓴다:
+**타입·이름 일관성** -- 클래스명은 Task 3 에서 정의하고 Task 4~8 이 그대로 쓴다:
 `.subcards` `.subcard` `.sub-top` `.sub-headings` `.sub-code` `.sub-title` `.sub-meta` `.sub-caret`
 `.sub-body` `.sub-inner` `.featlist` `.feat` `.fmodal` `.fmodal-card` `.fmodal-x` `.fmodal-kicker`
 `.fmodal-title` `.fmodal-body` `.fmodal-fig` `.fdiag` `.fsteps`.
-모달 id 규약: `f-<project>-<feature>` — Task 2 의 C5 검사가 `id^="f-"` 를 전제하므로 이 접두사는 필수다.
+모달 id 규약: `f-<project>-<feature>` -- Task 2 의 C5 검사가 `id^="f-"` 를 전제하므로 이 접두사는 필수다.

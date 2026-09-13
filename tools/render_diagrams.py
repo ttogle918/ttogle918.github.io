@@ -4,7 +4,7 @@
 «레포에 있는 파일을 줄여 복사»라면, 이 스크립트는 «코드로만 있는 도식을 그림으로».
 
 렌더러: Playwright(Chromium) + mermaid(jsDelivr). mmdc 는 이 환경에 없다.
-배경은 흰색이다 — 카드 그림 칸의 다른 도식(K-Bridge)과 같은 규칙. 멱등하다.
+배경은 흰색이다 -- 카드 그림 칸의 다른 도식(K-Bridge)과 같은 규칙. 멱등하다.
 
     python tools/render_diagrams.py
 """
@@ -47,7 +47,7 @@ def render(src: str, page) -> bytes:
             const {svg} = await mermaid.render('g', code);
             const d = document.getElementById('d');
             d.innerHTML = svg;
-            // mermaid 는 svg 에 width:100%·max-width 를 건다 — inline-block 안에서 줄어들어 글자가 깨알이 된다.
+            // mermaid 는 svg 에 width:100%·max-width 를 건다 -- inline-block 안에서 줄어들어 글자가 깨알이 된다.
             const el = d.querySelector('svg');
             el.style.maxWidth = 'none';
             el.setAttribute('width', el.viewBox.baseVal.width);

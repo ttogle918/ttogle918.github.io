@@ -3,11 +3,11 @@
 정적 사이트라 테스트 프레임워크가 없다. 여기서 잡는 것은 전부
 「브라우저에서 열어보기 전에는 안 보이는데, 열면 조용히 깨져 있는」 종류다.
 
-C1  data-modal="X" 에 대응하는 id="X" 가 있는가      — 모달이 안 열리는 것
-C2  data-ko 와 data-en 이 쌍으로 있는가              — 전환 시 문구 소실
-C3  data-ko 요소 안에 <img>/<svg> 가 없는가          — applyLang() 이 innerHTML 로 지운다
-C4  data-src 경로의 파일이 실재하는가                — 죽은 이미지
-C5  모달 section 안에 data-count 가 없는가           — 숨김 상태에선 발화하지 않아 0 으로 남는다
+C1  data-modal="X" 에 대응하는 id="X" 가 있는가      -- 모달이 안 열리는 것
+C2  data-ko 와 data-en 이 쌍으로 있는가              -- 전환 시 문구 소실
+C3  data-ko 요소 안에 <img>/<svg> 가 없는가          -- applyLang() 이 innerHTML 로 지운다
+C4  data-src 경로의 파일이 실재하는가                -- 죽은 이미지
+C5  모달 section 안에 data-count 가 없는가           -- 숨김 상태에선 발화하지 않아 0 으로 남는다
 """
 from __future__ import annotations
 
@@ -110,12 +110,12 @@ def check(path: Path) -> list[str]:
     for msg, line in c.lang_issues:                                   # C2
         out.append(f"{rel}:{line}  C2 {msg}")
     for msg, line in c.media_in_lang:                                 # C3
-        out.append(f"{rel}:{line}  C3 {msg} — applyLang() 이 innerHTML 로 지운다")
+        out.append(f"{rel}:{line}  C3 {msg} -- applyLang() 이 innerHTML 로 지운다")
     for src, line in c.srcs:                                          # C4
         if not (SITE / src).exists():
             out.append(f'{rel}:{line}  C4 data-src="{src}" 파일이 없다')
     for msg, line in c.count_in_modal:                                # C5
-        out.append(f"{rel}:{line}  C5 {msg} — 숨김 상태에선 발화하지 않아 0 으로 남는다")
+        out.append(f"{rel}:{line}  C5 {msg} -- 숨김 상태에선 발화하지 않아 0 으로 남는다")
     return out
 
 
@@ -133,7 +133,7 @@ def main() -> int:
         for p in problems:
             print(f"  {p}", file=sys.stderr)
         return 1
-    print(f"통과 — {', '.join(TARGETS)} 구조 불변식 5종 이상 없음")
+    print(f"통과 -- {', '.join(TARGETS)} 구조 불변식 5종 이상 없음")
     return 0
 
 
