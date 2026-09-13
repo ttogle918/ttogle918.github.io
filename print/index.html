@@ -1181,7 +1181,8 @@
         <div class="block">
           <div class="bh">설계 포인트</div>
           <ul class="pts">
-            <li><b>Framework-aware 프롬프트</b>로 초기 40~50%대 오탐률을 대폭 낮췄다.</li>
+            <li><b>오탐을 원인별로 막았다</b> - React JSX 를 XSS 로, mock 데이터를 CRITICAL 로 오진하던 패턴을
+              프레임워크 규칙 주입 · 목/테스트 파일 사전 제거 · 품질 카테고리 분리로 각각 차단했다.</li>
             <li><b>DAST 샌드박스 교차검증</b> - 취약점을 실제 익스플로잇으로 증명한다. “찾았다”가 아니라
               “증명했다”로의 전환.</li>
             <li><b>LangGraph 5단계 SAST 파이프라인</b> - scan → 캐시 분기 → Claude 분석 → 취약점 분류 → 패치 생성.
@@ -1212,8 +1213,12 @@
 
         <div class="metrics">
           <div class="metric">
-            <div class="mv">−45<small>%</small></div>
-            <div class="ml">오탐률</div>
+            <div class="mv">96.6<small>%</small></div>
+            <div class="ml">탐지율 (OWASP Benchmark 961케이스)</div>
+          </div>
+          <div class="metric">
+            <div class="mv">27.1<small>%</small></div>
+            <div class="ml">오탐률 (같은 벤치마크)</div>
           </div>
           <div class="metric">
             <div class="mv">3<small>종</small></div>

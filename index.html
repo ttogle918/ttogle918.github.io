@@ -3679,9 +3679,9 @@
                     <div class="bh"><span class="star">◆</span> <span data-ko="설계 포인트" data-en="Design Points">설계
                         포인트</span></div>
                     <ul>
-                      <li data-ko="<b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소."
-                        data-en="<b>Framework-aware prompts</b> cut the initial 40–50% false-positive rate.">
-                        <b>Framework-aware 프롬프트</b>로 초기 40~50% 오탐률 대폭 감소.
+                      <li data-ko="<b>오탐을 원인별로 막았다</b>: 초기 분석의 오탐을 유형별로 나눠 보니 React JSX 를 XSS 로, mock 데이터를 CRITICAL 로 오진하는 패턴이었다. 프레임워크 규칙 주입 · 목/테스트 파일 사전 제거 · 품질 카테고리 분리로 각각 차단했다."
+                        data-en="<b>False positives blocked by cause</b>: sorting the early false positives showed React JSX flagged as XSS and mock data flagged as CRITICAL. Framework rules in the prompt, pre-filtering mock and test files, and a separate code-quality category each closed one.">
+                        <b>오탐을 원인별로 막았다</b>: 초기 분석의 오탐을 유형별로 나눠 보니 React JSX 를 XSS 로, mock 데이터를 CRITICAL 로 오진하는 패턴이었다. 프레임워크 규칙 주입 · 목/테스트 파일 사전 제거 · 품질 카테고리 분리로 각각 차단했다.
                       </li>
                       <li data-ko="<b>DAST 샌드박스 교차검증</b>으로 취약점을 실제 익스플로잇으로 증명."
                         data-en="<b>DAST sandbox cross-validation</b> proves vulnerabilities via real exploits."><b>DAST
@@ -3732,8 +3732,12 @@
                       API · PostgreSQL+pgvector · Next.js 15를 1인으로 통합했다.</p>
                     <div class="metricrow">
                       <div class="metric">
-                        <div class="mv">−<span data-count="45">0</span>%</div>
-                        <div class="ml" data-ko="오탐률" data-en="false positives">오탐률</div>
+                        <div class="mv"><span data-count="96.6" data-dec="1">0</span>%</div>
+                        <div class="ml" data-ko="탐지율 · OWASP Benchmark 961케이스" data-en="detection rate · OWASP Benchmark, 961 cases">탐지율 · OWASP Benchmark 961케이스</div>
+                      </div>
+                      <div class="metric">
+                        <div class="mv"><span data-count="27.1" data-dec="1">0</span>%</div>
+                        <div class="ml" data-ko="오탐률 · 같은 벤치마크" data-en="false-positive rate · same benchmark">오탐률 · 같은 벤치마크</div>
                       </div>
                       <div class="metric">
                         <div class="mv"><span data-count="3">0</span>종</div>
@@ -6466,7 +6470,7 @@
     document.querySelectorAll('.pc-figure').forEach(el => figIO.observe(el));
 
     /* 5. 카운터 */
-    function cnt(el) { const t = +el.dataset.count; if (reduce) { el.textContent = t; return; } const d = 1400, t0 = performance.now(); (function s(n) { const p = Math.min((n - t0) / d, 1); el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(s); })(t0); }
+    function cnt(el) { const t = +el.dataset.count, dec = +(el.dataset.dec || 0); if (reduce) { el.textContent = t.toFixed(dec); return; } const d = 1400, t0 = performance.now(); (function s(n) { const p = Math.min((n - t0) / d, 1); el.textContent = (t * (1 - Math.pow(1 - p, 3))).toFixed(dec); if (p < 1) requestAnimationFrame(s); })(t0); }
     const cIO = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { cnt(e.target); cIO.unobserve(e.target); } }), { threshold: .5 });
     document.querySelectorAll('[data-count]').forEach(el => cIO.observe(el));
 
