@@ -787,6 +787,12 @@
       max-height: 2400px
     }
 
+    /* #id 로 들어온 카드가 고정 헤더에 가리지 않게 (인쇄본의 상세보기 링크가 여기로 온다) */
+    .pcard,
+    .subcard {
+      scroll-margin-top: 88px
+    }
+
     /* 하위 카드 «설계와 측정 자세히 보기» - 기능 버튼과 같은 모양, 한 줄 폭 */
     .feat.feat-more {
       margin-top: 10px;
@@ -2856,7 +2862,7 @@
       <div class="projects">
 
         <!-- PROJECT 01 -->
-        <article class="pcard featured open reveal">
+        <article class="pcard featured open reveal" id="qmesh">
           <div class="pc-top">
             <div class="pc-badge mono">01</div>
             <div class="pc-headings">
@@ -3048,7 +3054,7 @@
                   <div class="subcards">
 
                     <!-- ── FinAllQ ── -->
-                    <article class="subcard">
+                    <article class="subcard" id="finallq">
                       <div class="sub-top">
                         <div class="sub-headings">
                           <div class="sub-code mono" data-ko="은행·증권 통합 금융 비서"
@@ -3142,7 +3148,7 @@
                     </article>
 
                     <!-- ── InsuQ ── -->
-                    <article class="subcard">
+                    <article class="subcard" id="insuq">
                       <div class="sub-top">
                         <div class="sub-headings">
                           <div class="sub-code mono" data-ko="보험 약관 분석 · 보장 판정 RAG 에이전트"
@@ -3224,7 +3230,7 @@
                     </article>
 
                     <!-- ── MaintQ ── -->
-                    <article class="subcard">
+                    <article class="subcard" id="maintq">
                       <div class="sub-top">
                         <div class="sub-headings">
                           <div class="sub-code mono" data-ko="제조 설비 진단 · 부품 발주 에이전트"
@@ -3380,7 +3386,7 @@
         </article>
 
         <!-- PROJECT 02 -->
-        <article class="pcard featured open reveal">
+        <article class="pcard featured open reveal" id="secureai">
           <div class="pc-top">
             <div class="pc-badge mono">02</div>
             <div class="pc-headings">
@@ -3514,7 +3520,7 @@
         </article>
 
         <!-- PROJECT 03 -->
-        <article class="pcard open reveal">
+        <article class="pcard open reveal" id="keylens">
           <div class="pc-top">
             <div class="pc-badge mono">03</div>
             <div class="pc-headings">
@@ -3628,7 +3634,7 @@
         </article>
 
         <!-- PROJECT 04 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="spendq">
           <div class="pc-top">
             <div class="pc-badge mono">04</div>
             <div class="pc-headings">
@@ -3818,7 +3824,7 @@
         </article>
 
         <!-- PROJECT 05 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="harness">
           <div class="pc-top">
             <div class="pc-badge mono">05</div>
             <div class="pc-headings">
@@ -3968,7 +3974,7 @@
         </article>
 
         <!-- PROJECT 06 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="kbridge">
           <div class="pc-top">
             <div class="pc-badge mono">06</div>
             <div class="pc-headings">
@@ -4067,7 +4073,7 @@
         </article>
 
         <!-- PROJECT 07 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="kocruit">
           <div class="pc-top">
             <div class="pc-badge mono">07</div>
             <div class="pc-headings">
@@ -4214,7 +4220,7 @@
         </article>
 
         <!-- PROJECT 08 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="qa-search">
           <div class="pc-top">
             <div class="pc-badge mono">08</div>
             <div class="pc-headings">
@@ -4317,7 +4323,7 @@
         </article>
 
         <!-- PROJECT 09 -->
-        <article class="pcard reveal">
+        <article class="pcard reveal" id="churn">
           <div class="pc-top">
             <div class="pc-badge mono">09</div>
             <div class="pc-headings">
@@ -6526,6 +6532,33 @@
         sc.classList.toggle('open');
       });
     });
+
+    /* 6-c. 주소의 #id 로 카드 열기 - 인쇄본 «상세보기» 링크(#qmesh · #finallq …)가 여기로 온다.
+       접힌 카드는 높이가 0 이라 스크롤 위치가 틀린다: 부모 카드와 하위 카드를 먼저 열고,
+       펼침 애니메이션(.5s)이 끝난 뒤 스크롤한다. */
+    const openFromHash = () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const el = id && document.getElementById(id);
+      if (!el || !el.matches('.pcard, .subcard')) return;
+      el.closest('.pcard')?.classList.add('open');
+      if (el.matches('.subcard')) el.classList.add('open');
+      /* 스크롤 목표는 시작 순간에 정해진다. 그 뒤 위쪽 카드의 펼침·폰트 로드로 높이가 바뀌면
+         실측 −43~+53px 어긋났다 - 멈춘 뒤 한 번 더 맞춘다. 그사이 사람이 스크롤하면 손대지 않는다. */
+      let userMoved = false;
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => { userMoved = true; }, { once: true, passive: true }));
+      const fix = () => {
+        if (userMoved) return;
+        const off = el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
+        if (Math.abs(off) > 4) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      };
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        addEventListener('scrollend', fix, { once: true });
+        setTimeout(fix, 2500);
+      }, 560);
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
 
     /* 6-b. 기능 모달
        본문은 처음부터 DOM 에 있고 hidden 만 토글한다 - 복제하면 applyLang() 이

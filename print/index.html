@@ -497,6 +497,27 @@
       margin-top: 4px;
     }
 
+    .p-link {
+      font-family: var(--mono);
+      font-size: 7.6pt;
+      color: var(--muted);
+      margin: 2px 0 8px;
+    }
+
+    .p-link a,
+    .p-more {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: var(--mono);
+    }
+
+    .p-more {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 7.4pt;
+      white-space: nowrap;
+    }
+
     .p-kicker {
       font-size: 9pt;
       color: var(--accent-d);
@@ -1024,6 +1045,8 @@
         </div>
 
         <div class="p-kicker">A2A 멀티 에이전트 오케스트레이션 허브</div>
+        <p class="p-link">포트폴리오 상세보기 <a href="https://ttogle918.github.io/#qmesh">ttogle918.github.io/#qmesh</a>
+          <span> - 설계·측정 전체와 화면 GIF 는 사이트에 있다</span></p>
 
         <div class="block">
           <div class="bh">문제</div>
@@ -1037,56 +1060,43 @@
         <div class="block">
           <div class="bh">연결 대상 ① FinAllQ - 은행 · 증권 통합 금융 비서</div>
           <p class="body-t">
-            2025.10~ · Spring Boot 3 + FastAPI + React 19 하이브리드 MSA. 기능은 <b>통합 대시보드</b>,
-            <b>여신 심사 근거 카드</b>(심사와 조회가 판정 로직을 공유), <b>여신 ↔ 이체 연결</b>(판정은 서버가, 화면은 결과만),
-            <b>기업 이체 결재</b>(요청자 ≠ 결재자 직무 분리), <b>FDS 고위험 → 2FA 승격</b>(결재를 통과해도 모델이 재평가),
-            <b>스미싱 탐지</b>, <b>AI 비서의 Fail-soft</b>(빠진 기능을 숨기지 않는다).
+            2025.10~ · Spring Boot 3 + FastAPI + React 19 하이브리드 MSA. 기능은 통합 대시보드 · 여신 심사 근거 카드 ·
+            여신 ↔ 이체 연결 · 기업 이체 결재(직무 분리) · FDS 고위험 → 2FA 승격 · 스미싱 탐지 · AI 비서 Fail-soft.
           </p>
           <p class="body-t">
-            <b>집중한 것 - "AI 비서인데 왜 LLM이 없는가".</b> 도구가 20종으로 닫혀 있어 결정 공간을 열거할 수 있었고,
-            금융은 판정 근거를 감사 기록으로 남겨야 해 재현성이 요구됐다. 그래서 플래너를 규칙 기반으로 두고
-            대신 가드레일 4종(역할 기반 도구 가시성 · 부작용 도구 자동실행 금지 · FDS 게이트 · 출력 화이트리스트)에 공을 들였다.
-            AI는 규칙이 안 되는 곳에만 썼다(IsolationForest · TF-IDF+LogReg).
-            LLM · 외부 AI API 호출 <b>0건</b>(전수 grep) · 백엔드 테스트 <b>1,098건</b> 통과 · A2A 수신 <b>7스킬</b>.
-            <span style="color:var(--muted)">단 FDS 필수 게이트는 구현돼 있으나 대상 툴 목록이 비어 있어 현재 미발동이다.</span>
+            <b>해결 방법 - AI 비서인데 LLM이 없다.</b> 도구가 20종으로 닫혀 있어 플래너를 규칙 기반으로 두고,
+            대신 가드레일 4종(권한 밖 도구는 플래너에 도달조차 못 한다)에 공을 들였다. AI는 규칙이 안 되는 이상거래 · 스미싱에만 썼다.
+            LLM · 외부 AI API 호출 <b>0건</b>(전수 grep) · 백엔드 테스트 <b>1,098건</b> · A2A 수신 <b>7스킬</b>.
+            <a class="p-more" href="https://ttogle918.github.io/#finallq">상세 ttogle918.github.io/#finallq</a>
           </p>
         </div>
 
         <div class="block">
           <div class="bh">연결 대상 ② InsuQ - 보험 약관 분석 · 보장 판정 RAG</div>
           <p class="body-t">
-            2026.07~ · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js.
-            <b>AI가 판정하지 않는다 - 근거를 모아 원문 그대로 주고 판단은 사람이 한다.</b>
-            설계사 관점이라 고객이 가입한 상품으로 먼저 좁혀 찾고, 조문이 다른 조문을 참조하면 그 <span class="mono">refs</span>를
-            따라 재검색한다(멀티홉, 같은 파트 안에서 깊이 제한). 기능은 <b>근거 인용</b> · <b>거부 게이트</b> ·
-            <b>되묻기</b> · <b>청구 승인</b>(계약 13종 중 유일하게 <span class="mono">input-required</span>로 사람 앞에서 멈춘다).
+            2026.07~ · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js. 기능은 근거 인용 · 거부 게이트 · 되묻기 ·
+            청구 승인(사람 앞에서 멈춘다).
           </p>
           <p class="body-t">
-            <b>집중한 것 - 측정으로 개선.</b> 인용 대조 키를 <span class="mono">(policy_part, article_no)</span>로 잡았다 -
-            파트를 빼면 다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과한다(한 상품에 제1조가 3곳 실측).
-            거부 정확도는 반드시 과잉거부와 쌍으로 봤고, 하이브리드 BM25·리랭커는 "예정"이 아니라 <b>측정 후 기각</b>이다.
-            트랙1 실손(27문항) Hit@5 <b>0.8148</b> · 거부 <b>1.0000</b> · 과잉거부 <b>0.0000</b>,
-            트랙4 화재 · 기업성(52문항) Hit@5 <b>0.6346</b> - <b>두 트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다.</b>
-            실험 <b>EXP-001~067</b> · 테스트 <b>1,771건</b> · A2A 수신 <b>6스킬 전부 실동작</b>.
-            <span style="color:var(--muted)">답변 정확도(judge)는 채점 모델 소실로 공란이다.</span>
+            <b>해결 방법 - AI가 판정하지 않는다.</b> 근거를 모아 원문 그대로 주고 판단은 사람이 한다. 출력은
+            가능성 높음 · 낮음 · 판단 유보 + 근거 조항이고, 이 형식을 프롬프트가 아니라 <b>결정론적 게이트로 강제</b>한다.
+            트랙1 실손(27문항) Hit@5 <b>0.8148</b> · 거부 <b>1.0000</b> · 과잉거부 <b>0.0000</b> · 테스트 <b>1,771건</b>.
+            <span style="color:var(--muted)">트랙 4 수치와 측정 한계(judge 공란)는 상세 페이지에 함께 적었다.</span>
+            <a class="p-more" href="https://ttogle918.github.io/#insuq">상세 ttogle918.github.io/#insuq</a>
           </p>
         </div>
 
         <div class="block">
           <div class="bh">연결 대상 ③ MaintQ - 제조 설비 진단 · 부품 발주</div>
           <p class="body-t">
-            2026.07~ · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js.
-            기능은 <b>미지 에러코드 처리</b>(추측하지 않는다) · <b>재고 0 → 호환 대체품</b> ·
-            <b>반복 고장 감지 → 발주 보류</b>(30일 3회면 근본원인 모드) · <b>처분 사전판정</b>(사실이 부족하면 그렇다고 답한다) ·
-            <b>처분 근거 번들</b> · <b>법정 기한 · 위험등급</b> · <b>지출 성격 분류</b>(경계 사례는 판단 유보).
+            2026.07~ · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js. 기능은 미지 에러코드 처리 · 재고 0 → 호환 대체품 ·
+            반복 고장 감지 → 발주 보류 · 처분 사전판정 · 처분 근거 번들 · 법정 기한 · 위험등급 · 지출 성격 분류.
           </p>
           <p class="body-t">
-            <b>집중한 것 - MCP 도구 설계.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2)에 "언제 쓰고 언제 쓰면 안 되는지"를
-            명시했고, 실패도 <span class="mono">status</span>로 반환해 분기하게 했다. 쓰기 도구는 <b>3종뿐이고 전부 draft INSERT 전용</b>이며
-            신원은 서버가 주입해 LLM이 위조할 경로가 없다. 확장 도구는 기본 비활성이고 <b>평가는 코어 7종에서만</b> 인정한다.
-            SQLite → Postgres 전환 이유는 성능이 아니라 <b>권한</b>이었다. 평가 축을 다시 세워
-            <b>오특정(틀린 부품 확신) 16.7% → 1.1%</b>를 확인했다(합계 71.1% → 88.9%보다 이쪽이 요점이다).
-            회귀 <b>1,559건</b> · 설계 결정 <b>D1~D141</b> · 미지 코드 환각률 <b>0.0%</b>.
+            <b>해결 방법 - 위험한 실패부터 줄인다.</b> 합계 지표는 위험도가 다른 두 실패를 상쇄한다. 실패를
+            오특정(틀린 부품 확신)과 미특정으로 나눠 집계했고, 프롬프트만 바꾼 통제 A/B에서 <b>오특정 16.7% → 1.1%</b>를 확인했다.
+            MCP 도구 <b>22종</b> · 회귀 <b>1,559건</b> · 미지 코드 환각률 <b>0.0%</b>.
+            <a class="p-more" href="https://ttogle918.github.io/#maintq">상세 ttogle918.github.io/#maintq</a>
           </p>
           <p class="body-t" style="color:var(--muted);font-size:8.4pt">
             세 프로젝트 모두 언어 · 프레임워크 · 저장소가 서로 다르다 - 그래서 연결에 표준 계약이 필요했다.
