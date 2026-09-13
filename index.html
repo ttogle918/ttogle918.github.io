@@ -784,7 +784,24 @@
     }
 
     .tl.on .tl-detail {
-      max-height: 1400px
+      max-height: 2400px
+    }
+
+    /* 경력 항목 안에서 한 번 더 접는 목록 (KOSA 담당 강의) */
+    .tl-more {
+      margin: 0 0 15px
+    }
+
+    .tl-more summary {
+      cursor: pointer;
+      font-size: 12.5px;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 8px
+    }
+
+    .tl-more[open] summary {
+      margin-bottom: 4px
     }
 
     .tl-detail-in {
@@ -2409,7 +2426,7 @@
               <p data-ko="AI 응용 개발 과정 실습 조교 - 코드 디버깅, 에러 슈팅, 기술 질의응답. 수강했던 과정에서 실력을 인정받아 기수마다 다시 섭외되고 있다."
                 data-en="Lab assistant on AI application development courses - debugging, error shooting and technical Q&A. Originally a student on the course, re-invited every cohort since.">
                 AI 응용 개발 과정 실습 조교 - 코드 디버깅, 에러 슈팅, 기술 질의응답. 수강했던 과정에서 실력을 인정받아 기수마다 다시 섭외되고 있다.</p>
-              <div class="tl-hash mono">#Mentoring #DevOps</div>
+              <div class="tl-hash mono">#MCP #LangGraph #SpringAI</div>
             </div><span class="tl-caret">▶</span>
           </div>
           <div class="tl-detail">
@@ -2426,7 +2443,20 @@
                   data-en="Built communication skills by reading others' code and resolving their problems.">타인의 코드를
                   분석하고 문제를 해결하는 커뮤니케이션 역량 확보.</li>
               </ul>
-              <p class="tl-sub" data-ko="담당 강의 (실습 보조)" data-en="Courses (lab support)">담당 강의 (실습 보조)</p>
+              <p class="tl-sub" data-ko="대표 기술" data-en="Core skills">대표 기술</p>
+              <ul>
+                <li data-ko="<b>MCP · Tool Calling</b> · Spring AI Tool 호출과 MCP Server 개발, 음성으로 제어하는 MCP 비서앱"
+                  data-en="<b>MCP · tool calling</b> · Spring AI tool calls and MCP servers, a voice-controlled MCP assistant">
+                  <b>MCP · Tool Calling</b> · Spring AI Tool 호출과 MCP Server 개발, 음성으로 제어하는 MCP 비서앱</li>
+                <li data-ko="<b>LangGraph 에이전트</b> · ReAct · Reflexion 자율 에이전트와 워크플로우 자동화"
+                  data-en="<b>LangGraph agents</b> · ReAct and Reflexion autonomous agents, workflow automation">
+                  <b>LangGraph 에이전트</b> · ReAct · Reflexion 자율 에이전트와 워크플로우 자동화</li>
+                <li data-ko="<b>Spring AI · RAG</b> · 임베딩과 Vector Store 기반 RAG, Vision 멀티모달 입력"
+                  data-en="<b>Spring AI · RAG</b> · embeddings and vector-store RAG, multimodal vision input">
+                  <b>Spring AI · RAG</b> · 임베딩과 Vector Store 기반 RAG, Vision 멀티모달 입력</li>
+              </ul>
+              <details class="tl-more">
+                <summary data-ko="담당 강의 전체 보기 (11)" data-en="All courses (11)">담당 강의 전체 보기 (11)</summary>
               <ul>
                 <li data-ko="<b>Spring AI 기초</b> (26.03.14~15) · OpenAI API, Spring AI, Spring Boot, STS"
                   data-en="<b>Spring AI Basics</b> (Mar 14–15) · OpenAI API, Spring AI, Spring Boot, STS"><b>Spring AI
@@ -2480,11 +2510,12 @@
                   <b>노션 데이터베이스 자료 정리 &amp; Google Apps Script 보고서 자동화</b>
                 </li>
               </ul>
+              </details>
               <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
               <div class="tl-stack">
-                <span class="tl-tech key">Spring AI</span>
                 <span class="tl-tech key">MCP</span>
                 <span class="tl-tech key">LangGraph</span>
+                <span class="tl-tech key">Spring AI</span>
                 <span class="tl-tech key">RAG</span>
                 <span class="tl-tech">STT / TTS</span>
                 <span class="tl-tech">n8n</span>
@@ -4209,14 +4240,13 @@
         </article>
 
         <!-- PROJECT 06 -->
-        <article class="pcard featured reveal">
+        <article class="pcard reveal">
           <div class="pc-top">
             <div class="pc-badge mono">06</div>
             <div class="pc-headings">
               <div class="pc-code mono" data-ko="HS코드 / 규제 자동 분석 RAG Agent" data-en="HS-code / Regulation RAG Agent">
                 HS코드 / 규제 자동 분석 RAG Agent</div>
-              <h3 class="pc-title">K-BRIDGE <span class="pc-featured" data-ko="★ AI AGENT 대표작"
-                  data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
+              <h3 class="pc-title">K-BRIDGE</h3>
               <div class="pc-meta"
                 data-ko="2025.08 ~ 2025.10 <span class=&quot;sep&quot;>·</span> <b>팀 4인 (기여 25%)</b> <span class=&quot;sep&quot;>·</span> 요건 분석 엔진 · 판례 교차검증"
                 data-en="Aug–Oct 2025 <span class=&quot;sep&quot;>·</span> <b>team of 4 (25%)</b> <span class=&quot;sep&quot;>·</span> requirement engine &amp; precedent cross-validation">
@@ -4318,9 +4348,9 @@
                 Agent 기반 기업용 채용 관리 시스템</div>
               <h3 class="pc-title">KOCRUIT</h3>
               <div class="pc-meta"
-                data-ko="2025.06 ~ <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
-                data-en="Since Jun 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">
-                2025.06 ~ <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT ·
+                data-ko="2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
+                data-en="Jun–Jul 2025 · still refining it solo <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">
+                2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT ·
                 과정 내 1위</div>
               <div class="pc-hash mono">
                 <span>#Multimodal</span><span>#LangGraph</span><span>#MSA</span><span>#TeamLead</span>
