@@ -1,9 +1,9 @@
-%% SpendQ 시스템 구성 -- 원본은 SpendQ 레포 docs/03_ARCHITECTURE.md §2.
+%% SpendQ 시스템 구성 - 원본은 SpendQ 레포 docs/03_ARCHITECTURE.md §2.
 %% 포트폴리오판에서 원본과 다르게 그린 것 (2026-09-13 코드로 확인):
-%%   - domain :8003(MaintQ 연동)을 뺐다 -- Day 5 선택 항목이고 Cloud Run 6서비스에 없다
-%%   - PRG → frontend «이벤트 구독»을 뺐다 -- frontend 는 buyer SSE 만 받는다(lib/sse.ts)
-%%   - Gemini 를 넣었다 -- buyer 로그 [gemini] node=spec backend=vertex (검사 카탈로그 내 선택, D18)
-%%   - 사람의 유일한 서명(한도 설정)을 넣었다 -- 본촬영 수수료 지불자 전수 대조 결과
+%%   - domain :8003(MaintQ 연동)을 뺐다 - Day 5 선택 항목이고 Cloud Run 6서비스에 없다
+%%   - PRG → frontend «이벤트 구독»을 뺐다 - frontend 는 buyer SSE 만 받는다(lib/sse.ts)
+%%   - Gemini 를 넣었다 - buyer 로그 [gemini] node=spec backend=vertex (검사 카탈로그 내 선택, D18)
+%%   - 사람의 유일한 서명(한도 설정)을 넣었다 - 본촬영 수수료 지불자 전수 대조 결과
 flowchart LR
     U["조달 요청<br/>FAN-IG5-01 × 2 · 7일 이내"] --> BUY
 
