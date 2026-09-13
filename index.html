@@ -787,6 +787,14 @@
       max-height: 2400px
     }
 
+    /* 하위 카드 «설계와 측정 자세히 보기» - 기능 버튼과 같은 모양, 한 줄 폭 */
+    .feat.feat-more {
+      margin-top: 10px;
+      width: 100%;
+      justify-content: center;
+      border-style: dashed
+    }
+
     /* 경력 항목 안에서 한 번 더 접는 목록 (KOSA 담당 강의) */
     .tl-more {
       margin: 0 0 15px
@@ -3035,10 +3043,8 @@
                 <div class="impact block">
                   <div class="bh"><span class="star">★</span> <span data-ko="연결 대상 - 직접 만든 Q 시리즈 3종"
                       data-en="What it connects - the three Q-series agents">연결 대상 - 직접 만든 Q 시리즈 3종</span></div>
-                  <p data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> - 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 주요 기능과 설계가 나온다."
-                    data-en="All three run on <b>different languages, frameworks and repositories</b> - which is exactly why the link needed a standard contract. Expand a card for that project's features and design.">
-                    세
-                    프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> - 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 그 프로젝트의 주요 기능과 설계가 나온다.</p>
+                  <p data-ko="세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> - 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 문제와 대표 해결점, 주요 기능이 나오고, «설계와 측정 자세히 보기»에 나머지가 전부 있다."
+                    data-en="All three run on <b>different languages, frameworks and repositories</b> - which is exactly why the link needed a standard contract. Expand a card for the problem, its key approach and the features; the rest is under &quot;Design and measurement in full&quot;.">세 프로젝트 모두 <b>언어·프레임워크·저장소가 서로 다르다</b> - 그래서 연결에 표준 계약이 필요했다. 각 카드를 펼치면 문제와 대표 해결점, 주요 기능이 나오고, «설계와 측정 자세히 보기»에 나머지가 전부 있다.</p>
                   <div class="subcards">
 
                     <!-- ── FinAllQ ── -->
@@ -3057,6 +3063,19 @@
                       </div>
                       <div class="sub-body">
                         <div class="sub-inner">
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span></div>
+                            <p data-ko="은행·증권을 한 화면에서 다루는 금융 비서는 FDS 판정이나 이체 차단처럼 <b>사후에 근거를 대야 하는 행위</b>를 한다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을 수는 없다."
+                            data-en="A banking-and-brokerage assistant performs acts such as fraud verdicts and blocked transfers that <b>have to be justified after the fact</b>. You cannot write &quot;the model decided so&quot; in an audit log.">은행·증권을 한 화면에서 다루는 금융 비서는 FDS 판정이나 이체 차단처럼 <b>사후에 근거를 대야 하는 행위</b>를 한다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을 수는 없다.</p>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - AI 비서인데 LLM이 없다" data-en="Approach - an AI assistant with no LLM">해결 방법 - AI 비서인데 LLM이 없다</span></div>
+                            <p data-ko="<b>결정 공간이 닫혀 있었다.</b> 도구가 <b>20종으로 유한하고 이미 확정</b>돼 있어, 플래너는 키워드 점수로 최대 3개를 고르는 <b>규칙 기반</b>이다. 대신 <b>가드레일 4종</b>에 공을 들였고(권한 밖 도구는 플래너에 도달조차 못 한다), AI는 이상거래·스미싱처럼 <b>규칙이 안 되는 곳에만</b> 썼다."
+                            data-en="<b>The decision space was closed.</b> The tools are <b>a fixed set of 20</b>, so the planner is <b>rule-based</b>, scoring keywords and taking at most three. The effort went into <b>four guardrails</b> instead (a tool you lack rights to never reaches the planner), and models were used <b>only where rules fail</b> - fraud and smishing."><b>결정 공간이 닫혀 있었다.</b> 도구가 <b>20종으로 유한하고 이미 확정</b>돼 있어, 플래너는 키워드 점수로 최대 3개를 고르는 <b>규칙 기반</b>이다. 대신 <b>가드레일 4종</b>에 공을 들였고(권한 밖 도구는 플래너에 도달조차 못 한다), AI는 이상거래·스미싱처럼 <b>규칙이 안 되는 곳에만</b> 썼다.</p>
+                            <button class="feat feat-more" data-modal="f-finallq-detail" data-ko="설계와 측정 자세히 보기"
+                            data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
+                          </div>
 
                           <div class="pc-grid sub-grid">
                             <div class="block">
@@ -3107,56 +3126,8 @@
                             </div>
                           </div>
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="AI 비서인데 왜 LLM이 없는가"
-                                data-en="An AI assistant with no LLM - on purpose">AI 비서인데 왜 LLM이 없는가</span></div>
-                            <ul>
-                              <li
-                                data-ko="<b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미 확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대 3개</b>를 고르는 규칙 기반이다."
-                                data-en="<b>The decision space was closed.</b> What this service does is pick which tools to call in what order - and the tools are <b>a fixed set of 20</b>. Putting an LLM on a closed classification problem costs reproducibility and the ability to say why a tool was chosen. So the planner scores keywords and takes <b>at most three</b>.">
-                                <b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미
-                                  확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대
-                                  3개</b>를 고르는 규칙 기반이다.
-                              </li>
-                              <li
-                                data-ko="<b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을 수는 없다."
-                                data-en="<b>Finance demands auditability.</b> A fraud verdict or a blocked transfer has to be justifiable after the fact. You cannot write &quot;the model decided so&quot; in an audit log.">
-                                <b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을
-                                수는 없다.
-                              </li>
-                              <li
-                                data-ko="<b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span class=&quot;mono&quot;>side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가 뭘 반환하든 답변에 실리는 건 등재된 키뿐이다."
-                                data-en="<b>The effort went into four guardrails instead.</b> ① Role-based tool visibility - <b>a tool you lack rights to never reaches the planner</b> ② tools flagged <span class=&quot;mono&quot;>side_effect</span> are excluded from automatic selection ③ a mandatory fraud gate on transfer flows ④ an output whitelist - whatever a tool returns, only listed keys reach the answer.">
-                                <b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span
-                                  class="mono">side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가
-                                뭘 반환하든 답변에 실리는 건 등재된 키뿐이다.
-                              </li>
-                              <li
-                                data-ko="<b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class=&quot;mono&quot;>IsolationForest</span>(정상 패턴의 경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span>(문구 변형이 무한해 키워드 블랙리스트는 즉시 우회된다)."
-                                data-en="<b>Models went where rules fail.</b> Fraud detection uses <span class=&quot;mono&quot;>IsolationForest</span> - nobody can hand-write the boundary of &quot;normal&quot;. Smishing uses <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> - wording varies without limit, so a keyword blacklist is bypassed immediately.">
-                                <b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class="mono">IsolationForest</span>(정상 패턴의
-                                경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class="mono">TF-IDF + LogisticRegression</span>(문구
-                                변형이 무한해 키워드 블랙리스트는 즉시 우회된다).
-                              </li>
-                              <li
-                                data-ko="<b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를 교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다."
-                                data-en="<b>The switch criteria are written down.</b> If real queries show a meaningful match-failure rate, or the tool count grows well past 20 and keywords start colliding, the planner gets replaced. <b>The four guardrails stay</b> - an LLM is a replacement for the planner, not for the safety layer.">
-                                <b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를
-                                교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다.
-                              </li>
-                              <li
-                                data-ko="<b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만 먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다."
-                                data-en="<b>To be exact: the fraud gate is built but currently inert.</b> Its target list (<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>) is empty - the orchestrator has no transfer tools yet, so the rule and its slot exist ahead of them. That is recorded in a code comment and the backlog.">
-                                <b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span
-                                  class="mono">_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만
-                                먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다.
-                              </li>
-                            </ul>
-                          </div>
-
                           <div class="impact block">
-                            <div class="bh"><span class="star">★</span> <span data-ko="계측 (2026.09.08 전수)"
-                                data-en="Measured (full scan, 2026-09-08)">계측 (2026.09.08 전수)</span></div>
+                            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.08 전수" data-en="Results - full scan, 2026-09-08">결과 - 2026.09.08 전수</span></div>
                             <p data-ko="LLM·외부 AI API 호출 <b>0건</b>(코드베이스 전수 grep) · MCP 툴 <b>20종</b> · 백엔드 테스트 <b>1,098건</b> 통과(실패 0) · AI 엔드포인트 <b>12개</b>. A2A는 <b>수신 7스킬</b>이고, <span class=&quot;mono&quot;>assess-loan</span>이 InsuQ의 <span class=&quot;mono&quot;>verify-collateral-insurance</span>를 <b>2차 홉으로 실제 호출</b>한다."
                               data-en="Zero LLM or external AI calls (full-codebase grep) · 20 MCP tools · 1,098 backend tests passing, none failing · 12 AI endpoints. On A2A it answers <b>seven skills</b>, and <span class=&quot;mono&quot;>assess-loan</span> really calls InsuQ's <span class=&quot;mono&quot;>verify-collateral-insurance</span> as a second hop.">
                               LLM·외부
@@ -3166,7 +3137,6 @@
                                 class="mono">verify-collateral-insurance</span>를 <b>2차 홉으로 실제 호출</b>한다.
                             </p>
                           </div>
-
                         </div>
                       </div>
                     </article>
@@ -3187,79 +3157,18 @@
                       </div>
                       <div class="sub-body">
                         <div class="sub-inner">
-
                           <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="이 프로젝트가 잡은 자리"
-                                data-en="The stance">이 프로젝트가 잡은 자리</span></div>
-                            <p data-ko="<b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접 제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다."
-                              data-en="<b>The AI does not rule. It gathers the evidence, hands over the clause verbatim, and a person decides.</b> A wrong coverage verdict is money lost, and an agent has to be able to show the clause to the customer. So the output is never &quot;covered / not covered&quot; but <b>likely, unlikely or withheld - plus the cited clause and what still needs checking</b> - and that shape is <b>enforced by a deterministic gate, not a prompt instruction</b>.">
-                              <b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접
-                              제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을
-                              <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다.
-                            </p>
-                            <p data-ko="설계사 관점이라 검색도 그 순서를 따른다 - <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span class=&quot;mono&quot;>product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span class=&quot;mono&quot;>refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다."
-                              data-en="Because the user is an agent in front of a customer, retrieval follows that order - <b>scope to the policies the customer actually holds first</b> (<span class=&quot;mono&quot;>product_filter</span>), and when a clause points at another clause, <b>follow those <span class=&quot;mono&quot;>refs</span> and search again</b> (multi-hop) - within the same policy part only, and depth-capped.">
-                              설계사
-                              관점이라 검색도 그 순서를 따른다 - <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span
-                                class="mono">product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span
-                                  class="mono">refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다.</p>
+                            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span></div>
+                            <p data-ko="보험 판정 오답은 곧 <b>금전 피해</b>다. 설계사가 고객 앞에서 <b>조항을 직접 제시할 수 있어야</b> 하는데, «지급 가능/불가»만 내놓는 답으로는 그걸 할 수 없다."
+                            data-en="A wrong coverage verdict is <b>money lost</b>, and an agent has to be able to <b>show the clause to the customer</b> - which a bare &quot;covered / not covered&quot; answer cannot do.">보험 판정 오답은 곧 <b>금전 피해</b>다. 설계사가 고객 앞에서 <b>조항을 직접 제시할 수 있어야</b> 하는데, «지급 가능/불가»만 내놓는 답으로는 그걸 할 수 없다.</p>
                           </div>
 
                           <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="LangGraph 파이프라인"
-                                data-en="The LangGraph pipeline">LangGraph 파이프라인</span></div>
-                            <div class="fdiag">
-                              <svg viewBox="0 0 660 330" role="img"
-                                aria-label="route와 clarify 두 노드로 이루어진 StateGraph와 그 뒤의 검색·멀티홉·생성 파이프라인">
-                                <text class="dg-s" x="14" y="16">질문 + 이미 받은 슬롯</text>
-                                <rect class="dg-zone" x="8" y="26" width="306" height="126" rx="10" />
-                                <text class="dg-k" x="20" y="44">StateGraph - 컴파일된 노드는 이 둘뿐</text>
-                                <rect class="dg-box" x="26" y="54" width="140" height="42" rx="8" />
-                                <text class="dg-t" x="38" y="72">route</text>
-                                <text class="dg-s" x="38" y="87">키워드 → LLM 폴백 1회</text>
-                                <rect class="dg-box" x="26" y="104" width="140" height="38" rx="8" />
-                                <text class="dg-t" x="38" y="121">clarify</text>
-                                <text class="dg-s" x="38" y="135">슬롯 검사</text>
-                                <path class="dg-a" d="M96 98 V102" />
-                                <text class="dg-s" x="176" y="72">SIMPLE_LOOKUP</text>
-                                <text class="dg-s" x="176" y="86">VERDICT</text>
-                                <text class="dg-s" x="176" y="100">CLARIFY</text>
-                                <text class="dg-s" x="176" y="118" fill="var(--faint)">COMPARE → 강등</text>
-                                <path class="dg-a" d="M170 123 H344" />
-                                <text class="dg-k" x="180" y="140">CLARIFY 일 때</text>
-                                <rect class="dg-box" x="348" y="102" width="180" height="42" rx="8" />
-                                <text class="dg-t" x="360" y="120">되묻기 질문</text>
-                                <text class="dg-s" x="360" y="135">LLM 0회 - 순수 조회</text>
-                                <path class="dg-a" d="M96 154 V186" />
-                                <text class="dg-k" x="104" y="174">그 외</text>
-                                <rect class="dg-box" x="26" y="190" width="110" height="40" rx="8" />
-                                <text class="dg-t" x="38" y="215">검색</text>
-                                <path class="dg-a" d="M140 210 H160" />
-                                <rect class="dg-box" x="164" y="190" width="150" height="40" rx="8" />
-                                <text class="dg-t" x="176" y="209">멀티홉</text>
-                                <text class="dg-s" x="176" y="223">refs 따라 재검색</text>
-                                <path class="dg-a" d="M318 210 H338" />
-                                <rect class="dg-box" x="342" y="190" width="110" height="40" rx="8" />
-                                <text class="dg-t" x="354" y="215">생성</text>
-                                <path class="dg-a" d="M397 232 V252" />
-                                <rect class="dg-box" x="26" y="256" width="196" height="50" rx="8" />
-                                <text class="dg-t" x="38" y="275">방어선 ① 근거 한정</text>
-                                <text class="dg-s" x="38" y="292">인용 필수 · 없으면 거부</text>
-                                <rect class="dg-box" x="234" y="256" width="196" height="50" rx="8" />
-                                <text class="dg-t" x="246" y="275">방어선 ② 단정 감지</text>
-                                <text class="dg-s" x="246" y="292">유보(HOLD)로 강등</text>
-                                <rect class="dg-box" x="442" y="256" width="190" height="50" rx="8" />
-                                <text class="dg-t" x="454" y="275">판정 3단계</text>
-                                <text class="dg-s" x="454" y="292">+ 확인 필요 사항</text>
-                                <text class="dg-g" x="442" y="228">점선 밖은 그래프 노드가 아니다</text>
-                              </svg>
-                            </div>
-                            <p data-ko="<b>정확히 적으면 컴파일된 그래프의 노드는 <span class=&quot;mono&quot;>route</span>·<span class=&quot;mono&quot;>clarify</span> 둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 - «LangGraph 노드 4개»라고 쓰면 사실이 아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다)."
-                              data-en="<b>To be exact, the compiled graph has two nodes: <span class=&quot;mono&quot;>route</span> and <span class=&quot;mono&quot;>clarify</span>.</b> Multi-hop and the verdict live in the pipeline behind it - the dashed box is that boundary. Calling it &quot;four LangGraph nodes&quot; would be false. On the clarify branch it <b>never calls the LLM at all</b>: turning slots into questions is a pure lookup.">
-                              <b>정확히 적으면 컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span>
-                                둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 - «LangGraph 노드 4개»라고 쓰면 사실이
-                              아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다).
-                            </p>
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - AI가 판정하지 않는다" data-en="Approach - the AI does not rule">해결 방법 - AI가 판정하지 않는다</span></div>
+                            <p data-ko="<b>근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다."
+                            data-en="<b>It gathers the evidence, hands over the clause verbatim, and a person decides.</b> The output is <b>likely, unlikely or withheld - plus the cited clause and what still needs checking</b> - and that shape is <b>enforced by a deterministic gate, not a prompt instruction</b>."><b>근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다.</p>
+                            <button class="feat feat-more" data-modal="f-insuq-detail" data-ko="설계와 측정 자세히 보기"
+                            data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
                           </div>
 
                           <div class="pc-grid sub-grid">
@@ -3300,99 +3209,16 @@
                             </div>
                           </div>
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것"
-                                data-en="What the design guards">설계에서 신경 쓴 것</span></div>
-                            <ul>
-                              <li
-                                data-ko="<b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다."
-                                data-en="<b>Build, measure, then improve with a technique.</b> Every commit message carries its metric, so <b>the git history itself is the improvement story</b>.">
-                                <b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다.
-                              </li>
-                              <li
-                                data-ko="<b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은 <b>생성 직전에만</b> 한다."
-                                data-en="<b>Search small, answer big.</b> On structure-aware parent/child chunks, retrieval and ranking run entirely at the <b>child (clause) level</b>; the parent article is expanded <b>only just before generation</b>.">
-                                <b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은
-                                <b>생성 직전에만</b> 한다.
-                              </li>
-                              <li
-                                data-ko="<b>인용 대조 키는 <span class=&quot;mono&quot;>(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면, 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 - 한 상품 안에 <span class=&quot;mono&quot;>제1조</span>가 3곳 존재하는 것을 실측으로 확인했다."
-                                data-en="<b>Citations are matched on <span class=&quot;mono&quot;>(policy_part, article_no)</span>.</b> Drop the part and match only the article number, and <b>a hallucinated article from a different part slips through the check</b> - one product really does contain three separate <span class=&quot;mono&quot;>Article 1</span>s.">
-                                <b>인용 대조 키는 <span class="mono">(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면,
-                                모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 - 한 상품 안에 <span class="mono">제1조</span>가 3곳
-                                존재하는 것을 실측으로 확인했다.
-                              </li>
-                              <li
-                                data-ko="<b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 - <span class=&quot;mono&quot;>&quot;지급 가능합니다&quot;</span>는 잡는데 <span class=&quot;mono&quot;>&quot;지급이 가능합니다&quot;</span>는 통과했다. 고치면서 탐지만 넓히지 않고 <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0)."
-                                data-en="<b>Safety lives on the execution path, not in a document.</b> The no-verdict rule once leaked through a single particle - the matcher caught one phrasing and missed its variant. Fixing it, detection was not merely widened: <b>the false-positive rate was measured alongside</b> - zero new hits across 287 stored answers.">
-                                <b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 - <span class="mono">"지급
-                                  가능합니다"</span>는 잡는데 <span class="mono">"지급이 가능합니다"</span>는 통과했다. 고치면서 탐지만 넓히지 않고
-                                <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0).
-                              </li>
-                              <li
-                                data-ko="<b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 - 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다."
-                                data-en="<b>The cache must not route around the safety net.</b> Its key carries the product filter, the model, the prompt body and the index version - leave the filter out and &quot;never cite another customer's policy&quot; is bypassed by a cache hit. The evaluation harness is isolated <b>structurally</b>: it never constructs a cache at all.">
-                                <b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 - 상품 필터를 빠뜨리면 «다른 고객
-                                계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다.
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="측정에서 배운 것"
-                                data-en="What measuring taught">측정에서 배운 것</span></div>
-                            <ul>
-                              <li
-                                data-ko="<b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 - 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이다."
-                                data-en="<b>Refusal accuracy is only readable next to over-refusal.</b> Alone, it makes <b>answering nothing</b> the optimum. Swapping in a cheaper generator left retrieval identical to the decimal - but <b>over-refusal jumped from 0 to 0.1852</b>, so it was rejected. The model had not failed to refuse; it had <b>refused what it could have answered</b>.">
-                                <b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자
-                                검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 - 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을
-                                  거부</b>한 것이다.
-                              </li>
-                              <li
-                                data-ko="<b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 - 내 가설의 반증)와 cross-encoder 리랭커(품질 1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다."
-                                data-en="<b>Rejections are recorded with the same weight as adoptions.</b> Hybrid BM25 (Hit@5 0.7917 - my own hypothesis, disproved) and the cross-encoder reranker (best quality, p50 <b>98.2s</b>) are not &quot;planned&quot; - they were <b>measured and rejected</b>. Delete them and the next person re-derives the same hypothesis.">
-                                <b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 - 내 가설의 반증)와 cross-encoder 리랭커(품질
-                                1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다.
-                              </li>
-                              <li
-                                data-ko="<b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가 골든셋 밖</b>이었다 - «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다."
-                                data-en="<b>A metric that moves is not always the technique.</b> Paying down parsing debt cut dropped parts from 21 to 9 - and Hit@5 did not budge, because <b>the fix lay outside the golden set</b>. &quot;The corpus improved&quot; and &quot;the improvement is measurable&quot; are different sentences.">
-                                <b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가
-                                  골든셋 밖</b>이었다 - «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다.
-                              </li>
-                              <li
-                                data-ko="<b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를 <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 - 중단돼도 alias는 구버전을 가리킨 채 남는다."
-                                data-en="<b>The incident became structure.</b> A credential left in a dev shell overrode the config and <b>wiped the production index</b> (4,233 chunks). Now the index is <b>date-versioned behind an alias</b>: fill the new version, verify embedding coverage, and only then swap the alias - an interrupted run leaves the alias pointing at the old one.">
-                                <b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를
-                                <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 - 중단돼도 alias는 구버전을
-                                가리킨 채 남는다.
-                              </li>
-                            </ul>
-                          </div>
-
                           <div class="impact block">
-                            <div class="bh"><span class="star">★</span> <span data-ko="실측 (2026.09.09)"
-                                data-en="Measured (2026-09-09)">실측 (2026.09.09)</span></div>
+                            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.09 실측" data-en="Results - measured 2026-09-09">결과 - 2026.09.09 실측</span></div>
                             <p data-ko="<b>트랙 1 - 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부 0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>."
                               data-en="<b>Track 1 - indemnity</b> (27 golden-set questions): Hit@5 <b>0.8148</b>, refusal accuracy <b>1.0000</b>, <b>over-refusal 0.0000</b>, clarification accuracy <b>1.0000</b>, p50 latency <b>0.434s</b>.">
                               <b>트랙 1 - 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부
                                 0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>.
                             </p>
-                            <p data-ko="<b>트랙 4 - 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두 트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> - 인용할 때는 채점 분모를 반드시 함께 읽어야 한다."
-                              data-en="<b>Track 4 - fire &amp; commercial property</b> (52 of 66 questions scored, 6,450 chunks across 7 products): Hit@5 <b>0.6346</b>. ⚠️ <b>The two tracks share neither corpus nor golden set and cannot be placed side by side</b> - always read the denominator with the number.">
-                              <b>트랙 4 - 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두
-                                트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> - 인용할 때는 채점 분모를 반드시 함께 읽어야 한다.
-                            </p>
-                            <p data-ko="실험 기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143, 실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변 정확도(LLM-as-judge)는 공란</b>이다 - 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어 <b>재캘리브레이션만으로 복구</b>된다."
-                              data-en="Experiments <b>EXP-001–067</b> · <b>1,771</b> automated tests passing (1,134 / 494 / 143, none failing) · <b>571</b> commits. On A2A, <b>all six inbound skills run live on the Spring backend</b>. 🔴 But <b>answer accuracy (LLM-as-judge) is blank</b>: the grading model vanished with a deprecated gateway account. Twenty-four human-scored items survive, so <b>recalibration alone restores it</b>.">
-                              실험
-                              기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143,
-                              실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변
-                                정확도(LLM-as-judge)는 공란</b>이다 - 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어
-                              <b>재캘리브레이션만으로 복구</b>된다.</p>
+                            <p data-ko="트랙 4(화재·기업성 재물) 수치와 측정 한계(LLM-as-judge 공란)는 «자세히»에 함께 적었다."
+                            data-en="Track 4 (fire &amp; commercial property) and the measurement gaps (LLM-as-judge blank) are in the full view.">트랙 4(화재·기업성 재물) 수치와 측정 한계(LLM-as-judge 공란)는 «자세히»에 함께 적었다.</p>
                           </div>
-
                         </div>
                       </div>
                     </article>
@@ -3413,15 +3239,18 @@
                       </div>
                       <div class="sub-body">
                         <div class="sub-inner">
-
                           <div class="block">
                             <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span></div>
-                            <p data-ko="중소 제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다."
-                              data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b>, leans on a veteran's tacit knowledge for the cause, phones the storeroom for the part, and - if it is out of stock - calls a supplier for a quote and types the order into a spreadsheet. <b>Every step changes hands and medium (PDF → phone → Excel), and every change is a wait.</b> A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">
-                              중소
-                              제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면
-                              자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가
-                                생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다.</p>
+                            <p data-ko="인버터·PLC 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분 뒤지고</b>, 부품은 전화와 엑셀로 발주한다. CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다."
+                            data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b> and orders parts by phone and spreadsheet. A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">인버터·PLC 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분 뒤지고</b>, 부품은 전화와 엑셀로 발주한다. CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다.</p>
+                          </div>
+
+                          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - 위험한 실패부터 줄인다" data-en="Approach - shrink the dangerous failure first">해결 방법 - 위험한 실패부터 줄인다</span></div>
+                            <p data-ko="<b>합계 지표는 위험도가 다른 두 실패를 상쇄해 지운다.</b> 틀린 부품을 확신하는 <b>오특정</b>은 엉뚱한 발주로 비용·설비 정지를 부르고, 답을 내지 않는 미특정은 답을 못 받을 뿐이다. 그래서 실패를 두 축으로 나눠 집계했고, 프롬프트만 바꾼 통제 A/B(각 120세션)에서 <b>오특정을 16.7% → 1.1%</b>로 줄였다."
+                            data-en="<b>A single number cancels two failures with opposite risk.</b> <b>Confidently naming the wrong part</b> causes a wrong order - cost and downtime - while naming none just leaves you without an answer. So failures are tallied on two axes, and a controlled A/B that changed only the prompt (120 sessions per arm) cut <b>confident-wrong from 16.7% to 1.1%</b>."><b>합계 지표는 위험도가 다른 두 실패를 상쇄해 지운다.</b> 틀린 부품을 확신하는 <b>오특정</b>은 엉뚱한 발주로 비용·설비 정지를 부르고, 답을 내지 않는 미특정은 답을 못 받을 뿐이다. 그래서 실패를 두 축으로 나눠 집계했고, 프롬프트만 바꾼 통제 A/B(각 120세션)에서 <b>오특정을 16.7% → 1.1%</b>로 줄였다.</p>
+                            <button class="feat feat-more" data-modal="f-maintq-detail" data-ko="설계와 측정 자세히 보기"
+                            data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
                           </div>
 
                           <div class="pc-grid sub-grid">
@@ -3472,100 +3301,14 @@
                             </div>
                           </div>
 
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="집중한 것 - MCP 도구 설계"
-                                data-en="The focus - MCP tool design">집중한 것 - MCP 도구 설계</span></div>
-                            <ul>
-                              <li
-                                data-ko="<b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다."
-                                data-en="<b>Half of orchestration is the description.</b> Each of the <b>22 tools</b> (7 core + 14 extended + 2 A2A senders) states when to use it <em>and when not to</em> - an LLM's tool choice is only as good as the schema text it reads.">
-                                <b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제
-                                쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다.
-                              </li>
-                              <li
-                                data-ko="<b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수 있게</b> 한다."
-                                data-en="<b>Failure comes back as a structured result.</b> Tools return <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span> instead of raising, so the agent can <b>branch</b> - out of stock into alternatives, unknown code into a service referral.">
-                                <b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class="mono">status:
-                                  ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수
-                                  있게</b> 한다.
-                              </li>
-                              <li
-                                data-ko="<b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class=&quot;mono&quot;>requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다."
-                                data-en="<b>Reads and writes are separated.</b> Only <b>three tools write, and all three can only INSERT a draft</b> - there is no UPDATE permission at all, so approving, rejecting and signing happen exclusively through human-only APIs. And <b>identity (<span class=&quot;mono&quot;>requested_by</span>) is injected by the server, not passed as a tool parameter</b>, so the LLM has no path to forge it.">
-                                <b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어
-                                승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class="mono">requested_by</span>)은 도구 파라미터가
-                                  아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다.
-                              </li>
-                              <li
-                                data-ko="<b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수 없다. 평가 스크립트가 <span class=&quot;mono&quot;>/health</span>를 실측해 프로파일이 <span class=&quot;mono&quot;>core</span>가 아니면 <b>스스로 종료</b>한다."
-                                data-en="<b>Extended tools are off by default, and evaluation only counts on the 7 core tools.</b> Score with extras enabled and you cannot separate &quot;the fix worked&quot; from &quot;there were more tools&quot;. The eval script probes <span class=&quot;mono&quot;>/health</span> and <b>aborts itself</b> if the profile is not <span class=&quot;mono&quot;>core</span>.">
-                                <b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수
-                                없다. 평가 스크립트가 <span class="mono">/health</span>를 실측해 프로파일이 <span
-                                  class="mono">core</span>가 아니면 <b>스스로 종료</b>한다.
-                              </li>
-                              <li
-                                data-ko="<b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 - SQLite는 <span class=&quot;mono&quot;>foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기 가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다."
-                                data-en="<b>Permissions are enforced by the database, not a document.</b> The move from SQLite to PostgreSQL was about <b>authority, not speed</b> - SQLite ships with <span class=&quot;mono&quot;>foreign_keys</span> off, so both referential integrity and the write ban rested on a setting. The write guard is now a <b>permanent trigger plus a session GUC</b>, and read-only connections are physically pinned read-only at the transaction level.">
-                                <b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 - SQLite는
-                                <span class="mono">foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기
-                                가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다.
-                              </li>
-                            </ul>
-                          </div>
-
-                          <div class="block">
-                            <div class="bh"><span class="star">◆</span> <span data-ko="측정에서 신경 쓴 것"
-                                data-en="What measuring guards">측정에서 신경 쓴 것</span></div>
-                            <ul>
-                              <li
-                                data-ko="<b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을 열어 보니 <b>틀리는 방식이 정반대</b>였다 - 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정). 현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>"
-                                data-en="<b>A single number cancels two failures with opposite risk.</b> Two models scored 45.6% and 51.0% on part identification - &quot;no difference&quot; - until the breakdown showed they <b>fail in opposite ways</b>: one <b>confidently names the wrong part</b>, the other <b>names none</b>. On the floor the first causes a wrong order - cost and downtime - while the second just leaves you without an answer. <b>Fold them together and the more dangerous model looks better.</b>">
-                                <b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을
-                                열어 보니 <b>틀리는 방식이 정반대</b>였다 - 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정).
-                                현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>
-                              </li>
-                              <li
-                                data-ko="그래서 실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는 71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지 않는다</b> - <b>위험한 쪽이 줄었다는 것이 요점</b>이다."
-                                data-en="So failures are now tallied on two axes. In a controlled A/B - same day, same 20 questions, same model, <b>prompt only</b> changed, 120 sessions per arm - the total moved 71.1% → 88.9%, but <b>what actually improved is confident-wrong: 16.7% → 1.1%</b>. The no-answer rate went 12.2% → 10.0%, <b>intervals overlapping, so no claim is made</b>. <b>The point is that the dangerous side shrank.</b>">
-                                그래서
-                                실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는
-                                71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지
-                                  않는다</b> - <b>위험한 쪽이 줄었다는 것이 요점</b>이다.
-                              </li>
-                              <li
-                                data-ko="<b>노이즈 바닥을 먼저 쟀다.</b> <span class=&quot;mono&quot;>p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이 40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는 회귀를 보고하게 된다.</b>"
-                                data-en="<b>The noise floor was measured first.</b> A question at <span class=&quot;mono&quot;>p≈0.5</span> still has a <b>40-point 95% CI after twenty runs</b>, and two ten-run batches under identical conditions differed by <b>12 points</b> on citation rate. In other words, <b>quoting a ten-run number reports regressions that do not exist.</b>">
-                                <b>노이즈 바닥을 먼저 쟀다.</b> <span class="mono">p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이
-                                  40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는
-                                  회귀를 보고하게 된다.</b>
-                              </li>
-                              <li
-                                data-ko="<b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> 같은 검사는 정규식이 어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 - 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성 앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다."
-                                data-en="<b>A test that asserts absence passes even when it is blind.</b> A check like <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> <b>passes silently</b> if the regex drifts or a path moves - two such checks were sitting in the suite. Absence checks now carry <b>a positive anchor proving the scanner still sees</b>, and nothing counts as passing until the code is deliberately broken and the check actually goes red.">
-                                <b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class="mono">"X" not in src</span> 같은 검사는 정규식이
-                                어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 - 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성
-                                  앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다.
-                              </li>
-                            </ul>
-                          </div>
-
                           <div class="impact block">
-                            <div class="bh"><span class="star">★</span> <span data-ko="실측 (2026.09.11)"
-                                data-en="Measured (2026-09-11)">실측 (2026.09.11)</span></div>
+                            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.11 실측" data-en="Results - measured 2026-09-11">결과 - 2026.09.11 실측</span></div>
                             <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347) · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한 위반 403 차단 100%</b>는 목표를 달성했다."
                               data-en="<b>510+</b> commits · design decisions <b>D1–D141</b> documented · a <b>1,559-check</b> regression suite (1,212 contract spikes + 347 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">
                               커밋
                               <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347)
                               · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한
                                 위반 403 차단 100%</b>는 목표를 달성했다.
-                            </p>
-                            <p data-ko="A2A는 <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class=&quot;mono&quot;>skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다."
-                              data-en="On A2A, <b>all six outbound skills are verified end to end</b>. <b>There is no inbound side by design</b>: the contract assigns MaintQ the client role (Agent Card <span class=&quot;mono&quot;>skills: []</span>) because maintenance is <b>where work begins</b>, not where it lands. <b>Not a to-do - a decision.</b> ⚠️ All data is <b>mock</b> (public manuals plus generated seed) and there are no real users, so this is never described as &quot;in production&quot;.">
-                              A2A는
-                              <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card
-                              <span class="mono">skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가
-                                할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지
-                              않는다.
                             </p>
                             <div class="metricrow">
                               <div class="metric">
@@ -3582,7 +3325,6 @@
                               </div>
                             </div>
                           </div>
-
                         </div>
                       </div>
                     </article>
@@ -6390,6 +6132,324 @@
             그래서 대본을 줄이는 대신 <b>앱 검사를 거치지 않고 체인에 직접 방송하는 증명 스크립트</b>를 만들었다. 건당 한도보다 딱 1 최소단위 큰 금액을 보내면 프로그램의 <span
               class="mono">open_escrow</span> 게이트가 <span class="mono">PerTxLimitExceeded</span>로 트랜잭션 전체를 롤백하고, <b>그 실패
               트랜잭션이 devnet에 남아 Explorer에서 누구나 조회할 수 있다.</b> «앱이 막았다»보다 «앱을 지워도 체인이 막는다»가 강한 주장이다.</p>
+        </section>
+
+        <section id="f-finallq-detail" hidden>
+          <div class="fmodal-kicker mono">FINALLQ · 설계와 측정</div>
+          <h4 class="fmodal-title" data-ko="AI 비서인데 왜 LLM이 없는가" data-en="An AI assistant with no LLM - on purpose">AI 비서인데 왜 LLM이 없는가</h4>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - AI 비서인데 왜 LLM이 없는가" data-en="Approach - an AI assistant with no LLM, on purpose">해결 방법 - AI 비서인데 왜 LLM이 없는가</span></div>
+                            <ul>
+                              <li
+                                data-ko="<b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미 확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대 3개</b>를 고르는 규칙 기반이다."
+                                data-en="<b>The decision space was closed.</b> What this service does is pick which tools to call in what order - and the tools are <b>a fixed set of 20</b>. Putting an LLM on a closed classification problem costs reproducibility and the ability to say why a tool was chosen. So the planner scores keywords and takes <b>at most three</b>.">
+                                <b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미
+                                  확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대
+                                  3개</b>를 고르는 규칙 기반이다.
+                              </li>
+                              <li
+                                data-ko="<b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을 수는 없다."
+                                data-en="<b>Finance demands auditability.</b> A fraud verdict or a blocked transfer has to be justifiable after the fact. You cannot write &quot;the model decided so&quot; in an audit log.">
+                                <b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을
+                                수는 없다.
+                              </li>
+                              <li
+                                data-ko="<b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span class=&quot;mono&quot;>side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가 뭘 반환하든 답변에 실리는 건 등재된 키뿐이다."
+                                data-en="<b>The effort went into four guardrails instead.</b> ① Role-based tool visibility - <b>a tool you lack rights to never reaches the planner</b> ② tools flagged <span class=&quot;mono&quot;>side_effect</span> are excluded from automatic selection ③ a mandatory fraud gate on transfer flows ④ an output whitelist - whatever a tool returns, only listed keys reach the answer.">
+                                <b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span
+                                  class="mono">side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가
+                                뭘 반환하든 답변에 실리는 건 등재된 키뿐이다.
+                              </li>
+                              <li
+                                data-ko="<b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class=&quot;mono&quot;>IsolationForest</span>(정상 패턴의 경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span>(문구 변형이 무한해 키워드 블랙리스트는 즉시 우회된다)."
+                                data-en="<b>Models went where rules fail.</b> Fraud detection uses <span class=&quot;mono&quot;>IsolationForest</span> - nobody can hand-write the boundary of &quot;normal&quot;. Smishing uses <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> - wording varies without limit, so a keyword blacklist is bypassed immediately.">
+                                <b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class="mono">IsolationForest</span>(정상 패턴의
+                                경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class="mono">TF-IDF + LogisticRegression</span>(문구
+                                변형이 무한해 키워드 블랙리스트는 즉시 우회된다).
+                              </li>
+                              <li
+                                data-ko="<b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를 교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다."
+                                data-en="<b>The switch criteria are written down.</b> If real queries show a meaningful match-failure rate, or the tool count grows well past 20 and keywords start colliding, the planner gets replaced. <b>The four guardrails stay</b> - an LLM is a replacement for the planner, not for the safety layer.">
+                                <b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를
+                                교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다.
+                              </li>
+                              <li
+                                data-ko="<b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만 먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다."
+                                data-en="<b>To be exact: the fraud gate is built but currently inert.</b> Its target list (<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>) is empty - the orchestrator has no transfer tools yet, so the rule and its slot exist ahead of them. That is recorded in a code comment and the backlog.">
+                                <b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span
+                                  class="mono">_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만
+                                먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다.
+                              </li>
+                            </ul>
+                          </div>
+        </section>
+
+        <section id="f-insuq-detail" hidden>
+          <div class="fmodal-kicker mono">INSUQ · 설계와 측정</div>
+          <h4 class="fmodal-title" data-ko="근거를 주고 판단은 사람이 - 설계와 측정" data-en="Evidence for a human to judge - design and measurement">근거를 주고 판단은 사람이 - 설계와 측정</h4>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - 이 프로젝트가 잡은 자리" data-en="Approach - the stance">해결 방법 - 이 프로젝트가 잡은 자리</span></div>
+                            <p data-ko="<b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접 제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을 <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다."
+                              data-en="<b>The AI does not rule. It gathers the evidence, hands over the clause verbatim, and a person decides.</b> A wrong coverage verdict is money lost, and an agent has to be able to show the clause to the customer. So the output is never &quot;covered / not covered&quot; but <b>likely, unlikely or withheld - plus the cited clause and what still needs checking</b> - and that shape is <b>enforced by a deterministic gate, not a prompt instruction</b>.">
+                              <b>AI가 판정하지 않는다. 근거를 모아 원문 그대로 주고, 판단은 사람이 한다.</b> 보험 판정 오답은 곧 금전 피해라, 설계사가 고객 앞에서 조항을 직접
+                              제시할 수 있어야 한다. 그래서 출력은 «지급 가능/불가»가 아니라 <b>가능성이 높음·낮음·판단 유보 + 근거 조항 + 확인 필요 사항</b>이고, 이 형식을
+                              <b>프롬프트 지시가 아니라 결정론적 게이트로 강제</b>한다.
+                            </p>
+                            <p data-ko="설계사 관점이라 검색도 그 순서를 따른다 - <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span class=&quot;mono&quot;>product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span class=&quot;mono&quot;>refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다."
+                              data-en="Because the user is an agent in front of a customer, retrieval follows that order - <b>scope to the policies the customer actually holds first</b> (<span class=&quot;mono&quot;>product_filter</span>), and when a clause points at another clause, <b>follow those <span class=&quot;mono&quot;>refs</span> and search again</b> (multi-hop) - within the same policy part only, and depth-capped.">
+                              설계사
+                              관점이라 검색도 그 순서를 따른다 - <b>고객이 가입한 상품으로 먼저 좁혀 찾고</b>(<span
+                                class="mono">product_filter</span>), 찾은 조문이 다른 조문을 참조하면 <b>그 <span
+                                  class="mono">refs</span>를 따라 다시 찾는다</b>(멀티홉). 같은 약관 파트 안에서만, 깊이 제한을 두고 돈다.</p>
+                          </div>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - LangGraph 파이프라인" data-en="Design notes - the LangGraph pipeline">설계에서 신경 쓴 것 - LangGraph 파이프라인</span></div>
+                            <div class="fdiag">
+                              <svg viewBox="0 0 660 330" role="img"
+                                aria-label="route와 clarify 두 노드로 이루어진 StateGraph와 그 뒤의 검색·멀티홉·생성 파이프라인">
+                                <text class="dg-s" x="14" y="16">질문 + 이미 받은 슬롯</text>
+                                <rect class="dg-zone" x="8" y="26" width="306" height="126" rx="10" />
+                                <text class="dg-k" x="20" y="44">StateGraph - 컴파일된 노드는 이 둘뿐</text>
+                                <rect class="dg-box" x="26" y="54" width="140" height="42" rx="8" />
+                                <text class="dg-t" x="38" y="72">route</text>
+                                <text class="dg-s" x="38" y="87">키워드 → LLM 폴백 1회</text>
+                                <rect class="dg-box" x="26" y="104" width="140" height="38" rx="8" />
+                                <text class="dg-t" x="38" y="121">clarify</text>
+                                <text class="dg-s" x="38" y="135">슬롯 검사</text>
+                                <path class="dg-a" d="M96 98 V102" />
+                                <text class="dg-s" x="176" y="72">SIMPLE_LOOKUP</text>
+                                <text class="dg-s" x="176" y="86">VERDICT</text>
+                                <text class="dg-s" x="176" y="100">CLARIFY</text>
+                                <text class="dg-s" x="176" y="118" fill="var(--faint)">COMPARE → 강등</text>
+                                <path class="dg-a" d="M170 123 H344" />
+                                <text class="dg-k" x="180" y="140">CLARIFY 일 때</text>
+                                <rect class="dg-box" x="348" y="102" width="180" height="42" rx="8" />
+                                <text class="dg-t" x="360" y="120">되묻기 질문</text>
+                                <text class="dg-s" x="360" y="135">LLM 0회 - 순수 조회</text>
+                                <path class="dg-a" d="M96 154 V186" />
+                                <text class="dg-k" x="104" y="174">그 외</text>
+                                <rect class="dg-box" x="26" y="190" width="110" height="40" rx="8" />
+                                <text class="dg-t" x="38" y="215">검색</text>
+                                <path class="dg-a" d="M140 210 H160" />
+                                <rect class="dg-box" x="164" y="190" width="150" height="40" rx="8" />
+                                <text class="dg-t" x="176" y="209">멀티홉</text>
+                                <text class="dg-s" x="176" y="223">refs 따라 재검색</text>
+                                <path class="dg-a" d="M318 210 H338" />
+                                <rect class="dg-box" x="342" y="190" width="110" height="40" rx="8" />
+                                <text class="dg-t" x="354" y="215">생성</text>
+                                <path class="dg-a" d="M397 232 V252" />
+                                <rect class="dg-box" x="26" y="256" width="196" height="50" rx="8" />
+                                <text class="dg-t" x="38" y="275">방어선 ① 근거 한정</text>
+                                <text class="dg-s" x="38" y="292">인용 필수 · 없으면 거부</text>
+                                <rect class="dg-box" x="234" y="256" width="196" height="50" rx="8" />
+                                <text class="dg-t" x="246" y="275">방어선 ② 단정 감지</text>
+                                <text class="dg-s" x="246" y="292">유보(HOLD)로 강등</text>
+                                <rect class="dg-box" x="442" y="256" width="190" height="50" rx="8" />
+                                <text class="dg-t" x="454" y="275">판정 3단계</text>
+                                <text class="dg-s" x="454" y="292">+ 확인 필요 사항</text>
+                                <text class="dg-g" x="442" y="228">점선 밖은 그래프 노드가 아니다</text>
+                              </svg>
+                            </div>
+                            <p data-ko="<b>정확히 적으면 컴파일된 그래프의 노드는 <span class=&quot;mono&quot;>route</span>·<span class=&quot;mono&quot;>clarify</span> 둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 - «LangGraph 노드 4개»라고 쓰면 사실이 아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다)."
+                              data-en="<b>To be exact, the compiled graph has two nodes: <span class=&quot;mono&quot;>route</span> and <span class=&quot;mono&quot;>clarify</span>.</b> Multi-hop and the verdict live in the pipeline behind it - the dashed box is that boundary. Calling it &quot;four LangGraph nodes&quot; would be false. On the clarify branch it <b>never calls the LLM at all</b>: turning slots into questions is a pure lookup.">
+                              <b>정확히 적으면 컴파일된 그래프의 노드는 <span class="mono">route</span>·<span class="mono">clarify</span>
+                                둘뿐이다.</b> 멀티홉과 판정은 그래프 노드가 아니라 그 뒤 파이프라인에 있고, 점선이 그 경계다 - «LangGraph 노드 4개»라고 쓰면 사실이
+                              아니다. 되묻기로 빠지면 <b>LLM을 한 번도 부르지 않는다</b>(슬롯에서 확인 질문을 만드는 건 순수 조회다).
+                            </p>
+                          </div>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - 검색과 안전장치" data-en="Design notes - retrieval and safety">설계에서 신경 쓴 것 - 검색과 안전장치</span></div>
+                            <ul>
+                              <li
+                                data-ko="<b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다."
+                                data-en="<b>Build, measure, then improve with a technique.</b> Every commit message carries its metric, so <b>the git history itself is the improvement story</b>.">
+                                <b>만들고 → 측정하고 → 기법으로 개선.</b> 커밋 메시지에 지표를 넣는 규칙을 지켜서 <b>git 히스토리 자체가 개선 서사</b>가 되게 했다.
+                              </li>
+                              <li
+                                data-ko="<b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은 <b>생성 직전에만</b> 한다."
+                                data-en="<b>Search small, answer big.</b> On structure-aware parent/child chunks, retrieval and ranking run entirely at the <b>child (clause) level</b>; the parent article is expanded <b>only just before generation</b>.">
+                                <b>작게 검색하고 크게 답한다.</b> 조·항 구조를 살린 부모-자식 청킹 위에서 검색·랭킹은 전부 <b>자식(항) 레벨</b>로 하고, 부모(조) 확장은
+                                <b>생성 직전에만</b> 한다.
+                              </li>
+                              <li
+                                data-ko="<b>인용 대조 키는 <span class=&quot;mono&quot;>(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면, 모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 - 한 상품 안에 <span class=&quot;mono&quot;>제1조</span>가 3곳 존재하는 것을 실측으로 확인했다."
+                                data-en="<b>Citations are matched on <span class=&quot;mono&quot;>(policy_part, article_no)</span>.</b> Drop the part and match only the article number, and <b>a hallucinated article from a different part slips through the check</b> - one product really does contain three separate <span class=&quot;mono&quot;>Article 1</span>s.">
+                                <b>인용 대조 키는 <span class="mono">(policy_part, article_no)</span>다.</b> 파트를 빼고 조 번호만 맞추면,
+                                모델이 <b>다른 파트의 같은 조 번호를 지어내도 환각 탐지를 통과</b>한다 - 한 상품 안에 <span class="mono">제1조</span>가 3곳
+                                존재하는 것을 실측으로 확인했다.
+                              </li>
+                              <li
+                                data-ko="<b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 - <span class=&quot;mono&quot;>&quot;지급 가능합니다&quot;</span>는 잡는데 <span class=&quot;mono&quot;>&quot;지급이 가능합니다&quot;</span>는 통과했다. 고치면서 탐지만 넓히지 않고 <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0)."
+                                data-en="<b>Safety lives on the execution path, not in a document.</b> The no-verdict rule once leaked through a single particle - the matcher caught one phrasing and missed its variant. Fixing it, detection was not merely widened: <b>the false-positive rate was measured alongside</b> - zero new hits across 287 stored answers.">
+                                <b>안전장치는 문서가 아니라 실행 경로에 둔다.</b> 단정 금지가 조사 하나로 샌 적이 있다 - <span class="mono">"지급
+                                  가능합니다"</span>는 잡는데 <span class="mono">"지급이 가능합니다"</span>는 통과했다. 고치면서 탐지만 넓히지 않고
+                                <b>오탐율을 함께 쟀다</b>(저장된 답변 287건에 새로 걸린 건 0).
+                              </li>
+                              <li
+                                data-ko="<b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 - 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다."
+                                data-en="<b>The cache must not route around the safety net.</b> Its key carries the product filter, the model, the prompt body and the index version - leave the filter out and &quot;never cite another customer's policy&quot; is bypassed by a cache hit. The evaluation harness is isolated <b>structurally</b>: it never constructs a cache at all.">
+                                <b>캐시가 안전장치를 우회하지 못하게.</b> 캐시 키에 상품 필터·모델·프롬프트 본문·인덱스 버전을 전부 넣었다 - 상품 필터를 빠뜨리면 «다른 고객
+                                계약을 인용하지 않는다»가 캐시로 뚫린다. 평가 하네스는 아예 <b>캐시 객체를 만들지 않는 구조</b>로 격리했다.
+                              </li>
+                            </ul>
+                          </div>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - 측정에서 배운 것" data-en="Design notes - what measuring taught">설계에서 신경 쓴 것 - 측정에서 배운 것</span></div>
+                            <ul>
+                              <li
+                                data-ko="<b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자 검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 - 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을 거부</b>한 것이다."
+                                data-en="<b>Refusal accuracy is only readable next to over-refusal.</b> Alone, it makes <b>answering nothing</b> the optimum. Swapping in a cheaper generator left retrieval identical to the decimal - but <b>over-refusal jumped from 0 to 0.1852</b>, so it was rejected. The model had not failed to refuse; it had <b>refused what it could have answered</b>.">
+                                <b>거부 정확도는 반드시 과잉거부와 쌍으로 본다.</b> 거부만 보면 <b>아무것도 안 답하는 게 최적</b>이 된다. 실제로 생성 모델을 저가형으로 바꾸자
+                                검색 결과는 소수점까지 같은데 <b>과잉거부만 0 → 0.1852</b>로 튀어 기각했다 - 거부해야 할 때 못 거부한 게 아니라 <b>답할 수 있는 것을
+                                  거부</b>한 것이다.
+                              </li>
+                              <li
+                                data-ko="<b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 - 내 가설의 반증)와 cross-encoder 리랭커(품질 1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다."
+                                data-en="<b>Rejections are recorded with the same weight as adoptions.</b> Hybrid BM25 (Hit@5 0.7917 - my own hypothesis, disproved) and the cross-encoder reranker (best quality, p50 <b>98.2s</b>) are not &quot;planned&quot; - they were <b>measured and rejected</b>. Delete them and the next person re-derives the same hypothesis.">
+                                <b>기각을 채택과 같은 무게로 기록한다.</b> 하이브리드 BM25(Hit@5 0.7917 - 내 가설의 반증)와 cross-encoder 리랭커(품질
+                                1등이지만 p50 <b>98.2초</b>)는 «예정»이 아니라 <b>측정 후 기각</b>이다. 지우면 다음 사람이 같은 가설을 다시 세운다.
+                              </li>
+                              <li
+                                data-ko="<b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가 골든셋 밖</b>이었다 - «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다."
+                                data-en="<b>A metric that moves is not always the technique.</b> Paying down parsing debt cut dropped parts from 21 to 9 - and Hit@5 did not budge, because <b>the fix lay outside the golden set</b>. &quot;The corpus improved&quot; and &quot;the improvement is measurable&quot; are different sentences.">
+                                <b>지표가 움직인 이유가 항상 기법은 아니다.</b> 파싱 부채를 갚아 드롭 파트를 21 → 9로 줄였는데 Hit@5가 그대로였다. 원인은 <b>고친 데가
+                                  골든셋 밖</b>이었다 - «코퍼스를 고쳤다»와 «측정할 수 있다»는 다른 문장이다.
+                              </li>
+                              <li
+                                data-ko="<b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를 <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 - 중단돼도 alias는 구버전을 가리킨 채 남는다."
+                                data-en="<b>The incident became structure.</b> A credential left in a dev shell overrode the config and <b>wiped the production index</b> (4,233 chunks). Now the index is <b>date-versioned behind an alias</b>: fill the new version, verify embedding coverage, and only then swap the alias - an interrupted run leaves the alias pointing at the old one.">
+                                <b>사고를 구조로 바꿨다.</b> 개발 셸에 남은 자격증명이 설정을 덮어써 <b>프로덕션 인덱스가 지워진 적</b>이 있다(4,233청크). 지금은 인덱스를
+                                <b>날짜 버전 + alias</b>로 두고 «새 버전 채우기 → 커버리지 검증 → 통과 시에만 alias 교체»로 바꿨다 - 중단돼도 alias는 구버전을
+                                가리킨 채 남는다.
+                              </li>
+                            </ul>
+                          </div>
+          <div class="impact block">
+                            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 전체 실측 (2026.09.09)" data-en="Results - full measurements (2026-09-09)">결과 - 전체 실측 (2026.09.09)</span></div>
+                            <p data-ko="<b>트랙 1 - 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부 0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>."
+                              data-en="<b>Track 1 - indemnity</b> (27 golden-set questions): Hit@5 <b>0.8148</b>, refusal accuracy <b>1.0000</b>, <b>over-refusal 0.0000</b>, clarification accuracy <b>1.0000</b>, p50 latency <b>0.434s</b>.">
+                              <b>트랙 1 - 실손</b> (골든셋 27문항 채점): Hit@5 <b>0.8148</b> · 거부 정확도 <b>1.0000</b> · <b>과잉거부
+                                0.0000</b> · 되묻기 정확도 <b>1.0000</b> · 응답 p50 <b>0.434초</b>.
+                            </p>
+                            <p data-ko="<b>트랙 4 - 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두 트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> - 인용할 때는 채점 분모를 반드시 함께 읽어야 한다."
+                              data-en="<b>Track 4 - fire &amp; commercial property</b> (52 of 66 questions scored, 6,450 chunks across 7 products): Hit@5 <b>0.6346</b>. ⚠️ <b>The two tracks share neither corpus nor golden set and cannot be placed side by side</b> - always read the denominator with the number.">
+                              <b>트랙 4 - 화재·기업성 재물</b> (골든셋 66문항 중 52문항 채점, 7종 6,450청크): Hit@5 <b>0.6346</b>. ⚠️ <b>두
+                                트랙은 코퍼스도 골든셋도 달라 나란히 비교할 수 없다</b> - 인용할 때는 채점 분모를 반드시 함께 읽어야 한다.
+                            </p>
+                            <p data-ko="실험 기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143, 실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변 정확도(LLM-as-judge)는 공란</b>이다 - 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어 <b>재캘리브레이션만으로 복구</b>된다."
+                              data-en="Experiments <b>EXP-001–067</b> · <b>1,771</b> automated tests passing (1,134 / 494 / 143, none failing) · <b>571</b> commits. On A2A, <b>all six inbound skills run live on the Spring backend</b>. 🔴 But <b>answer accuracy (LLM-as-judge) is blank</b>: the grading model vanished with a deprecated gateway account. Twenty-four human-scored items survive, so <b>recalibration alone restores it</b>.">
+                              실험
+                              기록 <b>EXP-001~067</b> · 자동 테스트 <b>1,771건</b>(ai-engine 1,134 / backend 494 / frontend 143,
+                              실패 0) · 커밋 <b>571</b>. A2A는 <b>수신 6스킬이 전부 backend(Spring)에서 실동작</b>한다. 🔴 다만 <b>답변
+                                정확도(LLM-as-judge)는 공란</b>이다 - 채점 모델이 게이트웨이 계정 폐기로 사라졌다. 사람 채점 24문항이 보존돼 있어
+                              <b>재캘리브레이션만으로 복구</b>된다.</p>
+                          </div>
+        </section>
+
+        <section id="f-maintq-detail" hidden>
+          <div class="fmodal-kicker mono">MAINTQ · 설계와 측정</div>
+          <h4 class="fmodal-title" data-ko="위험한 실패부터 줄인다 - 설계와 측정" data-en="Shrink the dangerous failure first - design and measurement">위험한 실패부터 줄인다 - 설계와 측정</h4>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="문제 - 현장의 흐름" data-en="Problem - how the floor works today">문제 - 현장의 흐름</span></div>
+                            <p data-ko="중소 제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다."
+                              data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b>, leans on a veteran's tacit knowledge for the cause, phones the storeroom for the part, and - if it is out of stock - calls a supplier for a quote and types the order into a spreadsheet. <b>Every step changes hands and medium (PDF → phone → Excel), and every change is a wait.</b> A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">
+                              중소
+                              제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면
+                              자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가
+                                생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다.</p>
+                          </div>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - MCP 도구 설계" data-en="Design notes - MCP tool design">설계에서 신경 쓴 것 - MCP 도구 설계</span></div>
+                            <ul>
+                              <li
+                                data-ko="<b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다."
+                                data-en="<b>Half of orchestration is the description.</b> Each of the <b>22 tools</b> (7 core + 14 extended + 2 A2A senders) states when to use it <em>and when not to</em> - an LLM's tool choice is only as good as the schema text it reads.">
+                                <b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(코어 7 + 확장 14 + A2A 발신 2) 각각에 «언제 쓰고 언제
+                                쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다.
+                              </li>
+                              <li
+                                data-ko="<b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수 있게</b> 한다."
+                                data-en="<b>Failure comes back as a structured result.</b> Tools return <span class=&quot;mono&quot;>status: ok|not_found|empty|error</span> instead of raising, so the agent can <b>branch</b> - out of stock into alternatives, unknown code into a service referral.">
+                                <b>실패도 구조화된 결과로 반환한다.</b> 예외를 던지지 않고 <span class="mono">status:
+                                  ok|not_found|empty|error</span>로 돌려줘, 에이전트가 «재고 0 → 대체품»이나 «미지 코드 → A/S 안내»로 <b>분기할 수
+                                  있게</b> 한다.
+                              </li>
+                              <li
+                                data-ko="<b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class=&quot;mono&quot;>requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다."
+                                data-en="<b>Reads and writes are separated.</b> Only <b>three tools write, and all three can only INSERT a draft</b> - there is no UPDATE permission at all, so approving, rejecting and signing happen exclusively through human-only APIs. And <b>identity (<span class=&quot;mono&quot;>requested_by</span>) is injected by the server, not passed as a tool parameter</b>, so the LLM has no path to forge it.">
+                                <b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어
+                                승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class="mono">requested_by</span>)은 도구 파라미터가
+                                  아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다.
+                              </li>
+                              <li
+                                data-ko="<b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수 없다. 평가 스크립트가 <span class=&quot;mono&quot;>/health</span>를 실측해 프로파일이 <span class=&quot;mono&quot;>core</span>가 아니면 <b>스스로 종료</b>한다."
+                                data-en="<b>Extended tools are off by default, and evaluation only counts on the 7 core tools.</b> Score with extras enabled and you cannot separate &quot;the fix worked&quot; from &quot;there were more tools&quot;. The eval script probes <span class=&quot;mono&quot;>/health</span> and <b>aborts itself</b> if the profile is not <span class=&quot;mono&quot;>core</span>.">
+                                <b>확장 도구는 기본 비활성이고, 평가는 코어 7종에서만 인정한다.</b> 도구를 늘린 채 평가를 돌리면 «수정 효과»와 «도구가 늘어난 효과»를 분리할 수
+                                없다. 평가 스크립트가 <span class="mono">/health</span>를 실측해 프로파일이 <span
+                                  class="mono">core</span>가 아니면 <b>스스로 종료</b>한다.
+                              </li>
+                              <li
+                                data-ko="<b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 - SQLite는 <span class=&quot;mono&quot;>foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기 가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다."
+                                data-en="<b>Permissions are enforced by the database, not a document.</b> The move from SQLite to PostgreSQL was about <b>authority, not speed</b> - SQLite ships with <span class=&quot;mono&quot;>foreign_keys</span> off, so both referential integrity and the write ban rested on a setting. The write guard is now a <b>permanent trigger plus a session GUC</b>, and read-only connections are physically pinned read-only at the transaction level.">
+                                <b>권한을 문서가 아니라 DB가 강제한다.</b> SQLite에서 PostgreSQL로 옮긴 이유는 성능이 아니라 <b>권한</b>이었다 - SQLite는
+                                <span class="mono">foreign_keys</span>가 기본 OFF라 참조 무결성도 쓰기 차단도 «설정에 기대는» 구조였다. 지금은 쓰기
+                                가드를 <b>영구 트리거 + 세션 GUC</b>로 재구현하고 읽기 전용 커넥션을 트랜잭션 read-only로 물리적으로 잠갔다.
+                              </li>
+                            </ul>
+                          </div>
+          <div class="block">
+                            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - 측정" data-en="Design notes - measurement">설계에서 신경 쓴 것 - 측정</span></div>
+                            <ul>
+                              <li
+                                data-ko="<b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을 열어 보니 <b>틀리는 방식이 정반대</b>였다 - 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정). 현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>"
+                                data-en="<b>A single number cancels two failures with opposite risk.</b> Two models scored 45.6% and 51.0% on part identification - &quot;no difference&quot; - until the breakdown showed they <b>fail in opposite ways</b>: one <b>confidently names the wrong part</b>, the other <b>names none</b>. On the floor the first causes a wrong order - cost and downtime - while the second just leaves you without an answer. <b>Fold them together and the more dangerous model looks better.</b>">
+                                <b>합계 지표가 위험도가 다른 두 실패를 상쇄해 지운다.</b> 모델 둘의 부품 특정률이 45.6%와 51.0%로 나와 «차이 없음»으로 넘겼는데, 안을
+                                열어 보니 <b>틀리는 방식이 정반대</b>였다 - 한쪽은 <b>틀린 부품을 확신</b>(오특정)하고 다른 쪽은 <b>답을 내지 않는다</b>(미특정).
+                                현장에서 오특정은 엉뚱한 발주로 비용·설비 정지를 부르고, 미특정은 답을 못 받는 것이다. <b>같은 실패로 접으면 더 위험한 쪽이 더 좋아 보인다.</b>
+                              </li>
+                              <li
+                                data-ko="그래서 실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는 71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지 않는다</b> - <b>위험한 쪽이 줄었다는 것이 요점</b>이다."
+                                data-en="So failures are now tallied on two axes. In a controlled A/B - same day, same 20 questions, same model, <b>prompt only</b> changed, 120 sessions per arm - the total moved 71.1% → 88.9%, but <b>what actually improved is confident-wrong: 16.7% → 1.1%</b>. The no-answer rate went 12.2% → 10.0%, <b>intervals overlapping, so no claim is made</b>. <b>The point is that the dangerous side shrank.</b>">
+                                그래서
+                                실패를 두 축으로 나눠 집계하는 규칙을 신설했다. 통제 A/B(같은 날·같은 20문항·같은 모델, <b>프롬프트만</b> 변경, 각 120세션)에서 합계는
+                                71.1% → 88.9%지만, <b>실제로 고친 것은 오특정 16.7% → 1.1%</b>다. 미특정은 12.2% → 10.0%로 <b>구간이 겹쳐 주장하지
+                                  않는다</b> - <b>위험한 쪽이 줄었다는 것이 요점</b>이다.
+                              </li>
+                              <li
+                                data-ko="<b>노이즈 바닥을 먼저 쟀다.</b> <span class=&quot;mono&quot;>p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이 40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는 회귀를 보고하게 된다.</b>"
+                                data-en="<b>The noise floor was measured first.</b> A question at <span class=&quot;mono&quot;>p≈0.5</span> still has a <b>40-point 95% CI after twenty runs</b>, and two ten-run batches under identical conditions differed by <b>12 points</b> on citation rate. In other words, <b>quoting a ten-run number reports regressions that do not exist.</b>">
+                                <b>노이즈 바닥을 먼저 쟀다.</b> <span class="mono">p≈0.5</span>인 문항은 <b>20회차를 돌려도 95% 신뢰구간 폭이
+                                  40pt</b>였고, 같은 조건의 10회차 배치 둘이 인용률에서 <b>12pt</b> 어긋나기도 했다. 즉 <b>10회차 수치를 인용하면 존재하지 않는
+                                  회귀를 보고하게 된다.</b>
+                              </li>
+                              <li
+                                data-ko="<b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> 같은 검사는 정규식이 어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 - 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성 앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다."
+                                data-en="<b>A test that asserts absence passes even when it is blind.</b> A check like <span class=&quot;mono&quot;>&quot;X&quot; not in src</span> <b>passes silently</b> if the regex drifts or a path moves - two such checks were sitting in the suite. Absence checks now carry <b>a positive anchor proving the scanner still sees</b>, and nothing counts as passing until the code is deliberately broken and the check actually goes red.">
+                                <b>«없다»를 검사하는 테스트는 눈이 멀어도 통과한다.</b> <span class="mono">"X" not in src</span> 같은 검사는 정규식이
+                                어긋나거나 경로가 바뀌면 <b>조용히 통과</b>한다 - 실제로 그런 검사 2건이 스위트에 있었다. 지금은 부재 검사에 <b>«스캐너가 살아 있다»는 양성
+                                  앵커를 함께 걸고</b>, 코드를 일부러 망가뜨려 실제로 빨개지는지 확인한 뒤에만 통과로 인정한다.
+                              </li>
+                            </ul>
+                          </div>
+          <div class="impact block">
+                            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 전체 실측 (2026.09.11)" data-en="Results - full measurements (2026-09-11)">결과 - 전체 실측 (2026.09.11)</span></div>
+                            <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347) · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한 위반 403 차단 100%</b>는 목표를 달성했다."
+                              data-en="<b>510+</b> commits · design decisions <b>D1–D141</b> documented · a <b>1,559-check</b> regression suite (1,212 contract spikes + 347 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">
+                              커밋
+                              <b>510+</b> · 설계 결정 <b>D1~D141</b> 문서화 · 회귀 스위트 <b>1,559건</b>(계약 스파이크 1,212 + pytest 347)
+                              · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3기종) · 매뉴얼 <b>1,229청크</b> 색인. <b>미지 코드 환각률 0.0%</b>와 <b>권한
+                                위반 403 차단 100%</b>는 목표를 달성했다.
+                            </p>
+                            <p data-ko="A2A는 <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class=&quot;mono&quot;>skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다."
+                              data-en="On A2A, <b>all six outbound skills are verified end to end</b>. <b>There is no inbound side by design</b>: the contract assigns MaintQ the client role (Agent Card <span class=&quot;mono&quot;>skills: []</span>) because maintenance is <b>where work begins</b>, not where it lands. <b>Not a to-do - a decision.</b> ⚠️ All data is <b>mock</b> (public manuals plus generated seed) and there are no real users, so this is never described as &quot;in production&quot;.">
+                              A2A는
+                              <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card
+                              <span class="mono">skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가
+                                할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지
+                              않는다.
+                            </p>
+                            
+                          </div>
         </section>
 
       </div>
