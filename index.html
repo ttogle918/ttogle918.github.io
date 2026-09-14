@@ -2233,9 +2233,26 @@
         page-break-before: avoid
       }
 
-      .pcard {
+      /* 카드는 한 쪽보다 긴 경우가 많다 - 통째로 넘기면 앞 쪽이 거의 빈 채로 남는다.
+         카드 안에서는 나뉘게 두고, 그림 · 결과 칸 · 기능 목록만 쪼개지지 않게 한다. */
+      .pcard,
+      .subcard {
+        break-inside: auto;
+        page-break-inside: auto
+      }
+
+      .pc-figure,
+      .metricrow,
+      .metric,
+      .block,
+      .feats {
         break-inside: avoid;
         page-break-inside: avoid
+      }
+
+      /* 결과 칸의 «누르면 목록» 표식은 종이에서 의미가 없다 */
+      .metric[data-modal] .ml::after {
+        content: "" !important
       }
 
       .pcard+.pcard {
@@ -2325,8 +2342,9 @@
       </p>
       <p class="hero-role reveal" data-d="2">AI Agent Engineer · Backend</p>
       <div class="hero-links reveal" data-d="3">
-        <a class="hbtn primary" href="uploads/최지현_portfolio.pdf" target="_blank" rel="noopener"><span class="ic"
-            data-ic="file"></span><span data-ko="포트폴리오 상세" data-en="Full portfolio">포트폴리오 상세</span></a>
+        <!-- 웹사이트를 그대로 구운 PDF(tools/build_web_pdf.py). 헤더의 PDF 버튼은 인쇄본 요약판이다 -->
+        <a class="hbtn primary" href="uploads/최지현_portfolio_web.pdf" download="최지현_portfolio_web.pdf"><span class="ic"
+            data-ic="download"></span><span data-ko="PDF 다운받기" data-en="Download PDF">PDF 다운받기</span></a>
         <a class="hbtn" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic"
             data-ic="github"></span>GitHub</a>
         <a class="hbtn" href="mailto:ttogle918@gmail.com"><span class="ic" data-ic="mail"></span>Email</a>
