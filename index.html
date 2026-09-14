@@ -1315,6 +1315,17 @@
       margin: 8px 0 6px
     }
 
+    /* 보조강사 담당 강의 목록 - 제목(날짜) / 설명 / 기술 */
+    .tl-lectures li {
+      margin-bottom: 8px
+    }
+
+    .tl-lec-stack {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted)
+    }
+
     .metricrow {
       display: flex;
       flex-wrap: wrap;
@@ -2535,59 +2546,34 @@
                   <b>Spring AI · RAG</b> · 임베딩과 Vector Store 기반 RAG, Vision 멀티모달 입력</li>
               </ul>
               <details class="tl-more">
-                <summary data-ko="담당 강의 전체 보기 (11)" data-en="All courses (11)">담당 강의 전체 보기 (11)</summary>
-              <ul>
-                <li data-ko="<b>Spring AI 기초</b> (26.03.14~15) · OpenAI API, Spring AI, Spring Boot, STS"
-                  data-en="<b>Spring AI Basics</b> (Mar 14–15) · OpenAI API, Spring AI, Spring Boot, STS"><b>Spring AI
-                    기초</b> (26.03.14~15) · OpenAI API, Spring AI, Spring Boot, STS</li>
-                <li data-ko="<b>음성으로 제어하는 MCP 기반 대화형 AI 비서앱</b> (26.03.19~20) · OpenAI API, STT, TTS, MCP"
-                  data-en="<b>Voice-controlled MCP conversational AI assistant</b> (Mar 19–20) · OpenAI API, STT, TTS, MCP">
-                  <b>음성으로 제어하는 MCP 기반 대화형 AI 비서앱</b> (26.03.19~20) · OpenAI API, STT, TTS, MCP
-                </li>
-                <li
-                  data-ko="<b>구글 AI Studio - 나노바나나·VEO·AI 앱 배포</b> (26.03.26~27) · OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API"
-                  data-en="<b>Google AI Studio - Nano Banana·VEO·app deploy</b> (Mar 26–27) · OpenAI API, Google AI Studio, Nano Banana, VEO, Kakao API">
-                  <b>구글 AI Studio - 나노바나나·VEO·AI 앱 배포</b> (26.03.26~27) · OpenAI API, Google AI Studio, 나노바나나, VEO,
-                  Kakao API
-                </li>
-                <li
-                  data-ko="<b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store"
-                  data-en="<b>Spring AI Embedding & RAG</b> (Mar 28–29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store">
-                  <b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29) · Spring AI, Spring Boot, OpenAI API, RAG, Vector Store
-                </li>
-                <li
-                  data-ko="<b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05) · Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling"
-                  data-en="<b>Spring AI Tool calling & MCP Server</b> (Apr 5) · Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling">
-                  <b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05) · Spring AI, Spring Boot, OpenAI API, MCP,
-                  SSE-WebFlux, Tool Calling
-                </li>
-                <li
-                  data-ko="<b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14) · n8n, Docker, Google API(Gmail·Drive), OpenAI"
-                  data-en="<b>Workflow-based system design patterns</b> (Apr 13–14) · n8n, Docker, Google API (Gmail·Drive), OpenAI">
-                  <b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14) · n8n, Docker, Google API(Gmail·Drive), OpenAI
-                </li>
-                <li
-                  data-ko="<b>LLM 기반 자율 에이전트 개발 및 워크플로우 자동화</b> (26.04.18~19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph"
-                  data-en="<b>LLM autonomous agents & workflow automation</b> (Apr 18–19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph">
-                  <b>LLM 기반 자율 에이전트 개발 및 워크플로우 자동화</b> (26.04.18~19) · OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab,
-                  LangGraph
-                </li>
-                <li data-ko="<b>Spring AI LLM 비전과 멀티미디어 융합</b> · Spring AI, Vision API, 멀티모달 입력 처리"
-                  data-en="<b>Spring AI vision &amp; multimedia</b> · Spring AI, Vision API, multimodal input">
-                  <b>Spring AI LLM 비전과 멀티미디어 융합</b> · Spring AI, Vision API, 멀티모달 입력 처리
-                </li>
-                <li data-ko="<b>멀티미디어 프롬프트 엔지니어링 (PBL)</b> · 이미지·음성 프롬프트 설계 실습"
-                  data-en="<b>Multimedia prompt engineering (PBL)</b> · image and audio prompt design labs">
-                  <b>멀티미디어 프롬프트 엔지니어링 (PBL)</b> · 이미지·음성 프롬프트 설계 실습
-                </li>
-                <li data-ko="<b>생성형 AI를 활용한 정보보안</b> / <b>AI를 활용한 웹 서비스 품질관리</b> · 보안·QA 도메인 적용"
-                  data-en="<b>Generative AI for information security</b> / <b>AI for web service QA</b> · security and QA applications">
-                  <b>생성형 AI를 활용한 정보보안</b> / <b>AI를 활용한 웹 서비스 품질관리</b> · 보안·QA 도메인 적용
-                </li>
-                <li data-ko="<b>노션 데이터베이스 자료 정리 &amp; Google Apps Script 보고서 자동화</b>"
-                  data-en="<b>Notion databases &amp; Google Apps Script report automation</b>">
-                  <b>노션 데이터베이스 자료 정리 &amp; Google Apps Script 보고서 자동화</b>
-                </li>
+                <summary data-ko="담당 강의 전체 보기 (13)" data-en="All courses (13)">담당 강의 전체 보기 (13)</summary>
+              <ul class="tl-lectures">
+                <li data-ko="<b>Spring AI 기초</b> (26.03.14~15, 26.06.06~07)<br>Spring Boot 앱에서 OpenAI API를 불러 쓰는 Spring AI 기본 사용법<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Spring AI, Spring Boot, STS</span>"
+                  data-en="<b>Spring AI Basics</b> (Mar 14–15, Jun 6–7)<br>Calling the OpenAI API from a Spring Boot app with Spring AI<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Spring AI, Spring Boot, STS</span>"><b>Spring AI 기초</b> (26.03.14~15, 26.06.06~07)<br>Spring Boot 앱에서 OpenAI API를 불러 쓰는 Spring AI 기본 사용법<br><span class="tl-lec-stack">OpenAI API, Spring AI, Spring Boot, STS</span></li>
+                <li data-ko="<b>음성으로 제어하는 MCP : 대화하는 AI 비서앱 개발</b> (26.03.19~20, 26.08.15~16)<br>음성 인식·합성으로 MCP 도구를 부르는 대화형 비서앱 만들기<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, STT, TTS, MCP</span>"
+                  data-en="<b>Voice-controlled MCP: a conversational AI assistant app</b> (Mar 19–20, Aug 15–16)<br>A voice assistant that calls MCP tools through STT and TTS<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, STT, TTS, MCP</span>"><b>음성으로 제어하는 MCP : 대화하는 AI 비서앱 개발</b> (26.03.19~20, 26.08.15~16)<br>음성 인식·합성으로 MCP 도구를 부르는 대화형 비서앱 만들기<br><span class="tl-lec-stack">OpenAI API, STT, TTS, MCP</span></li>
+                <li data-ko="<b>구글 AI Studio : 나노바나나부터 VEO, AI 앱배포까지</b> (26.03.26~27)<br>Google AI Studio로 이미지·영상 생성 모델을 써 보고 AI 앱으로 배포<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API</span>"
+                  data-en="<b>Google AI Studio - Nano Banana, VEO and app deploy</b> (Mar 26–27)<br>Image and video generation models in Google AI Studio, shipped as an app<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API</span>"><b>구글 AI Studio : 나노바나나부터 VEO, AI 앱배포까지</b> (26.03.26~27)<br>Google AI Studio로 이미지·영상 생성 모델을 써 보고 AI 앱으로 배포<br><span class="tl-lec-stack">OpenAI API, Google AI Studio, 나노바나나, VEO, Kakao API</span></li>
+                <li data-ko="<b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29, 26.06.27~28)<br>문서를 임베딩해 Vector Store에 넣고, 검색한 내용으로 답하는 RAG 만들기<br><span class=&quot;tl-lec-stack&quot;>Spring AI, Spring Boot, OpenAI API, RAG, Vector Store</span>"
+                  data-en="<b>Spring AI embeddings and RAG</b> (Mar 28–29, Jun 27–28)<br>Embedding documents into a vector store and answering from retrieved text<br><span class=&quot;tl-lec-stack&quot;>Spring AI, Spring Boot, OpenAI API, RAG, Vector Store</span>"><b>Spring AI 임베딩과 RAG 구현</b> (26.03.28~29, 26.06.27~28)<br>문서를 임베딩해 Vector Store에 넣고, 검색한 내용으로 답하는 RAG 만들기<br><span class="tl-lec-stack">Spring AI, Spring Boot, OpenAI API, RAG, Vector Store</span></li>
+                <li data-ko="<b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05)<br>LLM이 도구를 호출하게 하고, Spring으로 MCP 서버 만들기<br><span class=&quot;tl-lec-stack&quot;>Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling</span>"
+                  data-en="<b>Spring AI tool calling and MCP servers</b> (Apr 5)<br>Letting the LLM call tools and building an MCP server in Spring<br><span class=&quot;tl-lec-stack&quot;>Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling</span>"><b>Spring AI Tool 호출 및 MCP Server 개발</b> (26.04.05)<br>LLM이 도구를 호출하게 하고, Spring으로 MCP 서버 만들기<br><span class="tl-lec-stack">Spring AI, Spring Boot, OpenAI API, MCP, SSE-WebFlux, Tool Calling</span></li>
+                <li data-ko="<b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14)<br>n8n으로 Gmail·Drive를 잇는 자동화 워크플로우 설계<br><span class=&quot;tl-lec-stack&quot;>n8n, Docker, Google API(Gmail·Drive), OpenAI</span>"
+                  data-en="<b>Workflow-based system design patterns</b> (Apr 13–14)<br>Designing n8n automations across Gmail and Drive<br><span class=&quot;tl-lec-stack&quot;>n8n, Docker, Google API(Gmail·Drive), OpenAI</span>"><b>워크플로우 기반 처리 시스템 설계 패턴 입문</b> (26.04.13~14)<br>n8n으로 Gmail·Drive를 잇는 자동화 워크플로우 설계<br><span class="tl-lec-stack">n8n, Docker, Google API(Gmail·Drive), OpenAI</span></li>
+                <li data-ko="<b>LLM 기반 자율 에이전트(Agent) 개발 및 워크플로우 자동화</b> (26.04.18~19)<br>검색 도구를 쓰는 ReAct·Reflexion 에이전트를 LangGraph로 구성<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph</span>"
+                  data-en="<b>LLM autonomous agents and workflow automation</b> (Apr 18–19)<br>ReAct and Reflexion agents with search tools, built in LangGraph<br><span class=&quot;tl-lec-stack&quot;>OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph</span>"><b>LLM 기반 자율 에이전트(Agent) 개발 및 워크플로우 자동화</b> (26.04.18~19)<br>검색 도구를 쓰는 ReAct·Reflexion 에이전트를 LangGraph로 구성<br><span class="tl-lec-stack">OpenAI API, Tavily·SERP, ReAct, Reflexion, Colab, LangGraph</span></li>
+                <li data-ko="<b>멀티미디어 프롬프트 엔지니어링 : 이미지, 음악, 비디오까지 (PBL)</b> (26.04.25~26)<br>이미지·음악·비디오 생성 프롬프트를 설계하는 프로젝트 실습"
+                  data-en="<b>Multimedia prompt engineering: image, music and video (PBL)</b> (Apr 25–26)<br>Project-based prompt design for image, music and video generation"><b>멀티미디어 프롬프트 엔지니어링 : 이미지, 음악, 비디오까지 (PBL)</b> (26.04.25~26)<br>이미지·음악·비디오 생성 프롬프트를 설계하는 프로젝트 실습</li>
+                <li data-ko="<b>노션 데이터베이스로 자료 정리하고 Google Apps Script로 보고서 자동 생성하기</b> (26.06.20~21)<br>노션 데이터베이스로 자료를 정리하고 Apps Script로 보고서를 자동으로 만들기<br><span class=&quot;tl-lec-stack&quot;>Notion, Google Apps Script</span>"
+                  data-en="<b>Organizing data in Notion databases and generating reports with Google Apps Script</b> (Jun 20–21)<br>Notion databases plus Apps Script report automation<br><span class=&quot;tl-lec-stack&quot;>Notion, Google Apps Script</span>"><b>노션 데이터베이스로 자료 정리하고 Google Apps Script로 보고서 자동 생성하기</b> (26.06.20~21)<br>노션 데이터베이스로 자료를 정리하고 Apps Script로 보고서를 자동으로 만들기<br><span class="tl-lec-stack">Notion, Google Apps Script</span></li>
+                <li data-ko="<b>생성형 AI를 활용한 정보보안</b> (26.07.04~05)<br>생성형 AI를 보안 업무에 적용하는 실습"
+                  data-en="<b>Generative AI for information security</b> (Jul 4–5)<br>Applying generative AI to security work"><b>생성형 AI를 활용한 정보보안</b> (26.07.04~05)<br>생성형 AI를 보안 업무에 적용하는 실습</li>
+                <li data-ko="<b>Claude Code 기반 문서주도 개발과 하네스 엔지니어링</b> (26.08.22~23)<br>설계 문서를 먼저 쓰고, Claude Code가 정한 규칙 안에서 개발하게 하는 하네스 구성<br><span class=&quot;tl-lec-stack&quot;>Claude Code</span>"
+                  data-en="<b>Document-driven development and harness engineering with Claude Code</b> (Aug 22–23)<br>Writing the design first and keeping Claude Code inside a harness of rules<br><span class=&quot;tl-lec-stack&quot;>Claude Code</span>"><b>Claude Code 기반 문서주도 개발과 하네스 엔지니어링</b> (26.08.22~23)<br>설계 문서를 먼저 쓰고, Claude Code가 정한 규칙 안에서 개발하게 하는 하네스 구성<br><span class="tl-lec-stack">Claude Code</span></li>
+                <li data-ko="<b>Claude Code 활용 풀스택 바이브 코딩 실무 과정</b> (26.08.29~30)<br>Claude Code로 화면부터 서버까지 웹 서비스를 만드는 실습<br><span class=&quot;tl-lec-stack&quot;>Claude Code</span>"
+                  data-en="<b>Full-stack vibe coding with Claude Code</b> (Aug 29–30)<br>Building a web service front to back with Claude Code<br><span class=&quot;tl-lec-stack&quot;>Claude Code</span>"><b>Claude Code 활용 풀스택 바이브 코딩 실무 과정</b> (26.08.29~30)<br>Claude Code로 화면부터 서버까지 웹 서비스를 만드는 실습<br><span class="tl-lec-stack">Claude Code</span></li>
+                <li data-ko="<b>AIoT (지능형 사물인터넷) 개발</b> (26.09.05~06)<br>아두이노에 초음파·온습도 센서를 붙이고, 그 값을 AI와 연결하기<br><span class=&quot;tl-lec-stack&quot;>아두이노, 초음파 센서, 온습도 센서</span>"
+                  data-en="<b>AIoT (intelligent IoT) development</b> (Sep 5–6)<br>Wiring ultrasonic and temperature-humidity sensors to an Arduino and connecting the readings to AI<br><span class=&quot;tl-lec-stack&quot;>아두이노, 초음파 센서, 온습도 센서</span>"><b>AIoT (지능형 사물인터넷) 개발</b> (26.09.05~06)<br>아두이노에 초음파·온습도 센서를 붙이고, 그 값을 AI와 연결하기<br><span class="tl-lec-stack">아두이노, 초음파 센서, 온습도 센서</span></li>
               </ul>
               </details>
               <p class="tl-sub" data-ko="다룬 기술 스택" data-en="Stack">다룬 기술 스택</p>
