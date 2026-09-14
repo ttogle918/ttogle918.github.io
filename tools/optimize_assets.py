@@ -96,16 +96,12 @@ DIAGRAMS: dict[str, str] = {
     "spendq/chain-blocks.png": SPENDQ_SHOTS + "explorer-fail.png",
 }
 
-SECUREAI_DEMO = "secureai-editor/docs/demo/01_Kkebi_SAST-PATCH-PR_녹음 2026-06-28 115918.mp4"
-
 # 영상에서 뽑은 정지 프레임. 이 데모는 내레이션이라 대부분 멈춰 있어 GIF 로 만들면
 # 움직임 없이 용량만 커진다(실측 1.5~3.9MB). 한 장씩 PNG 로 뽑으면 170KB 안쪽이다.
 KOCRUIT_DEMO = "forked_kocruit/KOSA-FINAL-PROJECT-02/docs/kocruit시연_최지현.mp4"
 
 SHOTS: dict[str, tuple[str, float]] = {
     # 대상 파일: (원본 영상, 초)
-    "secureai/vulnerabilities.png": (SECUREAI_DEMO, 110.0),
-    "secureai/auto-pr.png": (SECUREAI_DEMO, 228.0),
     # KOCRUIT 시연본. 데이터가 전부 더미다("데모 모드 · 시연용 데이터" 배지, example.com).
     # 같은 레포 data/ 의 실명 면접 녹화 3종과는 다른 파일이다 - 그쪽은 쓰지 않는다.
     # 영상 뒷부분에 미완성 화면(Total 0 Stages · AI SCORE −)이 있어 초를 골라 뽑는다.
@@ -150,6 +146,9 @@ SPENDQ_CUE = "//wsl.localhost/Ubuntu/home/hyun/spendq/docs/cuecard/"
 SPENDQ_TAKE = SPENDQ_CUE + "화면 녹화 중 2026-09-12 111417.mp4"
 SPENDQ_PROVE = SPENDQ_CUE + "화면 녹화 중 2026-09-12 131649.mp4"
 
+# SecureAI 전 과정을 한 번에 도는 4분짜리 시연본(자막 없음).
+SECUREAI_WALKTHROUGH = "secureai-editor/docs/demo/데모_260628.mp4"
+
 # 콘솔 본문만 남긴다(좌우 빈 여백 · 테마 버튼 줄 아래 빈 공간 제외).
 # hold: 콘솔은 이벤트 사이에 멈춰 있다 - 같은 프레임을 합쳐 한 장을 길게 보여 준다(실측 3.8MB -> 아래).
 SPENDQ_CONSOLE = {"crop": (0.085, 0.0, 0.9, 0.78), "hold": True}
@@ -166,6 +165,15 @@ CLIPS: dict[str, tuple] = {
     "spendq/r2-refund-learn.gif": (SPENDQ_TAKE, 21.0, 47.0, SPENDQ_CONSOLE),
     # 앱 정책검사를 건너뛰고 체인에 직접 방송 → PerTxLimitExceeded(6000). 출력이 화면 위쪽에 몰려 있다.
     "spendq/prove-limit.gif": (SPENDQ_PROVE, 0.0, 6.0, {"crop": (0.0, 0.0, 1.0, 0.6), "hold": True}),
+    # SecureAI(깨비) 데모 원본 - 자막 없는 판. 자막 판은 드라이브에만 있고 카드의 «데모 영상» 버튼이 그쪽을 연다.
+    # 코드 분석 → 취약점 목록 → 수정안(Before/After). 좌측 파일 트리는 잘라 낸다.
+    "secureai/sast-scan.gif": (SECUREAI_WALKTHROUGH, 32.0, 50.0, {"crop": (0.36, 0.03, 1.0, 0.8), "hold": True}),
+    # DAST 워크스페이스 - 대상 선택 → 배치 실행 → 로그에 EXPLOITED / 안전.
+    "secureai/dast-verify.gif": (SECUREAI_WALKTHROUGH, 89.0, 106.0, {"crop": (0.06, 0.0, 1.0, 0.55), "hold": True}),
+    # PR 생성 다이얼로그 → GitHub PR 목록 → 사람이 병합(자동 병합은 꺼져 있다).
+    "secureai/patch-pr.gif": (SECUREAI_WALKTHROUGH, 149.0, 186.0, {"hold": True}),
+    # 규제 문서 자동 생성 - CISO 보고서 생성 → 다운로드. 이어지는 PDF 화면은 한글 폰트가 깨져 보여 넣지 않는다.
+    "secureai/compliance-docs.gif": (SECUREAI_WALKTHROUGH, 191.0, 205.0, {"crop": (0.05, 0.0, 1.0, 0.5), "hold": True}),
 }
 
 
