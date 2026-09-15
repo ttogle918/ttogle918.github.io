@@ -10,7 +10,7 @@
   <meta property="og:description" content="MCP는 자기 도구를 쓴다. A2A는 남의 에이전트에게 일을 맡긴다. 세 도메인 에이전트를 표준 Task 계약으로 연결한 기록." />
   <meta property="og:type" content="website" />
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%233A56C8%27/><g stroke=%27%23fff%27 stroke-width=%271.4%27 fill=%27none%27><path d=%27M12 6.5 6 16.5h12z%27/></g><g fill=%27%23fff%27><circle cx=%2712%27 cy=%276.5%27 r=%272%27/><circle cx=%276%27 cy=%2716.5%27 r=%272%27/><circle cx=%2718%27 cy=%2716.5%27 r=%272%27/></g></svg>" />
+    href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%23121278%27/><g stroke=%27%23fff%27 stroke-width=%271.4%27 fill=%27none%27><path d=%27M12 6.5 6 16.5h12z%27/></g><g fill=%27%23fff%27><circle cx=%2712%27 cy=%276.5%27 r=%272%27/><circle cx=%276%27 cy=%2716.5%27 r=%272%27/><circle cx=%2718%27 cy=%2716.5%27 r=%272%27/></g></svg>" />
   <title>QMesh - 세 AI 에이전트를 A2A로 잇기</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,26 +20,35 @@
   <style>
     /* ============ TOKENS ============ */
     :root {
-      --ground: #F4F6FA;
+      --ground: #EFEFE9;
       --panel: #FFFFFF;
-      --panel-2: #EDF1F8;
-      --ink: #10141F;
-      --ink-soft: #414A60;
-      --faint: #6B7488;
-      --line: #DDE3EE;
-      --line-strong: #BFC9DC;
-      --accent: #3A56C8;
+      --panel-2: #F7F7F3;
+      --ink: #14161A;
+      --ink-soft: #5B6068;
+      --faint: #6E747C;
+      --line: #DCDCD4;
+      --line-strong: #B8BDC4;
+      --accent: #121278;
       --accent-ink: #FFFFFF;
-      --accent-soft: #E4EAFB;
-      --cyan: #0E7490;
-      --cyan-soft: #DBEEF4;
-      --warn: #9A6412;
-      --warn-soft: #F7EDD9;
-      --crit: #A93A31;
-      --crit-soft: #F7E4E1;
-      --code-bg: #10141F;
-      --code-ink: #DFE5F2;
-      --card-shadow: 0 1px 2px rgba(16, 20, 31, .04), 0 8px 24px -12px rgba(16, 20, 31, .12);
+      --accent-soft: #E7E7F3;
+      --cyan: #1F7A3D;
+      --cyan-soft: #E3F0E7;
+      --warn: #8A6100;
+      --warn-soft: #FFF6E0;
+      --crit: #B3261E;
+      --crit-soft: #FBEAE8;
+      --code-bg: #14161A;
+      --code-ink: #E6E6E0;
+      --maint: #8A6100;
+      --maint-line: #B8860B;
+      --maint-soft: #FBF3DF;
+      --insu: #0F7A6C;
+      --insu-line: #0F7A6C;
+      --insu-soft: #E4F3F0;
+      --fin: #2D4FCC;
+      --fin-line: #2D4FCC;
+      --fin-soft: #EAEEFC;
+      --card-shadow: 0 1px 2px rgba(20, 22, 26, .04), 0 8px 24px -12px rgba(20, 22, 26, .10);
 
       --f-body: 'IBM Plex Sans KR', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
       --f-mono: 'IBM Plex Mono', ui-monospace, 'JetBrains Mono', 'D2Coding', Consolas, monospace;
@@ -48,49 +57,67 @@
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --ground: #0B0E17;
-        --panel: #131827;
-        --panel-2: #0F1421;
-        --ink: #E8ECF6;
-        --ink-soft: #A6AFC6;
-        --faint: #737C95;
-        --line: #212940;
-        --line-strong: #333D59;
-        --accent: #8AA0FF;
-        --accent-ink: #0A0E1A;
-        --accent-soft: #1A2244;
-        --cyan: #4FD1E5;
-        --cyan-soft: #102B33;
+        --ground: #121311;
+        --panel: #1B1C1A;
+        --panel-2: #222320;
+        --ink: #ECECE6;
+        --ink-soft: #B3B6BA;
+        --faint: #8D9299;
+        --line: #2D2E2A;
+        --line-strong: #45474A;
+        --accent: #A9ABF2;
+        --accent-ink: #121311;
+        --accent-soft: #23234A;
+        --cyan: #6FC48A;
+        --cyan-soft: #16281C;
         --warn: #E0B063;
         --warn-soft: #2B2313;
         --crit: #E5716A;
         --crit-soft: #2C1613;
-        --code-bg: #070A12;
-        --code-ink: #C9D3EA;
+        --code-bg: #0B0B0A;
+        --code-ink: #D8D8D0;
+        --maint: #E3B34C;
+        --maint-line: #B8860B;
+        --maint-soft: #2A2312;
+        --insu: #5CC8B5;
+        --insu-line: #2E9C8A;
+        --insu-soft: #112824;
+        --fin: #8FA6FF;
+        --fin-line: #5870DA;
+        --fin-soft: #1A2244;
         --card-shadow: 0 1px 2px rgba(0, 0, 0, .34), 0 12px 32px -14px rgba(0, 0, 0, .6);
       }
     }
 
     :root[data-theme="dark"] {
-      --ground: #0B0E17;
-      --panel: #131827;
-      --panel-2: #0F1421;
-      --ink: #E8ECF6;
-      --ink-soft: #A6AFC6;
-      --faint: #737C95;
-      --line: #212940;
-      --line-strong: #333D59;
-      --accent: #8AA0FF;
-      --accent-ink: #0A0E1A;
-      --accent-soft: #1A2244;
-      --cyan: #4FD1E5;
-      --cyan-soft: #102B33;
+      --ground: #121311;
+      --panel: #1B1C1A;
+      --panel-2: #222320;
+      --ink: #ECECE6;
+      --ink-soft: #B3B6BA;
+      --faint: #8D9299;
+      --line: #2D2E2A;
+      --line-strong: #45474A;
+      --accent: #A9ABF2;
+      --accent-ink: #121311;
+      --accent-soft: #23234A;
+      --cyan: #6FC48A;
+      --cyan-soft: #16281C;
       --warn: #E0B063;
       --warn-soft: #2B2313;
       --crit: #E5716A;
       --crit-soft: #2C1613;
-      --code-bg: #070A12;
-      --code-ink: #C9D3EA;
+      --code-bg: #0B0B0A;
+      --code-ink: #D8D8D0;
+      --maint: #E3B34C;
+      --maint-line: #B8860B;
+      --maint-soft: #2A2312;
+      --insu: #5CC8B5;
+      --insu-line: #2E9C8A;
+      --insu-soft: #112824;
+      --fin: #8FA6FF;
+      --fin-line: #5870DA;
+      --fin-soft: #1A2244;
       --card-shadow: 0 1px 2px rgba(0, 0, 0, .34), 0 12px 32px -14px rgba(0, 0, 0, .6);
     }
 
@@ -889,6 +916,16 @@
       margin-bottom: 4px;
     }
 
+    .agent.maint { --accent: var(--maint); --accent-soft: var(--maint-soft); --agent-line: var(--maint-line); }
+    .agent.insu { --accent: var(--insu); --accent-soft: var(--insu-soft); --agent-line: var(--insu-line); }
+    .agent.fin { --accent: var(--fin); --accent-soft: var(--fin-soft); --agent-line: var(--fin-line); }
+
+    .agent.maint,
+    .agent.insu,
+    .agent.fin {
+      border-top: 3px solid var(--agent-line);
+    }
+
     .agent .dom {
       font-family: var(--f-mono);
       font-size: 10px;
@@ -1547,31 +1584,31 @@
 
           <!-- MaintQ -->
           <g>
-            <rect x="288" y="24" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)"
+            <rect x="288" y="24" width="184" height="68" rx="11" fill="var(--maint-soft)" stroke="var(--maint-line)"
               stroke-width="1.4" />
             <text x="380" y="49" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16"
               font-weight="700" fill="var(--ink)">MaintQ</text>
             <text x="380" y="68" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11"
               fill="var(--faint)" data-ko="제조 설비보전 · :9003" data-en="manufacturing · :9003">제조 설비보전 · :9003</text>
             <text x="380" y="84" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
-              fill="var(--cyan)">Python FastAPI · MCP</text>
+              fill="var(--maint)">Python FastAPI · MCP</text>
           </g>
 
           <!-- FinAllQ -->
           <g>
-            <rect x="28" y="342" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)"
+            <rect x="28" y="342" width="184" height="68" rx="11" fill="var(--fin-soft)" stroke="var(--fin-line)"
               stroke-width="1.4" />
             <text x="120" y="367" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16"
               font-weight="700" fill="var(--ink)">FinAllQ</text>
             <text x="120" y="386" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11"
               fill="var(--faint)" data-ko="은행 · 증권 · :9001" data-en="banking · brokerage · :9001">은행 · 증권 · :9001</text>
             <text x="120" y="402" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
-              fill="var(--cyan)">Java Spring · LangGraph</text>
+              fill="var(--fin)">Java Spring · LangGraph</text>
           </g>
 
           <!-- InsuQ -->
           <g>
-            <rect x="548" y="342" width="184" height="68" rx="11" fill="var(--panel-2)" stroke="var(--line-strong)"
+            <rect x="548" y="342" width="184" height="68" rx="11" fill="var(--insu-soft)" stroke="var(--insu-line)"
               stroke-width="1.4" />
             <text x="640" y="367" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="16"
               font-weight="700" fill="var(--ink)">InsuQ</text>
@@ -1579,7 +1616,7 @@
               fill="var(--faint)" data-ko="기업 · 화재보험 · :9002" data-en="commercial insurance · :9002">기업 · 화재보험 ·
               :9002</text>
             <text x="640" y="402" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
-              fill="var(--cyan)">Spring · FastAPI RAG</text>
+              fill="var(--insu)">Spring · FastAPI RAG</text>
           </g>
 
           <!-- Orchestrator -->
@@ -1669,7 +1706,7 @@
       <div class="agents reveal">
 
         <!-- InsuQ -->
-        <article class="agent">
+        <article class="agent insu">
           <div class="agent-top"><span class="dom" data-ko="보험" data-en="Insurance">보험</span><span
               class="port">:9002</span></div>
           <h3>InsuQ</h3>
@@ -1718,7 +1755,7 @@
         </article>
 
         <!-- MaintQ -->
-        <article class="agent">
+        <article class="agent maint">
           <div class="agent-top"><span class="dom" data-ko="제조" data-en="Manufacturing">제조</span><span
               class="port">:9003</span></div>
           <h3>MaintQ</h3>
@@ -1764,7 +1801,7 @@
         </article>
 
         <!-- FinAllQ -->
-        <article class="agent">
+        <article class="agent fin">
           <div class="agent-top"><span class="dom" data-ko="금융" data-en="Finance">금융</span><span
               class="port">:9001</span></div>
           <h3>FinAllQ</h3>
