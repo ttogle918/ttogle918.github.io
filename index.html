@@ -616,6 +616,11 @@
       }
     }
 
+    /* 두 칸을 모두 쓰는 카드 (NVIDIA DLI 인증) */
+    .skill-card-wide {
+      grid-column: 1 / -1
+    }
+
     .skill-card {
       background: var(--paper);
       border: 1px solid var(--line);
@@ -2511,6 +2516,9 @@
                 <li data-ko="PBL 프로젝트: RAG 지식 검색 서비스 · MCP 업무 자동화 · 멀티에이전트 협업 시스템"
                   data-en="PBL Projects: RAG Service · MCP Automation · Multi-Agent Collaboration System">
                   PBL 프로젝트: RAG 지식 검색 서비스 · MCP 업무 자동화 · 멀티에이전트 협업 시스템</li>
+                <li data-ko="NVIDIA DLI 인증: 과정 중 평가를 통과해 Certificate of Competency 5개를 받았습니다 (2026.08)"
+                  data-en="NVIDIA DLI: five Certificates of Competency earned during the program (Aug 2026)">
+                  NVIDIA DLI 인증: 과정 중 평가를 통과해 Certificate of Competency 5개를 받았습니다 (2026.08)</li>
                 <li data-ko="주관 &amp; 운영: NIPA · NVIDIA 협력 (ICT이노베이션스퀘어 수도권, KOSA·앨리스, 구름 goorm)"
                   data-en="Hosted by: NIPA &amp; NVIDIA (ICT Innovation Square, KOSA, Elice, goorm)">
                   주관 &amp; 운영: NIPA · NVIDIA 협력 (ICT이노베이션스퀘어 수도권, KOSA·앨리스, 구름 goorm)</li>
@@ -2803,9 +2811,8 @@
                 <li data-ko="이탈 고객 예측 (RFM·KMeans · RandomForest 이탈 85.3% · XGBoost 활동 저하 89%)"
                   data-en="Churn prediction (RFM·KMeans·RF/XGBoost, 85.3% acc)">이탈 고객 예측 (RFM·KMeans · RandomForest 이탈
                   85.3% · XGBoost 활동 저하 89%)</li>
-                <li data-ko="질문-답변 검색 (SBERT/KoBERT STS 0.90, 개인정보 익명화 10만 1천 건)"
-                  data-en="QA retrieval (SBERT/KoBERT STS 0.90, 101K rows anonymized)">질문-답변 검색 (SBERT/KoBERT STS 0.90,
-                  개인정보 익명화 10만 1천 건)</li>
+                <li data-ko="질문-답변 검색 (SBERT 문장 유사도 0.90 - KLUE-STS 벤치마크, 개인정보 익명화 10만 1천 건)"
+                  data-en="QA retrieval (SBERT sentence similarity 0.90 on the KLUE-STS benchmark, 101K rows anonymized)">질문-답변 검색 (SBERT 문장 유사도 0.90 - KLUE-STS 벤치마크, 개인정보 익명화 10만 1천 건)</li>
               </ul>
 
               <p class="tl-sub" data-ko="기술 스택" data-en="Stack">기술 스택</p>
@@ -2995,6 +3002,16 @@
             <span class="chip" data-ko="한국사능력검정 2급" data-en="Korean History Proficiency, Level 2">한국사능력검정 2급</span>
             <span class="chip" data-ko="총장상 · 2019.12 (TOPCIT 우수)" data-en="President's Award · 2019.12 (TOPCIT)">총장상 ·
               2019.12 (TOPCIT 우수)</span>
+          </div>
+        </div>
+        <div class="skill-card reveal skill-card-wide" data-d="2">
+          <div class="sc-h"><span class="star">★</span> <span data-ko="NVIDIA DLI 인증 (Certificate of Competency)" data-en="NVIDIA DLI Certificates of Competency">NVIDIA DLI 인증 (Certificate of Competency)</span></div>
+          <div class="chips">
+            <span class="chip" data-ko="Rapid Application Development with LLMs · 2026.08.04" data-en="Rapid Application Development with LLMs · 2026.08.04">Rapid Application Development with LLMs · 2026.08.04</span>
+            <span class="chip" data-ko="Building RAG Agents with LLMs · 2026.08.05" data-en="Building RAG Agents with LLMs · 2026.08.05">Building RAG Agents with LLMs · 2026.08.05</span>
+            <span class="chip" data-ko="딥러닝의 기초 · 2026.08.06" data-en="Fundamentals of Deep Learning · 2026.08.06">딥러닝의 기초 · 2026.08.06</span>
+            <span class="chip" data-ko="Building LLM Applications With Prompt Engineering · 2026.08.07" data-en="Building LLM Applications With Prompt Engineering · 2026.08.07">Building LLM Applications With Prompt Engineering · 2026.08.07</span>
+            <span class="chip" data-ko="Generative AI with Diffusion Models · 2026.08.20" data-en="Generative AI with Diffusion Models · 2026.08.20">Generative AI with Diffusion Models · 2026.08.20</span>
           </div>
         </div>
       </div>
@@ -4404,7 +4421,7 @@
                     <div class="metricrow">
                       <div class="metric" data-modal="m-visang-qa" role="button" tabindex="0">
                         <div class="mv">0.<span data-count="90">0</span></div>
-                        <div class="ml" data-ko="유사도 정확도" data-en="similarity acc.">유사도 정확도</div>
+                        <div class="ml" data-ko="문장 유사도 · KLUE-STS 벤치마크" data-en="sentence similarity · KLUE-STS">문장 유사도 · KLUE-STS 벤치마크</div>
                       </div>
                       <div class="metric" data-modal="m-visang-qa" role="button" tabindex="0">
                         <div class="mv"><span data-count="101">0</span>K+</div>
@@ -7730,9 +7747,8 @@
                 </tr>
                 <tr>
                   <td data-ko="유사 질문 찾기" data-en="Match">유사 질문 찾기</td>
-                  <td data-ko="SBERT/KoBERT를 문장 유사도(STS)로 추가 학습해 비슷한 질문 매칭 - 유사도 정확도 0.90"
-                    data-en="SBERT/KoBERT fine-tuned for STS - similarity accuracy 0.90">SBERT/KoBERT를 문장 유사도(STS)로 추가
-                    학습해 비슷한 질문 매칭 - 유사도 정확도 0.90</td>
+                  <td data-ko="SBERT/KoBERT를 문장 유사도(STS)로 추가 학습해 비슷한 질문 매칭 - 공개 벤치마크 KLUE-STS에서 문장 유사도 0.90"
+                    data-en="SBERT/KoBERT fine-tuned for STS - sentence similarity 0.90 on the public KLUE-STS benchmark">SBERT/KoBERT를 문장 유사도(STS)로 추가 학습해 비슷한 질문 매칭 - 공개 벤치마크 KLUE-STS에서 문장 유사도 0.90</td>
                 </tr>
                 <tr>
                   <td data-ko="개인정보 가리기" data-en="Mask">개인정보 가리기</td>
