@@ -5,13 +5,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-    content="QMesh - 금융(FinAllQ)·보험(InsuQ)·제조(MaintQ), 스택도 소유권도 다른 세 AI 에이전트를 A2A(Agent-to-Agent) 프로토콜로 잇는 중립 오케스트레이션 허브." />
-  <meta property="og:title" content="QMesh - A2A 멀티 에이전트 오케스트레이션 허브" />
+    content="QMesh - 금융(FinAllQ)·보험(InsuQ)·제조(MaintQ), 서로 다른 회사라고 가정한 세 AI 에이전트를 A2A(Agent-to-Agent)로 이어 본 프로젝트." />
+  <meta property="og:title" content="QMesh - 세 AI 에이전트를 A2A로 잇기" />
   <meta property="og:description" content="MCP는 자기 도구를 쓴다. A2A는 남의 에이전트에게 일을 맡긴다. 세 도메인 에이전트를 표준 Task 계약으로 연결한 기록." />
   <meta property="og:type" content="website" />
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%233A56C8%27/><g stroke=%27%23fff%27 stroke-width=%271.4%27 fill=%27none%27><path d=%27M12 6.5 6 16.5h12z%27/></g><g fill=%27%23fff%27><circle cx=%2712%27 cy=%276.5%27 r=%272%27/><circle cx=%276%27 cy=%2716.5%27 r=%272%27/><circle cx=%2718%27 cy=%2716.5%27 r=%272%27/></g></svg>" />
-  <title>QMesh - A2A 멀티 에이전트 오케스트레이션 허브</title>
+  <title>QMesh - 세 AI 에이전트를 A2A로 잇기</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -1374,10 +1374,8 @@
           data-en="One agent hands work to <span class=&quot;hl&quot;>another company's agent</span>">에이전트가 <span
             class="hl">다른 회사의 에이전트</span>에게 일을 맡긴다</h1>
         <p class="sub"
-          data-ko="QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b> - 스택도 소유권도 다른 세 AI 에이전트를 A2A 프로토콜로 잇는 <b>중립 오케스트레이션 허브</b>입니다. 세 도메인은 서로의 DB도, 프레임워크도, 내부 프롬프트도 모릅니다. 오직 Agent Card와 표준 Task 스키마로만 대화합니다."
-          data-en="QMesh is a <b>neutral orchestration hub</b> that connects three AI agents with different stacks and different owners - <b>FinAllQ</b> (finance), <b>InsuQ</b> (insurance), <b>MaintQ</b> (manufacturing) - over the A2A protocol. Neither side knows the other's database, framework, or internal prompts. They speak only through Agent Cards and standard Task schemas.">
-          QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b> - 스택도 소유권도 다른 세 AI 에이전트를 A2A 프로토콜로 잇는 <b>중립
-            오케스트레이션 허브</b>입니다. 세 도메인은 서로의 DB도, 프레임워크도, 내부 프롬프트도 모릅니다. 오직 Agent Card와 표준 Task 스키마로만 대화합니다.</p>
+          data-ko="QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b>, 서로 다른 회사라고 가정한 세 AI 에이전트를 A2A로 이어 본 프로젝트입니다. 세 에이전트는 서로의 DB나 내부 코드를 모르고, 각자 공개한 소개서(Agent Card)와 요청 양식(Task 스키마)만 보고 일을 주고받습니다."
+          data-en="QMesh connects three AI agents, each treated as a separate company - <b>FinAllQ</b> (finance), <b>InsuQ</b> (insurance), <b>MaintQ</b> (manufacturing) - over A2A. None knows the others' databases or internal code; they exchange work only through each other's published Agent Card and Task schemas.">QMesh는 금융 <b>FinAllQ</b> · 보험 <b>InsuQ</b> · 제조 <b>MaintQ</b>, 서로 다른 회사라고 가정한 세 AI 에이전트를 A2A로 이어 본 프로젝트입니다. 세 에이전트는 서로의 DB나 내부 코드를 모르고, 각자 공개한 소개서(Agent Card)와 요청 양식(Task 스키마)만 보고 일을 주고받습니다.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#scenarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1450,10 +1448,8 @@
           data-en="Calling a tool and delegating to someone else's agent are not the same problem">도구를 부르는 것과, 남의 에이전트에게
           맡기는 것은 다르다</h2>
         <p class="sec-sub"
-          data-ko="MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 뒤쪽에는 앞쪽에 없는 것들이 붙는다 - 신원 증명, 사람의 승인 대기, 그리고 끝까지 따라가는 추적."
-          data-en="MCP solves calling your own tools. A2A solves delegating work to an agent owned by someone else - which adds things MCP never needed: proof of identity, waiting on a human approval, and a trace that survives every hop.">
-          MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 뒤쪽에는 앞쪽에 없는 것들이 붙는다 - 신원 증명, 사람의 승인
-          대기, 그리고 끝까지 따라가는 추적.</p>
+          data-ko="MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 다른 회사의 에이전트에게 맡기려면 상대가 누구인지 확인하고, 사람의 승인을 기다리고, 여러 회사를 거친 요청을 끝까지 추적해야 한다."
+          data-en="MCP solves calling your own tools. A2A solves delegating work to an agent owned by someone else. Handing work to another company's agent means checking who the caller is, waiting for a human approval, and tracing a request across every company it passes through.">MCP는 한 에이전트가 자기 도구를 쓰는 문제를 푼다. A2A는 소유권이 다른 조직의 에이전트에게 작업을 위임하는 문제를 푼다. 다른 회사의 에이전트에게 맡기려면 상대가 누구인지 확인하고, 사람의 승인을 기다리고, 여러 회사를 거친 요청을 끝까지 추적해야 한다.</p>
       </div>
 
       <div class="compare reveal">
@@ -1468,8 +1464,7 @@
               data-en="If the schema changes, I fix it myself. No negotiation.">스키마가 바뀌면 내가 바로 고친다. 조율이 필요 없다.</li>
             <li data-ko="실패하면 내 문제다. 안에서 재시도하면 끝난다." data-en="A failure is mine. Retry internally and it's over.">실패하면 내
               문제다. 안에서 재시도하면 끝난다.</li>
-            <li data-ko="MaintQ의 MCP 도구 20종이 이 층에 있다." data-en="MaintQ's 20 MCP tools live at this layer.">MaintQ의 MCP
-              도구 20종이 이 층에 있다.</li>
+            <li data-ko="MaintQ의 MCP 도구 22종이 이 층에 있다." data-en="MaintQ's 22 MCP tools live at this layer.">MaintQ의 MCP 도구 22종이 이 층에 있다.</li>
           </ul>
         </div>
         <div class="cmp b">
@@ -1495,26 +1490,22 @@
       <div class="grid3 reveal">
         <div class="feat">
           <span class="tag" data-ko="경계" data-en="Boundary">경계</span>
-          <h3 data-ko="경계의 물리적 증명" data-en="The boundary, made physical">경계의 물리적 증명</h3>
-          <p data-ko="세 프로젝트는 기술 스택도 소유권도 다른 '독립 회사'다. 연결 코드를 어느 한쪽 안에 넣으면 그 순간 경계가 사라진다. 그래서 QMesh를 바깥에 뒀다 - 누구의 소유도 아닌 중립 프로토콜 계층."
-            data-en="The three projects are separate companies with separate stacks and owners. Putting the glue code inside one of them dissolves the boundary. So QMesh sits outside - a protocol layer nobody owns.">
-            세 프로젝트는 기술 스택도 소유권도 다른 '독립 회사'다. 연결 코드를 어느 한쪽 안에 넣으면 그 순간 경계가 사라진다. 그래서 QMesh를 바깥에 뒀다 - 누구의 소유도 아닌 중립 프로토콜
-            계층.</p>
+          <h3 data-ko="연결 코드 분리 이유" data-en="Why the glue code lives apart">연결 코드 분리 이유</h3>
+          <p data-ko="세 시스템은 서로 연결하지 않아도 각자 돌아가게 하고 싶었다. 연결은 연결이고 시스템은 시스템이라, 연결 코드가 어느 한 시스템 안에 섞이면 안 된다고 봤다. 그래서 연결 코드는 QMesh라는 별도 레포에 두고, 연결할 때는 각 시스템에 그 코드만 조금 붙이면 되게 했다."
+            data-en="Each system should keep running on its own, connected or not. Connecting is one job and the system is another, so the glue code must not live inside any one of them. It sits in a separate repo, QMesh, and connecting means attaching just that small piece to each system.">
+            세 시스템은 서로 연결하지 않아도 각자 돌아가게 하고 싶었다. 연결은 연결이고 시스템은 시스템이라, 연결 코드가 어느 한 시스템 안에 섞이면 안 된다고 봤다. 그래서 연결 코드는 QMesh라는 별도 레포에 두고, 연결할 때는 각 시스템에 그 코드만 조금 붙이면 되게 했다.</p>
         </div>
         <div class="feat">
           <span class="tag" data-ko="캡슐화" data-en="Encapsulation">캡슐화</span>
-          <h3 data-ko="블랙박스 유지" data-en="Everything stays a black box">블랙박스 유지</h3>
-          <p data-ko="QMesh는 각 프로젝트의 DB도, 프레임워크도, 내부 프롬프트도 알지 못한다. Java Spring과 Python FastAPI와 LangGraph가 섞여 있어도, 바깥에서 보이는 것은 표준 HTTP 창구 하나뿐이다."
-            data-en="QMesh knows none of the projects' databases, frameworks, or prompts. Java Spring, Python FastAPI and LangGraph coexist behind a single standard HTTP endpoint each.">
-            QMesh는 각 프로젝트의 DB도, 프레임워크도, 내부 프롬프트도 알지 못한다. Java Spring과 Python FastAPI와 LangGraph가 섞여 있어도, 바깥에서 보이는 것은 표준
-            HTTP 창구 하나뿐이다.</p>
+          <h3 data-ko="서로 속을 모르게" data-en="No one sees inside">서로 속을 모르게</h3>
+          <p data-ko="QMesh는 각 시스템의 DB, 프레임워크, 프롬프트를 모른다. 안이 Java Spring이든 Python이든, 밖에서는 HTTP 주소 하나로만 요청을 주고받는다."
+            data-en="QMesh knows none of the systems' databases, frameworks or prompts. Whether it is Java Spring or Python inside, from outside each is just one HTTP address.">QMesh는 각 시스템의 DB, 프레임워크, 프롬프트를 모른다. 안이 Java Spring이든 Python이든, 밖에서는 HTTP 주소 하나로만 요청을 주고받는다.</p>
         </div>
         <div class="feat">
           <span class="tag" data-ko="릴리스" data-en="Release">릴리스</span>
-          <h3 data-ko="독립 릴리스" data-en="Independent release cycles">독립 릴리스</h3>
-          <p data-ko="각 도메인은 자기 일정으로 배포한다. QMesh는 그 위에서 크로스도메인 워크플로우만 따로 갱신한다. 실제로 세 레포는 서로 다른 스프린트를 돌면서 동시에 개발됐다."
-            data-en="Each domain ships on its own schedule; QMesh updates only the cross-domain workflows above them. In practice all three repos ran different sprints in parallel.">
-            각 도메인은 자기 일정으로 배포한다. QMesh는 그 위에서 크로스도메인 워크플로우만 따로 갱신한다. 실제로 세 레포는 서로 다른 스프린트를 돌면서 동시에 개발됐다.</p>
+          <h3 data-ko="따로 배포" data-en="Shipped separately">따로 배포</h3>
+          <p data-ko="각 시스템은 자기 일정대로 고치고 배포한다. 여러 회사를 잇는 흐름이 바뀌면 QMesh만 고치면 된다."
+            data-en="Each system is fixed and shipped on its own schedule. When a cross-company flow changes, only QMesh needs to change.">각 시스템은 자기 일정대로 고치고 배포한다. 여러 회사를 잇는 흐름이 바뀌면 QMesh만 고치면 된다.</p>
         </div>
       </div>
     </div>
@@ -1525,13 +1516,10 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow" data-ko="통신 토폴로지" data-en="Topology">통신 토폴로지</span>
-        <h2 class="sec-title" data-ko="완전 삼각형, 그리고 한 번 더 건너가는 멀티홉" data-en="A full triangle - plus one more hop">완전
-          삼각형, 그리고 한 번 더 건너가는 멀티홉</h2>
+        <h2 class="sec-title" data-ko="세 에이전트는 서로 직접 부른다" data-en="The three agents call each other directly">세 에이전트는 서로 직접 부른다</h2>
         <p class="sec-sub"
-          data-ko="세 에이전트가 서로 직접 대화한다. MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다 - 최초 요청자는 두 번째 홉이 일어났다는 사실조차 알 필요가 없다."
-          data-en="All three agents talk to each other directly. When MaintQ asks FinAllQ about a loan, FinAllQ turns around and asks InsuQ to verify the collateral cover - the original caller never needs to know the second hop happened.">
-          세 에이전트가 서로 직접 대화한다. MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다 - 최초 요청자는 두 번째 홉이 일어났다는 사실조차 알
-          필요가 없다.</p>
+          data-ko="MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다. MaintQ는 FinAllQ가 보험사에 다시 물어봤는지 몰라도 된다."
+          data-en="When MaintQ asks FinAllQ about a loan, FinAllQ in turn asks InsuQ to check the collateral insurance. MaintQ does not need to know that second call happened.">MaintQ가 FinAllQ에 대출을 물으면, FinAllQ는 다시 InsuQ에 담보 보험을 확인한다. MaintQ는 FinAllQ가 보험사에 다시 물어봤는지 몰라도 된다.</p>
       </div>
 
       <div class="topo reveal">
@@ -1612,8 +1600,8 @@
         </svg>
 
         <div class="topo-legend">
-          <div><span class="id">S5 · S6</span><span data-ko="발주 승인 → 출금 요청(2단 승인) · 환헤지 상담"
-              data-en="PO approval → withdrawal (two-step) · FX hedge advice">발주 승인 → 출금 요청(2단 승인) · 환헤지 상담</span></div>
+          <div><span class="id">S5 · S6</span><span data-ko="발주 승인 → 출금 요청(3단 승인) · 환헤지 상담"
+              data-en="PO approval → withdrawal (three approvals) · FX hedge advice">발주 승인 → 출금 요청(3단 승인) · 환헤지 상담</span></div>
           <div><span class="id">S7 · S11 · S14</span><span data-ko="화재보험 갱신 · 자산변동 통지 · 보험금 청구"
               data-en="Policy renewal · asset-change notice · claim filing">화재보험 갱신 · 자산변동 통지 · 보험금 청구</span></div>
           <div><span class="id">S8 · S13</span><span data-ko="담보 대출 심사 중 보험 검증 - 2차 홉 릴레이"
@@ -1662,10 +1650,8 @@
       </div>
 
       <div class="note reveal"
-        data-ko="<strong>A2A 통신 자체에는 전용 SDK를 쓰지 않았다.</strong> 네 레포 전부 <code>FastAPI + httpx + pydantic</code>(Python) 또는 Spring MVC 직접 구현으로 JSON Schema 계약을 손으로 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜본 것이 이 프로젝트의 목적이었다."
-        data-en="<strong>No dedicated A2A SDK was used.</strong> All four repos implement the JSON Schema contract by hand - <code>FastAPI + httpx + pydantic</code> in Python, or plain Spring MVC. Writing the protocol rather than importing it was the point of the project.">
-        <strong>A2A 통신 자체에는 전용 SDK를 쓰지 않았다.</strong> 네 레포 전부 <code>FastAPI + httpx + pydantic</code>(Python) 또는 Spring
-        MVC 직접 구현으로 JSON Schema 계약을 손으로 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜본 것이 이 프로젝트의 목적이었다.</div>
+        data-ko="<strong>A2A 전용 SDK는 쓰지 않았다.</strong> <code>FastAPI + httpx + pydantic</code>(Python)과 Spring MVC로 약속(JSON Schema)을 직접 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜 보는 게 목적이었다."
+        data-en="<strong>No A2A SDK was used.</strong> The JSON Schema contract is implemented directly with <code>FastAPI + httpx + pydantic</code> (Python) and Spring MVC. Writing the protocol by hand instead of importing it was the point."><strong>A2A 전용 SDK는 쓰지 않았다.</strong> <code>FastAPI + httpx + pydantic</code>(Python)과 Spring MVC로 약속(JSON Schema)을 직접 구현했다. 프로토콜을 라이브러리에 맡기지 않고 직접 짜 보는 게 목적이었다.</div>
     </div>
   </section>
 
@@ -1674,11 +1660,10 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow" data-ko="세 에이전트" data-en="The three agents">세 에이전트</span>
-        <h2 class="sec-title" data-ko="각자 다른 문제를 풀고, 각자 다른 절대 원칙을 지킨다"
-          data-en="Three different problems, three different non-negotiables">각자 다른 문제를 풀고, 각자 다른 절대 원칙을 지킨다</h2>
-        <p class="sec-sub" data-ko="세 프로젝트는 A2A를 위해 급조된 목업이 아니다. 각각 독립적으로 설계·측정·평가된 서비스이고, 그 위에 통신 계층을 얹었다."
-          data-en="None of these is a mock built for the demo. Each was designed, measured and evaluated as a standalone service; the protocol layer was added on top.">
-          세 프로젝트는 A2A를 위해 급조된 목업이 아니다. 각각 독립적으로 설계·측정·평가된 서비스이고, 그 위에 통신 계층을 얹었다.</p>
+        <h2 class="sec-title" data-ko="세 에이전트"
+          data-en="The three agents">세 에이전트</h2>
+        <p class="sec-sub" data-ko="세 프로젝트는 각자 따로 만들고 측정한 서비스이고, 그 위에 통신 계층을 얹었다."
+          data-en="Each project was built and measured as its own service; the communication layer was added on top.">세 프로젝트는 각자 따로 만들고 측정한 서비스이고, 그 위에 통신 계층을 얹었다.</p>
       </div>
 
       <div class="agents reveal">
@@ -1710,10 +1695,8 @@
 
           <div class="blk">
             <div class="rule"
-              data-ko="<b>절대 원칙 - 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후 인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 둘 다 결정론적이라 예산이 없어도 원칙은 지켜진다."
-              data-en="<b>Non-negotiable - never answer without evidence.</b> Gate ① sits <em>before</em> the LLM call: no hits, no model call. Gate ② verifies citations afterwards and demotes assertive wording to 'undetermined'. Both are deterministic, so the rule holds even with no budget.">
-              <b>절대 원칙 - 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후
-              인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 둘 다 결정론적이라 예산이 없어도 원칙은 지켜진다.</div>
+              data-ko="<b>지키는 원칙: 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후 인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 두 방어선 모두 모델이 아니라 코드로 동작한다."
+              data-en="<b>Rule kept: never answer without evidence.</b> Gate ① sits <em>before</em> the LLM call: no hits, no model call. Gate ② verifies citations afterwards and demotes assertive wording to 'undetermined'. Both gates run in code, not in the model."><b>지키는 원칙: 근거 없는 답은 하지 않는다.</b> 방어선①은 LLM 호출 <em>전</em>에 있다: 검색 결과가 없거나 점수 미달이면 모델을 부르지도 않는다. 방어선②는 호출 후 인용을 검증하고, 단정 표현을 판단 유보로 강등한다. 두 방어선 모두 모델이 아니라 코드로 동작한다.</div>
           </div>
 
           <div class="blk">
@@ -1727,10 +1710,10 @@
           </div>
 
           <div class="mrow">
-            <div class="m"><b>0.8333</b><span data-ko="검색 Hit@5" data-en="retrieval Hit@5">검색 Hit@5</span></div>
+            <div class="m"><b>0.8148</b><span data-ko="검색 Hit@5" data-en="retrieval Hit@5">검색 Hit@5</span></div>
             <div class="m"><b>100%</b><span data-ko="거부 정확도" data-en="refusal accuracy">거부 정확도</span></div>
-            <div class="m"><b>0</b><span data-ko="환각 건수" data-en="hallucinations">환각 건수</span></div>
-            <div class="m"><b>10.4s</b><span data-ko="응답 p95" data-en="latency p95">응답 p95</span></div>
+            <div class="m"><b>0%</b><span data-ko="과잉 거절" data-en="over-refusal">과잉 거절</span></div>
+            <div class="m"><b>0.434s</b><span data-ko="응답 중간값" data-en="latency p50">응답 중간값</span></div>
           </div>
         </article>
 
@@ -1745,18 +1728,15 @@
 
           <div class="blk">
             <h4 data-ko="무엇을 푸나" data-en="The problem">무엇을 푸나</h4>
-            <p data-ko="중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가 계속 바뀌고 단계마다 대기가 생긴다. CMMS는 기록 시스템이고 매뉴얼은 정적 문서다 - MaintQ는 그 사이의 <b>판단</b>을 자동화하고, 판단 결과를 조달 액션까지 연결한다."
-              data-en="In a small factory an inverter fault means 10–30 minutes in a PDF manual, a diagnosis leaning on a veteran's memory, a phone call to check stock, and a purchase order typed into Excel. The medium changes at every step. CMMS is a system of record and the manual is a static document - MaintQ automates the <b>judgement</b> in between, and carries it through to procurement.">
-              중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가
-              계속 바뀌고 단계마다 대기가 생긴다. CMMS는 기록 시스템이고 매뉴얼은 정적 문서다 - MaintQ는 그 사이의 <b>판단</b>을 자동화하고, 판단 결과를 조달 액션까지 연결한다.
-            </p>
+            <p data-ko="중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가 계속 바뀌고 단계마다 대기가 생긴다. 기존 설비관리 시스템은 기록만 남기고 매뉴얼은 찾아 읽어야 한다. MaintQ는 에러 원인 판단부터 발주 초안까지 한 대화로 잇는다."
+              data-en="In a small factory an inverter fault means 10–30 minutes in a PDF manual, a diagnosis leaning on a veteran's memory, a phone call to check stock, and a purchase order typed into Excel. The medium changes at every step. The maintenance system only keeps records and the manual has to be searched by hand. MaintQ carries one conversation from finding the cause to a draft purchase order.">중소 제조공장에서 인버터·PLC 에러가 나면 PDF 매뉴얼을 10~30분 뒤지고, 고참 정비사 경험에 의존해 진단하고, 자재담당에게 전화로 재고를 확인하고, 엑셀로 발주서를 쓴다. 매체가 계속 바뀌고 단계마다 대기가 생긴다. 기존 설비관리 시스템은 기록만 남기고 매뉴얼은 찾아 읽어야 한다. MaintQ는 에러 원인 판단부터 발주 초안까지 한 대화로 잇는다.</p>
           </div>
 
           <div class="blk">
             <h4 data-ko="스택" data-en="Stack">스택</h4>
             <div class="chips">
               <span class="chip">Python FastAPI</span><span class="chip">Next.js</span><span class="chip">PostgreSQL ·
-                pgvector</span><span class="chip">MCP 도구 20종</span><span class="chip">Gemini 2.5 Flash</span><span
+                pgvector</span><span class="chip">MCP 도구 22종</span><span class="chip">Gemini 2.5 Flash</span><span
                 class="chip" data-ko="자체 Agent Loop" data-en="hand-rolled agent loop">자체 Agent Loop</span><span
                 class="chip">SSE</span>
             </div>
@@ -1764,11 +1744,8 @@
 
           <div class="blk">
             <div class="rule"
-              data-ko="<b>절대 원칙 - AI는 초안까지만 쓴다.</b> 쓰기 도구 3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은 전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 - 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다."
-              data-en="<b>Non-negotiable - the AI only ever writes a draft.</b> All three write tools can INSERT drafts and hold no UPDATE grant. Approval, rejection and signature go through human-only APIs - enforced at the <em>tool permission</em> level, not in a prompt.">
-              <b>절대 원칙 - AI는 초안까지만 쓴다.</b> 쓰기 도구
-              3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은
-              전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 - 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다.</div>
+              data-ko="<b>지키는 원칙: AI는 초안까지만 쓴다.</b> 쓰기 도구 3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은 전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 - 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다."
+              data-en="<b>Rule kept: the AI only ever writes a draft.</b> All three write tools can INSERT drafts and hold no UPDATE grant. Approval, rejection and signature go through human-only APIs - enforced at the <em>tool permission</em> level, not in a prompt."><b>지키는 원칙: AI는 초안까지만 쓴다.</b> 쓰기 도구 3종(<code>create_po_draft</code>·<code>generate_disposal_document</code>·<code>create_repair_record</code>)은 전부 draft INSERT만 가능하고 UPDATE 권한이 없다. 승인·반려·서명은 사람 전용 API만 한다 - 프롬프트가 아니라 <em>도구 권한 수준</em>에서 강제된다.</div>
           </div>
 
           <div class="blk">
@@ -1779,7 +1756,7 @@
           </div>
 
           <div class="mrow">
-            <div class="m"><b>90.7%</b><span data-ko="근거 페이지 인용률" data-en="source-page citation">근거 페이지 인용률</span></div>
+            <div class="m"><b>1.1%</b><span data-ko="위험한 오특정" data-en="confident wrong part">위험한 오특정</span></div>
             <div class="m"><b>0%</b><span data-ko="미지 코드 환각" data-en="unknown-code hallucination">미지 코드 환각</span></div>
             <div class="m"><b>100%</b><span data-ko="권한 위반 차단" data-en="privilege violations blocked">권한 위반 차단</span>
             </div>
@@ -1796,10 +1773,8 @@
 
           <div class="blk">
             <h4 data-ko="무엇을 푸나" data-en="The problem">무엇을 푸나</h4>
-            <p data-ko="파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은 Python 마이크로서비스로 격리한 하이브리드 MSA다 - <b>탐지는 빠르고 값싼 ML</b>이, <b>설명은 그래프</b>가 맡는다."
-              data-en="It unifies fragmented banking and brokerage data into one dashboard and automates lending end to end, from application to transfer. A hybrid MSA keeps core transactions in Spring + RDBMS and model serving in a Python microservice - <b>detection runs on cheap fast ML</b>, <b>explanation runs on the graph</b>.">
-              파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은
-              Python 마이크로서비스로 격리한 하이브리드 MSA다 - <b>탐지는 빠르고 값싼 ML</b>이, <b>설명은 그래프</b>가 맡는다.</p>
+            <p data-ko="파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은 Python 마이크로서비스로 격리한 하이브리드 MSA다."
+              data-en="It unifies fragmented banking and brokerage data into one dashboard and automates lending end to end, from application to transfer. A hybrid MSA keeps core transactions in Spring + RDBMS and model serving in a Python microservice.">파편화된 은행(자산·보안) 데이터와 증권(투자) 데이터를 단일 대시보드로 통합하고, 대출 신청부터 이체까지 여신 업무를 자동화한다. 코어 트랜잭션은 Spring+RDBMS로, 모델 서빙은 Python 마이크로서비스로 격리한 하이브리드 MSA다.</p>
           </div>
 
           <div class="blk">
@@ -1813,10 +1788,8 @@
 
           <div class="blk">
             <div class="rule"
-              data-ko="<b>절대 원칙 - 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를 대신 제출하는 기능은 일부러 만들지 않았다</em> - 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다."
-              data-en="<b>Non-negotiable - money never moves without a human.</b> Self-approval is blocked by RBAC and transfers are gated by RFC 6238 TOTP. That is exactly why <em>submitting the TOTP code over A2A was deliberately left unbuilt</em> - a service account entering the code collapses 2FA into 1FA.">
-              <b>절대 원칙 - 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를
-                대신 제출하는 기능은 일부러 만들지 않았다</em> - 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다.</div>
+              data-ko="<b>지키는 원칙: 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를 대신 제출하는 기능은 일부러 만들지 않았다</em> - 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다."
+              data-en="<b>Rule kept: money never moves without a human.</b> Self-approval is blocked by RBAC and transfers are gated by RFC 6238 TOTP. That is why <em>submitting the TOTP code over A2A was deliberately left unbuilt</em> - a service account entering the code collapses 2FA into 1FA."><b>지키는 원칙: 사람 승인 없이는 돈이 움직이지 않는다.</b> 자기결재를 RBAC로 금지하고, 이체는 RFC 6238 TOTP 2FA로 잠근다. 그래서 <em>A2A로 TOTP 코드를 대신 제출하는 기능은 일부러 만들지 않았다</em> - 서비스 계정이 코드를 내면 2FA가 1FA로 붕괴한다.</div>
           </div>
 
           <div class="blk">
@@ -1830,7 +1803,7 @@
           </div>
 
           <div class="mrow">
-            <div class="m"><b>1,567</b><span data-ko="테스트 GREEN" data-en="tests green">테스트 GREEN</span></div>
+            <div class="m"><b>1,098</b><span data-ko="서버 테스트 통과" data-en="server tests pass">서버 테스트 통과</span></div>
             <div class="m"><b>0</b><span data-ko="회귀" data-en="regressions">회귀</span></div>
             <div class="m"><b>0</b><span data-ko="LLM 호출 (규칙기반)" data-en="LLM calls (rule-based)">LLM 호출 (규칙기반)</span>
             </div>
@@ -1840,11 +1813,8 @@
       </div>
 
       <div class="note reveal"
-        data-ko="<strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의 <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에 생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다 - 세 에이전트가 같은 방식으로 만들어졌다고 말하지 않기 위해 적어둔다."
-        data-en="<strong>FinAllQ makes zero LLM calls.</strong> A package-level audit of all four repos (2026-08-24) found its <code>plan</code> and <code>synthesize</code> nodes to be rule-based templates, with FDS and smishing detection running on classical <code>scikit-learn</code>. The decision not to put a generative model in a lending verdict is still visible in the code - noted here so the three agents are not mistaken for one architecture.">
-        <strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의
-        <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에
-        생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다 - 세 에이전트가 같은 방식으로 만들어졌다고 말하지 않기 위해 적어둔다.</div>
+        data-ko="<strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의 <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에 생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다."
+        data-en="<strong>FinAllQ makes zero LLM calls.</strong> A package-level audit of all four repos (2026-08-24) found its <code>plan</code> and <code>synthesize</code> nodes to be rule-based templates, with FDS and smishing detection running on classical <code>scikit-learn</code>. The choice to keep generative models out of financial verdicts is visible in the code."><strong>FinAllQ의 LLM 호출은 0건이다.</strong> 4개 레포 패키지를 전수 조사한 결과(2026-08-24), FinAllQ의 <code>plan</code>·<code>synthesize</code> 노드는 규칙기반·템플릿이고 FDS·스미싱 탐지도 <code>scikit-learn</code> 고전 기법뿐이었다. 금융 판정에 생성 모델을 쓰지 않겠다는 선택이 코드에 그대로 남아 있다.</div>
     </div>
   </section>
 
@@ -1855,9 +1825,8 @@
         <span class="eyebrow" data-ko="실동작 데모" data-en="Live demos">실동작 데모</span>
         <h2 class="sec-title" data-ko="실제로 돌아가는 세 개의 홉" data-en="Three hops that actually run">실제로 돌아가는 세 개의 홉</h2>
         <p class="sec-sub"
-          data-ko="아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목업 응답이나 재현 영상이 아니라, 실 DB·실 인증·실 A2A 호출이 통과한 화면이다."
-          data-en="Every capture below was recorded against the running services on 2026-08-24 - real database, real auth, real A2A calls. None of it is a mock or a re-enactment.">
-          아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목업 응답이나 재현 영상이 아니라, 실 DB·실 인증·실 A2A 호출이 통과한 화면이다.</p>
+          data-ko="아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목킹 없이 실제 서비스끼리 요청을 주고받은 화면이다."
+          data-en="Every capture below was recorded against the running services on 2026-08-24 - real services exchanging requests, without mocks.">아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목킹 없이 실제 서비스끼리 요청을 주고받은 화면이다.</p>
       </div>
 
       <!-- S5 -->
@@ -1868,13 +1837,9 @@
             <span class="skill">request-withdrawal</span>
             <span class="route">MaintQ :9003 → FinAllQ :9001</span>
           </div>
-          <h3 data-ko="발주 승인 → 출금 요청 · 자금이동 2단 승인" data-en="PO approval → withdrawal request · two-step money movement">
-            발주 승인 → 출금 요청 · 자금이동 2단 승인</h3>
-          <p data-ko="진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 → <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>요청 부서 승인 → 집행 부서 재무 승인</b> 2단 계단을 거치고, 그 뒤로도 FinAllQ 내부 결재함에서 사람이 한 번 더 결재한다."
-            data-en="Diagnosis (INV-L3-02 · OCT) → draft PO → team-lead approval → finance approval → three documents rendered from live data → A2A withdrawal request → <code>CHAIN-PO-0122-b66672d7 · ok</code> in the <code>/manager/a2a</code> history. Because money moves, it climbs a <b>requesting-department then finance-department</b> staircase - and a human still signs once more inside FinAllQ's own approval queue.">
-            진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 →
-            <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>요청 부서
-              승인 → 집행 부서 재무 승인</b> 2단 계단을 거치고, 그 뒤로도 FinAllQ 내부 결재함에서 사람이 한 번 더 결재한다.</p>
+          <h3 data-ko="발주 승인 → 출금 요청 · 자금이동 3단 승인" data-en="PO approval → withdrawal request · three approvals for money movement">발주 승인 → 출금 요청 · 자금이동 3단 승인</h3>
+          <p data-ko="진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 → <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>MaintQ 팀장 → MaintQ 재무팀 → FinAllQ 재무 결재</b>, 3단 승인을 거친다."
+            data-en="Diagnosis (INV-L3-02 · OCT) → draft PO → team-lead approval → finance approval → three documents rendered from live data → A2A withdrawal request → <code>CHAIN-PO-0122-b66672d7 · ok</code> in the <code>/manager/a2a</code> history. Because money moves, it takes three approvals: <b>MaintQ team lead → MaintQ finance → FinAllQ finance</b>.">진단(INV-L3-02 · OCT) → 발주 초안 → 팀장 승인 → 재무 승인 → 진단보고서·발주요청서·자금집행요청서 3종이 실 데이터로 렌더 → A2A 출금 요청 전송 → <code>/manager/a2a</code> 이력에서 <code>CHAIN-PO-0122-b66672d7 · ok</code> 확인까지 전 구간 라이브. 돈이 움직이는 요청이라 <b>MaintQ 팀장 → MaintQ 재무팀 → FinAllQ 재무 결재</b>, 3단 승인을 거친다.</p>
         </div>
         <button class="gif-shell" type="button" data-src="assets/s5-withdrawal.gif"
           data-alt="request-withdrawal 실동작 캡처">
@@ -1920,14 +1885,9 @@
             <span class="skill">assess-loan</span>
             <span class="route">MaintQ :9003 → FinAllQ :9001 → InsuQ :9002</span>
           </div>
-          <h3 data-ko="멀티홉 릴레이 - 요청자는 두 번째 홉을 모른다" data-en="The relay hop - the caller never sees it">멀티홉 릴레이 - 요청자는
-            두 번째 홉을 모른다</h3>
-          <p data-ko="5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에 <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서 <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 부결 나는 금액을 골랐다."
-            data-en="A KRW 500M loan against BLD-A (valued at 300M) → FinAllQ runs its own LTV check while asking InsuQ whether the collateral is adequately insured → <b><code>decision: conditional</code> in 1.3s</b> → <code>CHAIN-LOAN-a0639920 · ok</code>. A 50M request would always come back approved, so the failing amount was chosen deliberately to show <b>the verdict logic actually runs</b>.">
-            5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에
-              <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서
-            <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 부결
-            나는 금액을 골랐다.</p>
+          <h3 data-ko="대출 심사 중 보험사까지 한 번 더 확인" data-en="A loan review that checks with the insurer too">대출 심사 중 보험사까지 한 번 더 확인</h3>
+          <p data-ko="5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에 <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서 <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 조건부가 나오는 금액을 골랐다."
+            data-en="A KRW 500M loan against BLD-A (valued at 300M) → FinAllQ runs its own LTV check while asking InsuQ whether the collateral is adequately insured → <b><code>decision: conditional</code> in 1.3s</b> → <code>CHAIN-LOAN-a0639920 · ok</code>. A 50M request would always come back approved, so an amount that returns conditional was chosen to show <b>the verdict logic actually runs</b>.">5억원 대출 신청(담보 BLD-A, 인정액 3억) → FinAllQ가 자체 LTV 판정을 하면서 InsuQ에 담보 보험 충분성까지 확인 → <b>1.3초 만에 <code>decision: conditional</code></b>(보장 부족) 반환 → <code>/manager/a2a</code>에서 <code>CHAIN-LOAN-a0639920 · ok</code>. 5천만원으로 찍으면 무조건 approved만 나와서, <b>판정 로직이 실제로 동작한다</b>는 걸 보여주려고 일부러 조건부가 나오는 금액을 골랐다.</p>
         </div>
         <button class="gif-shell" type="button" data-src="assets/s8-assess-loan.gif" data-alt="assess-loan 멀티홉 실동작 캡처">
           <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
@@ -1954,7 +1914,7 @@
               <td class="n"><b>S5</b></td>
               <td data-ko="발주 승인 → 출금 요청" data-en="PO approval → withdrawal">발주 승인 → 출금 요청</td>
               <td class="n">MaintQ → FinAllQ</td>
-              <td data-ko="자금이동 (2단 승인)" data-en="money movement (two-step)">자금이동 (2단 승인)</td>
+              <td data-ko="자금이동 (3단 승인)" data-en="money movement (three approvals)">자금이동 (3단 승인)</td>
               <td class="n">request-withdrawal</td>
             </tr>
             <tr>
@@ -2039,10 +1999,8 @@
           <div>
             <h3 data-ko="돈과 계약이 움직이는 곳에는 반드시 사람의 승인" data-en="Where money or contracts move, a human signs">돈과 계약이 움직이는
               곳에는 반드시 사람의 승인</h3>
-            <p data-ko="AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는 작업(S5)은 <b>요청 부서 승인 → 집행 부서 재무 승인</b>의 2단 승인 계단을 거친다."
-              data-en="The agent writes <b>requests, proposals and draft assessments - and stops there</b>. Actual withdrawals, loan disbursements and policy signings happen only after an authorised person decides. Anything that moves funds (S5) climbs a two-step staircase: requesting department, then finance.">
-              AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는
-              작업(S5)은 <b>요청 부서 승인 → 집행 부서 재무 승인</b>의 2단 승인 계단을 거친다.</p>
+            <p data-ko="AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는 작업(S5)은 <b>MaintQ 팀장 → MaintQ 재무팀 → FinAllQ 재무 결재</b>의 3단 승인을 거친다."
+              data-en="The agent writes <b>requests, proposals and draft assessments - and stops there</b>. Actual withdrawals, loan disbursements and policy signings happen only after an authorised person decides. Anything that moves funds (S5) takes three approvals: MaintQ team lead, MaintQ finance, then FinAllQ finance.">AI 에이전트는 <b>요청서 · 제안서 · 심사 초안까지만</b> 작성한다. 실제 계좌 출금, 대출 실행, 보험 계약 체결은 반드시 승인권자의 결정 뒤에 실행된다. 자금이 이동하는 작업(S5)은 <b>MaintQ 팀장 → MaintQ 재무팀 → FinAllQ 재무 결재</b>의 3단 승인을 거친다.</p>
             <p data-ko="A2A 응답의 <code>input-required</code> 상태가 이 대기를 표현한다 - 요청은 성공했지만 아직 끝나지 않았고, 상대 조직의 사람이 결재를 마칠 때까지 기다린다는 뜻이다."
               data-en="The <code>input-required</code> status carries that wait: the call succeeded but the task is not finished, and it stays open until someone on the other side signs.">
               A2A 응답의 <code>input-required</code> 상태가 이 대기를 표현한다 - 요청은 성공했지만 아직 끝나지 않았고, 상대 조직의 사람이 결재를 마칠 때까지 기다린다는
@@ -2056,15 +2014,10 @@
             <h3 data-ko="누가 부르는가(Actor)와 누구의 데이터인가(Subject)를 분리한다"
               data-en="Separate who is calling (Actor) from whose data it is (Subject)">누가 부르는가(Actor)와 누구의
               데이터인가(Subject)를 분리한다</h3>
-            <p data-ko="<b>Actor</b>는 인증의 문제다 - 비대칭 서명된 파트너 액세스 토큰으로 위조 불가능한 신원을 증명한다. <b>Subject</b>는 인가의 문제다 - 페이로드의 <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면 '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다."
-              data-en="<b>Actor</b> is authentication - an asymmetrically signed partner token proving an identity that cannot be forged. <b>Subject</b> is authorisation - <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code> in the payload naming exactly what is being touched. Conflate them and any authenticated partner can reach any record.">
-              <b>Actor</b>는 인증의 문제다 - 비대칭 서명된 파트너 액세스 토큰으로 위조 불가능한 신원을 증명한다. <b>Subject</b>는 인가의 문제다 - 페이로드의
-              <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면
-              '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다.</p>
-            <p data-ko="자격증명은 위험도에 따라 3단계로 쪼갰다 - <b>조회/상담</b>(위험도 0, 정보 조회만) · <b>심사</b>(위험도 저, 판정은 하되 실행 권한 없음) · <b>자금이동</b>(위험도 고, <code>input-required</code> 기반 2단 승인 필수)."
-              data-en="Credentials are split into three scopes by risk - <b>lookup/advice</b> (zero risk, read only), <b>assessment</b> (low risk, may judge but not execute), and <b>fund movement</b> (high risk, two-step approval via <code>input-required</code> is mandatory).">
-              자격증명은 위험도에 따라 3단계로 쪼갰다 - <b>조회/상담</b>(위험도 0, 정보 조회만) · <b>심사</b>(위험도 저, 판정은 하되 실행 권한 없음) ·
-              <b>자금이동</b>(위험도 고, <code>input-required</code> 기반 2단 승인 필수).</p>
+            <p data-ko="<b>Actor</b>는 인증의 문제다 - 요청 헤더의 토큰(<code>Authorization: Bearer</code>)과 파트너 ID(<code>X-A2A-Partner-Id</code>)로 누가 불렀는지 확인한다. <b>Subject</b>는 인가의 문제다 - 페이로드의 <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면 '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다."
+              data-en="<b>Actor</b> is authentication - the <code>Authorization: Bearer</code> token and the <code>X-A2A-Partner-Id</code> header identify who is calling. <b>Subject</b> is authorisation - <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code> in the payload name exactly what is being touched. Conflate them and any authenticated partner can reach any record."><b>Actor</b>는 인증의 문제다 - 요청 헤더의 토큰(<code>Authorization: Bearer</code>)과 파트너 ID(<code>X-A2A-Partner-Id</code>)로 누가 불렀는지 확인한다. <b>Subject</b>는 인가의 문제다 - 페이로드의 <code>finallq_company_id</code>, <code>building_id</code>, <code>policy_id</code>가 처리 대상을 명시한다. 둘을 섞으면 '인증된 상대가 아무 데이터나 만질 수 있는' 구멍이 생긴다.</p>
+            <p data-ko="자격증명은 위험도에 따라 3단계로 나누도록 설계했다 - <b>조회/상담</b>(정보 조회만) · <b>심사</b>(판정은 하되 실행 권한 없음) · <b>자금이동</b>(<code>input-required</code> 기반 3단 승인 필수). 지금 구현된 것은 InsuQ의 파트너별 허용 스킬 목록까지다."
+              data-en="Credentials are designed in three scopes by risk - <b>lookup/advice</b> (read only), <b>assessment</b> (may judge but not execute), and <b>fund movement</b> (three approvals via <code>input-required</code>). What is implemented today is InsuQ's per-partner list of allowed skills.">자격증명은 위험도에 따라 3단계로 나누도록 설계했다 - <b>조회/상담</b>(정보 조회만) · <b>심사</b>(판정은 하되 실행 권한 없음) · <b>자금이동</b>(<code>input-required</code> 기반 3단 승인 필수). 지금 구현된 것은 InsuQ의 파트너별 허용 스킬 목록까지다.</p>
           </div>
         </div>
 
@@ -2120,46 +2073,45 @@
           <tbody>
             <tr>
               <td><b>InsuQ</b></td>
-              <td data-ko="검색 성능 Hit@5" data-en="Retrieval Hit@5">검색 성능 Hit@5</td>
-              <td class="n">0.8333</td>
+              <td data-ko="검색 성능 Hit@5 (실손 27문항, 09-09)" data-en="Retrieval Hit@5 (27 indemnity questions, 09-09)">검색 성능 Hit@5 (실손 27문항, 09-09)</td>
+              <td class="n">0.8148</td>
               <td class="n">0.85</td>
               <td class="n"><span class="wait-b" data-ko="미달 (1문항)" data-en="short by one item">미달 (1문항)</span></td>
             </tr>
             <tr>
               <td><b>InsuQ</b></td>
-              <td data-ko="거부 정확도" data-en="Refusal accuracy">거부 정확도</td>
+              <td data-ko="거절해야 할 질문 거절" data-en="Refusal accuracy">거절해야 할 질문 거절</td>
               <td class="n">100%</td>
               <td class="n">≥ 90%</td>
               <td class="n"><span class="ok-b" data-ko="초과 달성" data-en="exceeded">초과 달성</span></td>
             </tr>
             <tr>
               <td><b>InsuQ</b></td>
-              <td data-ko="오탐율 (환각)" data-en="Hallucination rate">오탐율 (환각)</td>
+              <td data-ko="답할 수 있는데 거절 (과잉 거절)" data-en="Over-refusal">답할 수 있는데 거절 (과잉 거절)</td>
               <td class="n">0%</td>
               <td class="n">0%</td>
               <td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td>
             </tr>
             <tr>
               <td><b>InsuQ</b></td>
-              <td data-ko="응답 레이턴시 p95" data-en="Latency p95">응답 레이턴시 p95</td>
-              <td class="n">10.4s</td>
+              <td data-ko="응답 시간 중간값" data-en="Latency p50">응답 시간 중간값</td>
+              <td class="n">0.434s</td>
               <td class="n">≤ 30s</td>
               <td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td>
             </tr>
             <tr>
               <td><b>MaintQ</b></td>
-              <td data-ko="근거 페이지 인용률" data-en="Source-page citation">근거 페이지 인용률</td>
+              <td data-ko="근거 페이지 인용률 (08-24)" data-en="Source-page citation (08-24)">근거 페이지 인용률 (08-24)</td>
               <td class="n">90.7%</td>
               <td class="n">100%</td>
               <td class="n"><span class="wait-b" data-ko="미달" data-en="short">미달</span></td>
             </tr>
             <tr>
               <td><b>MaintQ</b></td>
-              <td data-ko="부품 특정 정확률" data-en="Part identification">부품 특정 정확률</td>
-              <td class="n">40.0%</td>
+              <td data-ko="부품 특정 정확률 (비교 실험 각 120회, 09-09)" data-en="Part identification (A/B, 120 runs each, 09-09)">부품 특정 정확률 (비교 실험 각 120회, 09-09)</td>
+              <td class="n">88.9%</td>
               <td class="n">≥ 90%</td>
-              <td class="n"><span class="wait-b" data-ko="미달 (원천 데이터 문제)" data-en="short (source-data issue)">미달 (원천 데이터
-                  문제)</span></td>
+              <td class="n"><span class="wait-b" data-ko="미달 (위험한 오특정은 1.1%)" data-en="short (confident-wrong only 1.1%)">미달 (위험한 오특정은 1.1%)</span></td>
             </tr>
             <tr>
               <td><b>MaintQ</b></td>
@@ -2177,10 +2129,9 @@
             </tr>
             <tr>
               <td><b>FinAllQ</b></td>
-              <td data-ko="테스트 (백엔드 957 · 프론트 480 · 어댑터 130)" data-en="Tests (backend 957 · front 480 · adapter 130)">
-                테스트 (백엔드 957 · 프론트 480 · 어댑터 130)</td>
-              <td class="n">1,567</td>
-              <td class="n" data-ko="전부 GREEN" data-en="all green">전부 GREEN</td>
+              <td data-ko="서버 테스트 (09-08 전수)" data-en="Server tests (full run, 09-08)">서버 테스트 (09-08 전수)</td>
+              <td class="n">1,098</td>
+              <td class="n" data-ko="전부 통과" data-en="all pass">전부 통과</td>
               <td class="n"><span class="ok-b" data-ko="달성" data-en="met">달성</span></td>
             </tr>
             <tr>
@@ -2203,10 +2154,8 @@
       </div>
 
       <div class="note reveal"
-        data-ko="<strong>기각된 개선도 기록으로 남겼다.</strong> InsuQ의 하이브리드 검색(BM25+cross-encoder 리랭커)은 개선을 입증하지 못해 <b>기각</b>했다. 넣으면 좋아 보이는 기법이라도 전/후 지표가 움직이지 않으면 넣지 않는다는 규칙을 그대로 적용한 결과다."
-        data-en="<strong>Rejected improvements are recorded too.</strong> InsuQ's hybrid retrieval (BM25 + cross-encoder reranker) failed to demonstrate a gain and was <b>rejected</b>. A technique that looks good on paper does not ship unless the before/after numbers move.">
-        <strong>기각된 개선도 기록으로 남겼다.</strong> InsuQ의 하이브리드 검색(BM25+cross-encoder 리랭커)은 개선을 입증하지 못해 <b>기각</b>했다. 넣으면 좋아 보이는
-        기법이라도 전/후 지표가 움직이지 않으면 넣지 않는다는 규칙을 그대로 적용한 결과다.</div>
+        data-ko="<strong>기각한 시도도 기록으로 남겼다.</strong> InsuQ에 BM25 하이브리드 검색을 넣어 보니 Hit@5가 <b>0.7917</b>로 오히려 떨어졌고, cross-encoder 리랭커는 품질은 가장 좋았지만 응답 중간값이 <b>98.2초</b>여서 둘 다 <b>기각</b>했다. 좋아 보이는 기법이라도 숫자가 나아지지 않으면 넣지 않았다."
+        data-en="<strong>Rejected attempts are recorded too.</strong> Adding BM25 hybrid retrieval to InsuQ dropped Hit@5 to <b>0.7917</b>, and the cross-encoder reranker had the best quality but a <b>98.2s</b> median latency, so both were <b>rejected</b>. A technique that looks good does not ship unless the numbers improve."><strong>기각한 시도도 기록으로 남겼다.</strong> InsuQ에 BM25 하이브리드 검색을 넣어 보니 Hit@5가 <b>0.7917</b>로 오히려 떨어졌고, cross-encoder 리랭커는 품질은 가장 좋았지만 응답 중간값이 <b>98.2초</b>여서 둘 다 <b>기각</b>했다. 좋아 보이는 기법이라도 숫자가 나아지지 않으면 넣지 않았다.</div>
     </div>
   </section>
 
@@ -2217,9 +2166,8 @@
         <span class="eyebrow" data-ko="진행 상태" data-en="Where it stands">진행 상태</span>
         <h2 class="sec-title" data-ko="지금 도는 것과, 아직 설계인 것" data-en="What runs today, and what is still on paper">지금 도는
           것과, 아직 설계인 것</h2>
-        <p class="sec-sub" data-ko="데모에서 구현된 것과 아닌 것이 섞이면 안 된다. 아래는 2026-08-24 기준 실제 상태다."
-          data-en="A demo must never blur what is built and what is not. This is the actual state as of 2026-08-24.">
-          데모에서 구현된 것과 아닌 것이 섞이면 안 된다. 아래는 2026-08-24 기준 실제 상태다.</p>
+        <p class="sec-sub" data-ko="아래는 2026-09-11 기준 실제 상태다. 만든 것과 설계만 한 것을 나눠 적었다."
+          data-en="The actual state as of 2026-09-11, with what is built kept apart from what is only designed.">아래는 2026-09-11 기준 실제 상태다. 만든 것과 설계만 한 것을 나눠 적었다.</p>
       </div>
 
       <div class="roadmap reveal">
@@ -2236,14 +2184,9 @@
         <div class="rm-item">
           <span class="st done" data-ko="실동작" data-en="running">실동작</span>
           <div>
-            <h4 data-ko="InsuQ A2A 스킬 5종 - 전부 구현 완료" data-en="InsuQ - all 5 A2A skills implemented">InsuQ A2A 스킬 5종 -
-              전부 구현 완료</h4>
-            <p data-ko="<code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> · <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code>. 서비스 간 인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함. <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 우회 불가능한 하드 리터럴이다."
-              data-en="Plus service-to-service auth, <code>request_chain_id</code> audit logging, Idempotency-Key infrastructure and a Task lifecycle state machine. <code>claim-insurance</code> carries <code>requires_human_approval:true</code> as a hard literal that cannot be bypassed.">
-              <code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> ·
-              <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code>. 서비스 간
-              인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함.
-              <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 우회 불가능한 하드 리터럴이다.</p>
+            <h4 data-ko="InsuQ A2A 스킬 6종 - 전부 구현 완료" data-en="InsuQ - all 6 A2A skills implemented">InsuQ A2A 스킬 6종 - 전부 구현 완료</h4>
+            <p data-ko="<code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> · <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code> · <code>lookup-clause</code>. 서비스 간 인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함. <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 코드에 고정된 값이라 요청으로 바꿀 수 없다."
+              data-en="Plus service-to-service auth, <code>request_chain_id</code> audit logging, Idempotency-Key infrastructure and a Task lifecycle state machine. <code>claim-insurance</code> carries <code>requires_human_approval:true</code> as a fixed value in code that no request can change."><code>verify-collateral-insurance</code> · <code>advise-policy-renewal</code> · <code>notify-asset-change</code> · <code>notify-risk-change</code> · <code>claim-insurance</code> · <code>lookup-clause</code>. 서비스 간 인증, <code>request_chain_id</code> 감사로그, Idempotency-Key 인프라, Task 생명주기 상태머신까지 포함. <code>claim-insurance</code>의 <code>requires_human_approval:true</code>는 코드에 고정된 값이라 요청으로 바꿀 수 없다.</p>
           </div>
         </div>
         <div class="rm-item">
@@ -2261,12 +2204,9 @@
         <div class="rm-item">
           <span class="st done" data-ko="실동작" data-en="running">실동작</span>
           <div>
-            <h4 data-ko="MaintQ 발신 3경로 - 브라우저 실캡처" data-en="MaintQ - 3 outbound paths captured live">MaintQ 발신 3경로 -
-              브라우저 실캡처</h4>
-            <p data-ko="<code>request-withdrawal</code>(S5) · <code>lookup-clause</code> · <code>assess-loan</code>(S8 멀티홉). 위 데모 3종이 그 캡처다."
-              data-en="<code>request-withdrawal</code> (S5), <code>lookup-clause</code>, and the S8 multi-hop <code>assess-loan</code> - the three demos above are those captures.">
-              <code>request-withdrawal</code>(S5) · <code>lookup-clause</code> · <code>assess-loan</code>(S8 멀티홉). 위 데모
-              3종이 그 캡처다.</p>
+            <h4 data-ko="MaintQ 발신 6종 - 종단 검증 7경로" data-en="MaintQ - 6 outbound skills, 7 paths verified end to end">MaintQ 발신 6종 - 종단 검증 7경로</h4>
+            <p data-ko="MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더해 7경로를 목킹 없이 끝까지 확인했다(2026-09-11). 위 데모 3종은 08-24 캡처다."
+              data-en="All six MaintQ outbound skills - <code>lookup-clause</code>, <code>request-withdrawal</code> (S5), <code>assess-loan</code> (S8), <code>request-settlement</code> (S12), <code>assess-used-equipment-loan</code> (S13), <code>notify-asset-change</code> (S11) - ran for real. With FinAllQ → InsuQ <code>verify-collateral-insurance</code>, seven paths were verified end to end without mocks (2026-09-11). The three demos above were captured on 08-24.">MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더해 7경로를 목킹 없이 끝까지 확인했다(2026-09-11). 위 데모 3종은 08-24 캡처다.</p>
           </div>
         </div>
         <div class="rm-item">
@@ -2297,10 +2237,8 @@
           <div>
             <h4 data-ko="A2A로 TOTP 코드를 대신 제출하는 기능" data-en="Submitting the TOTP code over A2A">A2A로 TOTP 코드를 대신 제출하는 기능
             </h4>
-            <p data-ko="기술적으로는 만들 수 있다. 만들지 않았다 - CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다. 이건 못 만든 기능이 아니라 지킨 불변식이다."
-              data-en="It is technically buildable and was left unbuilt: if a CORPORATE service account enters the code on the approver's behalf, <b>two-factor authentication collapses into one</b>. This is not a missing feature but an invariant that was kept.">
-              기술적으로는 만들 수 있다. 만들지 않았다 - CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다. 이건 못 만든 기능이 아니라 지킨
-              불변식이다.</p>
+            <p data-ko="기술적으로는 만들 수 있다. 만들지 않았다 - CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다."
+              data-en="It is technically buildable and was left unbuilt: if a CORPORATE service account enters the code on the approver's behalf, <b>two-factor authentication collapses into one</b>.">기술적으로는 만들 수 있다. 만들지 않았다 - CORPORATE 서비스 계정이 결재권자를 대신해 코드를 내면 <b>2단계 인증이 1단계로 붕괴</b>한다.</p>
           </div>
         </div>
       </div>
@@ -2354,7 +2292,7 @@
         <a href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener">GitHub</a>
         <a href="../uploads/QMesh_presentation.pdf" target="_blank" rel="noopener" data-ko="발표자료"
           data-en="Slide deck">발표자료</a>
-        <span class="sp" data-ko="측정 기준일 2026-08-24" data-en="figures as of 2026-08-24">측정 기준일 2026-08-24</span>
+        <span class="sp" data-ko="측정 기준일 2026-09-11" data-en="figures as of 2026-09-11">측정 기준일 2026-09-11</span>
       </footer>
     </div>
   </section>
