@@ -434,7 +434,8 @@
       font-size: 22px;
       font-weight: 700;
       color: var(--ink);
-      margin: 0 0 4px
+      margin: 0 0 4px;
+      word-break: keep-all /* 좁은 화면에서 한국어 문장이 낱말 중간에서 끊기지 않게 */
     }
 
     .hero-role {
