@@ -1,0 +1,104 @@
+<section id="f-visang-churn" hidden>
+  <div class="fmodal-kicker mono">비상교육 · 이탈 예측</div>
+  <h4 class="fmodal-title" data-ko="이력에서 선제 대응까지" data-en="From history to acting early">이력에서 선제 대응까지</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 226" role="img"
+      aria-label="고객 이력에서 RFM 파생변수와 군집화를 거쳐 모델을 학습하고 변수 중요도로 원인을 규명해 선제 대응으로 잇는다">
+      <rect class="dg-box" x="4" y="26" width="170" height="52" rx="8" />
+      <text class="dg-t" x="16" y="48">고객 이력</text>
+      <text class="dg-s" x="16" y="66">약정 · 활동 이력</text>
+      <path class="dg-a" d="M178 52 H200" />
+      <rect class="dg-box" x="204" y="26" width="196" height="52" rx="8" />
+      <text class="dg-t" x="216" y="48">RFM 파생변수</text>
+      <text class="dg-s" x="216" y="66">최근성 · 빈도 · 금액</text>
+      <path class="dg-a" d="M404 52 H426" />
+      <rect class="dg-box" x="430" y="26" width="186" height="52" rx="8" />
+      <text class="dg-t" x="442" y="48">KMeans 군집화</text>
+      <text class="dg-s" x="442" y="66">고객 세분화</text>
+
+      <path class="dg-a" d="M523 82 V96 H94 V112" />
+
+      <rect class="dg-box" x="4" y="116" width="210" height="62" rx="8" />
+      <text class="dg-t" x="16" y="138">RF · XGBoost</text>
+      <text class="dg-s" x="16" y="156">함께 학습</text>
+      <text class="dg-s" x="16" y="172">이탈 85.3% · 활동 저하 89%</text>
+      <path class="dg-a" d="M218 147 H240" />
+      <rect class="dg-box" x="244" y="116" width="196" height="62" rx="8" />
+      <text class="dg-t" x="256" y="142">변수 중요도</text>
+      <text class="dg-s" x="256" y="160">무엇이 이탈을 만드나</text>
+      <path class="dg-a" d="M444 147 H466" />
+      <rect class="dg-hold" x="470" y="116" width="146" height="62" rx="8" />
+      <text class="dg-t" x="482" y="142">선제 대응</text>
+      <text class="dg-s" x="482" y="160">약정 만료 전</text>
+
+      <text class="dg-g" x="4" y="200">예측에서 멈추지 않았다 - 무엇이 이탈을 만드는가까지 냈다</text>
+      <text class="dg-s" x="4" y="218">룰 베이스로는 활동량 감소 · 접속 주기 변화 같은 복합 패턴을 못 잡는다</text>
+    </svg>
+  </div>
+  <p data-ko="약정 만료가 다가오는 고객이 떠나는 걸 <b>사후에야 알 수 있었다.</b> 그렇다고 규칙으로 잡기도 어렵다 - 이탈은 «몇 번 이하로 접속하면 위험» 같은 한 줄로 떨어지지 않고, <b>활동량이 줄고 접속 주기가 벌어지는 흐름</b>으로 나타나기 때문이다."
+    data-en="Customers approaching contract expiry could only be seen leaving <b>after the fact</b>, and rules do not catch it either: churn does not reduce to “fewer than N logins is risky”. It shows up as <b>a drift - activity thinning out, the gap between visits widening.</b>">
+    약정
+    만료가 다가오는 고객이 떠나는 걸 <b>사후에야 알 수 있었다.</b> 그렇다고 규칙으로 잡기도 어렵다 - 이탈은 «몇 번 이하로 접속하면 위험» 같은 한 줄로 떨어지지 않고, <b>활동량이
+      줄고
+      접속 주기가 벌어지는 흐름</b>으로 나타나기 때문이다.</p>
+  <p data-ko="그래서 원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans 로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서 <b>RandomForest</b> 로 이탈 예측 정확도 <b>85.3%</b>, <b>XGBoost</b> 로 활동 저하 예측 정확도 <b>89%</b>를 얻었다."
+    data-en="So the raw history was not fed in directly: it was turned into <b>RFM features - recency, frequency, monetary</b> - and customers were <b>segmented with KMeans</b> to raise input quality. On top of that, <b>RandomForest and XGBoost were trained together</b>, reaching <b>85.3%</b> churn accuracy and <b>89%</b> at-risk detection.">
+    그래서
+    원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans 로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서
+    <b>RandomForest</b> 로 이탈 예측 정확도 <b>85.3%</b>, <b>XGBoost</b> 로 활동 저하 예측 정확도 <b>89%</b>를 얻었다.
+  </p>
+  <p data-ko="다만 «떠날 것 같다»만으로는 할 수 있는 일이 없다. <b>변수 중요도</b>로 무엇이 이탈을 만드는지까지 내야 담당자가 <b>약정 만료 전에</b> 무엇을 건드릴지 정할 수 있다 - 예측이 아니라 <b>조치의 근거</b>를 만드는 것이 이 프로젝트의 목적이었다."
+    data-en="But “likely to leave” alone gives nobody anything to do. Only with <b>feature importance</b> - what actually drives the churn - can someone decide what to change <b>before the contract expires</b>. The point was never the prediction; it was <b>producing grounds to act.</b>">
+    다만
+    «떠날 것 같다»만으로는 할 수 있는 일이 없다. <b>변수 중요도</b>로 무엇이 이탈을 만드는지까지 내야 담당자가 <b>약정 만료 전에</b> 무엇을 건드릴지 정할 수 있다 - 예측이
+    아니라
+    <b>조치의 근거</b>를 만드는 것이 이 프로젝트의 목적이었다.
+  </p>
+</section>
+
+<section id="m-visang-churn" hidden>
+  <div class="fmodal-kicker mono">비상교육 · 이탈 예측</div>
+  <h4 class="fmodal-title" data-ko="이탈 고객 예측 - 무엇을 했나" data-en="Churn prediction - what was done">이탈 고객 예측 - 무엇을
+    했나</h4>
+  <p data-ko="약정 만료가 다가온 고객이 떠날지 미리 알기 위한 분류 모델이다. 로그인 · 결제 · 강의 시청 이력으로 특징을 만들었다."
+    data-en="Classification of whether customers near contract end will leave, built from login, payment and viewing history.">
+    약정 만료가 다가온 고객이 떠날지 미리 알기 위한 분류 모델이다. 로그인 · 결제 · 강의 시청 이력으로 특징을 만들었다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="단계" data-en="Step">단계</th>
+          <th data-ko="한 일" data-en="What was done">한 일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ko="특징 만들기" data-en="Features">특징 만들기</td>
+          <td data-ko="RFM(최근 이용일 · 이용 횟수 · 결제 금액) 파생변수" data-en="RFM features (recency, frequency, monetary)">
+            RFM(최근 이용일 · 이용 횟수 · 결제 금액) 파생변수</td>
+        </tr>
+        <tr>
+          <td data-ko="고객 나누기" data-en="Segments">고객 나누기</td>
+          <td data-ko="로그인 빈도·주기로 고객을 네 단계로 군집화(KMeans)해 모델에 반영"
+            data-en="Four login-based segments via KMeans fed into the model">로그인 빈도·주기로 고객을 네 단계로 군집화(KMeans)해
+            모델에 반영</td>
+        </tr>
+        <tr>
+          <td data-ko="이탈 예측" data-en="Churn">이탈 예측</td>
+          <td data-ko="RandomForest - 정확도 85.3%" data-en="RandomForest - 85.3% accuracy">RandomForest - 정확도
+            85.3%</td>
+        </tr>
+        <tr>
+          <td data-ko="활동 저하 예측" data-en="Reduced activity">활동 저하 예측</td>
+          <td data-ko="XGBoost - 정확도 89%" data-en="XGBoost - 89% accuracy">XGBoost - 정확도 89%</td>
+        </tr>
+        <tr>
+          <td data-ko="원인 설명" data-en="Explanation">원인 설명</td>
+          <td data-ko="변수 중요도로 무엇이 이탈을 만드는지 해석해 대표이사 앞에서 발표"
+            data-en="Feature importance to explain churn drivers, presented to the CEO">변수 중요도로 무엇이 이탈을 만드는지 해석해
+            대표이사 앞에서 발표</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

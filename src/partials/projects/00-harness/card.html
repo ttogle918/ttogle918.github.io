@@ -1,0 +1,147 @@
+<!-- 일하는 방식 - 프로젝트와 분리해 맨 위, 접힌 채로 -->
+<article class="pcard pcard-aside reveal" id="harness">
+  <div class="pc-top">
+    <div class="pc-badge mono">★</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="8개 프로젝트에 같은 규칙으로 적용한 AI 작업 관리 틀(하네스)"
+        data-en="One agent harness, eight repositories">8개 프로젝트에 같은 규칙으로 적용한 AI 작업 관리 틀(하네스)</div>
+      <h3 class="pc-title">AI 하네스 엔지니어링</h3>
+      <div class="pc-meta"
+        data-ko="프로젝트를 만들면서 함께 만든 것 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 8개 레포에 적용"
+        data-en="Built alongside the projects <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> deployed across 8 repositories">
+        프로젝트를 만들면서 함께 만든 것 <span class="sep">·</span> <b>클로드 코드 cli</b> <span class="sep">·</span> 8개 레포에 적용
+      </div>
+      <div class="pc-hash mono">
+        <span>#Harness</span><span>#SubAgent</span><span>#Hooks</span><span>#HumanInTheLoop</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="코딩 AI에게 개발을 맡기면서 같은 사고를 여러 번 겪었습니다. 계획에 없던 기능을 끌어오고, 테스트가 실패하면 코드 대신 정답 파일을 고쳐 통과시키고, 검토만 맡긴 AI가 코드를 직접 고쳐 버렸습니다. 그래서 반복될 사고를 먼저 적어 두고 막을 방법을 정했습니다."
+              data-en="Handing development to coding agents, the same accidents kept happening: unplanned features pulled in, expected answers edited to make failing tests pass, and a reviewer agent rewriting code itself. So the likely accidents were written down first, and a way to block each was chosen.">
+              코딩 AI에게 개발을 맡기면서 같은 사고를 여러 번 겪었습니다. 계획에 없던 기능을 끌어오고, 테스트가 실패하면 코드 대신 정답 파일을 고쳐 통과시키고, 검토만 맡긴 AI가
+              코드를 직접 고쳐 버렸습니다. 그래서 반복될 사고를 먼저 적어 두고 막을 방법을 정했습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li
+                data-ko="<b>막는 방법을 세 단계(skill-지시문, setting-도구 권한, hook-코드)로 나눴습니다</b>: AI에게 주는 지시문(<span class=&quot;mono&quot;>CLAUDE.md</span> 8 · 명령 46 · 스킬 15)은 8개 프로젝트에, 도구 금지 규칙(deny)은 <b>2곳</b>에, 코드로 막는 장치(hook)는 <b>1곳</b>에 걸었습니다. <b>위험이 큰 프로젝트일수록 더 강하게 막았습니다.</b>"
+                data-en="<b>Three layers of control (skill - instructions, setting - tool permissions, hook - code)</b>: instructions (<span class=&quot;mono&quot;>CLAUDE.md</span> ×8, 46 commands, 15 skills) across eight projects, deny rules in <b>two</b>, code hooks in <b>one</b>. <b>The riskier the project, the stronger the block.</b>">
+                <b>막는 방법을 세 단계(skill-지시문, setting-도구 권한, hook-코드)로 나눴습니다</b>: AI에게 주는 지시문(<span
+                  class="mono">CLAUDE.md</span> 8 · 명령 46 · 스킬 15)은 8개 프로젝트에, 도구 금지 규칙(deny)은 <b>2곳</b>에, 코드로 막는
+                장치(hook)는 <b>1곳</b>에 걸었습니다. <b>위험이 큰 프로젝트일수록 더 강하게 막았습니다.</b>
+              </li>
+              <li
+                data-ko="<b>hook 적용</b>: 감전 위험이 있는 장비를 다루는 MaintQ만 코드 층까지 내렸습니다.<br>AI가 채점용 정답 파일이나 매뉴얼 원본을 고치려고 하면 호출 자체를 막습니다. review 담당 AI에게는 읽기 도구만 줘서 고칠 방법이 없게 했습니다."
+                data-en="<b>Hooks</b>: only MaintQ, which handles equipment with shock risk, goes down to code.<br>Any attempt by the agent to edit the answer key or the source manuals is blocked at the call. The review agent only gets read tools, so it has no way to edit.">
+                <b>hook 적용</b>: 감전 위험이 있는 장비를 다루는 MaintQ만 코드 층까지 내렸습니다.<br>AI가 채점용 정답 파일이나 매뉴얼 원본을 고치려고 하면 호출
+                자체를 막습니다. review 담당 AI에게는 읽기 도구만 줘서 고칠 방법이 없게 했습니다.
+              </li>
+              <li
+                data-ko="<b>key-manager, 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span class=&quot;mono&quot;>permissions.deny</span>) <b>15개</b>로 코딩 AI가 <span class=&quot;mono&quot;>.env</span> 파일과 금고 DB를 읽지 못하게 막았습니다. 사용자에게 한 약속을 만드는 AI에게도 똑같이 적용한 것입니다."
+                data-en="<b>key-manager - the product's promise applied to the agent</b>: it is a credential manager, so “keys never leave” is the promise. <b>Fifteen</b> <span class=&quot;mono&quot;>permissions.deny</span> rules block reading <span class=&quot;mono&quot;>.env</span> files and the vault database - the rule written for people applies to the coding agent too.">
+                <b>key-manager, 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span
+                  class="mono">permissions.deny</span>) <b>15개</b>로 코딩 AI가 <span class="mono">.env</span> 파일과 금고
+                DB를 읽지 못하게 막았습니다. 사용자에게 한 약속을 만드는 AI에게도 똑같이 적용한 것입니다.
+              </li>
+              <li
+                data-ko="구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. AI는 초안까지만 쓰게 했습니다."
+                data-en="Implementation, tests, review and commit run on their own, but at the end <b>a checklist for a person</b> appears and everything stops. The AI only writes drafts.">
+                구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. AI는 초안까지만 쓰게 했습니다.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-harness-ring" data-ko="코드를 감싸는 하네스"
+                data-en="The harness around the code">코드를 감싸는 하네스</button>
+            </div>
+          </div>
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
+                data-en="Results - what was built">결과 - 만든 것</span></div>
+            <p data-ko="AI 지시문(<span class=&quot;mono&quot;>CLAUDE.md</span>) <b>8개</b> · 역할별 보조 AI <b>37종</b> · 명령어 <b>46종</b> · 스킬 <b>15종</b> · 쓰기 권한을 뺀 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지 역할</b>(기획 · 개발 · 검토 · 테스트 · 기록)과 <b>같은 작업 순서</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 함께 씁니다. MaintQ는 개발·테스트 자리를 도구 제작·평가 실행 역할로 바꾸고 데이터 추출 역할을 더했고, InsuQ는 평가 담당이 더 있습니다."
+              data-en="<b>8</b> <span class=&quot;mono&quot;>CLAUDE.md</span> files · <b>37</b> sub-agents · <b>46</b> commands · <b>15</b> skills · <b>3</b> read-only agents · <b>3</b> hooks.<br>Six projects share <b>the same five roles</b> and <b>the same lifecycle</b> (<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>); MaintQ swaps dev and tester for tool-builder and eval-runner and adds data-extractor, InsuQ adds an evaluator.">
+              AI 지시문(<span class="mono">CLAUDE.md</span>) <b>8개</b> · 역할별 보조 AI <b>37종</b> · 명령어 <b>46종</b> · 스킬
+              <b>15종</b> · 쓰기 권한을 뺀 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지
+                역할</b>(기획 · 개발 · 검토 · 테스트 · 기록)과 <b>같은 작업 순서</b>(<span class="mono">sprint → stage → checkpoint
+                → done</span>)를 함께 씁니다. MaintQ는 개발·테스트 자리를 도구 제작·평가 실행 역할로 바꾸고 데이터 추출 역할을 더했고, InsuQ는 평가 담당이 더
+              있습니다.
+            </p>
+            <p data-ko="만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 돈 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class=&quot;mono&quot;>|| exit 0</span>)가 오류를 가려서 그동안 몰랐습니다.<br>고친 뒤에는 위반 사례를 일부러 넣어 새 hook이 실제로 잡아내는지 확인했습니다."
+              data-en="Running the hooks by hand showed two of three had never run - a fallback (<span class=&quot;mono&quot;>|| exit 0</span>) hid the failures.<br>After the fix, deliberate violations were planted to confirm the new hooks catch them.">
+              만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 돈 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class="mono">||
+                exit 0</span>)가 오류를 가려서 그동안 몰랐습니다.<br>고친 뒤에는 위반 사례를 일부러 넣어 새 hook이 실제로 잡아내는지 확인했습니다.</p>
+            <p data-ko="이 포트폴리오도 같은 방식으로 만들었습니다. 브라우저로 열어 보기 전에 검사 스크립트(<span class=&quot;mono&quot;>tools/check_page.py</span>)가 페이지가 깨지는 5가지 경우를 확인하고, 설계서 → 계획서 → 작업 순으로 진행합니다."
+              data-en="This portfolio was built the same way - <span class=&quot;mono&quot;>tools/check_page.py</span> checks five structural invariants before a browser is ever opened, and the work runs design doc → plan → tasks.">
+              이 포트폴리오도 같은 방식으로 만들었습니다. 브라우저로 열어 보기 전에 검사 스크립트(<span class="mono">tools/check_page.py</span>)가
+              페이지가 깨지는 5가지 경우를 확인하고, 설계서 → 계획서 → 작업 순으로 진행합니다.</p>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 212" role="img"
+                  aria-label="프로젝트 코드를 하네스가 두르고 계획·검토·구현·회귀 네 역할이 바깥에서 안으로 작용한다">
+                  <rect class="dg-box" x="14" y="8" width="176" height="36" rx="8" />
+                  <text class="dg-t" x="26" y="31">pm - 계획</text>
+                  <rect class="dg-box" x="210" y="8" width="176" height="36" rx="8" />
+                  <text class="dg-t" x="222" y="31">reviewer - 검토</text>
+                  <path class="dg-a" d="M102 44 V52" />
+                  <path class="dg-a" d="M298 44 V52" />
+                  <rect class="dg-zone" x="14" y="56" width="372" height="98" rx="16" />
+                  <text class="dg-k" x="24" y="74">하네스</text>
+                  <rect class="dg-box" x="110" y="86" width="180" height="48" rx="8" />
+                  <text class="dg-t" x="122" y="108">프로젝트 코드</text>
+                  <text class="dg-s" x="122" y="126">8개 레포</text>
+                  <path class="dg-a" d="M102 166 V158" />
+                  <path class="dg-a" d="M298 166 V158" />
+                  <rect class="dg-box" x="14" y="168" width="176" height="36" rx="8" />
+                  <text class="dg-t" x="26" y="191">dev - 구현</text>
+                  <rect class="dg-hold" x="210" y="168" width="176" height="36" rx="8" />
+                  <text class="dg-t" x="222" y="191">tester - 회귀</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="역할이 코드를 감싼다" data-en="Roles wrap the code">역할이 코드를 감싼다</span>
+            </div>
+            <div class="pc-slide">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 150" role="img" aria-label="스프린트에서 스테이지, 체크포인트를 거쳐 사람이 확인하는 완료까지의 수명주기">
+                  <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="38">/sprint</text>
+                  <text class="dg-s" x="22" y="54">계획을 세운다</text>
+                  <path class="dg-a" d="M194 38 H206" />
+                  <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="38">/stage</text>
+                  <text class="dg-s" x="222" y="54">구현 → 회귀 → 검토</text>
+                  <path class="dg-a" d="M300 64 V74 H100 V80" />
+                  <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="106">/checkpoint</text>
+                  <text class="dg-s" x="22" y="122">기록을 남긴다</text>
+                  <path class="dg-a" d="M194 106 H206" />
+                  <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="106">/done</text>
+                  <text class="dg-s" x="222" y="122">사람이 확인한다</text>
+                  <text class="dg-g" x="10" y="146">자동은 커밋까지 - 체크리스트에서 멈춘다</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="sprint → stage → checkpoint → done"
+                data-en="sprint → stage → checkpoint → done">sprint → stage → checkpoint → done</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

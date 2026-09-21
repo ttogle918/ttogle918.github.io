@@ -1,0 +1,333 @@
+<section id="f-finallq-dashboard" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · 홈</div>
+  <h4 class="fmodal-title" data-ko="통합 대시보드" data-en="Unified dashboard">통합 대시보드</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 128" role="img" aria-label="은행 계좌와 증권 보유종목을 합산해 오늘 확인할 것으로 보여주는 흐름">
+      <rect class="dg-box" x="4" y="12" width="152" height="38" rx="8" />
+      <text class="dg-t" x="16" y="30">은행 - 계좌·거래</text>
+      <text class="dg-s" x="16" y="44">Spring Boot 코어</text>
+      <rect class="dg-box" x="4" y="62" width="152" height="38" rx="8" />
+      <text class="dg-t" x="16" y="80">증권 - 보유종목</text>
+      <text class="dg-s" x="16" y="94">holdings · prices</text>
+      <path class="dg-a" d="M160 31 H228 V50" />
+      <path class="dg-a" d="M160 81 H228 V62" />
+      <rect class="dg-box" x="232" y="36" width="146" height="40" rx="8" />
+      <text class="dg-t" x="244" y="54">합산 · 룰 판정</text>
+      <text class="dg-s" x="244" y="69">비율 → 임계값 비교</text>
+      <path class="dg-a" d="M382 56 H440" />
+      <rect class="dg-box" x="444" y="26" width="172" height="60" rx="8" />
+      <text class="dg-t" x="456" y="46">오늘 확인할 것</text>
+      <text class="dg-s" x="456" y="62">FDS 경보 · 규제 알림</text>
+      <text class="dg-s" x="456" y="76">심각도순</text>
+    </svg>
+  </div>
+  <p data-ko="파편화된 은행(자산·보안)과 증권(투자) 데이터를 <b>한 화면에 합산</b>해 보여준다. 여기서 중요한 건 요약이 아니라 <b>경고가 실제 계산 결과라는 점</b>이다 - 상단 카드의 규제 경고는 하드코딩 문구가 아니라 포트폴리오 구성 비율을 계산해 임계값과 비교한 결과다."
+    data-en="Fragmented banking and brokerage data is <b>summed into one screen</b>. What matters is not the summary but that <b>the warnings are computed</b> - the regulatory alert on the top card is not canned text; it is the portfolio's composition ratio compared against a threshold.">
+    파편화된
+    은행(자산·보안)과 증권(투자) 데이터를 <b>한 화면에 합산</b>해 보여준다. 여기서 중요한 건 요약이 아니라 <b>경고가 실제 계산 결과라는 점</b>이다 - 상단 카드의 규제 경고는
+    하드코딩 문구가 아니라 포트폴리오 구성 비율을 계산해 임계값과 비교한 결과다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/02_dashboard.jpg" alt="FinAllQ unified dashboard">
+    <figcaption data-ko="배포 환경(Vercel + Cloud Run) 실측 캡처"
+      data-en="Captured on the deployed environment (Vercel + Cloud Run)">배포 환경(Vercel + Cloud Run) 실측 캡처
+    </figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-assessment" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · /loan/applications</div>
+  <h4 class="fmodal-title" data-ko="여신 심사 근거 카드" data-en="Loan assessment evidence">여신 심사 근거 카드</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 600 140" role="img" aria-label="심사 시점 판정 로직을 쓰기와 읽기가 함께 쓰는 구조">
+      <rect class="dg-box" x="186" y="48" width="216" height="46" rx="8" />
+      <text class="dg-t" x="200" y="68">심사 판정 로직 (한 벌)</text>
+      <text class="dg-s" x="200" y="84">한도 사용률 · LTV · 규칙</text>
+      <path class="dg-a" d="M186 60 H120" />
+      <path class="dg-a" d="M402 60 H470" />
+      <text class="dg-k" x="128" y="52">쓰기</text>
+      <text class="dg-k" x="424" y="52">읽기</text>
+      <rect class="dg-box" x="4" y="14" width="112" height="36" rx="8" />
+      <text class="dg-t" x="16" y="36">심사 실행</text>
+      <rect class="dg-box" x="474" y="14" width="122" height="36" rx="8" />
+      <text class="dg-t" x="486" y="36">근거 보기 카드</text>
+      <text class="dg-s" x="16" y="122">신규 API 도 신규 데이터도 만들지 않았다 - 같은 로직을 두 방향에서 쓴다</text>
+    </svg>
+  </div>
+  <p data-ko="&quot;근거 보기&quot;를 펼치면 한도(신청 원금 대비 여신 한도 사용률)·담보(LTV)·규칙 판정이 <b>전부 실제 계산값</b>으로 나온다. 특징은 <b>신규 데이터나 별도 API를 만들지 않고 심사 시점과 같은 판정 로직을 재사용</b>했다는 점이다 - 판정 로직이 두 벌이면 화면과 실제 심사가 갈라진다."
+    data-en="Expanding &quot;show evidence&quot; reveals the limit usage, the LTV and the rule verdicts - <b>all real computed values</b>. The point is that <b>no new data and no separate API were added: the read path reuses the same logic the assessment writes with</b>. Two copies of that logic would drift apart.">
+    &quot;근거
+    보기&quot;를 펼치면 한도(신청 원금 대비 여신 한도 사용률)·담보(LTV)·규칙 판정이 <b>전부 실제 계산값</b>으로 나온다. 특징은 <b>신규 데이터나 별도 API를 만들지 않고 심사
+      시점과 같은 판정 로직을 재사용</b>했다는 점이다 - 판정 로직이 두 벌이면 화면과 실제 심사가 갈라진다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/03_loan_list.jpg" alt="loan application list">
+    <figcaption data-ko="① 내 여신 신청 목록 - 심사 상태별 필터" data-en="1 - my applications, filtered by status">① 내 여신 신청
+      목록 - 심사 상태별 필터</figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/04_loan_assessment.jpg" alt="loan assessment evidence card">
+    <figcaption data-ko="② 근거 보기 - 한도·LTV·규칙 판정이 실제 계산값으로"
+      data-en="2 - evidence: limit, LTV and rule verdicts, all computed">② 근거 보기 - 한도·LTV·규칙 판정이 실제 계산값으로
+    </figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-disbursement" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · 여신 → 이체</div>
+  <h4 class="fmodal-title" data-ko="여신 ↔ 이체 연결" data-en="Loan-to-transfer bridge">여신 ↔ 이체 연결</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 640 132" role="img" aria-label="서버 집계와 disbursable 판정을 거쳐 이체 폼이 사전채움되는 흐름">
+      <rect class="dg-box" x="4" y="14" width="150" height="44" rx="8" />
+      <text class="dg-t" x="16" y="34">서버 실시간 집계</text>
+      <text class="dg-s" x="16" y="49">원금·집행액·잔여·건수</text>
+      <path class="dg-a" d="M158 36 H204" />
+      <rect class="dg-box" x="208" y="14" width="140" height="44" rx="8" />
+      <text class="dg-t" x="220" y="34">disbursable?</text>
+      <text class="dg-s" x="220" y="49">승인 + 잔여 &gt; 0</text>
+      <path class="dg-a" d="M352 36 H398" />
+      <rect class="dg-box" x="402" y="14" width="118" height="44" rx="8" />
+      <text class="dg-t" x="414" y="34">출금 준비</text>
+      <text class="dg-s" x="414" y="49">버튼 노출</text>
+      <path class="dg-a" d="M524 36 H566" />
+      <rect class="dg-box" x="524" y="70" width="112" height="40" rx="8" />
+      <text class="dg-t" x="536" y="88">이체 폼</text>
+      <text class="dg-s" x="536" y="103">금액 사전채움</text>
+      <path class="dg-a" d="M570 58 V68" />
+      <text class="dg-g" x="16" y="84">판정은 서버가, 화면은 결과만 - 프론트에서 복제하지 않는다</text>
+      <text class="dg-s" x="16" y="104">loanId 는 숨은 연결고리로 함께 실려, 제출 시 서버가 잔여 한도를 다시 검증한다</text>
+      <text class="dg-g" x="16" y="122">출금·받는 계좌는 사전채움하지 않는다 - 사람이 직접 확인하고 입력한다</text>
+    </svg>
+  </div>
+  <p data-ko="승인된 여신에서 실제 돈이 나가는 자리를 이은 다리다. 원금·이미 집행된 금액·잔여 한도·이체 건수를 <b>서버가 실시간 집계</b>하고, <span class=&quot;mono&quot;>disbursable === true</span>일 때만 버튼이 나타난다. 이 판정을 <b>프론트에서 복제하지 않고 서버 값을 그대로 신뢰</b>하는 것이 원칙이다."
+    data-en="This is the bridge from an approved loan to money actually leaving. Principal, already-disbursed amount, remaining headroom and transfer count are <b>aggregated live on the server</b>, and the button appears only when <span class=&quot;mono&quot;>disbursable === true</span>. That verdict is <b>never recomputed in the frontend</b> - the server's value is taken as-is.">
+    승인된
+    여신에서 실제 돈이 나가는 자리를 이은 다리다. 원금·이미 집행된 금액·잔여 한도·이체 건수를 <b>서버가 실시간 집계</b>하고, <span class="mono">disbursable ===
+      true</span>일 때만 버튼이 나타난다. 이 판정을 <b>프론트에서 복제하지 않고 서버 값을 그대로 신뢰</b>하는 것이 원칙이다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/05_loan_disbursement.jpg" alt="loan disbursement panel">
+    <figcaption data-ko="① 여신 상세의 출금 패널 - 잔여 한도까지 서버 집계"
+      data-en="1 - the disbursement panel, aggregated server-side">① 여신 상세의 출금 패널 - 잔여 한도까지 서버 집계</figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/06_transfer_apply_form.jpg" alt="prefilled transfer form">
+    <figcaption data-ko="② 이체 폼 사전채움 - 금액만. 계좌는 사람이 입력한다"
+      data-en="2 - the prefilled form: amount only; accounts are typed by a person">② 이체 폼 사전채움 - 금액만. 계좌는 사람이
+      입력한다</figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-approval" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · ApprovalPolicy</div>
+  <h4 class="fmodal-title" data-ko="기업 이체 결재 - 직무 분리" data-en="Corporate approval - separation of duties">기업
+    이체 결재 - 직무 분리</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 130" role="img" aria-label="신청자에게는 취소만, 결재는 다른 사람이 하는 구조">
+      <rect class="dg-box" x="4" y="16" width="164" height="48" rx="8" />
+      <text class="dg-t" x="16" y="36">신청자 (demo-employee)</text>
+      <text class="dg-bad" x="16" y="53">취소만 · 승인 버튼 없음</text>
+      <path class="dg-a" d="M172 40 H228" />
+      <rect class="dg-box" x="232" y="16" width="130" height="48" rx="8" />
+      <text class="dg-t" x="244" y="36">결재 대기</text>
+      <text class="dg-s" x="244" y="53">PENDING</text>
+      <path class="dg-a" d="M366 40 H422" />
+      <rect class="dg-box" x="426" y="16" width="190" height="48" rx="8" />
+      <text class="dg-t" x="438" y="36">MANAGER 결재함</text>
+      <text class="dg-s" x="438" y="53">요청자의 1일 한도 사용액 표시</text>
+      <text class="dg-s" x="16" y="92">기업(CORPORATE) 고객은 요청자와 결재자가 반드시 달라야 한다 - ApprovalPolicy</text>
+      <text class="dg-s" x="16" y="112">결재자가 승인 전에 한도 여유를 바로 확인할 수 있게 같은 행에 함께 보여준다</text>
+    </svg>
+  </div>
+  <p data-ko="제출 즉시 &quot;결재 대기&quot;로 올라가는데, <b>신청자 본인에게는 취소 버튼만 있고 최종 승인 버튼이 없다.</b> 기업 고객은 요청자와 결재자가 반드시 달라야 하는 직무 분리 규칙(<span class=&quot;mono&quot;>ApprovalPolicy</span>) 때문이다. 결재함에서는 각 행에 <b>요청자의 오늘(KST) 확정분 기준 1일 한도 사용액</b>을 함께 보여줘, 결재자가 승인 전에 한도 여유를 바로 확인한다."
+    data-en="A submitted transfer goes straight to &quot;awaiting approval&quot; - and <b>the requester sees only a cancel button, never a final approve.</b> Corporate customers are bound by a separation-of-duties rule (<span class=&quot;mono&quot;>ApprovalPolicy</span>): requester and approver must differ. The queue shows <b>that requester's daily limit usage</b> on the same row, so the approver can see the headroom before signing.">
+    제출
+    즉시 &quot;결재 대기&quot;로 올라가는데, <b>신청자 본인에게는 취소 버튼만 있고 최종 승인 버튼이 없다.</b> 기업 고객은 요청자와 결재자가 반드시 달라야 하는 직무 분리
+    규칙(<span class="mono">ApprovalPolicy</span>) 때문이다. 결재함에서는 각 행에 <b>요청자의 오늘(KST) 확정분 기준 1일 한도 사용액</b>을 함께 보여줘,
+    결재자가 승인 전에 한도 여유를 바로 확인한다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/07_transfer_pending_approval.jpg" alt="requester view: cancel only">
+    <figcaption data-ko="① 신청자 화면 - 취소만 가능하다" data-en="1 - the requester's view: cancel only">① 신청자 화면 - 취소만
+      가능하다</figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/08_manager_approval_queue.jpg" alt="manager approval queue">
+    <figcaption data-ko="② MANAGER 결재함 - 요청자별 1일 한도 사용액을 함께"
+      data-en="2 - the manager's queue, with each requester's daily usage">② MANAGER 결재함 - 요청자별 1일 한도 사용액을 함께
+    </figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-fds" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · 이중 방어</div>
+  <h4 class="fmodal-title" data-ko="FDS 고위험 → 2FA 승격" data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 136" role="img" aria-label="결재 승인을 통과해도 FDS가 재평가해 2FA를 요구하는 이중 방어">
+      <rect class="dg-box" x="4" y="18" width="136" height="48" rx="8" />
+      <text class="dg-t" x="16" y="38">① 결재 승인 - 사람</text>
+      <text class="dg-s" x="16" y="55">규칙: 한도 · 직무분리</text>
+      <path class="dg-a" d="M144 42 H194" />
+      <text class="dg-k" x="158" y="34">통과</text>
+      <rect class="dg-box" x="198" y="18" width="189" height="48" rx="8" />
+      <text class="dg-t" x="210" y="38">② FDS 재평가 - 모델</text>
+      <text class="dg-s" x="210" y="55">IsolationForest + 개인 기준선</text>
+      <path class="dg-a" d="M391 42 H445" />
+      <text class="dg-bad" x="402" y="34">고위험</text>
+      <rect class="dg-box" x="449" y="18" width="167" height="48" rx="8" />
+      <text class="dg-t" x="461" y="38">TOTP 2FA 필요</text>
+      <text class="dg-s" x="461" y="55">6자리 코드 입력 전까지 보류</text>
+      <text class="dg-s" x="16" y="98">결재가 끝나도 자동으로 완료되지 않는다 - 규칙(한도) → 모델(FDS) 두 축이 직렬이다</text>
+      <text class="dg-s" x="16" y="118">개인 기준선은 사용자별 30일 평균 이체액을 Redis 에 캐시해 쓴다 (전역 임계값이 성립하지 않는다)</text>
+    </svg>
+  </div>
+  <p data-ko="[승인]을 누르면 <b>결재 축(사람)은 통과하지만</b>, 곧바로 FDS가 <b>별도로 이 거래를 재평가</b>한다. 고위험으로 분류되면 추가 인증(TOTP 2FA)이 필요한 상태로 전환된다 - <b>결재가 끝나도 자동으로 완료되지 않는</b>, 규칙(한도)과 모델(FDS)의 이중 방어가 실제로 작동하는 장면이다."
+    data-en="Pressing approve <b>clears the human axis</b> - and then fraud detection <b>re-evaluates the transaction on its own</b>. Classified high risk, it moves to a state requiring TOTP 2FA. <b>Approval alone does not complete it</b>: this is the rule layer and the model layer defending in series.">
+    [승인]을
+    누르면 <b>결재 축(사람)은 통과하지만</b>, 곧바로 FDS가 <b>별도로 이 거래를 재평가</b>한다. 고위험으로 분류되면 추가 인증(TOTP 2FA)이 필요한 상태로 전환된다 -
+    <b>결재가 끝나도 자동으로 완료되지 않는</b>, 규칙(한도)과 모델(FDS)의 이중 방어가 실제로 작동하는 장면이다.
+  </p>
+  <p data-ko="정확히 밝히면 <b>개인화되는 것은 모델이 아니라 사용자별 기준선</b>이다. 완료된 실거래 이력에서 30일 평균 이체액 등을 집계해 Redis에 캐시하고 그 기준선을 판정에 쓴다 - 캐시-어사이드 방식이라 <b>TTL 만료가 곧 재계산 트리거</b>가 되어 별도 스케줄러가 없다. 운영 데이터로 모델 자체가 재학습되는 파이프라인은 아직 없다."
+    data-en="To be precise: <b>what is personalised is the baseline, not the model</b>. Completed transactions are aggregated into a 30-day average per user, cached in Redis, and fed to the verdict - cache-aside, so <b>TTL expiry is the recompute trigger</b> and no scheduler is needed. There is no retraining pipeline on production data yet.">
+    정확히
+    밝히면 <b>개인화되는 것은 모델이 아니라 사용자별 기준선</b>이다. 완료된 실거래 이력에서 30일 평균 이체액 등을 집계해 Redis에 캐시하고 그 기준선을 판정에 쓴다 - 캐시-어사이드
+    방식이라 <b>TTL 만료가 곧 재계산 트리거</b>가 되어 별도 스케줄러가 없다. 운영 데이터로 모델 자체가 재학습되는 파이프라인은 아직 없다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/09_transfer_2fa_required.jpg" alt="2FA required after approval">
+    <figcaption data-ko="결재 승인 직후 FDS 고위험 판정 → 추가 인증 요구"
+      data-en="Right after approval: fraud flags it high risk and demands a second factor">결재 승인 직후 FDS 고위험 판정 →
+      추가 인증 요구</figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-smishing" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · /security</div>
+  <h4 class="fmodal-title" data-ko="스미싱 탐지" data-en="Smishing detection">스미싱 탐지</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 130" role="img" aria-label="문자 입력에서 위험점수와 위험 단어 근거를 내고 이력에 쌓는 흐름">
+      <rect class="dg-box" x="4" y="14" width="128" height="42" rx="8" />
+      <text class="dg-t" x="16" y="33">문자 붙여넣기</text>
+      <text class="dg-s" x="16" y="48">자유 텍스트</text>
+      <path class="dg-a" d="M136 35 H182" />
+      <rect class="dg-box" x="186" y="14" width="178" height="42" rx="8" />
+      <text class="dg-t" x="198" y="33">TF-IDF + LogReg</text>
+      <text class="dg-s" x="198" y="48">문구 변형이 무한하다</text>
+      <path class="dg-a" d="M368 35 H414" />
+      <rect class="dg-box" x="418" y="14" width="198" height="42" rx="8" />
+      <text class="dg-t" x="430" y="33">위험점수 + 위험 단어</text>
+      <text class="dg-s" x="430" y="48">판정만이 아니라 근거를</text>
+      <text class="dg-g" x="16" y="86">이력의 주체는 JWT 로 서버가 확정한다 - 요청 본문의 자유 문자열로</text>
+      <text class="dg-g" x="16" y="104">타인의 이력을 조회할 수 없다 (IDOR 방지)</text>
+    </svg>
+  </div>
+  <p data-ko="가짜 은행 문자(계좌 잠금 유도 + 단축 URL 패턴)를 넣으면 <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> 모델이 <span class=&quot;mono&quot;>smishing</span>으로 판정하고 <b>위험점수와 위험 단어를 근거로 함께 제시</b>한다. 여기에 키워드 블랙리스트를 쓰지 않은 이유는 <b>문구 변형이 무한해 즉시 우회되기 때문</b>이다."
+    data-en="Paste a fake bank message - account-lock bait plus a shortened URL - and the <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> model returns <span class=&quot;mono&quot;>smishing</span> along with <b>a risk score and the specific risk terms as evidence</b>. A keyword blacklist was rejected because <b>wording varies without limit and is bypassed immediately</b>.">
+    가짜
+    은행 문자(계좌 잠금 유도 + 단축 URL 패턴)를 넣으면 <span class="mono">TF-IDF + LogisticRegression</span> 모델이 <span
+      class="mono">smishing</span>으로 판정하고 <b>위험점수와 위험 단어를 근거로 함께 제시</b>한다. 여기에 키워드 블랙리스트를 쓰지 않은 이유는 <b>문구 변형이
+      무한해 즉시 우회되기 때문</b>이다.</p>
+  <p data-ko="판정 이력은 <b>요청 주체를 JWT 인증으로 서버가 확정</b>한다 - 요청 본문의 자유 문자열로 타인의 이력을 조회할 수 없다(IDOR 방지)."
+    data-en="The history's owner is <b>fixed by the server from the JWT</b> - a free-text field in the request body cannot be used to read someone else's records (IDOR).">
+    판정 이력은 <b>요청 주체를 JWT 인증으로 서버가 확정</b>한다 - 요청 본문의 자유 문자열로 타인의 이력을 조회할 수 없다(IDOR 방지).</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/11_smishing_result.jpg" alt="smishing detection result with risk terms">
+    <figcaption data-ko="판정 결과 - 위험점수와 위험 단어(링크, Web발신)까지"
+      data-en="The verdict, with the risk score and the flagged terms">판정 결과 - 위험점수와 위험 단어(링크, Web발신)까지
+    </figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-failsoft" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · /chat</div>
+  <h4 class="fmodal-title" data-ko="AI 비서 - 정직한 실패" data-en="The assistant fails honestly">AI 비서 - 정직한 실패</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 150" role="img" aria-label="매칭 툴이 없으면 범위 밖이라 답하고, 호출에 실패하면 배너로 알리는 두 경로">
+      <rect class="dg-box" x="4" y="50" width="120" height="42" rx="8" />
+      <text class="dg-t" x="16" y="69">질의</text>
+      <text class="dg-s" x="16" y="84">자연어</text>
+      <path class="dg-a" d="M128 71 H174" />
+      <rect class="dg-box" x="178" y="50" width="130" height="42" rx="8" />
+      <text class="dg-t" x="190" y="69">툴 매칭</text>
+      <text class="dg-s" x="190" y="84">키워드 점수</text>
+      <path class="dg-a" d="M312 62 H366 V40" />
+      <text class="dg-k" x="316" y="56">없음</text>
+      <path class="dg-a" d="M312 80 H366 V102" />
+      <text class="dg-k" x="316" y="96">있음·실패</text>
+      <rect class="dg-box" x="370" y="8" width="246" height="42" rx="8" />
+      <text class="dg-t" x="382" y="27">&quot;제가 다룰 수 있는 범위 밖&quot;</text>
+      <text class="dg-s" x="382" y="42">지어내지 않는다 · 근거 보기로 시도 공개</text>
+      <rect class="dg-box" x="370" y="94" width="246" height="42" rx="8" />
+      <text class="dg-t" x="382" y="113">Fail-soft 배너</text>
+      <text class="dg-s" x="382" y="128">결과를 못 받았다는 사실을 그대로 알린다</text>
+    </svg>
+  </div>
+  <p data-ko="<span class=&quot;mono&quot;>/chat</span>은 거래·투자 내역을 규칙 기반으로 읽어 답하는 어시스턴트다(LLM이 아니라 키워드 매칭 + 템플릿 조립). <b>매칭되는 툴이 없는 질문에는 지어내지 않고</b> &quot;제가 다룰 수 있는 범위 밖&quot;이라고 답하며, &quot;근거 보기&quot;로 어떤 처리를 시도했는지 투명하게 노출한다."
+    data-en="<span class=&quot;mono&quot;>/chat</span> answers from transactions and holdings with rules - keyword matching plus template assembly, not an LLM. <b>When no tool matches it does not invent one</b>: it says the question is out of its scope, and &quot;show evidence&quot; reveals exactly what it tried.">
+    <span class="mono">/chat</span>은 거래·투자 내역을 규칙 기반으로 읽어 답하는 어시스턴트다(LLM이 아니라 키워드 매칭 + 템플릿 조립). <b>매칭되는 툴이 없는
+      질문에는 지어내지 않고</b> &quot;제가 다룰 수 있는 범위 밖&quot;이라고 답하며, &quot;근거 보기&quot;로 어떤 처리를 시도했는지 투명하게 노출한다.
+  </p>
+  <p data-ko="더 중요한 쪽은 두 번째다. 기능을 호출했는데 결과를 못 받으면 <b>그 사실을 배너로 그대로 알린다.</b> AI 서비스에 장애가 있어도 코어(로그인·이체·심사)는 멈추지 않지만, <b>빠진 기능을 조용히 숨기지 않는다</b>는 것이 이 프로젝트의 Fail-soft 원칙이다."
+    data-en="The second path matters more. If a tool is called but returns nothing, <b>the banner says so plainly.</b> An AI outage never stops the core - login, transfers, assessment - but <b>a missing capability is never hidden quietly</b>. That is the project's fail-soft rule.">
+    더
+    중요한 쪽은 두 번째다. 기능을 호출했는데 결과를 못 받으면 <b>그 사실을 배너로 그대로 알린다.</b> AI 서비스에 장애가 있어도 코어(로그인·이체·심사)는 멈추지 않지만, <b>빠진
+      기능을 조용히 숨기지 않는다</b>는 것이 이 프로젝트의 Fail-soft 원칙이다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/12_ai_chat_out_of_scope.jpg" alt="assistant answering out of scope honestly">
+    <figcaption data-ko="① 범위 밖 질문 - 지어내지 않는다" data-en="1 - out of scope: it does not invent an answer">① 범위 밖
+      질문 - 지어내지 않는다</figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/finallq/13_ai_chat_fail_soft.jpg" alt="fail-soft banner">
+    <figcaption data-ko="② Fail-soft 배너 - 빠진 기능을 숨기지 않는다"
+      data-en="2 - the fail-soft banner: the gap is stated, not hidden">② Fail-soft 배너 - 빠진 기능을 숨기지 않는다
+    </figcaption>
+  </figure>
+</section>
+
+<section id="f-finallq-detail" hidden>
+  <div class="fmodal-kicker mono">FINALLQ · 설계와 측정</div>
+  <h4 class="fmodal-title" data-ko="AI 비서인데 왜 LLM이 없는가" data-en="An AI assistant with no LLM - on purpose">AI
+    비서인데 왜 LLM이 없는가</h4>
+  <div class="block">
+    <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - AI 비서인데 왜 LLM이 없는가"
+        data-en="Approach - an AI assistant with no LLM, on purpose">해결 방법 - AI 비서인데 왜 LLM이 없는가</span></div>
+    <ul>
+      <li
+        data-ko="<b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미 확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대 3개</b>를 고르는 규칙 기반이다."
+        data-en="<b>The decision space was closed.</b> What this service does is pick which tools to call in what order - and the tools are <b>a fixed set of 20</b>. Putting an LLM on a closed classification problem costs reproducibility and the ability to say why a tool was chosen. So the planner scores keywords and takes <b>at most three</b>.">
+        <b>결정 공간이 닫혀 있었다.</b> 이 서비스가 하는 일은 결국 «어떤 도구를 어떤 순서로 부를까»인데, 도구가 <b>20종으로 유한하고 이미
+          확정</b>돼 있다. 선택지가 닫힌 분류 문제에 LLM을 넣으면 재현성과 «왜 그 도구를 골랐는지»를 잃는다. 그래서 플래너는 키워드 점수로 <b>최대
+          3개</b>를 고르는 규칙 기반이다.
+      </li>
+      <li
+        data-ko="<b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을 수는 없다."
+        data-en="<b>Finance demands auditability.</b> A fraud verdict or a blocked transfer has to be justifiable after the fact. You cannot write &quot;the model decided so&quot; in an audit log.">
+        <b>금융은 감사 가능성을 요구한다.</b> FDS 판정이나 이체 차단은 사후에 근거를 대야 하는 행위다. 감사 로그에 «모델이 그렇게 판단했습니다»라고 적을
+        수는 없다.
+      </li>
+      <li
+        data-ko="<b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span class=&quot;mono&quot;>side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가 뭘 반환하든 답변에 실리는 건 등재된 키뿐이다."
+        data-en="<b>The effort went into four guardrails instead.</b> ① Role-based tool visibility - <b>a tool you lack rights to never reaches the planner</b> ② tools flagged <span class=&quot;mono&quot;>side_effect</span> are excluded from automatic selection ③ a mandatory fraud gate on transfer flows ④ an output whitelist - whatever a tool returns, only listed keys reach the answer.">
+        <b>대신 가드레일 4종에 공을 들였다.</b> ① 역할 기반 도구 가시성 - <b>권한 밖 도구는 플래너에 도달조차 못 한다</b> ② <span
+          class="mono">side_effect</span> 도구는 자동 선택에서 제외 ③ 송금 계열의 FDS 필수 게이트 ④ 출력 화이트리스트 - 도구가
+        뭘 반환하든 답변에 실리는 건 등재된 키뿐이다.
+      </li>
+      <li
+        data-ko="<b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class=&quot;mono&quot;>IsolationForest</span>(정상 패턴의 경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span>(문구 변형이 무한해 키워드 블랙리스트는 즉시 우회된다)."
+        data-en="<b>Models went where rules fail.</b> Fraud detection uses <span class=&quot;mono&quot;>IsolationForest</span> - nobody can hand-write the boundary of &quot;normal&quot;. Smishing uses <span class=&quot;mono&quot;>TF-IDF + LogisticRegression</span> - wording varies without limit, so a keyword blacklist is bypassed immediately.">
+        <b>AI는 규칙이 안 되는 곳에만 썼다.</b> 이상거래 탐지는 <span class="mono">IsolationForest</span>(정상 패턴의
+        경계를 사람이 임계값으로 정의할 수 없다), 스미싱은 <span class="mono">TF-IDF + LogisticRegression</span>(문구
+        변형이 무한해 키워드 블랙리스트는 즉시 우회된다).
+      </li>
+      <li
+        data-ko="<b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를 교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다."
+        data-en="<b>The switch criteria are written down.</b> If real queries show a meaningful match-failure rate, or the tool count grows well past 20 and keywords start colliding, the planner gets replaced. <b>The four guardrails stay</b> - an LLM is a replacement for the planner, not for the safety layer.">
+        <b>전환 기준을 미리 정해 뒀다.</b> 실사용 질의에서 매칭 실패율이 유의미하게 관측되거나 도구가 20종을 크게 넘어 키워드 충돌이 잦아지면 플래너를
+        교체한다. <b>단 가드레일 4종은 그대로 유지한다</b> - LLM은 플래너를 바꾸는 선택지이지 안전장치를 대체하는 게 아니다.
+      </li>
+      <li
+        data-ko="<b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만 먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다."
+        data-en="<b>To be exact: the fraud gate is built but currently inert.</b> Its target list (<span class=&quot;mono&quot;>_TRANSFER_TOOL_NAMES</span>) is empty - the orchestrator has no transfer tools yet, so the rule and its slot exist ahead of them. That is recorded in a code comment and the backlog.">
+        <b>정직하게 덧붙이면, FDS 필수 게이트는 구현돼 있으나 지금은 발동하지 않는다.</b> 대상 툴 목록(<span
+          class="mono">_TRANSFER_TOOL_NAMES</span>)이 빈 집합이라서다 - 오케스트레이터에 아직 송금 계열 툴이 없어 규칙과 자리만
+        먼저 만들어 뒀고, 이 사실을 코드 주석과 백로그에 함께 적어 뒀다.
+      </li>
+    </ul>
+  </div>
+</section>

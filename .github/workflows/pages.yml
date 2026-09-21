@@ -28,6 +28,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # index.html 은 src/ 에서 만들어지는 파일이다. 커밋 전에 빌드를 잊어도 src/ 기준으로 나간다.
+      - name: Build index.html from src/
+        run: python3 tools/build_page.py
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

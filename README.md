@@ -4,7 +4,7 @@
 
 **🔗 배포 주소: https://ttogle918.github.io**
 
-`index.html` 한 파일로 이루어진 정적 페이지입니다. CSS·JS가 모두 인라인으로 들어있어 별도 빌드나 의존성 설치가 필요 없습니다. (폰트만 CDN 사용)
+정적 페이지입니다. 본문 HTML은 `src/`에 섹션·프로젝트별로 나뉘어 있고, `python tools/build_page.py`가 이를 이어 붙여 `index.html`을 만듭니다. 스타일은 `assets/css/site.css`, 스크립트는 `assets/js/site.js`입니다. 의존성 설치는 필요 없습니다. (폰트만 CDN 사용)
 
 ## 로컬에서 확인하기
 
@@ -28,7 +28,31 @@ python -m http.server 8000
 
 ## 수정하기
 
-- 모든 내용·스타일·스크립트는 `index.html` 안에 있습니다.
+- **`index.html`은 생성 파일입니다. 직접 고치지 마세요** - 다음 빌드 때 덮어써집니다.
+  본문은 `src/`를 고친 뒤 빌드합니다.
+
+  ```bash
+  python tools/build_page.py           # src/ → index.html
+  python tools/build_page.py --check   # index.html 이 src/ 와 같은지만 확인
+  ```
+
+  배포 워크플로(`.github/workflows/pages.yml`)도 빌드를 돌리므로 빌드를 잊고 푸시해도 사이트는
+  `src/` 기준으로 나갑니다. 로컬에서 열어 보거나 PDF를 구울 때는 먼저 빌드하세요.
+- `src/` 구성
+
+  ```
+  src/index.html                      <head> + 섹션 include 순서 + 모달 틀
+  src/partials/
+    header · hero · about · skill · career · future · contact .html
+    projects.html                     프로젝트 섹션 머리 + 카드 include 순서
+    projects/<번호-이름>/
+      card.html                       프로젝트 카드
+      modals.html                     그 프로젝트의 기능·수치 모달 (01-qmesh 는 서브프로젝트별로 나뉨)
+  ```
+
+  `<!-- @include 경로 -->` 한 줄이 그 파일 내용으로 바뀝니다. 경로는 그 줄이 있는 파일 기준이고,
+  partial은 들여쓰기 없이 적으면 include 줄의 들여쓰기가 붙습니다.
+- 스타일은 `assets/css/site.css`, 스크립트는 `assets/js/site.js`에 있습니다.
 - 텍스트는 한/영 전환을 위해 `data-ko` / `data-en` 속성에 각각 들어있습니다. 문구를 바꿀 때는 **두 속성과 태그 안쪽 내용을 함께** 수정하세요.
 - 우측 상단 버튼으로 **KO/EN 언어**, **라이트/다크 테마**를 전환할 수 있습니다.
 
@@ -61,7 +85,7 @@ const AS_OF = { y: 2026, m: 9, d: 13 };
 python tools/optimize_assets.py   # 원본 → assets/ 재생성 (26.9MB → 5.7MB)
 ```
 
-`assets/`를 직접 손대지 마세요. 자산을 바꿀 때는 **원본 레포를 고친 뒤 이 스크립트를 다시**
+`assets/<프로젝트>/`를 직접 손대지 마세요. 자산을 바꿀 때는 **원본 레포를 고친 뒤 이 스크립트를 다시**
 돌립니다. 멱등하므로 내용이 같으면 실행 후 `git status`가 비어 있습니다. 원본을 못 찾으면
 조용히 넘어가지 않고 그 자리에서 실패합니다.
 

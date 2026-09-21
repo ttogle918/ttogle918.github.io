@@ -1,0 +1,146 @@
+<!-- PROJECT 06 -->
+<article class="pcard reveal" id="kocruit">
+  <div class="pc-top">
+    <div class="pc-badge mono">06</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="AI Agent 기반 기업용 채용 관리 시스템" data-en="AI Agent Recruiting System">AI
+        Agent 기반 기업용 채용 관리 시스템</div>
+      <h3 class="pc-title">KOCRUIT</h3>
+      <div class="pc-meta"
+        data-ko="2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
+        data-en="Jun–Jul 2025 · still refining it solo <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">
+        2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span>
+        아키텍처 · 면접 시스템 · STT ·
+        과정 내 1위</div>
+      <div class="pc-hash mono">
+        <span>#Multimodal</span><span>#LangGraph</span><span>#MSA</span><span>#TeamLead</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="서류 검토와 면접 기록에는 사람 손이 많이 가고, 면접관마다 평가 기준도 다릅니다. AI로 돕되 <b>합격·불합격은 AI가 정하지 않게</b> 만드는 것이 목표였습니다. AI는 점수와 근거를 내고, 최종 판단은 사람이 합니다."
+              data-en="Screening and interview note-taking eat hours, and every interviewer grades differently. The goal was to help with AI while making sure <b>the AI never decides pass or fail</b>: it produces scores and evidence, a person makes the call.">
+              서류 검토와 면접 기록에는 사람 손이 많이 가고, 면접관마다 평가 기준도 다릅니다. AI로 돕되 <b>합격·불합격은 AI가 정하지 않게</b> 만드는 것이 목표였습니다. AI는
+              점수와 근거를 내고, 최종 판단은 사람이 합니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li
+                data-ko="<b>기억해야 하는 일과 계산만 하는 일을 나눴습니다</b>: 면접 연결 상태·실시간 통신·DB처럼 계속 기억해야 하는 일은 백엔드 서버(:8000)가, 음성 인식·평가처럼 받아서 계산만 하면 되는 일은 AI 서버(:8001)가 맡습니다. AI 서버에서는 실시간 통신 기능(<span class=&quot;mono&quot;>websockets</span>)을 아예 빼서 둘이 섞일 여지를 없앴습니다."
+                data-en="<b>State on one side, stateless analysis on the other</b>: the backend (:8000) owns sessions, WebSockets and the DB; the agent (:8001) does STT and scoring. Removing the <span class=&quot;mono&quot;>websockets</span> dependency from the agent enforces that line in code.">
+                <b>기억해야 하는 일과 계산만 하는 일을 나눴습니다</b>: 면접 연결 상태·실시간 통신·DB처럼 계속 기억해야 하는 일은 백엔드 서버(:8000)가, 음성 인식·평가처럼
+                받아서 계산만 하면 되는 일은 AI 서버(:8001)가 맡습니다. AI 서버에서는 실시간 통신 기능(<span class="mono">websockets</span>)을
+                아예 빼서 둘이 섞일 여지를 없앴습니다.
+              </li>
+              <li
+                data-ko="<b>라이브러리 충돌이 서버를 나누는 기준이 됐습니다</b>: 음성 분석(Whisper·pyannote, PyTorch)과 표정·자세 분석(MediaPipe·DeepFace, TensorFlow)이 한 프로그램 안에서 충돌해 실행 환경(컨테이너)을 따로 나눴습니다."
+                data-en="<b>A dependency clash drew the service boundary</b>: Whisper and pyannote (PyTorch) collide with MediaPipe and DeepFace (TensorFlow) in one process, so they run in separate containers. The problem came first, not the pattern.">
+                <b>라이브러리 충돌이 서버를 나누는 기준이 됐습니다</b>: 음성 분석(Whisper·pyannote, PyTorch)과 표정·자세
+                분석(MediaPipe·DeepFace, TensorFlow)이 한 프로그램 안에서 충돌해 실행 환경(컨테이너)을 따로 나눴습니다.
+              </li>
+              <li
+                data-ko="<b>질문은 면접 전에 미리 만듭니다</b>: 면접 중에 질문까지 만들면 기다리는 시간 때문에 대화가 끊깁니다. 그래서 지원서가 들어오면 질문과 평가표를 미리 만들어 둡니다."
+                data-en="<b>Questions are generated before the interview</b>: generating them live would put latency in the middle of a conversation. A scheduler builds the questions and the evaluation kit when the application arrives.">
+                <b>질문은 면접 전에 미리 만듭니다</b>: 면접 중에 질문까지 만들면 기다리는 시간 때문에 대화가 끊깁니다. 그래서 지원서가 들어오면 질문과 평가표를 미리 만들어
+                둡니다.
+              </li>
+              <li
+                data-ko="<b>AI 제공 회사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class=&quot;mono&quot;>agent/utils/llm.py</span>)을 거쳐 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다."
+                data-en="<b>The LLM provider swaps in one line</b>: every call goes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory and picks one of <span class=&quot;mono&quot;>nvidia | ollama | openai</span>. When a provider went down, it really was swapped.">
+                <b>AI 제공 회사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class="mono">agent/utils/llm.py</span>)을 거쳐
+                <span class="mono">nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것" data-en="Design notes">설계에서
+                신경 쓴 것</span></div>
+            <ul>
+              <li
+                data-ko="<b>DB 구조는 바꾸되 화면과의 약속은 지켰습니다</b>: 채용 단계를 지원서 표의 칸으로 계속 늘리던 방식을 별도 표(<span class=&quot;mono&quot;>application_stage</span>)로 분리하면서, 예전 칸 이름으로도 그대로 읽히게 했습니다(SQLAlchemy <span class=&quot;mono&quot;>@property</span>). 그래서 <b>화면 코드를 한 줄도 고치지 않고</b> 옮겼습니다."
+                data-en="<b>The data model changed; the contract did not</b>: stage columns piled onto <span class=&quot;mono&quot;>application</span> moved into a 1:N <span class=&quot;mono&quot;>application_stage</span> table, with the old column names virtualised through SQLAlchemy <span class=&quot;mono&quot;>@property</span> - <b>the frontend needed no edits at all.</b>">
+                <b>DB 구조는 바꾸되 화면과의 약속은 지켰습니다</b>: 채용 단계를 지원서 표의 칸으로 계속 늘리던 방식을 별도 표(<span
+                  class="mono">application_stage</span>)로 분리하면서, 예전 칸 이름으로도 그대로 읽히게 했습니다(SQLAlchemy <span
+                  class="mono">@property</span>). 그래서 <b>화면 코드를 한 줄도 고치지 않고</b> 옮겼습니다.
+              </li>
+              <li
+                data-ko="<b>같은 AI 호출을 세 겹으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는 DB에 보관."
+                data-en="<b>Three layers against duplicate calls</b>: a <span class=&quot;mono&quot;>@redis_cache</span> keyed on a SHA-256 of function and arguments (TTL 24h), model tiering by task difficulty, and persisting generated results in the DB.">
+                <b>같은 AI 호출을 세 겹으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는
+                DB에 보관.
+              </li>
+              <li
+                data-ko="<b>고치기 전에, 망가지면 알아챌 장치부터</b>: 서버에 테스트가 하나도 없어서, API 명세가 바뀌면 바로 알아채는 도구와 테스트 <b>11개</b>를 먼저 만든 뒤 면접 질문 기능을 4개 층으로 나눠 정리했습니다."
+                data-en="<b>A safety net before touching the code</b>: the backend had no tests at all, so a contract-snapshot tool that fingerprints OpenAPI components by body hash, plus <b>11</b> pytest cases, came first - then the interview-question domain was split into four layers.">
+                <b>고치기 전에, 망가지면 알아챌 장치부터</b>: 서버에 테스트가 하나도 없어서, API 명세가 바뀌면 바로 알아채는 도구와 테스트 <b>11개</b>를 먼저 만든 뒤
+                면접 질문 기능을 4개 층으로 나눠 정리했습니다.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-kocruit-interview" data-ko="면접 모듈 - 전 · 중 · 후"
+                data-en="Interview module - before, during, after">면접 모듈 - 전 · 중 · 후</button>
+              <button class="feat" data-modal="f-kocruit-question" data-ko="면접 질문 생성"
+                data-en="Interview question generation">면접 질문 생성</button>
+              <button class="feat" data-modal="f-kocruit-realtime" data-ko="실시간 면접 처리"
+                data-en="Real-time interview processing">실시간 면접 처리</button>
+              <button class="feat" data-modal="f-kocruit-architecture" data-ko="전체 아키텍처"
+                data-en="Overall architecture">전체 아키텍처</button>
+            </div>
+          </div>
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
+                data-en="Results - what was built">결과 - 만든 것</span></div>
+            <p data-ko="서비스 <b>6개</b> 구성(Docker Compose) · DB 표 <b>60개</b> · 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지)."
+              data-en="<b>Six services</b> under Docker Compose · <b>60</b> DB tables · APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · standing LLM calls per applicant cut <b>9 → 4</b>, with <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o).">
+              서비스 <b>6개</b> 구성(Docker Compose) · DB 표 <b>60개</b> · 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로
+              재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류
+              평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석
+              1곳만 유지).</p>
+          </div>
+          <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: kocruit)
+               <a class="gobtn" href="project/kocruit/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
+          <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/KOCRUIT"
+              target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn"
+              href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view" target="_blank"
+              rel="noopener"><span class="ic" data-ic="file"></span>PPT</a></div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/kocruit/live-scoring.png" alt="면접이 도는 동안 여섯 축 점수와 게임형 테스트 결과가 실시간으로 쌓이는 화면">
+              <span class="cap2 mono" data-ko="면접 중에는 여섯 축을 모은다<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도"
+                data-en="Six axes collected during the interview<br>speech, behaviour, traits, cognition, fit, reliability">면접
+                중에는 여섯 축을 모은다<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/kocruit/ai-report.png" alt="발화 속도와 시선 집중도, 감정 상태까지 질문별로 정리된 면접 분석 리포트">
+              <span class="cap2 mono" data-ko="끝나면 질문별 리포트<br>발화 150wpm · 시선 85% · 자세 90%"
+                data-en="A per-question report afterwards<br>150 wpm · 85% gaze · 90% posture">끝나면 질문별
+                리포트<br>발화 150wpm · 시선 85% · 자세 90%</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/kocruit/process-tracking.png"
+                alt="지원자 41명의 서류·실무진·임원진 단계를 한 화면에서 추적하고 리스크 플래그를 보여주는 화면">
+              <span class="cap2 mono" data-ko="지원자 41명의 단계를 한 곳에서<br>리스크 플래그까지 함께"
+                data-en="41 applicants tracked in one place<br>risk flags included">지원자 41명의 단계를 한
+                곳에서<br>리스크 플래그까지 함께</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,88 @@
+<!-- ── InsuQ ── -->
+<article class="subcard" id="insuq">
+  <div class="sub-top">
+    <div class="sub-headings">
+      <div class="sub-code mono" data-ko="보험 약관 분석 · 보장 판정 RAG 에이전트"
+        data-en="Policy-clause RAG agent">보험 약관 분석 · 보장 판정 RAG 에이전트</div>
+      <h4 class="sub-title">InsuQ</h4>
+      <div class="sub-meta"
+        data-ko="2026.07 ~ 진행 중 · 개인 1인 · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js"
+        data-en="Since Jul 2026 · solo · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js">
+        2026.07 ~ 진행 중 · 개인 1인 · Spring Boot 4 + FastAPI/LangGraph + Qdrant + Next.js</div>
+    </div>
+    <span class="sub-caret">&#9654;</span>
+  </div>
+  <div class="sub-body">
+    <div class="sub-inner">
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+        </div>
+        <p data-ko="보험금 판정이 틀리면 곧 <b>누군가의 금전 손해</b>입니다. 보험설계사는 고객 앞에서 <b>근거가 되는 약관 조항을 직접 보여 줄 수 있어야</b> 하는데, «지급 가능/불가»만 알려 주는 답으로는 그럴 수 없습니다."
+          data-en="A wrong coverage verdict is <b>money lost</b>, and an agent has to be able to <b>show the clause to the customer</b> - which a bare &quot;covered / not covered&quot; answer cannot do.">
+          보험금 판정이 틀리면 곧 <b>누군가의 금전 손해</b>입니다. 보험설계사는 고객 앞에서 <b>근거가 되는 약관 조항을 직접 보여 줄 수 있어야</b> 하는데,
+          «지급 가능/불가»만 알려 주는 답으로는 그럴 수 없습니다.</p>
+      </div>
+
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - AI가 판정하지 않는다"
+            data-en="Approach - the AI does not rule">해결 방법 - AI가 판정하지 않는다</span></div>
+        <p data-ko="AI가 틀렸을 때도 설계사가 근거를 보고 판단할 수 있어야 한다고 봤습니다. 그래서 가입한 상품 안에서만 찾고, 답에는 근거 조항을 원문 그대로 붙였습니다. 결론도 &quot;지급 가능/불가&quot; 대신 가능성 높음·낮음·판단 보류로만 내고, 단정하는 표현이 나오면 판단 보류로 바꿔 내보내게 했습니다."
+          data-en="Even when the AI is wrong, the planner should be able to judge from the evidence. So search stays inside the customer's product, answers carry the clause text verbatim, and verdicts are only likely / unlikely / on hold - any assertive wording is downgraded to on hold.">
+          AI가 틀렸을 때도 설계사가 근거를 보고 판단할 수 있어야 한다고 봤습니다. 그래서 가입한 상품 안에서만 찾고, 답에는 근거 조항을 원문 그대로 붙였습니다.
+          결론도 "지급 가능/불가" 대신 가능성 높음·낮음·판단 보류로만 내고, 단정하는 표현이 나오면 판단 보류로 바꿔 내보내게 했습니다.</p>
+        <button class="feat feat-more" data-modal="f-insuq-detail" data-ko="설계와 측정 자세히 보기"
+          data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
+      </div>
+
+      <div class="pc-grid sub-grid">
+        <div class="block">
+          <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+              data-en="Feature details - click one to open">주요 기능 - 누르면 화면과 흐름이
+              열립니다</span></div>
+          <div class="featlist">
+            <button class="feat" data-modal="f-insuq-citation" data-ko="근거 인용 - 조항 원문과 함께"
+              data-en="Citation - with the clause itself">근거 인용 - 조항 원문과 함께</button>
+            <button class="feat" data-modal="f-insuq-refusal" data-ko="거부 게이트 - 모르면 거부한다"
+              data-en="Refusal gate - it declines">거부 게이트 - 모르면 거부한다</button>
+            <button class="feat" data-modal="f-insuq-clarify" data-ko="되묻기 - 정보가 빠지면"
+              data-en="Asking back">되묻기 - 정보가 빠지면</button>
+            <button class="feat" data-modal="f-insuq-claim" data-ko="청구 승인 - 사람 앞에서 멈춘다"
+              data-en="Claim - it stops for a human">청구 승인 - 사람 앞에서 멈춘다</button>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/insuq/grounded-citation.gif" alt="근거 조항 원문과 함께 답하는 InsuQ 화면">
+              <span class="cap2 mono" data-ko="근거 조항 원문과 함께 답한다"
+                data-en="Answers arrive with the clause itself">근거 조항 원문과 함께 답한다</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/insuq/refusal-gate.gif" alt="인용할 근거가 없어 답을 거부하는 InsuQ 화면">
+              <span class="cap2 mono" data-ko="근거가 없으면 거부한다"
+                data-en="No basis to cite, so it declines">근거가 없으면 거부한다</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/insuq/claim-approval.gif" alt="심사역이 전자서명으로 청구를 승인하는 승인함 화면">
+              <span class="cap2 mono" data-ko="청구 승인은 사람 앞에서 멈춘다<br>전자서명을 해야 완료로 넘어간다"
+                data-en="Claims stop for a human<br>an e-signature moves it to completed">청구 승인은 사람
+                앞에서 멈춘다<br>전자서명을 해야 완료로 넘어간다</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact block">
+        <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.09 실측"
+            data-en="Results - measured 2026-09-09">결과 - 2026.09.09 실측</span></div>
+        <p data-ko="정답을 정해 둔 질문 27개로 채점했습니다. 상위 5개 검색 결과에 정답 조항이 들어간 비율은 0.81이고, 거절해야 할 질문은 모두 거절하면서 답할 수 있는 질문을 거절한 경우는 없었습니다. 실험 67건은 가설·측정·판단 형식으로 기록했고, 기각한 시도도 지우지 않았습니다."
+          data-en="Scored on 27 questions with known answers: the right clause was in the top 5 results 81% of the time, every question that should be refused was refused, and no answerable question was. All 67 experiments are logged as hypothesis, measurement and decision, rejected ones included.">
+          정답을 정해 둔 질문 27개로 채점했습니다. 상위 5개 검색 결과에 정답 조항이 들어간 비율은 0.81이고, 거절해야 할 질문은 모두 거절하면서 답할 수 있는
+          질문을 거절한 경우는 없었습니다. 실험 67건은 가설·측정·판단 형식으로 기록했고, 기각한 시도도 지우지 않았습니다.</p>
+        <p data-ko="4번 평가(화재·기업 재산보험) 수치와 아직 재지 못한 부분(AI 채점 공란)은 «자세히»에 함께 적었습니다."
+          data-en="Track 4 (fire &amp; commercial property) and the measurement gaps (LLM-as-judge blank) are in the full view.">
+          4번 평가(화재·기업 재산보험) 수치와 아직 재지 못한 부분(AI 채점 공란)은 «자세히»에 함께 적었습니다.</p>
+      </div>
+    </div>
+  </div>
+</article>

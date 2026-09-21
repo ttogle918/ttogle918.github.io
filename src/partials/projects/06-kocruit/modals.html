@@ -1,0 +1,228 @@
+<section id="f-kocruit-interview" hidden>
+  <div class="fmodal-kicker mono">KOCRUIT · 면접 모듈</div>
+  <h4 class="fmodal-title" data-ko="면접 전 · 중 · 후" data-en="Before, during, after the interview">면접 전 · 중 · 후
+  </h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 368" role="img" aria-label="면접 전 질문 생성, 면접 중 실시간 처리, 면접 후 리포트 생성으로 나뉜 면접 모듈 아키텍처">
+      <rect class="dg-zone" x="4" y="18" width="612" height="78" rx="10" />
+      <text class="dg-k" x="14" y="32">PRE - 면접 전</text>
+      <rect class="dg-box" x="14" y="42" width="130" height="44" rx="8" />
+      <text class="dg-t" x="24" y="62">공고 · 지원</text>
+      <text class="dg-s" x="24" y="78">Application</text>
+      <path class="dg-a" d="M148 64 H166" />
+      <rect class="dg-box" x="170" y="42" width="130" height="44" rx="8" />
+      <text class="dg-t" x="180" y="62">스케줄러</text>
+      <text class="dg-s" x="180" y="78">APScheduler</text>
+      <path class="dg-a" d="M304 64 H322" />
+      <rect class="dg-box" x="326" y="42" width="130" height="44" rx="8" />
+      <text class="dg-t" x="336" y="62">질문 생성 Agent</text>
+      <text class="dg-s" x="336" y="78">LangGraph</text>
+      <path class="dg-a" d="M460 64 H478" />
+      <rect class="dg-box" x="482" y="42" width="130" height="44" rx="8" />
+      <text class="dg-t" x="492" y="62">질문 DB</text>
+      <text class="dg-s" x="492" y="78">미리 저장</text>
+      <rect class="dg-zone" x="4" y="110" width="612" height="136" rx="10" />
+      <text class="dg-k" x="14" y="124">LIVE - 면접 중</text>
+      <rect class="dg-box" x="14" y="150" width="120" height="64" rx="8" />
+      <text class="dg-t" x="24" y="174">지원자</text>
+      <text class="dg-s" x="24" y="192">MediaRecorder</text>
+      <path class="dg-a" d="M138 180 H160" />
+      <rect class="dg-box" x="164" y="134" width="196" height="88" rx="8" />
+      <text class="dg-t" x="176" y="156">Backend WebSocket</text>
+      <text class="dg-s" x="176" y="176">/ws/interview/{id}</text>
+      <text class="dg-s" x="176" y="192">Connection Manager</text>
+      <text class="dg-s" x="176" y="208">Audio Processor</text>
+      <path class="dg-a" d="M364 180 H386" />
+      <rect class="dg-box" x="390" y="134" width="212" height="88" rx="8" />
+      <text class="dg-t" x="402" y="156">AI Agent 서비스</text>
+      <text class="dg-s" x="402" y="176">Whisper STT</text>
+      <text class="dg-s" x="402" y="192">실시간 평가</text>
+      <text class="dg-s" x="402" y="208">HTTP POST 로 위임</text>
+      <text class="dg-s" x="14" y="238">결과 JSON 은 같은 경로로 되돌아가 브로드캐스트된다</text>
+      <rect class="dg-zone" x="4" y="260" width="612" height="78" rx="10" />
+      <text class="dg-k" x="14" y="274">POST - 면접 후</text>
+      <rect class="dg-box" x="14" y="284" width="180" height="44" rx="8" />
+      <text class="dg-t" x="26" y="311">세션 종료</text>
+      <path class="dg-a" d="M198 306 H216" />
+      <rect class="dg-box" x="220" y="284" width="180" height="44" rx="8" />
+      <text class="dg-t" x="232" y="311">최종 평가</text>
+      <path class="dg-a" d="M404 306 H422" />
+      <rect class="dg-hold" x="426" y="284" width="180" height="44" rx="8" />
+      <text class="dg-t" x="438" y="305">리포트 생성</text>
+      <text class="dg-s" x="438" y="321">사람이 읽고 판단</text>
+      <text class="dg-g" x="4" y="360">질문은 면접 전에 미리 만들어 둔다 - 면접 중에 생성까지 하면 지연이 대화를 끊는다</text>
+    </svg>
+  </div>
+  <p data-ko="면접을 <b>세 구간으로 나눠</b> 설계했다. 지원이 들어오면 스케줄러가 질문과 평가 키트를 <b>미리</b> 만들어 두고, 면접 중에는 평가만 한다 - 대화 도중에 생성까지 하면 그 지연이 그대로 어색한 침묵이 된다."
+    data-en="The interview is designed in <b>three phases</b>. When an application arrives a scheduler builds the questions and the evaluation kit <b>in advance</b>; during the interview it only scores. Generating mid-conversation would turn latency into awkward silence.">
+    면접을
+    <b>세 구간으로 나눠</b> 설계했다. 지원이 들어오면 스케줄러가 질문과 평가 키트를 <b>미리</b> 만들어 두고, 면접 중에는 평가만 한다 - 대화 도중에 생성까지 하면 그 지연이 그대로
+    어색한
+    침묵이 된다.
+  </p>
+  <p data-ko="면접 중 경로가 이 설계의 핵심이다. 지원자의 오디오는 <b>백엔드 WebSocket</b>이 받아 세션으로 관리하고, 판정은 <b>무상태 Agent</b>에 HTTP 로 위임한다. 결과 JSON 은 같은 경로로 되돌아가 브로드캐스트된다. Agent 는 상태를 들지 않으므로 단독으로 늘릴 수 있다."
+    data-en="The live path is the heart of it. Candidate audio arrives at the <b>backend WebSocket</b>, which owns the session, and scoring is delegated over HTTP to the <b>stateless agent</b>. The result JSON returns along the same path and is broadcast. Because the agent holds no state, it scales on its own.">
+    면접
+    중 경로가 이 설계의 핵심이다. 지원자의 오디오는 <b>백엔드 WebSocket</b>이 받아 세션으로 관리하고, 판정은 <b>무상태 Agent</b>에 HTTP 로 위임한다. 결과 JSON 은
+    같은
+    경로로 되돌아가 브로드캐스트된다. Agent 는 상태를 들지 않으므로 단독으로 늘릴 수 있다.</p>
+  <p data-ko="면접이 끝나면 그때 최종 평가와 리포트를 만든다. <b>리포트는 판정문이 아니라 읽을 자료다</b> - 점수와 근거를 구조화해 내보내고, 합·불은 사람이 정한다."
+    data-en="When the session ends, the final evaluation and report are produced. <b>The report is reading material, not a verdict</b>: scores and evidence are structured for a person, who decides pass or fail.">
+    면접이
+    끝나면 그때 최종 평가와 리포트를 만든다. <b>리포트는 판정문이 아니라 읽을 자료다</b> - 점수와 근거를 구조화해 내보내고, 합·불은 사람이 정한다.</p>
+</section>
+
+<section id="f-kocruit-question" hidden>
+  <div class="fmodal-kicker mono">KOCRUIT · 질문 생성</div>
+  <h4 class="fmodal-title" data-ko="지원자마다 경로가 갈린다" data-en="The path forks per applicant">지원자마다 경로가 갈린다</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 208" role="img" aria-label="요건 분석에서 포트폴리오와 이력서를 거쳐 질문을 만들고 평가 키트까지 붙여 JSON 으로 낸다">
+      <rect class="dg-box" x="4" y="26" width="150" height="52" rx="8" />
+      <text class="dg-t" x="16" y="48">요건 분석</text>
+      <text class="dg-s" x="16" y="66">공고 · 이력서</text>
+      <path class="dg-a" d="M158 52 H180" />
+      <rect class="dg-box" x="184" y="26" width="180" height="52" rx="8" />
+      <text class="dg-t" x="196" y="48">포트폴리오 분석</text>
+      <text class="dg-s" x="196" y="66">프로젝트 · 스킬 추출</text>
+      <path class="dg-a" d="M368 52 H390" />
+      <rect class="dg-box" x="394" y="26" width="222" height="52" rx="8" />
+      <text class="dg-t" x="406" y="48">이력서 분석</text>
+      <text class="dg-s" x="406" y="66">분석된 프로필</text>
+      <path class="dg-a" d="M505 82 V92 H104 V100" />
+      <rect class="dg-box" x="4" y="104" width="200" height="60" rx="8" />
+      <text class="dg-t" x="16" y="126">질문 생성</text>
+      <text class="dg-s" x="16" y="144">공통 · 개인</text>
+      <text class="dg-s" x="16" y="158">직무 · 회사</text>
+      <path class="dg-a" d="M208 134 H230" />
+      <rect class="dg-box" x="234" y="104" width="200" height="60" rx="8" />
+      <text class="dg-t" x="246" y="126">평가 키트</text>
+      <text class="dg-s" x="246" y="144">체크리스트 · 가이드라인</text>
+      <text class="dg-s" x="246" y="158">평가 기준</text>
+      <path class="dg-a" d="M438 134 H460" />
+      <rect class="dg-hold" x="464" y="104" width="152" height="60" rx="8" />
+      <text class="dg-t" x="476" y="132">최종 JSON</text>
+      <text class="dg-s" x="476" y="150">질문 + 평가 키트</text>
+      <text class="dg-s" x="4" y="184">포트폴리오가 없으면 이력서 분석으로 바로 간다</text>
+      <text class="dg-g" x="4" y="202">참조: agent/agents/interview_question_workflow.py</text>
+    </svg>
+  </div>
+  <p data-ko="모든 지원자에게 같은 질문을 내면 면접이 형식이 된다. 그래서 <b>가진 자료에 따라 경로를 나눴다</b> - 포트폴리오가 있으면 프로젝트와 스킬을 먼저 뽑아 이력서 분석에 얹고, 없으면 이력서만으로 간다."
+    data-en="Asking every candidate the same questions turns the interview into a formality, so <b>the path forks on what the applicant supplied</b>: with a portfolio, projects and skills are extracted first and folded into the résumé analysis; without one, the résumé alone carries it.">
+    모든
+    지원자에게 같은 질문을 내면 면접이 형식이 된다. 그래서 <b>가진 자료에 따라 경로를 나눴다</b> - 포트폴리오가 있으면 프로젝트와 스킬을 먼저 뽑아 이력서 분석에 얹고, 없으면
+    이력서만으로
+    간다.</p>
+  <p data-ko="질문은 <b>공통 → 개인 → 직무 → 회사</b> 순으로 쌓는다. 그리고 질문만 내지 않고 <b>체크리스트 · 가이드라인 · 평가 기준</b>을 함께 만든다 - 면접관마다 기준이 달라지는 문제가 여기서 줄어든다."
+    data-en="Questions stack in order: <b>common → personal → role → company</b>. And it does not stop at questions - a <b>checklist, guideline and scoring criteria</b> come with them, which is where interviewer-to-interviewer variance starts to shrink.">
+    질문은
+    <b>공통 → 개인 → 직무 → 회사</b> 순으로 쌓는다. 그리고 질문만 내지 않고 <b>체크리스트 · 가이드라인 · 평가 기준</b>을 함께 만든다 - 면접관마다 기준이 달라지는 문제가
+    여기서
+    줄어든다.
+  </p>
+</section>
+
+<section id="f-kocruit-realtime" hidden>
+  <div class="fmodal-kicker mono">KOCRUIT · 실시간 처리</div>
+  <h4 class="fmodal-title" data-ko="진행 중엔 모으기만 한다" data-en="During the session it only collects">진행 중엔 모으기만 한다
+  </h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 174" role="img" aria-label="세션 초기화와 시나리오 생성 뒤 음성·행동·검사를 실시간 수집하고 세션이 끝나면 최종 채점한다">
+      <rect class="dg-box" x="4" y="44" width="124" height="52" rx="8" />
+      <text class="dg-t" x="16" y="66">세션 초기화</text>
+      <text class="dg-s" x="16" y="84">직무 정보 로드</text>
+      <path class="dg-a" d="M132 70 H150" />
+      <rect class="dg-box" x="154" y="44" width="124" height="52" rx="8" />
+      <text class="dg-t" x="166" y="66">시나리오 생성</text>
+      <text class="dg-s" x="166" y="84">면접 준비</text>
+      <path class="dg-a" d="M282 70 H300" />
+      <text class="dg-k" x="304" y="24">실시간 처리 - 수집만</text>
+      <rect class="dg-box" x="304" y="30" width="150" height="26" rx="6" />
+      <text class="dg-s" x="316" y="47">음성 분석</text>
+      <rect class="dg-box" x="304" y="60" width="150" height="26" rx="6" />
+      <text class="dg-s" x="316" y="77">행동 분석</text>
+      <rect class="dg-box" x="304" y="90" width="150" height="26" rx="6" />
+      <text class="dg-s" x="316" y="107">게임 · 검사 분석</text>
+      <path class="dg-a" d="M458 70 H476" />
+      <rect class="dg-hold" x="480" y="44" width="136" height="52" rx="8" />
+      <text class="dg-t" x="492" y="66">최종 채점</text>
+      <text class="dg-s" x="492" y="84">리포트 · 점수</text>
+      <text class="dg-g" x="4" y="146">세션이 끝나야 점수를 낸다 - 진행 중엔 수집과 분석만 한다</text>
+      <text class="dg-s" x="4" y="166">참조: agent/agents/ai_interview_workflow.py</text>
+    </svg>
+  </div>
+  <p data-ko="면접이 도는 동안에는 <b>음성 · 행동 · 게임과 검사</b> 세 축을 모으기만 한다. 점수는 <b>세션이 끝난 뒤</b> 한 번에 낸다 - 진행 중에 채점까지 끼우면 그 계산이 응답을 늦추고, 늦어진 응답은 면접의 흐름을 끊는다."
+    data-en="While the interview runs it only collects across three axes - <b>voice, behaviour, and the games and tests</b>. Scoring happens once, <b>after the session ends</b>: folding it into the live loop would slow responses, and a slow response breaks the interview's rhythm.">
+    면접이
+    도는 동안에는 <b>음성 · 행동 · 게임과 검사</b> 세 축을 모으기만 한다. 점수는 <b>세션이 끝난 뒤</b> 한 번에 낸다 - 진행 중에 채점까지 끼우면 그 계산이 응답을 늦추고,
+    늦어진
+    응답은 면접의 흐름을 끊는다.</p>
+  <p data-ko="세션을 열 때 직무 정보를 먼저 읽고 시나리오를 만들어 둔다. 면접이 시작된 뒤에는 <b>새로 만들어야 하는 것이 없도록</b> 준비를 앞으로 당겨 놓는 것이 이 흐름의 요지다."
+    data-en="Opening a session loads the role information and builds the scenario first. The point of this flow is to pull preparation forward so that, once the interview starts, <b>nothing has to be created from scratch.</b>">
+    세션을
+    열 때 직무 정보를 먼저 읽고 시나리오를 만들어 둔다. 면접이 시작된 뒤에는 <b>새로 만들어야 하는 것이 없도록</b> 준비를 앞으로 당겨 놓는 것이 이 흐름의 요지다.</p>
+</section>
+
+<section id="f-kocruit-architecture" hidden>
+  <div class="fmodal-kicker mono">KOCRUIT · 전체 구성</div>
+  <h4 class="fmodal-title" data-ko="상태를 드는 쪽과 분석만 하는 쪽" data-en="What holds state, what only analyses">상태를 드는 쪽과
+    분석만 하는 쪽</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 300" role="img"
+      aria-label="클라이언트, 백엔드 8000, AI Agent 8001, 데이터 계층과 외부 LLM 제공자로 이루어진 전체 구성">
+      <rect class="dg-zone" x="4" y="18" width="112" height="104" rx="10" />
+      <text class="dg-k" x="12" y="32">클라이언트</text>
+      <rect class="dg-box" x="12" y="40" width="96" height="32" rx="6" />
+      <text class="dg-s" x="22" y="60">사용자</text>
+      <rect class="dg-box" x="12" y="80" width="96" height="32" rx="6" />
+      <text class="dg-s" x="22" y="100">관리자</text>
+      <path class="dg-a" d="M118 70 H132" />
+      <rect class="dg-zone" x="136" y="18" width="222" height="158" rx="10" />
+      <text class="dg-k" x="146" y="32">백엔드 :8000</text>
+      <rect class="dg-box" x="146" y="40" width="202" height="46" rx="8" />
+      <text class="dg-t" x="158" y="62">FastAPI</text>
+      <text class="dg-s" x="158" y="79">Auth · APScheduler · WS</text>
+      <rect class="dg-box" x="146" y="96" width="202" height="68" rx="8" />
+      <text class="dg-t" x="158" y="118">핵심 서비스</text>
+      <text class="dg-s" x="158" y="136">지원 · 면접</text>
+      <text class="dg-s" x="158" y="154">채용 · 서류</text>
+      <path class="dg-a" d="M362 90 H376" />
+      <rect class="dg-zone" x="380" y="18" width="236" height="158" rx="10" />
+      <text class="dg-k" x="390" y="32">AI AGENT :8001</text>
+      <rect class="dg-box" x="390" y="40" width="216" height="46" rx="8" />
+      <text class="dg-t" x="402" y="62">Agent API</text>
+      <text class="dg-s" x="402" y="79">LangGraph 오케스트레이터</text>
+      <rect class="dg-box" x="390" y="96" width="216" height="68" rx="8" />
+      <text class="dg-t" x="402" y="118">에이전트</text>
+      <text class="dg-s" x="402" y="136">질문 생성 · 면접 평가</text>
+      <text class="dg-s" x="402" y="154">이력서 분석 · 필기 채점</text>
+      <path class="dg-a" d="M247 180 V196" />
+      <path class="dg-a" d="M498 180 V196" />
+      <rect class="dg-zone" x="136" y="200" width="222" height="76" rx="10" />
+      <text class="dg-k" x="146" y="214">데이터</text>
+      <rect class="dg-box" x="146" y="222" width="100" height="46" rx="8" />
+      <text class="dg-t" x="156" y="242">MySQL 8.0</text>
+      <text class="dg-s" x="156" y="259">AWS RDS</text>
+      <rect class="dg-box" x="254" y="222" width="94" height="46" rx="8" />
+      <text class="dg-t" x="264" y="242">ChromaDB</text>
+      <text class="dg-s" x="264" y="259">벡터</text>
+      <rect class="dg-zone-gold" x="380" y="200" width="236" height="76" rx="10" />
+      <text class="dg-g" x="390" y="214">외부 - 교체 가능</text>
+      <rect class="dg-hold" x="390" y="222" width="216" height="46" rx="8" />
+      <text class="dg-t" x="402" y="242">LLM 제공자</text>
+      <text class="dg-s" x="402" y="259">nvidia | ollama | openai</text>
+      <text class="dg-g" x="4" y="294">제공자 교체는 agent/utils/llm.py 팩토리에 env 한 줄 - 장애 때 실제로 갈아끼웠다</text>
+    </svg>
+  </div>
+  <p data-ko="서비스를 나눈 기준은 규모가 아니라 <b>«상태를 드느냐»</b>다. 세션·WebSocket·DB 처럼 상태가 붙는 일은 백엔드(<span class=&quot;mono&quot;>:8000</span>)가, STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class=&quot;mono&quot;>:8001</span>)가 맡는다. Agent 에서 <span class=&quot;mono&quot;>websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다."
+    data-en="Services were split by <b>whether they hold state</b>, not by size. Anything stateful - sessions, WebSockets, the database - lives in the backend (<span class=&quot;mono&quot;>:8000</span>); anything that just takes input and answers - STT, scoring - lives in the agent (<span class=&quot;mono&quot;>:8001</span>). Removing the <span class=&quot;mono&quot;>websockets</span> dependency from the agent leaves that boundary in the code rather than in a document.">
+    서비스를
+    나눈 기준은 규모가 아니라 <b>«상태를 드느냐»</b>다. 세션·WebSocket·DB 처럼 상태가 붙는 일은 백엔드(<span class="mono">:8000</span>)가,
+    STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class="mono">:8001</span>)가 맡는다. Agent 에서 <span
+      class="mono">websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다.</p>
+  <p data-ko="LLM 은 특정 제공자에 묶지 않았다. 모든 호출이 <span class=&quot;mono&quot;>agent/utils/llm.py</span> 팩토리를 지나므로 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로 갈아끼운 경로</b>다."
+    data-en="The LLM is not bound to one vendor. Every call passes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory, so moving between <span class=&quot;mono&quot;>nvidia | ollama | openai</span> is <b>one environment variable</b>. This is not a contingency on paper - <b>it was actually used when a provider went down.</b>">
+    LLM
+    은 특정 제공자에 묶지 않았다. 모든 호출이 <span class="mono">agent/utils/llm.py</span> 팩토리를 지나므로 <span class="mono">nvidia |
+      ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로
+      갈아끼운 경로</b>다.</p>
+</section>

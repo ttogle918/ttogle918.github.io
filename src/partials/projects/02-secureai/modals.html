@@ -1,0 +1,220 @@
+<section id="m-secureai-sonnet" hidden>
+  <div class="fmodal-kicker mono">SECUREAI · 성능 평가</div>
+  <h4 class="fmodal-title" data-ko="Claude Sonnet 4.6 - 961케이스 측정" data-en="Claude Sonnet 4.6 - 961 cases">
+    Claude Sonnet 4.6 - 961케이스 측정</h4>
+  <p data-ko="정답이 함께 공개된 OWASP BenchmarkJava 1.2beta 2,740케이스에서 카테고리마다 최대 100개씩 뽑은 961케이스(취약 533 · 안전 428)로 쟀다. 모델은 claude-sonnet-4-6, 가짜 인용을 걸러내는 가드와 정리한 가이드라인을 켠 상태다. 2026-07-04 측정."
+    data-en="Measured on 961 cases sampled (up to 100 per category) from the 2,740-case OWASP BenchmarkJava 1.2beta, with known answers: 533 vulnerable, 428 safe. Model claude-sonnet-4-6 with the citation guard and the revised guideline. Measured 2026-07-04.">
+    정답이 함께 공개된 OWASP BenchmarkJava 1.2beta 2,740케이스에서 카테고리마다 최대 100개씩 뽑은 961케이스(취약 533 · 안전 428)로 쟀다. 모델은
+    claude-sonnet-4-6, 가짜 인용을 걸러내는 가드와 정리한 가이드라인을 켠 상태다. 2026-07-04 측정.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="결과" data-en="Result">결과</th>
+          <th data-ko="건수" data-en="Count">건수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ko="진짜 취약점을 잡음 (TP)" data-en="True positives">진짜 취약점을 잡음 (TP)</td>
+          <td>515</td>
+        </tr>
+        <tr>
+          <td data-ko="진짜 취약점을 놓침 (FN)" data-en="False negatives">진짜 취약점을 놓침 (FN)</td>
+          <td>18</td>
+        </tr>
+        <tr>
+          <td data-ko="안전한 코드를 잘못 잡음 (FP)" data-en="False positives">안전한 코드를 잘못 잡음 (FP)</td>
+          <td>116</td>
+        </tr>
+        <tr>
+          <td data-ko="안전한 코드를 안전하다고 봄 (TN)" data-en="True negatives">안전한 코드를 안전하다고 봄 (TN)</td>
+          <td>312</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-ko="탐지율 = 515 / 533 = 96.6%, 오탐률 = 116 / 428 = 27.1%."
+    data-en="Detection = 515 / 533 = 96.6%; false positives = 116 / 428 = 27.1%.">탐지율 = 515 / 533 = 96.6%, 오탐률 =
+    116 / 428 = 27.1%.</p>
+  <p class="mtable-sub" data-ko="카테고리별" data-en="By category">카테고리별</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="카테고리" data-en="Category">카테고리</th>
+          <th data-ko="케이스 (취약/안전)" data-en="Cases (vuln/safe)">케이스 (취약/안전)</th>
+          <th data-ko="탐지율" data-en="Detection">탐지율</th>
+          <th data-ko="오탐률" data-en="False positives">오탐률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">cmdi</td>
+          <td>100 (47/53)</td>
+          <td>1.00</td>
+          <td>0.321</td>
+        </tr>
+        <tr>
+          <td class="mono">crypto</td>
+          <td>100 (50/50)</td>
+          <td>0.980</td>
+          <td>0.460</td>
+        </tr>
+        <tr>
+          <td class="mono">hash</td>
+          <td>100 (57/43)</td>
+          <td>0.825</td>
+          <td>0.279</td>
+        </tr>
+        <tr>
+          <td class="mono">ldapi</td>
+          <td>59 (27/32)</td>
+          <td>1.00</td>
+          <td>0.188</td>
+        </tr>
+        <tr>
+          <td class="mono">pathtraver</td>
+          <td>100 (54/46)</td>
+          <td>0.963</td>
+          <td>0.130</td>
+        </tr>
+        <tr>
+          <td class="mono">securecookie</td>
+          <td>67 (36/31)</td>
+          <td>1.00</td>
+          <td>0.548</td>
+        </tr>
+        <tr>
+          <td class="mono">sqli</td>
+          <td>100 (60/40)</td>
+          <td>1.00</td>
+          <td>0.125</td>
+        </tr>
+        <tr>
+          <td class="mono">trustbound</td>
+          <td>100 (68/32)</td>
+          <td>0.985</td>
+          <td>0.563</td>
+        </tr>
+        <tr>
+          <td class="mono">weakrand</td>
+          <td>100 (56/44)</td>
+          <td>1.00</td>
+          <td>0.114</td>
+        </tr>
+        <tr>
+          <td class="mono">xpathi</td>
+          <td>35 (15/20)</td>
+          <td>1.00</td>
+          <td>0.300</td>
+        </tr>
+        <tr>
+          <td class="mono">xss</td>
+          <td>100 (63/37)</td>
+          <td>0.937</td>
+          <td>0.027</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="m-secureai-gemini" hidden>
+  <div class="fmodal-kicker mono">SECUREAI · 성능 평가</div>
+  <h4 class="fmodal-title" data-ko="Gemini 2.5 Flash - 가이드라인 실험 330케이스"
+    data-en="Gemini 2.5 Flash - guideline experiment, 330 cases">Gemini 2.5 Flash - 가이드라인 실험 330케이스</h4>
+  <p data-ko="처음에는 보안 지식을 자세히 넣을수록 좋을 줄 알고 6만 자가 넘는 가이드라인을 프롬프트에 넣었다. 그런데 벤치마크로 재 보니 아무것도 넣지 않았을 때보다 오탐이 크게 늘었다. 설명을 걷어내자 오탐은 줄었지만 탐지율이 떨어졌고, 놓치는 유형을 하나씩 확인해 무엇을 찾아야 하는지만 남기자 탐지율이 올라갔다."
+    data-en="At first a 60,000+ character guideline went into the prompt on the theory that more security knowledge helps. The benchmark showed far more false positives than no guideline at all. Stripping explanations cut false positives but lowered detection; keeping only what to look for, type by type, raised detection.">
+    처음에는 보안 지식을 자세히 넣을수록 좋을 줄 알고 6만 자가 넘는 가이드라인을 프롬프트에 넣었다. 그런데 벤치마크로 재 보니 아무것도 넣지 않았을 때보다 오탐이 크게 늘었다. 설명을 걷어내자
+    오탐은 줄었지만 탐지율이 떨어졌고, 놓치는 유형을 하나씩 확인해 무엇을 찾아야 하는지만 남기자 탐지율이 올라갔다.</p>
+  <p data-ko="같은 조건에서 가이드라인만 바꿔 비교하려고, 비용이 싼 gemini-2.5-flash로 330케이스(취약 207 · 안전 123)를 돌렸다. 모두 2026-07-03 측정이다. 이렇게 정한 가이드라인으로 제품 모델(Sonnet 4.6)을 961케이스에 돌린 결과가 96.6%다."
+    data-en="To compare guidelines under identical conditions, the cheaper gemini-2.5-flash ran 330 cases (207 vulnerable, 123 safe), all on 2026-07-03. The guideline chosen here is what produced 96.6% on Sonnet 4.6 over 961 cases.">
+    같은 조건에서 가이드라인만 바꿔 비교하려고, 비용이 싼 gemini-2.5-flash로 330케이스(취약 207 · 안전 123)를 돌렸다. 모두 2026-07-03 측정이다. 이렇게 정한
+    가이드라인으로 제품 모델(Sonnet 4.6)을 961케이스에 돌린 결과가 96.6%다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="조건" data-en="Condition">조건</th>
+          <th data-ko="가이드라인 크기" data-en="Guideline size">가이드라인 크기</th>
+          <th data-ko="탐지율" data-en="Detection">탐지율</th>
+          <th data-ko="오탐률" data-en="False positives">오탐률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ko="가이드라인 없음" data-en="No guideline">가이드라인 없음</td>
+          <td>0</td>
+          <td>47.3%</td>
+          <td>23.6%</td>
+        </tr>
+        <tr>
+          <td data-ko="옛 가이드라인" data-en="Old guideline">옛 가이드라인</td>
+          <td data-ko="63,527자" data-en="63,527 chars">63,527자</td>
+          <td>60.9%</td>
+          <td>43.1%</td>
+        </tr>
+        <tr>
+          <td data-ko="1차 정리 - 설명을 걷어냄" data-en="Pass 1 - explanations removed">1차 정리 - 설명을 걷어냄</td>
+          <td data-ko="기록 없음" data-en="not recorded">기록 없음</td>
+          <td>54.6%</td>
+          <td>23.6%</td>
+        </tr>
+        <tr>
+          <td data-ko="2차 정리 - 찾을 항목만 남김" data-en="Pass 2 - only what to look for">2차 정리 - 찾을 항목만 남김</td>
+          <td data-ko="약 14,000자" data-en="about 14,000 chars">약 14,000자</td>
+          <td>81.6%</td>
+          <td>30.9%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="m-secureai-docs" hidden>
+  <div class="fmodal-kicker mono">SECUREAI · 증적</div>
+  <h4 class="fmodal-title" data-ko="증거 자료 자동 생성 3종" data-en="3 generated compliance documents">증거 자료 자동 생성 3종
+  </h4>
+  <p data-ko="분석에서 찾은 취약점을 문서 양식에 매핑해 PDF로 만든다. 세 문서 모두 프로젝트명과 생성 시각이 들어간다."
+    data-en="Findings are mapped onto document templates and rendered to PDF; every document carries the project name and generation time.">
+    분석에서 찾은 취약점을 문서 양식에 매핑해 PDF로 만든다. 세 문서 모두 프로젝트명과 생성 시각이 들어간다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="문서" data-en="Document">문서</th>
+          <th data-ko="용도" data-en="Purpose">용도</th>
+          <th data-ko="들어가는 내용" data-en="Contents">들어가는 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ko="CISO 보고서" data-en="CISO report">CISO 보고서</td>
+          <td data-ko="경영진 보고용 취약점 현황" data-en="Vulnerability status for executives">경영진 보고용 취약점 현황</td>
+          <td data-ko="위험도별 건수 요약 · Critical/High 상세(유형·파일·라인·CWE·상태) · 전체 목록(OWASP 분류 포함)"
+            data-en="Severity summary · Critical/High detail · full list with OWASP">위험도별 건수 요약 · Critical/High
+            상세(유형·파일·라인·CWE·상태) · 전체 목록(OWASP 분류 포함)</td>
+        </tr>
+        <tr>
+          <td data-ko="행안부 SW개발보안 가이드 체크리스트" data-en="MOIS secure-coding checklist">행안부 SW개발보안 가이드 체크리스트</td>
+          <td data-ko="공공기관 제출용" data-en="For public-sector submission">공공기관 제출용</td>
+          <td data-ko="준수·미준수·해당없음 건수와 항목표 - 관련 취약점이 발견되면 미준수로 표시"
+            data-en="Compliant / non-compliant / N/A counts and item table">준수·미준수·해당없음 건수와 항목표 - 관련 취약점이 발견되면
+            미준수로 표시</td>
+        </tr>
+        <tr>
+          <td data-ko="ISMS-P 개발보안 통제 이행현황" data-en="ISMS-P secure-development controls">ISMS-P 개발보안 통제 이행현황
+          </td>
+          <td data-ko="인증 심사 증적용" data-en="Audit evidence">인증 심사 증적용</td>
+          <td data-ko="이행·부분이행·미이행 건수와 통제표 - 관련 취약점이 전부 조치되면 이행"
+            data-en="Implemented / partial / not implemented with control table">이행·부분이행·미이행 건수와 통제표 - 관련 취약점이
+            전부 조치되면 이행</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-ko="지금 데이터에 들어간 점검 항목은 행안부 가이드 5개, ISMS-P 통제 3개(2.8.4 · 2.8.5 · 2.8.6)다. 양식과 매핑 구조는 완성했고, 항목은 더 채워야 한다."
+    data-en="Seeded items today: 5 MOIS checklist items and 3 ISMS-P controls (2.8.4-2.8.6). Templates and mapping are complete; more items still need seeding.">
+    지금 데이터에 들어간 점검 항목은 행안부 가이드 5개, ISMS-P 통제 3개(2.8.4 · 2.8.5 · 2.8.6)다. 양식과 매핑 구조는 완성했고, 항목은 더 채워야 한다.</p>
+</section>

@@ -1,0 +1,110 @@
+<!-- ── MaintQ ── -->
+<article class="subcard" id="maintq">
+  <div class="sub-top">
+    <div class="sub-headings">
+      <div class="sub-code mono" data-ko="제조 설비 진단 · 부품 발주 에이전트"
+        data-en="Plant maintenance &amp; procurement agent">제조 설비 진단 · 부품 발주 에이전트</div>
+      <h4 class="sub-title">MaintQ</h4>
+      <div class="sub-meta"
+        data-ko="2026.07 ~ 진행 중 · 개인 1인 · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js"
+        data-en="Since Jul 2026 · solo · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js">
+        2026.07 ~ 진행 중 · 개인 1인 · Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js</div>
+    </div>
+    <span class="sub-caret">&#9654;</span>
+  </div>
+  <div class="sub-body">
+    <div class="sub-inner">
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+        </div>
+        <p data-ko="공장 설비(인버터·PLC)에 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분씩 뒤지고</b>, 부품은 전화와 엑셀로 주문합니다. 기존 설비관리 시스템(CMMS)은 이력·재고·주문을 <b>기록</b>만 할 뿐, «왜 에러가 났고 어떤 부품이 필요한지»는 <b>판단</b>하지 못합니다."
+          data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b> and orders parts by phone and spreadsheet. A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">
+          공장 설비(인버터·PLC)에 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분씩 뒤지고</b>, 부품은 전화와 엑셀로 주문합니다. 기존 설비관리
+          시스템(CMMS)은 이력·재고·주문을 <b>기록</b>만 할 뿐, «왜 에러가 났고 어떤 부품이 필요한지»는 <b>판단</b>하지 못합니다.</p>
+      </div>
+
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - 위험한 실패부터 줄인다"
+            data-en="Approach - shrink the dangerous failure first">해결 방법 - 위험한 실패부터 줄인다</span>
+        </div>
+        <p data-ko="두 모델의 부품 특정 정확도가 45.6%와 51.0%로 비슷해서 차이가 없다고 넘길 뻔했습니다. 안을 열어 보니 한쪽은 틀린 부품을 자신 있게 골랐고, 다른 쪽은 답을 내지 않았습니다. 틀린 부품을 확신하면 잘못된 발주로 이어지니, 두 실수를 따로 세기로 했습니다. 지시문만 바꾼 비교 실험(각 120회)에서 위험한 쪽을 16.7%에서 1.1%로 줄였습니다."
+          data-en="Two models scored 45.6% and 51.0% at identifying parts, close enough to call equal. Inside, one confidently picked wrong parts and the other gave no answer. A confident wrong part becomes a wrong order, so the two failures are now counted separately; a prompt-only controlled test (120 runs each) cut the dangerous one from 16.7% to 1.1%.">
+          두 모델의 부품 특정 정확도가 45.6%와 51.0%로 비슷해서 차이가 없다고 넘길 뻔했습니다. 안을 열어 보니 한쪽은 틀린 부품을 자신 있게 골랐고, 다른 쪽은
+          답을 내지 않았습니다. 틀린 부품을 확신하면 잘못된 발주로 이어지니, 두 실수를 따로 세기로 했습니다. 지시문만 바꾼 비교 실험(각 120회)에서 위험한 쪽을
+          16.7%에서 1.1%로 줄였습니다.</p>
+        <button class="feat feat-more" data-modal="f-maintq-detail" data-ko="설계와 측정 자세히 보기"
+          data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
+      </div>
+
+      <div class="pc-grid sub-grid">
+        <div class="block">
+          <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+              data-en="Feature details - click one to open">주요 기능 - 누르면 실제 화면이
+              열립니다</span></div>
+          <div class="featlist">
+            <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 - 추측하지 않는다"
+              data-en="Unknown code - no guessing">미지 에러코드 - 추측하지 않는다</button>
+            <button class="feat" data-modal="f-maintq-alt" data-ko="재고 0 → 호환 대체품"
+              data-en="Out of stock → alternatives">재고 0 → 호환 대체품</button>
+            <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류"
+              data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
+            <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정"
+              data-en="Disposal pre-check">처분 사전판정</button>
+            <button class="feat" data-modal="f-maintq-bundle" data-ko="처분 근거 번들"
+              data-en="Evidence bundle">처분 근거 번들</button>
+            <button class="feat" data-modal="f-maintq-deadline" data-ko="법정 기한 · 위험등급"
+              data-en="Deadlines &amp; risk grade">법정 기한 · 위험등급</button>
+            <button class="feat" data-modal="f-maintq-expenditure" data-ko="지출 성격 분류"
+              data-en="Expenditure classification">지출 성격 분류</button>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/maintq/unknown-error-code.gif"
+                alt="매뉴얼에 없는 에러코드를 추측하지 않고 모른다고 답하는 MaintQ 화면">
+              <span class="cap2 mono" data-ko="매뉴얼에 없는 에러코드<br>추측하지 않는다"
+                data-en="An error code not in the manual<br>no guessing">매뉴얼에 없는 에러코드<br>추측하지
+                않는다</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/repeat-failure-hold.gif"
+                alt="같은 설비의 반복 고장을 감지해 부품 발주를 보류하는 MaintQ 화면">
+              <span class="cap2 mono" data-ko="반복 고장 감지 → 주문 보류"
+                data-en="Repeat failure detected → order on hold">반복 고장 감지 → 주문 보류</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/disposal-precheck.gif"
+                alt="사실이 모자라면 판정을 미루고 입력을 받은 뒤 판정하는 처분 사전판정 화면">
+              <span class="cap2 mono" data-ko="처분 사전판정<br>사실이 모자라면 판정하지 않는다"
+                data-en="Disposal pre-check<br>no verdict until the facts are in">처분 사전판정<br>사실이
+                모자라면 판정하지 않는다</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact block">
+        <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.11 실측"
+            data-en="Results - measured 2026-09-11">결과 - 2026.09.11 실측</span></div>
+        <p data-ko="모르는 에러코드를 지어낸 비율(환각) 0%, 권한 없는 요청 차단(권한 분리) 100%는 목표를 달성했습니다."
+          data-en="Hallucinated error codes 0% and unauthorized requests blocked 100% both met their targets.">
+          모르는 에러코드를 지어낸 비율(환각) 0%, 권한 없는 요청 차단(권한 분리) 100%는 목표를 달성했습니다.</p>
+        <div class="metricrow">
+          <div class="metric" data-modal="m-maintq-tools" role="button" tabindex="0">
+            <div class="mv"><span data-count="22">0</span>종</div>
+            <div class="ml" data-ko="MCP 도구" data-en="MCP tools">MCP 도구</div>
+          </div>
+          <div class="metric" data-modal="m-maintq-regression" role="button" tabindex="0">
+            <div class="mv"><span data-count="1560">0</span>건</div>
+            <div class="ml" data-ko="회귀 검사" data-en="regression checks">회귀 검사</div>
+          </div>
+          <div class="metric" data-modal="m-maintq-decisions" role="button" tabindex="0">
+            <div class="mv">D<span data-count="141">0</span></div>
+            <div class="ml" data-ko="설계 결정 문서화" data-en="design decisions">설계 결정 문서화</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

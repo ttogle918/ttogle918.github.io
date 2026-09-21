@@ -1,0 +1,111 @@
+<!-- PROJECT 08 -->
+<article class="pcard reveal" id="churn">
+  <div class="pc-top">
+    <div class="pc-badge mono">08</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="비상교육" data-en="VISANG EDUCATION">비상교육</div>
+      <h3 class="pc-title">이탈 고객 예측 (실무 NLP·데이터)</h3>
+      <div class="pc-meta"
+        data-ko="2022.09 ~ 2022.12 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연"
+        data-en="Sep–Dec 2022 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
+        2022.09 ~ 2022.12 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연
+      </div>
+      <div class="pc-hash mono">
+        <span>#Data Preprocessing</span><span>#DecisionTree</span><span>#RandomForest</span><span>#변수중요도</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="약정 만료가 다가오는 고객이 떠난다는 걸 떠난 뒤에야 알 수 있어서, 미리 손쓸 방법이 없었습니다."
+              data-en="Churn was only visible after the fact as contracts approached expiry - leaving no room for risk management or proactive outreach.">
+              약정 만료가 다가오는 고객이 떠난다는 걸 떠난 뒤에야 알 수 있어서, 미리 손쓸 방법이 없었습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li
+                data-ko="<b>고객 특징 만들기 · 비슷한 고객 묶기</b>: 최근 이용일·이용 횟수·결제 금액(RFM)으로 고객 특징을 만들고, 비슷한 고객끼리 묶어(KMeans) 모델이 배울 데이터의 질을 높였습니다."
+                data-en="<b>Features &amp; clustering</b>: built RFM-based derived features and segmented customers with KMeans to raise input quality.">
+                <b>고객 특징 만들기 · 비슷한 고객 묶기</b>: 최근 이용일·이용 횟수·결제 금액(RFM)으로 고객 특징을 만들고, 비슷한 고객끼리 묶어(KMeans) 모델이 배울
+                데이터의 질을 높였습니다.
+              </li>
+              <li data-ko="<b>여러 모델 함께 학습</b>: RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다."
+                data-en="<b>Multi-model</b>: RandomForest reached 85.3% churn accuracy, and XGBoost 89% on predicting reduced activity.">
+                <b>여러 모델 함께 학습</b>: RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다.
+              </li>
+              <li
+                data-ko="<b>원인 찾기</b>: 어떤 요소가 예측에 크게 작용했는지(변수 중요도) 분석해 «무엇이 이탈을 만드는가»까지 설명하고, 실무에서 할 조치로 연결했습니다."
+                data-en="<b>Explaining why</b>: feature importance surfaced what actually drives churn, turning the model into an actionable playbook.">
+                <b>원인 찾기</b>: 어떤 요소가 예측에 크게 작용했는지(변수 중요도) 분석해 «무엇이 이탈을 만드는가»까지 설명하고, 실무에서 할 조치로 연결했습니다.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-visang-churn" data-ko="이력에서 선제 대응까지"
+                data-en="From history to acting early">이력에서 선제 대응까지</button>
+            </div>
+          </div>
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과" data-en="Results">결과</span></div>
+            <p data-ko="변수 중요도로 무엇 때문에 떠나는지까지 설명해, 약정이 끝나기 전에 무엇을 해야 할지 근거를 만들었습니다. 혼자 개발한 뒤 대표이사 앞에서 시연·발표했습니다."
+              data-en="Feature importance explained why customers leave, giving a basis for action before contracts end. Built solo and demoed to the CEO.">
+              변수 중요도로 무엇 때문에 떠나는지까지 설명해, 약정이 끝나기 전에 무엇을 해야 할지 근거를 만들었습니다. 혼자 개발한 뒤 대표이사 앞에서 시연·발표했습니다.</p>
+            <div class="metricrow">
+              <div class="metric" data-modal="m-visang-churn" role="button" tabindex="0">
+                <div class="mv"><span data-count="85">0</span>.3%</div>
+                <div class="ml" data-ko="이탈 예측 정확도" data-en="churn accuracy">이탈 예측 정확도</div>
+              </div>
+              <div class="metric" data-modal="m-visang-churn" role="button" tabindex="0">
+                <div class="mv"><span data-count="89">0</span>%</div>
+                <div class="ml" data-ko="활동 저하 예측 정확도" data-en="reduced-activity prediction">활동 저하 예측 정확도</div>
+              </div>
+            </div>
+          </div>
+          <!-- 랜딩 준비되면 아래 pc-actions 주석을 풀어 쓰세요 (slug: visang-churn)
+          <div class="pc-actions"><a class="gobtn" href="project/visang-churn/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a></div>
+          -->
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 150" role="img"
+                  aria-label="RFM 파생변수와 군집화를 거쳐 모델을 학습하고 변수 중요도로 선제 대응 근거를 만든다">
+                  <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="38">RFM 파생변수</text>
+                  <text class="dg-s" x="22" y="54">최근성 · 빈도 · 금액</text>
+                  <path class="dg-a" d="M194 38 H206" />
+                  <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="38">KMeans 군집화</text>
+                  <text class="dg-s" x="222" y="54">고객 세분화</text>
+                  <path class="dg-a" d="M300 64 V74 H100 V80" />
+                  <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="106">RF · XGBoost</text>
+                  <text class="dg-s" x="22" y="122">이탈 85.3%</text>
+                  <path class="dg-a" d="M194 106 H206" />
+                  <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="106">변수 중요도</text>
+                  <text class="dg-s" x="222" y="122">선제 대응 근거</text>
+                  <text class="dg-g" x="10" y="146">예측에서 멈추지 않고 원인까지 냈다</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="파생변수 → 군집화 → 모델 → 원인"
+                data-en="features → clusters → model → causes">파생변수 → 군집화 → 모델 → 원인</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

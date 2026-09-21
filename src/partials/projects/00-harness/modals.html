@@ -1,0 +1,49 @@
+<section id="f-harness-ring" hidden>
+  <div class="fmodal-kicker mono">하네스 · 경계</div>
+  <h4 class="fmodal-title" data-ko="코드를 감싸는 하네스" data-en="The harness around the code">코드를 감싸는 하네스</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 300" role="img" aria-label="프로젝트 코드를 하네스가 두르고, 역할 권한과 훅과 사람 확인이 경계에서 작용한다">
+      <rect class="dg-box" x="90" y="10" width="210" height="44" rx="8" />
+      <text class="dg-t" x="102" y="30">pm - 계획만</text>
+      <text class="dg-s" x="102" y="47">Read · Grep · Glob · Write</text>
+      <rect class="dg-box" x="320" y="10" width="210" height="44" rx="8" />
+      <text class="dg-t" x="332" y="30">reviewer - 검토만</text>
+      <text class="dg-s" x="332" y="47">Read · Grep · Glob</text>
+      <path class="dg-a" d="M195 54 V62" />
+      <path class="dg-a" d="M425 54 V62" />
+
+      <rect class="dg-zone" x="90" y="66" width="440" height="170" rx="20" />
+      <text class="dg-k" x="102" y="86">하네스 경계</text>
+      <rect class="dg-box" x="150" y="112" width="320" height="60" rx="8" />
+      <text class="dg-t" x="164" y="136">프로젝트 코드</text>
+      <text class="dg-s" x="164" y="156">여덟 레포가 같은 규약을 쓴다</text>
+      <text class="dg-s" x="102" y="200">역할마다 도구를 좁혀 준다 - 못 하는 일은 시킬 수도 없다</text>
+      <text class="dg-s" x="102" y="220">공유하는 것은 5역할과 수명주기, 도메인 지식은 각자</text>
+
+      <path class="dg-a" d="M195 246 V238" />
+      <path class="dg-a" d="M425 246 V238" />
+      <rect class="dg-box" x="90" y="250" width="210" height="44" rx="8" />
+      <text class="dg-t" x="102" y="270">훅 - 기계가 막는다</text>
+      <text class="dg-bad" x="102" y="287">기대 정답 쓰기 exit 2</text>
+      <rect class="dg-hold" x="320" y="250" width="210" height="44" rx="8" />
+      <text class="dg-t" x="332" y="270">사람 - 마지막에 멈춘다</text>
+      <text class="dg-s" x="332" y="287">수동 체크리스트</text>
+    </svg>
+  </div>
+  <p data-ko="에이전트에게 «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span class=&quot;mono&quot;>reviewer</span> 는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다."
+    data-en="Telling an agent “only review” is not enough; given a long enough context it will edit anyway. So <b>the constraint lives in the tools, not the prompt</b> - <span class=&quot;mono&quot;>reviewer</span> holds only <span class=&quot;mono&quot;>Read · Grep · Glob</span>. There is simply no way to edit.">
+    에이전트에게
+    «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span
+      class="mono">reviewer</span> 는 <span class="mono">Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다.</p>
+  <p data-ko="가장 위험한 건 <b>모델이 채점표를 고치는 것</b>이다. 테스트가 빨간불이면 코드를 고치는 대신 기대 정답을 바꾸면 초록불이 된다. <span class=&quot;mono&quot;>PreToolUse</span> 훅이 <span class=&quot;mono&quot;>eval/testset.json</span> 과 매뉴얼 원본 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 끊고, 그 이유를 에이전트에게 되돌려준다. 예외는 <b>파일명 정확 일치로만</b> 열어 뒀다."
+    data-en="The dangerous move is <b>editing the answer key</b>: when a test is red, changing the expected value is easier than fixing the code. A <span class=&quot;mono&quot;>PreToolUse</span> hook cuts writes to <span class=&quot;mono&quot;>eval/testset.json</span> and to the source manuals with <span class=&quot;mono&quot;>exit 2</span>, handing the reason back to the agent. Exceptions are opened <b>by exact filename only.</b>">
+    가장
+    위험한 건 <b>모델이 채점표를 고치는 것</b>이다. 테스트가 빨간불이면 코드를 고치는 대신 기대 정답을 바꾸면 초록불이 된다. <span
+      class="mono">PreToolUse</span> 훅이 <span class="mono">eval/testset.json</span> 과 매뉴얼 원본 쓰기를 <span
+      class="mono">exit 2</span> 로 끊고, 그 이유를 에이전트에게 되돌려준다. 예외는 <b>파일명 정확 일치로만</b> 열어 뒀다.</p>
+  <p data-ko="마지막 관문은 사람이다. <span class=&quot;mono&quot;>/stage</span> 는 구현·회귀·검토·커밋까지 혼자 가지만, 끝에서 <b>수동 체크리스트를 출력하고 멈춘다.</b> 제품 카드마다 «AI 는 초안까지»라고 써 놓고 정작 그 제품을 만드는 자리에서 자동으로 흘려보내면 앞뒤가 맞지 않는다고 봤다."
+    data-en="The last gate is a person. <span class=&quot;mono&quot;>/stage</span> goes all the way through implement, regression, review and commit by itself - and then <b>prints a manual checklist and stops.</b> Writing “the AI only drafts” on every product card while letting the build itself run unattended would not add up.">
+    마지막
+    관문은 사람이다. <span class="mono">/stage</span> 는 구현·회귀·검토·커밋까지 혼자 가지만, 끝에서 <b>수동 체크리스트를 출력하고 멈춘다.</b> 제품
+    카드마다 «AI 는 초안까지»라고 써 놓고 정작 그 제품을 만드는 자리에서 자동으로 흘려보내면 앞뒤가 맞지 않는다고 봤다.</p>
+</section>

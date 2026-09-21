@@ -1,0 +1,103 @@
+<section id="f-visang-qa" hidden>
+  <div class="fmodal-kicker mono">비상교육 · 질문-답변</div>
+  <h4 class="fmodal-title" data-ko="수집부터 자동 등록까지" data-en="From collection to auto-posting">수집부터 자동 등록까지</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 232" role="img"
+      aria-label="게시글을 모아 비질문성 글을 걸러내고 SBERT 로 유사 질문을 찾아 답변을 추출한 뒤 개인정보를 익명화해 자동 등록한다">
+      <rect class="dg-box" x="4" y="26" width="130" height="50" rx="8" />
+      <text class="dg-t" x="16" y="47">게시글 수집</text>
+      <text class="dg-s" x="16" y="64">10만 건</text>
+      <path class="dg-a" d="M138 51 H156" />
+      <rect class="dg-box" x="160" y="26" width="140" height="50" rx="8" />
+      <text class="dg-t" x="172" y="47">1차 필터링</text>
+      <text class="dg-s" x="172" y="64">욕설 · 부정 감성 · 비윤리</text>
+      <path class="dg-a" d="M304 51 H322" />
+      <rect class="dg-box" x="326" y="26" width="140" height="50" rx="8" />
+      <text class="dg-t" x="338" y="47">SBERT 임베딩</text>
+      <text class="dg-s" x="338" y="64">STS 파인튜닝</text>
+      <path class="dg-a" d="M470 51 H488" />
+      <rect class="dg-box" x="492" y="26" width="124" height="50" rx="8" />
+      <text class="dg-t" x="504" y="47">유사도 매칭</text>
+      <text class="dg-s" x="504" y="64">코사인 유사도</text>
+
+      <path class="dg-a" d="M230 80 V84" />
+      <rect class="dg-box" x="160" y="88" width="140" height="30" rx="6" />
+      <text class="dg-bad" x="172" y="108">제거 - 비질문성</text>
+
+      <path class="dg-a" d="M554 80 V126 H94 V130" />
+
+      <rect class="dg-box" x="4" y="134" width="180" height="50" rx="8" />
+      <text class="dg-t" x="16" y="155">기존 답변 추출</text>
+      <text class="dg-s" x="16" y="172">유사도 0.7 이상</text>
+      <path class="dg-a" d="M188 159 H206" />
+      <rect class="dg-box" x="210" y="134" width="200" height="50" rx="8" />
+      <text class="dg-t" x="222" y="155">개인정보 익명화</text>
+      <text class="dg-s" x="222" y="172">정규식 + NER</text>
+      <path class="dg-a" d="M414 159 H432" />
+      <rect class="dg-hold" x="436" y="134" width="180" height="50" rx="8" />
+      <text class="dg-t" x="448" y="155">자동 답변 등록</text>
+      <text class="dg-s" x="448" y="172">사람 개입 0</text>
+
+      <text class="dg-g" x="4" y="204">답할 필요 없는 글을 먼저 걸러내고, 비슷한 기존 질문의 답을 붙인다</text>
+      <text class="dg-s" x="4" y="222">정규식이 놓치는 문장 속 이름·주소는 NER 이 잡는다</text>
+    </svg>
+  </div>
+  <p data-ko="게시판에는 질문 말고도 <b>욕설이나 비방 같은 글</b>이 섞여 있다. 그래서 첫 관문은 «답할 가치가 있는 질문인가»를 가리는 일이었다. <b>욕설 단어집, 부정 감성 분석, 비윤리 문장 분류</b>를 겹쳐 걸렀다."
+    data-en="The board mixes questions with <b>abuse and insults</b>, so the first gate was deciding <b>what deserves an answer</b>: a profanity list, negative-sentiment analysis and unethical-sentence classification layered together.">
+    게시판에는 질문 말고도 <b>욕설이나 비방 같은 글</b>이 섞여 있다. 그래서 첫 관문은 «답할 가치가 있는 질문인가»를 가리는 일이었다. <b>욕설 단어집, 부정 감성 분석, 비윤리 문장
+      분류</b>를 겹쳐 걸렀다.</p>
+  <p data-ko="남은 질문은 문장 유사도 데이터로 추가 학습한 <b>SBERT</b>로 기존 질문과 비교한다 - 단어가 겹치는지가 아니라 <b>같은 것을 묻고 있는지</b>를 본다. <b>코사인 유사도가 0.7 이상</b>인 기존 질문을 찾아 그 답변을 붙인다."
+    data-en="What survives is compared with past questions by an <b>SBERT</b> model further trained on sentence-similarity data - not word overlap but <b>whether the same thing is asked</b>. Past questions with <b>cosine similarity of 0.7 or more</b> supply the answer.">
+    남은 질문은 문장 유사도 데이터로 추가 학습한 <b>SBERT</b>로 기존 질문과 비교한다 - 단어가 겹치는지가 아니라 <b>같은 것을 묻고 있는지</b>를 본다. <b>코사인 유사도가 0.7
+      이상</b>인 기존 질문을 찾아 그 답변을 붙인다.</p>
+  <p data-ko="마지막 관문이 익명화다. 전화번호·이메일처럼 <b>모양이 정해진 것은 정규표현식</b>으로 잡지만, 문장 속에 자연스럽게 섞인 이름과 주소는 규칙으로 안 잡힌다. 그래서 <b>NER 을 겹쳐</b> 이중으로 처리했다 - <b>규칙이 놓치는 자리를 모델이 메우는</b> 구조다."
+    data-en="The last gate is anonymisation. Phone numbers and emails have <b>a fixed shape, so a regex catches them</b>; names and addresses woven into a sentence do not. <b>NER is layered on top</b> for a second pass - <b>the model covers what the rules miss.</b>">
+    마지막
+    관문이 익명화다. 전화번호·이메일처럼 <b>모양이 정해진 것은 정규표현식</b>으로 잡지만, 문장 속에 자연스럽게 섞인 이름과 주소는 규칙으로 안 잡힌다. 그래서 <b>NER 을 겹쳐</b>
+    이중으로
+    처리했다 - <b>규칙이 놓치는 자리를 모델이 메우는</b> 구조다.</p>
+</section>
+
+<section id="m-visang-qa" hidden>
+  <div class="fmodal-kicker mono">비상교육 · 질문-답변 검색</div>
+  <h4 class="fmodal-title" data-ko="질문-답변 검색 - 무엇을 했나" data-en="Q&amp;A search - what was done">질문-답변 검색 - 무엇을
+    했나</h4>
+  <p data-ko="강사가 없는 시간에 질문 답변이 늦어지는 문제를 줄이려고 만든 PoC다. 게시판 원본 글에서 답할 질문을 골라내고, 비슷한 기존 질문을 찾아 답을 보여 주고, 개인정보를 가린 뒤 등록하는 흐름이다."
+    data-en="A PoC to cut answer delays when no instructor is around: pick answerable questions from raw board posts, match similar past questions, and register answers after masking personal data.">
+    강사가 없는 시간에 질문 답변이 늦어지는 문제를 줄이려고 만든 PoC다. 게시판 원본 글에서 답할 질문을 골라내고, 비슷한 기존 질문을 찾아 답을 보여 주고, 개인정보를 가린 뒤 등록하는
+    흐름이다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="단계" data-en="Step">단계</th>
+          <th data-ko="한 일" data-en="What was done">한 일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ko="걸러내기" data-en="Filter">걸러내기</td>
+          <td data-ko="욕설 단어집 · 부정 감성 분석 · 비윤리 문장 분류로 답할 필요 없는 글 제거"
+            data-en="Profanity list, negative-sentiment analysis and unethical-sentence classification">욕설 단어집 ·
+            부정 감성 분석 · 비윤리 문장 분류로 답할 필요 없는 글 제거</td>
+        </tr>
+        <tr>
+          <td data-ko="유사 질문 찾기" data-en="Match">유사 질문 찾기</td>
+          <td data-ko="SBERT를 문장 유사도 데이터로 추가 학습해, 코사인 유사도 0.7 이상인 기존 질문과 매칭"
+            data-en="SBERT further trained on sentence-similarity data; matches past questions with cosine similarity of 0.7 or more">
+            SBERT를 문장 유사도 데이터로 추가 학습해, 코사인 유사도 0.7 이상인 기존 질문과 매칭</td>
+        </tr>
+        <tr>
+          <td data-ko="개인정보 가리기" data-en="Mask">개인정보 가리기</td>
+          <td data-ko="정규표현식과 개체명 인식(NER)을 조합해 전화번호·이름·주소·주민번호를 익명화. 주소 형태가 다양해 2주 동안 예외 사례를 반복해서 잡음"
+            data-en="Regex + NER for phone, name, address, ID numbers; two weeks of edge cases, addresses being hardest">
+            정규표현식과 개체명 인식(NER)을 조합해 전화번호·이름·주소·주민번호를 익명화. 주소 형태가 다양해 2주 동안 예외 사례를 반복해서 잡음</td>
+        </tr>
+        <tr>
+          <td data-ko="정제 규모" data-en="Scale">정제 규모</td>
+          <td data-ko="10만 1천 건" data-en="101,000 records">10만 1천 건</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

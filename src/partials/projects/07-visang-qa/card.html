@@ -1,0 +1,103 @@
+<!-- PROJECT 07 -->
+<article class="pcard reveal" id="qa-search">
+  <div class="pc-top">
+    <div class="pc-badge mono">07</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="비상교육" data-en="VISANG EDUCATION">비상교육</div>
+      <h3 class="pc-title">질문-답변 검색</h3>
+      <div class="pc-meta"
+        data-ko="2022.12 ~ 2023.03 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연"
+        data-en="Dec 2022 – Mar 2023 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
+        2022.12 ~ 2023.03 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연
+      </div>
+      <div class="pc-hash mono">
+        <span>#DataTrust</span><span>#개인정보익명화</span><span>#SBERT</span><span>#Churn</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="강사가 없을 때는 질문 답변이 늦어졌고, 게시판 원본 데이터에는 이름·주소·전화번호 같은 개인정보가 여기저기 섞여 있었습니다."
+              data-en="Delayed answers when instructors were away, plus raw board data laced with names, addresses, and phone numbers.">
+              강사가 없을 때는 질문 답변이 늦어졌고, 게시판 원본 데이터에는 이름·주소·전화번호 같은 개인정보가 여기저기 섞여 있었습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li
+                data-ko="<b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 비슷한 질문을 추천하고 기존 답변을 자동으로 달아 주는 흐름을 혼자 만들었습니다."
+                data-en="<b>QA retrieval</b>: SBERT/KoBERT STS fine-tuning for similar-question matching and auto answers, built solo.">
+                <b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 비슷한 질문을 추천하고 기존 답변을 자동으로 달아 주는 흐름을
+                혼자 만들었습니다.
+              </li>
+              <li
+                data-ko="<b>개인정보 가리기</b>: 정해진 모양 찾기(정규표현식)와 문장 속 이름·주소를 알아보는 AI(NER)를 직접 조합해 개인정보를 가렸습니다(2주 동안 예외 사례를 반복해서 해결)."
+                data-en="<b>PII anonymization</b>: regex + NER to mask unstructured personal data over two weeks of edge-case work.">
+                <b>개인정보 가리기</b>: 정해진 모양 찾기(정규표현식)와 문장 속 이름·주소를 알아보는 AI(NER)를 직접 조합해 개인정보를 가렸습니다(2주 동안 예외 사례를
+                반복해서 해결).
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-visang-qa" data-ko="수집부터 자동 등록까지"
+                data-en="From collection to auto-posting">수집부터 자동 등록까지</button>
+            </div>
+          </div>
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과" data-en="Results">결과</span></div>
+            <p data-ko="PoC라 익명화를 하지 않아도 됐지만, 모델을 빨리 학습시키는 것보다 데이터를 안전하게 만드는 일이 먼저라는 기준이 이때 생겼습니다. 대표이사 앞에서 시연·발표했습니다."
+              data-en="As a PoC it did not need anonymization, but this is where the rule formed: making data safe comes before training the model fast. Demoed to the CEO.">
+              PoC라 익명화를 하지 않아도 됐지만, 모델을 빨리 학습시키는 것보다 데이터를 안전하게 만드는 일이 먼저라는 기준이 이때 생겼습니다. 대표이사 앞에서 시연·발표했습니다.</p>
+            <div class="metricrow">
+              <div class="metric" data-modal="m-visang-qa" role="button" tabindex="0">
+                <div class="mv"><span data-count="101">0</span>K+</div>
+                <div class="ml" data-ko="데이터 정제" data-en="rows cleaned">데이터 정제</div>
+              </div>
+            </div>
+          </div>
+          <!-- 랜딩 준비되면 아래 pc-actions 주석을 풀어 쓰세요 (slug: visang-qa)
+          <div class="pc-actions"><a class="gobtn" href="project/visang-qa/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a></div>
+          -->
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 150" role="img" aria-label="10만 건을 걸러 SBERT 로 유사 질문을 찾고 익명화해 자동 등록한다">
+                  <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="38">게시글 10만 건</text>
+                  <text class="dg-s" x="22" y="54">원천 데이터</text>
+                  <path class="dg-a" d="M194 38 H206" />
+                  <rect class="dg-box" x="210" y="16" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="38">1차 필터링</text>
+                  <text class="dg-s" x="222" y="54">욕설 · 부정 감성 · 비윤리</text>
+                  <path class="dg-a" d="M300 64 V74 H100 V80" />
+                  <rect class="dg-box" x="10" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="22" y="106">SBERT 매칭</text>
+                  <text class="dg-s" x="22" y="122">코사인 유사도 0.7 이상</text>
+                  <path class="dg-a" d="M194 106 H206" />
+                  <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
+                  <text class="dg-t" x="222" y="106">익명화 → 자동 등록</text>
+                  <text class="dg-s" x="222" y="122">정규식 + NER</text>
+                  <text class="dg-g" x="10" y="146">답할 필요 없는 글을 먼저 걸러낸다</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="수집 → 필터링 → 매칭 → 익명화"
+                data-en="collect → filter → match → anonymise">수집 → 필터링 → 매칭 → 익명화</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,245 @@
+<!-- PROJECT 01 -->
+<article class="pcard featured open reveal" id="qmesh">
+  <div class="pc-top">
+    <div class="pc-badge mono">01</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="회사가 다른 AI 에이전트끼리 일을 맡기는 연결 허브 (A2A)"
+        data-en="A2A Multi-Agent Orchestration Hub">회사가 다른 AI 에이전트끼리 일을 맡기는 연결 허브 (A2A)</div>
+      <h3 class="pc-title">QMesh <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★
+          AI AGENT 대표작</span></h3>
+      <div class="pc-meta"
+        data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 크로스도메인 종단 검증 단독"
+        data-en="Since Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> contract design, adapters and cross-domain verification">
+        2026.08 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 계약 설계 · 어댑터 구현 ·
+        크로스도메인 종단 검증 단독</div>
+      <div class="pc-hash mono">
+        <span>#A2A</span><span>#MultiAgent</span><span>#ProtocolDesign</span><span>#HumanInTheLoop</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하자, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야 하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다."
+              data-en="After building insurance, finance and maintenance agents, I wanted to connect them. Treating each as a separate company, the first wall was how far to trust a request from another side and what to show it. MCP is about an agent using its own tools, so identity checks and waiting for human approval between companies had to be designed separately.">
+              보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하자, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야
+              하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li
+                data-ko="<b>어느 편에도 속하지 않는 연결 계층</b>: 연결 코드를 어느 한 서비스 안에 넣지 않고 따로 떼어 냈습니다. 각 AI가 할 수 있는 일을 적은 소개서(Agent Card) 3종과 요청 양식(Task 스키마) 13종을 이 한곳에서만 관리합니다."
+                data-en="<b>Neutral protocol layer</b>: the glue code lives in its own repo, owned by no domain - 3 Agent Cards and 13 Task JSON Schemas pinned as the SSOT.">
+                <b>어느 편에도 속하지 않는 연결 계층</b>: 연결 코드를 어느 한 서비스 안에 넣지 않고 따로 떼어 냈습니다. 각 AI가 할 수 있는 일을 적은 소개서(Agent
+                Card) 3종과 요청 양식(Task 스키마) 13종을 이 한곳에서만 관리합니다.
+              </li>
+              <li
+                data-ko="가장 오래 헤맨 부분입니다. 요청을 보낸 회사가 누구인지와 그 요청이 누구의 자료를 다루는지를 나눠 확인하게 하고 나서야 풀렸습니다. 조회, 심사, 돈 이동 순으로 허락 범위를 좁히도록 설계했습니다."
+                data-en="This took the longest. It only came apart once who sent the request and whose data it touches were checked separately. Permissions were designed to narrow from lookup to review to moving money.">
+                가장 오래 헤맨 부분입니다. 요청을 보낸 회사가 누구인지와 그 요청이 누구의 자료를 다루는지를 나눠 확인하게 하고 나서야 풀렸습니다. 조회, 심사, 돈 이동 순으로 허락
+                범위를 좁히도록 설계했습니다.</li>
+              <li data-ko="출금은 요청 팀장, 요청 회사 재무팀, 상대 회사 재무 결재까지 사람이 세 번 승인합니다. AI는 초안까지만 쓰고, 승인할 권한 자체가 없습니다."
+                data-en="A withdrawal is approved by people three times: the requesting team lead, the requesting company's finance team, and the partner's finance sign-off. The AI writes drafts only and has no approval authority at all.">
+                출금은 요청 팀장, 요청 회사 재무팀, 상대 회사 재무 결재까지 사람이 세 번 승인합니다. AI는 초안까지만 쓰고, 승인할 권한 자체가 없습니다.</li>
+              <li
+                data-ko="<b>요청 하나를 끝까지 추적</b>: 제조 → 금융 → 보험으로 이어지는 요청에 같은 번호(request_chain_id)를 붙여, 세 회사에 흩어진 기록을 하나의 타임라인으로 묶어 남깁니다."
+                data-en="<b>request_chain_id tracing</b>: a MaintQ → FinAllQ → InsuQ journey lands in the audit log as one timeline instead of three.">
+                <b>요청 하나를 끝까지 추적</b>: 제조 → 금융 → 보험으로 이어지는 요청에 같은 번호(request_chain_id)를 붙여, 세 회사에 흩어진 기록을 하나의
+                타임라인으로 묶어 남깁니다.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - 약속과 경계"
+                data-en="Design notes - contracts and boundaries">설계에서 신경 쓴 것 - 약속과 경계</span></div>
+            <ul>
+              <li
+                data-ko="<b>상대의 내부 코드를 가져다 쓰지 않았습니다</b>: 주고받은 데이터만 보고 해석합니다. 상대가 쓰는 상태값 6가지를 약속된 3가지로 정리하되, <b>약속에 없는 값이 오면 조용히 넘기지 않고 오류(502)로 알립니다</b>."
+                data-en="<b>No importing the other side's classes</b>: REST JSON is mapped as plain dicts. Six of their status values fold into the contract's three - and <b>a value outside the contract raises</b> rather than passing quietly, surfacing as a 502.">
+                <b>상대의 내부 코드를 가져다 쓰지 않았습니다</b>: 주고받은 데이터만 보고 해석합니다. 상대가 쓰는 상태값 6가지를 약속된 3가지로 정리하되, <b>약속에 없는 값이
+                  오면 조용히 넘기지 않고 오류(502)로 알립니다</b>.
+              </li>
+              <li
+                data-ko="<b>추적 번호는 경계에서 대조합니다</b>: 요청의 겉봉(헤더)과 본문에 적힌 추적 번호가 다르면 거절합니다. 번호를 넘겨주기만 해서는 맞는지 보장되지 않기 때문입니다."
+                data-en="<b>Traces are checked at the boundary</b>: a mismatch between the <span class=&quot;mono&quot;>X-Request-Chain-Id</span> header and the body's <span class=&quot;mono&quot;>request_chain_id</span> is rejected - propagation alone guarantees nothing.">
+                <b>추적 번호는 경계에서 대조합니다</b>: 요청의 겉봉(헤더)과 본문에 적힌 추적 번호가 다르면 거절합니다. 번호를 넘겨주기만 해서는 맞는지 보장되지 않기 때문입니다.
+              </li>
+              <li
+                data-ko="없는 기능을 부르면 <span class=&quot;mono&quot;>404</span>, 약속은 했지만 아직 만들지 않은 기능을 부르면 <span class=&quot;mono&quot;>501</span>을 돌려줍니다. 부르는 쪽이 포기할지 기다릴지 고를 수 있게 하려는 것입니다."
+                data-en="An unknown skill returns <span class=&quot;mono&quot;>404</span>; a declared but unbuilt one returns <span class=&quot;mono&quot;>501</span>, so the caller can decide whether to give up or wait.">
+                없는 기능을 부르면 <span class="mono">404</span>, 약속은 했지만 아직 만들지 않은 기능을 부르면 <span
+                  class="mono">501</span>을 돌려줍니다. 부르는 쪽이 포기할지 기다릴지 고를 수 있게 하려는 것입니다.</li>
+              <li
+                data-ko="<b>약속 자체도 테스트합니다</b>: 두 약속에 적힌 인용 형식이 조금만 달라도 <b>보험 AI가 통과시킨 인용을 금융 AI가 거절하는 일</b>이 아무도 모르게 생깁니다. 그래서 글자 하나까지 서로 비교합니다."
+                data-en="<b>The contract itself is tested</b>: if two contracts carry different citation regexes, <b>a citation InsuQ accepts gets rejected by FinAllQ</b> - a silent mismatch. So they are cross-checked character by character.">
+                <b>약속 자체도 테스트합니다</b>: 두 약속에 적힌 인용 형식이 조금만 달라도 <b>보험 AI가 통과시킨 인용을 금융 AI가 거절하는 일</b>이 아무도 모르게
+                생깁니다. 그래서 글자 하나까지 서로 비교합니다.
+              </li>
+              <li
+                data-ko="다른 요청은 되는데 보험사까지 한 번 더 거치는 요청만 실패했습니다. 그 구간을 유심히 보니 FinAllQ와 InsuQ가 서로 다른 인증 토큰을 쓰고 있었습니다. 맞춘 뒤에는 일부러 옛 토큰을 다시 넣어 같은 오류가 나는지 확인했습니다."
+                data-en="Every request worked except the one that hops on to the insurer. Looking closely at that leg, FinAllQ and InsuQ held different auth tokens. After aligning them, the old token was put back on purpose to confirm the same error returned.">
+                다른 요청은 되는데 보험사까지 한 번 더 거치는 요청만 실패했습니다. 그 구간을 유심히 보니 FinAllQ와 InsuQ가 서로 다른 인증 토큰을 쓰고 있었습니다. 맞춘
+                뒤에는 일부러 옛 토큰을 다시 넣어 같은 오류가 나는지 확인했습니다.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="설계에서 신경 쓴 것 - 돈이 움직이는 곳엔 반드시 사람"
+                data-en="Design notes - a human signs wherever money moves">설계에서 신경 쓴 것 - 돈이 움직이는 곳엔 반드시
+                사람</span></div>
+            <ul>
+              <li
+                data-ko="<b>3단 승인</b>: 출금 요청은 제조사(MaintQ) 팀장 → 제조사 재무팀(재무 부서 사람만 승인 가능) → 금융사(FinAllQ) 재무 결재를 거칩니다. <b>내부 2번 + 상대 회사 1번</b>입니다."
+                data-en="<b>Three approvals</b>: MaintQ team lead → MaintQ finance (only the finance department may approve) → FinAllQ finance sign-off. <b>Two internal, one at the partner.</b>">
+                <b>3단 승인</b>: 출금 요청은 제조사(MaintQ) 팀장 → 제조사 재무팀(재무 부서 사람만 승인 가능) → 금융사(FinAllQ) 재무 결재를 거칩니다. <b>내부
+                  2번 + 상대 회사 1번</b>입니다.
+              </li>
+              <li
+                data-ko="<b>상대 AI의 판정은 참고용입니다</b>: 대출 화면에서 상대 AI가 '승인'이라고 답해도 자동으로 반영되지 않습니다. 대출 상태는 '심사 중'으로 남고, 사람이 따로 승인합니다."
+                data-en="<b>An A2A verdict is advisory</b>: an <span class=&quot;mono&quot;>approved</span> never writes itself into the loan screen. <span class=&quot;mono&quot;>Loan.status</span> stays <span class=&quot;mono&quot;>UNDER_REVIEW</span> until a person signs.">
+                <b>상대 AI의 판정은 참고용입니다</b>: 대출 화면에서 상대 AI가 '승인'이라고 답해도 자동으로 반영되지 않습니다. 대출 상태는 '심사 중'으로 남고, 사람이 따로
+                승인합니다.
+              </li>
+              <li
+                data-ko="<b>담보가 풀려도 서명은 사람이</b>: 상대 회사의 응답으로 처분 제한이 풀려도 결정 문서는 <b>여전히 초안</b>입니다. 가능한 27가지 경우를 모두 검사해, 사람 서명 없이 넘어간 경우는 0건이었습니다."
+                data-en="<b>A released lien is not a signature</b>: even when their reply clears the block, the decision document <b>stays a draft</b>. Twenty-seven combinations were swept for a bypass; none exists.">
+                <b>담보가 풀려도 서명은 사람이</b>: 상대 회사의 응답으로 처분 제한이 풀려도 결정 문서는 <b>여전히 초안</b>입니다. 가능한 27가지 경우를 모두 검사해, 사람
+                서명 없이 넘어간 경우는 0건이었습니다.
+              </li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-qmesh-settlement" data-ko="상대 응답이 내 상태를 바꾼다 (S12)"
+                data-en="Their reply changes my state (S12)">상대 응답이 내 상태를 바꾼다 (S12)</button>
+              <button class="feat" data-modal="f-qmesh-inbox" data-ko="상대 회사 결재함에 도착 (S5)"
+                data-en="Landing in their approval inbox (S5)">상대 회사 결재함에 도착 (S5)</button>
+              <button class="feat" data-modal="f-qmesh-guard" data-ko="경계에서 무엇이 막는가"
+                data-en="What guards the boundary">경계에서 무엇이 막는가</button>
+            </div>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 200" role="img"
+                  aria-label="세 도메인 에이전트가 서로 직접 호출하고, 통합 오케스트레이터 자리는 아직 비어 있다">
+                  <rect class="dg-zone" x="100" y="6" width="200" height="40" rx="8" />
+                  <text class="dg-t" x="112" y="26">Orchestrator :9000</text>
+                  <text class="dg-s" x="112" y="41">아직 없다</text>
+                  <rect class="dg-box" x="10" y="90" width="112" height="52" rx="8" />
+                  <text class="dg-t" x="20" y="112">MaintQ</text>
+                  <text class="dg-s" x="20" y="130">:9003 제조</text>
+                  <path class="dg-a" d="M126 116 H140" />
+                  <rect class="dg-box" x="144" y="90" width="112" height="52" rx="8" />
+                  <text class="dg-t" x="154" y="112">FinAllQ</text>
+                  <text class="dg-s" x="154" y="130">:9001 금융</text>
+                  <path class="dg-a" d="M260 116 H274" />
+                  <rect class="dg-box" x="278" y="90" width="112" height="52" rx="8" />
+                  <text class="dg-t" x="288" y="112">InsuQ</text>
+                  <text class="dg-s" x="288" y="130">:9002 보험</text>
+                  <text class="dg-g" x="10" y="170">지금은 P2P 직접 호출</text>
+                  <text class="dg-s" x="10" y="190">허브 자리는 비워 두고 계약만 먼저 고정했다</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="세 도메인이 서로 직접 부른다"
+                data-en="Three domains call each other directly">세 도메인이 서로 직접 부른다</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/qmesh/multihop-assess-loan.gif"
+                alt="MaintQ 에서 시작한 요청이 FinAllQ 를 거쳐 InsuQ 까지 이어지는 멀티홉 릴레이">
+              <span class="cap2 mono" data-ko="MaintQ → FinAllQ → InsuQ 여러 곳을 거치는 요청<br>같은 추적 번호가 끝까지 따라간다"
+                data-en="MaintQ → FinAllQ → InsuQ relay hop<br>&amp; request_chain_id propagation">MaintQ →
+                FinAllQ → InsuQ 여러 곳을 거치는 요청<br>같은 추적 번호가 끝까지 따라간다</span>
+            </div>
+            <div class="pc-slide">
+              <div class="fdiag">
+                <svg viewBox="0 0 400 190" role="img" aria-label="인증과 인가를 나누고 위험도가 높아질수록 좁은 자격증명 스코프를 준다">
+                  <rect class="dg-box" x="10" y="8" width="180" height="48" rx="8" />
+                  <text class="dg-t" x="22" y="30">Actor - 인증</text>
+                  <text class="dg-s" x="22" y="47">누가 부르나</text>
+                  <rect class="dg-box" x="210" y="8" width="180" height="48" rx="8" />
+                  <text class="dg-t" x="222" y="30">Subject - 인가</text>
+                  <text class="dg-s" x="222" y="47">누구 데이터인가</text>
+                  <text class="dg-k" x="10" y="76">위험도별 3단 스코프</text>
+                  <rect class="dg-box" x="10" y="84" width="112" height="40" rx="8" />
+                  <text class="dg-s" x="22" y="109">조회</text>
+                  <path class="dg-a" d="M126 104 H140" />
+                  <rect class="dg-box" x="144" y="84" width="112" height="40" rx="8" />
+                  <text class="dg-s" x="156" y="109">심사</text>
+                  <path class="dg-a" d="M260 104 H274" />
+                  <rect class="dg-hold" x="278" y="84" width="112" height="40" rx="8" />
+                  <text class="dg-s" x="290" y="109">자금이동</text>
+                  <text class="dg-g" x="10" y="152">돈에 가까울수록 좁은 스코프</text>
+                  <text class="dg-s" x="10" y="172">인증과 인가를 나눠 남의 데이터를 못 보게 한다</text>
+                </svg>
+              </div>
+              <span class="cap2 mono" data-ko="신원 확인과 접근 허락을 나눈다"
+                data-en="Authentication split from authorization">신원 확인과 접근 허락을 나눈다</span>
+            </div>
+          </div>
+        </div>
+        <div class="impact block">
+          <div class="bh"><span class="star">★</span> <span data-ko="연결 대상 - 직접 만든 Q 시리즈 3종"
+              data-en="What it connects - the three Q-series agents">연결 대상 - 직접 만든 Q 시리즈 3종</span></div>
+          <p data-ko="세 프로젝트는 <b>쓰는 언어·프레임워크·저장소가 모두 다릅니다</b>. 그래서 연결하려면 공통 약속이 필요했습니다."
+            data-en="The three projects differ in language, framework and storage, so connecting them needed a common contract.">
+            세 프로젝트는 <b>쓰는 언어·프레임워크·저장소가 모두 다릅니다</b>. 그래서 연결하려면 공통 약속이 필요했습니다.</p>
+          <div class="subcards">
+
+            <!-- @include sub-finallq.html -->
+
+            <!-- @include sub-insuq.html -->
+
+            <!-- @include sub-maintq.html -->
+
+          </div>
+        </div>
+        <div class="impact block">
+          <div class="bh"><span class="star">★</span> <span data-ko="결과 - 프로토콜 실증"
+              data-en="Results - protocol proven end to end">결과 - 프로토콜 실증</span></div>
+          <p data-ko="7가지 연결 경로를 목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 돌려 봤습니다. 그중 하나는 상대 시스템의 실제 코드를 한 글자도 고치지 않고 불러서 확인했습니다. 경로 목록은 아래 결과 칸을 누르면 볼 수 있습니다."
+            data-en="Seven communication paths were run end to end against the real partner systems, without mocks. One of them called the partner's real code without changing a character. Click the result boxes below for the list.">
+            7가지 연결 경로를 목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 돌려 봤습니다. 그중 하나는 상대 시스템의 실제 코드를 한 글자도 고치지 않고 불러서 확인했습니다.
+            경로 목록은 아래 결과 칸을 누르면 볼 수 있습니다.</p>
+          <div class="metricrow">
+            <div class="metric" data-modal="m-qmesh-schemas" role="button" tabindex="0">
+              <div class="mv"><span data-count="13">0</span>종</div>
+              <div class="ml" data-ko="표준 Task 스키마" data-en="Task schemas">표준 Task 스키마</div>
+            </div>
+            <div class="metric" data-modal="m-qmesh-cards" role="button" tabindex="0">
+              <div class="mv"><span data-count="3">0</span>종</div>
+              <div class="ml" data-ko="Agent Card" data-en="Agent Cards">Agent Card</div>
+            </div>
+            <div class="metric" data-modal="m-qmesh-paths" role="button" tabindex="0">
+              <div class="mv"><span data-count="7">0</span>경로</div>
+              <div class="ml" data-ko="종단 검증" data-en="verified end to end">종단 검증</div>
+            </div>
+            <div class="metric" data-modal="m-qmesh-tests" role="button" tabindex="0">
+              <div class="mv"><span data-count="123">0</span>건</div>
+              <div class="ml" data-ko="자동 테스트" data-en="automated tests">자동 테스트</div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-actions">
+          <a class="gobtn solid" href="https://github.com/ttogle918/QMesh" target="_blank" rel="noopener"><span
+              class="ic" data-ic="github"></span>GITHUB</a>
+          <a class="gobtn" href="uploads/QMesh_presentation.pdf" target="_blank" rel="noopener"><span class="ic"
+              data-ic="file"></span>PPT</a>
+          <a class="gobtn" href="qmesh/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명"
+              data-en="Details">상세 설명</span></a><a class="gobtn" href="qmesh/#scenarios"><span class="ic"
+              data-ic="play"></span><span data-ko="데모 보기" data-en="Demos">데모 보기</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,532 @@
+<section id="f-qmesh-settlement" hidden>
+  <div class="fmodal-kicker mono">QMESH · S12 request-settlement</div>
+  <h4 class="fmodal-title" data-ko="상대 응답이 내 상태를 바꾼다" data-en="Their reply changes my state">상대 응답이 내 상태를 바꾼다
+  </h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 168" role="img" aria-label="처분 사전판정 BLOCKED에서 A2A 정산을 거쳐 CONDITIONAL로 풀리는 흐름">
+      <rect class="dg-box" x="4" y="16" width="152" height="48" rx="8" />
+      <text class="dg-t" x="18" y="38">처분 사전판정</text>
+      <text class="dg-bad" x="18" y="55">BLOCKED (409)</text>
+      <path class="dg-a" d="M160 40 H230" />
+      <rect class="dg-box" x="234" y="16" width="166" height="48" rx="8" />
+      <text class="dg-t" x="248" y="38">A2A 정산 요청</text>
+      <text class="dg-s" x="248" y="55">MaintQ → FinAllQ</text>
+      <path class="dg-a" d="M404 40 H460" />
+      <rect class="dg-box" x="464" y="16" width="152" height="48" rx="8" />
+      <text class="dg-t" x="478" y="38">재판정</text>
+      <text class="dg-ok" x="478" y="55">CONDITIONAL (200)</text>
+      <path class="dg-a" d="M317 68 V104 H84 V68" />
+      <text class="dg-s" x="96" y="126">lien_released: true → assets.lien_consent_ref 를 채운다</text>
+      <text class="dg-g" x="96" y="146">단, 결정 문서는 여전히 draft - 담보만 풀고 서명은 하지 않는다</text>
+    </svg>
+  </div>
+  <p data-ko="MaintQ 발신 스킬 6종 중 <b>유일하게 상대 응답이 내 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다."
+    data-en="The only one of MaintQ's six outbound skills where the reply changes its own state. The others just fetch or notify.">
+    MaintQ
+    발신 스킬 6종 중 <b>유일하게 상대 응답이 내 상태를 바꾸는</b> 경로다. 나머지는 되받거나(조회) 알리기만(통지) 한다.</p>
+  <ol class="fsteps">
+    <li data-ko="자산을 처분하려 하면 유치권 때문에 사전판정이 <b>BLOCKED</b>(409)로 막힌다."
+      data-en="Disposal is pre-checked and comes back <b>BLOCKED</b> (409) because of the lien.">자산을 처분하려 하면 유치권
+      때문에 사전판정이
+      <b>BLOCKED</b>(409)로 막힌다.
+    </li>
+    <li data-ko="매각대금 정산과 대출 상환을 FinAllQ에 A2A로 요청한다."
+      data-en="MaintQ asks FinAllQ over A2A to settle the proceeds and repay the loan.">매각대금 정산과 대출 상환을 FinAllQ에
+      A2A로 요청한다.</li>
+    <li
+      data-ko="응답의 <span class=&quot;mono&quot;>lien_released: true</span>가 <span class=&quot;mono&quot;>assets.lien_consent_ref</span>를 채워 차단을 해소한다."
+      data-en="<span class=&quot;mono&quot;>lien_released: true</span> in the reply fills <span class=&quot;mono&quot;>assets.lien_consent_ref</span> and clears the block.">
+      응답의
+      <span class="mono">lien_released: true</span>가 <span class="mono">assets.lien_consent_ref</span>를 채워 차단을
+      해소한다.
+    </li>
+    <li data-ko="재판정이 <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft다</b> - 담보만 풀고 서명은 끝까지 사람이 한다."
+      data-en="The re-check clears to <b>CONDITIONAL</b> (200). <b>The decision document stays a draft</b> - the lien is released, the signature is not.">
+      재판정이
+      <b>CONDITIONAL</b>(200)로 풀린다. <b>다만 결정 문서는 여전히 draft다</b> - 담보만 풀고 서명은 끝까지 사람이 한다.
+    </li>
+  </ol>
+  <figure class="fmodal-fig">
+    <img data-src="assets/qmesh/request-settlement.gif" alt="request-settlement end-to-end demo">
+    <figcaption data-ko="실 DB · 실 인증으로 촬영한 종단 검증 경로"
+      data-en="Captured end to end against live data and real auth">실 DB · 실 인증으로 촬영한 종단 검증 경로</figcaption>
+  </figure>
+</section>
+
+<section id="f-qmesh-inbox" hidden>
+  <div class="fmodal-kicker mono">QMESH · S5 request-withdrawal</div>
+  <h4 class="fmodal-title" data-ko="상대 회사 결재함에 요청이 도착한다" data-en="The request lands in their approval inbox">상대
+    회사 결재함에 요청이 도착한다</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 640 150" role="img" aria-label="MaintQ 팀장·재무 승인을 거쳐 A2A로 FinAllQ 재무결재에 도착하는 3단 승인 계단">
+      <rect class="dg-zone-gold" x="6" y="30" width="316" height="66" rx="10" />
+      <text class="dg-k" x="16" y="24">MaintQ 내부 - 2단</text>
+      <rect class="dg-box" x="20" y="44" width="132" height="42" rx="8" />
+      <text class="dg-t" x="32" y="62">① 팀장 승인</text>
+      <text class="dg-s" x="32" y="77">기술적 타당성</text>
+      <path class="dg-a" d="M156 65 H172" />
+      <rect class="dg-box" x="176" y="44" width="132" height="42" rx="8" />
+      <text class="dg-t" x="188" y="62">② 재무부 승인</text>
+      <text class="dg-s" x="188" y="77">SoD · 한도 · FDS</text>
+      <path class="dg-a" d="M326 65 H372" />
+      <text class="dg-k" x="330" y="58">A2A</text>
+      <rect class="dg-box" x="376" y="44" width="152" height="42" rx="8" />
+      <text class="dg-t" x="388" y="62">③ FinAllQ 재무결재</text>
+      <text class="dg-s" x="388" y="77">상대 회사 직원이 본다</text>
+      <text class="dg-s" x="20" y="122">요청자 a2a-service@finallq.example · 메모에 MaintQ 진단 근거가 그대로 실린다</text>
+      <text class="dg-s" x="20" y="140" fill="var(--gold-ink)">3단 승인 = MaintQ 내부 2단 + FinAllQ 1단</text>
+    </svg>
+  </div>
+  <p data-ko="A2A가 <b>사람의 승인을 우회하지 않는다</b>는 것을 상대 화면에서 확인한 경로다. 출금 요청은 세 사람의 결재를 지나며, AI는 <b>요청서 초안까지만</b> 만든다."
+    data-en="This is where you can see that A2A does not route around human approval. A withdrawal passes three sign-offs, and the AI only ever drafts the request.">
+    A2A가
+    <b>사람의 승인을 우회하지 않는다</b>는 것을 상대 화면에서 확인한 경로다. 출금 요청은 세 사람의 결재를 지나며, AI는 <b>요청서 초안까지만</b> 만든다.
+  </p>
+  <ol class="fsteps">
+    <li data-ko="설비 진단에서 부품 발주가 승인되면 출금이 필요해진다. MaintQ <b>팀장</b>이 기술적 타당성을 승인한다."
+      data-en="An approved parts order needs money to move. The MaintQ <b>team lead</b> signs off on technical grounds first.">
+      설비 진단에서 부품 발주가 승인되면 출금이 필요해진다. MaintQ
+      <b>팀장</b>이 기술적 타당성을 승인한다.
+    </li>
+    <li
+      data-ko="MaintQ <b>재무부</b>가 예산 한도·1일 누적 한도·이상거래·직무분리 4종을 검사하고 승인한다 - <b>돈을 쓰는 승인과 기술 승인은 다른 사람의 일</b>이다."
+      data-en="MaintQ <b>finance</b> then checks budget cap, daily cumulative cap, fraud signals and separation of duties - <b>spending money is a different person's sign-off</b> from approving the repair.">
+      MaintQ
+      <b>재무부</b>가 예산 한도·1일 누적 한도·이상거래·직무분리 4종을 검사하고 승인한다 - <b>돈을 쓰는 승인과 기술 승인은 다른 사람의 일</b>이다.
+    </li>
+    <li
+      data-ko="그제야 A2A로 FinAllQ에 출금을 요청한다. 요청은 <span class=&quot;mono&quot;>a2a-service@finallq.example</span> 명의로 들어간다."
+      data-en="Only then does the A2A call go out to FinAllQ, filed under <span class=&quot;mono&quot;>a2a-service@finallq.example</span>.">
+      그제야 A2A로 FinAllQ에 출금을 요청한다. 요청은
+      <span class="mono">a2a-service@finallq.example</span> 명의로 들어간다.
+    </li>
+    <li data-ko="<b>상대 회사 직원의 결재함에 실제로 뜬다.</b> 메모에 MaintQ의 진단 근거가 그대로 실려 있어, 결재자가 왜 이 돈이 필요한지 보고 판단한다."
+      data-en="<b>It shows up in their employee's inbox.</b> The memo carries MaintQ's diagnostic evidence verbatim, so the approver can see why the money is needed.">
+      <b>상대 회사 직원의 결재함에 실제로 뜬다.</b> 메모에 MaintQ의 진단 근거가 그대로 실려 있어, 결재자가 왜 이 돈이 필요한지 보고 판단한다.
+    </li>
+  </ol>
+  <figure class="fmodal-fig">
+    <img data-src="assets/qmesh/approval-inbox-arrival.gif"
+      alt="A2A request arriving in FinAllQ approval inbox">
+    <figcaption data-ko="상대 시스템에 요청이 도착하는 장면 - 실 인증으로 촬영"
+      data-en="The request arriving on the other system - captured with real auth">상대 시스템에 요청이 도착하는 장면 - 실
+      인증으로 촬영</figcaption>
+  </figure>
+</section>
+
+<section id="f-qmesh-guard" hidden>
+  <div class="fmodal-kicker mono">QMESH · 경계</div>
+  <h4 class="fmodal-title" data-ko="경계에서 무엇이 막는가" data-en="What guards the boundary">경계에서 무엇이 막는가</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 300" role="img" aria-label="세 도메인 에이전트를 둘러싼 경계에 신원·계약·추적·사람 승인 네 개의 관문이 걸려 있다">
+      <rect class="dg-box" x="90" y="10" width="210" height="44" rx="8" />
+      <text class="dg-t" x="102" y="30">신원</text>
+      <text class="dg-s" x="102" y="47">Actor / Subject 분리</text>
+      <rect class="dg-box" x="320" y="10" width="210" height="44" rx="8" />
+      <text class="dg-t" x="332" y="30">계약</text>
+      <text class="dg-s" x="332" y="47">스키마 밖 값이면 502</text>
+      <path class="dg-a" d="M195 54 V62" />
+      <path class="dg-a" d="M425 54 V62" />
+
+      <rect class="dg-zone" x="90" y="66" width="440" height="170" rx="20" />
+      <text class="dg-k" x="102" y="86">A2A 경계 - 세 도메인</text>
+      <rect class="dg-box" x="107" y="120" width="118" height="52" rx="8" />
+      <text class="dg-t" x="119" y="142">MaintQ</text>
+      <text class="dg-s" x="119" y="160">:9003 제조</text>
+      <path class="dg-a" d="M229 146 H247" />
+      <rect class="dg-box" x="251" y="120" width="118" height="52" rx="8" />
+      <text class="dg-t" x="263" y="142">FinAllQ</text>
+      <text class="dg-s" x="263" y="160">:9001 금융</text>
+      <path class="dg-a" d="M373 146 H391" />
+      <rect class="dg-box" x="395" y="120" width="118" height="52" rx="8" />
+      <text class="dg-t" x="407" y="142">InsuQ</text>
+      <text class="dg-s" x="407" y="160">:9002 보험</text>
+      <text class="dg-s" x="107" y="200">계약은 이 안에서 공유하고, 관문은 밖에서 건다</text>
+      <text class="dg-s" x="107" y="220">경계를 넘는 모든 호출이 네 관문을 지난다</text>
+
+      <path class="dg-a" d="M195 246 V238" />
+      <path class="dg-a" d="M425 246 V238" />
+      <rect class="dg-box" x="90" y="250" width="210" height="44" rx="8" />
+      <text class="dg-t" x="102" y="270">추적</text>
+      <text class="dg-s" x="102" y="287">헤더와 body 불일치면 거부</text>
+      <rect class="dg-hold" x="320" y="250" width="210" height="44" rx="8" />
+      <text class="dg-t" x="332" y="270">사람</text>
+      <text class="dg-s" x="332" y="287">자금이동은 3단 승인</text>
+    </svg>
+  </div>
+  <p data-ko="세 도메인은 스택도 소유권도 다르다. 그래서 «서로 믿는다»를 전제로 두지 않고, <b>경계에 관문을 걸었다.</b> 안쪽에서 공유하는 것은 계약(Agent Card 3종 · Task 스키마 13종)뿐이고, 경계를 넘는 호출은 예외 없이 네 관문을 지난다."
+    data-en="The three domains share neither stack nor owner, so nothing here assumes mutual trust - <b>the gates sit on the boundary.</b> What is shared inside is only the contract (three Agent Cards, thirteen Task schemas); every call that crosses the boundary passes all four gates.">
+    세
+    도메인은 스택도 소유권도 다르다. 그래서 «서로 믿는다»를 전제로 두지 않고, <b>경계에 관문을 걸었다.</b> 안쪽에서 공유하는 것은 계약(Agent Card 3종 · Task 스키마
+    13종)뿐이고, 경계를 넘는 호출은 예외 없이 네 관문을 지난다.</p>
+  <p data-ko="<b>신원</b>은 인증(누가 부르나)과 인가(누구 데이터인가)를 나누고 위험도별 3단 스코프를 준다. <b>계약</b>은 스키마 밖의 값이 오면 조용히 넘기지 않고 예외를 던져 502로 바꾼다. <b>추적</b>은 <span class=&quot;mono&quot;>X-Request-Chain-Id</span> 헤더와 body 의 값이 어긋나면 거부한다 - 전파만으로는 보장되지 않기 때문이다."
+    data-en="<b>Identity</b> separates authentication (who is calling) from authorization (whose data), with three credential scopes by risk. <b>Contract</b> refuses to pass an out-of-schema value quietly: it raises and becomes a 502. <b>Trace</b> rejects a call when the <span class=&quot;mono&quot;>X-Request-Chain-Id</span> header disagrees with the body - propagation alone guarantees nothing.">
+    <b>신원</b>은
+    인증(누가 부르나)과 인가(누구 데이터인가)를 나누고 위험도별 3단 스코프를 준다. <b>계약</b>은 스키마 밖의 값이 오면 조용히 넘기지 않고 예외를 던져 502로 바꾼다.
+    <b>추적</b>은 <span class="mono">X-Request-Chain-Id</span> 헤더와 body 의 값이 어긋나면 거부한다 - 전파만으로는 보장되지 않기
+    때문이다.
+  </p>
+  <p data-ko="네 번째 관문만 성격이 다르다. 앞의 셋은 기계가 막지만 <b>«사람»은 일부러 자동화하지 않은 자리</b>다 - 자금이동은 요청 부서 → 집행 부서 재무 → 상대 회사 재무결재로 3단을 밟는다. 프롬프트가 아니라 <b>도구 권한 수준에서 강제</b>했다. AI 는 초안까지만 쓴다."
+    data-en="The fourth gate is different in kind. The first three are enforced by machines; <b>“people” is the seat deliberately left un-automated</b> - moving money climbs three steps: requesting team → their finance → the counterparty's finance. It is enforced <b>at the tool-permission level, not in a prompt.</b> The AI writes the draft and stops.">
+    네
+    번째 관문만 성격이 다르다. 앞의 셋은 기계가 막지만 <b>«사람»은 일부러 자동화하지 않은 자리</b>다 - 자금이동은 요청 부서 → 집행 부서 재무 → 상대 회사 재무결재로 3단을 밟는다.
+    프롬프트가 아니라 <b>도구 권한 수준에서 강제</b>했다. AI 는 초안까지만 쓴다.</p>
+</section>
+
+<section id="m-qmesh-schemas" hidden>
+  <div class="fmodal-kicker mono">QMESH · 결과</div>
+  <h4 class="fmodal-title" data-ko="표준 Task 스키마 13종" data-en="13 standard Task schemas">표준 Task 스키마 13종</h4>
+  <p data-ko="에이전트끼리 주고받는 요청 양식이다. 받는 쪽을 기준으로 나눴다. MaintQ가 받는 양식은 없다 - 요청을 보내는 쪽으로만 정했다. 원본은 QMesh 레포의 docs/schemas/ 에 있다."
+    data-en="The request forms agents exchange, grouped by receiver. MaintQ receives none - it only sends. Source: docs/schemas/ in the QMesh repo.">
+    에이전트끼리 주고받는 요청 양식이다. 받는 쪽을 기준으로 나눴다. MaintQ가 받는 양식은 없다 - 요청을 보내는 쪽으로만 정했다. 원본은 QMesh 레포의 docs/schemas/ 에 있다.
+  </p>
+  <p class="mtable-sub" data-ko="FinAllQ가 받는 것 (7)" data-en="Received by FinAllQ (7)">FinAllQ가 받는 것 (7)</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="스킬" data-en="Skill">스킬</th>
+          <th data-ko="시나리오" data-en="Scenario">시나리오</th>
+          <th data-ko="하는 일" data-en="What it does">하는 일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">request-withdrawal</td>
+          <td class="mono">S5</td>
+          <td data-ko="발주가 승인된 부품 대금을 출금해 달라는 요청 - 사람 결재를 거친다"
+            data-en="Withdrawal for an approved parts order - goes through human sign-off">발주가 승인된 부품 대금을 출금해
+            달라는 요청 - 사람 결재를 거친다</td>
+        </tr>
+        <tr>
+          <td class="mono">advise-hedge</td>
+          <td class="mono">S6</td>
+          <td data-ko="환율 노출·여유자금 운용 방안 제안 - 실행은 하지 않는다"
+            data-en="Advice on FX exposure and idle cash - never executes">환율 노출·여유자금 운용 방안 제안 - 실행은 하지 않는다</td>
+        </tr>
+        <tr>
+          <td class="mono">assess-loan</td>
+          <td class="mono">S8</td>
+          <td data-ko="설비 담보 대출 심사 - 도중에 InsuQ에 보험을 확인한다"
+            data-en="Equipment-backed loan review - checks insurance with InsuQ midway">설비 담보 대출 심사 - 도중에 InsuQ에
+            보험을 확인한다</td>
+        </tr>
+        <tr>
+          <td class="mono">request-settlement</td>
+          <td class="mono">S12</td>
+          <td data-ko="설비 매각대금으로 남은 대출을 갚을지 판단 요청"
+            data-en="Whether sale proceeds should repay the remaining loan">설비 매각대금으로 남은 대출을 갚을지 판단 요청</td>
+        </tr>
+        <tr>
+          <td class="mono">assess-used-equipment-loan</td>
+          <td class="mono">S13</td>
+          <td data-ko="중고 설비 담보 대출 심사 - InsuQ 확인을 다시 쓴다"
+            data-en="Used-equipment loan review - reuses the InsuQ check">중고 설비 담보 대출 심사 - InsuQ 확인을 다시 쓴다</td>
+        </tr>
+        <tr>
+          <td class="mono">advise-replacement-financing</td>
+          <td class="mono">S15</td>
+          <td data-ko="보험금을 받은 뒤 대체 설비 자금 조달 제안" data-en="Financing a replacement after an insurance payout">
+            보험금을 받은 뒤 대체 설비 자금 조달 제안</td>
+        </tr>
+        <tr>
+          <td class="mono">advise-financing</td>
+          <td class="mono">S16</td>
+          <td data-ko="설비 구입 자금 조달 방법(대출·리스·자기자금) 비교"
+            data-en="Comparing loan, lease and own funds for new equipment">설비 구입 자금 조달 방법(대출·리스·자기자금) 비교</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mtable-sub" data-ko="InsuQ가 받는 것 (6)" data-en="Received by InsuQ (6)">InsuQ가 받는 것 (6)</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="스킬" data-en="Skill">스킬</th>
+          <th data-ko="시나리오" data-en="Scenario">시나리오</th>
+          <th data-ko="하는 일" data-en="What it does">하는 일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">advise-policy-renewal</td>
+          <td class="mono">S7</td>
+          <td data-ko="고장 이력을 반영한 화재보험 갱신 조건 제안"
+            data-en="Fire-policy renewal terms that reflect failure history">고장 이력을 반영한 화재보험 갱신 조건 제안</td>
+        </tr>
+        <tr>
+          <td class="mono">verify-collateral-insurance</td>
+          <td class="mono">S8 · S13</td>
+          <td data-ko="담보 건물의 유효한 보험과 보장 한도 확인 - FinAllQ가 부른다"
+            data-en="Valid coverage and limit on the collateral building - called by FinAllQ">담보 건물의 유효한 보험과 보장
+            한도 확인 - FinAllQ가 부른다</td>
+        </tr>
+        <tr>
+          <td class="mono">notify-asset-change</td>
+          <td class="mono">S11</td>
+          <td data-ko="설비 처분에 따른 보험 대상 변경 통지" data-en="Notice that insured assets changed after a disposal">설비
+            처분에 따른 보험 대상 변경 통지</td>
+        </tr>
+        <tr>
+          <td class="mono">notify-risk-change</td>
+          <td class="mono">S14</td>
+          <td data-ko="새 설비 도입에 따른 위험등급 변동 통지" data-en="Notice of a risk-grade change after new equipment">새 설비
+            도입에 따른 위험등급 변동 통지</td>
+        </tr>
+        <tr>
+          <td class="mono">claim-insurance</td>
+          <td class="mono">S15</td>
+          <td data-ko="화재로 잃은 설비의 보험금 산정 - 사람 승인이 있어야 끝난다"
+            data-en="Claim amount for equipment lost to fire - needs human approval">화재로 잃은 설비의 보험금 산정 - 사람 승인이
+            있어야 끝난다</td>
+        </tr>
+        <tr>
+          <td class="mono">lookup-clause</td>
+          <td class="mono">-</td>
+          <td data-ko="약관 근거 조항 검색·인용" data-en="Search and cite policy clauses">약관 근거 조항 검색·인용</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="m-qmesh-cards" hidden>
+  <div class="fmodal-kicker mono">QMESH · 결과</div>
+  <h4 class="fmodal-title" data-ko="Agent Card 3종" data-en="3 Agent Cards">Agent Card 3종</h4>
+  <p data-ko="각 에이전트가 무엇을 받을 수 있는지 밖에 알리는 소개서다. 상대의 내부를 몰라도 이 카드에 적힌 스킬만 부르면 된다. 원본은 QMesh 레포의 docs/agent_cards/ 에 있다."
+    data-en="Each agent's public card of the skills it accepts - callers need nothing beyond it. Source: docs/agent_cards/ in the QMesh repo.">
+    각 에이전트가 무엇을 받을 수 있는지 밖에 알리는 소개서다. 상대의 내부를 몰라도 이 카드에 적힌 스킬만 부르면 된다. 원본은 QMesh 레포의 docs/agent_cards/ 에 있다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="에이전트" data-en="Agent">에이전트</th>
+          <th data-ko="파일" data-en="File">파일</th>
+          <th data-ko="받는 스킬" data-en="Skills">받는 스킬</th>
+          <th data-ko="목록" data-en="List">목록</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FinAllQ</td>
+          <td class="mono">finallq.json</td>
+          <td>7</td>
+          <td>request-withdrawal · advise-hedge · assess-loan · request-settlement · assess-used-equipment-loan
+            · advise-replacement-financing · advise-financing</td>
+        </tr>
+        <tr>
+          <td>InsuQ</td>
+          <td class="mono">insuq.json</td>
+          <td>6</td>
+          <td>advise-policy-renewal · verify-collateral-insurance · notify-asset-change · notify-risk-change ·
+            claim-insurance · lookup-clause</td>
+        </tr>
+        <tr>
+          <td>MaintQ</td>
+          <td class="mono">maintq.json</td>
+          <td>0</td>
+          <td data-ko="skills: [] - 받지 않고 요청을 시작하는 쪽" data-en="skills: [] - sends only, receives nothing">
+            skills: [] - 받지 않고 요청을 시작하는 쪽</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="m-qmesh-paths" hidden>
+  <div class="fmodal-kicker mono">QMESH · 결과</div>
+  <h4 class="fmodal-title" data-ko="종단 검증 7경로" data-en="7 paths verified end to end">종단 검증 7경로</h4>
+  <p data-ko="목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에 완주했다."
+    data-en="Paths run end to end against the real partner systems without mocks - 1 to 5 between 2026-08-24 and 09-03, 6 and 7 completed on 2026-09-11.">
+    목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에
+    완주했다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="#" data-en="#">#</th>
+          <th data-ko="성격" data-en="Kind">성격</th>
+          <th data-ko="흐름" data-en="Flow">흐름</th>
+          <th data-ko="스킬" data-en="Skill">스킬</th>
+          <th data-ko="확인한 것" data-en="Verified">확인한 것</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td data-ko="한 곳만 거치는 요청" data-en="Single hop">한 곳만 거치는 요청</td>
+          <td class="mono">MaintQ → InsuQ</td>
+          <td class="mono">lookup-clause</td>
+          <td data-ko="약관 근거 8건을 인용한 답이 돌아온다" data-en="An answer citing 8 clauses comes back">약관 근거 8건을 인용한 답이
+            돌아온다</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td data-ko="승인 단계" data-en="Approval steps">승인 단계</td>
+          <td class="mono">MaintQ → FinAllQ</td>
+          <td class="mono">request-withdrawal (S5)</td>
+          <td data-ko="팀장·재무팀 승인 뒤 FinAllQ 결재함에 요청이 도착한다"
+            data-en="After lead and finance approval the request lands in FinAllQ's inbox">팀장·재무팀 승인 뒤 FinAllQ
+            결재함에 요청이 도착한다</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td data-ko="여러 곳을 거치는 요청" data-en="Multi-hop">여러 곳을 거치는 요청</td>
+          <td class="mono">MaintQ → FinAllQ → InsuQ</td>
+          <td class="mono">assess-loan (S8)</td>
+          <td data-ko="InsuQ의 보험 확인 결과로 승인·조건부 판정이 나온다" data-en="The verdict uses InsuQ's insurance check">
+            InsuQ의 보험 확인 결과로 승인·조건부 판정이 나온다</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td data-ko="상대 상태 바꾸기" data-en="State change">상대 상태 바꾸기</td>
+          <td class="mono">MaintQ → FinAllQ</td>
+          <td class="mono">request-settlement (S12)</td>
+          <td data-ko="응답으로 처분 차단(409)이 풀리고(200), 결정 문서는 여전히 초안이다"
+            data-en="The reply lifts a 409 block to 200; the decision stays a draft">응답으로 처분 차단(409)이 풀리고(200),
+            결정 문서는 여전히 초안이다</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td data-ko="FinAllQ가 먼저 부르는 요청" data-en="FinAllQ-initiated hop">FinAllQ가 먼저 부르는 요청</td>
+          <td class="mono">FinAllQ → InsuQ</td>
+          <td class="mono">verify-collateral-insurance</td>
+          <td data-ko="FinAllQ의 실제 클라이언트 코드를 한 글자도 고치지 않고 불러, 응답이 FinAllQ 검증을 통과했다"
+            data-en="FinAllQ's real client code, unmodified, passed its own response checks">FinAllQ의 실제 클라이언트
+            코드를 한 글자도 고치지 않고 불러, 응답이 FinAllQ 검증을 통과했다</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td data-ko="여러 곳을 거치는 요청 (중고 설비)" data-en="Multi-hop (used equipment)">여러 곳을 거치는 요청 (중고 설비)</td>
+          <td class="mono">MaintQ → FinAllQ → InsuQ</td>
+          <td class="mono">assess-used-equipment-loan (S13)</td>
+          <td data-ko="원가 4,800만 원을 실어 보내자 감정가 2,400만 원으로 승인 판정이 돌아왔다(HTTP 200, 1.18초). 심사 결과일 뿐 실제 대출 실행은 아니다"
+            data-en="Sending the original cost (48M KRW) returned an approved verdict at a 24M appraisal (HTTP 200, 1.18 s) - a review result, not a disbursed loan">
+            원가 4,800만 원을 실어 보내자 감정가 2,400만 원으로 승인 판정이 돌아왔다(HTTP 200, 1.18초). 심사 결과일 뿐 실제 대출 실행은 아니다</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td data-ko="통지 (멱등키)" data-en="Notice (idempotency key)">통지 (멱등키)</td>
+          <td class="mono">MaintQ → InsuQ</td>
+          <td class="mono">notify-asset-change (S11)</td>
+          <td
+            data-ko="설비 처분 통지가 HTTP 200으로 접수되고, InsuQ 수신 로그의 추적 번호가 보낸 쪽과 글자까지 일치했다. 같은 키로 다른 내용을 보내면 409로 거절된다"
+            data-en="The disposal notice was accepted with HTTP 200 and InsuQ's inbound log carried the exact same chain id; the same key with a different body is rejected with 409">
+            설비 처분 통지가 HTTP 200으로 접수되고, InsuQ 수신 로그의 추적 번호가 보낸 쪽과 글자까지 일치했다. 같은 키로 다른 내용을 보내면 409로 거절된다</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="m-qmesh-tests" hidden>
+  <div class="fmodal-kicker mono">QMESH · 결과</div>
+  <h4 class="fmodal-title" data-ko="자동 테스트 123건" data-en="123 automated tests">자동 테스트 123건</h4>
+  <p data-ko="QMesh 레포의 tests/ 를 pytest로 수집한 수다(같은 테스트를 여러 입력으로 돌리는 경우 포함). 어댑터 테스트 119건과 계약 테스트 4건이다."
+    data-en="Collected by pytest from tests/ in the QMesh repo, parametrized cases included: 119 adapter tests plus 4 contract tests.">
+    QMesh 레포의 tests/ 를 pytest로 수집한 수다(같은 테스트를 여러 입력으로 돌리는 경우 포함). 어댑터 테스트 119건과 계약 테스트 4건이다.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="위치" data-en="Location">위치</th>
+          <th data-ko="파일" data-en="File">파일</th>
+          <th data-ko="건수" data-en="Count">건수</th>
+          <th data-ko="확인하는 것" data-en="Checks">확인하는 것</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_main.py</td>
+          <td>31</td>
+          <td data-ko="출금·대출 창구, 추적 번호 불일치 거절, 인증 재시도, 404와 501 구분"
+            data-en="Withdrawal and loan endpoints, chain-id mismatch, auth retry, 404 vs 501">출금·대출 창구, 추적 번호
+            불일치 거절, 인증 재시도, 404와 501 구분</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_mapping.py</td>
+          <td>15</td>
+          <td data-ko="상대 상태값과 대출 판정을 약속된 값으로 바꾸기"
+            data-en="Mapping partner states and loan verdicts to the contract">상대 상태값과 대출 판정을 약속된 값으로 바꾸기</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_schemas.py</td>
+          <td>14</td>
+          <td data-ko="요청·응답 형식 검증" data-en="Request and response validation">요청·응답 형식 검증</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_finallq_client.py</td>
+          <td>12</td>
+          <td data-ko="FinAllQ 호출이 실패했을 때 처리" data-en="Handling FinAllQ call failures">FinAllQ 호출이 실패했을 때 처리
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_insuq_client.py</td>
+          <td>7</td>
+          <td data-ko="InsuQ 2차 호출 - 시간 초과·응답 불가·501" data-en="Second hop to InsuQ - timeout, unavailable, 501">
+            InsuQ 2차 호출 - 시간 초과·응답 불가·501</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_auth.py</td>
+          <td>5</td>
+          <td data-ko="토큰 재사용, 로그인 실패" data-en="Token cache, login failure">토큰 재사용, 로그인 실패</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/finallq_a2a</td>
+          <td class="mono">test_agent_card.py</td>
+          <td>1</td>
+          <td data-ko="Agent Card 불러오기" data-en="Loading the Agent Card">Agent Card 불러오기</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/insuq_a2a</td>
+          <td class="mono">test_main.py</td>
+          <td>13</td>
+          <td data-ko="lookup-clause 성공·오류, 404와 501 구분" data-en="lookup-clause success and errors, 404 vs 501">
+            lookup-clause 성공·오류, 404와 501 구분</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/insuq_a2a</td>
+          <td class="mono">test_insuq_client.py</td>
+          <td>8</td>
+          <td data-ko="약관 검색 호출이 실패했을 때 처리" data-en="Handling clause-search call failures">약관 검색 호출이 실패했을 때 처리
+          </td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/insuq_a2a</td>
+          <td class="mono">test_mapping.py</td>
+          <td>7</td>
+          <td data-ko="근거 유무에 따라 completed · rejected · input-required"
+            data-en="completed · rejected · input-required by evidence">근거 유무에 따라 completed · rejected ·
+            input-required</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/insuq_a2a</td>
+          <td class="mono">test_schemas.py</td>
+          <td>5</td>
+          <td data-ko="요청 형식 검증" data-en="Request validation">요청 형식 검증</td>
+        </tr>
+        <tr>
+          <td class="mono">adapters/insuq_a2a</td>
+          <td class="mono">test_agent_card.py</td>
+          <td>1</td>
+          <td data-ko="Agent Card 불러오기" data-en="Loading the Agent Card">Agent Card 불러오기</td>
+        </tr>
+        <tr>
+          <td class="mono">contracts</td>
+          <td class="mono">test_assess_loan_schema.py</td>
+          <td>4</td>
+          <td data-ko="assess-loan 양식 필드, 인용 정규식이 원본과 같은지"
+            data-en="assess-loan fields; the citation regex matches the source">assess-loan 양식 필드, 인용 정규식이 원본과
+            같은지</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,109 @@
+<!-- PROJECT 03 -->
+<article class="pcard open reveal" id="keylens">
+  <div class="pc-top">
+    <div class="pc-badge mono">03</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="키지기 · 개인 개발자용 자격증명 관리 도구"
+        data-en="Kijigi · Local-first Credential Manager">키지기 · 개인 개발자용 자격증명 관리 도구</div>
+      <h3 class="pc-title">KEYLENS</h3>
+      <div class="pc-meta"
+        data-ko="2026.06 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 기획·개발·배포 전 과정"
+        data-en="Jun 2026 – ongoing <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> product, build and release">
+        2026.06 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 기획·개발·배포 전 과정</div>
+      <div class="pc-hash mono">
+        <span>#LocalFirst</span><span>#AES-256-GCM</span><span>#OCR분류</span><span>#OpenSource</span>
+      </div>
+    </div>
+    <span class="pc-caret">&#9654;</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">&#9670;</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="보조강사로 일하며 수강생들이 API 키를 코드에 그대로 두는 걸 자주 봤고, 시중 도구보다 단순하게 키를 보관할 방법이 필요하다고 생각했습니다. 막힌 곳은 노션의 여러 ID처럼 모양이 똑같은 값이었습니다. 값만 봐서는 무슨 키인지 알 수 없었습니다."
+              data-en="As a teaching assistant I kept seeing students leave API keys in code, and wanted something simpler than existing tools to store them. The hard part was values that look identical, like Notion's IDs - the value alone does not tell you what it is.">
+              보조강사로 일하며 수강생들이 API 키를 코드에 그대로 두는 걸 자주 봤고, 시중 도구보다 단순하게 키를 보관할 방법이 필요하다고 생각했습니다. 막힌 곳은 노션의 여러 ID처럼
+              모양이 똑같은 값이었습니다. 값만 봐서는 무슨 키인지 알 수 없었습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">&#9670;</span> <span data-ko="해결 방법" data-en="Approach">해결
+                방법</span></div>
+            <ul>
+              <li
+                data-ko="<b>값이 아니라 주변 맥락으로 분류</b>: 앞부분만 봐도 알 수 있는 키(sk-·ghp_·AKIA)는 바로 판별하고, 애매한 값은 화면 캡처에서 글자를 읽어(OCR) 옆에 적힌 이름표와 주소 구조로 구분합니다. 단서가 서로 엇갈리면 단정하지 않고 «확인 필요»로 남깁니다."
+                data-en="<b>Classify by context, not by value</b>: prefixed keys (sk-, ghp_, AKIA) resolve by regex; ambiguous ones are judged from OCR'd surrounding labels and URL shape. Conflicting signals are marked &quot;needs review&quot; rather than guessed.">
+                <b>값이 아니라 주변 맥락으로 분류</b>: 앞부분만 봐도 알 수 있는 키(sk-·ghp_·AKIA)는 바로 판별하고, 애매한 값은 화면 캡처에서 글자를 읽어(OCR)
+                옆에 적힌 이름표와 주소 구조로 구분합니다. 단서가 서로 엇갈리면 단정하지 않고 «확인 필요»로 남깁니다.
+              </li>
+              <li
+                data-ko="<b>내 컴퓨터에만 저장(local-first)</b>: 따로 운영하는 서버가 없습니다. 마스터 비밀번호로 만든 키로 강하게 암호화(Argon2id + AES-256-GCM)해 <b>암호화된 값만</b> 저장하고, 밖으로 무언가 내보내는 기능은 사용자가 직접 켜야만 동작합니다."
+                data-en="<b>Local-first</b>: there is no server of mine to run. Values are sealed with AES-256-GCM under a key derived from the master password via Argon2id and stored as <b>ciphertext only</b> in SQLite; anything that leaves the machine is strictly opt-in.">
+                <b>내 컴퓨터에만 저장(local-first)</b>: 따로 운영하는 서버가 없습니다. 마스터 비밀번호로 만든 키로 강하게 암호화(Argon2id +
+                AES-256-GCM)해 <b>암호화된 값만</b> 저장하고, 밖으로 무언가 내보내는 기능은 사용자가 직접 켜야만 동작합니다.
+              </li>
+              <li data-ko="SQLite는 기본 설정에서 지운 데이터가 디스크에 남아 복구될 수 있어서, 지운 자리를 덮어쓰도록 설정을 바꿨습니다."
+                data-en="SQLite leaves deleted data recoverable on disk by default, so deletes now overwrite the freed space.">
+                SQLite는 기본 설정에서 지운 데이터가 디스크에 남아 복구될 수 있어서, 지운 자리를 덮어쓰도록 설정을 바꿨습니다.</li>
+              <li
+                data-ko="<b>설정 파일 하나로 새 서비스 추가</b>: 키 종류·이름표·주소 패턴·환경변수 이름·검증 주소를 YAML 파일 하나에 적어 추가하면, 서버와 화면에 자동으로 반영됩니다(현재 10종)."
+                data-en="<b>One YAML to add a service</b>: key types, labels, URL patterns, env-var names and verification endpoints are declared in YAML - adding a single file updates both backend and frontend (10 services today).">
+                <b>설정 파일 하나로 새 서비스 추가</b>: 키 종류·이름표·주소 패턴·환경변수 이름·검증 주소를 YAML 파일 하나에 적어 추가하면, 서버와 화면에 자동으로
+                반영됩니다(현재 10종).
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/keylens/classify.gif" alt="같은 32자 값을 라벨 맥락으로 API 키와 데이터베이스 ID 로 갈라 분류하는 화면">
+              <span class="cap2 mono" data-ko="같은 32자 값을 맥락으로 가른다<br>API 키 vs 데이터베이스 ID"
+                data-en="Same 32-char value, split by context<br>API key vs database ID">같은 32자 값을 맥락으로
+                가른다<br>API 키 vs 데이터베이스 ID</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/keylens/env-import.gif" alt="env 파일을 끌어다 놓고 마스킹된 표에서 이름을 고쳐 컬렉션에 저장하는 화면">
+              <span class="cap2 mono" data-ko=".env를 끌어다 놓으면<br>값을 가린 표 → 한 번에 저장"
+                data-en="Drop a .env<br>masked table → save into a collection">.env를 끌어다 놓으면<br>값을 가린 표 → 한 번에
+                저장</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/keylens/features.gif" alt="마스터 비밀번호부터 보관함, SDK 승인 대기, 이메일 내보내기까지 이어지는 화면">
+              <span class="cap2 mono" data-ko="마스터 비밀번호 → 보관함<br>→ SDK 승인 대기 → 내보내기"
+                data-en="Master password → vault<br>→ SDK approval queue → export">마스터 비밀번호 → 보관함<br>→ SDK 승인
+                대기 → 내보내기</span>
+            </div>
+          </div>
+        </div>
+        <div class="impact block">
+          <div class="bh"><span class="star">&#9733;</span> <span data-ko="결과 - 공개 배포"
+              data-en="Results - public release">결과 - 공개 배포</span></div>
+          <p data-ko="2026 오픈소스 개발자대회에 출품했습니다(결과 대기). v0.5.1을 누구나 쓸 수 있는 MIT 라이선스로 공개했고, 홈페이지에서 설치 파일을 받아 바로 쓸 수 있습니다."
+            data-en="Submitted to the 2026 Korea Open Source Developer Contest (result pending). v0.5.1 is public under MIT, with a downloadable exe on the project site.">
+            2026 오픈소스 개발자대회에 출품했습니다(결과 대기). v0.5.1을 누구나 쓸 수 있는 MIT 라이선스로 공개했고, 홈페이지에서 설치 파일을 받아 바로 쓸 수 있습니다.</p>
+          <div class="metricrow">
+            <div class="metric" data-modal="m-keylens-kb" role="button" tabindex="0">
+              <div class="mv"><span data-count="10">0</span>종</div>
+              <div class="ml" data-ko="서비스 지식베이스" data-en="service knowledge base">서비스 지식베이스</div>
+            </div>
+            <div class="metric" data-modal="m-keylens-commits" role="button" tabindex="0">
+              <div class="mv"><span data-count="203">0</span></div>
+              <div class="ml" data-ko="커밋 (1인 · 3개월)" data-en="commits (solo, 3 months)">커밋 (1인 · 3개월)</div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-actions">
+          <a class="gobtn solid" href="https://github.com/ttogle918/key-manager" target="_blank"
+            rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a>
+          <a class="gobtn" href="https://ttogle918.github.io/key-manager/" target="_blank" rel="noopener"><span
+              class="ic" data-ic="download"></span><span data-ko="다운로드" data-en="Download">다운로드</span></a>
+          <a class="gobtn" href="https://youtu.be/_foWud7ze7Q" target="_blank" rel="noopener"><span class="ic"
+              data-ic="play"></span><span data-ko="데모 영상" data-en="Demo video">데모 영상</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,166 @@
+<section id="m-keylens-kb" hidden>
+  <div class="fmodal-kicker mono">KEYLENS · 결과</div>
+  <h4 class="fmodal-title" data-ko="서비스 지식베이스 10종" data-en="10 service definitions">서비스 지식베이스 10종</h4>
+  <p data-ko="서비스마다 YAML 파일 하나에 키 종류·라벨·URL 패턴·검증 주소를 적는다. 파일을 추가하면 서버와 화면에 자동으로 반영된다. 10개 서비스에 키 종류는 모두 23개다. 원본은 backend/knowledge/*.yaml."
+    data-en="One YAML file per service declares key types, labels, URL patterns and a validation endpoint; adding a file updates backend and UI. 10 services, 23 key types. Source: backend/knowledge/*.yaml.">
+    서비스마다 YAML 파일 하나에 키 종류·라벨·URL 패턴·검증 주소를 적는다. 파일을 추가하면 서버와 화면에 자동으로 반영된다. 10개 서비스에 키 종류는 모두 23개다. 원본은
+    backend/knowledge/*.yaml.</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="서비스" data-en="Service">서비스</th>
+          <th data-ko="파일" data-en="File">파일</th>
+          <th data-ko="판별 방식" data-en="How it is identified">판별 방식</th>
+          <th data-ko="검증 주소" data-en="Validation">검증 주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AWS</td>
+          <td class="mono">aws.yaml</td>
+          <td>Access Key ID는 접두사(AKIA·ASIA) · Secret Key는 라벨 맥락</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>Google Cloud</td>
+          <td class="mono">gcp.yaml</td>
+          <td>API 키(AIza) · OAuth ID · Secret(GOCSPX-) · 서비스계정 JSON은 라벨·URL</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>GitHub</td>
+          <td class="mono">github.yaml</td>
+          <td>접두사(ghp_ · github_pat_) + URL</td>
+          <td>있음</td>
+        </tr>
+        <tr>
+          <td>Kakao</td>
+          <td class="mono">kakao.yaml</td>
+          <td>REST·JS·Admin·Native 4종이 같은 32자라 라벨 맥락만</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>Notion</td>
+          <td class="mono">notion.yaml</td>
+          <td>API 키(secret_ · ntn_) · Database/Page ID는 URL·라벨 · Data Source ID는 라벨</td>
+          <td>있음</td>
+        </tr>
+        <tr>
+          <td>Ollama</td>
+          <td class="mono">ollama.yaml</td>
+          <td>접두사 없이 모양(32자 hex.24자)으로</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>OpenAI</td>
+          <td class="mono">openai.yaml</td>
+          <td>접두사(sk- · sk-proj-) · 조직 ID(org-)</td>
+          <td>있음</td>
+        </tr>
+        <tr>
+          <td>PostgreSQL</td>
+          <td class="mono">postgresql.yaml</td>
+          <td>접속 문자열 postgres://user:pw@host (비밀번호가 있을 때만)</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>Slack</td>
+          <td class="mono">slack.yaml</td>
+          <td>접두사(xoxb- · xoxp-)</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td>Stripe</td>
+          <td class="mono">stripe.yaml</td>
+          <td>접두사(sk_ · rk_ · pk_ + live/test) + URL</td>
+          <td>있음</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-ko="Slack은 응답 본문을 봐야 성공 여부를 알 수 있어 검증 주소를 일부러 선언하지 않았다."
+    data-en="Slack deliberately declares no validation endpoint - success is only visible in the response body.">
+    Slack은 응답 본문을 봐야 성공 여부를 알 수 있어 검증 주소를 일부러 선언하지 않았다.</p>
+</section>
+
+<section id="m-keylens-commits" hidden>
+  <div class="fmodal-kicker mono">KEYLENS · 결과</div>
+  <h4 class="fmodal-title" data-ko="커밋 203개" data-en="203 commits">커밋 203개</h4>
+  <p data-ko="main 브랜치 기준 203커밋, 혼자 작업했다. 버전은 v0.5.1이다."
+    data-en="203 commits on main, one author. Version v0.5.1.">main 브랜치 기준 203커밋, 혼자 작업했다. 버전은 v0.5.1이다.</p>
+  <p class="mtable-sub" data-ko="월별" data-en="By month">월별</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="월" data-en="Month">월</th>
+          <th data-ko="커밋" data-en="Commits">커밋</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">2026-06</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-07</td>
+          <td>75</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-08</td>
+          <td>114</td>
+        </tr>
+        <tr>
+          <td class="mono">2026-09</td>
+          <td>13</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mtable-sub" data-ko="종류별" data-en="By type">종류별</p>
+  <div class="mtable-wrap">
+    <table class="mtable">
+      <thead>
+        <tr>
+          <th data-ko="종류" data-en="Type">종류</th>
+          <th data-ko="커밋" data-en="Commits">커밋</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">feat</td>
+          <td>82</td>
+        </tr>
+        <tr>
+          <td class="mono">docs</td>
+          <td>62</td>
+        </tr>
+        <tr>
+          <td class="mono">fix</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td class="mono">chore</td>
+          <td>13</td>
+        </tr>
+        <tr>
+          <td class="mono" data-ko="기타(merge 등)" data-en="other (merges)">기타(merge 등)</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td class="mono">test</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td class="mono">refactor</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td class="mono">ci</td>
+          <td>2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

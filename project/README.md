@@ -3,7 +3,7 @@
 이 문서는 **포트폴리오 사이트(`ttogle918.github.io`)와 각 프로젝트 레포를 연결하는 규칙**입니다.
 다른 레포에서 이 문서만 읽어도 자기 랜딩 페이지를 어디에 어떻게 두면 되는지 알 수 있도록 썼습니다.
 
-- 포트폴리오 본문: <https://ttogle918.github.io> (레포 `ttogle918/ttogle918.github.io`, `index.html` 단일 파일)
+- 포트폴리오 본문: <https://ttogle918.github.io> (레포 `ttogle918/ttogle918.github.io`, 본문은 `src/` → `tools/build_page.py` → `index.html`)
 - 이 디렉터리: `project/` - 외부 레포 Pages로 보내는 **리다이렉트 스텁**들이 사는 곳
 
 ---
@@ -84,14 +84,14 @@
 
 ### 2단계. 포트폴리오 카드에서 주석을 푼다
 
-포트폴리오 `index.html`의 각 프로젝트 카드에는 **붙여넣을 자리가 주석으로 미리 적혀 있습니다.**
+포트폴리오의 각 프로젝트 카드(`src/partials/projects/<번호-이름>/card.html`)에는 **붙여넣을 자리가 주석으로 미리 적혀 있습니다.**
 
 ```
 <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: secureai)
      <a class="gobtn" href="project/secureai/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
 ```
 
-`index.html`에서 **`랜딩 준비되면`** 으로 검색하면 남은 자리가 전부 나옵니다.
+`src/`에서 **`랜딩 준비되면`** 으로 검색하면 남은 자리가 전부 나옵니다. 고친 뒤 `python tools/build_page.py`로 `index.html`을 다시 만드세요.
 
 - A(직접 호스팅)를 골랐다면 `href`를 `project/<slug>/`가 아니라 `<slug>/`로 바꿔주세요.
 - 주석을 풀고 나면 이 문서의 **2. 현황** 표도 ✅로 갱신합니다.

@@ -1,0 +1,98 @@
+<!-- ── FinAllQ ── -->
+<article class="subcard" id="finallq">
+  <div class="sub-top">
+    <div class="sub-headings">
+      <div class="sub-code mono" data-ko="은행·증권 통합 금융 비서"
+        data-en="Banking &amp; brokerage assistant">은행·증권 통합 금융 비서</div>
+      <h4 class="sub-title">FinAllQ</h4>
+      <div class="sub-meta"
+        data-ko="2025.10 ~ 진행 중 · 개인 1인 · Spring Boot 3 + FastAPI + React 19 하이브리드 MSA"
+        data-en="Since Oct 2025 · solo · Spring Boot 3 + FastAPI + React 19 hybrid MSA">2025.10 ~ 진행
+        중 · 개인 1인 · Spring Boot 3 + FastAPI + React 19 하이브리드 MSA</div>
+    </div>
+    <span class="sub-caret">&#9654;</span>
+  </div>
+  <div class="sub-body">
+    <div class="sub-inner">
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+        </div>
+        <p data-ko="은행·증권을 한 화면에서 다루는 금융 비서는 이상거래 판정이나 이체 차단처럼 <b>나중에 이유를 설명해야 하는 결정</b>을 내립니다. 감사 기록에 «AI가 그렇게 판단했습니다»라고 적을 수는 없습니다."
+          data-en="A banking-and-brokerage assistant performs acts such as fraud verdicts and blocked transfers that <b>have to be justified after the fact</b>. You cannot write &quot;the model decided so&quot; in an audit log.">
+          은행·증권을 한 화면에서 다루는 금융 비서는 이상거래 판정이나 이체 차단처럼 <b>나중에 이유를 설명해야 하는 결정</b>을 내립니다. 감사 기록에 «AI가
+          그렇게 판단했습니다»라고 적을 수는 없습니다.</p>
+      </div>
+
+      <div class="block">
+        <div class="bh"><span class="star">◆</span> <span
+            data-ko="해결 방법 - AI 비서인데 생성형 AI(LLM)를 쓰지 않았다"
+            data-en="Approach - an AI assistant with no LLM">해결 방법 - AI 비서인데 생성형 AI(LLM)를 쓰지
+            않았다</span></div>
+        <p data-ko="'AI 비서'라는 이름이지만 LLM 대신 규칙 기반을 택했습니다. 사용할 기능이 20가지로 정해져 있었고, 금융에서는 판정 근거를 감사 기록으로 남길 수 있어야 했기 때문입니다. 대신 이상거래와 스미싱처럼 규칙으로 다 적을 수 없는 곳에는 실제로 모델을 썼습니다."
+          data-en="Despite the 'AI assistant' name, it is rule-based rather than an LLM: its 20 tools were fixed, and finance needs verdict reasons that can go into an audit log. Models are used where rules cannot enumerate the cases - fraud and smishing.">
+          'AI 비서'라는 이름이지만 LLM 대신 규칙 기반을 택했습니다. 사용할 기능이 20가지로 정해져 있었고, 금융에서는 판정 근거를 감사 기록으로 남길 수 있어야
+          했기 때문입니다. 대신 이상거래와 스미싱처럼 규칙으로 다 적을 수 없는 곳에는 실제로 모델을 썼습니다.</p>
+        <button class="feat feat-more" data-modal="f-finallq-detail" data-ko="설계와 측정 자세히 보기"
+          data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
+      </div>
+
+      <div class="pc-grid sub-grid">
+        <div class="block">
+          <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+              data-en="Feature details - click one to open">주요 기능 - 누르면 화면과 흐름이
+              열립니다</span></div>
+          <div class="featlist">
+            <button class="feat" data-modal="f-finallq-dashboard" data-ko="통합 대시보드"
+              data-en="Unified dashboard">통합 대시보드</button>
+            <button class="feat" data-modal="f-finallq-assessment" data-ko="여신 심사 근거 카드"
+              data-en="Loan assessment evidence">여신 심사 근거 카드</button>
+            <button class="feat" data-modal="f-finallq-disbursement" data-ko="여신 ↔ 이체 연결"
+              data-en="Loan-to-transfer bridge">여신 ↔ 이체 연결</button>
+            <button class="feat" data-modal="f-finallq-approval" data-ko="기업 이체 결재 (직무 분리)"
+              data-en="Corporate approval (SoD)">기업 이체 결재 (직무 분리)</button>
+            <button class="feat" data-modal="f-finallq-fds" data-ko="FDS 고위험 → 2FA 승격"
+              data-en="FDS high risk → 2FA">FDS 고위험 → 2FA 승격</button>
+            <button class="feat" data-modal="f-finallq-smishing" data-ko="스미싱 탐지"
+              data-en="Smishing detection">스미싱 탐지</button>
+            <button class="feat" data-modal="f-finallq-failsoft" data-ko="AI 비서 - 정직한 실패"
+              data-en="Assistant - honest failure">AI 비서 - 정직한 실패</button>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/finallq/02_dashboard.jpg"
+                alt="은행과 증권 데이터를 한 화면에 합산한 FinAllQ 통합 대시보드">
+              <span class="cap2 mono" data-ko="통합 대시보드<br>배포 환경 실측 캡처"
+                data-en="Unified dashboard<br>captured on the deployed environment">통합 대시보드<br>배포 환경
+                실측 캡처</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/finallq/04_loan_assessment.jpg"
+                alt="한도·LTV·규칙 판정을 계산값으로 보여 주는 여신 심사 근거 카드">
+              <span class="cap2 mono" data-ko="여신 심사 근거 카드<br>한도·LTV·규칙 판정이 실제 계산값으로"
+                data-en="Loan assessment evidence<br>limit, LTV and rule verdicts, all computed">여신
+                심사 근거 카드<br>한도·LTV·규칙 판정이 실제 계산값으로</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/finallq/08_manager_approval_queue.jpg"
+                alt="요청자별 1일 한도 사용액을 함께 보여 주는 MANAGER 결재함">
+              <span class="cap2 mono" data-ko="MANAGER 결재함<br>신청자는 취소만, 승인은 다른 사람이"
+                data-en="The manager's approval queue<br>requesters can only cancel">MANAGER
+                결재함<br>신청자는 취소만, 승인은 다른 사람이</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact block">
+        <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.09.08 전수"
+            data-en="Results - full scan, 2026-09-08">결과 - 2026.09.08 전수</span></div>
+        <p data-ko="코드 전체를 검색해 생성형 AI 호출이 0건인 것을 확인했고, 서버 테스트 1,098건이 모두 통과합니다. 대출 심사 도중에는 보험 AI에게 담보 보험을 한 번 더 확인합니다."
+          data-en="A full code search found zero generative-AI calls, and all 1,098 server tests pass. During a loan review it checks collateral insurance with the insurance agent once more.">
+          코드 전체를 검색해 생성형 AI 호출이 0건인 것을 확인했고, 서버 테스트 1,098건이 모두 통과합니다. 대출 심사 도중에는 보험 AI에게 담보 보험을 한 번
+          더 확인합니다.</p>
+      </div>
+    </div>
+  </div>
+</article>

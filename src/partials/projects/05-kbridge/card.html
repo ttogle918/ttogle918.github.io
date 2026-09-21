@@ -1,0 +1,97 @@
+<!-- PROJECT 05 -->
+<article class="pcard reveal" id="kbridge">
+  <div class="pc-top">
+    <div class="pc-badge mono">05</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="수출입 품목 번호(HS코드)로 규제를 자동 분석하는 AI"
+        data-en="HS-code / Regulation RAG Agent">수출입 품목 번호(HS코드)로 규제를 자동 분석하는 AI</div>
+      <h3 class="pc-title">K-BRIDGE</h3>
+      <div class="pc-meta"
+        data-ko="2025.08 ~ 2025.10 <span class=&quot;sep&quot;>·</span> <b>팀 4인 (기여 25%)</b> <span class=&quot;sep&quot;>·</span> 요건 분석 · 요건-판례 교차 검증"
+        data-en="Aug–Oct 2025 <span class=&quot;sep&quot;>·</span> <b>team of 4 (25%)</b> <span class=&quot;sep&quot;>·</span> requirement analysis · requirement-precedent cross-check">
+        2025.08 ~ 2025.10 <span class="sep">·</span> <b>팀 4인 (기여 25%)</b> <span class="sep">·</span> 요건 분석 ·
+        요건-판례 교차 검증</div>
+      <div class="pc-hash mono">
+        <span>#도메인적응력</span><span>#무역행정자동화</span><span>#CrossValidation</span><span>#CoT</span>
+      </div>
+    </div>
+    <span class="pc-caret">▶</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="미국 소액면세 제도가 없어지면서 수출 셀러가 챙겨야 할 규제가 늘었습니다. 요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냈습니다(환각). 그래서 성능보다 틀린 답을 걸러내는 게 먼저라고 봤습니다."
+              data-en="With the US de minimis exemption gone, exporters face more rules. One wrong requirement holds a shipment, and the language model invented plausible rules that did not exist (hallucination). Filtering out wrong answers came before performance.">
+              미국 소액면세 제도가 없어지면서 수출 셀러가 챙겨야 할 규제가 늘었습니다. 요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냈습니다(환각).
+              그래서 성능보다 틀린 답을 걸러내는 게 먼저라고 봤습니다.</p>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
+            </div>
+            <ul>
+              <li data-ko="<b>4단계로 나눠 차례로 분석</b>: 규제 → 절차 → 위험 → 사후 관리 순으로 AI가 단계별로 따져 봅니다."
+                data-en="<b>Multi-Stage CoT Agent</b>: 4-stage sequential analysis pipeline."><b>4단계로 나눠 차례로
+                  분석</b>: 규제 → 절차 → 위험 → 사후 관리 순으로 AI가 단계별로 따져 봅니다.</li>
+              <li
+                data-ko="FDA·EPA 같은 미국 공공 API와 웹 검색을 함께 돌려 같은 요건이 여러 곳에서 나오는지 대조했습니다. 팀원이 정리한 미국 세관 판례와도 맞춰 빠지거나 과한 항목을 표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다."
+                data-en="US public APIs such as FDA and EPA were run alongside web search to see whether a requirement appears in several places. Matching against the precedents a teammate compiled flagged missing or excessive items with a reliability grade, and sellers can request a customs broker's review.">
+                FDA·EPA 같은 미국 공공 API와 웹 검색을 함께 돌려 같은 요건이 여러 곳에서 나오는지 대조했습니다. 팀원이 정리한 미국 세관 판례와도 맞춰 빠지거나 과한 항목을
+                표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다.</li>
+              <li data-ko="<b>최신 정보 반영</b>: 정부 공공 API와 검색엔진을 함께 써서 바뀐 규정도 반영합니다."
+                data-en="<b>Hybrid</b>: public API + search engine for fresh info."><b>최신 정보 반영</b>: 정부 공공 API와
+                검색엔진을 함께 써서 바뀐 규정도 반영합니다.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
+                data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-kbridge-verify" data-ko="판정에 신뢰도 등급을 붙인다"
+                data-en="Every verdict carries a confidence grade">판정에 신뢰도 등급을 붙인다</button>
+              <button class="feat" data-modal="f-kbridge-precedent" data-ko="판례 분석 파이프라인"
+                data-en="Precedent analysis pipeline">판례 분석 파이프라인</button>
+            </div>
+          </div>
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
+                data-en="Results - what was built">결과 - 만든 것</span></div>
+            <p data-ko="수입 요건 분석 흐름 <b>6단계</b>(LangGraph) · 5번째 단계 안에서 <b>4가지를 동시에 분석</b>(세부 규정·시험 절차·처벌·유효 기간)하고 <b>검증 3가지</b> · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 <b>15개 항목</b> · 연동한 규제 기관 <b>9곳</b> · 미국 품목 분류표 <b>30,067건</b>을 검색할 수 있게 정리."
+              data-en="A <b>six-node LangGraph</b> workflow for import requirements; node 5 runs <b>four analyses in parallel</b> (rules, testing, penalties, validity) plus <b>three verification passes</b>; a precedent pipeline (CBP collection → HQ/NY number extraction → <b>256-dim</b> FAISS index → top-5 similar rulings); a <b>15-section</b> final report; <b>nine</b> agencies wired in; <b>30,067</b> HTS records indexed.">
+              수입 요건 분석 흐름 <b>6단계</b>(LangGraph) · 5번째 단계 안에서 <b>4가지를 동시에 분석</b>(세부 규정·시험 절차·처벌·유효 기간)하고 <b>검증
+                3가지</b> · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 <b>15개 항목</b> · 연동한 규제 기관 <b>9곳</b> · 미국
+              품목 분류표 <b>30,067건</b>을 검색할 수 있게 정리.</p>
+            <p data-ko="팀 과제로 끝나서 실제로 얼마나 빨라졌는지는 재지 못했습니다."
+              data-en="It ended as a team assignment, so real speed-ups were never measured.">팀 과제로 끝나서 실제로 얼마나
+              빨라졌는지는 재지 못했습니다.</p>
+          </div>
+          <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: k-bridge)
+               <a class="gobtn" href="project/k-bridge/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
+          <div class="pc-actions"><a class="gobtn solid" href="https://github.com/Suracle/ai-engine"
+              target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a></div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/kbridge/workflow.png" alt="수입 요건 분석 LangGraph 워크플로우 전체 흐름도">
+              <span class="cap2 mono" data-ko="수입 요건 분석 LangGraph 워크플로우"
+                data-en="Import-requirement analysis workflow (LangGraph)">수입 요건 분석 LangGraph 워크플로우</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/kbridge/system_architecture.png" alt="AI 엔진·백엔드·프론트로 나뉜 전체 시스템 구성도">
+              <span class="cap2 mono" data-ko="전체 시스템 구성" data-en="Overall system architecture">전체 시스템 구성</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/kbridge/product_registration_flow.png" alt="상품 등록에서 요건 분석까지 이어지는 전체 흐름">
+              <span class="cap2 mono" data-ko="상품 등록 → 요건 분석 전체 흐름"
+                data-en="Product registration → requirement analysis">상품 등록 → 요건 분석 전체 흐름</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
