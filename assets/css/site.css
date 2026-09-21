@@ -731,6 +731,10 @@
       color: var(--faint)
     }
 
+    .tl-static .tl-head {
+      cursor: default;
+    }
+
     .tl-head {
       cursor: pointer;
       display: flex;
