@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="InsuQ - 보험 약관을 근거 조항과 함께 답하고, 근거를 못 찾으면 거부하는 RAG 에이전트. AI는 단정하지 않고 판단은 사람이 한다." />
+  <meta property="og:title" content="InsuQ - 근거를 주고 판단은 사람이 하는 보험 약관 AI" />
+  <meta property="og:type" content="website" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%230F7A6C%27/><g stroke=%27%23fff%27 stroke-width=%271.4%27 fill=%27none%27><path d=%27M12 6.5 6 16.5h12z%27/></g><g fill=%27%23fff%27><circle cx=%2712%27 cy=%276.5%27 r=%272%27/><circle cx=%276%27 cy=%2716.5%27 r=%272%27/><circle cx=%2718%27 cy=%2716.5%27 r=%272%27/></g></svg>" />
+  <title>InsuQ - 근거를 주고 판단은 사람이 하는 보험 약관 AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../qmesh.css" />
+</head>
+
+<body id="top" class="dom-insu">
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a class="brand" href="#top">
+        <span class="mark">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 6.5 6 16.5h12z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" />
+            <circle cx="12" cy="6.5" r="2.1" fill="#fff" />
+            <circle cx="6" cy="16.5" r="2.1" fill="#fff" />
+            <circle cx="18" cy="16.5" r="2.1" fill="#fff" />
+          </svg>
+        </span>
+        InsuQ
+      </a>
+      <span class="nav-links">
+        <a href="#features" data-ko="기능" data-en="Features">기능</a>
+        <a href="#design" data-ko="설계" data-en="Design">설계</a>
+        <a href="#limits" data-ko="한계" data-en="Limits">한계</a>
+        <a href="#qmesh" data-ko="QMesh 연결" data-en="QMesh link">QMesh 연결</a>
+        <a href="../" data-ko="← QMesh" data-en="← QMesh">← QMesh</a>
+        <button class="tbtn" id="langBtn" type="button" aria-label="Language">KO</button>
+        <button class="tbtn" id="themeBtn" type="button" aria-label="Theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+          </svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+        </button>
+      </span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-ko="QMesh 연결 에이전트 · 보험" data-en="QMesh agent · Insurance">QMesh 연결 에이전트 · 보험</span>
+        <h1 data-ko="AI는 <span class=&quot;hl&quot;>단정하지 않는다</span>, 근거를 준다"
+          data-en="The AI <span class=&quot;hl&quot;>does not rule</span> - it hands over the evidence">AI는 <span
+            class="hl">단정하지 않는다</span>, 근거를 준다</h1>
+        <p class="sub"
+          data-ko="InsuQ는 보험 약관을 근거 조항과 함께 답하는 RAG 에이전트입니다. 보험금 판정이 틀리면 곧 누군가의 금전 손해이고, 보험설계사는 고객 앞에서 근거 조항을 직접 보여 줄 수 있어야 합니다. 그래서 가입한 상품 안에서만 찾고, 답에는 조항을 원문 그대로 붙이고, 결론은 «지급 가능/불가» 대신 가능성 높음 · 낮음 · 판단 보류로만 냅니다. 근거를 못 찾으면 거부합니다."
+          data-en="InsuQ is a RAG agent that answers insurance-policy questions with the clause attached. A wrong claim verdict is someone's financial loss, and an insurance planner must be able to show the clause to the customer. So it searches only within the product the customer holds, attaches the clause verbatim, and concludes only with likely, unlikely or undetermined - never 'payable / not payable'. When it cannot find a basis, it refuses.">InsuQ는 보험 약관을 근거 조항과 함께 답하는 RAG 에이전트입니다. 보험금 판정이 틀리면 곧 누군가의 금전 손해이고, 보험설계사는 고객 앞에서 근거 조항을 직접 보여 줄 수 있어야 합니다. 그래서 가입한 상품 안에서만 찾고, 답에는 조항을 원문 그대로 붙이고, 결론은 «지급 가능/불가» 대신 가능성 높음 · 낮음 · 판단 보류로만 냅니다. 근거를 못 찾으면 거부합니다.</p>
+        <p class="cta-note"
+          data-ko="<b>2026.07 ~ 진행 중 · 개인 1인</b><br>Spring Boot 4 + FastAPI/LangGraph · Qdrant · Next.js · 생성 gpt-4.1-mini · 평가 gemini-3.5-flash · 임베딩 nemotron-3-embed-1b"
+          data-en="<b>Since Jul 2026 · solo</b><br>Spring Boot 4 + FastAPI/LangGraph · Qdrant · Next.js · generation gpt-4.1-mini · evaluation gemini-3.5-flash · embeddings nemotron-3-embed-1b">
+          <b>2026.07 ~ 진행 중 · 개인 1인</b><br>Spring Boot 4 + FastAPI/LangGraph · Qdrant · Next.js · 생성 gpt-4.1-mini · 평가 gemini-3.5-flash · 임베딩 nemotron-3-embed-1b</p>
+      </div>
+
+      <div>
+        <div class="trace">
+          <div class="trace-head">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="lbl" data-ko="답변 형식" data-en="answer format">답변 형식</span>
+          </div>
+          <div class="trace-body">
+            <div><span class="k" data-ko="판정:" data-en="verdict:">판정:</span> <span class="acc" data-ko="가능성 높음 · 낮음 · 판단 보류" data-en="likely · unlikely · undetermined">가능성 높음 · 낮음 · 판단 보류</span></div>
+            <div><span class="k" data-ko="근거:" data-en="basis:">근거:</span> <span class="v" data-ko="약관 조항 원문 (파트 + 조 번호로 대조)" data-en="clause text (checked by part + article no.)">약관 조항 원문 (파트 + 조 번호로 대조)</span></div>
+            <div><span class="k" data-ko="확인:" data-en="to check:">확인:</span> <span class="v" data-ko="사람이 확인할 사항" data-en="items for a person to verify">사람이 확인할 사항</span></div>
+            <hr class="trace-hr" />
+            <div class="hop"><span class="arw">✕</span> <span class="k" data-ko="«지급 가능합니다» 같은 단정 → 판단 보류로 강등" data-en="assertions like 'it is payable' → demoted to undetermined">«지급 가능합니다» 같은 단정 → 판단 보류로 강등</span></div>
+            <div class="hop"><span class="arw">✕</span> <span class="k" data-ko="근거 없음 → «약관에서 확인 불가»로 거부" data-en="no basis → refused as 'not found in the policy'">근거 없음 → «약관에서 확인 불가»로 거부</span></div>
+          </div>
+          <div class="trace-foot" data-ko="※ 형식은 프롬프트 지시가 아니라 코드의 게이트로 강제한다."
+            data-en="The format is enforced by gates in code, not by prompt instructions.">※ 형식은 프롬프트 지시가 아니라 코드의 게이트로 강제한다.</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stats-in">
+      <div class="stat"><b>0.81</b><span data-ko="정답 조항 상위 5개 포함률 (실손 27문항)" data-en="right clause in top 5 (27 questions)">정답 조항 상위 5개 포함률 (실손 27문항)</span></div>
+      <div class="stat"><b>0</b><span data-ko="답할 수 있는데 거부한 비율 (27문항)" data-en="over-refusal rate (27 questions)">답할 수 있는데 거부한 비율 (27문항)</span></div>
+      <div class="stat"><b>67</b><span data-ko="기록한 실험 (기각 포함)" data-en="experiments logged (rejections included)">기록한 실험 (기각 포함)</span></div>
+      <div class="stat"><b>1,771</b><span data-ko="자동 테스트 (실패 0)" data-en="automated tests (0 failing)">자동 테스트 (실패 0)</span></div>
+    </div>
+  </div>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="주요 기능" data-en="Features">주요 기능</span>
+        <h2 class="sec-title" data-ko="근거가 있으면 조항과 함께, 없으면 거부" data-en="With the clause when there is a basis, a refusal when there is none">근거가 있으면 조항과 함께, 없으면 거부</h2>
+        <p class="sec-sub" data-ko="아래 화면은 모두 실제 서비스 캡처입니다. 누르면 재생됩니다."
+          data-en="Every screen below is a real capture. Click to play.">아래 화면은 모두 실제 서비스 캡처입니다. 누르면 재생됩니다.</p>
+      </div>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">01</span><span class="skill" data-ko="근거 인용" data-en="Citation">근거 인용</span></div>
+          <h3 data-ko="조항 원문과 함께 답한다 - 인용은 파트까지 대조" data-en="Answers with the clause text - citations checked down to the part">조항 원문과 함께 답한다 - 인용은 파트까지 대조</h3>
+          <p data-ko="설계사가 고객 앞에서 조항을 직접 보여 줄 수 있어야 하므로, 답에는 근거 조항이 원문 그대로 붙습니다. 인용이 진짜인지는 약관 파트와 조 번호 두 가지로 대조하고, 어긋나면 판정을 판단 보류로 낮춥니다. 파트까지 보는 이유는 한 약관 안에서 제1조가 보통약관 · 특약 등 여러 파트에 동시에 있기 때문입니다(한 상품에서 3곳 확인). 조 번호만 맞추면 모델이 다른 파트의 같은 조 번호를 지어내도 걸러지지 않습니다."
+            data-en="A planner must be able to show the clause to the customer, so answers carry the clause verbatim. A citation is checked against two keys - the policy part and the article number - and a mismatch demotes the verdict to undetermined. The part matters because Article 1 exists in several parts of one policy at once, such as the general terms and riders (three places in one product). Matching the article number alone would let a model invent the same number from another part and slip through.">설계사가 고객 앞에서 조항을 직접 보여 줄 수 있어야 하므로, 답에는 근거 조항이 원문 그대로 붙습니다. 인용이 진짜인지는 약관 파트와 조 번호 두 가지로 대조하고, 어긋나면 판정을 판단 보류로 낮춥니다. 파트까지 보는 이유는 한 약관 안에서 제1조가 보통약관 · 특약 등 여러 파트에 동시에 있기 때문입니다(한 상품에서 3곳 확인). 조 번호만 맞추면 모델이 다른 파트의 같은 조 번호를 지어내도 걸러지지 않습니다.</p>
+        </div>
+        <button class="gif-shell" type="button" data-src="../../assets/insuq/grounded-citation.gif"
+          data-alt="근거 조항과 함께 답하는 실제 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.2MB" data-en="Click to play · 0.2MB GIF">클릭해서 재생 · GIF 0.2MB</span>
+        </button>
+        <span class="shot-cap" data-ko="근거 조항과 함께 답하는 실제 화면" data-en="Answering with the source clause">근거 조항과 함께 답하는 실제 화면</span>
+      </figure>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">02</span><span class="skill" data-ko="거부 게이트" data-en="Refusal gate">거부 게이트</span></div>
+          <h3 data-ko="모르면 거부한다 - 과잉 거부와 함께 잰다" data-en="Refuses when it doesn't know - measured together with over-refusal">모르면 거부한다 - 과잉 거부와 함께 잰다</h3>
+          <p data-ko="근거를 못 찾으면 «약관에서 확인 불가»로 거부하는 것이 이 서비스의 원칙입니다. 면책 문구로만 피하는 대신, 근거가 있을 때는 조항과 함께 답하고 없을 때만 거부합니다. 측정에서 배운 점도 여기 있습니다. 거부 정확도만 보면 세 모델이 모두 1.0000으로 합격이었습니다. 그런데 생성 모델을 저가형으로 바꾸자 검색 결과는 똑같은데 답할 수 있는 질문을 거부한 비율만 0에서 0.1852로 올라, 그 모델은 기각했습니다."
+            data-en="Refusing with 'not found in the policy' when no basis is found is this service's rule. Instead of hiding behind disclaimers, it answers with the clause when there is a basis and refuses only when there is none. The key lesson from measurement is here too: on refusal accuracy alone, all three models passed at 1.0000. But switching to a cheaper generation model left retrieval identical while over-refusal jumped from 0 to 0.1852, so that model was rejected.">근거를 못 찾으면 «약관에서 확인 불가»로 거부하는 것이 이 서비스의 원칙입니다. 면책 문구로만 피하는 대신, 근거가 있을 때는 조항과 함께 답하고 없을 때만 거부합니다. 측정에서 배운 점도 여기 있습니다. 거부 정확도만 보면 세 모델이 모두 1.0000으로 합격이었습니다. 그런데 생성 모델을 저가형으로 바꾸자 검색 결과는 똑같은데 답할 수 있는 질문을 거부한 비율만 0에서 0.1852로 올라, 그 모델은 기각했습니다.</p>
+        </div>
+        <button class="gif-shell" type="button" data-src="../../assets/insuq/refusal-gate.gif"
+          data-alt="근거가 없을 때 거부하는 실제 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.1MB" data-en="Click to play · 0.1MB GIF">클릭해서 재생 · GIF 0.1MB</span>
+        </button>
+        <span class="shot-cap" data-ko="근거가 없을 때 거부하는 실제 화면" data-en="Refusing when there is no basis">근거가 없을 때 거부하는 실제 화면</span>
+      </figure>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">03</span><span class="skill" data-ko="되묻기" data-en="Clarification">되묻기</span></div>
+          <h3 data-ko="정보가 빠지면 답 대신 되묻는다" data-en="When information is missing, it asks instead of answering">정보가 빠지면 답 대신 되묻는다</h3>
+          <p data-ko="평가용 질문을 상상으로 쓰지 않고 지식iN · 커뮤니티 · 금융감독원 FAQ의 실제 질문에서 가져왔습니다. 그러자 상품 · 특약 · 가입 시기가 빠진 구어체 질문이 대부분이라는 게 드러났습니다(«허리 아파서 도수치료 받는데 실비 되나요 한도 있나요» 같은 식). 이런 질문에 바로 답하면 어느 약관 기준인지 모르는 채 답하게 됩니다. 그래서 필요한 정보가 비어 있으면 답 대신 확인 질문을 내고, 이때는 LLM을 한 번도 부르지 않습니다. 되묻기 정확도는 0.6667에서 1.0000이 됐습니다(27문항)."
+            data-en="The evaluation questions were not invented but taken from real questions on Naver KnowledgeiN, communities and the FSS FAQ. That revealed most are colloquial and omit the product, rider or enrolment date - 'my back hurts and I'm getting manual therapy, does my health insurance cover it, is there a limit?'. Answering those directly means answering without knowing which policy applies. So when a required slot is empty it asks a clarifying question instead, without calling the LLM at all. Clarification accuracy went from 0.6667 to 1.0000 (27 questions).">평가용 질문을 상상으로 쓰지 않고 지식iN · 커뮤니티 · 금융감독원 FAQ의 실제 질문에서 가져왔습니다. 그러자 상품 · 특약 · 가입 시기가 빠진 구어체 질문이 대부분이라는 게 드러났습니다(«허리 아파서 도수치료 받는데 실비 되나요 한도 있나요» 같은 식). 이런 질문에 바로 답하면 어느 약관 기준인지 모르는 채 답하게 됩니다. 그래서 필요한 정보가 비어 있으면 답 대신 확인 질문을 내고, 이때는 LLM을 한 번도 부르지 않습니다. 되묻기 정확도는 0.6667에서 1.0000이 됐습니다(27문항).</p>
+        </div>
+        <button class="gif-shell" type="button" data-src="../../assets/insuq/ambiguous-domain-merge.gif"
+          data-alt="모호한 질문에 되묻는 실제 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.1MB" data-en="Click to play · 0.1MB GIF">클릭해서 재생 · GIF 0.1MB</span>
+        </button>
+        <span class="shot-cap" data-ko="모호한 질문에 되묻는 실제 화면" data-en="Asking back on an ambiguous question">모호한 질문에 되묻는 실제 화면</span>
+      </figure>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">04</span><span class="skill" data-ko="청구 승인" data-en="Claim approval">청구 승인</span></div>
+          <h3 data-ko="보험금 청구는 사람 앞에서 멈췄다 다시 간다" data-en="A claim pauses in front of a person, then resumes">보험금 청구는 사람 앞에서 멈췄다 다시 간다</h3>
+          <p data-ko="보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 목킹 없이 실제 로그인 · API 호출로 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다."
+            data-en="Once the claim amount is computed and a task issued, a reviewer must log in and approve with an e-signature before it moves to completed, and the caller polls again for the result. It does not end in one request and response - it stops in front of a person. The whole lifecycle was verified without mocks, through real logins and API calls, and every computed amount matched a hand calculation. The 'human approval required' value is fixed in code rather than set by conditions, because a value that conditions can turn on will one day be turned off.">보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 목킹 없이 실제 로그인 · API 호출로 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다.</p>
+        </div>
+        <button class="gif-shell" type="button" data-src="../../assets/insuq/claim-approval.gif"
+          data-alt="심사역 승인함에서 전자서명으로 청구를 완료하는 실제 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.2MB" data-en="Click to play · 0.2MB GIF">클릭해서 재생 · GIF 0.2MB</span>
+        </button>
+        <span class="shot-cap" data-ko="심사역 승인함 - 전자서명을 해야 완료로 넘어간다" data-en="Reviewer inbox - completed only after an e-signature">심사역 승인함 - 전자서명을 해야 완료로 넘어간다</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN ============ -->
+  <section id="design">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="설계에서 내린 결정" data-en="Design decisions">설계에서 내린 결정</span>
+        <h2 class="sec-title" data-ko="안전장치는 문서가 아니라 실행 경로에" data-en="Safeguards live in the execution path, not in documents">안전장치는 문서가 아니라 실행 경로에</h2>
+        <p class="sec-sub"
+          data-ko="설계사가 일하는 순서대로 찾습니다. 고객이 가입한 상품으로 먼저 좁혀 찾고, 찾은 조문이 다른 조문을 참조하면 그 조문을 따라 다시 찾습니다(같은 약관 파트 안에서, 깊이 제한을 두고)."
+          data-en="The search follows a planner's order: narrow to the product the customer holds first, and when a found clause references another, follow it (within the same policy part, with a depth limit).">설계사가 일하는 순서대로 찾습니다. 고객이 가입한 상품으로 먼저 좁혀 찾고, 찾은 조문이 다른 조문을 참조하면 그 조문을 따라 다시 찾습니다(같은 약관 파트 안에서, 깊이 제한을 두고).</p>
+      </div>
+
+      <div class="grid3 reveal">
+        <div class="feat">
+          <span class="tag" data-ko="검색" data-en="Retrieval">검색</span>
+          <h3 data-ko="작게 찾고 크게 답한다" data-en="Search small, answer big">작게 찾고 크게 답한다</h3>
+          <p data-ko="조 · 항 구조를 살려 나눈 뒤, 검색과 순위는 모두 항 단위로 하고, 조 단위로 넓히는 것은 답을 만들기 직전에만 합니다."
+            data-en="Documents are split along their article and paragraph structure; retrieval and ranking run at the paragraph level, and widening to the whole article happens only just before generation.">조 · 항 구조를 살려 나눈 뒤, 검색과 순위는 모두 항 단위로 하고, 조 단위로 넓히는 것은 답을 만들기 직전에만 합니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="단정 금지" data-en="No assertions">단정 금지</span>
+          <h3 data-ko="조사 하나로 샌 구멍" data-en="A leak through one particle">조사 하나로 샌 구멍</h3>
+          <p data-ko="«지급 가능합니다»는 잡는데 «지급이 가능합니다»는 통과한 적이 있습니다. 고치면서 탐지 범위만 넓히지 않고, 잘못 잡는 비율도 함께 쟀습니다(저장된 답변 287건 중 새로 걸린 것 0건)."
+            data-en="'It is payable' was caught while 'payment is possible' slipped through. The fix did not just widen detection; false catches were measured too (0 new hits across 287 stored answers).">«지급 가능합니다»는 잡는데 «지급이 가능합니다»는 통과한 적이 있습니다. 고치면서 탐지 범위만 넓히지 않고, 잘못 잡는 비율도 함께 쟀습니다(저장된 답변 287건 중 새로 걸린 것 0건).</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="캐시" data-en="Cache">캐시</span>
+          <h3 data-ko="캐시가 안전장치를 우회하지 못하게" data-en="The cache cannot bypass a safeguard">캐시가 안전장치를 우회하지 못하게</h3>
+          <p data-ko="캐시 키에 상품 필터 · 모델 · 프롬프트 본문 · 인덱스 버전을 모두 넣었습니다. 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫리기 때문입니다. 평가 도구는 캐시를 아예 만들지 않게 떼어 냈습니다."
+            data-en="The cache key includes the product filter, model, prompt text and index version. Leaving out the product filter would let the cache break 'never cite another customer's contract'. The evaluation harness is isolated so it never creates a cache at all.">캐시 키에 상품 필터 · 모델 · 프롬프트 본문 · 인덱스 버전을 모두 넣었습니다. 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가 캐시로 뚫리기 때문입니다. 평가 도구는 캐시를 아예 만들지 않게 떼어 냈습니다.</p>
+        </div>
+      </div>
+
+      <div class="tbl-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th data-ko="측정 후 기각한 시도" data-en="Rejected after measurement">측정 후 기각한 시도</th>
+              <th data-ko="잰 결과" data-en="What was measured">잰 결과</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-ko="하이브리드 검색(BM25)" data-en="Hybrid search (BM25)">하이브리드 검색(BM25)</td>
+              <td data-ko="정답 조항 상위 5개 포함률 0.7917 - 성능이 오를 거라는 제 가설의 반증이었습니다." data-en="Hit@5 of 0.7917 - it disproved my own hypothesis that it would help.">정답 조항 상위 5개 포함률 0.7917 - 성능이 오를 거라는 제 가설의 반증이었습니다.</td>
+            </tr>
+            <tr>
+              <td data-ko="cross-encoder 리랭커" data-en="Cross-encoder reranker">cross-encoder 리랭커</td>
+              <td data-ko="품질은 가장 좋았지만 응답 시간 중간값이 98.2초였습니다." data-en="Best quality, but a median latency of 98.2 seconds.">품질은 가장 좋았지만 응답 시간 중간값이 98.2초였습니다.</td>
+            </tr>
+            <tr>
+              <td data-ko="저가형 생성 모델" data-en="Cheaper generation model">저가형 생성 모델</td>
+              <td data-ko="검색은 같은데 답할 수 있는 질문을 거부한 비율이 0에서 0.1852로 올랐습니다." data-en="Same retrieval, but over-refusal rose from 0 to 0.1852.">검색은 같은데 답할 수 있는 질문을 거부한 비율이 0에서 0.1852로 올랐습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note reveal"
+        data-ko="<strong>기각한 시도도 채택한 것과 같은 무게로 기록합니다.</strong> 실험 67건을 가설 · 측정 · 판단 형식으로 남겼고, 기각한 것도 지우지 않았습니다. 지우면 다음 사람이 같은 가설을 다시 세우기 때문입니다. 사고도 구조로 바꿨습니다. 개발 환경에 남은 인증 정보 때문에 운영 인덱스(4,233청크)가 지워진 뒤로는, 새 버전을 채우고 검증을 통과했을 때만 교체하게 해 중간에 멈춰도 이전 버전이 남습니다."
+        data-en="<strong>Rejections are recorded with the same weight as adoptions.</strong> All 67 experiments are kept as hypothesis, measurement and decision, rejections included - delete them and the next person forms the same hypothesis again. An incident was turned into structure too: after leftover credentials in a dev shell wiped the production index (4,233 chunks), a new version is now filled and verified before it replaces the old, so an interruption leaves the previous version in place."><strong>기각한 시도도 채택한 것과 같은 무게로 기록합니다.</strong> 실험 67건을 가설 · 측정 · 판단 형식으로 남겼고, 기각한 것도 지우지 않았습니다. 지우면 다음 사람이 같은 가설을 다시 세우기 때문입니다. 사고도 구조로 바꿨습니다. 개발 환경에 남은 인증 정보 때문에 운영 인덱스(4,233청크)가 지워진 뒤로는, 새 버전을 채우고 검증을 통과했을 때만 교체하게 해 중간에 멈춰도 이전 버전이 남습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============ LIMITS ============ -->
+  <section id="limits">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="한계" data-en="Limits">한계</span>
+        <h2 class="sec-title" data-ko="아직 안 된 것도 같이 적습니다" data-en="What does not work yet, written down too">아직 안 된 것도 같이 적습니다</h2>
+      </div>
+      <div class="grid3 reveal">
+        <div class="feat">
+          <span class="tag" data-ko="채점 공란" data-en="Grading blank">채점 공란</span>
+          <h3 data-ko="답변 정확도 AI 채점은 비어 있다" data-en="AI grading of answer accuracy is blank">답변 정확도 AI 채점은 비어 있다</h3>
+          <p data-ko="채점에 쓰던 모델이 게이트웨이 계정 폐기로 사라져, 답변 정확도(LLM-as-judge) 칸은 지금 비어 있습니다. 사람이 채점한 24문항이 남아 있어 다시 맞추면 복구할 수 있습니다."
+            data-en="The grading model disappeared when its gateway account was shut down, so the answer-accuracy (LLM-as-judge) figure is blank for now. 24 human-graded questions are preserved, so it can be restored by recalibration.">채점에 쓰던 모델이 게이트웨이 계정 폐기로 사라져, 답변 정확도(LLM-as-judge) 칸은 지금 비어 있습니다. 사람이 채점한 24문항이 남아 있어 다시 맞추면 복구할 수 있습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="비교 불가" data-en="Not comparable">비교 불가</span>
+          <h3 data-ko="화재보험 수치는 따로 읽어야 한다" data-en="Fire-insurance figures must be read separately">화재보험 수치는 따로 읽어야 한다</h3>
+          <p data-ko="화재 · 기업 재산보험은 66문항 중 52문항을 채점해 정답 조항 상위 5개 포함률이 0.6346입니다. 실손보험과 약관도 질문도 달라 두 수치를 나란히 비교할 수 없습니다."
+            data-en="Fire and commercial property insurance scored 52 of 66 questions, with a Hit@5 of 0.6346. Its policies and questions differ from health insurance, so the two figures cannot be compared side by side.">화재 · 기업 재산보험은 66문항 중 52문항을 채점해 정답 조항 상위 5개 포함률이 0.6346입니다. 실손보험과 약관도 질문도 달라 두 수치를 나란히 비교할 수 없습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QMESH ============ -->
+  <section id="qmesh">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="QMesh에서 맡은 역할" data-en="Role in QMesh">QMesh에서 맡은 역할</span>
+        <h2 class="sec-title" data-ko="다른 회사 AI가 묻는 약관 질문에 근거로 답하는 보험사" data-en="The insurer that answers other companies' AIs with evidence">다른 회사 AI가 묻는 약관 질문에 근거로 답하는 보험사</h2>
+        <p class="sec-sub"
+          data-ko="QMesh로 연결하면 InsuQ는 공장(MaintQ)의 약관 질문과 설비 처분 통지를 받고, 은행(FinAllQ)이 대출을 심사할 때 담보 보험을 확인해 줍니다. 받는 스킬 6종은 모두 서버(Spring)에서 실제로 동작합니다. 다른 회사로 나가는 답에도 인용 형식이 그대로 지켜지도록, 인용 문자열 형식을 요청 양식(스키마)에 못 박았습니다."
+          data-en="Connected through QMesh, InsuQ receives the factory's (MaintQ) policy questions and equipment-disposal notices, and checks collateral insurance when the bank (FinAllQ) reviews a loan. All six inbound skills run for real on the Spring backend. So that the citation guarantee survives the trip to another company, the citation string format is pinned in the request schema.">QMesh로 연결하면 InsuQ는 공장(MaintQ)의 약관 질문과 설비 처분 통지를 받고, 은행(FinAllQ)이 대출을 심사할 때 담보 보험을 확인해 줍니다. 받는 스킬 6종은 모두 서버(Spring)에서 실제로 동작합니다. 다른 회사로 나가는 답에도 인용 형식이 그대로 지켜지도록, 인용 문자열 형식을 요청 양식(스키마)에 못 박았습니다.</p>
+      </div>
+      <div class="tbl-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th data-ko="받는 요청" data-en="Inbound request">받는 요청</th>
+              <th data-ko="하는 일" data-en="What it does">하는 일</th>
+              <th data-ko="상태" data-en="Status">상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="n">lookup-clause</td>
+              <td data-ko="공장이 묻는 약관 근거 조항 검색 · 인용" data-en="Searching and citing policy clauses for the factory">공장이 묻는 약관 근거 조항 검색 · 인용</td>
+              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+            </tr>
+            <tr>
+              <td class="n">verify-collateral-insurance</td>
+              <td data-ko="은행이 부르는 담보 건물의 보험과 보장 한도 확인" data-en="Checking the collateral's insurance and coverage limit, called by the bank">은행이 부르는 담보 건물의 보험과 보장 한도 확인</td>
+              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+            </tr>
+            <tr>
+              <td class="n">notify-asset-change</td>
+              <td data-ko="설비 처분에 따른 보험 대상 변경 통지 (같은 키로 다른 내용이면 거절)" data-en="Insured-asset change on disposal (same key with a different body is rejected)">설비 처분에 따른 보험 대상 변경 통지 (같은 키로 다른 내용이면 거절)</td>
+              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+            </tr>
+            <tr>
+              <td class="n">claim-insurance</td>
+              <td data-ko="화재로 잃은 설비의 보험금 산정 - 사람 승인이 있어야 끝난다" data-en="Claim amount for fire-lost equipment - ends only with a person's approval">화재로 잃은 설비의 보험금 산정 - 사람 승인이 있어야 끝난다</td>
+              <td data-ko="InsuQ 쪽만 검증, 보내는 흐름 없음" data-en="InsuQ side verified, no sender flow">InsuQ 쪽만 검증, 보내는 흐름 없음</td>
+            </tr>
+            <tr>
+              <td class="n">advise-policy-renewal</td>
+              <td data-ko="고장 이력을 반영한 화재보험 갱신 조건 제안" data-en="Fire-policy renewal terms reflecting fault history">고장 이력을 반영한 화재보험 갱신 조건 제안</td>
+              <td data-ko="InsuQ 쪽만 준비, MaintQ 미연결" data-en="InsuQ side ready, MaintQ not wired">InsuQ 쪽만 준비, MaintQ 미연결</td>
+            </tr>
+            <tr>
+              <td class="n">notify-risk-change</td>
+              <td data-ko="새 설비 도입에 따른 위험등급 변동 통지" data-en="Risk-grade change on new equipment">새 설비 도입에 따른 위험등급 변동 통지</td>
+              <td data-ko="보류 - 계약이 위험도를 숫자로 요구" data-en="on hold - contract wants a numeric risk">보류 - 계약이 위험도를 숫자로 요구</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sibling reveal">
+        <a href="../" data-ko="← QMesh 전체 보기" data-en="← The whole of QMesh">← QMesh 전체 보기</a>
+        <a href="../finallq/" data-ko="FinAllQ - 은행 →" data-en="FinAllQ - bank →">FinAllQ - 은행 →</a>
+        <a href="../maintq/" data-ko="MaintQ - 제조 →" data-en="MaintQ - manufacturing →">MaintQ - 제조 →</a>
+      </div>
+
+      <footer>
+        <span>© <span id="year">2026</span> 최지현 · InsuQ</span>
+        <a href="../../" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</a>
+        <a href="../" data-ko="QMesh" data-en="QMesh">QMesh</a>
+        <span class="sp" data-ko="측정 기준일 2026-09-09" data-en="figures as of 2026-09-09">측정 기준일 2026-09-09</span>
+      </footer>
+    </div>
+  </section>
+
+  <script src="../qmesh.js"></script>
+</body>
+
+</html>
