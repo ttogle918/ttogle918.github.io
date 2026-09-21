@@ -7,11 +7,11 @@
       <h3 class="pc-title">질문-답변 검색</h3>
       <div class="pc-meta"
         data-ko="2022.12 ~ 2023.03 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연"
-        data-en="Dec 2022 – Mar 2023 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
+        data-en="Dec 2022 - Mar 2023 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
         2022.12 ~ 2023.03 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연
       </div>
       <div class="pc-hash mono">
-        <span>#DataTrust</span><span>#개인정보익명화</span><span>#SBERT</span><span>#Churn</span>
+        <span>#DataTrust</span><span>#개인정보익명화</span><span>#SBERT</span><span>#NER</span>
       </div>
     </div>
     <span class="pc-caret">▶</span>
@@ -32,11 +32,8 @@
             </div>
             <ul>
               <li
-                data-ko="<b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 비슷한 질문을 추천하고 기존 답변을 자동으로 달아 주는 흐름을 혼자 만들었습니다."
-                data-en="<b>QA retrieval</b>: SBERT/KoBERT STS fine-tuning for similar-question matching and auto answers, built solo.">
-                <b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 비슷한 질문을 추천하고 기존 답변을 자동으로 달아 주는 흐름을
-                혼자 만들었습니다.
-              </li>
+                data-ko="<b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 새 질문이 들어오면 기존 데이터(CSV)에서 비슷한 질문과 답을 찾아 내주는 파이프라인을 혼자 만들었습니다. 그 사이사이에 혐오 표현 · 편향 · 개인정보를 걸러 내는 단계를 넣었습니다."
+                data-en="<b>Similar-question search</b>: fine-tuned a sentence-meaning model (SBERT/KoBERT) and built, alone, a pipeline that takes a new question and returns similar past questions and answers from the existing data (CSV), with hate-speech, bias and personal-data filters in between."><b>비슷한 질문 찾기</b>: 문장의 뜻을 비교하는 AI 모델(SBERT/KoBERT)을 추가 학습시켜, 새 질문이 들어오면 기존 데이터(CSV)에서 비슷한 질문과 답을 찾아 내주는 파이프라인을 혼자 만들었습니다. 그 사이사이에 혐오 표현 · 편향 · 개인정보를 걸러 내는 단계를 넣었습니다.</li>
               <li
                 data-ko="<b>개인정보 가리기</b>: 정해진 모양 찾기(정규표현식)와 문장 속 이름·주소를 알아보는 AI(NER)를 직접 조합해 개인정보를 가렸습니다(2주 동안 예외 사례를 반복해서 해결)."
                 data-en="<b>PII anonymization</b>: regex + NER to mask unstructured personal data over two weeks of edge-case work.">
@@ -49,8 +46,8 @@
             <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
                 data-en="Feature details - click one to open">주요 기능 상세 - 누르면 상세 보기 창이 뜹니다</span></div>
             <div class="featlist">
-              <button class="feat" data-modal="f-visang-qa" data-ko="수집부터 자동 등록까지"
-                data-en="From collection to auto-posting">수집부터 자동 등록까지</button>
+              <button class="feat" data-modal="f-visang-qa" data-ko="수집부터 답변 찾기까지"
+                data-en="From collection to answer lookup">수집부터 답변 찾기까지</button>
             </div>
           </div>
           <div class="impact block">
@@ -73,7 +70,7 @@
           <div class="pc-slides">
             <div class="pc-slide active">
               <div class="fdiag">
-                <svg viewBox="0 0 400 150" role="img" aria-label="10만 건을 걸러 SBERT 로 유사 질문을 찾고 익명화해 자동 등록한다">
+                <svg viewBox="0 0 400 150" role="img" aria-label="10만 건을 걸러 SBERT로 비슷한 질문을 찾고 익명화해 답을 내준다">
                   <rect class="dg-box" x="10" y="16" width="180" height="44" rx="8" />
                   <text class="dg-t" x="22" y="38">게시글 10만 건</text>
                   <text class="dg-s" x="22" y="54">원천 데이터</text>
@@ -87,7 +84,7 @@
                   <text class="dg-s" x="22" y="122">코사인 유사도 0.7 이상</text>
                   <path class="dg-a" d="M194 106 H206" />
                   <rect class="dg-hold" x="210" y="84" width="180" height="44" rx="8" />
-                  <text class="dg-t" x="222" y="106">익명화 → 자동 등록</text>
+                  <text class="dg-t" x="222" y="106">익명화 → 답변 제시</text>
                   <text class="dg-s" x="222" y="122">정규식 + NER</text>
                   <text class="dg-g" x="10" y="146">답할 필요 없는 글을 먼저 걸러낸다</text>
                 </svg>

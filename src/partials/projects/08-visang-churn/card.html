@@ -4,14 +4,14 @@
     <div class="pc-badge mono">08</div>
     <div class="pc-headings">
       <div class="pc-code mono" data-ko="비상교육" data-en="VISANG EDUCATION">비상교육</div>
-      <h3 class="pc-title">이탈 고객 예측 (실무 NLP·데이터)</h3>
+      <h3 class="pc-title">이탈 고객 예측 (실무 데이터)</h3>
       <div class="pc-meta"
         data-ko="2022.09 ~ 2022.12 <span class=&quot;sep&quot;>·</span> <b>비상교육 · 1인 개발</b> <span class=&quot;sep&quot;>·</span> 대표이사 시연"
-        data-en="Sep–Dec 2022 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
+        data-en="Sep-Dec 2022 <span class=&quot;sep&quot;>·</span> <b>Visang Education, solo</b> <span class=&quot;sep&quot;>·</span> demoed to the CEO">
         2022.09 ~ 2022.12 <span class="sep">·</span> <b>비상교육 · 1인 개발</b> <span class="sep">·</span> 대표이사 시연
       </div>
       <div class="pc-hash mono">
-        <span>#Data Preprocessing</span><span>#DecisionTree</span><span>#RandomForest</span><span>#변수중요도</span>
+        <span>#DataPreprocessing</span><span>#DecisionTree</span><span>#RandomForest</span><span>#변수중요도</span>
       </div>
     </div>
     <span class="pc-caret">▶</span>
@@ -31,16 +31,16 @@
             <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
             </div>
             <ul>
+              <li data-ko="<b>쓸 수 있는 데이터부터 추렸습니다</b>: 실제 서비스 데이터 10만여 건 가운데 약정이 아직 진행 중인 고객, 테스트 계정, 약정 기간이 제각각인 기록, 로그인 기록이 없는 고객을 걸러 내자 학습에 쓸 수 있는 것은 2천 건이 채 되지 않았습니다. 모델보다 이 데이터 탐색(EDA)과 정제에 시간이 더 들었습니다."
+                data-en="<b>Finding usable data came first</b>: of roughly 100,000 real service records, filtering out customers still mid-contract, test accounts, records with irregular contract periods and customers with no login history left fewer than 2,000 usable for training. The EDA and cleaning took more time than the models."><b>쓸 수 있는 데이터부터 추렸습니다</b>: 실제 서비스 데이터 10만여 건 가운데 약정이 아직 진행 중인 고객, 테스트 계정, 약정 기간이 제각각인 기록, 로그인 기록이 없는 고객을 걸러 내자 학습에 쓸 수 있는 것은 2천 건이 채 되지 않았습니다. 모델보다 이 데이터 탐색(EDA)과 정제에 시간이 더 들었습니다.</li>
               <li
                 data-ko="<b>고객 특징 만들기 · 비슷한 고객 묶기</b>: 최근 이용일·이용 횟수·결제 금액(RFM)으로 고객 특징을 만들고, 비슷한 고객끼리 묶어(KMeans) 모델이 배울 데이터의 질을 높였습니다."
                 data-en="<b>Features &amp; clustering</b>: built RFM-based derived features and segmented customers with KMeans to raise input quality.">
                 <b>고객 특징 만들기 · 비슷한 고객 묶기</b>: 최근 이용일·이용 횟수·결제 금액(RFM)으로 고객 특징을 만들고, 비슷한 고객끼리 묶어(KMeans) 모델이 배울
                 데이터의 질을 높였습니다.
               </li>
-              <li data-ko="<b>여러 모델 함께 학습</b>: RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다."
-                data-en="<b>Multi-model</b>: RandomForest reached 85.3% churn accuracy, and XGBoost 89% on predicting reduced activity.">
-                <b>여러 모델 함께 학습</b>: RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다.
-              </li>
+              <li data-ko="<b>목표마다 모델 학습</b>: 이탈·연장 여부가 확정된 고객으로 정확도를 쟀고, RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다."
+                data-en="<b>One model per target</b>: accuracy was measured on customers whose churn or renewal was already settled - RandomForest reached 85.3% on churn, and XGBoost 89% on predicting reduced activity."><b>목표마다 모델 학습</b>: 이탈·연장 여부가 확정된 고객으로 정확도를 쟀고, RandomForest로 이탈 예측 정확도 85.3%, XGBoost로 활동 저하 예측 정확도 89%를 얻었습니다.</li>
               <li
                 data-ko="<b>원인 찾기</b>: 어떤 요소가 예측에 크게 작용했는지(변수 중요도) 분석해 «무엇이 이탈을 만드는가»까지 설명하고, 실무에서 할 조치로 연결했습니다."
                 data-en="<b>Explaining why</b>: feature importance surfaced what actually drives churn, turning the model into an actionable playbook.">

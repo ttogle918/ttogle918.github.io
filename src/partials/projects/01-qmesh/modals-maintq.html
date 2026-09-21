@@ -453,7 +453,7 @@
 
 <section id="m-maintq-regression" hidden>
   <div class="fmodal-kicker mono">MAINTQ · 결과</div>
-  <h4 class="fmodal-title" data-ko="회귀 테스트 1,560건" data-en="1,560 regression checks">회귀 테스트 1,560건</h4>
+  <h4 class="fmodal-title" data-ko="회귀 검사 1,560건" data-en="1,560 regression checks">회귀 검사 1,560건</h4>
   <p data-ko="회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(34종 1,212건). 나머지는 pytest 22파일 348건이다. 2026-09-11 기준."
     data-en="Two parts: contract spikes are standalone scripts in spikes/ counting PASS/FAIL assertions (34 scripts, 1,212), plus 22 pytest files with 348 tests. As of 2026-09-11.">
     회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(34종 1,212건). 나머지는 pytest 22파일 348건이다.
@@ -757,7 +757,7 @@
     <div class="bh"><span class="star">◆</span> <span data-ko="문제 - 현장의 흐름"
         data-en="Problem - how the floor works today">문제 - 현장의 흐름</span></div>
     <p data-ko="중소 제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면 자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가 생긴다.</b> CMMS는 이력·재고·발주를 <b>기록</b>할 뿐, «왜 떴고 뭘 점검하고 어떤 부품이 필요한지»를 <b>판단</b>하지는 못한다."
-      data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10–30 minutes</b>, leans on a veteran's tacit knowledge for the cause, phones the storeroom for the part, and - if it is out of stock - calls a supplier for a quote and types the order into a spreadsheet. <b>Every step changes hands and medium (PDF → phone → Excel), and every change is a wait.</b> A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">
+      data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10-30 minutes</b>, leans on a veteran's tacit knowledge for the cause, phones the storeroom for the part, and - if it is out of stock - calls a supplier for a quote and types the order into a spreadsheet. <b>Every step changes hands and medium (PDF → phone → Excel), and every change is a wait.</b> A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs.">
       중소
       제조공장에서 인버터·PLC 에러가 뜨면 <b>정비사가 PDF 매뉴얼을 10~30분 뒤지고</b>, 원인 판단은 고참의 암묵지에 기대고, 부품이 필요하면
       자재담당에게 전화하고, 없으면 공급사에 견적을 물어 엑셀 발주서를 손으로 쓴다. <b>단계마다 사람이 바뀌고 매체가 바뀌고(PDF→전화→엑셀) 대기가
@@ -841,9 +841,9 @@
   <div class="impact block">
     <div class="bh"><span class="star">★</span> <span data-ko="결과 - 전체 실측 (2026.09.11)"
         data-en="Results - full measurements (2026-09-11)">결과 - 전체 실측 (2026.09.11)</span></div>
-    <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 자동 회귀 테스트 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3개 기종) · 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를 달성했습니다."
-      data-en="<b>510+</b> commits · design decisions <b>D1–D141</b> documented · a <b>1,560-check</b> regression suite (1,212 contract spikes + 348 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">
-      커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 자동 회귀 테스트 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼
+    <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 회귀 검사 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3개 기종) · 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를 달성했습니다."
+      data-en="<b>510+</b> commits · design decisions <b>D1-D141</b> documented · a <b>1,560-check</b> regression suite (1,212 contract spikes + 348 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">
+      커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 회귀 검사 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼
       3개 기종) · 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를
       달성했습니다.</p>
     <p data-ko="A2A는 <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class=&quot;mono&quot;>skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다."

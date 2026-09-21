@@ -7,10 +7,8 @@
         data-en="One agent harness, eight repositories">8개 프로젝트에 같은 규칙으로 적용한 AI 작업 관리 틀(하네스)</div>
       <h3 class="pc-title">AI 하네스 엔지니어링</h3>
       <div class="pc-meta"
-        data-ko="프로젝트를 만들면서 함께 만든 것 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 8개 레포에 적용"
-        data-en="Built alongside the projects <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> deployed across 8 repositories">
-        프로젝트를 만들면서 함께 만든 것 <span class="sep">·</span> <b>클로드 코드 cli</b> <span class="sep">·</span> 8개 레포에 적용
-      </div>
+        data-ko="프로젝트를 만들면서 함께 만든 것 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> Claude Code CLI <span class=&quot;sep&quot;>·</span> 8개 레포에 적용"
+        data-en="Built alongside the projects <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> Claude Code CLI <span class=&quot;sep&quot;>·</span> deployed across 8 repositories">프로젝트를 만들면서 함께 만든 것 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> Claude Code CLI <span class="sep">·</span> 8개 레포에 적용</div>
       <div class="pc-hash mono">
         <span>#Harness</span><span>#SubAgent</span><span>#Hooks</span><span>#HumanInTheLoop</span>
       </div>
@@ -47,16 +45,15 @@
                 자체를 막습니다. review 담당 AI에게는 읽기 도구만 줘서 고칠 방법이 없게 했습니다.
               </li>
               <li
-                data-ko="<b>key-manager, 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span class=&quot;mono&quot;>permissions.deny</span>) <b>15개</b>로 코딩 AI가 <span class=&quot;mono&quot;>.env</span> 파일과 금고 DB를 읽지 못하게 막았습니다. 사용자에게 한 약속을 만드는 AI에게도 똑같이 적용한 것입니다."
-                data-en="<b>key-manager - the product's promise applied to the agent</b>: it is a credential manager, so “keys never leave” is the promise. <b>Fifteen</b> <span class=&quot;mono&quot;>permissions.deny</span> rules block reading <span class=&quot;mono&quot;>.env</span> files and the vault database - the rule written for people applies to the coding agent too.">
-                <b>key-manager, 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span
+                data-ko="<b>KeyLens(key-manager), 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span class=&quot;mono&quot;>permissions.deny</span>) <b>15개</b>로 코딩 AI가 <span class=&quot;mono&quot;>.env</span> 파일과 금고 DB를 읽지 못하게 막았습니다. 사용자에게 한 약속을 만드는 AI에게도 똑같이 적용한 것입니다."
+                data-en="<b>KeyLens (key-manager) - the product's promise applied to the agent</b>: it is a credential manager, so “keys never leave” is the promise. <b>Fifteen</b> <span class=&quot;mono&quot;>permissions.deny</span> rules block reading <span class=&quot;mono&quot;>.env</span> files and the vault database - the rule written for people applies to the coding agent too.">
+                <b>KeyLens(key-manager), 제품의 약속을 AI에게도</b>: 비밀번호·키를 관리하는 도구라 «키는 밖으로 나가지 않는다»가 제품의 약속입니다. 그래서 금지 규칙(<span
                   class="mono">permissions.deny</span>) <b>15개</b>로 코딩 AI가 <span class="mono">.env</span> 파일과 금고
                 DB를 읽지 못하게 막았습니다. 사용자에게 한 약속을 만드는 AI에게도 똑같이 적용한 것입니다.
               </li>
               <li
-                data-ko="구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. AI는 초안까지만 쓰게 했습니다."
-                data-en="Implementation, tests, review and commit run on their own, but at the end <b>a checklist for a person</b> appears and everything stops. The AI only writes drafts.">
-                구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. AI는 초안까지만 쓰게 했습니다.</li>
+                data-ko="구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. 사람이 체크리스트를 확인하기 전에는 완료로 치지 않습니다."
+                data-en="Implementation, tests, review and commit run on their own, but at the end <b>a checklist for a person</b> appears and everything stops. Nothing counts as done until a person has gone through it.">구현부터 테스트, 검토, 커밋까지는 자동으로 흘러가지만, 마지막에는 <b>사람이 확인할 체크리스트</b>를 띄우고 멈춥니다. 사람이 체크리스트를 확인하기 전에는 완료로 치지 않습니다.</li>
             </ul>
           </div>
           <div class="block">
@@ -70,17 +67,17 @@
           <div class="impact block">
             <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
                 data-en="Results - what was built">결과 - 만든 것</span></div>
-            <p data-ko="AI 지시문(<span class=&quot;mono&quot;>CLAUDE.md</span>) <b>8개</b> · 역할별 보조 AI <b>37종</b> · 명령어 <b>46종</b> · 스킬 <b>15종</b> · 쓰기 권한을 뺀 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지 역할</b>(기획 · 개발 · 검토 · 테스트 · 기록)과 <b>같은 작업 순서</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 함께 씁니다. MaintQ는 개발·테스트 자리를 도구 제작·평가 실행 역할로 바꾸고 데이터 추출 역할을 더했고, InsuQ는 평가 담당이 더 있습니다."
+            <p data-ko="AI 지시문(<span class=&quot;mono&quot;>CLAUDE.md</span>) <b>8개</b> · 역할별 보조 AI <b>37종</b> · 명령어 <b>46종</b> · 스킬 <b>15종</b> · 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지 역할</b>(기획 · 개발 · 검토 · 테스트 · 기록)과 <b>같은 작업 순서</b>(<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>)를 함께 씁니다. MaintQ는 개발·테스트 자리를 도구 제작·평가 실행 역할로 바꾸고 데이터 추출 역할을 더했고, InsuQ는 평가 담당이 더 있습니다."
               data-en="<b>8</b> <span class=&quot;mono&quot;>CLAUDE.md</span> files · <b>37</b> sub-agents · <b>46</b> commands · <b>15</b> skills · <b>3</b> read-only agents · <b>3</b> hooks.<br>Six projects share <b>the same five roles</b> and <b>the same lifecycle</b> (<span class=&quot;mono&quot;>sprint → stage → checkpoint → done</span>); MaintQ swaps dev and tester for tool-builder and eval-runner and adds data-extractor, InsuQ adds an evaluator.">
               AI 지시문(<span class="mono">CLAUDE.md</span>) <b>8개</b> · 역할별 보조 AI <b>37종</b> · 명령어 <b>46종</b> · 스킬
-              <b>15종</b> · 쓰기 권한을 뺀 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지
+              <b>15종</b> · 읽기 전용 AI <b>3종</b> · 자동 차단 장치(hook) <b>3개</b>.<br>여섯 프로젝트가 <b>같은 5가지
                 역할</b>(기획 · 개발 · 검토 · 테스트 · 기록)과 <b>같은 작업 순서</b>(<span class="mono">sprint → stage → checkpoint
                 → done</span>)를 함께 씁니다. MaintQ는 개발·테스트 자리를 도구 제작·평가 실행 역할로 바꾸고 데이터 추출 역할을 더했고, InsuQ는 평가 담당이 더
               있습니다.
             </p>
-            <p data-ko="만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 돈 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class=&quot;mono&quot;>|| exit 0</span>)가 오류를 가려서 그동안 몰랐습니다.<br>고친 뒤에는 위반 사례를 일부러 넣어 새 hook이 실제로 잡아내는지 확인했습니다."
+            <p data-ko="만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 실행된 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class=&quot;mono&quot;>|| exit 0</span>)가 오류를 가려서 그동안 몰랐습니다.<br>고친 뒤에는 위반 사례를 일부러 넣어 새 hook이 실제로 잡아내는지 확인했습니다."
               data-en="Running the hooks by hand showed two of three had never run - a fallback (<span class=&quot;mono&quot;>|| exit 0</span>) hid the failures.<br>After the fix, deliberate violations were planted to confirm the new hooks catch them.">
-              만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 돈 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class="mono">||
+              만들어 둔 hook이 지금도 작동하는지 직접 돌려 보니, 3개 중 2개가 한 번도 실행된 적이 없었습니다. 실패해도 넘어가게 한 코드(<span class="mono">||
                 exit 0</span>)가 오류를 가려서 그동안 몰랐습니다.<br>고친 뒤에는 위반 사례를 일부러 넣어 새 hook이 실제로 잡아내는지 확인했습니다.</p>
             <p data-ko="이 포트폴리오도 같은 방식으로 만들었습니다. 브라우저로 열어 보기 전에 검사 스크립트(<span class=&quot;mono&quot;>tools/check_page.py</span>)가 페이지가 깨지는 5가지 경우를 확인하고, 설계서 → 계획서 → 작업 순으로 진행합니다."
               data-en="This portfolio was built the same way - <span class=&quot;mono&quot;>tools/check_page.py</span> checks five structural invariants before a browser is ever opened, and the work runs design doc → plan → tasks.">

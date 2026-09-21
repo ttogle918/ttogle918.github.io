@@ -30,10 +30,10 @@
       <text class="dg-s" x="332" y="287">수동 체크리스트</text>
     </svg>
   </div>
-  <p data-ko="에이전트에게 «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span class=&quot;mono&quot;>reviewer</span> 는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다."
+  <p data-ko="에이전트에게 «검토만 해라»라고 적어두는 것으로는 부족하다. 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span class=&quot;mono&quot;>reviewer</span> 는 <span class=&quot;mono&quot;>Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다."
     data-en="Telling an agent “only review” is not enough; given a long enough context it will edit anyway. So <b>the constraint lives in the tools, not the prompt</b> - <span class=&quot;mono&quot;>reviewer</span> holds only <span class=&quot;mono&quot;>Read · Grep · Glob</span>. There is simply no way to edit.">
     에이전트에게
-    «검토만 해라»라고 적어두는 것으로는 부족하다. 지치거나 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span
+    «검토만 해라»라고 적어두는 것으로는 부족하다. 문맥이 길어지면 결국 고쳐놓는다. 그래서 <b>말이 아니라 도구로 강제했다</b> - <span
       class="mono">reviewer</span> 는 <span class="mono">Read · Grep · Glob</span> 만 갖는다. 고칠 수단이 아예 없다.</p>
   <p data-ko="가장 위험한 건 <b>모델이 채점표를 고치는 것</b>이다. 테스트가 빨간불이면 코드를 고치는 대신 기대 정답을 바꾸면 초록불이 된다. <span class=&quot;mono&quot;>PreToolUse</span> 훅이 <span class=&quot;mono&quot;>eval/testset.json</span> 과 매뉴얼 원본 쓰기를 <span class=&quot;mono&quot;>exit 2</span> 로 끊고, 그 이유를 에이전트에게 되돌려준다. 예외는 <b>파일명 정확 일치로만</b> 열어 뒀다."
     data-en="The dangerous move is <b>editing the answer key</b>: when a test is red, changing the expected value is easier than fixing the code. A <span class=&quot;mono&quot;>PreToolUse</span> hook cuts writes to <span class=&quot;mono&quot;>eval/testset.json</span> and to the source manuals with <span class=&quot;mono&quot;>exit 2</span>, handing the reason back to the agent. Exceptions are opened <b>by exact filename only.</b>">

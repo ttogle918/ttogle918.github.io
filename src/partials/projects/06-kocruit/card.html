@@ -7,11 +7,8 @@
         Agent 기반 기업용 채용 관리 시스템</div>
       <h3 class="pc-title">KOCRUIT</h3>
       <div class="pc-meta"
-        data-ko="2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
-        data-en="Jun–Jul 2025 · still refining it solo <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">
-        2025.06 ~ 07 · 이후 혼자 조금씩 개선 중 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span>
-        아키텍처 · 면접 시스템 · STT ·
-        과정 내 1위</div>
+        data-ko="2025.06 ~ 07(팀) · 2025.09 ~ 2026.01 혼자 개선 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
+        data-en="Jun-Jul 2025 (team) · Sep 2025-Jan 2026 solo refactor <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">2025.06 ~ 07(팀) · 2025.09 ~ 2026.01 혼자 개선 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
       <div class="pc-hash mono">
         <span>#Multimodal</span><span>#LangGraph</span><span>#MSA</span><span>#TeamLead</span>
       </div>
@@ -54,9 +51,9 @@
                 둡니다.
               </li>
               <li
-                data-ko="<b>AI 제공 회사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class=&quot;mono&quot;>agent/utils/llm.py</span>)을 거쳐 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다."
+                data-ko="<b>LLM 제공사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class=&quot;mono&quot;>agent/utils/llm.py</span>)을 거쳐 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다."
                 data-en="<b>The LLM provider swaps in one line</b>: every call goes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory and picks one of <span class=&quot;mono&quot;>nvidia | ollama | openai</span>. When a provider went down, it really was swapped.">
-                <b>AI 제공 회사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class="mono">agent/utils/llm.py</span>)을 거쳐
+                <b>LLM 제공사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class="mono">agent/utils/llm.py</span>)을 거쳐
                 <span class="mono">nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다.
               </li>
             </ul>
@@ -73,16 +70,16 @@
                   class="mono">@property</span>). 그래서 <b>화면 코드를 한 줄도 고치지 않고</b> 옮겼습니다.
               </li>
               <li
-                data-ko="<b>같은 AI 호출을 세 겹으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는 DB에 보관."
+                data-ko="<b>중복 AI 호출을 세 가지 방법으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는 DB에 보관."
                 data-en="<b>Three layers against duplicate calls</b>: a <span class=&quot;mono&quot;>@redis_cache</span> keyed on a SHA-256 of function and arguments (TTL 24h), model tiering by task difficulty, and persisting generated results in the DB.">
-                <b>같은 AI 호출을 세 겹으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는
+                <b>중복 AI 호출을 세 가지 방법으로 줄였습니다</b>: 같은 요청이면 24시간 동안 저장해 둔 결과를 재사용(Redis 캐시), 쉬운 작업에는 저렴한 모델 사용, 만든 결과는
                 DB에 보관.
               </li>
               <li
-                data-ko="<b>고치기 전에, 망가지면 알아챌 장치부터</b>: 서버에 테스트가 하나도 없어서, API 명세가 바뀌면 바로 알아채는 도구와 테스트 <b>11개</b>를 먼저 만든 뒤 면접 질문 기능을 4개 층으로 나눠 정리했습니다."
+                data-ko="<b>고치기 전에, 망가지면 알아챌 장치부터</b>: 서버에 테스트가 하나도 없어서, API 명세가 바뀌면 바로 알아채는 도구와 테스트 <b>11개</b>를 먼저 만든 뒤 면접 질문 기능을 4개 계층으로 나눠 정리했습니다."
                 data-en="<b>A safety net before touching the code</b>: the backend had no tests at all, so a contract-snapshot tool that fingerprints OpenAPI components by body hash, plus <b>11</b> pytest cases, came first - then the interview-question domain was split into four layers.">
                 <b>고치기 전에, 망가지면 알아챌 장치부터</b>: 서버에 테스트가 하나도 없어서, API 명세가 바뀌면 바로 알아채는 도구와 테스트 <b>11개</b>를 먼저 만든 뒤
-                면접 질문 기능을 4개 층으로 나눠 정리했습니다.
+                면접 질문 기능을 4개 계층으로 나눠 정리했습니다.
               </li>
             </ul>
           </div>
@@ -103,12 +100,8 @@
           <div class="impact block">
             <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
                 data-en="Results - what was built">결과 - 만든 것</span></div>
-            <p data-ko="서비스 <b>6개</b> 구성(Docker Compose) · DB 표 <b>60개</b> · 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지)."
-              data-en="<b>Six services</b> under Docker Compose · <b>60</b> DB tables · APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · standing LLM calls per applicant cut <b>9 → 4</b>, with <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o).">
-              서비스 <b>6개</b> 구성(Docker Compose) · DB 표 <b>60개</b> · 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로
-              재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류
-              평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석
-              1곳만 유지).</p>
+            <p data-ko="<b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>수료 후 혼자 개선(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지)."
+              data-en="<b>Team phase (Jun-Jul 2025)</b>: a demo prototype running from job posting → question generation → evaluation → video analysis → report, ranked #1 in the program. <b>Six services</b> under Docker Compose · <b>60</b> DB tables.<br><b>Solo refactor after the course (Sep 2025-Jan 2026)</b>: APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · LLM calls per document review cut <b>9 → 4</b> · <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o)."><b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>수료 후 혼자 개선(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 때마다 하던 AI 호출 <b>9회 → 4회</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지).</p>
           </div>
           <!-- 랜딩 준비되면 아래 줄을 pc-actions 안에 붙여넣으세요 (slug: kocruit)
                <a class="gobtn" href="project/kocruit/"><span class="ic" data-ic="link"></span><span data-ko="상세 설명" data-en="Details">상세 설명</span></a> -->
@@ -120,10 +113,9 @@
         <div class="pc-figure">
           <div class="pc-slides">
             <div class="pc-slide active">
-              <img data-src="assets/kocruit/live-scoring.png" alt="면접이 도는 동안 여섯 축 점수와 게임형 테스트 결과가 실시간으로 쌓이는 화면">
-              <span class="cap2 mono" data-ko="면접 중에는 여섯 축을 모은다<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도"
-                data-en="Six axes collected during the interview<br>speech, behaviour, traits, cognition, fit, reliability">면접
-                중에는 여섯 축을 모은다<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도</span>
+              <img data-src="assets/kocruit/live-scoring.png" alt="여섯 항목 AI 분석과 게임형 테스트 결과를 보여 주는 화면">
+              <span class="cap2 mono" data-ko="여섯 항목 AI 분석은 참고용, 최종 점수는 사람이<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도"
+                data-en="Six-axis AI analysis as reference, the final score by a person<br>speech, behaviour, traits, cognition, fit, reliability">여섯 항목 AI 분석은 참고용, 최종 점수는 사람이<br>언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도</span>
             </div>
             <div class="pc-slide">
               <img data-src="assets/kocruit/ai-report.png" alt="발화 속도와 시선 집중도, 감정 상태까지 질문별로 정리된 면접 분석 리포트">

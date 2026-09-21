@@ -41,10 +41,10 @@
     만료가 다가오는 고객이 떠나는 걸 <b>사후에야 알 수 있었다.</b> 그렇다고 규칙으로 잡기도 어렵다 - 이탈은 «몇 번 이하로 접속하면 위험» 같은 한 줄로 떨어지지 않고, <b>활동량이
       줄고
       접속 주기가 벌어지는 흐름</b>으로 나타나기 때문이다.</p>
-  <p data-ko="그래서 원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans 로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서 <b>RandomForest</b> 로 이탈 예측 정확도 <b>85.3%</b>, <b>XGBoost</b> 로 활동 저하 예측 정확도 <b>89%</b>를 얻었다."
+  <p data-ko="그래서 원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서 <b>RandomForest</b> 로 이탈 예측 정확도 <b>85.3%</b>, <b>XGBoost</b> 로 활동 저하 예측 정확도 <b>89%</b>를 얻었다."
     data-en="So the raw history was not fed in directly: it was turned into <b>RFM features - recency, frequency, monetary</b> - and customers were <b>segmented with KMeans</b> to raise input quality. On top of that, <b>RandomForest and XGBoost were trained together</b>, reaching <b>85.3%</b> churn accuracy and <b>89%</b> at-risk detection.">
     그래서
-    원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans 로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서
+    원시 이력을 그대로 넣지 않고 <b>RFM(최근성 · 빈도 · 금액) 파생변수</b>로 바꾼 뒤 <b>KMeans로 고객을 군집화</b>해 입력 품질을 올렸다. 그 위에서
     <b>RandomForest</b> 로 이탈 예측 정확도 <b>85.3%</b>, <b>XGBoost</b> 로 활동 저하 예측 정확도 <b>89%</b>를 얻었다.
   </p>
   <p data-ko="다만 «떠날 것 같다»만으로는 할 수 있는 일이 없다. <b>변수 중요도</b>로 무엇이 이탈을 만드는지까지 내야 담당자가 <b>약정 만료 전에</b> 무엇을 건드릴지 정할 수 있다 - 예측이 아니라 <b>조치의 근거</b>를 만드는 것이 이 프로젝트의 목적이었다."

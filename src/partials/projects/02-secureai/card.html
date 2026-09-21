@@ -9,11 +9,11 @@
           data-en="★ FLAGSHIP AGENT">★ AI AGENT 대표작</span></h3>
       <div class="pc-meta"
         data-ko="~2026.07 (Sprint 0~30) <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> Claude Code 멀티 에이전트 오케스트레이션 개발"
-        data-en="to Jul 2026 (sprints 0–30) <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> built via Claude Code multi-agent orchestration">
+        data-en="to Jul 2026 (sprints 0-30) <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> built via Claude Code multi-agent orchestration">
         ~2026.07 (Sprint 0~30) <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> Claude Code 멀티
         에이전트 오케스트레이션 개발</div>
       <div class="pc-hash mono">
-        <span>#TrustworthyAI</span><span>#DAST교차검증</span><span>#FalsePositive감소</span><span>#DevSecOps</span>
+        <span>#TrustworthyAI</span><span>#DAST교차검증</span><span>#탐지율개선</span><span>#DevSecOps</span>
       </div>
     </div>
     <span class="pc-caret">▶</span>
@@ -25,9 +25,9 @@
           <div class="block">
             <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
             </div>
-            <p data-ko="팀 프로젝트에서 AI로 코드를 쓰다 보니 팀원이 .env 파일을 깃에 올리고, API 키가 코드에 그대로 박히는 일이 반복됐습니다. AI가 쓴 코드를 그대로 믿으면 안 되겠다고 생각해 보안 분석 도구를 만들기 시작했습니다."
+            <p data-ko="팀 프로젝트에서 AI로 코드를 쓰다 보니 .env 파일이 깃에 올라가고, API 키가 코드에 그대로 박히는 일이 반복됐습니다. AI가 쓴 코드를 그대로 믿으면 안 되겠다고 생각해 보안 분석 도구를 만들기 시작했습니다."
               data-en="In a team project written with AI, a teammate pushed a .env file to git and API keys kept landing in code. AI-written code could not be trusted as-is, so I started building a security analysis tool.">
-              팀 프로젝트에서 AI로 코드를 쓰다 보니 팀원이 .env 파일을 깃에 올리고, API 키가 코드에 그대로 박히는 일이 반복됐습니다. AI가 쓴 코드를 그대로 믿으면 안 되겠다고
+              팀 프로젝트에서 AI로 코드를 쓰다 보니 .env 파일이 깃에 올라가고, API 키가 코드에 그대로 박히는 일이 반복됐습니다. AI가 쓴 코드를 그대로 믿으면 안 되겠다고
               생각해 보안 분석 도구를 만들기 시작했습니다.</p>
           </div>
           <div class="block">
@@ -43,9 +43,9 @@
                 data-en="<b>DAST sandbox cross-validation</b> proves vulnerabilities via real exploits."><b>실제로
                   공격해 보고 확인</b>: 찾은 취약점을 격리된 실험 환경(샌드박스)에서 실제로 공격해 보고, 정말 뚫리는지로 증명했습니다.</li>
               <li
-                data-ko="AI가 DB를 바로 조회하게 한다면 편했을 것입니다. 하지만 그렇게 하면 SQL 인젝션을 막는 파라미터 바인딩을 쓸 수 없었습니다.<br>실제 고객 데이터를 다룬다고 가정하고, 조금 돌아가더라도 서버 API를 거치게 바꿔 DB에 접근할 수 있는 경로를 줄였습니다(ADR-016)."
+                data-ko="AI가 DB를 바로 조회하게 하면 편했겠지만, 그렇게 하면 SQL 인젝션을 막는 파라미터 바인딩을 쓸 수 없었습니다.<br>실제 고객 데이터를 다룬다고 가정하고, 조금 돌아가더라도 서버 API를 거치게 바꿔 DB에 접근할 수 있는 경로를 줄였습니다(ADR-016)."
                 data-en="Letting the AI query the database directly would have been easier, but that tool could not use parameter binding against SQL injection.<br>Assuming real customer data, access now goes through the server API even if it is a detour, narrowing the paths into the database (ADR-016).">
-                AI가 DB를 바로 조회하게 한다면 편했을 것입니다. 하지만 그렇게 하면 SQL 인젝션을 막는 파라미터 바인딩을 쓸 수 없었습니다.<br>실제 고객 데이터를 다룬다고
+                AI가 DB를 바로 조회하게 하면 편했겠지만, 그렇게 하면 SQL 인젝션을 막는 파라미터 바인딩을 쓸 수 없었습니다.<br>실제 고객 데이터를 다룬다고
                 가정하고, 조금 돌아가더라도 서버 API를 거치게 바꿔 DB에 접근할 수 있는 경로를 줄였습니다(ADR-016).</li>
               <li
                 data-ko="<b>5단계 자동 분석 흐름</b>(LangGraph): 코드 읽기 → 이전 결과 재사용 여부 확인 → Claude로 분석 → 취약점 분류 → 수정 코드(패치) 만들기. 중간에 멈춰도 이어서 할 수 있고, 분석·수정·증거 남기기를 각각 도구로 나눠 AI가 필요할 때 부르게 했습니다."
@@ -62,15 +62,15 @@
             <ul>
               <li
                 data-ko="<b>AI 여럿에게 역할을 나눠 맡겼습니다</b>: 총괄·기획·개발·리뷰·문서 역할의 Claude Code 에이전트를 동시에 돌려, 혼자서 Sprint 0~30(커밋 880개)을 끝까지 진행했습니다."
-                data-en="<b>Claude Code multi-agent orchestration</b>: main, pm, dev, review and writer roles run in parallel - how one person carried sprints 0 through 30 - 880 commits.">
+                data-en="<b>Claude Code multi-agent orchestration</b>: main, pm, dev, review and writer roles run in parallel which let one person carry sprints 0-30 (880 commits).">
                 <b>AI 여럿에게 역할을 나눠 맡겼습니다</b>: 총괄·기획·개발·리뷰·문서 역할의 Claude Code 에이전트를 동시에 돌려, 혼자서 Sprint 0~30(커밋
                 880개)을 끝까지 진행했습니다.
               </li>
               <li
-                data-ko="<b>실제 운영에 필요한 것까지 붙였습니다</b>: 서비스 상태를 지켜보는 모니터링(Prometheus·Grafana·Jaeger), 분석 진행 상황 실시간 전송(SSE + Redis), 4겹 네트워크 분리, 로그인 토큰을 안전하게 보관하는 방식(JWT HttpOnly)."
+                data-ko="<b>실제 운영에 필요한 것까지 붙였습니다</b>: 서비스 상태를 지켜보는 모니터링(Prometheus·Grafana·Jaeger), 분석 진행 상황 실시간 전송(SSE + Redis), 네트워크 4개로 분리, 로그인 토큰을 안전하게 보관하는 방식(JWT HttpOnly)."
                 data-en="<b>Operations included</b>: a Prometheus/Grafana/Jaeger observability stack, real-time SSE (fetch + ReadableStream) over Redis Pub/Sub, four-way network isolation and HttpOnly JWT.">
                 <b>실제 운영에 필요한 것까지 붙였습니다</b>: 서비스 상태를 지켜보는 모니터링(Prometheus·Grafana·Jaeger), 분석 진행 상황 실시간 전송(SSE +
-                Redis), 4겹 네트워크 분리, 로그인 토큰을 안전하게 보관하는 방식(JWT HttpOnly).
+                Redis), 네트워크 4개로 분리, 로그인 토큰을 안전하게 보관하는 방식(JWT HttpOnly).
               </li>
               <li
                 data-ko="<b>쓰는 곳을 넓혔습니다</b>: 코드 편집기(VSCode) 확장에서는 코드 바로 옆에 취약점을 표시하고, 안드로이드 앱(Kotlin·Compose·푸시 알림)까지 같은 서버에 연결했습니다."
@@ -81,12 +81,10 @@
             </ul>
           </div>
           <div class="impact block">
-            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 신뢰성 확보"
-                data-en="Results - trustworthiness">결과 - 신뢰성 확보</span></div>
-            <p data-ko="개발 도중 훨씬 강력한 모델이 나와 계속할 의미가 있나 싶었습니다. 그래서 이 프로젝트의 역할을 다시 정했습니다. 모델보다 똑똑해지는 게 아니라, 사람이 사용할 프로그램을 만드는 것으로요. 판단의 근거를 사람에게 보여 주고 사람이 확인해 고치게 돕는 것입니다. 모두의 창업 · 스파크클로 창업 프로그램에 출품했습니다."
-              data-en="Midway, a far stronger model appeared and I wondered whether to continue. So the project's role was redefined: not to out-think the model, but to be a tool people use - showing people the basis for each finding and helping them check and fix it. Entered in the 모두의 창업 · Sparkclaw startup program.">
-              개발 도중 훨씬 강력한 모델이 나와 계속할 의미가 있나 싶었습니다. 그래서 이 프로젝트의 역할을 다시 정했습니다. 모델보다 똑똑해지는 게 아니라, 사람이 사용할 프로그램을
-              만드는 것으로요. 판단의 근거를 사람에게 보여 주고 사람이 확인해 고치게 돕는 것입니다. 모두의 창업 · 스파크클로 창업 프로그램에 출품했습니다.</p>
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 탐지율은 올렸고, 오탐은 과제로 남음"
+                data-en="Results - detection up, false positives still open">결과 - 탐지율은 올렸고, 오탐은 과제로 남음</span></div>
+            <p data-ko="가이드라인을 고쳐 탐지율은 47.3%에서 81.6%로 올렸지만, 오탐률은 23.6%에서 30.9%로 늘어 과제로 남았습니다(Gemini 2.5 Flash · 330케이스). 개발 도중 훨씬 강력한 모델이 나와 계속할 의미가 있나 싶었습니다. 그래서 이 프로젝트의 역할을 모델보다 똑똑해지는 것이 아니라, 사람이 쓰는 프로그램이 되는 것으로 다시 정했습니다. 판단의 근거를 사람에게 보여 주고, 사람이 확인해 고치게 돕는 것입니다. 모두의 창업 · 스파크클로 창업 프로그램에 출품했습니다."
+              data-en="Reworking the guideline raised detection from 47.3% to 81.6%, but false positives also rose from 23.6% to 30.9% and remain open (Gemini 2.5 Flash, 330 cases). Midway, a far stronger model appeared and I wondered whether to continue. So the project's role was redefined: not to out-think the model, but to be a tool people use - showing people the basis for each finding and helping them check and fix it. Entered in the 모두의 창업 · Sparkclaw startup program.">가이드라인을 고쳐 탐지율은 47.3%에서 81.6%로 올렸지만, 오탐률은 23.6%에서 30.9%로 늘어 과제로 남았습니다(Gemini 2.5 Flash · 330케이스). 개발 도중 훨씬 강력한 모델이 나와 계속할 의미가 있나 싶었습니다. 그래서 이 프로젝트의 역할을 모델보다 똑똑해지는 것이 아니라, 사람이 쓰는 프로그램이 되는 것으로 다시 정했습니다. 판단의 근거를 사람에게 보여 주고, 사람이 확인해 고치게 돕는 것입니다. 모두의 창업 · 스파크클로 창업 프로그램에 출품했습니다.</p>
             <div class="metricrow">
               <div class="metric" data-modal="m-secureai-sonnet" role="button" tabindex="0">
                 <div class="mv"><span data-count="96.6" data-dec="1">0</span>%</div>

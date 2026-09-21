@@ -8,7 +8,7 @@
       <h3 class="pc-title">K-BRIDGE</h3>
       <div class="pc-meta"
         data-ko="2025.08 ~ 2025.10 <span class=&quot;sep&quot;>·</span> <b>팀 4인 (기여 25%)</b> <span class=&quot;sep&quot;>·</span> 요건 분석 · 요건-판례 교차 검증"
-        data-en="Aug–Oct 2025 <span class=&quot;sep&quot;>·</span> <b>team of 4 (25%)</b> <span class=&quot;sep&quot;>·</span> requirement analysis · requirement-precedent cross-check">
+        data-en="Aug-Oct 2025 <span class=&quot;sep&quot;>·</span> <b>team of 4 (25%)</b> <span class=&quot;sep&quot;>·</span> requirement analysis · requirement-precedent cross-check">
         2025.08 ~ 2025.10 <span class="sep">·</span> <b>팀 4인 (기여 25%)</b> <span class="sep">·</span> 요건 분석 ·
         요건-판례 교차 검증</div>
       <div class="pc-hash mono">
@@ -33,17 +33,11 @@
             <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법" data-en="Approach">해결 방법</span>
             </div>
             <ul>
-              <li data-ko="<b>4단계로 나눠 차례로 분석</b>: 규제 → 절차 → 위험 → 사후 관리 순으로 AI가 단계별로 따져 봅니다."
-                data-en="<b>Multi-Stage CoT Agent</b>: 4-stage sequential analysis pipeline."><b>4단계로 나눠 차례로
-                  분석</b>: 규제 → 절차 → 위험 → 사후 관리 순으로 AI가 단계별로 따져 봅니다.</li>
+              <li data-ko="<b>요건을 4가지로 나눠 분석</b>: 규제 · 절차 · 위험 · 사후 관리를 각각 따로 따져 봅니다."
+                data-en="<b>Requirements split four ways</b>: regulation, procedure, risk and after-care are each analyzed separately."><b>요건을 4가지로 나눠 분석</b>: 규제 · 절차 · 위험 · 사후 관리를 각각 따로 따져 봅니다.</li>
               <li
-                data-ko="FDA·EPA 같은 미국 공공 API와 웹 검색을 함께 돌려 같은 요건이 여러 곳에서 나오는지 대조했습니다. 팀원이 정리한 미국 세관 판례와도 맞춰 빠지거나 과한 항목을 표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다."
-                data-en="US public APIs such as FDA and EPA were run alongside web search to see whether a requirement appears in several places. Matching against the precedents a teammate compiled flagged missing or excessive items with a reliability grade, and sellers can request a customs broker's review.">
-                FDA·EPA 같은 미국 공공 API와 웹 검색을 함께 돌려 같은 요건이 여러 곳에서 나오는지 대조했습니다. 팀원이 정리한 미국 세관 판례와도 맞춰 빠지거나 과한 항목을
-                표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다.</li>
-              <li data-ko="<b>최신 정보 반영</b>: 정부 공공 API와 검색엔진을 함께 써서 바뀐 규정도 반영합니다."
-                data-en="<b>Hybrid</b>: public API + search engine for fresh info."><b>최신 정보 반영</b>: 정부 공공 API와
-                검색엔진을 함께 써서 바뀐 규정도 반영합니다.</li>
+                data-ko="<b>제가 맡은 부분 - 요건 분석과 교차 검증</b>: 미국 공공 데이터 API(FDA·EPA 등)에서 요건을 가져오고, Tavily·SERP 검색은 공식 웹페이지로만 한정해 자료를 모았습니다. 이렇게 모은 요건을 팀원이 수집·분석한 미국 세관 판례와 교차 검증해 빠지거나 과한 항목을 표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다."
+                data-en="<b>My part - requirement analysis and cross-checking</b>: requirements were pulled from US open-data APIs (FDA, EPA and others), and Tavily and SERP searches were restricted to official websites. These requirements were cross-checked against the CBP rulings a teammate collected and analyzed, flagging missing or excessive items with a reliability grade; sellers can request a customs broker's review."><b>제가 맡은 부분 - 요건 분석과 교차 검증</b>: 미국 공공 데이터 API(FDA·EPA 등)에서 요건을 가져오고, Tavily·SERP 검색은 공식 웹페이지로만 한정해 자료를 모았습니다. 이렇게 모은 요건을 팀원이 수집·분석한 미국 세관 판례와 교차 검증해 빠지거나 과한 항목을 표시하고 신뢰도 등급을 붙였고, 판매자가 필요하면 관세사에게 검토를 요청할 수 있게 했습니다.</li>
             </ul>
           </div>
           <div class="block">
@@ -59,11 +53,8 @@
           <div class="impact block">
             <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
                 data-en="Results - what was built">결과 - 만든 것</span></div>
-            <p data-ko="수입 요건 분석 흐름 <b>6단계</b>(LangGraph) · 5번째 단계 안에서 <b>4가지를 동시에 분석</b>(세부 규정·시험 절차·처벌·유효 기간)하고 <b>검증 3가지</b> · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 <b>15개 항목</b> · 연동한 규제 기관 <b>9곳</b> · 미국 품목 분류표 <b>30,067건</b>을 검색할 수 있게 정리."
-              data-en="A <b>six-node LangGraph</b> workflow for import requirements; node 5 runs <b>four analyses in parallel</b> (rules, testing, penalties, validity) plus <b>three verification passes</b>; a precedent pipeline (CBP collection → HQ/NY number extraction → <b>256-dim</b> FAISS index → top-5 similar rulings); a <b>15-section</b> final report; <b>nine</b> agencies wired in; <b>30,067</b> HTS records indexed.">
-              수입 요건 분석 흐름 <b>6단계</b>(LangGraph) · 5번째 단계 안에서 <b>4가지를 동시에 분석</b>(세부 규정·시험 절차·처벌·유효 기간)하고 <b>검증
-                3가지</b> · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 <b>15개 항목</b> · 연동한 규제 기관 <b>9곳</b> · 미국
-              품목 분류표 <b>30,067건</b>을 검색할 수 있게 정리.</p>
+            <p data-ko="<b>제 담당</b>: 요건 분석(공공 데이터 API · 공식 웹페이지 한정 검색)과 요건-판례 교차 검증, 판정 신뢰도 등급.<br><b>팀 전체</b>: 상품 등록부터 보고서까지 이어지는 흐름 6단계(LangGraph) · 요건 분석 단계 안에서 4가지 동시 분석(세부 규정·시험 절차·처벌·유효 기간)과 검증 3가지 · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 15개 항목 · 연동한 규제 기관 9곳 · 미국 품목 분류표 30,067건을 검색할 수 있게 정리."
+              data-en="<b>My part</b>: requirement analysis (open-data APIs, search limited to official sites), requirement-to-ruling cross-checks and the reliability grade.<br><b>Whole team</b>: a six-step LangGraph workflow from product registration to the report; the requirements step runs four analyses in parallel (rules, testing, penalties, validity) plus three verification passes; a precedent pipeline finding the top-5 similar CBP rulings (a teammate's work); a 15-section final report; nine agencies wired in; 30,067 HTS records indexed."><b>제 담당</b>: 요건 분석(공공 데이터 API · 공식 웹페이지 한정 검색)과 요건-판례 교차 검증, 판정 신뢰도 등급.<br><b>팀 전체</b>: 상품 등록부터 보고서까지 이어지는 흐름 6단계(LangGraph) · 요건 분석 단계 안에서 4가지 동시 분석(세부 규정·시험 절차·처벌·유효 기간)과 검증 3가지 · 미국 세관 판례를 모아 비슷한 사례 5건을 찾는 흐름(팀원 담당) · 최종 보고서 15개 항목 · 연동한 규제 기관 9곳 · 미국 품목 분류표 30,067건을 검색할 수 있게 정리.</p>
             <p data-ko="팀 과제로 끝나서 실제로 얼마나 빨라졌는지는 재지 못했습니다."
               data-en="It ended as a team assignment, so real speed-ups were never measured.">팀 과제로 끝나서 실제로 얼마나
               빨라졌는지는 재지 못했습니다.</p>
