@@ -142,7 +142,7 @@ git push origin master
 ## 대표작 표시
 
 `★ AI AGENT 대표작` 배지는 AI 에이전트를 직접 설계한 프로젝트에 붙입니다. 현재 **QMesh · SecureAI
-Engine · K-Bridge** 3개입니다. 추가하려면 카드의 `<article>`에 `featured` 클래스를 넣고 제목 옆에
+Engine** 2개입니다. 팀 프로젝트(K-Bridge 등)에는 붙이지 않습니다. 추가하려면 카드의 `<article>`에 `featured` 클래스를 넣고 제목 옆에
 `<span class="pc-featured">`를 붙이면 됩니다.
 
 ## 남은 작업
