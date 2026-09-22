@@ -751,6 +751,10 @@
       margin-right: 6px
     }
 
+    .contact a {
+      color: var(--accent)
+    }
+
     /* ===== About ===== */
     .about3 {
       display: grid;
@@ -1456,9 +1460,10 @@
     <p class="tagline">최지현<span class="bar">|</span>AI를 어디에 넣고, 어디까지 맡길지부터 고민합니다</p>
     <div class="role">AI Agent Engineer · Backend</div>
     <div class="contact">
-      <span><b>GitHub</b>github.com/ttogle918</span>
-      <span><b>Email</b>ttogle918@gmail.com</span>
-      <span><b>Web</b>ttogle918.github.io</span>
+      <!-- PDF 에서도 <a href> 는 누르면 열리는 링크로 남는다. 이메일은 mailto (PDF 뷰어는 스크립트를 막아 클릭 복사는 안 된다) -->
+      <a href="https://github.com/ttogle918"><b>GitHub</b>github.com/ttogle918</a>
+      <a href="mailto:ttogle918@gmail.com"><b>Email</b>ttogle918@gmail.com</a>
+      <a href="https://ttogle918.github.io/"><b>Portfolio</b>ttogle918.github.io</a>
     </div>
     <div class="foot"><span>★ 최지현 · AI Agent Engineer</span><span class="pno"></span></div>
   </section>
@@ -2563,7 +2568,7 @@
     <h1>THANK YOU<span class="star">★</span></h1>
     <p class="p">읽어 주셔서 감사합니다. 연락 기다리겠습니다.</p>
     <div class="clist">
-      <b>Email</b><span>ttogle918@gmail.com</span>
+      <b>Email</b><a href="mailto:ttogle918@gmail.com">ttogle918@gmail.com</a>
       <b>GitHub</b><a href="https://github.com/ttogle918">github.com/ttogle918</a>
       <b>Portfolio</b><a href="https://ttogle918.github.io/">ttogle918.github.io</a>
       <b>Blog</b><span><a href="https://zena1010.tistory.com">zena1010.tistory.com</a> · <a
