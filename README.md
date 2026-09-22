@@ -132,7 +132,7 @@ git push origin master
 | **직접 호스팅** | `/<slug>/` → `<slug>/index.html` | `qmesh/` |
 | **리다이렉트 스텁** | `/project/<slug>/` → 외부 레포의 GitHub Pages | `project/key-manager/home/` |
 
-현재 연결된 것은 **QMesh · KeyLens** 2개이고, 나머지 6개는 `index.html`에 붙여넣을 자리만
+현재 연결된 것은 **QMesh · KeyLens · K-Bridge** 3개이고, 나머지 5개는 `index.html`에 붙여넣을 자리만
 주석으로 남아 있습니다 (`랜딩 준비되면`으로 검색).
 
 - 데모 GIF: `qmesh/assets/` (원본은 QMesh 레포 `docs/presentation/assets/`). 용량이 커서 클릭해야

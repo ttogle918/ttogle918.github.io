@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="K-Bridge - 한국 판매자의 미국 수출을 돕는 규제 분석 AI. 팀 4인 프로젝트에서 수입 요건 분석과 요건-판례 교차 검증을 맡았습니다." />
+  <meta property="og:title" content="K-Bridge - 규제 답변마다 믿어도 되는 정도를 함께 내는 AI" />
+  <meta property="og:type" content="website" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><rect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%23B3372F%27/><path d=%27M4 16c3-6 13-6 16 0M7 16v-3M12 16v-5M17 16v-3%27 stroke=%27%23fff%27 stroke-width=%271.6%27 fill=%27none%27 stroke-linecap=%27round%27/></svg>" />
+  <title>K-Bridge - 규제 답변마다 믿어도 되는 정도를 함께 내는 AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../qmesh/qmesh.css" />
+  <style>
+    /* K-Bridge 색 - 서비스 화면의 브랜드 빨강을 따른다 */
+    body.dom-kb { --accent: #B3372F; --accent-soft: #FBEAE8; }
+    :root[data-theme="dark"] body.dom-kb { --accent: #F08A84; --accent-soft: #3A1E1C; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) body.dom-kb { --accent: #F08A84; --accent-soft: #3A1E1C; }
+    }
+
+    /* 포트폴리오 카드 모달의 도식 어휘(.fdiag .dg-*)를 이 페이지 토큰으로 옮긴 것 */
+    .fdiag {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      margin: 0 0 18px;
+      overflow-x: auto;
+    }
+    .fdiag svg { display: block; width: 100%; height: auto; min-width: 520px; }
+    .fdiag .dg-box { fill: var(--panel); stroke: var(--line-strong); stroke-width: 1.5; }
+    .fdiag .dg-mine { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+    .fdiag .dg-hold { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.5; }
+    .fdiag .dg-zone { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 5 4; }
+    .fdiag .dg-t { font: 600 11.5px var(--f-body); fill: var(--ink); }
+    .fdiag .dg-s { font: 10px var(--f-mono); fill: var(--ink-soft); }
+    .fdiag .dg-k { font: 600 10px var(--f-mono); fill: var(--accent); }
+    .fdiag .dg-g { font: 10px var(--f-mono); fill: var(--warn); }
+    .fdiag .dg-bad { font: 600 10px var(--f-mono); fill: var(--crit); }
+    .fdiag .dg-ok { font: 600 10px var(--f-mono); fill: var(--cyan); }
+    .fdiag .dg-a { fill: none; stroke: var(--accent); stroke-width: 1.4; marker-end: url(#dgArrow); }
+    .dg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    .sub-h { font-size: 18px; font-weight: 700; margin: 56px 0 8px; letter-spacing: -.01em; }
+    .sub-p { color: var(--ink-soft); line-height: 1.75; margin: 0 0 18px; max-width: 760px; }
+    td.me { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    td.tm { color: var(--faint); white-space: nowrap; }
+    .shots a { display: block; }
+  </style>
+</head>
+
+<body id="top" class="dom-kb">
+
+  <!-- 도식 화살촉 - 문서에 하나만 둔다 -->
+  <svg class="dg-defs" aria-hidden="true">
+    <defs>
+      <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 10 5 0 10z" style="fill:var(--accent)" />
+      </marker>
+    </defs>
+  </svg>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a class="brand" href="#top">
+        <span class="mark">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 16c3-6 13-6 16 0M7 16v-3M12 16v-5M17 16v-3" stroke="#fff" stroke-width="1.6"
+              stroke-linecap="round" />
+          </svg>
+        </span>
+        K-Bridge
+      </a>
+      <span class="nav-links">
+        <a href="#mine" data-ko="제 담당" data-en="My part">제 담당</a>
+        <a href="#features" data-ko="화면" data-en="Screens">화면</a>
+        <a href="#design" data-ko="설계" data-en="Design">설계</a>
+        <a href="#limits" data-ko="한계" data-en="Limits">한계</a>
+        <a href="../#kbridge" data-ko="← 포트폴리오" data-en="← Portfolio">← 포트폴리오</a>
+        <button class="tbtn" id="langBtn" type="button" aria-label="Language">KO</button>
+        <button class="tbtn" id="themeBtn" type="button" aria-label="Theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+          </svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+        </button>
+      </span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-ko="팀 프로젝트 · 무역 규제 분석" data-en="Team project · Trade compliance">팀 프로젝트 · 무역 규제 분석</span>
+        <h1 data-ko="규제 답변마다 <span class=&quot;hl&quot;>믿어도 되는 정도</span>를 함께 냅니다"
+          data-en="Every compliance answer comes with <span class=&quot;hl&quot;>how far to trust it</span>">규제 답변마다 <span
+            class="hl">믿어도 되는 정도</span>를 함께 냅니다</h1>
+        <p class="sub"
+          data-ko="K-Bridge는 한국 판매자가 미국에 상품을 팔 때 챙겨야 할 품목 번호(HS코드) · 관세 · 수입 요건 · 판례를 한 번에 분석해 주는 서비스입니다. 미국 소액면세 제도가 없어지면서 작은 판매자도 규제를 직접 챙겨야 했습니다. 요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냈습니다(환각). 그래서 답을 내는 것과 함께 «이 답을 얼마나 믿어도 되는지»를 먼저 설계했습니다."
+          data-en="K-Bridge analyzes everything a Korean seller must check to sell in the US - the product code (HS code), duties, import requirements and rulings - in one pass. With the US de minimis exemption gone, even small sellers had to handle regulations themselves. One wrong requirement holds a shipment, and the language model invented plausible rules that did not exist (hallucination). So alongside the answer, 'how far this answer can be trusted' was designed first.">K-Bridge는 한국 판매자가 미국에 상품을 팔 때 챙겨야 할 품목 번호(HS코드) · 관세 · 수입 요건 · 판례를 한 번에 분석해 주는 서비스입니다. 미국 소액면세 제도가 없어지면서 작은 판매자도 규제를 직접 챙겨야 했습니다. 요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냈습니다(환각). 그래서 답을 내는 것과 함께 «이 답을 얼마나 믿어도 되는지»를 먼저 설계했습니다.</p>
+        <p class="cta-note"
+          data-ko="<b>2025.08 ~ 2025.10 · 팀 4인 (기여 25%)</b><br>FastAPI + LangGraph · gpt-4o-mini · FAISS · Tavily · Spring Boot 3.5 · React 19 · PostgreSQL"
+          data-en="<b>Aug-Oct 2025 · team of 4 (25%)</b><br>FastAPI + LangGraph · gpt-4o-mini · FAISS · Tavily · Spring Boot 3.5 · React 19 · PostgreSQL">
+          <b>2025.08 ~ 2025.10 · 팀 4인 (기여 25%)</b><br>FastAPI + LangGraph · gpt-4o-mini · FAISS · Tavily · Spring Boot 3.5 · React 19 · PostgreSQL</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m10 9 5 3-5 3z" fill="currentColor" />
+            </svg><span data-ko="실제 화면 보기" data-en="See the screens">실제 화면 보기</span></a>
+          <a class="btn btn-ghost" href="https://github.com/Suracle/ai-engine" target="_blank" rel="noopener"><svg
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
+            </svg><span data-ko="GitHub (팀 조직)" data-en="GitHub (team org)">GitHub (팀 조직)</span></a>
+        </div>
+      </div>
+
+      <div>
+        <figure class="demo">
+          <a href="../assets/kbridge/workflow.png" target="_blank" rel="noopener"><img
+              src="../assets/kbridge/workflow.png" alt="HS코드 추천 · 요건 분석 · 판례 분석이 하나의 LangGraph 흐름으로 이어지는 전체 설계도" /></a>
+          <figcaption class="shot-cap"
+            data-ko="전체 LangGraph 흐름 - HS코드 → 요건 분석 → 판례 분석 → 검증 → 통합 (누르면 원본 크기)"
+            data-en="The whole LangGraph flow - HS code → requirements → rulings → verification → integration (click for full size)">
+            전체 LangGraph 흐름 - HS코드 → 요건 분석 → 판례 분석 → 검증 → 통합 (누르면 원본 크기)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stats-in">
+      <div class="stat"><b>9</b><span data-ko="연동한 규제 기관 (미국 6 · 한국 3)" data-en="agencies wired in (US 6 · KR 3)">연동한 규제 기관 (미국 6 · 한국 3)</span></div>
+      <div class="stat"><b>4</b><span data-ko="동시에 도는 요건 분석 축" data-en="requirement axes run in parallel">동시에 도는 요건 분석 축</span></div>
+      <div class="stat"><b>15</b><span data-ko="최종 보고서 항목" data-en="sections in the final report">최종 보고서 항목</span></div>
+      <div class="stat"><b>30,067</b><span data-ko="검색할 수 있게 정리한 미국 품목 분류" data-en="US tariff lines indexed">검색할 수 있게 정리한 미국 품목 분류</span></div>
+    </div>
+  </div>
+
+  <!-- ============ MINE ============ -->
+  <section id="mine">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="제가 맡은 부분" data-en="My part">제가 맡은 부분</span>
+        <h2 class="sec-title" data-ko="요건 분석과 교차 검증을 맡았습니다" data-en="I owned requirement analysis and cross-checking">요건 분석과 교차 검증을 맡았습니다</h2>
+        <p class="sec-sub"
+          data-ko="팀 4명이 모듈을 나눠 따로 만든 뒤 하나의 AI 엔진으로 합쳤습니다. 저는 수입 요건을 모아 분석하는 부분과, 그 결과를 팀원이 모은 미국 세관 판례와 대조해 신뢰도 등급을 붙이는 부분을 맡았습니다."
+          data-en="The four of us built separate modules and merged them into one AI engine. I owned collecting and analyzing import requirements, and cross-checking the result against the CBP rulings a teammate collected to attach a reliability grade.">팀 4명이 모듈을 나눠 따로 만든 뒤 하나의 AI 엔진으로 합쳤습니다. 저는 수입 요건을 모아 분석하는 부분과, 그 결과를 팀원이 모은 미국 세관 판례와 대조해 신뢰도 등급을 붙이는 부분을 맡았습니다.</p>
+      </div>
+      <div class="tbl-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th data-ko="모듈" data-en="Module">모듈</th>
+              <th data-ko="하는 일" data-en="What it does">하는 일</th>
+              <th data-ko="담당" data-en="Owner">담당</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-ko="수입 요건 분석" data-en="Import requirements">수입 요건 분석</td>
+              <td data-ko="규제 기관의 공공 API와 공식 웹페이지에서 요건을 모으고, 네 가지 축으로 나눠 분석해 한국어와 원문으로 요약합니다."
+                data-en="Collects requirements from agency open-data APIs and official sites, analyzes them along four axes and summarizes them in Korean and the original language.">규제 기관의 공공 API와 공식 웹페이지에서 요건을 모으고, 네 가지 축으로 나눠 분석해 한국어와 원문으로 요약합니다.</td>
+              <td class="me" data-ko="본인" data-en="Me">본인</td>
+            </tr>
+            <tr>
+              <td data-ko="요건-판례 교차 검증 · 신뢰도" data-en="Requirement-ruling cross-check · grade">요건-판례 교차 검증 · 신뢰도</td>
+              <td data-ko="분석한 요건을 판례에서 뽑은 요건과 대조해 빠지거나 과한 항목을 표시하고, 통합 신뢰도 등급을 붙입니다."
+                data-en="Compares the analyzed requirements with those found in rulings, flags missing or excessive items and assigns a composite reliability grade.">분석한 요건을 판례에서 뽑은 요건과 대조해 빠지거나 과한 항목을 표시하고, 통합 신뢰도 등급을 붙입니다.</td>
+              <td class="me" data-ko="본인" data-en="Me">본인</td>
+            </tr>
+            <tr>
+              <td data-ko="판례 수집 · 분석" data-en="Ruling collection · analysis">판례 수집 · 분석</td>
+              <td data-ko="미국 세관(CBP) 판정문을 모아 색인하고, 새 품목과 비슷한 사례 5건을 찾아 성공 · 실패 · 검토로 나눕니다."
+                data-en="Collects and indexes CBP rulings, finds the five most similar cases for a new item and sorts them into successes, failures and reviews.">미국 세관(CBP) 판정문을 모아 색인하고, 새 품목과 비슷한 사례 5건을 찾아 성공 · 실패 · 검토로 나눕니다.</td>
+              <td class="tm" data-ko="팀원" data-en="Teammate">팀원</td>
+            </tr>
+            <tr>
+              <td data-ko="HS코드 추천 · 관세 계산" data-en="HS code · duty calculation">HS코드 추천 · 관세 계산</td>
+              <td data-ko="상품 설명으로 미국 품목 분류표를 검색해 후보 3개를 고르고, 한미 FTA 세율과 상호관세 15%를 더해 관세를 계산합니다."
+                data-en="Searches the US tariff schedule from the product description, picks three candidates and computes duty from the KORUS FTA rate plus the 15% reciprocal tariff.">상품 설명으로 미국 품목 분류표를 검색해 후보 3개를 고르고, 한미 FTA 세율과 상호관세 15%를 더해 관세를 계산합니다.</td>
+              <td class="tm" data-ko="팀원" data-en="Teammate">팀원</td>
+            </tr>
+            <tr>
+              <td data-ko="챗봇 · 백엔드 · 화면" data-en="Chatbot · backend · UI">챗봇 · 백엔드 · 화면</td>
+              <td data-ko="판매자 · 구매자 · 관세사 세 역할의 화면과 API, 실시간 답변 챗봇입니다."
+                data-en="Screens and APIs for three roles (seller, buyer, customs broker) plus a streaming chatbot.">판매자 · 구매자 · 관세사 세 역할의 화면과 API, 실시간 답변 챗봇입니다.</td>
+              <td class="tm" data-ko="팀원" data-en="Teammates">팀원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="주요 기능" data-en="Features">주요 기능</span>
+        <h2 class="sec-title" data-ko="분석 결과 옆에 근거와 등급이 함께 나옵니다" data-en="Evidence and a grade sit next to every result">분석 결과 옆에 근거와 등급이 함께 나옵니다</h2>
+        <p class="sec-sub" data-ko="아래 화면은 최종 발표 시연 영상에서 잘라 낸 실제 동작입니다."
+          data-en="The clips below are cut from the final-presentation demo recording.">아래 화면은 최종 발표 시연 영상에서 잘라 낸 실제 동작입니다.</p>
+      </div>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">01</span><span class="skill" data-ko="요건 분석" data-en="Requirements">요건 분석</span></div>
+          <h3 data-ko="관세 · 요건 · 판례 분석이 한 화면에" data-en="Duty, requirements and rulings on one screen">관세 · 요건 · 판례 분석이 한 화면에</h3>
+          <p data-ko="상품을 등록하면 관세 분석 · 수입 요건 분석 · 판례 분석이 동시에 돌고, 결과가 한 화면에 모입니다. 요건 분석 카드에는 결론과 함께 신뢰도(이 화면에서는 85%)가 붙고, 모든 항목은 원문과 한국어가 함께 저장됩니다. 판매자는 한국어로 읽고, 관세사는 원문으로 확인할 수 있게 하려는 것입니다."
+            data-en="Registering a product runs duty, requirement and ruling analyses together, and the results land on one screen. The requirements card carries a confidence score next to its conclusion (85% here), and every field is stored in both the original language and Korean, so sellers read Korean while brokers check the source text.">상품을 등록하면 관세 분석 · 수입 요건 분석 · 판례 분석이 동시에 돌고, 결과가 한 화면에 모입니다. 요건 분석 카드에는 결론과 함께 신뢰도(이 화면에서는 85%)가 붙고, 모든 항목은 원문과 한국어가 함께 저장됩니다. 판매자는 한국어로 읽고, 관세사는 원문으로 확인할 수 있게 하려는 것입니다.</p>
+          <div class="chips">
+            <span class="chip" data-ko="핵심 조치사항" data-en="Key actions">핵심 조치사항</span><span class="chip" data-ko="필수 서류" data-en="Required documents">필수 서류</span><span class="chip" data-ko="준수 절차" data-en="Compliance steps">준수 절차</span><span class="chip" data-ko="위험 요소" data-en="Risks">위험 요소</span><span class="chip" data-ko="예상 비용" data-en="Estimated cost">예상 비용</span><span class="chip" data-ko="라벨링" data-en="Labeling">라벨링</span><span class="chip" data-ko="시험 · 검사 절차" data-en="Testing">시험 · 검사 절차</span><span class="chip" data-ko="금지 성분" data-en="Banned ingredients">금지 성분</span><span class="chip" data-ko="사전 신고" data-en="Prior notice">사전 신고</span><span class="chip" data-ko="처벌 · 벌금" data-en="Penalties">처벌 · 벌금</span><span class="chip" data-ko="인증 유효 기간" data-en="Validity">인증 유효 기간</span><span class="chip" data-ko="면제 조건" data-en="Exemptions">면제 조건</span><span class="chip" data-ko="판례 검증 결과" data-en="Ruling check">판례 검증 결과</span><span class="chip" data-ko="통합 신뢰도" data-en="Composite grade">통합 신뢰도</span><span class="chip" data-ko="시장 접근성" data-en="Market access">시장 접근성</span>
+          </div>
+        </div>
+        <button class="gif-shell" type="button" data-src="../assets/kbridge/requirement-verdict.gif"
+          data-alt="관세 분석 리포트 · 수입 요건 분석 · 관련 판례 분석이 신뢰도와 함께 나오는 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 1.1MB" data-en="Click to play · 1.1MB GIF">클릭해서 재생 · GIF 1.1MB</span>
+        </button>
+        <span class="shot-cap" data-ko="최종 관세율 15.0% · 요건 분석 신뢰도 85% · 대조한 판례 13건"
+          data-en="15.0% final duty · 85% confidence on requirements · 13 rulings cross-checked">최종 관세율 15.0% · 요건 분석 신뢰도 85% · 대조한 판례 13건</span>
+      </figure>
+
+      <figure class="demo reveal">
+        <div class="demo-head">
+          <div class="demo-route"><span class="sid">02</span><span class="skill" data-ko="판례" data-en="Rulings">판례</span></div>
+          <h3 data-ko="판례 카드는 실제 판정문으로 이어집니다" data-en="Each ruling card links to the real verdict">판례 카드는 실제 판정문으로 이어집니다</h3>
+          <p data-ko="판례 카드를 누르면 미국 세관 CROSS 시스템의 실제 판정문이 열립니다. 인용한 판례가 실제로 있는지 누구나 링크로 확인할 수 있습니다. 판례를 모으고 찾는 흐름은 팀원이 만들었고, 저는 여기서 나온 판례를 받아 요건과 대조했습니다."
+            data-en="Tapping a ruling card opens the real verdict on the CBP CROSS system, so anyone can check through the link that a cited ruling exists. A teammate built the collection and search flow; I took its rulings and cross-checked them against the requirements.">판례 카드를 누르면 미국 세관 CROSS 시스템의 실제 판정문이 열립니다. 인용한 판례가 실제로 있는지 누구나 링크로 확인할 수 있습니다. 판례를 모으고 찾는 흐름은 팀원이 만들었고, 저는 여기서 나온 판례를 받아 요건과 대조했습니다.</p>
+        </div>
+        <button class="gif-shell" type="button" data-src="../assets/kbridge/precedent-cross.gif"
+          data-alt="판례 카드에서 미국 세관 CROSS 시스템의 실제 판정문으로 넘어가는 화면">
+          <span class="gif-play"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15l13-7.5z" />
+            </svg></span>
+          <span class="gif-hint" data-ko="클릭해서 재생 · GIF 0.8MB" data-en="Click to play · 0.8MB GIF">클릭해서 재생 · GIF 0.8MB</span>
+        </button>
+        <span class="shot-cap" data-ko="판례 카드 → CBP CROSS 판정문" data-en="Ruling card → CBP CROSS verdict">판례 카드 → CBP CROSS 판정문</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN ============ -->
+  <section id="design">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="설계에서 내린 결정" data-en="Design decisions">설계에서 내린 결정</span>
+        <h2 class="sec-title" data-ko="요건 분석 6단계" data-en="Six steps of requirement analysis">요건 분석 6단계</h2>
+        <p class="sec-sub"
+          data-ko="요건 분석은 LangGraph 흐름 6단계로 만들었습니다. 다섯째 단계 안에서 네 축을 동시에 분석하고, 판례와 대조해 등급을 붙입니다."
+          data-en="Requirement analysis is a six-step LangGraph flow. Inside the fifth step, four axes are analyzed in parallel and then graded against rulings.">요건 분석은 LangGraph 흐름 6단계로 만들었습니다. 다섯째 단계 안에서 네 축을 동시에 분석하고, 판례와 대조해 등급을 붙입니다.</p>
+      </div>
+
+      <div class="fdiag reveal">
+        <svg viewBox="0 0 700 150" role="img" aria-label="키워드 추출, 기관 문서 검색, 공공 API 수집, 웹 스크래핑, 결과 통합과 검증, 최종 정리로 이어지는 요건 분석 6단계">
+          <rect class="dg-box" x="4" y="30" width="100" height="62" rx="8" />
+          <text class="dg-k" x="14" y="48">1</text>
+          <text class="dg-t" x="14" y="64">키워드 추출</text>
+          <text class="dg-s" x="14" y="80">3단계 폴백</text>
+          <path class="dg-a" d="M106 61 H118" />
+          <rect class="dg-box" x="120" y="30" width="100" height="62" rx="8" />
+          <text class="dg-k" x="130" y="48">2</text>
+          <text class="dg-t" x="130" y="64">기관 고르기</text>
+          <text class="dg-s" x="130" y="80">HS코드 → 기관</text>
+          <path class="dg-a" d="M222 61 H234" />
+          <rect class="dg-box" x="236" y="30" width="100" height="62" rx="8" />
+          <text class="dg-k" x="246" y="48">3</text>
+          <text class="dg-t" x="246" y="64">공공 API</text>
+          <text class="dg-s" x="246" y="80">FDA · EPA 등</text>
+          <path class="dg-a" d="M338 61 H350" />
+          <rect class="dg-box" x="352" y="30" width="100" height="62" rx="8" />
+          <text class="dg-k" x="362" y="48">4</text>
+          <text class="dg-t" x="362" y="64">공식 웹페이지</text>
+          <text class="dg-s" x="362" y="80">site: 한정 검색</text>
+          <path class="dg-a" d="M454 61 H466" />
+          <rect class="dg-mine" x="468" y="30" width="112" height="62" rx="8" />
+          <text class="dg-k" x="478" y="48">5</text>
+          <text class="dg-t" x="478" y="64">통합 · 검증</text>
+          <text class="dg-s" x="478" y="80">4축 병렬 + 등급</text>
+          <path class="dg-a" d="M582 61 H594" />
+          <rect class="dg-box" x="596" y="30" width="100" height="62" rx="8" />
+          <text class="dg-k" x="606" y="48">6</text>
+          <text class="dg-t" x="606" y="64">최종 정리</text>
+          <text class="dg-s" x="606" y="80">15개 항목</text>
+          <text class="dg-g" x="4" y="124">같은 HS코드를 이미 분석했으면 1단계에 들어가기 전에 저장해 둔 결과를 복사합니다</text>
+        </svg>
+      </div>
+
+      <div class="grid3 reveal">
+        <div class="feat">
+          <span class="tag" data-ko="출처" data-en="Sources">출처</span>
+          <h3 data-ko="공식 출처로만 좁혀 모았습니다" data-en="Only official sources">공식 출처로만 좁혀 모았습니다</h3>
+          <p data-ko="요건은 미국 공공 데이터 API(openFDA · EPA CompTox · USDA FoodData · CPSC · FCC)에서 먼저 가져오고, Tavily · SERP 검색은 기관 공식 도메인으로만 한정했습니다. 블로그나 판매 글이 섞이면 틀린 요건이 근거처럼 보이기 때문입니다."
+            data-en="Requirements come first from US open-data APIs (openFDA, EPA CompTox, USDA FoodData, CPSC, FCC), and Tavily and SERP searches are restricted to official agency domains - blogs or sales pages mixed in would make wrong requirements look like evidence.">요건은 미국 공공 데이터 API(openFDA · EPA CompTox · USDA FoodData · CPSC · FCC)에서 먼저 가져오고, Tavily · SERP 검색은 기관 공식 도메인으로만 한정했습니다. 블로그나 판매 글이 섞이면 틀린 요건이 근거처럼 보이기 때문입니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="병렬" data-en="Parallel">병렬</span>
+          <h3 data-ko="네 축을 따로, 동시에" data-en="Four axes, separately and at once">네 축을 따로, 동시에</h3>
+          <p data-ko="세부 규정 · 시험 절차 · 처벌 · 유효 기간을 각각 따로 분석하고 <span class=&quot;mono&quot;>asyncio.gather</span>로 동시에 돌렸습니다. 네 축은 서로의 결과를 기다릴 필요가 없어서, 가장 느린 축 하나의 시간만 걸립니다."
+            data-en="Detailed rules, testing, penalties and validity are analyzed separately and run together with <span class=&quot;mono&quot;>asyncio.gather</span>. None of the four needs another's result, so the whole step takes only as long as the slowest axis.">세부 규정 · 시험 절차 · 처벌 · 유효 기간을 각각 따로 분석하고 <span class="mono">asyncio.gather</span>로 동시에 돌렸습니다. 네 축은 서로의 결과를 기다릴 필요가 없어서, 가장 느린 축 하나의 시간만 걸립니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="폴백" data-en="Fallback">폴백</span>
+          <h3 data-ko="모델이 멈춰도 분석은 이어집니다" data-en="Analysis continues if a model stalls">모델이 멈춰도 분석은 이어집니다</h3>
+          <p data-ko="키워드 추출은 OpenAI → HuggingFace → 규칙 순으로 내려갑니다. 앞 단계가 실패해도 뒤 단계가 받아서, 외부 모델 하나가 멈췄다고 분석 전체가 멈추지 않게 했습니다."
+            data-en="Keyword extraction falls back from OpenAI to HuggingFace to rules. When an earlier step fails the next one takes over, so one stalled external model does not stop the whole analysis.">키워드 추출은 OpenAI → HuggingFace → 규칙 순으로 내려갑니다. 앞 단계가 실패해도 뒤 단계가 받아서, 외부 모델 하나가 멈췄다고 분석 전체가 멈추지 않게 했습니다.</p>
+        </div>
+      </div>
+
+      <!-- 교차 검증 -->
+      <h3 class="sub-h reveal" data-ko="판정에 신뢰도 등급을 붙입니다" data-en="Every verdict carries a reliability grade">판정에 신뢰도 등급을 붙입니다</h3>
+      <p class="sub-p reveal"
+        data-ko="검증은 두 방향으로 합니다. <b>기관끼리 규정이 서로 어긋나는지</b>(교차 검증)와 <b>과거 판례와 얼마나 맞는지</b>(판례 검증)입니다. 여기에 출처 신뢰도를 더해 통합 점수를 내고, 결과를 세 등급 중 하나로 표시합니다. 근거 없이 «이게 맞다»고 말하지 않게 하는 장치입니다."
+        data-en="Verification runs two ways: whether <b>agencies contradict each other</b> (cross-validation) and how well the answer <b>matches past rulings</b> (ruling validation). Source reliability is added for a composite score, shown as one of three grades - a guard against saying 'this is right' without evidence.">검증은 두 방향으로 합니다. <b>기관끼리 규정이 서로 어긋나는지</b>(교차 검증)와 <b>과거 판례와 얼마나 맞는지</b>(판례 검증)입니다. 여기에 출처 신뢰도를 더해 통합 점수를 내고, 결과를 세 등급 중 하나로 표시합니다. 근거 없이 «이게 맞다»고 말하지 않게 하는 장치입니다.</p>
+
+      <div class="fdiag reveal">
+        <svg viewBox="0 0 620 194" role="img" aria-label="네 축을 병렬로 분석한 뒤 요약과 교차 검증을 거쳐 통합 신뢰도 등급을 낸다">
+          <rect class="dg-zone" x="4" y="26" width="170" height="126" rx="10" />
+          <text class="dg-k" x="12" y="20">병렬 · asyncio.gather</text>
+          <rect class="dg-box" x="14" y="34" width="150" height="26" rx="6" />
+          <text class="dg-s" x="26" y="51">세부 규정</text>
+          <rect class="dg-box" x="14" y="64" width="150" height="26" rx="6" />
+          <text class="dg-s" x="26" y="81">시험 절차</text>
+          <rect class="dg-box" x="14" y="94" width="150" height="26" rx="6" />
+          <text class="dg-s" x="26" y="111">처벌</text>
+          <rect class="dg-box" x="14" y="124" width="150" height="26" rx="6" />
+          <text class="dg-s" x="26" y="141">유효 기간</text>
+          <path class="dg-a" d="M178 66 H214" />
+          <rect class="dg-box" x="218" y="44" width="150" height="44" rx="8" />
+          <text class="dg-t" x="230" y="64">LLM 요약</text>
+          <text class="dg-s" x="230" y="80">gpt-4o-mini · 영/한</text>
+          <path class="dg-a" d="M293 92 V100" />
+          <rect class="dg-box" x="218" y="104" width="150" height="44" rx="8" />
+          <text class="dg-t" x="230" y="124">교차 검증</text>
+          <text class="dg-s" x="230" y="140">기관 간 충돌 감지</text>
+          <path class="dg-a" d="M372 126 H406" />
+          <rect class="dg-hold" x="410" y="52" width="206" height="92" rx="8" />
+          <text class="dg-t" x="422" y="74">통합 신뢰도</text>
+          <text class="dg-s" x="422" y="92">판례 40 + 교차 30 + 출처 30</text>
+          <text class="dg-ok" x="422" y="112">RELIABLE</text>
+          <text class="dg-bad" x="422" y="130">NEEDS_REVIEW · UNRELIABLE</text>
+          <text class="dg-g" x="4" y="182">판례에는 있는데 분석에 없는 요건은 «누락»으로 표시합니다</text>
+        </svg>
+      </div>
+
+      <div class="tbl-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th data-ko="통합 신뢰도 구성" data-en="Composite score">통합 신뢰도 구성</th>
+              <th data-ko="비중" data-en="Weight">비중</th>
+              <th data-ko="보는 것" data-en="What it checks">보는 것</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-ko="판례 검증" data-en="Ruling validation">판례 검증</td>
+              <td class="n">40%</td>
+              <td data-ko="분석한 요건이 비슷한 판례에서 뽑은 요건과 얼마나 겹치는지. 판례에만 있는 요건은 «누락», 분석에만 있는 요건은 «과잉»으로 표시합니다."
+                data-en="How far the analyzed requirements overlap with those extracted from similar rulings. Ruling-only items are flagged 'missing', analysis-only items 'excessive'.">분석한 요건이 비슷한 판례에서 뽑은 요건과 얼마나 겹치는지. 판례에만 있는 요건은 «누락», 분석에만 있는 요건은 «과잉»으로 표시합니다.</td>
+            </tr>
+            <tr>
+              <td data-ko="교차 검증" data-en="Cross-validation">교차 검증</td>
+              <td class="n">30%</td>
+              <td data-ko="FDA와 USDA처럼 기관끼리, 또는 연방과 주 규정끼리 서로 어긋나는 곳이 있는지." data-en="Whether agencies (say FDA and USDA) or federal and state rules contradict each other.">FDA와 USDA처럼 기관끼리, 또는 연방과 주 규정끼리 서로 어긋나는 곳이 있는지.</td>
+            </tr>
+            <tr>
+              <td data-ko="출처 신뢰도" data-en="Source reliability">출처 신뢰도</td>
+              <td class="n">30%</td>
+              <td data-ko="근거 문서 가운데 정부 공식 도메인(.gov)에서 온 비율." data-en="The share of evidence documents from official government (.gov) domains.">근거 문서 가운데 정부 공식 도메인(.gov)에서 온 비율.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trace reveal" style="margin-top:18px">
+        <div class="trace-head">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="lbl">precedent_validation</span>
+        </div>
+        <div class="trace-body">
+          <div><span class="k">validation_score:</span> <span class="acc">0.85</span> <span class="k">· precedents_analyzed:</span> <span class="v">12</span></div>
+          <hr class="trace-hr" />
+          <div><span class="k">matched:</span> <span class="v">FDA VCRP Registration</span> <span class="k">↔</span> <span class="cy">HQ_H304567</span> <span class="k">similarity</span> <span class="v">0.95</span></div>
+          <div><span class="k">missing:</span> <span class="v" data-ko="미생물 검사 필요" data-en="microbial testing required">미생물 검사 필요</span> <span class="k">←</span> <span class="cy">HQ_H305123</span> <span class="ok">severity: medium</span></div>
+          <hr class="trace-hr" />
+          <div><span class="k">verdict:</span> <span class="acc">RELIABLE</span> <span class="k">· overall_confidence:</span> <span class="v">0.87 HIGH</span></div>
+        </div>
+        <div class="trace-foot" data-ko="※ 최종 발표 자료(2025.10)에 실린 분석 결과 일부. 등급이 RELIABLE이어도 판례에만 있는 요건은 따로 표시합니다."
+          data-en="Excerpt of an analysis result from the final presentation (Oct 2025). Even at RELIABLE, requirements found only in rulings are flagged separately.">※ 최종 발표 자료(2025.10)에 실린 분석 결과 일부. 등급이 RELIABLE이어도 판례에만 있는 요건은 따로 표시합니다.</div>
+      </div>
+
+      <p class="note reveal"
+        data-ko="<strong>마지막 판단은 사람에게 넘깁니다.</strong> 등급이 NEEDS_REVIEW이거나 판매자가 결과를 확신하지 못하면, 상품 화면에서 바로 관세사에게 검토를 요청할 수 있습니다. 관세사는 AI 분석 세 가지를 그대로 보면서 승인하거나 반려하고, HS코드 수정을 제안합니다."
+        data-en="<strong>The final call goes to a person.</strong> When the grade is NEEDS_REVIEW or the seller is unsure, a customs broker's review can be requested straight from the product screen. The broker sees all three AI analyses, approves or rejects, and can suggest a different HS code."><strong>마지막 판단은 사람에게 넘깁니다.</strong> 등급이 NEEDS_REVIEW이거나 판매자가 결과를 확신하지 못하면, 상품 화면에서 바로 관세사에게 검토를 요청할 수 있습니다. 관세사는 AI 분석 세 가지를 그대로 보면서 승인하거나 반려하고, HS코드 수정을 제안합니다.</p>
+
+      <!-- 판례 파이프라인 (팀원) -->
+      <h3 class="sub-h reveal" data-ko="판례 분석 흐름 (팀원 담당)" data-en="Ruling pipeline (a teammate's part)">판례 분석 흐름 (팀원 담당)</h3>
+      <p class="sub-p reveal"
+        data-ko="규정만 읽어서는 실제로 어떻게 판정되는지 알 수 없어서, 미국 세관(CBP) 판정문을 따로 모읍니다. 검색으로 가져온 문서에서 판례 번호를 뽑고 승인 · 거부를 판정해 FAISS로 색인한 뒤, 새 품목과 비슷한 사례 5건을 찾아 성공 · 실패 · 검토로 나눕니다. 제 교차 검증은 이 결과를 입력으로 받습니다."
+        data-en="Reading the rules alone does not show how they are actually applied, so CBP rulings are collected separately. Ruling numbers are extracted from searched documents, approve/deny status is determined, and everything is indexed with FAISS; for a new item the five most similar cases are sorted into successes, failures and reviews. My cross-check takes this output as input.">규정만 읽어서는 실제로 어떻게 판정되는지 알 수 없어서, 미국 세관(CBP) 판정문을 따로 모읍니다. 검색으로 가져온 문서에서 판례 번호를 뽑고 승인 · 거부를 판정해 FAISS로 색인한 뒤, 새 품목과 비슷한 사례 5건을 찾아 성공 · 실패 · 검토로 나눕니다. 제 교차 검증은 이 결과를 입력으로 받습니다.</p>
+      <div class="fdiag reveal">
+        <svg viewBox="0 0 620 156" role="img" aria-label="CBP 판례를 수집해 번호와 상태를 뽑고 FAISS 로 색인한 뒤 유사 판례를 패턴 분석한다">
+          <rect class="dg-box" x="4" y="26" width="142" height="62" rx="8" />
+          <text class="dg-t" x="16" y="47">CBP 판례 수집</text>
+          <text class="dg-s" x="16" y="63">rulings.cbp.gov</text>
+          <text class="dg-s" x="16" y="79">Tavily 검색</text>
+          <path class="dg-a" d="M150 57 H168" />
+          <rect class="dg-box" x="172" y="26" width="142" height="62" rx="8" />
+          <text class="dg-t" x="184" y="47">번호 · 상태 추출</text>
+          <text class="dg-s" x="184" y="63">HQ/NY 정규식</text>
+          <text class="dg-s" x="184" y="79">승인 · 거부 판정</text>
+          <path class="dg-a" d="M318 57 H336" />
+          <rect class="dg-box" x="340" y="26" width="132" height="62" rx="8" />
+          <text class="dg-t" x="352" y="47">FAISS 색인</text>
+          <text class="dg-s" x="352" y="63">256차원</text>
+          <text class="dg-s" x="352" y="79">유사 판례 top 5</text>
+          <path class="dg-a" d="M476 57 H494" />
+          <rect class="dg-mine" x="498" y="26" width="118" height="62" rx="8" />
+          <text class="dg-t" x="510" y="47">패턴 분석</text>
+          <text class="dg-s" x="510" y="63">gpt-4o-mini</text>
+          <text class="dg-k" x="510" y="79">→ 교차 검증</text>
+          <text class="dg-g" x="4" y="118">메모리 캐시 7일 - 같은 HS코드는 다시 모으지 않고 바로 답합니다</text>
+          <text class="dg-s" x="4" y="140">성공 · 실패 · 검토로 나눠 인사이트와 위험, 권장 조치를 냅니다</text>
+        </svg>
+      </div>
+
+      <!-- 원본 설계도 -->
+      <h3 class="sub-h reveal" data-ko="팀 설계도 원본" data-en="Original team diagrams">팀 설계도 원본</h3>
+      <figure class="demo reveal">
+        <div class="shots">
+          <div><a href="../assets/kbridge/system_architecture.png" target="_blank" rel="noopener"><img loading="lazy"
+                src="../assets/kbridge/system_architecture.png" alt="화면 · API 게이트웨이 · AI 엔진 · 데이터 계층으로 나뉜 전체 시스템 구성도" /></a><span
+              class="shot-cap" data-ko="① 전체 시스템 구성 - React · Spring Boot · FastAPI 세 층" data-en="① System architecture - React, Spring Boot, FastAPI">① 전체 시스템 구성 - React · Spring Boot · FastAPI 세 층</span></div>
+          <div><a href="../assets/kbridge/product_registration_flow.png" target="_blank" rel="noopener"><img loading="lazy"
+                src="../assets/kbridge/product_registration_flow.png" alt="상품 등록에서 캐시 확인, 요건 분석 6단계, 검증, 화면 표시까지 이어지는 흐름도" /></a><span
+              class="shot-cap" data-ko="② 상품 등록 → 요건 분석 → 검증 → 화면 (누르면 원본 크기)" data-en="② Registration → requirements → verification → screen (click for full size)">② 상품 등록 → 요건 분석 → 검증 → 화면 (누르면 원본 크기)</span></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ LIMITS ============ -->
+  <section id="limits">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="한계" data-en="Limits">한계</span>
+        <h2 class="sec-title" data-ko="아직 안 된 것도 같이 적습니다" data-en="What does not work yet, written down too">아직 안 된 것도 같이 적습니다</h2>
+      </div>
+      <div class="grid3 reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <div class="feat">
+          <span class="tag" data-ko="측정" data-en="Measurement">측정</span>
+          <h3 data-ko="얼마나 빨라졌는지는 재지 못했습니다" data-en="The speed-up was never measured">얼마나 빨라졌는지는 재지 못했습니다</h3>
+          <p data-ko="팀 과제로 끝나서 실제 판매자가 요건을 찾는 시간이 얼마나 줄었는지는 측정하지 못했습니다. 이 페이지에 적은 숫자는 만든 것의 규모(기관 수 · 항목 수)이고, 효과를 잰 값은 없습니다."
+            data-en="It ended as a team assignment, so how much time real sellers save was never measured. The numbers on this page describe what was built (agencies, sections), not measured impact.">팀 과제로 끝나서 실제 판매자가 요건을 찾는 시간이 얼마나 줄었는지는 측정하지 못했습니다. 이 페이지에 적은 숫자는 만든 것의 규모(기관 수 · 항목 수)이고, 효과를 잰 값은 없습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="운영" data-en="Operations">운영</span>
+          <h3 data-ko="로그인과 배포는 시연 범위입니다" data-en="Login and deployment are demo-grade">로그인과 배포는 시연 범위입니다</h3>
+          <p data-ko="로그인 · 권한은 발표 시연에 필요한 만큼만 만들었고, 서버 주소도 로컬 기준입니다. 실제 서비스로 내려면 토큰 인증 · 비밀번호 암호화 · 환경별 설정부터 붙여야 합니다."
+            data-en="Login and permissions were built only as far as the demo needed, and server addresses assume localhost. A real launch would first need token auth, password hashing and per-environment config.">로그인 · 권한은 발표 시연에 필요한 만큼만 만들었고, 서버 주소도 로컬 기준입니다. 실제 서비스로 내려면 토큰 인증 · 비밀번호 암호화 · 환경별 설정부터 붙여야 합니다.</p>
+        </div>
+      </div>
+
+      <footer>
+        <span>© <span id="year">2026</span> 최지현 · K-Bridge</span>
+        <a href="../#kbridge" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</a>
+        <a href="https://github.com/Suracle/ai-engine" target="_blank" rel="noopener">GitHub</a>
+      </footer>
+    </div>
+  </section>
+
+  <script src="../qmesh/qmesh.js"></script>
+</body>
+
+</html>
