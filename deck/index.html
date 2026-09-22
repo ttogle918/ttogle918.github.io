@@ -2685,40 +2685,40 @@
   </section>
 
   <!-- ============ 04 KOCRUIT ① ============ -->
-  <section class="slide" data-toc="04 KOCRUIT - 채용 관리 (팀)" data-main>
+  <section class="slide" data-toc="04 KOCRUIT - 채용 플랫폼 (팀 → 단독)" data-main>
     <header class="ph">
       <div class="ph-l">
         <div class="ph-no">04</div>
         <div>
-          <p class="ph-kicker">AI Agent 기반 기업용 채용 관리 시스템</p>
+          <p class="ph-kicker">AI 채용 플랫폼 · 팀 프로젝트를 혼자 이어받아 리팩토링</p>
           <h2 class="ph-title">KOCRUIT</h2>
         </div>
       </div>
       <div class="ph-r">
-        2025.06 ~ 07 팀 프로젝트 · 팀장 (기여 40%) · 과정 내 1위<br />2025.09 ~ 이어서 개선 중
-        <div class="links"><a href="https://github.com/ttogle918/KOCRUIT">GitHub</a><a
-            href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view">PPT</a></div>
+        v1 팀 2025.06.24 ~ 07.29 · 4인 · 팀장 · 과정 내 1위<br />v2 단독 2025.09 ~ 진행 중 (2026-09-22 기준 스프린트 7)
+        <div class="links"><a href="https://ttogle918.github.io/kocruit/">상세 페이지</a><a
+            href="https://github.com/ttogle918/KOCRUIT">GitHub (v1)</a></div>
       </div>
     </header>
     <div class="tagrow">
-      <div class="tags"><span>Multimodal</span><span>LangGraph</span><span>MSA</span><span>TeamLead</span></div>
-      <div class="role">아키텍처 · 면접 시스템 · STT 담당</div>
+      <div class="tags"><span>TeamLead</span><span>ServiceBoundary</span><span>Multimodal</span><span>LangGraph</span></div>
+      <div class="role">v1 아키텍처 · 면접 시스템 · STT → v2 경계와 검증 체계 재설계</div>
     </div>
 
     <div class="body g-55">
       <div class="col">
         <div class="fig">
           <div class="flow">
-            <div class="st">채용공고<br />등록<small>job post</small></div><span class="ar">→</span>
-            <div class="st ai">질문 · 평가표<br />미리 생성<small>LangGraph</small></div><span class="ar">→</span>
-            <div class="st ai">서류<br />평가<small>점수 + 근거</small></div><span class="ar">→</span>
-            <div class="st">면접<br />음성 · 영상<small>STT · 표정</small></div><span class="ar">→</span>
-            <div class="st">질문별<br />리포트<small>report</small></div>
+            <div class="st">공고 등록<small>가중치 추출</small></div><span class="ar">→</span>
+            <div class="st ai">서류<small>LangGraph 평가</small></div><span class="ar">→</span>
+            <div class="st ai">AI 면접<small>전사 · 영상 지표</small></div><span class="ar">→</span>
+            <div class="st">대면 면접<small>맞춤 질문 · 평가표</small></div><span class="ar">→</span>
+            <div class="st">리포트<small>단계별 결과</small></div>
           </div>
           <div class="flow-out">
-            <div><b>백엔드 :8000</b>면접 연결 상태 · 실시간 통신 · DB처럼 기억해야 하는 일</div>
-            <div><b>AI 서버 :8001</b>음성 인식 · 평가처럼 받아서 계산만 하는 일</div>
-            <div><b>분석 컨테이너 분리</b>PyTorch(음성)와 TensorFlow(표정)가 충돌</div>
+            <div><b>backend :8000</b>상태 · 인증 · 회사 스코프 · DB · 업로드. AI 라이브러리 없음</div>
+            <div><b>stt-service · agent · video-analysis</b>전사 · LLM · 영상 지표를 맡는 무상태 서비스</div>
+            <div><b>MinIO</b>서비스 사이에는 파일 경로가 아니라 객체 참조만 오갑니다</div>
           </div>
           <p class="cap" style="margin:0 14px 12px">AI는 점수와 근거까지만 내고, 합격 · 불합격은 사람이 정합니다.</p>
         </div>
@@ -2738,28 +2738,39 @@
         <div class="blk">
           <h3 class="h">문제</h3>
           <ul class="b">
-            <li>서류 검토와 면접 기록에 사람 손이 많이 가고, 면접관마다 평가 기준이 다름</li>
-            <li>AI로 돕되 <b>합격 · 불합격은 AI가 정하지 않게</b> 만드는 것이 목표</li>
+            <li>팀 6주로 만든 것은 시연용 프로토타입이었고, 종단으로 태워 보니 서류 평가가 점수와 무관하게 <b>전원 불합격</b>으로 기록되고 있었습니다</li>
+            <li>컨테이너는 나눠 놨지만 <b>나누면서 계약을 정하지 않아</b>, 서비스끼리 파일 경로를 주고받고 음성 업로드가 항상 실패했습니다</li>
+            <li>v1 때 쓰던 STT · 평가 정확도 수치는 자체 실측이 아니라 쓰지 않습니다</li>
           </ul>
         </div>
         <div class="blk">
-          <h3 class="h">해결 방법</h3>
-          <ul class="b">
-            <li><b>기억하는 일과 계산만 하는 일을 분리</b>: AI 서버에서는 실시간 통신 기능(websockets)을 아예 빼서 둘이 섞일 여지를 없앴습니다.</li>
-            <li><b>질문은 면접 전에 미리</b>: 면접 중에 질문을 만들면 기다리는 시간 때문에 대화가 끊겨, 지원서가 들어오면 질문과 평가표를 미리 만듭니다.</li>
-            <li><b>LLM 제공사를 설정 한 줄로</b>: 모든 AI 호출이 한 파일을 거쳐 nvidia · ollama · openai 중 하나를 고릅니다. 제공사 장애 때 실제로 바꿔 끼웠습니다.</li>
-          </ul>
-        </div>
-        <div class="blk">
-          <h3 class="h">설계에서 신경 쓴 것</h3>
-          <ul class="b">
-            <li><b>DB는 바꾸고 화면과의 약속은 유지</b>: 채용 단계를 별도 표로 분리하면서 예전 칸 이름으로도 읽히게 해(SQLAlchemy @property) 화면 코드를 고치지 않고 옮겼습니다.</li>
-            <li><b>중복 AI 호출 줄이기</b>: 같은 요청은 24시간 캐시(Redis), 쉬운 작업은 저렴한 모델, 만든 결과는 DB에 보관합니다.</li>
-          </ul>
+          <h3 class="h">참여 구분 - 팀 기여와 단독 기여를 나눠 적습니다</h3>
+          <table class="t">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>한 일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>v1 팀<br />6주 · 4인 · 팀장</td>
+                <td>전체 아키텍처 설계(서비스 6개, 음성과 영상 스택을 별도 컨테이너로 격리) · 면접 시스템 · STT 파이프라인</td>
+              </tr>
+              <tr>
+                <td>v2 단독 1차<br />2025.09 ~ 26.01</td>
+                <td>평면 라우터 34개 → 도메인 8묶음 · 전형 단계 1:N 정규화 · backend에서 AI 의존성 10종 제거 · 서류 평가 그래프 9 → 4노드</td>
+              </tr>
+              <tr class="hl">
+                <td>v2 단독 2차<br />2026.07 ~</td>
+                <td>스모크 안전망 · 경계 계약 · stt-service 신설 · alembic · MinIO · 회사 단위 인가와 래칫 · 화면 6개 교체</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="uses push">
-          <div><span class="k">모델</span><span>gpt-4o (면접 답변 정밀 분석) · gpt-4o-mini (나머지) · Whisper · pyannote</span></div>
-          <div><span class="k">도구</span><span>LangGraph · FastAPI · Redis · MinIO · MediaPipe · DeepFace · Docker Compose</span></div>
+          <div><span class="k">모델 · 엔진</span><span>faster-whisper (CPU int8) · MediaPipe · DeepFace</span></div>
+          <div><span class="k">도구</span><span>FastAPI · alembic · MinIO · MySQL · Redis · React 18 · Claude Code 서브에이전트</span></div>
         </div>
       </div>
     </div>
@@ -2773,79 +2784,109 @@
         <div class="ph-no">04</div>
         <div>
           <p class="ph-kicker">KOCRUIT · 고민한 문제</p>
-          <h2 class="ph-title">팀 과제가 끝난 뒤 이어서 고친 것</h2>
+          <h2 class="ph-title">녹색이 무엇을 보고 있는지부터 확인했습니다</h2>
         </div>
       </div>
-      <div class="ph-r">1차 2025.09 ~ 2026.01 · 2차 2026.07 ~ 진행 중</div>
+      <div class="ph-r">로컬 Docker 실측 · 기준일 2026-09-22</div>
     </header>
     <div class="tagrow">
-      <div class="tags"><span>계약테스트</span><span>비동기</span><span>인가래칫</span><span>비용절감</span></div>
-      <div class="role">고친 것마다 다시 생기면 실패하는 테스트를 남겼습니다</div>
+      <div class="tags"><span>이벤트루프</span><span>서비스경계</span><span>거짓녹색</span><span>인가래칫</span></div>
+      <div class="role">부채는 세어 보기만 하면 다시 늘어서, 막는 장치로 갚습니다</div>
     </div>
 
     <div class="body g-55">
       <div class="col">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="card">
-          <div class="k">데이터</div>
-          <h4>AI 점수가 DB에서 사라짐</h4>
-          <ul class="b">
-            <li>AI가 88점을 줬는데 DB에는 불합격으로 남음</li>
-            <li>LangGraph 상태 스키마에 키가 없어 노드 반환값이 버려진 것 → 두 지점을 고치고 상태 키 계약 테스트 추가</li>
-          </ul>
+          <div class="card">
+            <div class="k">이벤트 루프</div>
+            <h4>LLM 호출 하나가 서버를 멈춤</h4>
+            <ul class="b">
+              <li>엔드포인트 60개가 <code>async def</code>인데 안에서 동기 호출 → LLM 18.1초 요청 중 헬스체크 17.05초</li>
+              <li>느린 것을 네 가지로 분류해 처분하고, AST 스캐너로 재발을 막음(위반 7 → 0)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="k">서비스 경계</div>
+            <h4>파일 경로 대신 객체 참조</h4>
+            <ul class="b">
+              <li>공유 볼륨이 없는 backend가 경로를 넘겨 음성 업로드가 항상 실패</li>
+              <li>옮기기 전에 소비자부터 셈 - 음성 경로 7개 중 살아 있는 1개만 이관하고 6개는 삭제</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="k">거짓 녹색</div>
+            <h4>통과도 실패도 거짓이었음</h4>
+            <ul class="b">
+              <li>통과 하나는 호스트 포트를 점유한 <b>다른 프로젝트 컨테이너</b>를 보고 나온 녹색</li>
+              <li><code>docker exec</code> 내부 검사로 교체하고 SKIP을 성공과 구분. 완료 조건을 자동 / 실측 / 화면 확인 세 칸으로</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="k">보안</div>
+            <h4>다른 회사 데이터가 보였음</h4>
+            <ul class="b">
+              <li>인증 GET 응답을 공용 캐시로 저장해 토큰이 달라도 재사용 · 지원자 목록이 타 회사 토큰에도 200</li>
+              <li>같은 부류를 전수 조사해 55라우트에 회사 스코프. 무인증 라우트 143 → 98</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <div class="k">비동기</div>
-          <h4>LLM 호출 하나가 서버를 멈춤</h4>
-          <ul class="b">
-            <li>비동기 핸들러 안의 동기 LLM 호출 → LLM 요청 중 헬스체크 17.05초</li>
-            <li>느린 호출을 네 가지로 나눠 처리해 0.02초, AST 스캐너로 재발 방지</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="k">서비스 경계</div>
-          <h4>파일 경로 대신 객체 참조</h4>
-          <ul class="b">
-            <li>파일 경로 문자열을 주고받아 음성 업로드가 항상 실패</li>
-            <li>MinIO 객체 참조로 계약을 바꾸고 음성 전사를 stt-service로 분리</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="k">권한</div>
-          <h4>회사 간 데이터 분리</h4>
-          <ul class="b">
-            <li>다른 회사 토큰으로도 지원자 목록이 보임</li>
-            <li>55개 라우트에 회사 범위 검사, 인증 없는 라우트가 다시 늘면 실패하는 래칫 테스트(143 → 98)</li>
-          </ul>
-        </div>
-        </div>
-        <div class="callout push"><b>팀 기간에는 시연용 프로토타입</b>으로 과정 내 1위를 했습니다(서비스 6개 · DB 표 60개). 지금은 그 코드를 실제로 쓸 수 있게
-          고치면서, 찾은 문제를 다시 생기지 않게 막는 데 집중하고 있습니다.</div>
       </div>
 
       <div class="col">
         <div class="blk">
-          <h3 class="h">1차 개선 결과</h3>
-          <div class="big2">
-            <div>
-              <div class="n">9 → 4회</div>
-              <div class="l">서류 평가 한 번에 드는 AI 호출</div>
-            </div>
-            <div>
-              <div class="n">3.6 → 2.15GB</div>
-              <div class="l">AI 서버 이미지 (음성 전사 분리)</div>
-            </div>
-          </div>
-          <ul class="b" style="margin-top:10px">
-            <li>비싼 모델(gpt-4o)을 쓰던 9곳 중 8곳을 gpt-4o-mini로 교체, 면접 답변 정밀 분석 1곳만 유지</li>
-            <li>한곳에 늘어놓았던 API 파일 34개를 기능별 8묶음으로 재정리</li>
-            <li>서버에 섞여 있던 AI 라이브러리 10종(torch · whisper · pyannote 등)을 걷어내 AI 서버 API 15개로 이전</li>
-          </ul>
+          <h3 class="h">전 · 후 (로컬 Docker 실측 · 반올림 없음)</h3>
+          <table class="t">
+            <thead>
+              <tr>
+                <th>지표</th>
+                <th class="num">전</th>
+                <th class="num">후</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hl">
+                <td>LLM 요청 중 헬스체크</td>
+                <td class="num">17.05s</td>
+                <td class="num"><b>0.02s</b></td>
+              </tr>
+              <tr>
+                <td>agent 이미지 · <code>main.py</code></td>
+                <td class="num">3.6GB · 1,905줄</td>
+                <td class="num">2.15GB · 743줄</td>
+              </tr>
+              <tr>
+                <td>MinIO 정지 감지</td>
+                <td class="num">29.1s</td>
+                <td class="num">3.9 ~ 4.1s</td>
+              </tr>
+              <tr>
+                <td>인증 없는 라우트</td>
+                <td class="num">143</td>
+                <td class="num">98</td>
+              </tr>
+              <tr>
+                <td>지원자 목록 진입 시 표절 검사</td>
+                <td class="num">41건</td>
+                <td class="num">0건</td>
+              </tr>
+              <tr>
+                <td>프론트 · 백엔드 경로 불일치</td>
+                <td class="num">51키</td>
+                <td class="num">약 35키</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="blk">
-          <div class="fig crop"><img style="height:170px" src="img/kocruit-ai-report.jpg" alt="질문별 면접 분석 리포트" /></div>
-          <p class="cap"><b>질문별 리포트</b>. 발화 속도 · 시선 · 자세까지 정리합니다.</p>
+          <h3 class="h">한계 - 안 되는 것을 먼저 적습니다</h3>
+          <div class="limits">
+            <div class="limit"><b>실시간 면접 WebSocket 인증 공백</b>토큰 검증 없이 임의의 지원서 번호로 접속할 수 있습니다. 실시간 경로 재작업과 함께 닫습니다.</div>
+            <div class="limit"><b>실시간 자막은 목업이었음</b>재설계 조사에서 하드코딩 문장을 고르고 있었음을 확인했습니다. 실제 STT 연결은 다음 단계입니다.</div>
+            <div class="limit"><b>긴 녹음은 화면이 실패</b>약 3분이 넘으면 서버는 성공해도 프론트 타임아웃(여유 28초)에 걸립니다. 결함으로 등록했습니다.</div>
+          </div>
         </div>
+        <div class="callout push"><b>부채는 막는 장치로 갚습니다.</b> 인가 래칫 · AST 스캐너 · 정적 대조 래칫은 새 위반이 생겨도, 이미 고친 항목이 허용목록에 남아 있어도 실패합니다.
+          진척이 허용목록에서 지운 줄 수로 측정됩니다.</div>
       </div>
     </div>
     <div class="foot"><span>★ 04 KOCRUIT · 고민한 문제</span><span class="pno"></span></div>
