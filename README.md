@@ -152,8 +152,9 @@ Engine · K-Bridge** 3개입니다. 추가하려면 카드의 `<article>`에 `fe
 
 **막힌 것 - 사람이 정해야 함**
 
-- [x] **`uploads/최지현_portfolio.pdf` 갱신** (2026-09-13판, A4 10장) - 헤더 PDF 버튼이 이 파일을
-  그대로 내려줍니다. 인쇄본(`print/index.html`)을 고친 뒤 `python tools/build_pdf.py` 로 다시 굽습니다.
+- [x] **`uploads/최지현_portfolio.pdf` 갱신** (2026-09-13판, A4 10장) - 인쇄본(`print/index.html`)을 고친 뒤
+  `python tools/build_pdf.py` 로 다시 굽습니다. 2026-09-22부터 사이트의 PDF 버튼 세 곳(히어로 · 헤더 · 연락처)은
+  이 파일 대신 16:9 슬라이드판 `uploads/최지현_portfolio_deck.pdf`(`deck/index.html` → `python tools/build_deck_pdf.py`)를 내려줍니다.
 - [ ] **SpendQ 카드 GitHub 링크가 계정 최상위**(`github.com/ttogle918`)입니다. 어느 레포인지
   정해지면 K-Bridge(`Suracle/ai-engine`)·SecureAI(`ttogle918/kkebi`)처럼 바꿉니다.
 - [ ] **KOCRUIT 「AI Interviewer Persona」 실동작 확인** - v2 설계도에는 AI가 스스로 꼬리질문을
