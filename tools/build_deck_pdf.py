@@ -1,6 +1,6 @@
-"""deck/index.html(16:9 슬라이드판)을 PDF 로 굽는다 -> uploads/최지현_portfolio_deck.pdf
+"""deck/index.html(16:9 슬라이드판)을 PDF 로 굽는다 -> uploads/최지현_portfolio.pdf
 
-인쇄본(print/index.html -> 최지현_portfolio.pdf)과 웹 PDF(index.html -> _web.pdf)와는 다른 파일이다.
+웹 PDF(index.html -> _web.pdf)와는 다른 파일이다. 사이트의 PDF 버튼 세 곳이 이 파일을 내려준다.
 슬라이드는 1440 x 810px 고정이라, 굽기 전에 넘친 곳을 찾아 알려 준다. 넘친 슬라이드가 있으면 exit 1.
 
     python tools/build_deck_pdf.py            # PDF 굽기 + 넘침 검사
@@ -20,7 +20,7 @@ except Exception:
 
 SITE = Path(__file__).resolve().parents[1]
 SRC = SITE / "deck" / "index.html"
-OUT = SITE / "uploads" / "최지현_portfolio_deck.pdf"
+OUT = SITE / "uploads" / "최지현_portfolio.pdf"
 
 # 슬라이드 아래 여백(꼬리말 자리)을 넘거나, 칸 안에서 잘린 요소를 찾는다.
 CHECK = """

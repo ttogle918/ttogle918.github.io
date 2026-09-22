@@ -1,7 +1,7 @@
 """index.html(웹사이트 그대로)을 A4 PDF 로 굽는다 -> uploads/최지현_portfolio_web.pdf
 
 히어로의 «PDF 다운받기» 버튼이 이 파일을 내려준다. 인쇄본 요약판(print/index.html ->
-최지현_portfolio.pdf, tools/build_pdf.py)과는 다른 파일이다. 사이트를 고친 뒤 다시 돌린다. 멱등하다.
+최지현_portfolio.pdf, tools/build_deck_pdf.py)과는 다른 파일이다. 사이트를 고친 뒤 다시 돌린다. 멱등하다.
 
 화면에서 스크롤해야 생기는 것들을 굽기 전에 채운다:
 - data-src 이미지는 src 로 옮긴다 (GIF 는 첫 프레임만 찍힌다)
