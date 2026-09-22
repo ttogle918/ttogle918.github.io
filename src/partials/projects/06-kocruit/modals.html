@@ -197,11 +197,11 @@
       <text class="dg-t" x="264" y="242">ChromaDB</text>
       <text class="dg-s" x="264" y="259">벡터</text>
       <rect class="dg-zone-gold" x="380" y="200" width="236" height="76" rx="10" />
-      <text class="dg-g" x="390" y="214">외부 - 교체 가능</text>
+      <text class="dg-g" x="390" y="214">외부</text>
       <rect class="dg-hold" x="390" y="222" width="216" height="46" rx="8" />
       <text class="dg-t" x="402" y="242">LLM 제공자</text>
-      <text class="dg-s" x="402" y="259">nvidia | ollama | openai</text>
-      <text class="dg-g" x="4" y="294">제공자 교체는 agent/utils/llm.py 팩토리에 env 한 줄 - 장애 때 실제로 갈아끼웠다</text>
+      <text class="dg-s" x="402" y="259">OpenAI GPT-4o · 4o-mini</text>
+      <text class="dg-g" x="4" y="294">같은 요청은 Redis에 24시간 저장해 두고 다시 쓴다</text>
     </svg>
   </div>
   <p data-ko="서비스를 나눈 기준은 규모가 아니라 <b>«상태를 갖느냐»</b>다. 세션·WebSocket·DB처럼 상태가 붙는 일은 백엔드(<span class=&quot;mono&quot;>:8000</span>)가, STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class=&quot;mono&quot;>:8001</span>)가 맡는다. Agent에서 <span class=&quot;mono&quot;>websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다."
@@ -210,10 +210,4 @@
     나눈 기준은 규모가 아니라 <b>«상태를 갖느냐»</b>다. 세션·WebSocket·DB처럼 상태가 붙는 일은 백엔드(<span class="mono">:8000</span>)가,
     STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class="mono">:8001</span>)가 맡는다. Agent에서 <span
       class="mono">websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다.</p>
-  <p data-ko="LLM은 특정 제공자에 묶지 않았다. 모든 호출이 <span class=&quot;mono&quot;>agent/utils/llm.py</span> 팩토리를 지나므로 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로 갈아끼운 경로</b>다."
-    data-en="The LLM is not bound to one vendor. Every call passes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory, so moving between <span class=&quot;mono&quot;>nvidia | ollama | openai</span> is <b>one environment variable</b>. This is not a contingency on paper - <b>it was actually used when a provider went down.</b>">
-    LLM
-    은 특정 제공자에 묶지 않았다. 모든 호출이 <span class="mono">agent/utils/llm.py</span> 팩토리를 지나므로 <span class="mono">nvidia |
-      ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로
-      갈아끼운 경로</b>다.</p>
 </section>

@@ -2025,8 +2025,8 @@
                 Agent 기반 기업용 채용 관리 시스템</div>
               <h3 class="pc-title">KOCRUIT</h3>
               <div class="pc-meta"
-                data-ko="2025.06 ~ 07 팀 프로젝트 · 2025.09 ~ 이어서 개선 중 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
-                data-en="Jun-Jul 2025 team project · improving it solo since Sep 2025 <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">2025.06 ~ 07 팀 프로젝트 · 2025.09 ~ 이어서 개선 중 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
+                data-ko="2025.06 ~ 07(팀) · 2025.09 ~ 2026.01 혼자 개선 <span class=&quot;sep&quot;>·</span> <b>팀장 (기여 40%)</b> <span class=&quot;sep&quot;>·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위"
+                data-en="Jun-Jul 2025 (team) · Sep 2025-Jan 2026 solo refactor <span class=&quot;sep&quot;>·</span> <b>team lead (40%)</b> <span class=&quot;sep&quot;>·</span> architecture, interview module, STT · ranked #1 in the program">2025.06 ~ 07(팀) · 2025.09 ~ 2026.01 혼자 개선 <span class="sep">·</span> <b>팀장 (기여 40%)</b> <span class="sep">·</span> 아키텍처 · 면접 시스템 · STT · 과정 내 1위</div>
               <div class="pc-hash mono">
                 <span>#Multimodal</span><span>#LangGraph</span><span>#MSA</span><span>#TeamLead</span>
               </div>
@@ -2069,10 +2069,9 @@
                         둡니다.
                       </li>
                       <li
-                        data-ko="<b>LLM 제공사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class=&quot;mono&quot;>agent/utils/llm.py</span>)을 거쳐 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다."
-                        data-en="<b>The LLM provider swaps in one line</b>: every call goes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory and picks one of <span class=&quot;mono&quot;>nvidia | ollama | openai</span>. When a provider went down, it really was swapped.">
-                        <b>LLM 제공사를 설정 한 줄로 바꿉니다</b>: 모든 AI 호출이 한 파일(<span class="mono">agent/utils/llm.py</span>)을 거쳐
-                        <span class="mono">nvidia | ollama | openai</span> 중 하나를 고릅니다. 제공 회사에 장애가 났을 때 실제로 바꿔 끼웠습니다.
+                        data-ko="<b>영상 하나에서 세 가지를 따로 뽑아 합칩니다</b>: 면접 영상에서 표정(DeepFace) · 자세와 시선(MediaPipe) · 음성(Whisper 전사)을 각각 분석한 뒤 합쳐, 언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도 6개 항목 리포트로 냅니다. 이 리포트는 면접관이 참고하는 자료이고, 점수는 사람이 매깁니다."
+                        data-en="<b>One video, three analyses, one report</b>: facial expression (DeepFace), posture and gaze (MediaPipe) and speech (Whisper transcription) are analysed separately, then merged into a six-axis report - speech, behaviour, traits, cognition, fit and reliability. The report is reference material for the interviewer; a person sets the score.">
+                        <b>영상 하나에서 세 가지를 따로 뽑아 합칩니다</b>: 면접 영상에서 표정(DeepFace) · 자세와 시선(MediaPipe) · 음성(Whisper 전사)을 각각 분석한 뒤 합쳐, 언어 · 비언어 · 심리 · 인지 · 직무 · 신뢰도 6개 항목 리포트로 냅니다. 이 리포트는 면접관이 참고하는 자료이고, 점수는 사람이 매깁니다.
                       </li>
                     </ul>
                   </div>
@@ -2102,35 +2101,9 @@
                     </ul>
                   </div>
                   <div class="block">
-                    <div class="bh"><span class="star">◆</span> <span data-ko="이어서 개선하며 찾은 것 (2026.07 ~)"
-                        data-en="Found while improving it (Jul 2026-)">이어서 개선하며 찾은 것 (2026.07 ~)</span></div>
-                    <ul>
-                      <li
-                        data-ko="<b>서류 평가가 점수와 무관하게 전원 불합격이었습니다</b>: 종단으로 직접 태워 보니 아무도 면접 단계에 도달하지 못하는 상태였습니다. LangGraph 상태 스키마에 키가 없어 노드 반환값이 버려진 것이라, 값을 버리는 두 지점을 고치고 상태 키를 검사하는 계약 테스트와 읽기 전용 감사 스크립트를 더했습니다(경계값 70.00점 합격 전이 확인 · 피해 레코드 0건)."
-                        data-en="<b>Document review recorded every applicant as rejected</b>, regardless of score: running it end to end showed nobody could reach the interview stage. The LangGraph state schema had no key for the value, so the node's return was dropped. Both drop points were fixed, with a contract test on state keys and a read-only audit script (pass transition confirmed at the 70.00 boundary, zero affected records).">
-                        <b>서류 평가가 점수와 무관하게 전원 불합격이었습니다</b>: 종단으로 직접 태워 보니 아무도 면접 단계에 도달하지 못하는 상태였습니다. LangGraph 상태 스키마에 키가 없어 노드 반환값이 버려진 것이라, 값을 버리는 두 지점을 고치고 상태 키를 검사하는 계약 테스트와 읽기 전용 감사 스크립트를 더했습니다(경계값 70.00점 합격 전이 확인 · 피해 레코드 0건).
-                      </li>
-                      <li
-                        data-ko="<b>LLM 호출 하나가 서버 전체를 멈췄습니다</b>: 비동기 핸들러 안에서 LLM을 동기로 부르고 있어, LLM 요청 중 헬스체크가 17.05초 걸렸습니다. 느린 호출을 네 가지로 분류해 처리하고(17.05초 → 0.02초), AST 스캐너로 다시 생기지 않게 막았습니다."
-                        data-en="<b>One LLM call froze the whole server</b>: async handlers called the LLM synchronously, so a health check took 17.05 s during an LLM request. Slow calls were sorted into four kinds and handled (17.05 s → 0.02 s), and an AST scanner blocks regressions.">
-                        <b>LLM 호출 하나가 서버 전체를 멈췄습니다</b>: 비동기 핸들러 안에서 LLM을 동기로 부르고 있어, LLM 요청 중 헬스체크가 17.05초 걸렸습니다. 느린 호출을 네 가지로 분류해 처리하고(17.05초 → 0.02초), AST 스캐너로 다시 생기지 않게 막았습니다.
-                      </li>
-                      <li
-                        data-ko="<b>서비스 사이에는 파일 경로 대신 객체 참조</b>: 파일 경로 문자열을 주고받아 음성 업로드가 항상 실패했습니다. MinIO 객체 참조(<span class=&quot;mono&quot;>MediaObjectRef</span>)로 계약을 바꾸고, 옮기기 전에 소비자부터 세어 음성 경로 7개 중 실제로 쓰이던 1개만 stt-service로 이관하고 6개는 삭제했습니다. AI 서버 이미지가 3.6GB → 2.15GB가 됐습니다."
-                        data-en="<b>Object references instead of file paths</b>: services passed file-path strings, so voice uploads always failed. The contract moved to MinIO object references (<span class=&quot;mono&quot;>MediaObjectRef</span>) and transcription split into a stateless stt-service; the agent image went from 3.6 GB to 2.15 GB.">
-                        <b>서비스 사이에는 파일 경로 대신 객체 참조</b>: 파일 경로 문자열을 주고받아 음성 업로드가 항상 실패했습니다. MinIO 객체 참조(<span class="mono">MediaObjectRef</span>)로 계약을 바꾸고, 옮기기 전에 소비자부터 세어 음성 경로 7개 중 실제로 쓰이던 1개만 stt-service로 이관하고 6개는 삭제했습니다. AI 서버 이미지가 3.6GB → 2.15GB가 됐습니다.
-                      </li>
-                      <li
-                        data-ko="<b>녹색이 무엇을 보고 있는지 확인했습니다</b>: 스모크 테스트의 통과 하나가 호스트 포트를 점유한 다른 프로젝트 컨테이너를 보고 나온 거짓이었습니다. 검사를 <span class=&quot;mono&quot;>docker exec</span> 컨테이너 내부 확인으로 바꾸고 SKIP을 성공과 구분했습니다. 완료 조건도 자동 테스트 · 실측 · 그 데이터를 읽는 화면 확인 세 칸으로 나눴습니다."
-                        data-en="<b>Checking what a green test looks at</b>: one smoke-test pass turned out to be reading another project's container that held the host port. Checks moved inside the container with <span class=&quot;mono&quot;>docker exec</span>, SKIP was separated from success, and the definition of done was split into an automated test, a measurement and a check on the screen that reads the data.">
-                        <b>녹색이 무엇을 보고 있는지 확인했습니다</b>: 스모크 테스트의 통과 하나가 호스트 포트를 점유한 다른 프로젝트 컨테이너를 보고 나온 거짓이었습니다. 검사를 <span class="mono">docker exec</span> 컨테이너 내부 확인으로 바꾸고 SKIP을 성공과 구분했습니다. 완료 조건도 자동 테스트 · 실측 · 그 데이터를 읽는 화면 확인 세 칸으로 나눴습니다.
-                      </li>
-                      <li
-                        data-ko="<b>회사 간 데이터 분리</b>: 다른 회사 토큰으로도 지원자 목록이 보였습니다. 55개 라우트에 회사 범위 검사를 붙이고, 인증 없는 라우트가 다시 늘면 실패하는 인가 래칫을 테스트로 두었습니다(인증 없는 라우트 143 → 98)."
-                        data-en="<b>Tenant isolation</b>: another company&#39;s token could read the applicant list. 55 routes got company scoping, and an authorization-ratchet test fails if unauthenticated routes grow again (143 → 98 unauthenticated).">
-                        <b>회사 간 데이터 분리</b>: 다른 회사 토큰으로도 지원자 목록이 보였습니다. 55개 라우트에 회사 범위 검사를 붙이고, 인증 없는 라우트가 다시 늘면 실패하는 인가 래칫을 테스트로 두었습니다(인증 없는 라우트 143 → 98).
-                      </li>
-                    </ul>
+                    <div class="bh"><span class="star">◆</span> <span data-ko="현재 코드에 대해" data-en="About the current code">현재 코드에 대해</span></div>
+                    <p data-ko="지금 GitHub 레포는 2026.07부터 환경 분리 등 전면 리팩토링을 진행하고 있어, 코드가 이 설명과 다를 수 있습니다. 이 카드는 팀 기간과 1차 개선(2025.09 ~ 2026.01) 기준입니다."
+                      data-en="The GitHub repo has been under a full refactor (environment separation and more) since Jul 2026, so the code may differ from this description. This card describes the team phase and the first solo round (Sep 2025-Jan 2026).">지금 GitHub 레포는 2026.07부터 환경 분리 등 전면 리팩토링을 진행하고 있어, 코드가 이 설명과 다를 수 있습니다. 이 카드는 팀 기간과 1차 개선(2025.09 ~ 2026.01) 기준입니다.</p>
                   </div>
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 상세 - 누르면 상세 보기 창이 뜹니다"
@@ -2149,8 +2122,8 @@
                   <div class="impact block">
                     <div class="bh"><span class="star">★</span> <span data-ko="결과 - 만든 것"
                         data-en="Results - what was built">결과 - 만든 것</span></div>
-                    <p data-ko="<b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>이어서 개선 1차(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 그래프 <b>9노드 → 4노드</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지).<br><b>2차(2026.07 ~ 진행 중)</b>: 2026-09-22 기준 스프린트 7개를 돌며 위의 것들을 고쳤고, 고친 것마다 다시 생기면 실패하는 테스트(계약 테스트 · AST 스캐너 · 인가 래칫)를 남겼습니다."
-                      data-en="<b>Team phase (Jun-Jul 2025)</b>: a demo prototype running from job posting → question generation → evaluation → video analysis → report, ranked #1 in the program. <b>Six services</b> under Docker Compose · <b>60</b> DB tables.<br><b>Continued solo, round 1 (Sep 2025-Jan 2026)</b>: APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · the document-review graph cut from <b>9 nodes to 4</b> · <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o).<br><b>Round 2 (Jul 2026-, ongoing)</b>: seven sprints as of 2026-09-22 fixed the issues above, each one leaving a test that fails if it comes back (contract tests, an AST scanner, an authorization ratchet)."><b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>이어서 개선 1차(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 그래프 <b>9노드 → 4노드</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지).<br><b>2차(2026.07 ~ 진행 중)</b>: 2026-09-22 기준 스프린트 7개를 돌며 위의 것들을 고쳤고, 고친 것마다 다시 생기면 실패하는 테스트(계약 테스트 · AST 스캐너 · 인가 래칫)를 남겼습니다.</p>
+                    <p data-ko="<b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>수료 후 혼자 개선(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 그래프 <b>9노드 → 4노드</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지)."
+                      data-en="<b>Team phase (Jun-Jul 2025)</b>: a demo prototype running from job posting → question generation → evaluation → video analysis → report, ranked #1 in the program. <b>Six services</b> under Docker Compose · <b>60</b> DB tables.<br><b>Solo refactor after the course (Sep 2025-Jan 2026)</b>: APIs regrouped from <b>34</b> flat routers into <b>eight domain packages</b> · <b>ten</b> AI/ML dependencies (torch, whisper, pyannote…) lifted out of the backend into <b>15</b> agent REST endpoints · the document-review graph cut from <b>9 nodes to 4</b> · <b>8 of 9</b> gpt-4o paths moved to 4o-mini (only precise interview-answer analysis stays on 4o)."><b>팀 기간(2025.06~07)</b>: 채용공고 등록 → 질문 생성 → 평가 → 영상 분석 → 보고서까지 이어지는 시연용 프로토타입을 만들어 과정 내 1위를 했습니다. 서비스 <b>6개</b>(Docker Compose) · DB 표 <b>60개</b>.<br><b>수료 후 혼자 개선(2025.09~2026.01)</b>: 한곳에 늘어놓았던 API 파일 <b>34개</b>를 기능별 <b>8묶음</b>으로 재정리 · 서버에 섞여 있던 AI 라이브러리 <b>10종</b>(torch·whisper·pyannote 등)을 걷어내 AI 서버 API <b>15개</b>로 이전 · 서류 평가 그래프 <b>9노드 → 4노드</b> · 비싼 모델(gpt-4o)을 쓰던 <b>9곳 중 8곳</b>을 저렴한 모델(4o-mini)로 교체(면접 답변 정밀 분석 1곳만 유지).</p>
                   </div>
                   <div class="pc-actions"><a class="gobtn solid" href="https://github.com/ttogle918/KOCRUIT"
                       target="_blank" rel="noopener"><span class="ic" data-ic="github"></span>GITHUB</a><a class="gobtn"
@@ -5966,11 +5939,11 @@
               <text class="dg-t" x="264" y="242">ChromaDB</text>
               <text class="dg-s" x="264" y="259">벡터</text>
               <rect class="dg-zone-gold" x="380" y="200" width="236" height="76" rx="10" />
-              <text class="dg-g" x="390" y="214">외부 - 교체 가능</text>
+              <text class="dg-g" x="390" y="214">외부</text>
               <rect class="dg-hold" x="390" y="222" width="216" height="46" rx="8" />
               <text class="dg-t" x="402" y="242">LLM 제공자</text>
-              <text class="dg-s" x="402" y="259">nvidia | ollama | openai</text>
-              <text class="dg-g" x="4" y="294">제공자 교체는 agent/utils/llm.py 팩토리에 env 한 줄 - 장애 때 실제로 갈아끼웠다</text>
+              <text class="dg-s" x="402" y="259">OpenAI GPT-4o · 4o-mini</text>
+              <text class="dg-g" x="4" y="294">같은 요청은 Redis에 24시간 저장해 두고 다시 쓴다</text>
             </svg>
           </div>
           <p data-ko="서비스를 나눈 기준은 규모가 아니라 <b>«상태를 갖느냐»</b>다. 세션·WebSocket·DB처럼 상태가 붙는 일은 백엔드(<span class=&quot;mono&quot;>:8000</span>)가, STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class=&quot;mono&quot;>:8001</span>)가 맡는다. Agent에서 <span class=&quot;mono&quot;>websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다."
@@ -5979,12 +5952,6 @@
             나눈 기준은 규모가 아니라 <b>«상태를 갖느냐»</b>다. 세션·WebSocket·DB처럼 상태가 붙는 일은 백엔드(<span class="mono">:8000</span>)가,
             STT·평가처럼 입력만 받아 답하면 되는 일은 Agent(<span class="mono">:8001</span>)가 맡는다. Agent에서 <span
               class="mono">websockets</span> 의존성을 아예 제거해 이 경계가 말이 아니라 코드로 남게 했다.</p>
-          <p data-ko="LLM은 특정 제공자에 묶지 않았다. 모든 호출이 <span class=&quot;mono&quot;>agent/utils/llm.py</span> 팩토리를 지나므로 <span class=&quot;mono&quot;>nvidia | ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로 갈아끼운 경로</b>다."
-            data-en="The LLM is not bound to one vendor. Every call passes through the <span class=&quot;mono&quot;>agent/utils/llm.py</span> factory, so moving between <span class=&quot;mono&quot;>nvidia | ollama | openai</span> is <b>one environment variable</b>. This is not a contingency on paper - <b>it was actually used when a provider went down.</b>">
-            LLM
-            은 특정 제공자에 묶지 않았다. 모든 호출이 <span class="mono">agent/utils/llm.py</span> 팩토리를 지나므로 <span class="mono">nvidia |
-              ollama | openai</span> 사이를 <b>환경변수 한 줄로</b> 옮긴다. 이건 대비만 해 둔 것이 아니라, <b>제공자 쪽 장애로 실제로
-              갈아끼운 경로</b>다.</p>
         </section>
 
         <section id="f-visang-qa" hidden>
