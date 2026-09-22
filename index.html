@@ -115,10 +115,10 @@
           <div class="pstar">★</div>
           <div class="pk mono" data-ko="구조 설계" data-en="Architecture">구조 설계</div>
           <h3 data-ko="Agent System Design" data-en="Agent System Design">Agent System Design</h3>
-          <p data-ko="에이전트 하나보다 그 에이전트가 들어갈 시스템 전체를 먼저 그립니다. 어떤 기능이 필요한지 정하고, 에이전트가 맡을 부분과 백엔드·DB가 맡을 부분을 나눈 뒤 설계합니다. LangGraph·MCP로 에이전트를 짜는 데서 끝내지 않고 FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다."
-            data-en="Before a single agent, I sketch the whole system it will live in. I decide which features are needed, split what the agent handles from what the backend and database handle, and then design. I don't stop at building agents with LangGraph and MCP; I've wired them through to FastAPI and Spring servers and the database myself.">
+          <p data-ko="에이전트 하나보다 그 에이전트가 들어갈 시스템 전체를 먼저 그립니다. 어떤 기능이 필요한지 정하고, 에이전트가 맡을 부분과 백엔드·DB가 맡을 부분을 나눈 뒤 설계합니다. LangGraph·MCP로 에이전트를 짜고, FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다."
+            data-en="Before a single agent, I sketch the whole system it will live in. I decide which features are needed, split what the agent handles from what the backend and database handle, and then design. I build agents with LangGraph and MCP, and I've wired them through to FastAPI and Spring servers and the database myself.">
             에이전트 하나보다 그 에이전트가 들어갈 시스템 전체를 먼저 그립니다. 어떤 기능이 필요한지 정하고, 에이전트가 맡을 부분과 백엔드·DB가 맡을 부분을 나눈 뒤 설계합니다.
-            LangGraph·MCP로 에이전트를 짜는 데서 끝내지 않고 FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다.</p>
+            LangGraph·MCP로 에이전트를 짜고, FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다.</p>
         </div>
         <div class="pillar reveal" data-d="1"><span class="pno mono">02</span>
           <div class="pstar">★</div>
@@ -202,7 +202,7 @@
               data-en="Security / Observability / Client">보안 · 관측성 · 클라이언트</span></div>
           <div class="chips">
             <span class="chip key">SAST / DAST (OWASP ZAP)</span>
-            <span class="chip key">Prometheus · Grafana</span>
+            <span class="chip">Prometheus · Grafana</span>
             <span class="chip">Jaeger / OpenTelemetry</span>
             <span class="chip">AES-256-GCM · Argon2id</span>
             <span class="chip">CWE / OWASP 매핑</span>
@@ -1064,10 +1064,9 @@
                     <div class="pc-slide active">
                       <div class="fdiag">
                         <svg viewBox="0 0 400 200" role="img"
-                          aria-label="세 도메인 에이전트가 서로 직접 호출하고, 통합 오케스트레이터 자리는 아직 비어 있다">
-                          <rect class="dg-zone" x="100" y="6" width="200" height="40" rx="8" />
-                          <text class="dg-t" x="112" y="26">Orchestrator :9000</text>
-                          <text class="dg-s" x="112" y="41">아직 없다</text>
+                          aria-label="세 도메인 에이전트가 중간 허브 없이 서로 직접 호출한다">
+                          <text class="dg-g" x="10" y="36">세 에이전트가 서로 직접 호출</text>
+                          <text class="dg-s" x="10" y="58">에이전트가 3개라 중간 어댑터 없이 레포끼리 연결</text>
                           <rect class="dg-box" x="10" y="90" width="112" height="52" rx="8" />
                           <text class="dg-t" x="20" y="112">MaintQ</text>
                           <text class="dg-s" x="20" y="130">:9003 제조</text>
@@ -1079,8 +1078,7 @@
                           <rect class="dg-box" x="278" y="90" width="112" height="52" rx="8" />
                           <text class="dg-t" x="288" y="112">InsuQ</text>
                           <text class="dg-s" x="288" y="130">:9002 보험</text>
-                          <text class="dg-g" x="10" y="170">지금은 P2P 직접 호출</text>
-                          <text class="dg-s" x="10" y="190">허브 자리는 비워 두고 계약만 먼저 고정했다</text>
+                          <text class="dg-s" x="10" y="176">약속(Agent Card · Task 스키마)만 QMesh 한곳에</text>
                         </svg>
                       </div>
                       <span class="cap2 mono" data-ko="세 도메인이 서로 직접 부른다"

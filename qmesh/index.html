@@ -257,7 +257,7 @@
             <line x1="428" y1="90" x2="608" y2="342" />
             <line x1="212" y1="375" x2="548" y2="375" />
           </g>
-          <!-- orchestrator dashed -->
+          <!-- 공통 약속 - 세 에이전트가 같은 스키마를 참조 (점선) -->
           <g stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 5" opacity=".65">
             <line x1="380" y1="204" x2="380" y2="92" />
             <line x1="322" y1="236" x2="196" y2="340" />
@@ -309,21 +309,21 @@
               fill="var(--insu)">Spring · FastAPI RAG</text>
           </g>
 
-          <!-- Orchestrator -->
+          <!-- QMesh - 중간 허브가 아니라 공통 약속을 모아 둔 곳 -->
           <g>
             <rect x="300" y="204" width="160" height="60" rx="11" fill="var(--accent-soft)" stroke="var(--accent)"
               stroke-width="1.4" />
             <text x="380" y="228" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14"
               font-weight="700" fill="var(--accent)">QMesh</text>
             <text x="380" y="247" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5"
-              fill="var(--accent)" data-ko="오케스트레이터 · 설계 단계" data-en="orchestrator · design stage">오케스트레이터 · 설계 단계</text>
+              fill="var(--accent)" data-ko="공통 약속 · 스키마" data-en="shared contracts · schemas">공통 약속 · 스키마</text>
           </g>
 
           <!-- caption -->
           <text x="380" y="446" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11"
-            fill="var(--faint)" data-ko="실선 = A2A 직접 호출 · 점선 = 통합 진입점 및 분산 트레이스 수집(설계)"
-            data-en="solid = direct A2A call · dashed = unified entrypoint &amp; trace collection (designed)">실선 = A2A
-            직접 호출 · 점선 = 통합 진입점 및 분산 트레이스 수집(설계)</text>
+            fill="var(--faint)" data-ko="실선 = A2A 직접 호출 · 점선 = 세 에이전트가 함께 쓰는 약속(스키마)"
+            data-en="solid = direct A2A call · dashed = the contracts all three share">실선 = A2A
+            직접 호출 · 점선 = 세 에이전트가 함께 쓰는 약속(스키마)</text>
         </svg>
 
         <div class="topo-legend">
@@ -351,8 +351,8 @@
             <tr>
               <td data-ko="조율" data-en="Coordination">조율</td>
               <td><b>QMesh</b></td>
-              <td class="n" data-ko="공통 약속 · 어댑터 · 테스트 (중앙 오케스트레이터는 설계 단계)" data-en="shared contracts · adapters · tests (central orchestrator at design stage)">공통 약속 · 어댑터 · 테스트 (중앙 오케스트레이터는 설계 단계)</td>
-              <td class="n" data-ko=":9000 (예정)" data-en=":9000 (planned)">:9000 (예정)</td>
+              <td class="n" data-ko="공통 약속 · 참조 어댑터 · 테스트 (에이전트가 3개라 중앙 허브 없이 직접 연결)" data-en="shared contracts · reference adapters · tests (three agents connect directly, no central hub)">공통 약속 · 참조 어댑터 · 테스트 (에이전트가 3개라 중앙 허브 없이 직접 연결)</td>
+              <td class="n" data-ko="- (허브 없음)" data-en="- (no hub)">- (허브 없음)</td>
             </tr>
             <tr>
               <td data-ko="금융" data-en="Finance">금융</td>
@@ -972,15 +972,15 @@
           </div>
         </div>
         <div class="rm-item">
-          <span class="st next" data-ko="다음" data-en="next">다음</span>
+          <span class="st hold" data-ko="두지 않음" data-en="not needed yet">두지 않음</span>
           <div>
-            <h4 data-ko="Orchestrator 본체(:9000) · maintq_a2a 어댑터 · 통합 docker-compose"
-              data-en="The orchestrator itself (:9000) · maintq_a2a adapter · unified docker-compose">Orchestrator
-              본체(:9000) · maintq_a2a 어댑터 · 통합 docker-compose</h4>
-            <p data-ko="지금은 세 에이전트가 서로 <b>직접</b> 호출한다. 중앙 오케스트레이터와 통합 기동 환경은 아직 설계 단계다 - README의 레포 구조에 적힌 <code>orchestrator/</code>·<code>contracts/</code>는 목표 구조이지 현재 상태가 아니다."
-              data-en="Today the three agents call each other <b>directly</b>. The central orchestrator and the unified compose environment are still designs - the <code>orchestrator/</code> and <code>contracts/</code> trees in the README describe the target layout, not what exists.">
-              지금은 세 에이전트가 서로 <b>직접</b> 호출한다. 중앙 오케스트레이터와 통합 기동 환경은 아직 설계 단계다 - README의 레포 구조에 적힌
-              <code>orchestrator/</code>·<code>contracts/</code>는 목표 구조이지 현재 상태가 아니다.</p>
+            <h4 data-ko="중앙 Orchestrator(:9000) - 에이전트가 늘면 그때"
+              data-en="A central orchestrator (:9000) - once there are more agents">중앙 Orchestrator(:9000) - 에이전트가 늘면 그때</h4>
+            <p data-ko="에이전트가 3개라 중간 허브나 별도 A2A 어댑터 서비스를 두지 않고, 세 에이전트가 서로 <b>직접</b> 호출한다. 약속(Agent Card · Task 스키마)만 QMesh 한곳에 모았다. 연결할 에이전트가 늘어 직접 호출이 복잡해지면 그때 중앙 오케스트레이터와 통합 기동 환경을 둔다 - README의 <code>orchestrator/</code>·<code>contracts/</code> 폴더 구조는 그때의 목표 구조다."
+              data-en="With three agents there is no hub or separate A2A adapter service; the agents call each other <b>directly</b>, and only the contracts (Agent Cards · Task schemas) live in QMesh. A central orchestrator and a unified compose environment come in once more agents make direct calls unwieldy - the <code>orchestrator/</code> and <code>contracts/</code> trees in the README describe that target.">
+              에이전트가 3개라 중간 허브나 별도 A2A 어댑터 서비스를 두지 않고, 세 에이전트가 서로 <b>직접</b> 호출한다. 약속(Agent Card · Task
+              스키마)만 QMesh 한곳에 모았다. 연결할 에이전트가 늘어 직접 호출이 복잡해지면 그때 중앙 오케스트레이터와 통합 기동 환경을 둔다 - README의
+              <code>orchestrator/</code>·<code>contracts/</code> 폴더 구조는 그때의 목표 구조다.</p>
           </div>
         </div>
         <div class="rm-item">
