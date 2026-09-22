@@ -623,7 +623,7 @@
       counter-increment: f;
       display: grid;
       grid-template-columns: 30px 1fr;
-      padding: 7px 0;
+      padding: 6px 0;
       border-bottom: 1px solid var(--line-2)
     }
 
@@ -656,7 +656,8 @@
       display: block;
       font-size: 13.5px;
       color: var(--muted);
-      line-height: 1.55
+      line-height: 1.55;
+      word-break: keep-all
     }
 
     /* ===== 표지 ===== */
@@ -796,6 +797,11 @@
     .about3 .p {
       font-size: 15px;
       line-height: 1.8
+    }
+
+    /* 문장마다 줄을 바꾸고, 한 문장이 두 줄이 되면 단어 단위로 끊는다 */
+    .about3 .p.lines {
+      word-break: keep-all
     }
 
     /* ===== 목차 ===== */
@@ -1129,6 +1135,32 @@
       font-size: 13.5px;
       color: var(--muted);
       line-height: 1.6
+    }
+
+    /* 시나리오 - 라벨 + 화살표 흐름 한 줄씩 */
+    ul.scn {
+      margin: 0;
+      padding: 0;
+      list-style: none
+    }
+
+    ul.scn li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      border-bottom: 1px dashed var(--line-2)
+    }
+
+    ul.scn li:last-child {
+      border-bottom: 0
+    }
+
+    ul.scn .lab {
+      font: 700 12px/1.9 var(--mono);
+      color: var(--gold-ink)
     }
 
     .dom {
@@ -1478,21 +1510,24 @@
         <div class="no">01</div>
         <h3><span class="star">★</span>구조 설계</h3>
         <div class="en">Agent System Design</div>
-        <p class="p">에이전트 하나보다 그 에이전트가 들어갈 시스템 전체를 먼저 그립니다. 어떤 기능이 필요한지 정하고, 에이전트가 맡을 부분과 백엔드·DB가 맡을 부분을
-          나눈 뒤 설계합니다. LangGraph·MCP로 에이전트를 짜는 데서 끝내지 않고 FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다.</p>
+        <p class="p lines">에이전트 하나보다 그 에이전트가 들어갈 시스템 전체를 먼저 그립니다.<br />
+          어떤 기능이 필요한지 정하고, 에이전트가 맡을 부분과 백엔드·DB가 맡을 부분을 나눈 뒤 설계합니다.<br />
+          LangGraph·MCP로 에이전트를 짜고, FastAPI·Spring 서버와 DB까지 직접 이어 봤습니다.</p>
       </div>
       <div class="card">
         <div class="no">02</div>
         <h3><span class="star">★</span>신뢰성</h3>
         <div class="en">Trusted AI (RAG &amp; Validation)</div>
-        <p class="p">AI가 틀렸을 때를 대비해, 사람이 근거를 보고 직접 판단할 수 있어야 한다고 생각합니다. 그래서 답에는 원문 근거를 붙였습니다. AI는 비서처럼
-          자료를 모아 주고, 책임이 따르는 작업은 사람이 직접 해야만 진행되게 했습니다.</p>
+        <p class="p lines">AI가 틀렸을 때를 대비해, 사람이 근거를 보고 직접 판단할 수 있어야 한다고 생각합니다.<br />
+          그래서 답에는 원문 근거를 붙였습니다.<br />
+          AI는 비서처럼 자료를 모아 주고, 책임이 따르는 작업은 사람이 직접 해야만 진행되게 했습니다.</p>
       </div>
       <div class="card">
         <div class="no">03</div>
         <h3><span class="star">★</span>도메인 적응력</h3>
         <div class="en">End-to-End &amp; Adaptability</div>
-        <p class="p">보안·무역·채용·제조·보험·금융. 새 분야를 만나면 그 일을 하는 사람의 하루부터 떠올려 보고, 무엇을 확인하는지 찾는 데서 시작합니다.</p>
+        <p class="p lines">보안·무역·채용·제조·보험·금융.<br />
+          새 분야를 만나면 그 일을 하는 사람의 하루부터 떠올려 보고, 무엇을 확인하는지 찾는 데서 시작합니다.</p>
       </div>
     </div>
     <nav class="toc">
@@ -1529,8 +1564,7 @@
       </div>
       <div class="card">
         <h3><span class="star">★</span>보안 · 관측성 · 클라이언트</h3>
-        <div class="sk"><span class="key">SAST / DAST (OWASP ZAP)</span><span class="key">Prometheus ·
-            Grafana</span><span>Jaeger / OpenTelemetry</span><span>AES-256-GCM · Argon2id</span><span>CWE / OWASP
+        <div class="sk"><span class="key">SAST / DAST (OWASP ZAP)</span><span>Prometheus · Grafana</span><span>Jaeger / OpenTelemetry</span><span>AES-256-GCM · Argon2id</span><span>CWE / OWASP
             매핑</span><span>SBOM · NVD CVE</span><span>Next.js / React / TS</span><span>VSCode Extension</span><span>Android
             (Kotlin·Compose)</span></div>
       </div>
@@ -1640,17 +1674,13 @@
     <div class="body g-55">
       <div class="col">
         <div class="fig topo">
-          <svg viewBox="0 0 640 330" role="img" aria-label="QMesh 통신 토폴로지">
+          <svg viewBox="0 76 640 250" role="img" aria-label="QMesh 통신 토폴로지">
             <defs>
               <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
                 orient="auto-start-reverse">
                 <path d="M0 0L10 5L0 10z" fill="#1a1d2b" />
               </marker>
             </defs>
-            <rect x="215" y="8" width="210" height="50" rx="10" fill="#fff" stroke="#9a9aa0" stroke-dasharray="5 4" />
-            <text x="320" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#63666f">Orchestrator
-              :9000</text>
-            <text x="320" y="48" text-anchor="middle" font-size="11.5" fill="#9a9aa0">아직 없음 · 설계 단계</text>
             <rect x="12" y="130" width="170" height="86" rx="12" fill="#fff" stroke="#c77a12" stroke-width="2" />
             <rect x="12" y="130" width="170" height="8" rx="4" fill="#c77a12" />
             <text x="97" y="166" text-anchor="middle" font-size="19" font-weight="800" fill="#1a1d2b">MaintQ</text>
@@ -1666,8 +1696,6 @@
             <text x="542" y="268" text-anchor="middle" font-size="19" font-weight="800" fill="#1a1d2b">InsuQ</text>
             <text x="542" y="288" text-anchor="middle" font-size="12" fill="#63666f">보험 · :9002</text>
             <text x="542" y="305" text-anchor="middle" font-size="11" fill="#9a9aa0">Spring + FastAPI RAG</text>
-            <path d="M215 40 L120 128" stroke="#c9c7bf" stroke-dasharray="4 4" fill="none" />
-            <path d="M425 40 L520 82" stroke="#c9c7bf" stroke-dasharray="4 4" fill="none" />
             <path d="M184 158 L452 128" stroke="#1a1d2b" stroke-width="1.8" fill="none" marker-end="url(#ar)" />
             <path d="M184 190 L452 270" stroke="#1a1d2b" stroke-width="1.8" fill="none" marker-end="url(#ar)" />
             <path d="M542 172 L542 228" stroke="#1a1d2b" stroke-width="1.8" fill="none" marker-end="url(#ar)" />
@@ -1680,7 +1708,7 @@
             <text x="552" y="198" font-size="11.5" font-weight="600" fill="#63666f">2차 홉</text>
             <text x="552" y="213" font-size="11" fill="#9a9aa0">S8 · S13</text>
           </svg>
-          <p class="cap" style="margin:0 0 6px">실선은 A2A 직접 호출, 점선은 허브 자리(설계)입니다. 허브는 비워 두고 계약만 먼저 고정했습니다.</p>
+          <p class="cap" style="margin:0 0 6px">세 에이전트가 서로 직접 부릅니다. 에이전트가 3개라 중간 어댑터를 따로 두지 않고 레포끼리 연결했고, 약속(Agent Card · Task 스키마)만 QMesh 한곳에 모았습니다.</p>
         </div>
         <div class="trace">
           POST <span class="a">/a2a/skills/assess-loan</span> · request_chain_id: <span
@@ -1699,29 +1727,32 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">문제</h3>
-          <p class="p">보험 · 금융 · 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하니, 한쪽에서 온 요청을
-            <b>어디까지 믿고 무엇까지 보여 줘야 하는지</b>부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인과
-            사람의 승인 대기는 따로 설계해야 했습니다.</p>
+          <ul class="b">
+            <li>보험 · 금융 · 설비 보전 에이전트를 각각 만든 뒤, 셋을 <b>서로 다른 회사로 가정</b>하고 연결</li>
+            <li>막힌 곳: 다른 회사에서 온 요청을 <b>어디까지 믿고, 무엇까지 보여 줄지</b></li>
+            <li>MCP는 AI가 자기 도구를 쓰는 방식이라, <b>신원 확인 · 사람 승인 대기</b>는 따로 설계</li>
+          </ul>
         </div>
         <div class="blk">
           <h3 class="h">구현한 시나리오</h3>
-          <p class="p">공장에서 설비가 고장 나면 <span class="dom mnt">MaintQ</span>가 <span class="dom ins">InsuQ</span>에서 약관
-            조항을 근거와 함께 받아 오고, 부품을 발주하면 대금 출금 요청이 <span class="dom fin">FinAllQ</span> 결재함에 도착합니다. 설비를 담보로 대출을
-            신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인합니다. 이 이야기에 나오는 연결 7가지를 목킹 없이 실제 시스템끼리 하나씩 끝까지 돌려 확인했습니다.</p>
+          <ul class="scn">
+            <li><span class="lab">고장</span><span>설비 에러 → <span class="dom mnt">MaintQ</span>가 <span class="dom ins">InsuQ</span>에 약관 조회 → 근거 조항과 함께 «판단 보류»로 회신</span></li>
+            <li><span class="lab">발주</span><span>부품 발주 → 공장 팀장 · 재무팀 승인 → <span class="dom fin">FinAllQ</span> 결재함 도착 → 은행 결재(사람) 뒤 출금</span></li>
+            <li><span class="lab">대출</span><span>설비 담보 대출 신청 → <span class="dom fin">FinAllQ</span> LTV 판정 → <span class="dom ins">InsuQ</span> 담보 보험 확인 → 조건부 판정</span></li>
+            <li><span class="lab">처분</span><span>설비 처분 → <span class="dom fin">FinAllQ</span> 정산으로 처분 제한 해제 → <span class="dom ins">InsuQ</span>에 처분 통지 → 최종 서명은 사람</span></li>
+          </ul>
+          <p class="p sm muted" style="margin-top:4px">연결 7가지를 목킹 없이 실제 시스템끼리 하나씩 확인</p>
         </div>
         <div class="blk">
           <h3 class="h">제가 내린 결정</h3>
           <div class="dec"><span class="k">신원</span>
-            <div><b>보낸 회사와 자료 주인을 따로 확인합니다</b><span>요청을 보낸 회사(Actor)와 그 요청이 다루는 자료의 주인(Subject)을 나누고 나서야, 조회 ·
-                심사 · 돈 이동 순으로 허락 범위를 좁힐 수 있었습니다.</span></div>
+            <div><b>보낸 회사와 자료 주인을 따로 확인</b><span>Actor · Subject를 나눠 조회 → 심사 → 돈 이동 순으로 허락 범위를 좁힘</span></div>
           </div>
           <div class="dec"><span class="k">승인</span>
-            <div><b>돈이 움직이면 사람이 세 번 승인합니다</b><span>공장 팀장 · 공장 재무팀 · 은행 결재를 거칩니다. AI는 초안까지만 쓰고, 승인할 권한 자체가
-                없습니다.</span></div>
+            <div><b>돈이 움직이면 사람이 세 번 승인</b><span>공장 팀장 · 공장 재무팀 · 은행 결재. AI는 초안까지만, 승인 권한 없음</span></div>
           </div>
           <div class="dec"><span class="k">약속</span>
-            <div><b>약속에 없는 값은 오류로 알립니다</b><span>스키마에 없는 값은 502로 돌려줍니다 - 조용히 넘기면 틀린 값이 다음 회사까지 흘러가기
-                때문.</span></div>
+            <div><b>약속에 없는 값은 오류(502)로</b><span>조용히 넘기면 틀린 값이 다음 회사까지 흘러가기 때문</span></div>
           </div>
         </div>
       </div>
@@ -1769,38 +1800,40 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">문제</h3>
-          <p class="p">은행·증권을 한 화면에서 다루는 금융 비서는 이상거래 판정이나 이체 차단처럼 <b>나중에 이유를 설명해야 하는 결정</b>을 내립니다. 감사 기록에
-            «AI가 그렇게 판단했습니다»라고 적을 수는 없습니다.</p>
+          <ul class="b">
+            <li>은행 · 증권을 한 화면에 모은 금융 비서</li>
+            <li>이상거래 판정 · 이체 차단 등 금융 기능은 <b>이유를 설명해야 하는 결정</b></li>
+            <li>이유: 감사 기록에 «AI가 그렇게 판단했습니다»라고 적을 수 없음</li>
+          </ul>
         </div>
         <div class="blk">
           <h3 class="h">주요 기능</h3>
           <ol class="feat two">
             <li>
-              <div><b>통합 대시보드</b><span>은행과 증권을 합산하고, 규제 경고는 비율을 계산해 띄웁니다.</span></div>
+              <div><b>통합 대시보드</b><span>은행 + 증권 합산, 규제 경고는 비율 계산 결과</span></div>
             </li>
             <li>
-              <div><b>여신 심사 근거 카드</b><span>심사 때와 같은 판정 로직을 재사용해 화면과 심사가 갈라지지 않습니다.</span></div>
+              <div><b>여신 심사 근거 카드</b><span>심사와 같은 판정 로직 재사용 → 화면과 심사 결과 일치</span></div>
             </li>
             <li>
-              <div><b>여신 ↔ 이체 연결</b><span>서버가 «출금 가능»으로 판정할 때만 버튼이 나오고, 계좌는 사람이 입력합니다.</span></div>
+              <div><b>여신 ↔ 이체 연결</b><span>서버가 «출금 가능» 판정할 때만 버튼, 계좌는 사람이 입력</span></div>
             </li>
             <li>
-              <div><b>기업 이체 결재 (직무 분리)</b><span>신청한 사람에게는 취소 버튼만 있고 승인 버튼이 없습니다.</span></div>
+              <div><b>기업 이체 결재 (직무 분리)</b><span>신청자에게는 취소 버튼만 제공, 승인은 결재자(MANAGER)가</span></div>
             </li>
             <li>
-              <div><b>FDS 고위험 → 2FA 승격</b><span>결재가 끝나도 이상거래 탐지가 다시 평가해 추가 인증(TOTP)을 요구합니다.</span></div>
+              <div><b>FDS 고위험 → 2FA 승격</b><span>결재 후에도 이상거래 재평가, 고위험이면 추가 인증(TOTP)</span></div>
             </li>
             <li>
-              <div><b>스미싱 탐지</b><span>키워드 목록 대신 모델로 판정하고, 위험 단어를 근거로 보여 줍니다.</span></div>
+              <div><b>스미싱 탐지</b><span>키워드 목록 대신 모델로 판정, 위험 단어를 근거로</span></div>
             </li>
             <li>
-              <div><b>AI 비서</b><span>범위 밖 질문은 지어내지 않고, 결과를 못 받은 기능은 배너로 알립니다.</span></div>
+              <div><b>AI 비서</b><span>범위 밖 질문은 지어내지 않음, 실패한 기능은 배너로</span></div>
             </li>
           </ol>
         </div>
         <div class="uses push">
-          <div><span class="k">모델</span><span>IsolationForest (이상거래) · TF-IDF + LogisticRegression (스미싱). 생성형 AI 호출은
-              0건입니다(전수 검색).</span></div>
+          <div><span class="k">모델</span><span>IsolationForest (이상거래) · TF-IDF + LogisticRegression (스미싱) · 생성형 AI 0건</span></div>
           <div><span class="k">도구</span><span>MCP Hub 도구 20종을 질의 키워드 점수로 최대 3개까지 고릅니다.</span></div>
         </div>
       </div>
@@ -1829,19 +1862,24 @@
       <div class="col">
         <div class="card">
           <div class="k">결정 공간</div>
-          <h4>선택지가 닫혀 있었습니다</h4>
-          <p class="p">도구는 20종으로 정해져 있고 하는 일도 고정돼 있습니다. 닫힌 문제에 LLM을 넣으면 같은 질문에 같은 답이 보장되지 않고, 왜 그 도구를 골랐는지
-            설명할 수 없습니다. 그래서 질의와 도구의 키워드를 맞춰 점수가 높은 순으로 최대 3개를 고르게 했습니다.</p>
+          <h4>선택지가 닫힌 문제</h4>
+          <ul class="b">
+            <li>도구 20종, 하는 일도 고정 → <b>선택지가 닫힌 문제</b></li>
+            <li>LLM을 넣으면 같은 질문에 같은 답이 보장되지 않고, 고른 이유도 설명 불가</li>
+            <li>그래서 질의 · 도구 키워드 점수로 최대 3개를 고르는 규칙</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">감사</div>
-          <h4>금융은 근거를 남겨야 합니다</h4>
-          <p class="p">규칙은 어떤 입력이 어떤 규칙을 탔는지가 코드에 그대로 남아, 판정 근거를 감사 기록으로 옮길 수 있습니다. 답변에 실릴 수 있는 항목도 목록으로
-            정해 두었습니다.</p>
+          <h4>금융은 근거를 남겨야 함</h4>
+          <ul class="b">
+            <li>어떤 입력이 어떤 규칙을 탔는지가 코드에 남음 → 판정 근거를 감사 기록으로</li>
+            <li>답변에 실릴 수 있는 항목도 목록으로 고정</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">모델</div>
-          <h4>규칙이 안 되는 곳에만 모델을 썼습니다</h4>
+          <h4>규칙이 안 되는 곳에만 모델</h4>
           <ul class="b">
             <li>이상거래는 IsolationForest - 정상 패턴의 경계를 사람이 기준값으로 정할 수 없기 때문.</li>
             <li>스미싱은 TF-IDF + LogisticRegression - 문구 변형이 끝이 없어 키워드 목록은 바로 뚫리기 때문.</li>
@@ -1950,8 +1988,11 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">문제</h3>
-          <p class="p">보험금 판정이 틀리면 곧 누군가의 금전 손해입니다. 보험설계사는 고객 앞에서 <b>근거가 되는 약관 조항을 직접 보여 줄 수 있어야</b> 하는데,
-            «지급 가능/불가»만 알려 주는 답으로는 그럴 수 없습니다.</p>
+          <ul class="b">
+            <li>보험금 판정이 틀리면 곧 누군가의 <b>금전 손해</b></li>
+            <li>설계사는 고객 앞에서 근거 조항을 직접 보여 줘야 함</li>
+            <li>«지급 가능/불가»만 알려 주는 답으로는 불가능</li>
+          </ul>
         </div>
         <div class="blk">
           <h3 class="h">해결 방법 - 답변 형식을 코드로 고정했습니다</h3>
@@ -1998,27 +2039,35 @@
       <div class="col">
         <div class="card">
           <div class="k">검색</div>
-          <h4>작게 찾고 크게 답합니다</h4>
-          <p class="p sm">고객이 가입한 상품으로 먼저 좁혀 찾습니다. 조 · 항 구조를 살려 나눈 뒤 검색과 순위는 항 단위로 하고, 조 단위로 넓히는 것은 답을 만들기
-            직전에만 합니다. 찾은 조문이 다른 조문을 참조하면 같은 파트 안에서 깊이 제한을 두고 따라갑니다.</p>
+          <h4>작게 찾고 크게 답하기</h4>
+          <ul class="b">
+            <li>가입 상품으로 먼저 좁힘 → 항 단위로 검색 · 순위 → 답 만들기 직전에만 조 단위로 확장</li>
+            <li>참조 조문은 같은 파트 안에서 깊이 제한을 두고 따라감</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">인용 대조</div>
-          <h4>조 번호에 파트까지 맞춥니다</h4>
-          <p class="p sm">한 약관 안에서 제1조가 보통약관 · 특약 등 여러 파트에 동시에 있습니다(한 상품에서 3곳 확인). 조 번호만 맞추면 모델이 다른 파트의 같은 조
-            번호를 지어내도 걸러지지 않기 때문입니다.</p>
+          <h4>조 번호에 파트까지 대조</h4>
+          <ul class="b">
+            <li>한 약관 안에 제1조가 보통약관 · 특약 등 여러 파트에 있음 (한 상품에서 3곳)</li>
+            <li>조 번호만 맞추면 다른 파트의 같은 번호를 지어내도 통과 → 파트까지 대조</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">단정 금지</div>
           <h4>조사 하나로 샌 구멍</h4>
-          <p class="p sm">«지급 가능합니다»는 잡는데 «지급이 가능합니다»는 통과한 적이 있습니다. 고치면서 탐지 범위만 넓히지 않고 잘못 잡는 비율도 함께 쟀습니다(저장된
-            답변 287건 중 새로 걸린 것 0건).</p>
+          <ul class="b">
+            <li>«지급 가능합니다»는 잡고 «지급이 가능합니다»는 통과한 적 있음</li>
+            <li>탐지를 넓히면서 잘못 잡는 비율도 측정 (저장 답변 287건 중 새로 걸린 것 0건)</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">캐시</div>
           <h4>캐시가 안전장치를 우회하지 못하게</h4>
-          <p class="p sm">캐시 키에 상품 필터 · 모델 · 프롬프트 본문 · 인덱스 버전을 모두 넣었습니다. 상품 필터를 빠뜨리면 «다른 고객 계약을 인용하지 않는다»가
-            캐시로 뚫리기 때문입니다.</p>
+          <ul class="b">
+            <li>캐시 키 = 상품 필터 · 모델 · 프롬프트 본문 · 인덱스 버전</li>
+            <li>상품 필터가 빠지면 다른 고객 계약을 인용하게 되기 때문</li>
+          </ul>
         </div>
       </div>
 
@@ -2107,8 +2156,11 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">문제</h3>
-          <p class="p">공장 설비(인버터·PLC)에 에러가 뜨면 정비사는 PDF 매뉴얼을 10~30분씩 뒤지고, 부품은 전화와 엑셀로 주문합니다. 기존 설비관리
-            시스템(CMMS)은 이력·재고·주문을 기록할 뿐, <b>왜 에러가 났고 어떤 부품이 필요한지</b>는 판단하지 못합니다.</p>
+          <ul class="b">
+            <li>인버터 · PLC 에러 → 정비사가 PDF 매뉴얼을 10~30분씩 검색</li>
+            <li>부품은 전화 · 엑셀로 주문 → 매체가 계속 바뀌고 단계마다 대기가 생김</li>
+            <li>기존 설비관리 시스템(CMMS)은 기록만 할 뿐, <b>왜 에러가 났고 어떤 부품이 필요한지</b>는 판단 못 함</li>
+          </ul>
         </div>
         <div class="blk">
           <h3 class="h">주요 기능</h3>
@@ -2165,8 +2217,10 @@
 
     <div class="body g-46">
       <div class="col">
-        <p class="p">두 모델의 부품 특정 정확도가 45.6%와 51.0%로 비슷해서 차이가 없다고 넘길 뻔했습니다. 안을 열어 보니 한쪽은 틀린 부품을 자신 있게
-          골랐고(오특정), 다른 쪽은 답을 내지 않았습니다(미특정). 같은 실패로 합치면 더 위험한 쪽이 더 좋아 보여서, 두 실수를 따로 세고 지시문만 바꿔 비교했습니다.</p>
+        <ul class="b">
+          <li>두 모델 정확도 45.6% vs 51.0% → 차이 없다고 넘기려 했으나, 안을 열어 보니 한쪽은 <b>틀린 부품을 확신</b>(오특정), 다른 쪽은 <b>답을 안 냄</b>(미특정)</li>
+          <li>합치면 더 위험한 쪽이 더 좋아 보임 → 두 실수를 따로 세고, 지시문만 바꿔 비교</li>
+        </ul>
         <table class="t" style="margin-top:16px">
           <thead>
             <tr>
@@ -2222,15 +2276,20 @@
       <div class="col">
         <div class="card">
           <div class="k">도구 경계</div>
-          <h4>조회와 검색을 다른 도구로 나눴습니다</h4>
-          <p class="p sm">도구 22종 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 적었습니다. 정확히 맞아야 하는 에러코드 조회에 검색을 쓰면 «그럴듯한 다른 코드»가
-            올라오기 때문에 조회 도구를 따로 두었습니다. 실패도 오류로 던지지 않고 정해진 상태값으로 돌려줘, 에이전트가 다음 행동을 고를 수 있게 했습니다.</p>
+          <h4>조회와 검색을 다른 도구로</h4>
+          <ul class="b">
+            <li>도구 22종마다 «언제 쓰고 언제 쓰면 안 되는지»를 명시</li>
+            <li>에러코드 조회에 검색을 쓰면 «그럴듯한 다른 코드»가 올라옴 → 정확 조회 도구를 따로</li>
+            <li>실패도 오류 대신 정해진 상태값으로 → 에이전트가 다음 행동을 고름</li>
+          </ul>
         </div>
         <div class="card">
           <div class="k">쓰기</div>
-          <h4>AI는 초안만, 신원은 서버가 넣습니다</h4>
-          <p class="p sm">쓰기 도구는 3종이고 셋 다 초안만 만듭니다. 승인 · 반려 · 서명은 사람 전용 화면에서만 일어납니다. 요청한 사람의 신원도 도구에 넘기는
-            값으로 받지 않고 서버가 넣어서, AI가 신원을 꾸며 낼 길이 없습니다.</p>
+          <h4>AI는 초안만, 신원은 서버가</h4>
+          <ul class="b">
+            <li>쓰기 도구 3종은 모두 초안만 생성, 승인 · 반려 · 서명은 사람 전용 화면에서</li>
+            <li>요청자 신원은 도구 인자로 받지 않고 서버가 넣음 → AI가 신원을 꾸밀 길이 없음</li>
+          </ul>
         </div>
         <div class="blk" style="margin-top:16px">
           <h3 class="h">한계</h3>
@@ -2301,8 +2360,10 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">문제</h3>
-          <p class="p">팀 프로젝트에서 AI로 코드를 쓰다 보니 .env 파일이 깃에 올라가고, API 키가 코드에 그대로 박히는 일이 반복됐습니다. <b>AI가 쓴 코드를
-              그대로 믿으면 안 되겠다</b>고 생각해 보안 분석 도구를 만들기 시작했습니다.</p>
+          <ul class="b">
+            <li>팀 프로젝트에서 AI로 코드를 쓰다 보니 .env가 깃에 올라가고 API 키가 코드에 박히는 일이 반복</li>
+            <li><b>AI가 쓴 코드를 그대로 믿으면 안 된다</b>고 판단 → 보안 분석 도구 개발 시작</li>
+          </ul>
         </div>
         <div class="blk">
           <h3 class="h">해결 방법</h3>
@@ -2353,18 +2414,20 @@
       <div class="col">
         <div class="blk">
           <h3 class="h">처음 분석에서 생긴 일</h3>
-          <p class="p">안전한 React 화면 코드를 XSS 취약점으로, 테스트용 가짜 데이터를 '심각'으로 잡는 일이 많았습니다. 유형별로 나눠 보니 원인이 달라서 따로
-            고쳤습니다.</p>
-          <ul class="b" style="margin-top:6px">
-            <li>프레임워크가 막아 주는 패턴은 프레임워크 규칙을 알려 줬습니다.</li>
-            <li>테스트 파일은 분석 전에 미리 뺐습니다.</li>
-            <li>보안이 아닌 코드 품질 문제는 따로 분류했습니다.</li>
+          <ul class="b">
+            <li>안전한 React 코드를 XSS로, 테스트용 가짜 데이터를 '심각'으로 오탐 → 유형별로 나눠 보니 원인이 다름</li>
+            <li>프레임워크가 막아 주는 패턴 → 프레임워크 규칙을 알려 줌</li>
+            <li>테스트 파일 → 분석 전에 제외</li>
+            <li>보안이 아닌 코드 품질 문제 → 따로 분류</li>
           </ul>
         </div>
         <div class="blk">
           <h3 class="h">가이드라인은 길수록 좋지 않았습니다</h3>
-          <p class="p sm">보안 지식을 자세히 넣을수록 좋을 줄 알고 6만 자가 넘는 가이드라인을 넣었더니, 아무것도 넣지 않았을 때보다 오탐이 크게 늘었습니다. 무엇을 찾아야
-            하는지만 남기자 탐지율이 올라갔습니다.</p>
+          <ul class="b">
+            <li>6만 자 가이드라인 → 오탐이 오히려 증가 (23.6% → 43.1%)</li>
+            <li>설명을 걷어냄 → 오탐은 줄었지만 탐지율도 하락</li>
+            <li>찾을 항목만 남김 → 탐지율 81.6%</li>
+          </ul>
           <table class="t" style="margin-top:8px">
             <thead>
               <tr>
