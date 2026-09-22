@@ -38,7 +38,7 @@
 | 03 | SpendQ | `spendq` | 미정 | - | ⬜ |
 | 04 | SecureAI Engine | `secureai` | 미정 | - | ⬜ |
 | 05 | K-Bridge | `k-bridge` | A | <https://ttogle918.github.io/k-bridge/> | ✅ |
-| 06 | KOCRUIT | `kocruit` | 미정 | - | ⬜ |
+| 06 | KOCRUIT | `kocruit` | A | <https://ttogle918.github.io/kocruit/> | ✅ |
 | 07 | 질문-답변 검색 (비상교육) | `visang-qa` | 미정 | - | ⬜ |
 | 08 | 이탈 고객 예측 (비상교육) | `visang-churn` | 미정 | - | ⬜ |
 
