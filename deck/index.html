@@ -2493,12 +2493,370 @@
     <div class="foot"><span>★ 02 SecureAI Engine · 고민한 문제</span><span class="pno"></span></div>
   </section>
 
-  <!-- ============ 요약 A - 하네스 · KeyLens · SpendQ ============ -->
-  <section class="slide" data-toc="03 KeyLens · 04 SpendQ · 하네스">
+  <!-- ============ 03 K-Bridge ① ============ -->
+  <section class="slide" data-toc="03 K-Bridge - 무역 규제 분석 (팀)" data-main>
+    <header class="ph">
+      <div class="ph-l">
+        <div class="ph-no">03</div>
+        <div>
+          <p class="ph-kicker">수출입 품목 번호(HS코드)로 규제를 자동 분석하는 AI</p>
+          <h2 class="ph-title">K-Bridge<span class="badge">★ AI AGENT 대표작</span></h2>
+        </div>
+      </div>
+      <div class="ph-r">
+        2025.08 ~ 2025.10 · 팀 4인 (기여 25%)<br />요건 분석 · 요건-판례 교차 검증 담당
+        <div class="links"><a href="https://github.com/Suracle/ai-engine">GitHub</a><a
+            href="https://ttogle918.github.io/k-bridge/">상세 페이지</a></div>
+      </div>
+    </header>
+    <div class="tagrow">
+      <div class="tags"><span>도메인적응력</span><span>무역행정자동화</span><span>CrossValidation</span><span>LangGraph</span></div>
+      <div class="role">팀 프로젝트 · 모듈을 나눠 만든 뒤 AI 엔진 하나로 통합</div>
+    </div>
+
+    <div class="body g-55">
+      <div class="col">
+        <div class="fig">
+          <div class="flow">
+            <div class="st">키워드<br />추출<small>3단계 폴백</small></div><span class="ar">→</span>
+            <div class="st">기관<br />고르기<small>HS코드 → 기관</small></div><span class="ar">→</span>
+            <div class="st">공공 API ·<br />공식 웹<small>FDA · EPA 등</small></div><span class="ar">→</span>
+            <div class="st ai">통합 ·<br />검증<small>4축 병렬 + 등급</small></div><span class="ar">→</span>
+            <div class="st">최종<br />정리<small>15개 항목</small></div>
+          </div>
+          <div class="flow-out">
+            <div><b>네 축 동시 분석</b>세부 규정 · 시험 절차 · 처벌 · 유효 기간</div>
+            <div><b>판례와 교차 검증</b>빠지거나 과한 요건을 표시합니다.</div>
+            <div><b>신뢰도 등급</b>RELIABLE · NEEDS_REVIEW · UNRELIABLE</div>
+          </div>
+          <p class="cap" style="margin:0 14px 12px">요건 분석 LangGraph 흐름(제 담당). 같은 HS코드를 이미 분석했으면 저장해 둔 결과를 복사합니다.</p>
+        </div>
+        <div class="shots2">
+          <div>
+            <div class="fig crop"><img style="height:170px" src="img/kbridge-requirement-verdict.jpg" alt="관세 · 요건 · 판례 분석 화면" /></div>
+            <p class="cap"><b>분석 결과</b>. 요건 분석에 신뢰도(85%)가 함께 붙습니다.</p>
+          </div>
+          <div>
+            <div class="fig crop"><img style="height:170px" src="img/kbridge-precedent-cross.jpg" alt="CBP CROSS 판정문" /></div>
+            <p class="cap"><b>판례 카드</b>를 누르면 미국 세관의 실제 판정문이 열립니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="blk">
+          <h3 class="h">문제</h3>
+          <ul class="b">
+            <li>미국 소액면세 제도가 없어지면서 작은 수출 판매자도 규제를 직접 챙겨야 하는 상황</li>
+            <li>요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냄 → <b>성능보다 틀린 답을 걸러내는 게 먼저</b></li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h3 class="h">해결 방법 - 제 담당</h3>
+          <ul class="b">
+            <li><b>공식 출처로만 좁혀 수집</b>: 미국 공공 데이터 API(openFDA · EPA CompTox · USDA · CPSC · FCC)를 먼저 쓰고, Tavily · SERP 검색은 기관 공식 도메인으로 한정했습니다.</li>
+            <li><b>판례와 교차 검증</b>: 모은 요건을 팀원이 분석한 미국 세관 판례와 대조해 빠지거나 과한 항목을 표시하고, 신뢰도 등급을 붙였습니다.</li>
+            <li><b>마지막 판단은 사람에게</b>: 판매자가 결과를 확신하지 못하면 관세사에게 바로 검토를 요청할 수 있습니다.</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h3 class="h">설계에서 신경 쓴 것</h3>
+          <ul class="b">
+            <li><b>네 축을 따로, 동시에</b>: 서로의 결과를 기다릴 필요가 없어 <code>asyncio.gather</code>로 함께 돌렸습니다.</li>
+            <li><b>모델이 멈춰도 이어지게</b>: 키워드 추출은 OpenAI → HuggingFace → 규칙 순으로 내려갑니다.</li>
+            <li><b>원문과 한국어를 함께 저장</b>: 판매자는 한국어로 읽고, 관세사는 원문으로 확인합니다.</li>
+          </ul>
+        </div>
+        <div class="uses push">
+          <div><span class="k">모델</span><span>gpt-4o-mini (요약 · 판례 요건 추출)</span></div>
+          <div><span class="k">도구</span><span>LangGraph · FastAPI · Tavily · SERP · openFDA · EPA CompTox · FAISS</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>★ 03 K-Bridge · 전체 설계</span><span class="pno"></span></div>
+  </section>
+
+  <!-- ============ 03 K-Bridge ② ============ -->
+  <section class="slide">
+    <header class="ph">
+      <div class="ph-l">
+        <div class="ph-no">03</div>
+        <div>
+          <p class="ph-kicker">K-Bridge · 고민한 문제</p>
+          <h2 class="ph-title">답마다 믿어도 되는 정도를 붙인 방법</h2>
+        </div>
+      </div>
+      <div class="ph-r">최종 발표 2025.10</div>
+    </header>
+    <div class="tagrow">
+      <div class="tags"><span>환각억제</span><span>판례검증</span><span>신뢰도등급</span></div>
+      <div class="role">근거 없이 «이게 맞다»고 말하지 않게 하는 장치</div>
+    </div>
+
+    <div class="body g-11">
+      <div class="col">
+        <div class="blk">
+          <h3 class="h">검증은 두 방향</h3>
+          <ul class="b">
+            <li><b>교차 검증</b>: FDA와 USDA처럼 기관끼리, 또는 연방과 주 규정끼리 어긋나는 곳이 있는지</li>
+            <li><b>판례 검증</b>: 분석한 요건이 비슷한 판례에서 뽑은 요건과 얼마나 겹치는지</li>
+            <li>판례는 팀원이 만든 판례 분석 흐름(CBP 판정문 수집 → FAISS 색인 → 비슷한 사례 5건)의 결과를 받아 씁니다.</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h3 class="h">통합 신뢰도 = 판례 40 + 교차 30 + 출처 30</h3>
+          <table class="t">
+            <thead>
+              <tr>
+                <th>구성</th>
+                <th class="num">비중</th>
+                <th>보는 것</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>판례 검증</td>
+                <td class="num">40%</td>
+                <td>판례에만 있는 요건은 «누락», 분석에만 있는 요건은 «과잉»으로 표시</td>
+              </tr>
+              <tr>
+                <td>교차 검증</td>
+                <td class="num">30%</td>
+                <td>기관 간 · 연방과 주 사이 규정 충돌</td>
+              </tr>
+              <tr>
+                <td>출처 신뢰도</td>
+                <td class="num">30%</td>
+                <td>근거 문서 가운데 정부 공식 도메인(.gov) 비율</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout push"><b>마지막 판단은 사람에게 넘깁니다.</b> 등급이 NEEDS_REVIEW이거나 판매자가 확신하지 못하면 관세사 검토를 요청합니다. 관세사는
+          AI 분석 세 가지를 그대로 보면서 승인 · 반려하고, HS코드 수정을 제안합니다.</div>
+      </div>
+
+      <div class="col">
+        <div class="blk">
+          <h3 class="h">실제 결과 한 건</h3>
+          <table class="t">
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>판례 일치도</td>
+                <td><b>0.85</b> · 대조한 판례 12건</td>
+              </tr>
+              <tr>
+                <td>일치한 요건</td>
+                <td>FDA VCRP Registration ↔ HQ_H304567 (유사도 0.95)</td>
+              </tr>
+              <tr>
+                <td>누락으로 표시</td>
+                <td>미생물 검사 필요 ← HQ_H305123 (심각도 medium)</td>
+              </tr>
+              <tr class="hl">
+                <td>판정</td>
+                <td><b>RELIABLE</b> · 통합 신뢰도 0.87 HIGH</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="p sm muted" style="margin-top:8px">등급이 RELIABLE이어도 판례에만 있는 요건은 따로 표시해, 판매자가 놓치지 않게 했습니다.</p>
+        </div>
+        <div class="blk">
+          <h3 class="h">최종 보고서 15개 항목</h3>
+          <p class="p sm">핵심 조치사항 · 필수 서류 · 준수 절차 · 위험 요소 · 예상 비용 · 라벨링 · 시험 · 검사 절차 · 금지 성분 · 사전 신고 · 처벌 · 벌금 · 인증
+            유효 기간 · 면제 조건 · 판례 검증 결과 · 통합 신뢰도 · 시장 접근성</p>
+        </div>
+        <div class="blk">
+          <h3 class="h">한계 - 아직 안 된 것도 같이 적습니다</h3>
+          <div class="limits two">
+            <div class="limit"><b>효과는 재지 못함</b>팀 과제로 끝나 판매자가 요건을 찾는 시간이 얼마나 줄었는지는 측정하지 못했습니다.</div>
+            <div class="limit"><b>로그인 · 배포는 시연 범위</b>실제 서비스로 내려면 토큰 인증 · 비밀번호 암호화 · 환경별 설정부터 붙여야 합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>★ 03 K-Bridge · 고민한 문제</span><span class="pno"></span></div>
+  </section>
+
+  <!-- ============ 04 KOCRUIT ① ============ -->
+  <section class="slide" data-toc="04 KOCRUIT - 채용 관리 (팀)" data-main>
+    <header class="ph">
+      <div class="ph-l">
+        <div class="ph-no">04</div>
+        <div>
+          <p class="ph-kicker">AI Agent 기반 기업용 채용 관리 시스템</p>
+          <h2 class="ph-title">KOCRUIT</h2>
+        </div>
+      </div>
+      <div class="ph-r">
+        2025.06 ~ 07 팀 프로젝트 · 팀장 (기여 40%) · 과정 내 1위<br />2025.09 ~ 이어서 개선 중
+        <div class="links"><a href="https://github.com/ttogle918/KOCRUIT">GitHub</a><a
+            href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view">PPT</a></div>
+      </div>
+    </header>
+    <div class="tagrow">
+      <div class="tags"><span>Multimodal</span><span>LangGraph</span><span>MSA</span><span>TeamLead</span></div>
+      <div class="role">아키텍처 · 면접 시스템 · STT 담당</div>
+    </div>
+
+    <div class="body g-55">
+      <div class="col">
+        <div class="fig">
+          <div class="flow">
+            <div class="st">채용공고<br />등록<small>job post</small></div><span class="ar">→</span>
+            <div class="st ai">질문 · 평가표<br />미리 생성<small>LangGraph</small></div><span class="ar">→</span>
+            <div class="st ai">서류<br />평가<small>점수 + 근거</small></div><span class="ar">→</span>
+            <div class="st">면접<br />음성 · 영상<small>STT · 표정</small></div><span class="ar">→</span>
+            <div class="st">질문별<br />리포트<small>report</small></div>
+          </div>
+          <div class="flow-out">
+            <div><b>백엔드 :8000</b>면접 연결 상태 · 실시간 통신 · DB처럼 기억해야 하는 일</div>
+            <div><b>AI 서버 :8001</b>음성 인식 · 평가처럼 받아서 계산만 하는 일</div>
+            <div><b>분석 컨테이너 분리</b>PyTorch(음성)와 TensorFlow(표정)가 충돌</div>
+          </div>
+          <p class="cap" style="margin:0 14px 12px">AI는 점수와 근거까지만 내고, 합격 · 불합격은 사람이 정합니다.</p>
+        </div>
+        <div class="shots2">
+          <div>
+            <div class="fig crop"><img style="height:170px" src="img/kocruit-live-scoring.jpg" alt="여섯 항목 AI 분석 화면" /></div>
+            <p class="cap"><b>여섯 항목 AI 분석</b>은 참고용, 최종 점수는 사람이 매깁니다.</p>
+          </div>
+          <div>
+            <div class="fig crop"><img style="height:170px" src="img/kocruit-process-tracking.jpg" alt="지원자 단계 추적 화면" /></div>
+            <p class="cap"><b>지원자 41명의 단계</b>를 리스크 표시와 함께 한곳에서 봅니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="blk">
+          <h3 class="h">문제</h3>
+          <ul class="b">
+            <li>서류 검토와 면접 기록에 사람 손이 많이 가고, 면접관마다 평가 기준이 다름</li>
+            <li>AI로 돕되 <b>합격 · 불합격은 AI가 정하지 않게</b> 만드는 것이 목표</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h3 class="h">해결 방법</h3>
+          <ul class="b">
+            <li><b>기억하는 일과 계산만 하는 일을 분리</b>: AI 서버에서는 실시간 통신 기능(websockets)을 아예 빼서 둘이 섞일 여지를 없앴습니다.</li>
+            <li><b>질문은 면접 전에 미리</b>: 면접 중에 질문을 만들면 기다리는 시간 때문에 대화가 끊겨, 지원서가 들어오면 질문과 평가표를 미리 만듭니다.</li>
+            <li><b>LLM 제공사를 설정 한 줄로</b>: 모든 AI 호출이 한 파일을 거쳐 nvidia · ollama · openai 중 하나를 고릅니다. 제공사 장애 때 실제로 바꿔 끼웠습니다.</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h3 class="h">설계에서 신경 쓴 것</h3>
+          <ul class="b">
+            <li><b>DB는 바꾸고 화면과의 약속은 유지</b>: 채용 단계를 별도 표로 분리하면서 예전 칸 이름으로도 읽히게 해(SQLAlchemy @property) 화면 코드를 고치지 않고 옮겼습니다.</li>
+            <li><b>중복 AI 호출 줄이기</b>: 같은 요청은 24시간 캐시(Redis), 쉬운 작업은 저렴한 모델, 만든 결과는 DB에 보관합니다.</li>
+          </ul>
+        </div>
+        <div class="uses push">
+          <div><span class="k">모델</span><span>gpt-4o (면접 답변 정밀 분석) · gpt-4o-mini (나머지) · Whisper · pyannote</span></div>
+          <div><span class="k">도구</span><span>LangGraph · FastAPI · Redis · MinIO · MediaPipe · DeepFace · Docker Compose</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>★ 04 KOCRUIT · 전체 설계</span><span class="pno"></span></div>
+  </section>
+
+  <!-- ============ 04 KOCRUIT ② ============ -->
+  <section class="slide">
+    <header class="ph">
+      <div class="ph-l">
+        <div class="ph-no">04</div>
+        <div>
+          <p class="ph-kicker">KOCRUIT · 고민한 문제</p>
+          <h2 class="ph-title">팀 과제가 끝난 뒤 이어서 고친 것</h2>
+        </div>
+      </div>
+      <div class="ph-r">1차 2025.09 ~ 2026.01 · 2차 2026.07 ~ 진행 중</div>
+    </header>
+    <div class="tagrow">
+      <div class="tags"><span>계약테스트</span><span>비동기</span><span>인가래칫</span><span>비용절감</span></div>
+      <div class="role">고친 것마다 다시 생기면 실패하는 테스트를 남겼습니다</div>
+    </div>
+
+    <div class="body g-55">
+      <div class="col">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card">
+          <div class="k">데이터</div>
+          <h4>AI 점수가 DB에서 사라짐</h4>
+          <ul class="b">
+            <li>AI가 88점을 줬는데 DB에는 불합격으로 남음</li>
+            <li>LangGraph 상태 스키마에 키가 없어 노드 반환값이 버려진 것 → 두 지점을 고치고 상태 키 계약 테스트 추가</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">비동기</div>
+          <h4>LLM 호출 하나가 서버를 멈춤</h4>
+          <ul class="b">
+            <li>비동기 핸들러 안의 동기 LLM 호출 → LLM 요청 중 헬스체크 17.05초</li>
+            <li>느린 호출을 네 가지로 나눠 처리해 0.02초, AST 스캐너로 재발 방지</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">서비스 경계</div>
+          <h4>파일 경로 대신 객체 참조</h4>
+          <ul class="b">
+            <li>파일 경로 문자열을 주고받아 음성 업로드가 항상 실패</li>
+            <li>MinIO 객체 참조로 계약을 바꾸고 음성 전사를 stt-service로 분리</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">권한</div>
+          <h4>회사 간 데이터 분리</h4>
+          <ul class="b">
+            <li>다른 회사 토큰으로도 지원자 목록이 보임</li>
+            <li>55개 라우트에 회사 범위 검사, 인증 없는 라우트가 다시 늘면 실패하는 래칫 테스트(143 → 98)</li>
+          </ul>
+        </div>
+        </div>
+        <div class="callout push"><b>팀 기간에는 시연용 프로토타입</b>으로 과정 내 1위를 했습니다(서비스 6개 · DB 표 60개). 지금은 그 코드를 실제로 쓸 수 있게
+          고치면서, 찾은 문제를 다시 생기지 않게 막는 데 집중하고 있습니다.</div>
+      </div>
+
+      <div class="col">
+        <div class="blk">
+          <h3 class="h">1차 개선 결과</h3>
+          <div class="big2">
+            <div>
+              <div class="n">9 → 4회</div>
+              <div class="l">서류 평가 한 번에 드는 AI 호출</div>
+            </div>
+            <div>
+              <div class="n">3.6 → 2.15GB</div>
+              <div class="l">AI 서버 이미지 (음성 전사 분리)</div>
+            </div>
+          </div>
+          <ul class="b" style="margin-top:10px">
+            <li>비싼 모델(gpt-4o)을 쓰던 9곳 중 8곳을 gpt-4o-mini로 교체, 면접 답변 정밀 분석 1곳만 유지</li>
+            <li>한곳에 늘어놓았던 API 파일 34개를 기능별 8묶음으로 재정리</li>
+            <li>서버에 섞여 있던 AI 라이브러리 10종(torch · whisper · pyannote 등)을 걷어내 AI 서버 API 15개로 이전</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <div class="fig crop"><img style="height:170px" src="img/kocruit-ai-report.jpg" alt="질문별 면접 분석 리포트" /></div>
+          <p class="cap"><b>질문별 리포트</b>. 발화 속도 · 시선 · 자세까지 정리합니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>★ 04 KOCRUIT · 고민한 문제</span><span class="pno"></span></div>
+  </section>
+
+  <!-- ============ 요약 A - KeyLens · SpendQ ============ -->
+  <section class="slide" data-toc="05 KeyLens · 06 SpendQ">
     <h2 class="sec-title"><span class="star">★</span>MORE PROJECTS<span class="star">★</span></h2>
-    <div class="pcards c3">
+    <div class="pcards c2">
       <article class="pc">
-        <div class="pc-top"><span class="pc-no">03</span><span class="pc-meta">2026.06 ~ 진행 중 · 개인 1인</span></div>
+        <div class="pc-top"><span class="pc-no">05</span><span class="pc-meta">2026.06 ~ 진행 중 · 개인 1인</span></div>
         <h3>KeyLens</h3>
         <p class="kick">개인 개발자용 자격증명 관리 도구 (키지기)</p>
         <div class="tags"><span>LocalFirst</span><span>AES-256-GCM</span><span>OCR분류</span><span>OpenSource</span></div>
@@ -2518,7 +2876,7 @@
       </article>
 
       <article class="pc">
-        <div class="pc-top"><span class="pc-no">04</span><span class="pc-meta">2026.08 ~ 09 · 개인 1인</span></div>
+        <div class="pc-top"><span class="pc-no">06</span><span class="pc-meta">2026.08 ~ 09 · 개인 1인</span></div>
         <h3>SpendQ</h3>
         <p class="kick">AI 에이전트가 알아서 구매 · 역경매 + 조건부 결제</p>
         <div class="tags"><span>x402</span><span>A2A</span><span>Solana</span><span>Escrow</span><span>Gemini</span></div>
@@ -2535,6 +2893,14 @@
         <div class="links"><a href="https://spendq-frontend-gvqa74mxaq-du.a.run.app">라이브 데모 (devnet)</a></div>
       </article>
 
+    </div>
+    <div class="foot"><span>★ More Projects</span><span class="pno"></span></div>
+  </section>
+
+  <!-- ============ 요약 B - 하네스 · 비상교육 ============ -->
+  <section class="slide" data-toc="하네스 · 07-08 비상교육">
+    <h2 class="sec-title"><span class="star">★</span>MORE PROJECTS<span class="star">★</span></h2>
+    <div class="pcards c3">
       <article class="pc">
         <div class="pc-top"><span class="pc-no">개발 방식</span><span class="pc-meta">개인 1인 · Claude Code CLI · 8개 레포</span></div>
         <h3>AI 하네스 엔지니어링</h3>
@@ -2551,49 +2917,19 @@
         <p class="res">hook이 지금도 작동하는지 돌려 보니 3개 중 2개가 한 번도 실행된 적이 없었습니다. <code>|| exit 0</code>이 오류를
           가리고 있어서 고친 뒤, 위반 사례를 넣어 잡아내는지 확인했습니다.</p>
       </article>
-    </div>
-    <div class="foot"><span>★ More Projects</span><span class="pno"></span></div>
-  </section>
-
-  <!-- ============ 요약 B - K-Bridge · KOCRUIT · 비상교육 ============ -->
-  <section class="slide" data-toc="05 K-Bridge · 06 KOCRUIT · 07-08 비상교육">
-    <h2 class="sec-title"><span class="star">★</span>MORE PROJECTS<span class="star">★</span></h2>
-    <div class="pcards c2" style="grid-template-rows:1fr 1fr">
       <article class="pc">
-        <div class="pc-top"><span class="pc-no">05 <span style="color:var(--ink);font-family:var(--sans);font-weight:800;margin-left:6px">K-Bridge</span></span><span class="pc-meta">2025.08 ~ 10 · 팀 4인 (기여 25%)<br />요건 분석 · 요건-판례 교차 검증</span></div>
-        <p class="kick">수출입 품목 번호(HS코드)로 규제를 자동 분석하는 AI · #RAG #LangGraph #CrossValidation</p>
-        <p class="p" style="margin-top:8px">요건 하나만 틀려도 화물이 묶이는데, 언어 모델은 없는 규정도 그럴듯하게 만들어 냈습니다. 그래서 성능보다 틀린 답을 걸러내는 게
-          먼저라고 봤습니다. <b>제 담당</b>은 미국 공공 데이터 API(FDA · EPA 등)와 공식 웹페이지로 한정한 검색으로 요건을 모으고, 팀원이 분석한 미국 세관 판례와
-          교차 검증해 신뢰도 등급을 붙이는 일이었습니다.</p>
-        <p class="res">팀 전체: 흐름 6단계(LangGraph) · 연동한 규제 기관 9곳 · 미국 품목 분류표 30,067건. 팀 과제로 끝나 실제 효과는 재지 못했습니다.
-        </p>
-        <div class="links"><a href="https://github.com/Suracle/ai-engine">GitHub</a></div>
-      </article>
-
-      <article class="pc">
-        <div class="pc-top"><span class="pc-no">06 <span style="color:var(--ink);font-family:var(--sans);font-weight:800;margin-left:6px">KOCRUIT</span></span><span class="pc-meta">2025.06 ~ 07 팀 프로젝트 · 팀장 (기여 40%) · 과정 내 1위<br />2025.09 ~ 이어서 개선 중</span></div>
-        <p class="kick">AI Agent 기반 기업용 채용 관리 시스템 · #LangGraph #MSA #ServiceBoundary #TeamLead</p>
-        <ul class="b" style="margin-top:8px">
-          <li>합격 · 불합격은 AI가 정하지 않습니다. AI는 점수와 근거를 내고, 최종 판단은 사람이 합니다.</li>
-          <li><b>개선 중</b> AI가 88점을 줬는데 DB에는 불합격으로 남았습니다. LangGraph 상태 스키마에 키가 없어 노드 반환값이 버려진 것이라, 상태 키를 검사하는 계약 테스트를 추가했습니다.</li>
-          <li><b>개선 중</b> 비동기 핸들러 안의 동기 LLM 호출이 서버를 멈춰, LLM 요청 중 헬스체크가 17.05초 걸렸습니다. 0.02초로 줄이고 AST 스캐너로 재발을 막았습니다.</li>
-        </ul>
-        <p class="res">서류 평가 AI 호출 9회 → 4회, gpt-4o 9곳 중 8곳을 4o-mini로 교체했습니다. 음성 전사를 stt-service로 분리해 AI 서버 이미지를 3.6GB → 2.15GB로 줄였습니다.</p>
-        <div class="links"><a href="https://github.com/ttogle918/KOCRUIT">GitHub (팀 프로젝트)</a><a
-            href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view">PPT</a></div>
-      </article>
-
-      <article class="pc">
-        <div class="pc-top"><span class="pc-no">07 <span style="color:var(--ink);font-family:var(--sans);font-weight:800;margin-left:6px">비상교육 · 질문-답변 검색</span></span><span class="pc-meta">2022.12 ~ 2023.03 · 1인 개발<br />대표이사 시연</span></div>
-        <p class="kick">#SBERT #NER #개인정보익명화</p>
+        <div class="pc-top"><span class="pc-no">07</span><span class="pc-meta">2022.12 ~ 2023.03 · 1인 개발 · 대표이사 시연</span></div>
+        <h3>비상교육 · 질문-답변 검색</h3>
+        <div class="tags"><span>SBERT</span><span>NER</span><span>개인정보익명화</span></div>
         <p class="p" style="margin-top:8px">강사가 없을 때는 질문 답변이 늦어졌고, 게시판 원본 데이터에는 이름 · 주소 · 전화번호가 섞여 있었습니다. SBERT/KoBERT를 추가
           학습시켜 새 질문과 비슷한 기존 질문 · 답을 찾아 주는 파이프라인을 만들고, 정규표현식과 NER을 조합해 개인정보를 가렸습니다(2주 동안 예외 사례를 반복 해결).</p>
         <p class="res">PoC라 익명화를 하지 않아도 됐지만, 데이터를 안전하게 만드는 일이 먼저라는 기준이 이때 생겼습니다.</p>
       </article>
 
       <article class="pc">
-        <div class="pc-top"><span class="pc-no">08 <span style="color:var(--ink);font-family:var(--sans);font-weight:800;margin-left:6px">비상교육 · 이탈 고객 예측</span></span><span class="pc-meta">2022.09 ~ 2022.12 · 1인 개발<br />대표이사 시연</span></div>
-        <p class="kick">#DataPreprocessing #RandomForest #변수중요도</p>
+        <div class="pc-top"><span class="pc-no">08</span><span class="pc-meta">2022.09 ~ 2022.12 · 1인 개발 · 대표이사 시연</span></div>
+        <h3>비상교육 · 이탈 고객 예측</h3>
+        <div class="tags"><span>DataPreprocessing</span><span>RandomForest</span><span>변수중요도</span></div>
         <p class="p" style="margin-top:8px">실제 서비스 데이터 10만여 건에서 약정 진행 중 고객 · 테스트 계정 · 로그인 기록 없는 고객을 걸러 내자 학습에 쓸 수 있는 것은 2천
           건이 채 되지 않았습니다. RFM으로 고객 특징을 만들고 KMeans로 묶은 뒤, 이탈 · 연장 여부가 확정된 고객으로 정확도를 쟀습니다.</p>
         <p class="res">RandomForest 이탈 예측 85.3% · XGBoost 활동 저하 예측 89%. 변수 중요도로 무엇 때문에 떠나는지까지 설명했습니다.</p>

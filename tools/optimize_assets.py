@@ -106,8 +106,8 @@ SHOTS: dict[str, tuple[str, float]] = {
     # 같은 레포 data/ 의 실명 면접 녹화 3종과는 다른 파일이다 - 그쪽은 쓰지 않는다.
     # 영상 뒷부분에 미완성 화면(Total 0 Stages · AI SCORE −)이 있어 초를 골라 뽑는다.
     "kocruit/live-scoring.png": (KOCRUIT_DEMO, 43.0),
-    "kocruit/ai-report.png": (KOCRUIT_DEMO, 130.0),
-    "kocruit/process-tracking.png": (KOCRUIT_DEMO, 125.0),
+    "kocruit/ai-report.png": (KOCRUIT_DEMO, 125.0),
+    "kocruit/process-tracking.png": (KOCRUIT_DEMO, 130.0),
 }
 
 
