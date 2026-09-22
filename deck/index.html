@@ -887,7 +887,7 @@
       font-weight: 700
     }
 
-    /* ===== Career 가로 타임라인 ===== */
+    /* ===== Career 타임라인 - 시간순, 점 색으로 종류 구분 ===== */
     .legend {
       display: flex;
       gap: 18px;
@@ -908,147 +908,134 @@
     }
 
     .legend .e,
-    .ev.e {
-      --c: var(--accent);
-      --cs: var(--accent-soft)
+    .tl li.k-e {
+      --c: var(--accent)
     }
 
     .legend .c,
-    .ev.c,
-    .lane.c {
-      --c: #c77a12;
-      --cs: rgba(199, 122, 18, .10)
+    .tl li.k-c {
+      --c: #c77a12
     }
 
     .legend .d,
-    .ev.d,
-    .lane.d {
-      --c: #1f9d57;
-      --cs: rgba(31, 157, 87, .10)
+    .tl li.k-d,
+    .tl li.cert {
+      --c: #1f9d57
     }
 
-    .tlh {
-      position: relative;
+    .tl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 14px;
+      padding: 0 28px;
       flex: 1;
-      margin: 8px 0 14px
+      min-height: 0
     }
 
-    /* 축 위치 - 위(교육) 카드와 아래(경력) 카드 높이가 비슷해서 가운데 조금 위 */
-    .tlh .axis {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 48%;
-      height: 2px;
-      background: var(--ink)
+    /* 흐름도를 칸 안에서 오른쪽으로 - 왼쪽 48px, 오른쪽 24px */
+    .tl-grid>.col:first-child {
+      padding-left: 48px
     }
 
-    .tlh .axis::after {
+    .tl-grid>.col:last-child {
+      padding-left: 24px
+    }
+
+    .tl-h {
+      font: 700 13px var(--mono);
+      letter-spacing: .1em;
+      color: var(--ink);
+      margin: 0 0 8px
+    }
+
+    .tl {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0 18px;
+      border-left: 2px solid var(--line)
+    }
+
+    .tl li {
+      position: relative;
+      padding: 0 0 10px 14px
+    }
+
+    .tl li::before {
       content: "";
       position: absolute;
-      right: -2px;
-      top: -5px;
-      border: 6px solid transparent;
-      border-left: 9px solid var(--ink);
-      border-right: 0
-    }
-
-    .lane {
-      position: absolute;
-      top: calc(48% + 10px);
-      height: 5px;
-      border-radius: 3px;
-      background: var(--c)
-    }
-
-    .lane span {
-      position: absolute;
-      right: 14px;
-      top: 7px;
-      font: 600 11px var(--mono);
-      color: var(--c);
-      white-space: nowrap
-    }
-
-    .ev {
-      position: absolute;
-      width: 170px;
-      padding: 8px 10px 9px 12px;
-      border-left: 3px solid var(--c);
-      background: var(--cs);
-      border-radius: 0 10px 10px 0
-    }
-
-    .ev.up {
-      bottom: calc(52% + 22px)
-    }
-
-    .ev.dn {
-      top: calc(48% + 40px)
-    }
-
-    /* 카드에서 축까지 잇는 선 + 축 위의 점 */
-    .ev::before {
-      content: "";
-      position: absolute;
-      left: -3px;
-      width: 3px;
-      background: var(--c);
-      opacity: .45
-    }
-
-    .ev.up::before {
-      top: 100%;
-      height: 22px
-    }
-
-    .ev.dn::before {
-      bottom: 100%;
-      height: 40px
-    }
-
-    .ev::after {
-      content: "";
-      position: absolute;
-      left: -9px;
-      width: 11px;
-      height: 11px;
+      left: -25px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #fff;
-      border: 2.5px solid var(--c)
+      border: 2px solid var(--c)
     }
 
-    .ev.up::after {
-      top: calc(100% + 16px)
-    }
-
-    .ev.dn::after {
-      bottom: calc(100% + 34px)
-    }
-
-    .ev.now::after {
+    .tl li.now::before {
       background: var(--c)
     }
 
-    .ev .dt {
-      white-space: nowrap;
-      font: 600 10.5px var(--mono);
+    .tl .d {
+      font: 600 12px var(--mono);
       color: var(--c)
     }
 
-    .ev .tt {
-      margin-top: 2px;
-      font-size: 14px;
-      font-weight: 800;
+    .tl .t {
+      font-size: 15px;
+      font-weight: 700;
       color: var(--ink);
-      line-height: 1.35
+      line-height: 1.4
     }
 
-    .ev .ds {
-      margin-top: 5px;
-      font-size: 12.3px;
+    .tl .s {
+      font-size: 13px;
       color: var(--muted);
       line-height: 1.55
+    }
+
+    /* 설명은 짧게 끊는 불렛 */
+    .tl .s span {
+      display: block;
+      position: relative;
+      padding-left: 11px
+    }
+
+    .tl .s span::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: .68em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--c);
+      opacity: .7
+    }
+
+    /* 자격증 - 작은 초록 점 한 줄 */
+    .tl li.cert {
+      padding-bottom: 8px
+    }
+
+    .tl li.cert::before {
+      left: -23px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border: 0;
+      background: var(--c)
+    }
+
+    .tl li.cert .d {
+      margin-right: 10px
+    }
+
+    .tl li.cert .t {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #17773f
     }
 
     .certs {
@@ -1547,73 +1534,78 @@
   </section>
 
   <!-- ============ Career & Education ============ -->
-  <!-- 가로축 하나에 시간순(왼쪽이 과거). 교육은 축 위, 경력 · 학위는 축 아래.
-       축은 시간 비례가 아니라 순서 비례다. left 값은 카드 폭(170) + 여백으로 같은 쪽 카드가 겹치지 않게 잡았다.
-       기간이 다른 항목과 겹치는 경력 · 학위는 축 바로 아래 가지(.lane)로 기간을 그린다. -->
+  <!-- 시간순 한 줄 흐름을 두 칸에 나눠 담는다: 왼쪽 2015 ~ 2023, 오른쪽 2025 ~ 현재.
+       점 색 - 교육 .k-e 파랑 · 경력 .k-c 주황 · 학위 .k-d 초록 · 자격증 .cert 작은 초록 점 한 줄 -->
   <section class="slide" data-toc="Career &amp; Education">
     <h2 class="sec-title"><span class="star">★</span>CAREER &amp; EDUCATION<span class="star">★</span></h2>
-    <div class="legend"><span class="e">Education</span><span class="c">Career</span><span class="d">Degree</span></div>
-    <div class="tlh">
-      <div class="axis"></div>
-      <div class="lane d" style="left:6px;width:178px"></div>
-      <div class="lane c" style="left:766px;right:0"><span>2026.03 ~ 현재 · 교육 과정과 병행</span></div>
-
-      <div class="ev dn d" style="left:0">
-        <div class="dt">2015.03 ~ 2020.02</div>
-        <div class="tt">명지대학교<br />컴퓨터공학과 학사</div>
-        <div class="ds">데이터베이스 설계 · 자료구조 · 컴퓨터 보안. 총장상 (2019.12, TOPCIT 우수 성적)</div>
+    <div class="legend"><span class="e">Education</span><span class="c">Career</span><span class="d">Degree · 자격증</span></div>
+    <div class="tl-grid">
+      <div class="col">
+        <p class="tl-h">2015 ~ 2023</p>
+        <ul class="tl">
+          <li class="k-d">
+            <div class="d">2015.03 ~ 2020.02</div>
+            <div class="t">명지대학교 컴퓨터공학과 학사</div>
+            <div class="s"><span>데이터베이스 설계 · 자료구조 · 컴퓨터 보안</span><span>총장상 (2019.12, TOPCIT 우수 성적)</span></div>
+          </li>
+          <li class="k-c">
+            <div class="d">2019.06 ~ 2019.08</div>
+            <div class="t">세코닉스 - 인사팀 인턴</div>
+            <div class="s"><span>6주 인턴으로 신규 입사자 정보 관리와 ERP 운영을 지원</span></div>
+          </li>
+          <li class="cert"><span class="d">2020.08</span><span class="t">정보처리기사</span></li>
+          <li class="k-e">
+            <div class="d">2021.09 ~ 2022.04 · 1120h</div>
+            <div class="t">코드스테이츠 - AI 부트캠프 (7기)</div>
+            <div class="s"><span>데이터 분석 · AI · 자연어 처리 통합 과정</span><span>KoBERT 뉴스 보정 기업 협업 프로젝트</span></div>
+          </li>
+          <li class="k-e">
+            <div class="d">2022.05 ~ 2022.06 · 3주</div>
+            <div class="t">코드스테이츠 - AI 심화 NLP 과정</div>
+            <div class="s"><span>PyTorch로 BERT를 추가 학습시켜 문장 유사도(STS) 계산</span></div>
+          </li>
+          <li class="k-c">
+            <div class="d">2022.09 ~ 2023.03</div>
+            <div class="t">비상교육 - AI 연구개발 Cell</div>
+            <div class="s"><span>실제 회사 데이터로 AI 서비스 PoC 2개 1인 개발 (이탈 고객 예측, 질문-답변 검색)</span><span>대표이사 앞에서 시연</span></div>
+          </li>
+          <li class="cert"><span class="d">2022.12</span><span class="t">빅데이터분석기사</span></li>
+          <li class="cert"><span class="d">2023.10</span><span class="t">SQLD</span></li>
+        </ul>
       </div>
-      <div class="ev dn c" style="left:178px">
-        <div class="dt">2019.06 ~ 2019.08</div>
-        <div class="tt">세코닉스<br />인사팀 인턴</div>
-        <div class="ds">신규 입사자 정보 관리와 ERP 운영을 지원했습니다. 6주 인턴이었지만 근무 연장 요청을 받았습니다.</div>
+      <div class="col">
+        <p class="tl-h">2025 ~ 현재</p>
+        <ul class="tl">
+          <li class="k-e">
+            <div class="d">2025.03 ~ 2025.08 · 960h</div>
+            <div class="t">KOSA 생성형 AI 과정 - KOCRUIT</div>
+            <div class="s"><span>LangGraph와 FastAPI 서버를 처음부터 끝까지 구현</span><span>최종 프로젝트 팀장 · 과정 내 1위</span></div>
+          </li>
+          <li class="k-e">
+            <div class="d">2025.08 ~ 2025.10</div>
+            <div class="t">KOSA Spec-up - K-Bridge</div>
+            <div class="s"><span>수출입 통관 규정 AI 분석 4인 팀 프로젝트</span><span>수입 요건 분석 담당</span></div>
+          </li>
+          <li class="cert"><span class="d">2025.09</span><span class="t">OPIc 영어 IH</span></li>
+          <li class="k-c now">
+            <div class="d">2026.03 ~ 현재</div>
+            <div class="t">KOSA - AI 교육 보조강사</div>
+            <div class="s"><span>직업훈련교강사 보수교육에서 수강생 12~20명의 실습 지원</span><span>담당 강의 16개 (Spring AI · MCP · LangGraph · Claude Code 등)</span><span>수강생 코드의 오류를 함께 찾고 기술 질문에 답변</span></div>
+          </li>
+          <li class="k-e">
+            <div class="d">2026.06 ~ 2026.08.25 · 320h</div>
+            <div class="t">[NIPA·NVIDIA] GPU 가속 기반 AI Agent 엔지니어 과정</div>
+            <div class="s"><span>LangGraph · 고급 RAG · MCP · 에이전트 하네스</span><span>프로젝트 QMesh</span></div>
+          </li>
+          <li class="cert"><span class="d">2026.07</span><span class="t">정보보안기사 필기 합격 · AI-POT</span></li>
+          <li class="cert"><span class="d">2026.08</span><span class="t">NVIDIA DLI 인증 5개 (RAG Agents · LLM 앱 · Diffusion 등)</span></li>
+          <li class="k-e now">
+            <div class="d">2026.08 ~ 2026.09.30 · 진행 중</div>
+            <div class="t">[Google] 2026 Google Cloud Study Jam H2</div>
+            <div class="s"><span>Professional Agentic Architect Certification 강의 중심으로 수강 중</span></div>
+          </li>
+        </ul>
       </div>
-      <div class="ev up e" style="left:202px">
-        <div class="dt">2021.09 ~ 22.04 · 1120h</div>
-        <div class="tt">코드스테이츠<br />AI 부트캠프 (7기)</div>
-        <div class="ds">데이터 분석 · AI · 자연어 처리 통합 과정. KoBERT 뉴스 보정 기업 협업 프로젝트를 했습니다.</div>
-      </div>
-      <div class="ev up e" style="left:380px">
-        <div class="dt">2022.05 ~ 06 · 3주</div>
-        <div class="tt">코드스테이츠<br />AI 심화 NLP 과정</div>
-        <div class="ds">PyTorch로 BERT를 추가 학습시켜 문장 유사도(STS)를 계산했습니다.</div>
-      </div>
-      <div class="ev dn c" style="left:404px">
-        <div class="dt">2022.09 ~ 2023.03</div>
-        <div class="tt">비상교육<br />AI 연구개발 Cell</div>
-        <div class="ds">실제 회사 데이터로 AI 서비스 시제품(PoC) 두 개를 혼자 개발해 대표이사 앞에서 시연했습니다. 이탈 고객 예측, 질문-답변 검색.</div>
-      </div>
-      <div class="ev up e" style="left:558px">
-        <div class="dt">2025.03 ~ 08 · 960h</div>
-        <div class="tt">KOSA<br />생성형 AI 과정</div>
-        <div class="ds">LangGraph와 FastAPI 서버를 처음부터 끝까지 구현했습니다. 최종 프로젝트 KOCRUIT 팀장 · 1위.</div>
-      </div>
-      <div class="ev up e" style="left:736px">
-        <div class="dt">2025.08 ~ 10</div>
-        <div class="tt">KOSA Spec-up<br />K-Bridge</div>
-        <div class="ds">수출입 통관 규정 AI 분석 4인 팀 프로젝트에서 수입 요건 분석을 맡았습니다.</div>
-      </div>
-      <div class="ev dn c" style="left:760px">
-        <div class="dt">2026.03 ~ 현재</div>
-        <div class="tt">KOSA<br />AI 교육 보조강사</div>
-        <div class="ds">직업훈련교강사 보수교육에서 수강생 12~20명의 실습을 돕습니다. 담당 강의 16개(Spring AI · MCP · LangGraph · Claude Code 등)에서 코드 오류를 함께 찾고 기술 질문에 답합니다.</div>
-      </div>
-      <div class="ev up e" style="left:914px">
-        <div class="dt">2026.06 ~ 08 · 320h</div>
-        <div class="tt">[NIPA·NVIDIA]<br />AI Agent 엔지니어 과정</div>
-        <div class="ds">GPU 가속 기반 과정. LangGraph · 고급 RAG · MCP · 에이전트 하네스. 프로젝트 QMesh, NVIDIA DLI 인증 5개.</div>
-      </div>
-      <div class="ev up e now" style="left:1092px">
-        <div class="dt">2026.08 ~ 09.30 · 진행 중</div>
-        <div class="tt">[Google] Cloud<br />Study Jam H2</div>
-        <div class="ds">Professional Agentic Architect Certification 강의를 중심으로 듣고 있습니다.</div>
-      </div>
-    </div>
-    <div class="certs">
-      <span class="k">자격 · 인증</span>
-      <span>정보보안기사 필기 합격 · 2026.07</span><span>AI-POT · 2026.07</span><span>NVIDIA DLI 5개 · 2026.08</span>
-      <span>SQLD · 2023.10</span><span>빅데이터분석기사 · 2022.12</span><span>정보처리기사 · 2020.08</span><span>OPIc 영어 IH ·
-        2025.09</span>
     </div>
     <div class="foot"><span>★ 최지현 · AI Agent Engineer</span><span class="pno"></span></div>
   </section>
