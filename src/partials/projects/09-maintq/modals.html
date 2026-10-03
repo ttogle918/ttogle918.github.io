@@ -1,3 +1,116 @@
+<section id="f-maintq-onboarding" hidden>
+  <div class="fmodal-kicker mono">MAINTQ · NVIDIA 해커톤</div>
+  <h4 class="fmodal-title" data-ko="새 기종 온보딩 - 초안은 AI, 확정은 사람"
+    data-en="New-model onboarding - AI drafts, a person confirms">새 기종 온보딩 - 초안은 AI, 확정은 사람</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 128" role="img" aria-label="추출, 한국어 초안, 사람의 확정, 진단의 네 단계">
+      <rect class="dg-box" x="4" y="16" width="136" height="44" rx="8" />
+      <text class="dg-t" x="14" y="36">1 추출</text>
+      <text class="dg-s" x="14" y="51">코드 · LLM 없음</text>
+      <path class="dg-a" d="M144 38 H162" />
+      <rect class="dg-box" x="166" y="16" width="136" height="44" rx="8" />
+      <text class="dg-t" x="176" y="36">2 한국어 초안</text>
+      <text class="dg-s" x="176" y="51">NAT + Nemotron</text>
+      <path class="dg-a" d="M306 38 H324" />
+      <rect class="dg-box" x="328" y="16" width="136" height="44" rx="8" />
+      <text class="dg-t" x="338" y="36">3 사람이 확정</text>
+      <text class="dg-s" x="338" y="51">안전 문구도 직접</text>
+      <path class="dg-a" d="M468 38 H486" />
+      <rect class="dg-box" x="490" y="16" width="126" height="44" rx="8" />
+      <text class="dg-t" x="500" y="36">4 진단</text>
+      <text class="dg-s" x="500" y="51">확정된 코드만</text>
+      <text class="dg-g" x="16" y="88">2단계는 샌드박스 안에서 스테이징 테이블에만 쓴다</text>
+      <text class="dg-s" x="16" y="108">확정 전 코드는 추측하지 않고 A/S 안내 - 확정 뒤에야 진단한다</text>
+    </svg>
+  </div>
+  <p data-ko="영문 매뉴얼뿐인 새 기종(Yaskawa HV600)을 도입할 때 AI 번역을 그대로 믿으면 <b>두 가지 사고</b>가 난다. 번역이 틀려 <b>잘못 진단</b>하는 것, 그리고 방전 대기 시간 같은 <b>안전 수치가 틀리는</b> 것이다. 기존 기종의 10분을 새 기종에 그대로 쓰는 것도 같은 오류다. 그래서 일을 넷으로 나눴다."
+    data-en="When a new model (Yaskawa HV600) arrives with only an English manual, trusting an AI translation as-is causes <b>two accidents</b>: a translation error that leads to a <b>wrong diagnosis</b>, and a wrong <b>safety number</b> such as a discharge wait time. Reusing an older model's 10 minutes on the new one is the same mistake. So the work is split in four.">
+    영문 매뉴얼뿐인 새 기종(Yaskawa HV600)을 도입할 때 AI 번역을 그대로 믿으면 <b>두 가지 사고</b>가 난다. 번역이 틀려 <b>잘못 진단</b>하는 것, 그리고 방전
+    대기 시간 같은 <b>안전 수치가 틀리는</b> 것이다. 기존 기종의 10분을 새 기종에 그대로 쓰는 것도 같은 오류다. 그래서 일을 넷으로 나눴다.</p>
+  <p data-ko="추출은 <b>LLM 없이 결정적 코드</b>가 PDF 고장 표에서 코드·페이지·원문 행을 뽑는다. 한국어 초안은 OpenShell 샌드박스 안의 NeMo Agent Toolkit 에이전트가 Nemotron으로 만들되 <b>스테이징 테이블에만</b> 쓴다. 사람은 원문과 대조해 <b>코드 그룹 단위로 확정</b>하고, 안전 문구는 원문 페이지를 보고 <b>직접 입력해 승인</b>한다. 원문에 없는 숫자는 API가 거부한다. 승인되지 않은 안전 문구는 어디에도 나오지 않는다."
+    data-en="Extraction is <b>deterministic code, no LLM</b>, pulling code, page and source row from the PDF fault table. The Korean draft is written by a NeMo Agent Toolkit agent using Nemotron inside an OpenShell sandbox, into <b>a staging table only</b>. A person compares it with the source and <b>confirms per code group</b>; safety text is <b>typed in and approved</b> from the source page. A number that is not in the source is rejected by the API. Unapproved safety text appears nowhere.">
+    추출은 <b>LLM 없이 결정적 코드</b>가 PDF 고장 표에서 코드·페이지·원문 행을 뽑는다. 한국어 초안은 OpenShell 샌드박스 안의 NeMo Agent Toolkit
+    에이전트가 Nemotron으로 만들되 <b>스테이징 테이블에만</b> 쓴다. 사람은 원문과 대조해 <b>코드 그룹 단위로 확정</b>하고, 안전 문구는 원문 페이지를 보고
+    <b>직접 입력해 승인</b>한다. 원문에 없는 숫자는 API가 거부한다. 승인되지 않은 안전 문구는 어디에도 나오지 않는다.</p>
+  <p data-ko="결과는 같은 질문 «HV600에서 GF 떴어»의 답이 달라지는 것으로 보인다. 확정 전에는 <b>유사 코드를 추측하지 않고</b> «매뉴얼에서 확인되지 않는 코드»로 A/S를 안내한다. 확정과 안전 문구 승인 뒤에는 정의·원인·조치와 함께 <b>사람이 승인한 안전 문구(원문 p.29, 최소 5분)</b>가 나온다. 고장 코드 249행을 전량 정규화했고 이 중 8코드를 확정했으며 안전 문구는 1건을 승인했다."
+    data-en="The result shows as one question, HV600 shows GF, getting different answers. Before confirmation it <b>does not guess a similar code</b> and refers to service as a code not confirmed by the manual. After confirmation and safety approval it returns the definition, cause and action with the <b>human-approved safety text (manual p.29, at least 5 minutes)</b>. All 249 fault-code rows were normalized, 8 codes were confirmed and one safety text approved.">
+    결과는 같은 질문 «HV600에서 GF 떴어»의 답이 달라지는 것으로 보인다. 확정 전에는 <b>유사 코드를 추측하지 않고</b> «매뉴얼에서 확인되지 않는 코드»로 A/S를
+    안내한다. 확정과 안전 문구 승인 뒤에는 정의·원인·조치와 함께 <b>사람이 승인한 안전 문구(원문 p.29, 최소 5분)</b>가 나온다. 고장 코드 249행을 전량 정규화했고 이 중
+    8코드를 확정했으며 안전 문구는 1건을 승인했다.</p>
+  <figure class="fmodal-fig">
+    <img data-src="assets/maintq/onboarding-review.png" alt="onboarding review screen">
+    <figcaption data-ko="사람이 AI 초안을 원문과 대조해 코드 그룹 단위로 확정하는 화면"
+      data-en="A person checks the AI draft against the source and confirms per code group">사람이 AI 초안을 원문과 대조해 코드 그룹 단위로 확정하는 화면
+    </figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/maintq/onboarding-safety.png" alt="safety text approval screen">
+    <figcaption data-ko="안전 문구는 원문 페이지를 보고 사람이 직접 입력해 승인"
+      data-en="Safety text is typed in and approved by a person from the source page">안전 문구는 원문 페이지를 보고 사람이 직접 입력해 승인</figcaption>
+  </figure>
+</section>
+
+<section id="f-maintq-sandbox" hidden>
+  <div class="fmodal-kicker mono">MAINTQ · NVIDIA 해커톤</div>
+  <h4 class="fmodal-title" data-ko="보안 두 겹 - 샌드박스와 서버·DB"
+    data-en="Two layers - the sandbox, then the server and DB">보안 두 겹 - 샌드박스와 서버·DB</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 128" role="img" aria-label="바깥은 샌드박스가, 안쪽은 서버와 DB가 막는 두 겹 구조">
+      <rect class="dg-box" x="4" y="12" width="612" height="104" rx="10" />
+      <text class="dg-t" x="16" y="32">① 샌드박스가 막는다</text>
+      <text class="dg-s" x="16" y="48">키 없음 · egress 허용목록 · node만 허용 · 쓰기는 /tmp만</text>
+      <rect class="dg-box" x="40" y="58" width="540" height="50" rx="8" />
+      <text class="dg-t" x="52" y="78">② 서버와 DB가 막는다</text>
+      <text class="dg-s" x="52" y="96">INSERT만 · 주입 판정은 서버 · 안전 문구 fail-closed · 신원은 서버가</text>
+    </svg>
+  </div>
+  <p data-ko="미션은 에이전트를 안전하게 만드는 것이었고, 답은 <b>막는 건 에이전트의 판단이 아니라 정책·DB 권한·서버 코드</b>라는 것이다. 에이전트가 틀려도, 속아도 밖으로 못 나가고 안에서도 선을 못 넘게 두 겹을 쳤다."
+    data-en="The mission was making agents safe, and the answer is that <b>what blocks is not the agent's judgement but policy, DB permissions and server code</b>. Two layers hold even when the agent is wrong or fooled: it cannot get out, and it cannot cross the line inside.">
+    미션은 에이전트를 안전하게 만드는 것이었고, 답은 <b>막는 건 에이전트의 판단이 아니라 정책·DB 권한·서버 코드</b>라는 것이다. 에이전트가 틀려도, 속아도 밖으로 못 나가고
+    안에서도 선을 못 넘게 두 겹을 쳤다.</p>
+  <div class="block">
+    <div class="bh"><span class="star">◆</span> <span data-ko="① 샌드박스가 막는다" data-en="1. The sandbox blocks">① 샌드박스가 막는다</span></div>
+    <ul>
+      <li data-ko="<b>샌드박스 안에 키가 없다.</b> API 키는 게이트웨이에만 있고 샌드박스는 <span class=&quot;mono&quot;>inference.local</span>만 부른다. 환경변수에 키가 보이면 기동을 거부한다. 이미지 파일 17,833개를 스캔해 비밀값은 0건이었다."
+        data-en="<b>No key inside the sandbox.</b> The API key lives only in the gateway and the sandbox calls only <span class=&quot;mono&quot;>inference.local</span>. It refuses to start if a key shows in the environment. Scanning 17,833 image files found no secrets.">
+        <b>샌드박스 안에 키가 없다.</b> API 키는 게이트웨이에만 있고 샌드박스는 <span class="mono">inference.local</span>만 부른다. 환경변수에 키가 보이면
+        기동을 거부한다. 이미지 파일 17,833개를 스캔해 비밀값은 0건이었다.</li>
+      <li data-ko="<b>나가는 연결은 허용목록만.</b> 웹 콘솔 샌드박스는 외부 허용이 0건이고, 다른 목적지는 전부 403과 OCSF 로그(실행 파일·목적지)로 남는다."
+        data-en="<b>Outbound only to an allow-list.</b> The web-console sandbox allows zero external destinations; anything else returns 403 and an OCSF log (executable and destination).">
+        <b>나가는 연결은 허용목록만.</b> 웹 콘솔 샌드박스는 외부 허용이 0건이고, 다른 목적지는 전부 403과 OCSF 로그(실행 파일·목적지)로 남는다.</li>
+      <li data-ko="<b>실행 파일·경로 단위로 허용한다.</b> OpenClaw는 MCP 주소를 <span class=&quot;mono&quot;>node</span>로만 부를 수 있고, 같은 주소를 <span class=&quot;mono&quot;>curl</span>로 부르면 거부된다. 파일시스템은 Landlock이 막아 <span class=&quot;mono&quot;>/app</span> 쓰기가 <span class=&quot;mono&quot;>PermissionError 13</span>으로 실패한다."
+        data-en="<b>Allowed per executable and path.</b> OpenClaw may reach the MCP address only through <span class=&quot;mono&quot;>node</span>; the same address via <span class=&quot;mono&quot;>curl</span> is refused. Landlock guards the filesystem, so writing <span class=&quot;mono&quot;>/app</span> fails with <span class=&quot;mono&quot;>PermissionError 13</span>.">
+        <b>실행 파일·경로 단위로 허용한다.</b> OpenClaw는 MCP 주소를 <span class="mono">node</span>로만 부를 수 있고, 같은 주소를 <span class="mono">curl</span>로
+        부르면 거부된다. 파일시스템은 Landlock이 막아 <span class="mono">/app</span> 쓰기가 <span class="mono">PermissionError 13</span>으로 실패한다.</li>
+    </ul>
+  </div>
+  <div class="block">
+    <div class="bh"><span class="star">◆</span> <span data-ko="② 서버와 DB가 막는다" data-en="2. The server and DB block">② 서버와 DB가 막는다</span></div>
+    <ul>
+      <li data-ko="<b>도구는 INSERT만 한다.</b> 수정은 DB 트리거가, 읽기 전용 커넥션의 INSERT는 DB가 거부한다. 커넥션은 대상 테이블별로 나눠, 한 도구가 다른 테이블의 잠금을 풀 수 없다."
+        data-en="<b>Tools only INSERT.</b> UPDATE is refused by a trigger and an INSERT on the read-only connection is refused by the DB. Connections are split per target table so one tool cannot unlock another's table.">
+        <b>도구는 INSERT만 한다.</b> 수정은 DB 트리거가, 읽기 전용 커넥션의 INSERT는 DB가 거부한다. 커넥션은 대상 테이블별로 나눠, 한 도구가 다른 테이블의 잠금을
+        풀 수 없다.</li>
+      <li data-ko="<b>주입 판정은 서버가 한다.</b> 매뉴얼에 숨은 지시문 같은 의심은 에이전트가 아니라 서버가 결정적으로 판정한다. 에이전트가 신뢰도를 <span class=&quot;mono&quot;>high</span>로 보내도 서버가 <span class=&quot;mono&quot;>low</span>와 플래그로 덮고, 합성 주입 픽스처 5건 중 5건을 막았다."
+        data-en="<b>The server judges injection.</b> Suspected hidden instructions in a manual are judged deterministically by the server, not the agent. Even if the agent sends confidence <span class=&quot;mono&quot;>high</span>, the server overwrites it with <span class=&quot;mono&quot;>low</span> and a flag; 5 of 5 synthetic injection fixtures were blocked.">
+        <b>주입 판정은 서버가 한다.</b> 매뉴얼에 숨은 지시문 같은 의심은 에이전트가 아니라 서버가 결정적으로 판정한다. 에이전트가 신뢰도를 <span class="mono">high</span>로
+        보내도 서버가 <span class="mono">low</span>와 플래그로 덮고, 합성 주입 픽스처 5건 중 5건을 막았다.</li>
+      <li data-ko="<b>안전 문구는 fail-closed.</b> 사람이 승인한 DB 행에서만 나온다. 원문에 없는 숫자는 입력 단계에서 API가 <span class=&quot;mono&quot;>number_not_in_source</span>로 거부한다."
+        data-en="<b>Safety text fails closed.</b> It comes only from a human-approved DB row. A number absent from the source is rejected at input by the API as <span class=&quot;mono&quot;>number_not_in_source</span>.">
+        <b>안전 문구는 fail-closed.</b> 사람이 승인한 DB 행에서만 나온다. 원문에 없는 숫자는 입력 단계에서 API가 <span class="mono">number_not_in_source</span>로
+        거부한다.</li>
+      <li data-ko="<b>신원은 서버가 읽는다.</b> 요청자는 LLM 파라미터가 아니라 <span class=&quot;mono&quot;>X-User</span> 헤더에서 읽고, 모르는 사용자면 초안을 만들지 않는다. 처분서 도구에는 우회나 검토자를 채우는 파라미터 자체가 없다."
+        data-en="<b>The server reads identity.</b> The requester comes from the <span class=&quot;mono&quot;>X-User</span> header, not an LLM parameter, and an unknown user gets no draft. The disposal-document tool has no override or reviewer parameter at all.">
+        <b>신원은 서버가 읽는다.</b> 요청자는 LLM 파라미터가 아니라 <span class="mono">X-User</span> 헤더에서 읽고, 모르는 사용자면 초안을 만들지 않는다. 처분서 도구에는 우회나
+        검토자를 채우는 파라미터 자체가 없다.</li>
+    </ul>
+  </div>
+  <p data-ko="한계도 적어 둔다. OpenClaw 경로에는 안전 문구를 붙이는 게이트 계층이 없어 모델이 스킬 규칙을 지키는 데 기댄다. MCP 토큰과 <span class=&quot;mono&quot;>X-User</span> 헤더는 샌드박스 안 설정 파일에 평문으로 있어, 토큰과 사용자를 묶는 일은 후속 과제다."
+    data-en="Limits are listed too. The OpenClaw path has no gate layer attaching safety text and relies on the model following skill rules. The MCP token and <span class=&quot;mono&quot;>X-User</span> header sit in plain text in a config file inside the sandbox; binding tokens to users is follow-up work.">
+    한계도 적어 둔다. OpenClaw 경로에는 안전 문구를 붙이는 게이트 계층이 없어 모델이 스킬 규칙을 지키는 데 기댄다. MCP 토큰과 <span class="mono">X-User</span> 헤더는
+    샌드박스 안 설정 파일에 평문으로 있어, 토큰과 사용자를 묶는 일은 후속 과제다.</p>
+</section>
+
 <section id="f-maintq-unknown" hidden>
   <div class="fmodal-kicker mono">MAINTQ · S4 실패 처리</div>
   <h4 class="fmodal-title" data-ko="미지 에러코드 - 추측하지 않는다" data-en="Unknown code - it does not guess">미지 에러코드 -
@@ -298,11 +411,12 @@
 
 <section id="m-maintq-tools" hidden>
   <div class="fmodal-kicker mono">MAINTQ · 결과</div>
-  <h4 class="fmodal-title" data-ko="MCP 도구 22종" data-en="22 MCP tools">MCP 도구 22종</h4>
-  <p data-ko="에이전트가 쓰는 도구는 코어 7종과 확장 15종이다. 쓰기 도구는 3종뿐이고 셋 다 초안만 만든다 - 승인·서명은 사람 전용 화면에서만 일어난다. 외부 호출 3종도 파트너 자격증명을 직접 쓰지 않고 백엔드 REST를 부른다."
-    data-en="7 core and 15 extended tools. Only 3 write, and all 3 only create drafts - approval and signing happen in human-only screens. The 3 external-call tools go through the backend REST API, never holding partner credentials.">
-    에이전트가 쓰는 도구는 코어 7종과 확장 15종이다. 쓰기 도구는 3종뿐이고 셋 다 초안만 만든다 - 승인·서명은 사람 전용 화면에서만 일어난다. 외부 호출 3종도 파트너 자격증명을 직접 쓰지
-    않고 백엔드 REST를 부른다.</p>
+  <h4 class="fmodal-title" data-ko="MCP 도구 25종" data-en="25 MCP tools">MCP 도구 25종</h4>
+  <p data-ko="에이전트가 쓰는 도구는 코어 7종, 확장 15종, 온보딩 3종이다. 쓰기 도구는 4종뿐이다 - 3종은 발주·처분서·수리 증빙의 초안만, 1종은 온보딩 스테이징 테이블에만 쓴다. 승인·서명·확정은 사람 전용 화면에서만 일어난다. 외부 호출 3종도 파트너 자격증명을 직접 쓰지 않고 백엔드 REST를 부른다. 온보딩 3종은 별도 프로파일에서만 등록되어 진단·발주 도구와 함께 뜨지 않는다."
+    data-en="7 core, 15 extended and 3 onboarding tools. Only 4 write: three create drafts (order, disposal document, repair record) and one writes only to the onboarding staging table. Approval, signing and confirmation happen in human-only screens. The 3 external-call tools go through the backend REST API, never holding partner credentials. The 3 onboarding tools register only under their own profile, never alongside the diagnosis and ordering tools.">
+    에이전트가 쓰는 도구는 코어 7종, 확장 15종, 온보딩 3종이다. 쓰기 도구는 4종뿐이다 - 3종은 발주·처분서·수리 증빙의 초안만, 1종은 온보딩 스테이징
+    테이블에만 쓴다. 승인·서명·확정은 사람 전용 화면에서만 일어난다. 외부 호출 3종도 파트너 자격증명을 직접 쓰지 않고 백엔드 REST를 부른다. 온보딩 3종은
+    별도 프로파일에서만 등록되어 진단·발주 도구와 함께 뜨지 않는다.</p>
   <div class="mtable-wrap">
     <table class="mtable">
       <thead>
@@ -446,6 +560,24 @@
           <td>읽기</td>
           <td>결재 문서에 실제로 찍힐 값을 양식 항목 이름 그대로 조회</td>
         </tr>
+        <tr>
+          <td class="mono">list_onboarding_rows</td>
+          <td>온보딩</td>
+          <td>읽기</td>
+          <td>새 기종 매뉴얼에서 뽑아 둔 스테이징 행 목록 조회</td>
+        </tr>
+        <tr>
+          <td class="mono">stage_code_normalization</td>
+          <td>온보딩</td>
+          <td>쓰기(스테이징만)</td>
+          <td>한국어 정규화 초안을 스테이징 테이블에 INSERT - 진단에 쓰는 정본 테이블은 쓸 수 없고, 확정은 사람 전용 API</td>
+        </tr>
+        <tr>
+          <td class="mono">get_onboarding_status</td>
+          <td>온보딩</td>
+          <td>읽기</td>
+          <td>기종별 온보딩 진행 현황(정규화·확정·안전 문구 승인 단계)</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -453,12 +585,16 @@
 
 <section id="m-maintq-regression" hidden>
   <div class="fmodal-kicker mono">MAINTQ · 결과</div>
-  <h4 class="fmodal-title" data-ko="회귀 검사 1,560건" data-en="1,560 regression checks">회귀 검사 1,560건</h4>
-  <p data-ko="회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(34종 1,212건). 나머지는 pytest 22파일 348건이다. 2026-09-11 기준."
-    data-en="Two parts: contract spikes are standalone scripts in spikes/ counting PASS/FAIL assertions (34 scripts, 1,212), plus 22 pytest files with 348 tests. As of 2026-09-11.">
-    회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(34종 1,212건). 나머지는 pytest 22파일 348건이다.
-    2026-09-11 기준.</p>
-  <p class="mtable-sub" data-ko="계약 스파이크 34종 · 1,212건" data-en="Contract spikes · 1,212">계약 스파이크 34종 · 1,212건
+  <h4 class="fmodal-title" data-ko="회귀 검사 1,799건" data-en="1,799 regression checks">회귀 검사 1,799건</h4>
+  <p data-ko="회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(41종 1,387건, 2026-09-25 실측). 나머지는 pytest 412건이다. 합치면 1,799건이다. 해커톤 중에 온보딩·HTTP 입구·평면도 스파이크가 더해졌다. 알려진 오탐이 스파이크 1건 있고(코드 결함이 아니라 .env 값 문제), 그 외 실패는 없다."
+    data-en="Two parts: contract spikes are standalone scripts in spikes/ counting PASS/FAIL assertions (41 scripts, 1,387, measured 2026-09-25), plus 412 pytest tests, 1,799 in all. Onboarding, HTTP-entry and floor-plan spikes were added during the hackathon. One spike has a known false positive (an .env value, not a code defect); nothing else fails.">
+    회귀 스위트는 두 갈래다. 계약 스파이크는 spikes/ 의 단독 실행 스크립트로, 스크립트마다 PASS/FAIL 단언을 센다(41종 1,387건, 2026-09-25 실측). 나머지는
+    pytest 412건이다. 합치면 1,799건이다. 해커톤 중에 온보딩·HTTP 입구·평면도 스파이크가 더해졌다. 알려진 오탐이 스파이크 1건 있고(코드 결함이 아니라 .env 값
+    문제), 그 외 실패는 없다.</p>
+  <p class="mtable-sub"
+    data-ko="아래 분해는 2026-09-11 시점(34종 1,212건)이다. 이후 7종·175건이 늘었다."
+    data-en="The breakdown below is as of 2026-09-11 (34 scripts, 1,212). Seven scripts and 175 checks were added since.">
+    아래 분해는 2026-09-11 시점(34종 1,212건)이다. 이후 7종·175건이 늘었다.
   </p>
   <div class="mtable-wrap">
     <table class="mtable">
@@ -685,10 +821,10 @@
 
 <section id="m-maintq-decisions" hidden>
   <div class="fmodal-kicker mono">MAINTQ · 결과</div>
-  <h4 class="fmodal-title" data-ko="설계 결정 141건" data-en="141 design decisions">설계 결정 141건</h4>
-  <p data-ko="왜 그렇게 만들었는지를 docs/10_DECISIONS.md 한 장에 D1부터 D141까지 빠짐없이 적었다. 문서에는 분류가 없어, 여기서는 제목을 보고 묶었다."
-    data-en="Every decision, D1 to D141, is recorded in docs/10_DECISIONS.md. The document has no categories; they are grouped here by title.">
-    왜 그렇게 만들었는지를 docs/10_DECISIONS.md 한 장에 D1부터 D141까지 빠짐없이 적었다. 문서에는 분류가 없어, 여기서는 제목을 보고 묶었다.</p>
+  <h4 class="fmodal-title" data-ko="설계 결정 159건" data-en="159 design decisions">설계 결정 159건</h4>
+  <p data-ko="왜 그렇게 만들었는지를 docs/10_DECISIONS.md 한 장에 D1부터 D159까지 빠짐없이 적었다. 문서에는 분류가 없어, 여기서는 제목을 보고 묶었다."
+    data-en="Every decision, D1 to D159, is recorded in docs/10_DECISIONS.md. The document has no categories; they are grouped here by title.">
+    왜 그렇게 만들었는지를 docs/10_DECISIONS.md 한 장에 D1부터 D159까지 빠짐없이 적었다. 문서에는 분류가 없어, 여기서는 제목을 보고 묶었다.</p>
   <div class="mtable-wrap">
     <table class="mtable">
       <thead>
@@ -736,8 +872,13 @@
         </tr>
         <tr>
           <td>외부 파트너 연동(A2A)</td>
-          <td>12</td>
-          <td>D112 발신 연동 재개 · D136 파트너별 차단기 · D141 통지에 멱등키</td>
+          <td>13</td>
+          <td>D112 발신 연동 재개 · D136 파트너별 차단기 · D141 통지에 멱등키 · D142 연결 승인을 코드가 강제</td>
+        </tr>
+        <tr>
+          <td>해커톤 - 온보딩·샌드박스·배포</td>
+          <td>17</td>
+          <td>D143 샌드박스 안에서는 게이트웨이로만 LLM 호출 · D146 새 기종은 enum에 미리 두고 «진단 가능»은 DB 승격 상태로 게이트 · D147 새 기종 안전 문구는 사람이 승인해야만 사용 · D154 온보딩 전용 테이블·DB 역할·도구 프로필 · D159 공개 배포 앞에 토큰 게이트</td>
         </tr>
         <tr>
           <td>인프라·DB·운영</td>
@@ -768,9 +909,9 @@
         data-en="Design notes - MCP tool design">설계에서 신경 쓴 것 - MCP 도구 설계</span></div>
     <ul>
       <li
-        data-ko="<b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(기본 7 + 확장 15) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다."
-        data-en="<b>Half of orchestration is the description.</b> Each of the <b>22 tools</b> (7 core + 15 extended) states when to use it <em>and when not to</em> - an LLM's tool choice is only as good as the schema text it reads.">
-        <b>description이 오케스트레이션의 절반이다.</b> 도구 <b>22종</b>(기본 7 + 확장 15) 각각에 «언제 쓰고 언제
+        data-ko="<b>description이 오케스트레이션의 절반이다.</b> 도구 <b>25종</b>(기본 7 + 확장 15 + 온보딩 3) 각각에 «언제 쓰고 언제 쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다."
+        data-en="<b>Half of orchestration is the description.</b> Each of the <b>25 tools</b> (7 core + 15 extended + 3 onboarding) states when to use it <em>and when not to</em> - an LLM's tool choice is only as good as the schema text it reads.">
+        <b>description이 오케스트레이션의 절반이다.</b> 도구 <b>25종</b>(기본 7 + 확장 15 + 온보딩 3) 각각에 «언제 쓰고 언제
         쓰면 안 되는지»를 명시했다 - LLM의 도구 선택 품질은 스키마 설명 품질에 비례한다.
       </li>
       <li
@@ -781,9 +922,9 @@
           있게</b> 한다.
       </li>
       <li
-        data-ko="<b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class=&quot;mono&quot;>requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다."
-        data-en="<b>Reads and writes are separated.</b> Only <b>three tools write, and all three can only INSERT a draft</b> - there is no UPDATE permission at all, so approving, rejecting and signing happen exclusively through human-only APIs. And <b>identity (<span class=&quot;mono&quot;>requested_by</span>) is injected by the server, not passed as a tool parameter</b>, so the LLM has no path to forge it.">
-        <b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>3종뿐이고 셋 다 draft INSERT만</b> 한다 - UPDATE 권한 자체가 없어
+        data-ko="<b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>4종뿐이고 모두 INSERT만</b> 한다(발주·처분서·수리 증빙은 draft, 온보딩은 스테이징 행) - UPDATE 권한 자체가 없어 승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class=&quot;mono&quot;>requested_by</span>)은 도구 파라미터가 아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다."
+        data-en="<b>Reads and writes are separated.</b> Only <b>four tools write, and all four can only INSERT (three drafts, one staging row)</b> - there is no UPDATE permission at all, so approving, rejecting and signing happen exclusively through human-only APIs. And <b>identity (<span class=&quot;mono&quot;>requested_by</span>) is injected by the server, not passed as a tool parameter</b>, so the LLM has no path to forge it.">
+        <b>읽기와 쓰기를 가른다.</b> 쓰기 도구는 <b>4종뿐이고 모두 INSERT만</b> 한다(발주·처분서·수리 증빙은 draft, 온보딩은 스테이징 행) - UPDATE 권한 자체가 없어
         승인·반려·서명은 사람 전용 API로만 일어난다. 게다가 <b>신원(<span class="mono">requested_by</span>)은 도구 파라미터가
           아니라 서버가 주입</b>해, LLM이 신원을 위조할 경로가 없다.
       </li>
@@ -839,13 +980,13 @@
     </ul>
   </div>
   <div class="impact block">
-    <div class="bh"><span class="star">★</span> <span data-ko="결과 - 전체 실측 (2026.09.11)"
-        data-en="Results - full measurements (2026-09-11)">결과 - 전체 실측 (2026.09.11)</span></div>
-    <p data-ko="커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 회귀 검사 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3개 기종) · 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를 달성했습니다."
-      data-en="<b>510+</b> commits · design decisions <b>D1-D141</b> documented · a <b>1,560-check</b> regression suite (1,212 contract spikes + 348 pytest) · <b>70</b> error codes from three published LS Electric manuals · <b>1,229</b> manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b>.">
-      커밋 <b>510+</b> · 설계 결정 <b>141건</b>(D1~D141) 기록 · 회귀 검사 <b>1,560건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼
-      3개 기종) · 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를
-      달성했습니다.</p>
+    <div class="bh"><span class="star">★</span> <span data-ko="결과 - 전체 실측 (2026.10.04 기준)"
+        data-en="Results - full measurements (as of 2026-10-04)">결과 - 전체 실측 (2026.10.04 기준)</span></div>
+    <p data-ko="커밋 <b>580+</b> · 설계 결정 <b>159건</b>(D1~D159) 기록 · 회귀 검사 <b>1,799건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼 3개 기종)에 더해 HV600 고장 코드 <b>249행</b> 정규화(8코드 사람 확정) · LS 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를 지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를 달성했습니다(2026.09.11 실측)."
+      data-en="<b>580+</b> commits · design decisions <b>D1-D159</b> documented · a <b>1,799-check</b> regression suite (1,387 contract spikes + 412 pytest) · <b>70</b> error codes from three published LS Electric manuals plus <b>249</b> HV600 fault-code rows normalized (8 codes confirmed by a person) · <b>1,229</b> LS manual chunks indexed. <b>Hallucination on unknown codes is 0.0%</b> and <b>unauthorized access is blocked 100% of the time</b> (measured 2026-09-11).">
+      커밋 <b>580+</b> · 설계 결정 <b>159건</b>(D1~D159) 기록 · 회귀 검사 <b>1,799건</b> · 에러코드 <b>70건</b>(LS일렉트릭 공개 매뉴얼
+      3개 기종)에 더해 HV600 고장 코드 <b>249행</b> 정규화(8코드 사람 확정) · LS 매뉴얼을 <b>1,229조각</b>으로 나눠 검색할 수 있게 정리. <b>모르는 에러코드를
+        지어낸 비율 0.0%</b>와 <b>권한 없는 요청 차단 100%</b>는 목표를 달성했습니다(2026.09.11 실측).</p>
     <p data-ko="A2A는 <b>발신 6종을 전건 실 E2E 검증</b>했다. <b>수신은 설계상 없다</b> - 표준 계약이 MaintQ를 client로 배정했고(Agent Card <span class=&quot;mono&quot;>skills: []</span>), 설비 보전은 <b>일이 시작되는 자리</b>이지 받는 자리가 아니기 때문이다. <b>언젠가 할 일이 아니라 하지 않기로 한 일</b>이다. ⚠️ 데이터는 전부 <b>목업</b>(공개 매뉴얼 + 생성 시드)이고 실사용자가 없으므로 «운영 중»이라 쓰지 않는다."
       data-en="On A2A, <b>all six outbound skills are verified end to end</b>. <b>There is no inbound side by design</b>: the contract assigns MaintQ the client role (Agent Card <span class=&quot;mono&quot;>skills: []</span>) because maintenance is <b>where work begins</b>, not where it lands. <b>Not a to-do - a decision.</b> ⚠️ All data is <b>mock</b> (public manuals plus generated seed) and there are no real users, so this is never described as &quot;in production&quot;.">
       A2A는

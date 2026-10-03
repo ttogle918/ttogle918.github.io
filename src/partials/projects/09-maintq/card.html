@@ -1,0 +1,191 @@
+<!-- PROJECT 02 · MaintQ (QMesh 에서 분리, 2026-10-04) -->
+<article class="pcard reveal" id="maintq">
+  <div class="pc-top">
+    <div class="pc-badge mono">02</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="설비 진단 → 부품 발주 AI 에이전트 · NVIDIA 해커톤 예선 통과(상위 10팀)"
+        data-en="Plant diagnosis → parts ordering agent · NVIDIA hackathon, passed preliminaries (top 10 teams)">설비 진단 → 부품 발주 AI 에이전트 · NVIDIA 해커톤 예선 통과(상위 10팀)</div>
+      <h3 class="pc-title">MaintQ</h3>
+      <div class="pc-meta"
+        data-ko="2026.07 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> NVIDIA 해커톤 예선 통과(상위 10팀, 2026.09) <span class=&quot;sep&quot;>·</span> Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js"
+        data-en="Since Jul 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> NVIDIA hackathon, top 10 teams after preliminaries (Sep 2026) <span class=&quot;sep&quot;>·</span> Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js">
+        2026.07 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> NVIDIA 해커톤 예선 통과(상위 10팀, 2026.09)
+        <span class="sep">·</span> Python FastAPI + MCP + PostgreSQL(pgvector) + Next.js</div>
+      <div class="pc-hash mono">
+        <span>#MCP</span><span>#HumanInTheLoop</span><span>#NemoClaw</span><span>#OpenShell</span><span>#Nemotron</span>
+      </div>
+    </div>
+    <span class="pc-caret">&#9654;</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="공장 설비(인버터·PLC)에 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분씩 뒤지고</b>, 부품은 전화와 엑셀로 주문합니다. 기존 설비관리 시스템(CMMS)은 이력·재고·주문을 <b>기록</b>만 할 뿐, «왜 에러가 났고 어떤 부품이 필요한지»는 <b>판단</b>하지 못합니다. 새 기종이 들어오면 매뉴얼은 영문 PDF 한 권뿐이라 더 막막합니다."
+              data-en="When an inverter or PLC throws an error, a technician <b>digs through a PDF manual for 10-30 minutes</b> and orders parts by phone and spreadsheet. A CMMS <b>records</b> history, stock and orders; it does not <b>judge</b> why the fault appeared or which part it needs. A new model arrives with a single English PDF, which makes it worse.">
+              공장 설비(인버터·PLC)에 에러가 뜨면 정비사가 <b>PDF 매뉴얼을 10~30분씩 뒤지고</b>, 부품은 전화와 엑셀로 주문합니다. 기존
+              설비관리 시스템(CMMS)은 이력·재고·주문을 <b>기록</b>만 할 뿐, «왜 에러가 났고 어떤 부품이 필요한지»는 <b>판단</b>하지 못합니다. 새
+              기종이 들어오면 매뉴얼은 영문 PDF 한 권뿐이라 더 막막합니다.</p>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - 위험한 실패부터 줄인다"
+                data-en="Approach - shrink the dangerous failure first">해결 방법 - 위험한 실패부터 줄인다</span>
+            </div>
+            <p data-ko="두 모델의 부품 특정 정확도가 45.6%와 51.0%로 비슷해서 차이가 없다고 넘길 뻔했습니다. 안을 열어 보니 한쪽은 틀린 부품을 자신 있게 골랐고, 다른 쪽은 답을 내지 않았습니다. 틀린 부품을 확신하면 잘못된 발주로 이어지니, 두 실수를 따로 세기로 했습니다. 지시문만 바꾼 비교 실험(각 120회)에서 위험한 쪽을 16.7%에서 1.1%로 줄였습니다."
+              data-en="Two models scored 45.6% and 51.0% at identifying parts, close enough to call equal. Inside, one confidently picked wrong parts and the other gave no answer. A confident wrong part becomes a wrong order, so the two failures are now counted separately; a prompt-only controlled test (120 runs each) cut the dangerous one from 16.7% to 1.1%.">
+              두 모델의 부품 특정 정확도가 45.6%와 51.0%로 비슷해서 차이가 없다고 넘길 뻔했습니다. 안을 열어 보니 한쪽은 틀린 부품을 자신 있게
+              골랐고, 다른 쪽은 답을 내지 않았습니다. 틀린 부품을 확신하면 잘못된 발주로 이어지니, 두 실수를 따로 세기로 했습니다. 지시문만 바꾼 비교
+              실험(각 120회)에서 위험한 쪽을 16.7%에서 1.1%로 줄였습니다.</p>
+            <button class="feat feat-more" data-modal="f-maintq-detail" data-ko="설계와 측정 자세히 보기"
+              data-en="Design and measurement in full">설계와 측정 자세히 보기</button>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span
+                data-ko="NVIDIA 해커톤 - 에이전트는 초안까지, 결정은 사람"
+                data-en="NVIDIA hackathon - the agent drafts, a person decides">NVIDIA 해커톤 - 에이전트는 초안까지, 결정은 사람</span>
+            </div>
+            <p data-ko="NVIDIA 해커톤에서 <b>예선을 통과해 상위 10팀</b>에 들었습니다. 미션은 «NemoClaw와 OpenShell로 에이전트 보안하기»였습니다. 영문 매뉴얼뿐인 새 기종(Yaskawa HV600)을 한국어로 진단할 수 있게 하되, <b>AI 번역을 그대로 믿으면 생기는 두 사고</b>(틀린 진단, 틀린 안전 수치)를 막는 데 집중했습니다. 추출은 LLM 없이 코드가, 한국어 초안은 샌드박스 안의 NeMo Agent Toolkit 에이전트(Nemotron)가 스테이징 테이블에만 쓰고, <b>확정과 안전 문구 승인은 사람</b>이 합니다. 승인 전에는 같은 질문(«HV600에서 GF 떴어»)에 비슷한 코드를 추측하지 않고 A/S로 안내하고, 승인 뒤에는 정의·원인·조치와 사람이 승인한 안전 문구(원문 p.29, 최소 5분)가 나옵니다."
+              data-en="It <b>passed the preliminary round and made the top 10 teams</b> of the NVIDIA hackathon. The mission was securing agents with NemoClaw and OpenShell. A new model (Yaskawa HV600) had to become diagnosable in Korean without the two accidents an unchecked AI translation causes: a wrong diagnosis and a wrong safety number. Extraction is plain code; the Korean draft is written by a NeMo Agent Toolkit agent (Nemotron) inside a sandbox, into a staging table only; <b>confirmation and safety-text approval are human</b>. Before approval the same question (HV600 shows GF) gets a service referral instead of a guessed code; after approval it returns the definition, cause, action and the human-approved safety text (manual p.29, at least 5 minutes).">
+              NVIDIA 해커톤에서 <b>예선을 통과해 상위 10팀</b>에 들었습니다. 미션은 «NemoClaw와 OpenShell로 에이전트 보안하기»였습니다. 영문 매뉴얼뿐인 새 기종(Yaskawa HV600)을 한국어로 진단할 수 있게
+              하되, <b>AI 번역을 그대로 믿으면 생기는 두 사고</b>(틀린 진단, 틀린 안전 수치)를 막는 데 집중했습니다. 추출은 LLM 없이 코드가, 한국어
+              초안은 샌드박스 안의 NeMo Agent Toolkit 에이전트(Nemotron)가 스테이징 테이블에만 쓰고, <b>확정과 안전 문구 승인은 사람</b>이
+              합니다. 승인 전에는 같은 질문(«HV600에서 GF 떴어»)에 비슷한 코드를 추측하지 않고 A/S로 안내하고, 승인 뒤에는 정의·원인·조치와 사람이
+              승인한 안전 문구(원문 p.29, 최소 5분)가 나옵니다.</p>
+            <div class="featlist">
+              <button class="feat" data-modal="f-maintq-onboarding" data-ko="새 기종 온보딩 - 초안은 AI, 확정은 사람"
+                data-en="New-model onboarding - AI drafts, a person confirms">새 기종 온보딩 - 초안은 AI, 확정은 사람</button>
+              <button class="feat" data-modal="f-maintq-sandbox" data-ko="보안 두 겹 - 샌드박스와 서버·DB"
+                data-en="Two layers - sandbox, then server and DB">보안 두 겹 - 샌드박스와 서버·DB</button>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 - 누르면 실제 화면이 열립니다"
+                data-en="Features - click one to open">주요 기능 - 누르면 실제 화면이 열립니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-maintq-unknown" data-ko="미지 에러코드 - 추측하지 않는다"
+                data-en="Unknown code - no guessing">미지 에러코드 - 추측하지 않는다</button>
+              <button class="feat" data-modal="f-maintq-alt" data-ko="재고 0 → 호환 대체품"
+                data-en="Out of stock → alternatives">재고 0 → 호환 대체품</button>
+              <button class="feat" data-modal="f-maintq-repeat" data-ko="반복 고장 감지 → 발주 보류"
+                data-en="Repeat failure → hold the order">반복 고장 감지 → 발주 보류</button>
+              <button class="feat" data-modal="f-maintq-disposal" data-ko="처분 사전판정"
+                data-en="Disposal pre-check">처분 사전판정</button>
+              <button class="feat" data-modal="f-maintq-bundle" data-ko="처분 근거 번들"
+                data-en="Evidence bundle">처분 근거 번들</button>
+              <button class="feat" data-modal="f-maintq-deadline" data-ko="법정 기한 · 위험등급"
+                data-en="Deadlines &amp; risk grade">법정 기한 · 위험등급</button>
+              <button class="feat" data-modal="f-maintq-expenditure" data-ko="지출 성격 분류"
+                data-en="Expenditure classification">지출 성격 분류</button>
+            </div>
+          </div>
+
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.10.04 기준"
+                data-en="Results - as of 2026-10-04">결과 - 2026.10.04 기준</span></div>
+            <p data-ko="모르는 에러코드를 지어낸 비율(환각) 0%, 권한 없는 요청 차단(권한 분리) 100%는 목표를 달성했습니다(2026.09.11 실측). 해커톤에서는 HV600 고장 코드 249행을 전량 정규화하고 8코드를 사람이 확정했으며, 안전 문구 1건을 원문 페이지와 대조해 승인했습니다."
+              data-en="Hallucinated error codes 0% and unauthorized requests blocked 100% both met their targets (measured 2026-09-11). For the hackathon, all 249 HV600 fault-code rows were normalized, 8 codes were confirmed by a person, and one safety text was approved against its source page.">
+              모르는 에러코드를 지어낸 비율(환각) 0%, 권한 없는 요청 차단(권한 분리) 100%는 목표를 달성했습니다(2026.09.11 실측). 해커톤에서는
+              HV600 고장 코드 249행을 전량 정규화하고 8코드를 사람이 확정했으며, 안전 문구 1건을 원문 페이지와 대조해 승인했습니다.</p>
+            <div class="metricrow">
+              <div class="metric" data-modal="m-maintq-tools" role="button" tabindex="0">
+                <div class="mv"><span data-count="25">0</span>종</div>
+                <div class="ml" data-ko="MCP 도구" data-en="MCP tools">MCP 도구</div>
+              </div>
+              <div class="metric" data-modal="m-maintq-regression" role="button" tabindex="0">
+                <div class="mv"><span data-count="1799">0</span>건</div>
+                <div class="ml" data-ko="회귀 검사" data-en="regression checks">회귀 검사</div>
+              </div>
+              <div class="metric" data-modal="m-maintq-decisions" role="button" tabindex="0">
+                <div class="mv">D<span data-count="159">0</span></div>
+                <div class="ml" data-ko="설계 결정 문서화" data-en="design decisions">설계 결정 문서화</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="아직 안 된 것"
+                data-en="What is not done yet">아직 안 된 것</span></div>
+            <ul>
+              <li data-ko="<b>Nemotron 기준 평가는 다시 재지 않았습니다.</b> 위 수치는 이전 모델(gemini·gpt-oss) 기준이고 이후 지시문이 바뀌어 서로 비교할 수 없습니다."
+                data-en="<b>Evaluation was not re-run on Nemotron.</b> The figures above come from earlier models and the prompt has changed since, so they are not comparable.">
+                <b>Nemotron 기준 평가는 다시 재지 않았습니다.</b> 위 수치는 이전 모델(gemini·gpt-oss) 기준이고 이후 지시문이 바뀌어 서로 비교할 수
+                없습니다.</li>
+              <li data-ko="<b>공개 배포판에는 샌드박스가 없습니다.</b> OpenShell·NemoClaw·NAT는 로컬 게이트웨이를 전제로 해서 배포판에서 뺐고, 녹화 영상으로 보여 드립니다."
+                data-en="<b>The public deployment has no sandbox.</b> OpenShell, NemoClaw and NAT assume a local gateway, so they are left out and shown by recording.">
+                <b>공개 배포판에는 샌드박스가 없습니다.</b> OpenShell·NemoClaw·NAT는 로컬 게이트웨이를 전제로 해서 배포판에서 뺐고, 녹화 영상으로
+                보여 드립니다.</li>
+              <li data-ko="<b>승격을 되돌리는 API가 없고</b>, OpenClaw 경로는 안전 문구를 붙이는 게이트 계층 없이 모델이 스킬 규칙을 지키는 데 기댑니다."
+                data-en="<b>There is no API to undo a promotion</b>, and the OpenClaw path relies on the model following the skill rules, with no gate layer attaching safety text.">
+                <b>승격을 되돌리는 API가 없고</b>, OpenClaw 경로는 안전 문구를 붙이는 게이트 계층 없이 모델이 스킬 규칙을 지키는 데 기댑니다.</li>
+              <li data-ko="<b>실사용자가 없습니다.</b> 재고·공급사·발주는 목업이고 매뉴얼만 실데이터입니다. 특정 공장이 HV600을 쓴다고 주장하지 않습니다."
+                data-en="<b>No real users.</b> Stock, suppliers and orders are mock; only the manuals are real. No claim is made that a particular plant runs the HV600.">
+                <b>실사용자가 없습니다.</b> 재고·공급사·발주는 목업이고 매뉴얼만 실데이터입니다. 특정 공장이 HV600을 쓴다고 주장하지 않습니다.</li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="QMesh에서 맡은 역할"
+                data-en="Its role in QMesh">QMesh에서 맡은 역할</span></div>
+            <p data-ko="QMesh로 연결하면 MaintQ는 은행(FinAllQ)과 보험사(InsuQ)에 요청을 <b>보내기만</b> 합니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로는 종단 검증했고, 샌드박스 안에서는 시연하지 않았습니다. <a href=&quot;#qmesh&quot;>QMesh 카드</a>에서 연결 전체를 볼 수 있습니다."
+              data-en="Connected through QMesh, MaintQ only <b>sends</b> requests to the bank (FinAllQ) and the insurer (InsuQ). Maintenance is where work starts, not where it is received, so receiving is a decision not to build, not a backlog item. The six outbound paths are verified end to end; they are not demonstrated inside the sandbox. See the <a href=&quot;#qmesh&quot;>QMesh card</a> for the whole connection.">
+              QMesh로 연결하면 MaintQ는 은행(FinAllQ)과 보험사(InsuQ)에 요청을 <b>보내기만</b> 합니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가
+              아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로는 종단 검증했고, 샌드박스 안에서는 시연하지
+              않았습니다. <a href="#qmesh">QMesh 카드</a>에서 연결 전체를 볼 수 있습니다.</p>
+          </div>
+
+          <div class="pc-actions">
+            <a class="gobtn solid" href="https://maintq-nvidia.netlify.app" target="_blank" rel="noopener"><span
+                class="ic" data-ic="link"></span><span data-ko="배포판 열기" data-en="Open live demo">배포판 열기</span></a>
+            <a class="gobtn" href="https://github.com/ttogle918/MaintQ-NemoClaw" target="_blank" rel="noopener"><span
+                class="ic" data-ic="github"></span>GITHUB</a>
+            <a class="gobtn" href="maintq/"><span class="ic" data-ic="link"></span><span data-ko="MaintQ 상세 페이지"
+                data-en="MaintQ page">MaintQ 상세 페이지</span></a>
+          </div>
+          <p class="cap2 mono" data-ko="배포판은 발주 승인을 아무나 못 하도록 접속 토큰이 있어야 열립니다. 토큰은 요청 주시면 전달드립니다."
+            data-en="The live demo asks for an access token so that nobody can approve orders from a public URL. Token available on request.">
+            배포판은 발주 승인을 아무나 못 하도록 접속 토큰이 있어야 열립니다. 토큰은 요청 주시면 전달드립니다.</p>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/maintq/hv600-diagnosis.gif"
+                alt="사람이 승인한 HV600 고장 코드를 진단하고 승인된 안전 문구를 함께 보여 주는 MaintQ 화면">
+              <span class="cap2 mono" data-ko="HV600 GF 진단<br>사람이 승인한 안전 문구와 함께"
+                data-en="HV600 GF diagnosis<br>with the human-approved safety text">HV600 GF 진단<br>사람이 승인한 안전 문구와 함께</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/onboarding-review.png"
+                alt="AI가 만든 한국어 초안을 원문과 대조해 코드 그룹 단위로 승격하는 온보딩 검수 화면">
+              <span class="cap2 mono" data-ko="AI 초안을 원문과 대조해<br>사람이 코드 그룹 단위로 확정"
+                data-en="A person checks the AI draft<br>against the source, per code group">AI 초안을 원문과 대조해<br>사람이 코드 그룹 단위로 확정</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/unknown-error-code.gif"
+                alt="매뉴얼에 없는 에러코드를 추측하지 않고 모른다고 답하는 MaintQ 화면">
+              <span class="cap2 mono" data-ko="매뉴얼에 없는 에러코드<br>추측하지 않는다"
+                data-en="An error code not in the manual<br>no guessing">매뉴얼에 없는 에러코드<br>추측하지 않는다</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/repeat-failure-hold.gif"
+                alt="같은 설비의 반복 고장을 감지해 부품 발주를 보류하는 MaintQ 화면">
+              <span class="cap2 mono" data-ko="반복 고장 감지 → 주문 보류"
+                data-en="Repeat failure detected → order on hold">반복 고장 감지 → 주문 보류</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/maintq/disposal-precheck.gif"
+                alt="사실이 모자라면 판정을 미루고 입력을 받은 뒤 판정하는 처분 사전판정 화면">
+              <span class="cap2 mono" data-ko="처분 사전판정<br>사실이 모자라면 판정하지 않는다"
+                data-en="Disposal pre-check<br>no verdict until the facts are in">처분 사전판정<br>사실이 모자라면 판정하지 않는다</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
