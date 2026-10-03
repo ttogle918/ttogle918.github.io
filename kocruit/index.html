@@ -79,6 +79,7 @@
         <a href="#features" data-ko="화면" data-en="Screens">화면</a>
         <a href="#design" data-ko="설계" data-en="Design">설계</a>
         <a href="#improve" data-ko="혼자 개선" data-en="Solo refactor">혼자 개선</a>
+        <a href="#refactor" data-ko="재설계" data-en="Redesign">재설계</a>
         <a href="#limits" data-ko="한계" data-en="Limits">한계</a>
         <a href="../#kocruit" data-ko="← 포트폴리오" data-en="← Portfolio">← 포트폴리오</a>
         <button class="tbtn" id="langBtn" type="button" aria-label="Language">KO</button>
@@ -113,8 +114,8 @@
           data-ko="<b>2025.06 ~ 07 팀 프로젝트 · 팀장 (기여 40%) · 과정 내 1위</b><br>2025.09 ~ 2026.01 혼자 개선 · FastAPI · LangGraph · Whisper · MediaPipe · Redis"
           data-en="<b>Jun-Jul 2025 team project · team lead (40%) · ranked 1st in the program</b><br>Solo refactor Sep 2025-Jan 2026 · FastAPI · LangGraph · Whisper · MediaPipe · Redis">
           <b>2025.06 ~ 07 팀 프로젝트 · 팀장 (기여 40%) · 과정 내 1위</b><br>2025.09 ~ 2026.01 혼자 개선 · FastAPI · LangGraph · Whisper · MediaPipe · Redis</p>
-        <p class="cta-note" style="margin-bottom:18px" data-ko="※ 지금 레포는 2026.07부터 전면 리팩토링 중이라, 코드가 이 설명과 다를 수 있습니다."
-          data-en="※ The repo has been mid-refactor since Jul 2026, so the code may differ from this page.">※ 지금 레포는 2026.07부터 전면 리팩토링 중이라, 코드가 이 설명과 다를 수 있습니다.</p>
+        <p class="cta-note" style="margin-bottom:18px" data-ko="※ 지금 레포는 2026.07부터 전면 리팩토링 중이라, 코드가 이 설명과 다를 수 있습니다. 진행 중인 구조와 현재 상태는 아래 «재설계» 절에 적었습니다."
+          data-en="※ The repo has been mid-refactor since Jul 2026, so the code may differ from this page. The structure in progress and its current status are in the 'Redesign' section below.">※ 지금 레포는 2026.07부터 전면 리팩토링 중이라, 코드가 이 설명과 다를 수 있습니다. 진행 중인 구조와 현재 상태는 아래 «재설계» 절에 적었습니다.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -431,6 +432,194 @@
               <td data-ko="백엔드에 섞여 있던 AI 라이브러리" data-en="AI libraries mixed into the backend">백엔드에 섞여 있던 AI 라이브러리</td>
               <td class="n" data-ko="10종 (torch · whisper · pyannote 등)" data-en="10 (torch, whisper, pyannote…)">10종 (torch · whisper · pyannote 등)</td>
               <td class="n" data-ko="AI 서버 API 15개로 이전" data-en="moved to 15 AI server APIs">AI 서버 API 15개로 이전</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFACTOR (2026.07 ~ 진행 중) ============ -->
+  <section id="refactor">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="2026.07 ~ 진행 중 · 비공개 저장소 기준" data-en="Jul 2026 - ongoing · private repository">2026.07 ~ 진행 중 · 비공개 저장소 기준</span>
+        <h2 class="sec-title" data-ko="지금은 설계를 규칙으로 바꾸는 중입니다" data-en="Now turning the design into enforced rules">지금은 설계를 규칙으로 바꾸는 중입니다</h2>
+        <p class="sec-sub"
+          data-ko="아래는 2026-09-30 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 배포한 서비스가 아니고, 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다."
+          data-en="This is the structure under work as of 30 Sep 2026. It is based on code and documents in a private repository, so it cannot be seen in the public GitHub repository above. It is not a deployed service; the demo features sit on a separate branch that has not been merged yet. All demo data is synthetic.">아래는 2026-09-30 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 배포한 서비스가 아니고, 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다.</p>
+      </div>
+
+      <!-- AI 는 제안 -->
+      <h3 class="sub-h reveal" data-ko="AI 산출은 제안이고, 합격 · 불합격은 사람이 정합니다" data-en="AI output is a proposal; pass or fail is decided by a person">AI 산출은 제안이고, 합격 · 불합격은 사람이 정합니다</h3>
+      <p class="sub-p reveal"
+        data-ko="AI 가 쓰는 칸과 사람이 쓰는 칸을 나눴습니다. AI 점수는 제안 칸에만 기록하고, 합격 · 불합격이나 단계 이동을 바꾸는 코드는 한 함수뿐이며 사람의 확정 조작에서만 호출됩니다. 이미 결과가 정해진 단계는 AI 가 덮어쓰지 못합니다. 서류 · 필기 · 면접 단계를 한꺼번에 마감하는 기능도 같은 길을 따릅니다 — AI 추천을 파랑 · 빨강으로 보여 주고, 사람이 개별로 바꾸고, 확인 대화상자를 거쳐 확정한 뒤에야 통보 메일이 나갑니다."
+        data-en="The fields the AI writes and the fields a person writes are separate. AI scores land only in a proposal field; exactly one function changes pass/fail or moves a stage, and it is called only from a person's confirming action. A stage that is already decided cannot be overwritten by the AI. Closing a whole stage at once follows the same path: AI recommendations show as blue or red, a person changes them one by one, and only after a confirmation dialog are the notification emails sent.">AI 가 쓰는 칸과 사람이 쓰는 칸을 나눴습니다. AI 점수는 제안 칸에만 기록하고, 합격 · 불합격이나 단계 이동을 바꾸는 코드는 한 함수뿐이며 사람의 확정 조작에서만 호출됩니다. 이미 결과가 정해진 단계는 AI 가 덮어쓰지 못합니다. 서류 · 필기 · 면접 단계를 한꺼번에 마감하는 기능도 같은 길을 따릅니다 — AI 추천을 파랑 · 빨강으로 보여 주고, 사람이 개별로 바꾸고, 확인 대화상자를 거쳐 확정한 뒤에야 통보 메일이 나갑니다.</p>
+      <div class="fdiag reveal">
+        <svg viewBox="0 0 620 214" role="img" aria-label="AI 분석과 채점, 제안 칸 기록, 사람 검토, 확인 대화상자, 단계 확정 한 함수, 통보 메일로 이어지는 흐름">
+          <rect class="dg-box" x="4" y="26" width="190" height="52" rx="8" />
+          <text class="dg-t" x="16" y="48">AI 분석 · 채점</text>
+          <text class="dg-s" x="16" y="66">점수와 근거까지만</text>
+          <path class="dg-a" d="M198 52 H210" />
+          <rect class="dg-box" x="214" y="26" width="190" height="52" rx="8" />
+          <text class="dg-t" x="226" y="48">제안 칸에 기록</text>
+          <text class="dg-s" x="226" y="66">확정 칸은 건드리지 않음</text>
+          <path class="dg-a" d="M408 52 H420" />
+          <rect class="dg-box" x="424" y="26" width="190" height="52" rx="8" />
+          <text class="dg-t" x="436" y="48">사람이 검토</text>
+          <text class="dg-s" x="436" y="66">추천을 보고 개별 변경</text>
+          <path class="dg-a" d="M519 82 V100 H99 V116" />
+          <rect class="dg-box" x="4" y="120" width="190" height="52" rx="8" />
+          <text class="dg-t" x="16" y="142">확인 대화상자</text>
+          <text class="dg-s" x="16" y="160">전형 마감 · 일괄 처리</text>
+          <path class="dg-a" d="M198 146 H210" />
+          <rect class="dg-hold" x="214" y="120" width="190" height="52" rx="8" />
+          <text class="dg-t" x="226" y="142">확정 - 한 함수</text>
+          <text class="dg-s" x="226" y="160">결정된 행은 덮지 않음</text>
+          <path class="dg-a" d="M408 146 H420" />
+          <rect class="dg-box" x="424" y="120" width="190" height="52" rx="8" />
+          <text class="dg-t" x="436" y="142">통보 메일</text>
+          <text class="dg-s" x="436" y="160">확정이 저장된 뒤에만</text>
+          <text class="dg-g" x="4" y="200">LLM 이 실패하면 그럴듯한 기본값 대신 오류를 냅니다 - 캐시에는 성공한 결과만 남깁니다</text>
+        </svg>
+      </div>
+
+      <div class="grid3 reveal">
+        <div class="feat">
+          <span class="tag" data-ko="전형 단계" data-en="Stages">전형 단계</span>
+          <h3 data-ko="단계 구성은 공고마다 행으로 저장합니다" data-en="Each posting stores its own stage list as rows">단계 구성은 공고마다 행으로 저장합니다</h3>
+          <p data-ko="공고에는 전형 절차가 문자열로만 있었고 진행은 고정된 여섯 종류로만 돌았습니다. 그래서 같은 면접을 두 번 두거나 AI 면접을 빼는 구성이 표현되지 않았습니다. 지금은 공고마다 단계의 순서 · 종류 · 이름을 저장하고, 종류는 여섯 가지 그대로 둡니다. 저장 뒤에는 단계 구조를 바꾸지 못하고 날짜만 고칠 수 있습니다."
+            data-en="A posting only had its stage process as a string, while progress ran on six fixed kinds, so a repeated interview or a posting without the AI interview could not be expressed. Each posting now stores the order, kind and name of its stages, with the six kinds left as they are. After saving, the structure is locked and only dates can be edited.">공고에는 전형 절차가 문자열로만 있었고 진행은 고정된 여섯 종류로만 돌았습니다. 그래서 같은 면접을 두 번 두거나 AI 면접을 빼는 구성이 표현되지 않았습니다. 지금은 공고마다 단계의 순서 · 종류 · 이름을 저장하고, 종류는 여섯 가지 그대로 둡니다. 저장 뒤에는 단계 구조를 바꾸지 못하고 날짜만 고칠 수 있습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="평가 항목" data-en="Criteria">평가 항목</span>
+          <h3 data-ko="항목 · 가중치의 해석은 한 곳에서" data-en="Criteria and weights are resolved in one place">항목 · 가중치의 해석은 한 곳에서</h3>
+          <p data-ko="면접 평가 항목이 화면과 서버에 따로 적혀 있으면 서버 총점과 화면이 어긋납니다. 그래서 공고에 저장한 항목이 있으면 그 세트를, 없으면 기본 세트(기술 역량 · 문제 해결 · 커뮤니케이션 · 조직 적합)를 돌려주는 함수 하나로 모았습니다. 총점은 서버가 계산하고, 제출된 평가가 있는 단계는 항목을 바꾸지 못하게 잠급니다."
+            data-en="If evaluation criteria are written separately in the UI and the server, the server total and the screen drift apart. One function now returns the posting's own criteria if it has any, otherwise the default set (technical skill, problem solving, communication, organisational fit). The server computes the total, and a stage with submitted evaluations is locked against criteria changes.">면접 평가 항목이 화면과 서버에 따로 적혀 있으면 서버 총점과 화면이 어긋납니다. 그래서 공고에 저장한 항목이 있으면 그 세트를, 없으면 기본 세트(기술 역량 · 문제 해결 · 커뮤니케이션 · 조직 적합)를 돌려주는 함수 하나로 모았습니다. 총점은 서버가 계산하고, 제출된 평가가 있는 단계는 항목을 바꾸지 못하게 잠급니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="LLM" data-en="LLM">LLM</span>
+          <h3 data-ko="모델 선택도 한 곳에서, 실패는 오류로" data-en="Model choice in one place; failures are errors">모델 선택도 한 곳에서, 실패는 오류로</h3>
+          <p data-ko="호출하는 쪽은 용도(판정 · 분석 · 생성 · 자유 서술)만 말하고 모델과 온도는 한 모듈이 정합니다. 제공자 교체는 환경 변수 한 줄입니다. LLM 호출이나 해석이 실패하면 고정 문구나 기본 점수로 채우지 않고 오류로 냅니다. 화면에는 «생성 실패 · 다시 시도»로 표시합니다."
+            data-en="Callers state only a purpose (judging, analysis, generation, free writing); one module chooses the model and temperature, and changing provider is a single environment variable. When an LLM call or its parsing fails, it returns an error instead of filling in a fixed phrase or default score, and the UI shows 'generation failed · retry'.">호출하는 쪽은 용도(판정 · 분석 · 생성 · 자유 서술)만 말하고 모델과 온도는 한 모듈이 정합니다. 제공자 교체는 환경 변수 한 줄입니다. LLM 호출이나 해석이 실패하면 고정 문구나 기본 점수로 채우지 않고 오류로 냅니다. 화면에는 «생성 실패 · 다시 시도»로 표시합니다.</p>
+        </div>
+      </div>
+
+      <!-- AI 면접 점수 -->
+      <h3 class="sub-h reveal" data-ko="AI 면접 점수 - 측정은 서비스마다, 합치는 곳은 한 곳" data-en="AI interview score - measured per service, combined in one place">AI 면접 점수 - 측정은 서비스마다, 합치는 곳은 한 곳</h3>
+      <p class="sub-p reveal"
+        data-ko="한때 분석이 실패하면 테스트용 고정 결과나 무작위 값을 돌려주고 화면이 그것을 실제 분석처럼 그렸습니다. 지금은 분석을 못 만들면 값을 비우고 화면에 그리지 않습니다. 음성 · 텍스트 지표는 전사 서비스(음높이 떨림 · 발화 비율 · 군말 · 어휘 다양도 등 규칙 기반), 영상 지표는 영상 서비스(시선 · 자세), 답변 내용은 LLM 이 평가하고, 점수를 합치는 공식은 백엔드 한 곳에만 있습니다."
+        data-en="At one point a failed analysis returned a fixed test result or random values, and the screen drew them as real analysis. Now, if an analysis cannot be produced, the value is left empty and nothing is drawn. Voice and text metrics come from the transcription service (rule-based: pitch jitter, speech ratio, filler words, vocabulary diversity), video metrics from the video service (gaze, posture), answer content is graded by the LLM, and the formula that combines them lives in one place in the backend.">한때 분석이 실패하면 테스트용 고정 결과나 무작위 값을 돌려주고 화면이 그것을 실제 분석처럼 그렸습니다. 지금은 분석을 못 만들면 값을 비우고 화면에 그리지 않습니다. 음성 · 텍스트 지표는 전사 서비스(음높이 떨림 · 발화 비율 · 군말 · 어휘 다양도 등 규칙 기반), 영상 지표는 영상 서비스(시선 · 자세), 답변 내용은 LLM 이 평가하고, 점수를 합치는 공식은 백엔드 한 곳에만 있습니다.</p>
+      <div class="fdiag reveal">
+        <svg viewBox="0 0 620 290" role="img" aria-label="영상 업로드 뒤 음성 텍스트 서비스, 영상 서비스, 답변 내용 평가가 각자 지표를 내고 백엔드의 점수 공식 한 곳에서 합쳐진다">
+          <rect class="dg-box" x="200" y="14" width="220" height="42" rx="8" />
+          <text class="dg-t" x="214" y="40">면접 영상 · 음성 업로드</text>
+          <path class="dg-a" d="M310 58 V72 H102 V86" />
+          <path class="dg-a" d="M310 58 V86" />
+          <path class="dg-a" d="M310 58 V72 H518 V86" />
+          <rect class="dg-box" x="4" y="90" width="196" height="64" rx="8" />
+          <text class="dg-t" x="16" y="112">전사 서비스</text>
+          <text class="dg-s" x="16" y="130">음성 · 텍스트 지표</text>
+          <text class="dg-s" x="16" y="144">질문별 구간 분할</text>
+          <rect class="dg-box" x="212" y="90" width="196" height="64" rx="8" />
+          <text class="dg-t" x="224" y="112">영상 서비스</text>
+          <text class="dg-s" x="224" y="130">시선 · 자세</text>
+          <text class="dg-s" x="224" y="144">근거 없는 지표는 비움</text>
+          <rect class="dg-box" x="420" y="90" width="196" height="64" rx="8" />
+          <text class="dg-t" x="432" y="112">답변 내용 평가</text>
+          <text class="dg-s" x="432" y="130">LLM · 질문별</text>
+          <text class="dg-s" x="432" y="144">실패하면 그 문항은 비움</text>
+          <path class="dg-a" d="M102 158 V184" />
+          <path class="dg-a" d="M310 158 V184" />
+          <path class="dg-a" d="M518 158 V184" />
+          <rect class="dg-hold" x="4" y="188" width="612" height="50" rx="8" />
+          <text class="dg-t" x="16" y="210">점수 공식 한 곳 (백엔드)</text>
+          <text class="dg-s" x="16" y="228">음성 25 · 유창성 25 · 비언어 20 · 내용 30 - 값이 있는 그룹만 다시 나눔</text>
+          <text class="dg-g" x="4" y="260">결과는 제안입니다 - 최종 점수는 면접관 평가의 평균으로만 정합니다</text>
+          <text class="dg-g" x="4" y="278">지표의 기준 구간은 소수 표본에서 잡아, 독립 표본 검증이 남아 있습니다</text>
+        </svg>
+      </div>
+
+      <div class="grid2 reveal" style="margin-top:18px">
+        <div class="feat">
+          <span class="tag" data-ko="필기" data-en="Written test">필기</span>
+          <h3 data-ko="모범답안을 함께 만들고, 채점은 제안으로" data-en="Model answers come with the question; grading is a proposal">모범답안을 함께 만들고, 채점은 제안으로</h3>
+          <p data-ko="문제를 만들 때 모범답안도 같이 만들고, AI 채점은 그 모범답안과 비교합니다. 채점 결과는 제안 점수로만 기록되고 확정은 사람이 일괄로 합니다. 예전에는 LLM 제공자의 일시 과부하 오류를 삼켜 «AI 채점 실패»라는 문구를 정상 피드백으로 저장하고 있었습니다. 지금은 한 번 더 요청한 뒤에도 실패하면 그 답안만 건너뛰고 오류로 남깁니다."
+            data-en="Model answers are generated together with the question, and the AI grader compares against them. Results are stored only as proposed scores, and a person confirms them in bulk. Earlier, a temporary overload error from the LLM provider was swallowed and the phrase 'AI grading failed' was stored as if it were normal feedback. Now, if a retry also fails, only that answer is skipped and recorded as an error.">문제를 만들 때 모범답안도 같이 만들고, AI 채점은 그 모범답안과 비교합니다. 채점 결과는 제안 점수로만 기록되고 확정은 사람이 일괄로 합니다. 예전에는 LLM 제공자의 일시 과부하 오류를 삼켜 «AI 채점 실패»라는 문구를 정상 피드백으로 저장하고 있었습니다. 지금은 한 번 더 요청한 뒤에도 실패하면 그 답안만 건너뛰고 오류로 남깁니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="면접관 편성" data-en="Panel assignment">면접관 편성</span>
+          <h3 data-ko="개인 일정과 겹치는 면접관은 제외합니다" data-en="Interviewers with clashing schedules are excluded">개인 일정과 겹치는 면접관은 제외합니다</h3>
+          <p data-ko="면접관을 자동으로 편성할 때 회의 · 출장 · 교육 · 휴가 일정이 면접 시각과 겹치는 직원과, 같은 시각 다른 면접을 수락한 직원을 후보에서 뺍니다. 제외한 사유는 기록해 화면에 «일정 겹침 n명 제외»로 알려 주고, 후보가 모자라도 제외한 사람을 다시 채워 넣지 않습니다. 겹침 판정은 면접 한 건을 30분으로 보는 상수 하나로 합니다."
+            data-en="When panel members are assigned automatically, employees whose meeting, trip, training or leave overlaps the interview time, and those who accepted another interview at the same time, are dropped from the candidates. The reason is recorded and shown as 'n excluded for schedule clash', and excluded people are never added back even if candidates run short. Overlap is judged with one constant that treats an interview as 30 minutes.">면접관을 자동으로 편성할 때 회의 · 출장 · 교육 · 휴가 일정이 면접 시각과 겹치는 직원과, 같은 시각 다른 면접을 수락한 직원을 후보에서 뺍니다. 제외한 사유는 기록해 화면에 «일정 겹침 n명 제외»로 알려 주고, 후보가 모자라도 제외한 사람을 다시 채워 넣지 않습니다. 겹침 판정은 면접 한 건을 30분으로 보는 상수 하나로 합니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="실시간" data-en="Live">실시간</span>
+          <h3 data-ko="면접 중 전사는 10초 조각으로" data-en="Live transcription in 10-second chunks">면접 중 전사는 10초 조각으로</h3>
+          <p data-ko="면접관 화면의 마이크 음성을 10초 조각으로 보내 받아 적습니다. 면접관이 «지원자 답변 중»을 켜고 끄는 순간 조각을 끊어 한 조각에 한 사람의 발화만 담고, 음성 지표는 지원자 조각에만 계산합니다. 실시간 힌트는 기본 꺼짐이고 동의 문구를 거치며 30초에 한 번만 나옵니다. 마이크로 실제 면접을 한 번 돌려 보는 확인은 아직 하지 못했습니다."
+            data-en="Microphone audio from the interviewer's screen is sent in 10-second chunks and transcribed. Chunks are cut the moment the interviewer toggles 'candidate answering', so one chunk holds one person's speech, and voice metrics are computed only for candidate chunks. The live hint is off by default, goes through a consent notice and appears at most once every 30 seconds. A real run with an actual microphone has not been done yet.">면접관 화면의 마이크 음성을 10초 조각으로 보내 받아 적습니다. 면접관이 «지원자 답변 중»을 켜고 끄는 순간 조각을 끊어 한 조각에 한 사람의 발화만 담고, 음성 지표는 지원자 조각에만 계산합니다. 실시간 힌트는 기본 꺼짐이고 동의 문구를 거치며 30초에 한 번만 나옵니다. 마이크로 실제 면접을 한 번 돌려 보는 확인은 아직 하지 못했습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="경계" data-en="Boundaries">경계</span>
+          <h3 data-ko="경계를 넘는 규칙은 테스트가 지킵니다" data-en="Tests enforce the rules across boundaries">경계를 넘는 규칙은 테스트가 지킵니다</h3>
+          <p data-ko="백엔드는 상태와 저장, AI 서버는 무상태라는 원칙을 문서에만 두지 않고 정적 테스트로 묶었습니다. 예를 들어 백엔드가 AI 코드를 직접 불러오는 곳은 개수가 늘면 실패하고 줄이기만 할 수 있으며, 서비스 주소 문자열이 정해진 모듈 밖에 생기면 실패합니다. 새로 만든 조회 경로는 저장 직후 다시 읽는지에 따라 캐시 여부를 판정해 적습니다."
+            data-en="The principle that the backend holds state and the AI server is stateless is enforced by static tests, not just documented. For example, the places where the backend imports AI code directly may only shrink - the test fails if the count grows - and a service URL string outside the designated module fails the build. A newly added read route gets a recorded cache decision based on whether it is re-read right after a write.">백엔드는 상태와 저장, AI 서버는 무상태라는 원칙을 문서에만 두지 않고 정적 테스트로 묶었습니다. 예를 들어 백엔드가 AI 코드를 직접 불러오는 곳은 개수가 늘면 실패하고 줄이기만 할 수 있으며, 서비스 주소 문자열이 정해진 모듈 밖에 생기면 실패합니다. 새로 만든 조회 경로는 저장 직후 다시 읽는지에 따라 캐시 여부를 판정해 적습니다.</p>
+        </div>
+      </div>
+
+      <!-- 교훈 -->
+      <h3 class="sub-h reveal" data-ko="이번 스프린트에서 배운 것" data-en="What this sprint taught">이번 스프린트에서 배운 것</h3>
+      <div class="grid3 reveal">
+        <div class="feat">
+          <span class="tag" data-ko="테스트" data-en="Tests">테스트</span>
+          <h3 data-ko="테스트용 응답은 실제 응답에서 만듭니다" data-en="Build test fixtures from real responses">테스트용 응답은 실제 응답에서 만듭니다</h3>
+          <p data-ko="화면 연결에서 나온 결함 여섯 건이 전부 «테스트의 가짜 응답이 실제와 다른 모양이었던 것»이었습니다. 자동 검사는 모두 통과했고 실제 브라우저와 실제 발송에서만 드러났습니다. 구현하는 사람이 기대하는 모양으로 가짜 응답을 쓰면 테스트와 구현이 같은 오해를 나눕니다. 그래서 가짜 응답은 실제 서버에서 받은 응답으로 만든다는 규칙을 세웠습니다."
+            data-en="All six defects found while wiring the screens were 'the test's fake response had a different shape from the real one'. Every automated check passed, and they surfaced only in a real browser and a real send. When a fake response is written in the shape the implementer expects, the test and the code share the same misunderstanding. The rule is now that fixtures are built from responses captured from the real server.">화면 연결에서 나온 결함 여섯 건이 전부 «테스트의 가짜 응답이 실제와 다른 모양이었던 것»이었습니다. 자동 검사는 모두 통과했고 실제 브라우저와 실제 발송에서만 드러났습니다. 구현하는 사람이 기대하는 모양으로 가짜 응답을 쓰면 테스트와 구현이 같은 오해를 나눕니다. 그래서 가짜 응답은 실제 서버에서 받은 응답으로 만든다는 규칙을 세웠습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="실측" data-en="Measure">실측</span>
+          <h3 data-ko="자동 검사가 못 보는 것은 시간과 정체성입니다" data-en="What automation misses: time and identity">자동 검사가 못 보는 것은 시간과 정체성입니다</h3>
+          <p data-ko="이력서 강조 표시가 실제 LLM 지연에서 호출 제한을 넘어 실패했고, 날짜만 바꿔 저장했는데 단계 행이 지워지고 새로 만들어져 번호가 바뀌었습니다. 둘 다 단위 테스트는 녹색이었습니다. 지연이 있는 경로는 실제 LLM 으로, 저장 경로는 행의 번호가 그대로인지까지 확인하는 단계를 코드 리뷰와 따로 두고 있습니다."
+            data-en="The resume-highlight call exceeded its timeout under real LLM latency, and saving only dates deleted and recreated the stage rows so their ids changed. Both had green unit tests. Paths with latency are checked against a real LLM, and save paths down to whether row ids stay the same, in a step separate from code review.">이력서 강조 표시가 실제 LLM 지연에서 호출 제한을 넘어 실패했고, 날짜만 바꿔 저장했는데 단계 행이 지워지고 새로 만들어져 번호가 바뀌었습니다. 둘 다 단위 테스트는 녹색이었습니다. 지연이 있는 경로는 실제 LLM 으로, 저장 경로는 행의 번호가 그대로인지까지 확인하는 단계를 코드 리뷰와 따로 두고 있습니다.</p>
+        </div>
+        <div class="feat">
+          <span class="tag" data-ko="정직한 빈칸" data-en="Honest blanks">정직한 빈칸</span>
+          <h3 data-ko="값이 없다고 정직하게 적어도 결함은 숨습니다" data-en="Honest 'no value' can still hide a defect">값이 없다고 정직하게 적어도 결함은 숨습니다</h3>
+          <p data-ko="데이터가 없는 칸은 가짜로 채우지 않고 «값 없음»으로 표시하는 규칙을 지켰더니, 지원자 41명 전원의 하위 점수가 비어 있는 결함이 가짜 값이 아니라 정상적인 빈 상태로 보였습니다. 그 뒤로는 빈 화면과 오류 화면도 «정상»으로 넘기지 않고 원천에 값이 있는지 대조합니다."
+            data-en="Following the rule of showing 'no value' instead of filling blanks with fakes made a defect - empty sub-scores for all 41 applicants - look like a normal empty state rather than a fake value. Since then, empty and error screens are not passed as 'normal' either; they are checked against whether the source actually holds a value.">데이터가 없는 칸은 가짜로 채우지 않고 «값 없음»으로 표시하는 규칙을 지켰더니, 지원자 41명 전원의 하위 점수가 비어 있는 결함이 가짜 값이 아니라 정상적인 빈 상태로 보였습니다. 그 뒤로는 빈 화면과 오류 화면도 «정상»으로 넘기지 않고 원천에 값이 있는지 대조합니다.</p>
+        </div>
+      </div>
+
+      <!-- 현재 상태 -->
+      <h3 class="sub-h reveal" data-ko="현재 상태를 그대로 적습니다" data-en="Current status, as it is">현재 상태를 그대로 적습니다</h3>
+      <div class="tbl-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th data-ko="항목" data-en="Item">항목</th>
+              <th data-ko="상태" data-en="Status">상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-ko="자동 테스트" data-en="Automated tests">자동 테스트</td>
+              <td data-ko="백엔드 1,814 · 프론트 1,107 · AI 서버 174 · 전사 서비스 144 통과(2026-09-30, 시연 기능 포함). 리뷰 게이트 통과" data-en="Backend 1,814 · frontend 1,107 · AI server 174 · transcription service 144 passing (30 Sep 2026, demo features included). Review gate passed">백엔드 1,814 · 프론트 1,107 · AI 서버 174 · 전사 서비스 144 통과(2026-09-30, 시연 기능 포함). 리뷰 게이트 통과</td>
+            </tr>
+            <tr>
+              <td data-ko="메인 병합" data-en="Merge state">메인 병합</td>
+              <td data-ko="스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치에 있고 메인에 합치지 않았습니다" data-en="The four stages of sprint 11 are merged into main but not pushed to the remote. The demo features are on a separate branch and not merged">스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치에 있고 메인에 합치지 않았습니다</td>
+            </tr>
+            <tr>
+              <td data-ko="시연 준비" data-en="Demo readiness">시연 준비</td>
+              <td data-ko="시연 데이터 적용과 처음부터 끝까지 따라가는 리허설은 아직 하지 않았습니다. 마감 일괄 처리의 권고 인원 배수가 시연 인원에 맞는지도 확인 전입니다" data-en="Applying the demo data and a full start-to-finish rehearsal have not been done. Whether the recommended-headcount multipliers of bulk close fit the demo group is also unverified">시연 데이터 적용과 처음부터 끝까지 따라가는 리허설은 아직 하지 않았습니다. 마감 일괄 처리의 권고 인원 배수가 시연 인원에 맞는지도 확인 전입니다</td>
+            </tr>
+            <tr>
+              <td data-ko="미확인" data-en="Unverified">미확인</td>
+              <td data-ko="실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다. 실무 · 임원 면접 일정을 만드는 경로도 아직 코드에 없습니다" data-en="Still open: a real-microphone transcription run, receiving a real acceptance email, and checking a column type in the production DB. The path that creates practical and executive interview schedules does not exist in code yet">실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다. 실무 · 임원 면접 일정을 만드는 경로도 아직 코드에 없습니다</td>
+            </tr>
+            <tr>
+              <td data-ko="남은 구조 부채" data-en="Remaining structural debt">남은 구조 부채</td>
+              <td data-ko="백엔드가 AI 코드를 직접 불러오는 곳이 아직 남아 있어 개수로 묶고 줄이는 중입니다." data-en="Some places where the backend imports AI code directly remain; they are capped by count and being reduced">백엔드가 AI 코드를 직접 불러오는 곳이 아직 남아 있어 개수로 묶고 줄이는 중입니다.</td>
             </tr>
           </tbody>
         </table>
