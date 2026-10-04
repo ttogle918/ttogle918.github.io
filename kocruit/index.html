@@ -50,6 +50,11 @@
     .sub-p { color: var(--ink-soft); line-height: 1.75; margin: 0 0 18px; max-width: 760px; }
     .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
     .shots a { display: block; }
+    [hidden] { display: none !important; }
+    .video-frame { position: relative; aspect-ratio: 16 / 9; width: 100%; max-width: 960px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel-2); }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; }
+    .video-links a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
   </style>
 </head>
 
@@ -122,7 +127,7 @@
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m10 9 5 3-5 3z" fill="currentColor" />
             </svg><span data-ko="실제 화면 보기" data-en="See the screens">실제 화면 보기</span></a>
-          <a class="btn btn-ghost" href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view"
+          <a class="btn btn-ghost" id="heroLegacyLink" href="https://drive.google.com/file/d/1a9TJoWdvBvjZUCyBr3oJHq7yJSr1WzMH/view"
             target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -159,6 +164,24 @@
   </div>
 
   <!-- ============ FEATURES ============ -->
+  <!-- ============ DEMO VIDEO (DEMO_VIDEO_DRIVE_ID 가 비어 있으면 표시하지 않는다) ============ -->
+  <section id="demo-video" hidden>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-ko="2026.10 시연 영상" data-en="Oct 2026 demo video">2026.10 시연 영상</span>
+        <h2 class="sec-title" data-ko="공고 등록부터 최종 보고서까지 한 번에" data-en="From job posting to the final report in one take">공고 등록부터 최종 보고서까지 한 번에</h2>
+        <p class="sec-sub"
+          data-ko="채용공고 등록 → 서류 → AI 면접 → 필기 → 면접관 편성 → 실무 · 임원 면접 → 최종 합격 → 최종 보고서까지 전 구간을 따라간 영상입니다. 배포한 서비스가 아니라서 영상으로 대신하며, 화면의 데이터는 전부 합성 데이터입니다."
+          data-en="A walk through the whole flow: job posting, documents, AI interview, written test, interviewer assignment, practical and executive interviews, final acceptance and the final report. It is not a deployed service, so the video stands in for it; all data on screen is synthetic.">채용공고 등록 → 서류 → AI 면접 → 필기 → 면접관 편성 → 실무 · 임원 면접 → 최종 합격 → 최종 보고서까지 전 구간을 따라간 영상입니다. 배포한 서비스가 아니라서 영상으로 대신하며, 화면의 데이터는 전부 합성 데이터입니다.</p>
+      </div>
+      <div class="video-frame reveal" id="demoVideoFrame"></div>
+      <p class="cta-note video-links">
+        <a id="demoVideoOpen" target="_blank" rel="noopener" data-ko="Drive에서 열기" data-en="Open in Drive">Drive에서 열기</a>
+        <a id="demoVideoLegacy" target="_blank" rel="noopener" hidden data-ko="이전 버전(2025-12)" data-en="Previous version (2025-12)">이전 버전(2025-12)</a>
+      </p>
+    </div>
+  </section>
+
   <section id="features">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -446,8 +469,8 @@
         <span class="eyebrow" data-ko="2026.07 ~ 진행 중 · 비공개 저장소 기준" data-en="Jul 2026 - ongoing · private repository">2026.07 ~ 진행 중 · 비공개 저장소 기준</span>
         <h2 class="sec-title" data-ko="지금은 설계를 규칙으로 바꾸는 중입니다" data-en="Now turning the design into enforced rules">지금은 설계를 규칙으로 바꾸는 중입니다</h2>
         <p class="sec-sub"
-          data-ko="아래는 2026-09-30 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 배포한 서비스가 아니고, 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다."
-          data-en="This is the structure under work as of 30 Sep 2026. It is based on code and documents in a private repository, so it cannot be seen in the public GitHub repository above. It is not a deployed service; the demo features sit on a separate branch that has not been merged yet. All demo data is synthetic.">아래는 2026-09-30 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 배포한 서비스가 아니고, 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다.</p>
+          data-ko="아래는 2026-10-05 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 스프린트 11은 아직 마감하지 않았습니다. 배포한 서비스가 아니고, 배포는 하지 않기로 했습니다(시연 영상과 문서로 대신합니다). 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다."
+          data-en="This is the structure under work as of 5 Oct 2026. It is based on code and documents in a private repository, so it cannot be seen in the public GitHub repository above. Sprint 11 is not closed yet. It is not a deployed service, and I decided not to deploy it (a demo video and documents stand in). The demo features sit on a separate branch that has not been merged yet. All demo data is synthetic.">아래는 2026-10-05 현재 작업 중인 구조입니다. 비공개 저장소의 코드와 문서로 확인한 내용이라 위 공개 GitHub 저장소에서는 볼 수 없습니다. 스프린트 11은 아직 마감하지 않았습니다. 배포한 서비스가 아니고, 배포는 하지 않기로 했습니다(시연 영상과 문서로 대신합니다). 시연용 기능은 별도 브랜치에 있어 아직 메인에 합치지 않았습니다. 시연 데이터는 전부 합성 데이터입니다.</p>
       </div>
 
       <!-- AI 는 제안 -->
@@ -603,19 +626,23 @@
           <tbody>
             <tr>
               <td data-ko="자동 테스트" data-en="Automated tests">자동 테스트</td>
-              <td data-ko="백엔드 1,814 · 프론트 1,107 · AI 서버 174 · 전사 서비스 144 통과(2026-09-30, 시연 기능 포함). 리뷰 게이트 통과" data-en="Backend 1,814 · frontend 1,107 · AI server 174 · transcription service 144 passing (30 Sep 2026, demo features included). Review gate passed">백엔드 1,814 · 프론트 1,107 · AI 서버 174 · 전사 서비스 144 통과(2026-09-30, 시연 기능 포함). 리뷰 게이트 통과</td>
+              <td data-ko="백엔드 2,066 · AI 서버 362 · 공용 108 · 프론트 1,241 통과(2026-10-05 게이트, 환경 요인 1건 제외). 리뷰 게이트 통과" data-en="Backend 2,066 · AI server 362 · shared 108 · frontend 1,241 passing (5 Oct 2026 gate, one environment-related failure excluded). Review gate passed">백엔드 2,066 · AI 서버 362 · 공용 108 · 프론트 1,241 통과(2026-10-05 게이트, 환경 요인 1건 제외). 리뷰 게이트 통과</td>
             </tr>
             <tr>
               <td data-ko="메인 병합" data-en="Merge state">메인 병합</td>
-              <td data-ko="스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치에 있고 메인에 합치지 않았습니다" data-en="The four stages of sprint 11 are merged into main but not pushed to the remote. The demo features are on a separate branch and not merged">스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치에 있고 메인에 합치지 않았습니다</td>
+              <td data-ko="스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치(메인보다 64커밋 앞)에 있고 메인에 합치지 않았으며, 스프린트 마감도 아직입니다" data-en="The four stages of sprint 11 are merged into main but not pushed to the remote. The demo features are on a separate branch (64 commits ahead of main) and not merged, and the sprint is not closed yet">스프린트 11 의 네 단계는 메인에 병합했고 원격에는 아직 올리지 않았습니다. 시연용 기능은 별도 브랜치(메인보다 64커밋 앞)에 있고 메인에 합치지 않았으며, 스프린트 마감도 아직입니다</td>
             </tr>
             <tr>
               <td data-ko="시연 준비" data-en="Demo readiness">시연 준비</td>
-              <td data-ko="시연 데이터 적용과 처음부터 끝까지 따라가는 리허설은 아직 하지 않았습니다. 마감 일괄 처리의 권고 인원 배수가 시연 인원에 맞는지도 확인 전입니다" data-en="Applying the demo data and a full start-to-finish rehearsal have not been done. Whether the recommended-headcount multipliers of bulk close fit the demo group is also unverified">시연 데이터 적용과 처음부터 끝까지 따라가는 리허설은 아직 하지 않았습니다. 마감 일괄 처리의 권고 인원 배수가 시연 인원에 맞는지도 확인 전입니다</td>
+              <td data-ko="공고 등록 → 서류 → AI 면접 → 필기 → 면접관 편성 → 실무 · 임원 → 최종 합격 → 최종 보고서 전 구간을 네 번 리허설하고 시연 영상 촬영을 마쳤습니다(합성 데이터). 리허설에서 나온 결함은 고치고 실브라우저로 다시 확인했습니다. 배포는 하지 않기로 했고 영상과 문서로 대신합니다" data-en="I rehearsed the whole flow four times - job posting, documents, AI interview, written test, interviewer assignment, practical and executive interviews, final acceptance, final report - and finished recording the demo video (synthetic data). Defects found in rehearsal were fixed and re-checked in a real browser. I decided not to deploy; the video and documents stand in">공고 등록 → 서류 → AI 면접 → 필기 → 면접관 편성 → 실무 · 임원 → 최종 합격 → 최종 보고서 전 구간을 네 번 리허설하고 시연 영상 촬영을 마쳤습니다(합성 데이터). 리허설에서 나온 결함은 고치고 실브라우저로 다시 확인했습니다. 배포는 하지 않기로 했고 영상과 문서로 대신합니다</td>
             </tr>
             <tr>
               <td data-ko="미확인" data-en="Unverified">미확인</td>
-              <td data-ko="실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다. 실무 · 임원 면접 일정을 만드는 경로도 아직 코드에 없습니다" data-en="Still open: a real-microphone transcription run, receiving a real acceptance email, and checking a column type in the production DB. The path that creates practical and executive interview schedules does not exist in code yet">실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다. 실무 · 임원 면접 일정을 만드는 경로도 아직 코드에 없습니다</td>
+              <td data-ko="실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다." data-en="Still open: a real-microphone transcription run, receiving a real acceptance email, and checking a column type in the production DB.">실제 마이크로 한 면접 전사 확인, 합격 메일 실제 수신, 운영 DB의 칸 타입 확인은 남아 있습니다.</td>
+            </tr>
+            <tr>
+              <td data-ko="열린 결함" data-en="Open defects">열린 결함</td>
+              <td data-ko="리허설에서 찾은 결함 중 열린 것(2026-10-05 결함 문서 기준): 직무적성 리포트의 문항별 분석이 모범답안 전체를 그대로 보여 줌, AI 요약이 합격자와 탈락 사유를 섞는 등 입력에 없는 서술을 섞는 편차(서류 · 최종 요약), 최종 요약 첫 생성이 실패할 수 있음(재생성으로 복구), 챗봇 공고 채우기가 약 50초 걸리고 AI 가중치 합이 1이 되지 않음, 테스트가 실제 Redis에 필기 초안 키를 남김, 시드 데이터 일부 항목(서류 판정 근거 · 면접 평가 한 건)이 비어 보임" data-en="Open defects found in rehearsal (per the 5 Oct 2026 defect log): the aptitude-test report's per-question analysis prints the full model answers; AI summaries sometimes mix pass and fail reasons or add statements not in the input (document and final summaries); the first final-summary generation can fail (regeneration recovers it); chatbot job-post filling takes about 50 seconds and the AI weights do not sum to 1; a test leaves written-test draft keys in the real Redis; some seed data (a document-review rationale, one interview evaluation) looks empty">리허설에서 찾은 결함 중 열린 것(2026-10-05 결함 문서 기준): 직무적성 리포트의 문항별 분석이 모범답안 전체를 그대로 보여 줌, AI 요약이 합격자와 탈락 사유를 섞는 등 입력에 없는 서술을 섞는 편차(서류 · 최종 요약), 최종 요약 첫 생성이 실패할 수 있음(재생성으로 복구), 챗봇 공고 채우기가 약 50초 걸리고 AI 가중치 합이 1이 되지 않음, 테스트가 실제 Redis에 필기 초안 키를 남김, 시드 데이터 일부 항목(서류 판정 근거 · 면접 평가 한 건)이 비어 보임</td>
             </tr>
             <tr>
               <td data-ko="남은 구조 부채" data-en="Remaining structural debt">남은 구조 부채</td>
@@ -647,6 +674,12 @@
           <p data-ko="팀 기간 코드에는 서버 테스트가 하나도 없었습니다. 그래서 고치기 전에 API 명세가 바뀌면 바로 알아채는 도구부터 만들었고, 테스트가 없는 영역은 아직 남아 있습니다."
             data-en="The team-period code had no server tests at all, so a tool that catches API spec changes came first, before any fixes. Areas without tests still remain.">팀 기간 코드에는 서버 테스트가 하나도 없었습니다. 그래서 고치기 전에 API 명세가 바뀌면 바로 알아채는 도구부터 만들었고, 테스트가 없는 영역은 아직 남아 있습니다.</p>
         </div>
+        <div class="feat">
+          <span class="tag" data-ko="시연 · 배포" data-en="Demo · Deployment">시연 · 배포</span>
+          <h3 data-ko="배포하지 않고 영상으로 보여 드립니다" data-en="Shown by video, not deployed">배포하지 않고 영상으로 보여 드립니다</h3>
+          <p data-ko="필기 문제 생성은 제공자 응답에 따라 약 2 ~ 3분 걸리고, AI 요약은 같은 입력에도 서술이 달라질 수 있어 가드로 숫자 · 전칭 문장을 걸러냅니다. 합격 · 불합격은 어느 경우에도 AI가 아니라 사람의 확정 조작으로만 바뀝니다. 배포는 하지 않기로 해서 직접 써 볼 수 있는 서비스는 없고, 시연 영상과 문서로 대신합니다."
+            data-en="Written-test generation takes about 2-3 minutes depending on the provider, and AI summaries can word the same input differently, so guards filter out numbers and sweeping statements. Pass or fail only ever changes through a person's confirming action, never by the AI. I decided not to deploy, so there is no service to try; a demo video and documents stand in.">필기 문제 생성은 제공자 응답에 따라 약 2 ~ 3분 걸리고, AI 요약은 같은 입력에도 서술이 달라질 수 있어 가드로 숫자 · 전칭 문장을 걸러냅니다. 합격 · 불합격은 어느 경우에도 AI가 아니라 사람의 확정 조작으로만 바뀝니다. 배포는 하지 않기로 해서 직접 써 볼 수 있는 서비스는 없고, 시연 영상과 문서로 대신합니다.</p>
+        </div>
       </div>
 
       <footer>
@@ -657,6 +690,37 @@
     </div>
   </section>
 
+  <script>
+    // 새 시연 영상의 Google Drive 파일 ID. 비어 있으면 영상 섹션은 화면에 나오지 않는다.
+    // 공유 링크 https://drive.google.com/file/d/<ID>/view 의 <ID> 부분만 넣는다.
+    const DEMO_VIDEO_DRIVE_ID = '1MypNS32B0xtjiIm4CycqsZnf8YW5j01r';
+
+    (function () {
+      var id = /^[A-Za-z0-9_-]+$/.test(DEMO_VIDEO_DRIVE_ID) ? DEMO_VIDEO_DRIVE_ID : '';
+      if (!id) return;
+      var base = 'https://drive.google.com/file/d/' + id;
+      var frame = document.getElementById('demoVideoFrame');
+      var iframe = document.createElement('iframe');
+      iframe.src = base + '/preview';
+      iframe.loading = 'lazy';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'no-referrer';
+      var titles = { ko: 'KOCRUIT 시연 영상 (2026-10)', en: 'KOCRUIT demo video (Oct 2026)' };
+      function setTitle() { iframe.title = titles[document.documentElement.lang === 'en' ? 'en' : 'ko']; }
+      setTitle();
+      new MutationObserver(setTitle).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      frame.appendChild(iframe);
+      document.getElementById('demoVideoOpen').href = base + '/view';
+      var heroLegacy = document.getElementById('heroLegacyLink');
+      var legacy = document.getElementById('demoVideoLegacy');
+      if (heroLegacy) {
+        legacy.href = heroLegacy.href;
+        legacy.hidden = false;
+        heroLegacy.hidden = true;
+      }
+      document.getElementById('demo-video').hidden = false;
+    })();
+  </script>
   <script src="../qmesh/qmesh.js"></script>
 </body>
 
