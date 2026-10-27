@@ -1,0 +1,139 @@
+<!-- PROJECT 06 · 보리 (NIPA·Intel 과정 최종 프로젝트, 2026-10-28 추가) -->
+<article class="pcard reveal" id="bori">
+  <div class="pc-top">
+    <div class="pc-badge mono">06</div>
+    <div class="pc-headings">
+      <div class="pc-code mono" data-ko="과자 옮기는 로봇팔 · 채팅과 음성으로 시킨다 · NIPA·Intel 과정 최종 프로젝트"
+        data-en="Snack-sorting robot arm · told by chat and voice · NIPA·Intel program final project">과자 옮기는 로봇팔 · 채팅과 음성으로 시킨다 · NIPA·Intel 과정 최종 프로젝트</div>
+      <h3 class="pc-title" data-ko="보리" data-en="Bori">보리</h3>
+      <div class="pc-meta"
+        data-ko="2026.10.22 ~ 10.23 (2일) <span class=&quot;sep&quot;>·</span> <b>팀 (녹화를 뺀 소프트웨어 전부 담당)</b> <span class=&quot;sep&quot;>·</span> ACT + OpenVINO(CPU) + FastAPI"
+        data-en="Oct 22-23, 2026 (2 days) <span class=&quot;sep&quot;>·</span> <b>team (all software except data recording)</b> <span class=&quot;sep&quot;>·</span> ACT + OpenVINO(CPU) + FastAPI">
+        2026.10.22 ~ 10.23 (2일) <span class="sep">·</span> <b>팀 (녹화를 뺀 소프트웨어 전부 담당)</b> <span class="sep">·</span> ACT + OpenVINO(CPU) + FastAPI</div>
+      <div class="pc-hash mono">
+        <span>#PhysicalAI</span><span>#ACT</span><span>#OpenVINO</span><span>#엣지추론</span><span>#LLM가드</span>
+      </div>
+    </div>
+    <span class="pc-caret">&#9654;</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-inner">
+      <div class="pc-grid">
+        <div>
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
+            </div>
+            <p data-ko="SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음 배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다."
+              data-en="An SO-ARM101 arm had to pick only the Oranda snacks out of a mixed tray and move them to an empty one. There were two days to learn the arm from scratch, record demonstrations and train a model, and training GPU time was capped.">
+              SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음
+              배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다.</p>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="해결 방법 - 모델 성능보다 모델을 쓰는 구조"
+                data-en="Approach - how the model is used, not how good it is">해결 방법 - 모델 성능보다 모델을 쓰는 구조</span>
+            </div>
+            <p data-ko="이 조건에서 모델을 충분히 학습시키기는 어렵다고 봤습니다. 그래서 <b>덜 학습된 모델이라도 안전하게 불러 쓰고, 모델이 실패해도 시스템은 멈추지 않게</b> 만드는 데 시간을 썼습니다."
+              data-en="A fully trained model was not realistic under these limits, so the time went into <b>using even an under-trained model safely, and keeping the system running when the model fails</b>.">
+              이 조건에서 모델을 충분히 학습시키기는 어렵다고 봤습니다. 그래서 <b>덜 학습된 모델이라도 안전하게 불러 쓰고, 모델이 실패해도 시스템은 멈추지 않게</b>
+              만드는 데 시간을 썼습니다.</p>
+            <ul>
+              <li data-ko="<b>맡은 일을 나눴습니다</b>: 집고 놓는 동작은 ACT 정책이 카메라 영상만 보고 하고, 몇 개 옮겼는지와 언제 쉴지는 코드가 셉니다. 언어 모델은 말투와 대사만 정하고, 정해진 세 값 밖의 행동은 고를 수 없습니다."
+                data-en="<b>Split the jobs</b>: an ACT policy picks and places from camera images alone; code counts how many were moved and when to stop; the language model only chooses tone and lines, and cannot pick anything outside three allowed values.">
+                <b>맡은 일을 나눴습니다</b>: 집고 놓는 동작은 ACT 정책이 카메라 영상만 보고 하고, 몇 개 옮겼는지와 언제 쉴지는 코드가 셉니다. 언어 모델은 말투와 대사만 정하고,
+                정해진 세 값 밖의 행동은 고를 수 없습니다.</li>
+              <li data-ko="<b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음 한 번에 0.14~0.23초가 걸렸습니다."
+                data-en="<b>Ran on the laptop CPU</b>: the trained policy was exported to OpenVINO. The Intel GPU took 55-65 s to compile each policy, so the CPU was chosen; one 100-step chunk took 0.14-0.23 s.">
+                <b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음
+                한 번에 0.14~0.23초가 걸렸습니다.</li>
+              <li data-ko="<b>실패해도 멈추지 않게 했습니다</b>: 외부 API(대화 · 음성)에는 전부 시간 제한을 두고, 모두 실패하면 준비된 대사와 Windows 음성으로 넘어갑니다. 비상정지는 힘을 빼지 않고 그 자리에 멈춥니다."
+                data-en="<b>Kept it running through failures</b>: every external API (chat, voice) has a timeout, and when all fail it falls back to prepared lines and the Windows voice. Emergency stop holds position with torque on.">
+                <b>실패해도 멈추지 않게 했습니다</b>: 외부 API(대화 · 음성)에는 전부 시간 제한을 두고, 모두 실패하면 준비된 대사와 Windows 음성으로 넘어갑니다.
+                비상정지는 힘을 빼지 않고 그 자리에 멈춥니다.</li>
+            </ul>
+            <button class="feat feat-more" data-modal="f-bori-split" data-ko="누가 무엇을 맡는지 자세히 보기"
+              data-en="Who does what, in full">누가 무엇을 맡는지 자세히 보기</button>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="주요 기능 - 누르면 실제 화면이 열립니다"
+                data-en="Features - click one to open">주요 기능 - 누르면 실제 화면이 열립니다</span></div>
+            <div class="featlist">
+              <button class="feat" data-modal="f-bori-count" data-ko="카메라로 남은 개수 세기"
+                data-en="Counting what is left">카메라로 남은 개수 세기</button>
+              <button class="feat" data-modal="f-bori-train" data-ko="시범 녹화와 학습"
+                data-en="Demonstrations and training">시범 녹화와 학습</button>
+            </div>
+          </div>
+
+          <div class="impact block">
+            <div class="bh"><span class="star">★</span> <span data-ko="결과 - 2026.10.23 시연"
+                data-en="Results - demo on 2026-10-23">결과 - 2026.10.23 시연</span></div>
+            <p data-ko="<b>오란다 집기는 12번 시도해 1번 성공했습니다.</b> 팔은 오란다까지 가서 집고 옮기는 동작을 했지만, 대부분 그리퍼가 과자를 제대로 잡지 못했습니다. 집기 외의 부분(카메라 개수 세기, 채팅 · 음성 명령, 도리도리 거부, 음성 대답)은 시연 전 현장 확인에서 동작했고, 집기가 실패해도 시연은 멈추지 않았습니다."
+              data-en="<b>Oranda picking succeeded once in 12 attempts.</b> The arm reached and made the pick-and-place motion, but the gripper mostly missed the snack. Everything else (camera counting, chat and voice commands, the head-shake refusal, spoken replies) worked in the on-site check before the demo, and the demo kept going through the failed picks.">
+              <b>오란다 집기는 12번 시도해 1번 성공했습니다.</b> 팔은 오란다까지 가서 집고 옮기는 동작을 했지만, 대부분 그리퍼가 과자를 제대로 잡지 못했습니다. 집기
+              외의 부분(카메라 개수 세기, 채팅 · 음성 명령, 도리도리 거부, 음성 대답)은 시연 전 현장 확인에서 동작했고, 집기가 실패해도 시연은 멈추지 않았습니다.</p>
+            <div class="metricrow">
+              <div class="metric">
+                <div class="mv"><span data-count="487">0</span>개</div>
+                <div class="ml" data-ko="자동 테스트" data-en="automated tests">자동 테스트</div>
+              </div>
+              <div class="metric">
+                <div class="mv"><span data-count="31">0</span>개</div>
+                <div class="ml" data-ko="시범 녹화 에피소드" data-en="demo episodes">시범 녹화 에피소드</div>
+              </div>
+              <div class="metric">
+                <div class="mv"><span data-count="3">0</span>대</div>
+                <div class="ml" data-ko="카메라 (위 · 옆 · 손목)" data-en="cameras (top, side, wrist)">카메라 (위 · 옆 · 손목)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="bh"><span class="star">◆</span> <span data-ko="아직 안 된 것"
+                data-en="What is not done yet">아직 안 된 것</span></div>
+            <ul>
+              <li data-ko="<b>학습 부족</b>: 오란다 모델은 5 epoch만 돌렸고 검증 손실이 아직 내려가던 중이었습니다. 집기 실패의 가장 큰 원인으로 봅니다(확정은 아님)."
+                data-en="<b>Under-trained</b>: the Oranda model ran only 5 epochs and validation loss was still falling. This is the most likely cause of the missed picks (not confirmed).">
+                <b>학습 부족</b>: 오란다 모델은 5 epoch만 돌렸고 검증 손실이 아직 내려가던 중이었습니다. 집기 실패의 가장 큰 원인으로 봅니다(확정은 아님).</li>
+              <li data-ko="<b>제어 주기</b>: 실행 중 제어 루프가 11~13 Hz로 돌았습니다(학습 데이터는 30 Hz). 화면 스트리밍의 JPEG 인코딩 부하가 유력한데 끝까지 고치지 못했습니다."
+                data-en="<b>Control rate</b>: the control loop ran at 11-13 Hz against 30 Hz in the training data. JPEG encoding for the video stream is the likely cause, and it was not fixed.">
+                <b>제어 주기</b>: 실행 중 제어 루프가 11~13 Hz로 돌았습니다(학습 데이터는 30 Hz). 화면 스트리밍의 JPEG 인코딩 부하가 유력한데 끝까지 고치지
+                못했습니다.</li>
+              <li data-ko="<b>도리도리 모델</b>: 데이터가 적어 고개를 거의 젓지 못했고, 시연에서는 코드로 만든 도리도리를 썼습니다."
+                data-en="<b>Head-shake model</b>: too little data, so it barely moved; the demo used a scripted head-shake.">
+                <b>도리도리 모델</b>: 데이터가 적어 고개를 거의 젓지 못했고, 시연에서는 코드로 만든 도리도리를 썼습니다.</li>
+            </ul>
+          </div>
+
+          <div class="pc-actions">
+            <a class="gobtn solid" href="https://github.com/ttogle918/intel-openvino-homerunball" target="_blank" rel="noopener"><span
+                class="ic" data-ic="github"></span>GITHUB</a>
+          </div>
+        </div>
+        <div class="pc-figure">
+          <div class="pc-slides">
+            <div class="pc-slide active">
+              <img data-src="assets/bori/control-room.jpg"
+                alt="카메라 세 대 영상, 남은 오란다 개수, 3D 팔, 채팅창과 비상정지 버튼이 있는 관제 화면">
+              <span class="cap2 mono" data-ko="관제 화면<br>카메라 3대 · 남은 개수 · 채팅 · 비상정지"
+                data-en="Control room<br>3 cameras · count left · chat · e-stop">관제 화면<br>카메라 3대 · 남은 개수 · 채팅 · 비상정지</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/bori/opencv-count.jpg"
+                alt="검은 매트 위 과자 중 오란다 세 개에만 노란 상자가 그려진 개수 세기 결과">
+              <span class="cap2 mono" data-ko="OpenCV 개수 세기<br>다른 과자는 빼고 오란다만"
+                data-en="OpenCV counting<br>Oranda only, other snacks ignored">OpenCV 개수 세기<br>다른 과자는 빼고 오란다만</span>
+            </div>
+            <div class="pc-slide">
+              <img data-src="assets/bori/dataset-frames.jpg"
+                alt="위 · 옆 · 손목 카메라로 녹화한 시범 동작 프레임 여섯 장">
+              <span class="cap2 mono" data-ko="시범 녹화 (위 · 옆 · 손목 카메라)"
+                data-en="Demonstration frames (top, side, wrist)">시범 녹화 (위 · 옆 · 손목 카메라)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

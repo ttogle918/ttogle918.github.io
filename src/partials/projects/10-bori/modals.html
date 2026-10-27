@@ -1,0 +1,78 @@
+<section id="f-bori-split" hidden>
+  <div class="fmodal-kicker mono">BORI · 구조</div>
+  <h4 class="fmodal-title" data-ko="모델 · 코드 · 언어 모델이 맡는 일을 나눴다" data-en="Model, code and language model each get one job">모델 · 코드 · 언어 모델이 맡는 일을 나눴다</h4>
+  <div class="fdiag">
+    <svg viewBox="0 0 620 200" role="img" aria-label="채팅과 음성이 코드로 들어가고, 코드가 ACT 정책과 언어 모델에 일을 나눠 준다">
+      <rect class="dg-box" x="4" y="70" width="124" height="56" rx="8" />
+      <text class="dg-t" x="16" y="92">채팅 · 음성</text>
+      <text class="dg-s" x="16" y="110">Whisper · OpenVINO</text>
+      <path class="dg-a" d="M132 98 H146" />
+      <rect class="dg-hold" x="150" y="50" width="164" height="96" rx="8" />
+      <text class="dg-t" x="162" y="72">코드 (controller)</text>
+      <text class="dg-s" x="162" y="92">횟수 · 거부 시점</text>
+      <text class="dg-s" x="162" y="110">성공 판정 · 홈 복귀</text>
+      <text class="dg-s" x="162" y="128">비상정지 (토크 유지)</text>
+      <path class="dg-a" d="M318 80 L336 50" />
+      <rect class="dg-box" x="340" y="18" width="276" height="56" rx="8" />
+      <text class="dg-t" x="352" y="40">ACT 정책 · OpenVINO · CPU</text>
+      <text class="dg-s" x="352" y="58">카메라 영상만 보고 집기 → 놓기</text>
+      <path class="dg-a" d="M318 116 L336 146" />
+      <rect class="dg-box" x="340" y="122" width="276" height="56" rx="8" />
+      <text class="dg-t" x="352" y="144">LLM · Claude → NVIDIA → 규칙</text>
+      <text class="dg-s" x="352" y="162">대사 + 허용된 값 하나만</text>
+      <text class="dg-g" x="4" y="194">모델이 실패해도 코드 쪽은 계속 돈다</text>
+    </svg>
+  </div>
+  <p data-ko="ACT 정책은 기억이 없어서 순서와 횟수를 맡길 수 없다. 그래서 <b>정책 하나 = 동작 하나</b>로 두고, 몇 개를 옮겼는지와 언제 지쳐서 거부할지는 코드가 센다. 정책은 놓기까지만 학습했고, 그리퍼가 «닫힘 → 열림»이 되면 멈춘 뒤 코드가 저장된 자세로 홈에 돌려보낸다."
+    data-en="An ACT policy has no memory, so it cannot own order or counts. Each <b>policy does one motion</b>; code counts how many were moved and when the robot gets tired and refuses. The policy was trained only up to the release; when the gripper goes «closed → open» it stops and code returns the arm home along saved poses.">
+    ACT 정책은 기억이 없어서 순서와 횟수를 맡길 수 없다. 그래서 <b>정책 하나 = 동작 하나</b>로 두고, 몇 개를 옮겼는지와 언제 지쳐서 거부할지는 코드가 센다. 정책은
+    놓기까지만 학습했고, 그리퍼가 «닫힘 → 열림»이 되면 멈춘 뒤 코드가 저장된 자세로 홈에 돌려보낸다.</p>
+  <p data-ko="언어 모델은 로봇을 직접 움직이지 않는다. <span class=&quot;mono&quot;>oranda_pickup</span> · <span class=&quot;mono&quot;>dori_dori</span> · <span class=&quot;mono&quot;>done</span> 셋 중 하나와 대사만 내고, 벗어나면 규칙이 대신 정한다. 외부 API는 모두 시간 제한이 있고, 전부 실패해도 로봇 루프는 준비된 대사로 계속 돈다."
+    data-en="The language model never moves the robot. It returns one of <span class=&quot;mono&quot;>oranda_pickup</span>, <span class=&quot;mono&quot;>dori_dori</span> or <span class=&quot;mono&quot;>done</span> plus a line; anything else is replaced by a rule. Every external API has a timeout, and if they all fail the robot loop keeps going with prepared lines.">
+    언어 모델은 로봇을 직접 움직이지 않는다. <span class="mono">oranda_pickup</span> · <span class="mono">dori_dori</span> ·
+    <span class="mono">done</span> 셋 중 하나와 대사만 내고, 벗어나면 규칙이 대신 정한다. 외부 API는 모두 시간 제한이 있고, 전부 실패해도 로봇 루프는 준비된
+    대사로 계속 돈다.</p>
+  <p data-ko="학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초, 100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class=&quot;mono&quot;>--dry-run</span> 모드를 두었다."
+    data-en="The trained policy was exported to OpenVINO and run on the laptop. The Intel GPU needed 55-65 s to compile each policy, too slow to restart mid-demo; the CPU loaded in about 6 s and ran one 100-step chunk in 0.14-0.23 s, so the CPU won. A <span class=&quot;mono&quot;>--dry-run</span> mode replays real recordings so the whole flow could be built without the robot.">
+    학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초,
+    100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class="mono">--dry-run</span> 모드를 두었다.</p>
+</section>
+
+<section id="f-bori-count" hidden>
+  <div class="fmodal-kicker mono">BORI · 개수 세기</div>
+  <h4 class="fmodal-title" data-ko="카메라로 남은 개수 세기" data-en="Counting what is left">카메라로 남은 개수 세기</h4>
+  <figure class="fmodal-fig">
+    <img data-src="assets/bori/opencv-count.jpg" alt="검은 매트 위 과자 중 오란다 세 개에만 노란 상자가 그려진 개수 세기 결과">
+    <figcaption data-ko="노란 공 과자와 버섯 과자는 빼고 오란다 세 개만 센다 - 실제 프레임에서 17ms"
+      data-en="Only the three Oranda are counted, not the yellow balls or mushrooms - 17 ms on a real frame">
+      노란 공 과자와 버섯 과자는 빼고 오란다 세 개만 센다 - 실제 프레임에서 17ms</figcaption>
+  </figure>
+  <p data-ko="검출 모델을 학습할 시간이 없어 OpenCV 규칙으로 셌다. 검은 매트 영역 안에서 오란다 색(H 5~21, S 80 이상)의 화소만 모으고, 붙어 있는 덩어리는 한 개 면적으로 나눠 센다. 한 번 셀 때 프레임 5장을 읽어 <b>중앙값</b>을 써서 2와 3 사이를 오가던 깜빡임을 없앴다."
+    data-en="There was no time to train a detector, so counting is OpenCV rules: inside the black mat, keep only Oranda-coloured pixels (H 5-21, S ≥ 80) and split touching blobs by the area of one snack. Each count reads five frames and takes the <b>median</b>, which removed flicker between 2 and 3.">
+    검출 모델을 학습할 시간이 없어 OpenCV 규칙으로 셌다. 검은 매트 영역 안에서 오란다 색(H 5~21, S 80 이상)의 화소만 모으고, 붙어 있는 덩어리는 한 개 면적으로
+    나눠 센다. 한 번 셀 때 프레임 5장을 읽어 <b>중앙값</b>을 써서 2와 3 사이를 오가던 깜빡임을 없앴다.</p>
+  <p data-ko="개수는 성공 판정에도 쓴다. 그리퍼가 무언가를 쥐었다는 것만으로 성공이라 치지 않고, 놓은 뒤 개수가 줄지 않았으면 0.7초 뒤 한 번 더 세어 확인한다."
+    data-en="The count also judges success. A closed gripper alone does not count as a success; if the count has not dropped after the release, it counts again 0.7 s later.">
+    개수는 성공 판정에도 쓴다. 그리퍼가 무언가를 쥐었다는 것만으로 성공이라 치지 않고, 놓은 뒤 개수가 줄지 않았으면 0.7초 뒤 한 번 더 세어 확인한다.</p>
+</section>
+
+<section id="f-bori-train" hidden>
+  <div class="fmodal-kicker mono">BORI · 학습</div>
+  <h4 class="fmodal-title" data-ko="시범 녹화와 학습" data-en="Demonstrations and training">시범 녹화와 학습</h4>
+  <figure class="fmodal-fig">
+    <img data-src="assets/bori/dataset-frames.jpg" alt="위 · 옆 · 손목 카메라로 녹화한 시범 동작 프레임 여섯 장">
+    <figcaption data-ko="팀원 셋이 리더 팔로 직접 움직인 시범 31개 - 위 · 옆 · 손목 카메라 영상과 관절값을 함께 저장"
+      data-en="31 demonstrations moved by hand with the leader arm by three teammates - top, side and wrist video saved with joint values">
+      팀원 셋이 리더 팔로 직접 움직인 시범 31개 - 위 · 옆 · 손목 카메라 영상과 관절값을 함께 저장</figcaption>
+  </figure>
+  <figure class="fmodal-fig">
+    <img data-src="assets/bori/loss-pickup.png" alt="오란다 집기 모델의 학습 손실과 검증 손실 곡선, 검증 손실이 끝까지 내려가는 중">
+    <figcaption data-ko="oranda_pickup 손실 - 검증 손실(오른쪽)이 끝까지 내려가는 중에 학습을 멈췄다"
+      data-en="oranda_pickup loss - training stopped while validation loss (right) was still falling">
+      oranda_pickup 손실 - 검증 손실(오른쪽)이 끝까지 내려가는 중에 학습을 멈췄다</figcaption>
+  </figure>
+  <p data-ko="시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111 프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다."
+    data-en="Three teammates recorded the demonstrations; training onward was mine. ACT (resnet18, chunk 100) was trained in physical-ai-studio. The Oranda model saw 31 episodes, 9,111 frames, for only <b>5 epochs</b> (train 0.35 / val 0.66). GPU time was capped, so it could not run longer, and that is the most likely cause of the missed picks.">
+    시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111
+    프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다.</p>
+</section>
