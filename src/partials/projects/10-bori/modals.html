@@ -32,9 +32,9 @@
     언어 모델은 로봇을 직접 움직이지 않는다. <span class="mono">oranda_pickup</span> · <span class="mono">dori_dori</span> ·
     <span class="mono">done</span> 셋 중 하나와 대사만 내고, 벗어나면 규칙이 대신 정한다. 외부 API는 모두 시간 제한이 있고, 전부 실패해도 로봇 루프는 준비된
     대사로 계속 돈다.</p>
-  <p data-ko="학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초, 100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class=&quot;mono&quot;>--dry-run</span> 모드를 두었다."
-    data-en="The trained policy was exported to OpenVINO and run on the laptop. The Intel GPU needed 55-65 s to compile each policy, too slow to restart mid-demo; the CPU loaded in about 6 s and ran one 100-step chunk in 0.14-0.23 s, so the CPU won. A <span class=&quot;mono&quot;>--dry-run</span> mode replays real recordings so the whole flow could be built without the robot.">
-    학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초,
+  <p data-ko="Physical AI Studio가 OpenVINO로 내보낸 정책을 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초, 100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class=&quot;mono&quot;>--dry-run</span> 모드를 두었다."
+    data-en="The policy that Physical AI Studio exported to OpenVINO ran on the laptop. The Intel GPU needed 55-65 s to compile each policy, too slow to restart mid-demo; the CPU loaded in about 6 s and ran one 100-step chunk in 0.14-0.23 s, so the CPU won. A <span class=&quot;mono&quot;>--dry-run</span> mode replays real recordings so the whole flow could be built without the robot.">
+    Physical AI Studio가 OpenVINO로 내보낸 정책을 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초,
     100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class="mono">--dry-run</span> 모드를 두었다.</p>
 </section>
 
@@ -71,8 +71,9 @@
       data-en="oranda_pickup loss - training stopped while validation loss (right) was still falling">
       oranda_pickup 손실 - 검증 손실(오른쪽)이 끝까지 내려가는 중에 학습을 멈췄다</figcaption>
   </figure>
-  <p data-ko="시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111 프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다."
-    data-en="Three teammates recorded the demonstrations; training onward was mine. ACT (resnet18, chunk 100) was trained in physical-ai-studio. The Oranda model saw 31 episodes, 9,111 frames, for only <b>5 epochs</b> (train 0.35 / val 0.66). GPU time was capped, so it could not run longer, and that is the most likely cause of the missed picks.">
-    시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111
-    프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다.</p>
+  <p data-ko="시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. 학습은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 했다. 과정의 공용 GPU에서 ACT(resnet18, chunk 100) 설정을 고르고 화면에서 실행한 뒤, 결과를 OpenVINO로 내보냈다. 오란다 모델은 31 에피소드 9,111 프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). 공용 GPU라 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다."
+    data-en="Three teammates recorded the demonstrations; training onward was mine. Training ran in Intel's open-source Physical AI Studio: on the course's shared GPU I picked the ACT settings (resnet18, chunk 100), ran it from the UI and exported the result to OpenVINO. The Oranda model saw 31 episodes, 9,111 frames, for only <b>5 epochs</b> (train 0.35 / val 0.66). Shared GPU time was capped, so it could not run longer, and that is the most likely cause of the missed picks.">
+    시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. 학습은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 했다. 과정의 공용 GPU에서 ACT(resnet18,
+    chunk 100) 설정을 고르고 화면에서 실행한 뒤, 결과를 OpenVINO로 내보냈다. 오란다 모델은 31 에피소드 9,111
+    프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). 공용 GPU라 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다.</p>
 </section>

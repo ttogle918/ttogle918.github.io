@@ -127,7 +127,7 @@
     <div class="stats-in">
       <div class="stat"><b>3</b><span data-ko="도메인 에이전트" data-en="domain agents">도메인 에이전트</span></div>
       <div class="stat"><b>13</b><span data-ko="표준 Task 스키마" data-en="standard Task schemas">표준 Task 스키마</span></div>
-      <div class="stat"><b>7</b><span data-ko="종단 검증 경로" data-en="paths verified end to end">종단 검증 경로</span></div>
+      <div class="stat"><b>7</b><span data-ko="실행 확인 경로" data-en="paths verified end to end">실행 확인 경로</span></div>
       <div class="stat"><b>123</b><span data-ko="자동 테스트 (QMesh)" data-en="automated tests (QMesh)">자동 테스트 (QMesh)</span>
       </div>
     </div>
@@ -554,8 +554,8 @@
         <span class="eyebrow" data-ko="실동작 데모" data-en="Live demos">실동작 데모</span>
         <h2 class="sec-title" data-ko="실제로 돌아가는 데모 3종" data-en="Three demos that actually run">실제로 돌아가는 데모 3종</h2>
         <p class="sec-sub"
-          data-ko="아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목킹 없이 실제 서비스끼리 요청을 주고받은 화면이다."
-          data-en="Every capture below was recorded against the running services on 2026-08-24 - real services exchanging requests, without mocks.">아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 목킹 없이 실제 서비스끼리 요청을 주고받은 화면이다.</p>
+          data-ko="아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 실제로 띄운 서비스끼리 요청을 주고받은 화면이다."
+          data-en="Every capture below was recorded against the running services on 2026-08-24 - real services exchanging requests, without mocks.">아래 캡처는 전부 2026-08-24에 실제 서비스를 상대로 찍은 것이다. 실제로 띄운 서비스끼리 요청을 주고받은 화면이다.</p>
       </div>
 
       <!-- S5 -->
@@ -646,7 +646,7 @@
               <td class="n">MaintQ → InsuQ</td>
               <td data-ko="조회" data-en="lookup">조회</td>
               <td class="n">lookup-clause</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S5</b></td>
@@ -654,7 +654,7 @@
               <td class="n">MaintQ → FinAllQ</td>
               <td data-ko="자금이동 (3단 승인)" data-en="money movement (three approvals)">자금이동 (3단 승인)</td>
               <td class="n">request-withdrawal</td>
-              <td data-ko="종단 검증 (결재함 도착까지)" data-en="verified up to the inbox">종단 검증 (결재함 도착까지)</td>
+              <td data-ko="실행 확인 (결재함 도착까지)" data-en="verified up to the inbox">실행 확인 (결재함 도착까지)</td>
             </tr>
             <tr>
               <td class="n"><b>S6</b></td>
@@ -678,7 +678,7 @@
               <td class="n">MaintQ → FinAllQ → InsuQ</td>
               <td data-ko="멀티홉 릴레이" data-en="multi-hop relay">멀티홉 릴레이</td>
               <td class="n">assess-loan</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S8 · S13</b></td>
@@ -686,7 +686,7 @@
               <td class="n">FinAllQ → InsuQ</td>
               <td data-ko="조회" data-en="lookup">조회</td>
               <td class="n">verify-collateral-insurance</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S11</b></td>
@@ -694,7 +694,7 @@
               <td class="n">MaintQ → InsuQ</td>
               <td data-ko="통지 (멱등키)" data-en="notice (idempotency key)">통지 (멱등키)</td>
               <td class="n">notify-asset-change</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S12</b></td>
@@ -702,7 +702,7 @@
               <td class="n">MaintQ → FinAllQ</td>
               <td data-ko="상대 상태 바꾸기" data-en="changes the caller's state">상대 상태 바꾸기</td>
               <td class="n">request-settlement</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S13</b></td>
@@ -710,7 +710,7 @@
               <td class="n">MaintQ → FinAllQ → InsuQ</td>
               <td data-ko="멀티홉 심사" data-en="multi-hop review">멀티홉 심사</td>
               <td class="n">assess-used-equipment-loan</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n"><b>S14</b></td>
@@ -947,7 +947,7 @@
         <div class="rm-item">
           <span class="st done" data-ko="실동작" data-en="running">실동작</span>
           <div>
-            <h4 data-ko="FinAllQ가 받는 스킬 4종 - 종단 검증 완료" data-en="FinAllQ - 4 inbound skills verified end to end">FinAllQ가 받는 스킬 4종 - 종단 검증 완료</h4>
+            <h4 data-ko="FinAllQ가 받는 스킬 4종 - 실행 확인 완료" data-en="FinAllQ - 4 inbound skills verified end to end">FinAllQ가 받는 스킬 4종 - 실행 확인 완료</h4>
             <p data-ko="FinAllQ는 <code>assess-loan</code> · <code>request-withdrawal</code> · <code>request-settlement</code> · <code>assess-used-equipment-loan</code>을 받아 처리한다. <code>assess-loan</code>은 InsuQ 2차 홉 호출까지 연결됐고, <code>request-withdrawal</code>은 실제 서비스 계정(CORPORATE)으로 보내 결재함에 도착하는 것까지 확인했다(돈은 움직이지 않는다). 폴링이 결재 대기와 TOTP 필요를 <code>pending_action</code>으로 구분한다. 단, 대출 상태(<code>Loan.status</code>)는 A2A 판정과 상관없이 <code>UNDER_REVIEW</code>로 남는다 - 자동 승인은 없다."
               data-en="FinAllQ receives <code>assess-loan</code>, <code>request-withdrawal</code>, <code>request-settlement</code> and <code>assess-used-equipment-loan</code>. <code>assess-loan</code> reaches through to the InsuQ relay hop; <code>request-withdrawal</code> was sent under a real CORPORATE service account and verified up to arrival in the approval inbox (no money moves), with polling distinguishing approval-pending from TOTP-required via <code>pending_action</code>. The loan status (<code>Loan.status</code>) stays <code>UNDER_REVIEW</code> whatever the A2A verdict - nothing auto-approves.">FinAllQ는 <code>assess-loan</code> · <code>request-withdrawal</code> · <code>request-settlement</code> · <code>assess-used-equipment-loan</code>을 받아 처리한다. <code>assess-loan</code>은 InsuQ 2차 홉 호출까지 연결됐고, <code>request-withdrawal</code>은 실제 서비스 계정(CORPORATE)으로 보내 결재함에 도착하는 것까지 확인했다(돈은 움직이지 않는다). 폴링이 결재 대기와 TOTP 필요를 <code>pending_action</code>으로 구분한다. 단, 대출 상태(<code>Loan.status</code>)는 A2A 판정과 상관없이 <code>UNDER_REVIEW</code>로 남는다 - 자동 승인은 없다.</p>
           </div>
@@ -955,9 +955,9 @@
         <div class="rm-item">
           <span class="st done" data-ko="실동작" data-en="running">실동작</span>
           <div>
-            <h4 data-ko="MaintQ 발신 6종 - 종단 검증 7경로" data-en="MaintQ - 6 outbound skills, 7 paths verified end to end">MaintQ 발신 6종 - 종단 검증 7경로</h4>
-            <p data-ko="MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더한 7경로를 각각 따로 목킹 없이 확인했다(1~5번 2026-08-24~09-03, 6·7번 09-11). 하나로 이어 돌린 것은 아니다. 위 데모 3종은 08-24 캡처다."
-              data-en="All six MaintQ outbound skills - <code>lookup-clause</code>, <code>request-withdrawal</code> (S5), <code>assess-loan</code> (S8), <code>request-settlement</code> (S12), <code>assess-used-equipment-loan</code> (S13), <code>notify-asset-change</code> (S11) - ran for real. With FinAllQ → InsuQ <code>verify-collateral-insurance</code>, the seven paths were each verified separately without mocks (1-5 between 2026-08-24 and 09-03, 6 and 7 on 09-11) - not as one chained run. The three demos above were captured on 08-24.">MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더한 7경로를 각각 따로 목킹 없이 확인했다(1~5번 2026-08-24~09-03, 6·7번 09-11). 하나로 이어 돌린 것은 아니다. 위 데모 3종은 08-24 캡처다.</p>
+            <h4 data-ko="MaintQ 발신 6종 - 실행 확인 7경로" data-en="MaintQ - 6 outbound skills, 7 paths verified end to end">MaintQ 발신 6종 - 실행 확인 7경로</h4>
+            <p data-ko="MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더한 7경로를 각각 따로 실제 시스템끼리 끝까지 실행해 확인했다(1~5번 2026-08-24~09-03, 6·7번 09-11). 하나로 이어 돌린 것은 아니다. 위 데모 3종은 08-24 캡처다."
+              data-en="All six MaintQ outbound skills - <code>lookup-clause</code>, <code>request-withdrawal</code> (S5), <code>assess-loan</code> (S8), <code>request-settlement</code> (S12), <code>assess-used-equipment-loan</code> (S13), <code>notify-asset-change</code> (S11) - ran for real. With FinAllQ → InsuQ <code>verify-collateral-insurance</code>, the seven paths were each verified separately without mocks (1-5 between 2026-08-24 and 09-03, 6 and 7 on 09-11) - not as one chained run. The three demos above were captured on 08-24.">MaintQ가 보내는 <code>lookup-clause</code> · <code>request-withdrawal</code>(S5) · <code>assess-loan</code>(S8) · <code>request-settlement</code>(S12) · <code>assess-used-equipment-loan</code>(S13) · <code>notify-asset-change</code>(S11) 6종이 모두 실제로 동작했다. FinAllQ → InsuQ <code>verify-collateral-insurance</code>까지 더한 7경로를 각각 따로 실제 시스템끼리 끝까지 실행해 확인했다(1~5번 2026-08-24~09-03, 6·7번 09-11). 하나로 이어 돌린 것은 아니다. 위 데모 3종은 08-24 캡처다.</p>
           </div>
         </div>
         <div class="rm-item">

@@ -23,10 +23,10 @@
           <div class="block">
             <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
             </div>
-            <p data-ko="SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음 배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다."
-              data-en="An SO-ARM101 arm had to pick only the Oranda snacks out of a mixed tray and move them to an empty one. There were two days to learn the arm from scratch, record demonstrations and train a model, and training GPU time was capped.">
+            <p data-ko="SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음 배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습은 과정에서 함께 쓰는 공용 GPU라 쓸 수 있는 시간이 정해져 있었습니다."
+              data-en="An SO-ARM101 arm had to pick only the Oranda snacks out of a mixed tray and move them to an empty one. There were two days to learn the arm from scratch, record demonstrations and train a model, and training ran on a shared GPU with capped time.">
               SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음
-              배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다.</p>
+              배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습은 과정에서 함께 쓰는 공용 GPU라 쓸 수 있는 시간이 정해져 있었습니다.</p>
           </div>
 
           <div class="block">
@@ -42,9 +42,9 @@
                 data-en="<b>Split the jobs</b>: an ACT policy picks and places from camera images alone; code counts how many were moved and when to stop; the language model only chooses tone and lines, and cannot pick anything outside three allowed values.">
                 <b>맡은 일을 나눴습니다</b>: 집고 놓는 동작은 ACT 정책이 카메라 영상만 보고 하고, 몇 개 옮겼는지와 언제 쉴지는 코드가 셉니다. 언어 모델은 말투와 대사만 정하고,
                 정해진 세 값 밖의 행동은 고를 수 없습니다.</li>
-              <li data-ko="<b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음 한 번에 0.14~0.23초가 걸렸습니다."
-                data-en="<b>Ran on the laptop CPU</b>: the trained policy was exported to OpenVINO. The Intel GPU took 55-65 s to compile each policy, so the CPU was chosen; one 100-step chunk took 0.14-0.23 s.">
-                <b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음
+              <li data-ko="<b>노트북 CPU에서 돌렸습니다</b>: 정책은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 공용 GPU로 학습하고 OpenVINO로 내보냈습니다. 노트북의 Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음 한 번에 0.14~0.23초가 걸렸습니다."
+                data-en="<b>Ran on the laptop CPU</b>: the policy was trained on a shared GPU in Intel's open-source Physical AI Studio and exported to OpenVINO. The laptop's Intel GPU took 55-65 s to compile each policy, so the CPU was chosen; one 100-step chunk took 0.14-0.23 s.">
+                <b>노트북 CPU에서 돌렸습니다</b>: 정책은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 공용 GPU로 학습하고 OpenVINO로 내보냈습니다. 노트북의 Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음
                 한 번에 0.14~0.23초가 걸렸습니다.</li>
               <li data-ko="<b>실패해도 멈추지 않게 했습니다</b>: 외부 API(대화 · 음성)에는 전부 시간 제한을 두고, 모두 실패하면 준비된 대사와 Windows 음성으로 넘어갑니다. 비상정지는 힘을 빼지 않고 그 자리에 멈춥니다."
                 data-en="<b>Kept it running through failures</b>: every external API (chat, voice) has a timeout, and when all fail it falls back to prepared lines and the Windows voice. Emergency stop holds position with torque on.">

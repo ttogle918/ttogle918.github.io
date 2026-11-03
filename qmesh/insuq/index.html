@@ -169,8 +169,8 @@
         <div class="demo-head">
           <div class="demo-route"><span class="sid">04</span><span class="skill" data-ko="청구 승인" data-en="Claim approval">청구 승인</span></div>
           <h3 data-ko="보험금 청구는 사람 앞에서 멈췄다 다시 간다" data-en="A claim pauses in front of a person, then resumes">보험금 청구는 사람 앞에서 멈췄다 다시 간다</h3>
-          <p data-ko="보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 목킹 없이 실제 로그인 · API 호출로 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다."
-            data-en="Once the claim amount is computed and a task issued, a reviewer must log in and approve with an e-signature before it moves to completed, and the caller polls again for the result. It does not end in one request and response - it stops in front of a person. The whole lifecycle was verified without mocks, through real logins and API calls, and every computed amount matched a hand calculation. The 'human approval required' value is fixed in code rather than set by conditions, because a value that conditions can turn on will one day be turned off.">보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 목킹 없이 실제 로그인 · API 호출로 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다.</p>
+          <p data-ko="보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 실제 로그인 · API 호출로 처음부터 끝까지 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다."
+            data-en="Once the claim amount is computed and a task issued, a reviewer must log in and approve with an e-signature before it moves to completed, and the caller polls again for the result. It does not end in one request and response - it stops in front of a person. The whole lifecycle was verified without mocks, through real logins and API calls, and every computed amount matched a hand calculation. The 'human approval required' value is fixed in code rather than set by conditions, because a value that conditions can turn on will one day be turned off.">보험금을 산정해 작업을 발급하면, 심사역이 로그인해 전자서명으로 승인해야 완료로 넘어가고, 요청한 쪽은 다시 조회해 결과를 받습니다. 한 번의 요청/응답으로 끝나지 않고 사람 앞에서 멈추는 흐름입니다. 이 과정 전체를 실제 로그인 · API 호출로 처음부터 끝까지 확인했고, 산정값은 손계산과 모두 일치했습니다. «사람 승인 필요» 값은 조건에 따라 바뀌지 않게 코드에 고정했습니다. 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼지기 때문입니다.</p>
         </div>
         <button class="gif-shell" type="button" data-src="../../assets/insuq/claim-approval.gif"
           data-alt="심사역 승인함에서 전자서명으로 청구를 완료하는 실제 화면">
@@ -294,17 +294,17 @@
             <tr>
               <td class="n">lookup-clause</td>
               <td data-ko="공장이 묻는 약관 근거 조항 검색 · 인용" data-en="Searching and citing policy clauses for the factory">공장이 묻는 약관 근거 조항 검색 · 인용</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n">verify-collateral-insurance</td>
               <td data-ko="은행이 부르는 담보 건물의 보험과 보장 한도 확인" data-en="Checking the collateral's insurance and coverage limit, called by the bank">은행이 부르는 담보 건물의 보험과 보장 한도 확인</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n">notify-asset-change</td>
               <td data-ko="설비 처분에 따른 보험 대상 변경 통지 (같은 키로 다른 내용이면 거절)" data-en="Insured-asset change on disposal (same key with a different body is rejected)">설비 처분에 따른 보험 대상 변경 통지 (같은 키로 다른 내용이면 거절)</td>
-              <td data-ko="종단 검증" data-en="verified end to end">종단 검증</td>
+              <td data-ko="실행 확인" data-en="verified end to end">실행 확인</td>
             </tr>
             <tr>
               <td class="n">claim-insurance</td>

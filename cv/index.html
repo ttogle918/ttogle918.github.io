@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>최지현 이력서</title>
+  <meta name="robots" content="noindex" />
+  <!--
+    A4 세로 이력서판 (3쪽). 색 · 폰트는 사이트(assets/css/site.css) · 슬라이드판(deck/)과 같은 토큰을 쓴다.
+    한 쪽 = <section class="page"> 하나. 794 x 1123px(A4, 96dpi) 고정, 넘치면 tools/build_cv_pdf.py 가 알려 준다.
+    사실은 사이트 카드와 맞춘다. 사이트를 고치면 여기도 함께 고치고 PDF 를 다시 굽는다.
+    사진: cv/photo.jpg 를 두면 머리말 오른쪽에 들어가고, 없으면 자리째 빠진다.
+    PDF: python tools/build_cv_pdf.py -> uploads/최지현_이력서.pdf
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+      --mono: "JetBrains Mono", "Pretendard Variable", Pretendard, ui-monospace, monospace;
+      --panel: #f2f1ec;
+      --ink: #1a1d2b;
+      --line: #e3e1d9;
+      --line-2: #eeece6;
+      --text: #22252f;
+      --muted: #5a5d66;
+      --faint: #8c8d93;
+      --accent: #3a5bd0;
+      --accent-d: #2c47ad;
+      --accent-soft: rgba(58, 91, 208, .09);
+      --gold: #e0a516;
+      --gold-ink: #8a6d1f;
+    }
+
+    @page {
+      size: A4;
+      margin: 0
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0
+    }
+
+    body {
+      background: #dcdad3;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 0 32px
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    b {
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    /* 화면 전용 도구 막대 */
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(220, 218, 211, .92);
+      backdrop-filter: blur(6px)
+    }
+
+    .bar a {
+      font: 600 13px var(--sans);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      background: #fff;
+      color: var(--ink)
+    }
+
+    .bar a.primary {
+      background: var(--ink);
+      color: #fff
+    }
+
+    .page {
+      position: relative;
+      width: 794px;
+      height: 1123px;
+      margin: 24px auto 0;
+      padding: 44px 50px 40px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(20, 24, 45, .06), 0 10px 30px rgba(20, 24, 45, .10)
+    }
+
+    .pno {
+      position: absolute;
+      right: 50px;
+      bottom: 18px;
+      font: 500 10px var(--mono);
+      color: var(--faint)
+    }
+
+    .pno-l {
+      position: absolute;
+      left: 50px;
+      bottom: 18px;
+      font: 500 10px var(--mono);
+      color: var(--faint)
+    }
+
+    /* ===== 머리말 ===== */
+    .hd {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink)
+    }
+
+    .hd-main {
+      flex: 1;
+      min-width: 0
+    }
+
+    .kicker {
+      font: 600 11px var(--mono);
+      color: var(--accent);
+      letter-spacing: .02em;
+      margin: 0 0 6px
+    }
+
+    .name {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.15
+    }
+
+    .name small {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-left: 10px;
+      letter-spacing: 0
+    }
+
+    .tagline {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 10px 0 0
+    }
+
+    .tagline em {
+      font-style: normal;
+      color: var(--accent-d)
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: auto 1fr auto 1fr;
+      gap: 3px 10px;
+      margin-top: 12px;
+      font-size: 11.5px
+    }
+
+    .contact .k {
+      font: 600 10.5px var(--mono);
+      color: var(--faint);
+      padding-top: 1px
+    }
+
+    .contact a {
+      color: var(--text)
+    }
+
+    .photo {
+      flex: none;
+      width: 102px;
+      height: 136px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--line)
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    /* ===== 섹션 ===== */
+    .sec {
+      margin-top: 16px
+    }
+
+    .sec-h {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font: 700 12px var(--mono);
+      letter-spacing: .12em;
+      color: var(--ink);
+      margin: 0 0 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .sec-h .star {
+      color: var(--gold)
+    }
+
+    .sec-h small {
+      font: 500 10.5px var(--sans);
+      letter-spacing: 0;
+      color: var(--faint);
+      margin-left: auto
+    }
+
+    /* 강점 3칸 */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px
+    }
+
+    .pillar {
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 10px 12px
+    }
+
+    .pillar h3 {
+      font-size: 12.5px;
+      margin: 0 0 3px;
+      color: var(--ink)
+    }
+
+    .pillar h3 span {
+      display: block;
+      font: 500 9.5px var(--mono);
+      color: var(--accent);
+      margin-top: 1px
+    }
+
+    .pillar p {
+      margin: 0;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    /* 기술 */
+    .skills {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 5px 12px;
+      font-size: 11.5px
+    }
+
+    .skills .k {
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .skills .v b {
+      color: var(--accent-d)
+    }
+
+    /* 경력 · 교육 줄 */
+    .row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0 12px;
+      padding: 7px 0
+    }
+
+    .row+.row {
+      border-top: 1px dashed var(--line-2)
+    }
+
+    .row .d {
+      font: 500 10.5px var(--mono);
+      color: var(--muted);
+      padding-top: 2px
+    }
+
+    .row .t {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .row .t .r {
+      font-weight: 500;
+      color: var(--muted);
+      font-size: 11.5px;
+      margin-left: 6px
+    }
+
+    .row ul {
+      margin: 3px 0 0;
+      padding-left: 14px
+    }
+
+    .row li {
+      font-size: 11.5px;
+      color: var(--text)
+    }
+
+    .row li::marker {
+      color: var(--accent)
+    }
+
+    .row .one {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 1px
+    }
+
+    .edu .row {
+      padding: 3px 0
+    }
+
+    .edu .row .t {
+      font-size: 12px
+    }
+
+    /* 자격증 */
+    .certs {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 3px 20px;
+      font-size: 11.5px
+    }
+
+    .certs div {
+      display: flex;
+      gap: 8px
+    }
+
+    .certs .d {
+      flex: none;
+      width: 54px;
+      font: 500 10.5px var(--mono);
+      color: var(--muted);
+      padding-top: 1px
+    }
+
+    /* ===== 프로젝트 ===== */
+    .pj {
+      padding: 7px 0 8px
+    }
+
+    .pj+.pj {
+      border-top: 1px solid var(--line)
+    }
+
+    .pj-top {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .pj-top h3 {
+      font-size: 14.5px;
+      font-weight: 800;
+      margin: 0;
+      color: var(--ink)
+    }
+
+    .pj-top .kick {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent-d)
+    }
+
+    .pj-top .lnk {
+      margin-left: auto;
+      font: 500 10px var(--mono);
+      color: var(--accent)
+    }
+
+    .pj-meta {
+      font: 500 10.5px var(--mono);
+      color: var(--muted);
+      margin: 2px 0 4px
+    }
+
+    .badge {
+      display: inline-block;
+      font: 600 9.5px var(--sans);
+      color: var(--gold-ink);
+      background: rgba(224, 165, 22, .14);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 2px;
+      vertical-align: 1px
+    }
+
+    .pj ul {
+      margin: 0;
+      padding-left: 14px
+    }
+
+    .pj li {
+      font-size: 11.5px
+    }
+
+    .pj li::marker {
+      color: var(--accent)
+    }
+
+    .pj .tech {
+      font: 500 10px var(--mono);
+      color: var(--faint);
+      margin-top: 4px
+    }
+
+    .more {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px
+    }
+
+    .more div {
+      font-size: 11.5px
+    }
+
+    .more b {
+      margin-right: 6px
+    }
+
+    .more .m {
+      font: 500 10px var(--mono);
+      color: var(--faint);
+      margin-right: 8px
+    }
+
+    /* 자격 · 어학 · 수상 표 */
+    .ctab {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px
+    }
+
+    .ctab td {
+      padding: 4px 0;
+      border-bottom: 1px dashed var(--line-2);
+      vertical-align: top
+    }
+
+    .ctab td.d {
+      width: 150px;
+      font: 500 10.5px var(--mono);
+      color: var(--muted);
+      padding-top: 5px
+    }
+
+    .ctab td.o {
+      text-align: right;
+      color: var(--faint);
+      font-size: 11px;
+      white-space: nowrap;
+      padding-left: 12px
+    }
+
+    .ctab .g {
+      display: inline-block;
+      font: 600 9.5px var(--sans);
+      color: var(--accent-d);
+      background: var(--accent-soft);
+      border-radius: 4px;
+      padding: 0 5px;
+      margin-right: 6px;
+      vertical-align: 1px
+    }
+
+    /* 자기소개 문항 */
+    .qa {
+      padding: 8px 0 10px
+    }
+
+    .qa+.qa {
+      border-top: 1px solid var(--line)
+    }
+
+    .qa h3 {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 0 6px
+    }
+
+    .lead {
+      margin: 4px 0 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.6;
+      word-break: keep-all
+    }
+
+    .qa h3 span {
+      font: 600 10.5px var(--mono);
+      color: var(--accent);
+      margin-right: 8px
+    }
+
+    .qa p {
+      margin: 0;
+      font-size: 11.8px;
+      line-height: 1.7;
+      word-break: keep-all
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      font-size: 11.5px;
+      color: var(--text)
+    }
+
+    .note a {
+      color: var(--accent-d);
+      font-weight: 600
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0
+      }
+
+      .bar {
+        display: none
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+        break-after: page
+      }
+
+      .page:last-of-type {
+        break-after: auto
+      }
+    }
+
+    /* 휴대폰: 쪽을 화면 폭에 맞춰 줄인다 */
+    @media screen and (max-width: 830px) {
+      .page {
+        zoom: calc(100vw / 830px)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="bar">
+    <a class="primary" href="../uploads/최지현_이력서.pdf" download="최지현_이력서.pdf">PDF 다운로드</a>
+    <a href="../">포트폴리오 사이트</a>
+  </nav>
+
+  <!-- ============ 1쪽 - 인적사항 · 강점 · 기술 · 경력 · 교육 · 자격증 ============ -->
+  <section class="page">
+    <header class="hd">
+      <div class="hd-main">
+        <p class="kicker">AI AGENT ENGINEER · BACKEND</p>
+        <h1 class="name">최지현<small>Choi Jihyun</small></h1>
+        <p class="tagline"><em>AI를 어디에 넣고, 어디까지 맡길지</em>부터 고민하는 AI 에이전트 엔지니어입니다.</p>
+        <div class="contact">
+          <span class="k">Email</span><a href="mailto:ttogle918@gmail.com">ttogle918@gmail.com</a>
+          <span class="k">GitHub</span><a href="https://github.com/ttogle918">github.com/ttogle918</a>
+          <span class="k">Portfolio</span><a href="https://ttogle918.github.io/">ttogle918.github.io</a>
+          <span class="k">Blog</span><span><a href="https://zena1010.tistory.com">zena1010.tistory.com</a> · <a
+              href="https://velog.io/@ttogle918/posts">velog.io/@ttogle918</a></span>
+        </div>
+      </div>
+      <div class="photo"><img src="photo.jpg" alt="최지현 증명사진" onerror="this.parentNode.remove()" /></div>
+    </header>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>ABOUT</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <h3>구조 설계<span>Agent System Design</span></h3>
+          <p>에이전트가 들어갈 시스템 전체를 먼저 그립니다. 에이전트가 맡을 부분과 백엔드 · DB가 맡을 부분을 나눈 뒤 설계합니다.</p>
+        </div>
+        <div class="pillar">
+          <h3>신뢰성<span>Trusted AI</span></h3>
+          <p>답에는 원문 근거를 붙이고, 책임이 따르는 작업은 사람이 직접 승인해야 진행되게 만듭니다.</p>
+        </div>
+        <div class="pillar">
+          <h3>도메인 적응력<span>Adaptability</span></h3>
+          <p>보안 · 통관 법률 · 채용 · 설비 보전(제조) · 보험 · 금융. 그 일을 하는 사람이 무엇을 확인하는지 찾는 데서 시작합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>SKILL<small>굵은 글씨는 여러 프로젝트에서 직접 설계 · 구현한 기술</small></h2>
+      <div class="skills">
+        <span class="k">AI 에이전트</span><span class="v"><b>LangGraph</b> · <b>MCP / FastMCP</b> · <b>RAG</b> · A2A
+          Protocol ·
+          Claude API · LangChain · Hybrid Search · pgvector / Qdrant</span>
+        <span class="k">Backend / Infra</span><span class="v"><b>FastAPI</b> · <b>Spring Boot</b> · <b>PostgreSQL</b> ·
+          Redis ·
+          Docker Compose · SSE · JWT · MySQL · AWS RDS · GitHub Actions</span>
+        <span class="k">ML · NLP</span><span class="v">SBERT · KoBERT 파인튜닝 · HuggingFace · XGBoost · RandomForest ·
+          PyTorch ·
+          Whisper / Pyannote · OpenVINO</span>
+        <span class="k">개발 방식</span><span class="v"><b>Claude Code 멀티 에이전트</b> · 하위 에이전트 · hook으로 규칙을 강제하는 하네스 · Next.js
+          /
+          React</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>CAREER</h2>
+      <div class="row">
+        <div class="d">2022.09 ~ 2023.03</div>
+        <div>
+          <div class="t">비상교육<span class="r">데이터혁신Core · AI 연구개발 Cell · 사원 (정규직)</span></div>
+          <ul>
+            <li>회사의 고객 데이터로 AI 서비스 PoC 2개를 개발(1인 프로젝트)하고 대표이사 앞에서 시연했습니다.</li>
+            <li>이탈 고객 예측: 10만여 건을 정제하고 RFM · KMeans로 특징을 만들어 정확도 85.3%를 냈습니다.</li>
+            <li>질문-답변 검색: SBERT/KoBERT로 비슷한 기존 질문을 찾고, 정규표현식과 NER로 개인정보를 가렸습니다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2019.06 ~ 2019.08</div>
+        <div>
+          <div class="t">세코닉스<span class="r">인사팀 인턴</span></div>
+          <div class="one">신규 입사자 정보 관리와 ERP 운영을 지원했습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec edu">
+      <h2 class="sec-h"><span class="star">★</span>EDUCATION</h2>
+      <div class="row">
+        <div class="d">2026.10.01 ~ 2026.10.23</div>
+        <div>
+          <div class="t">[NIPA·Intel] AI for Current Workforce PBL 기반 프로젝트<span class="r">120h · 수료</span></div>
+          <div class="one">OpenVINO 변환 · INT8 양자화, YOLO · 이상탐지, 로컬 LLM 에이전트, 로봇팔 ACT</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2026.08.17 ~ 2026.09.30</div>
+        <div>
+          <div class="t">[Google] 2026 Google Cloud Study Jam H2<span class="r">AI 에이전트 트랙 · 수료</span></div>
+          <div class="one">ADK · MCP · A2A 멀티 에이전트 배포, GCP 활용법</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2026.06.29 ~ 2026.08.25</div>
+        <div>
+          <div class="t">[NIPA·NVIDIA] GPU 가속 기반 AI Agent 엔지니어 과정<span class="r">320h · 수료</span></div>
+          <div class="one">고급 RAG(Hybrid · Reranker · HyDE), FastMCP, LangGraph, A2A 멀티에이전트</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2025.08.11 ~ 2025.10.14</div>
+        <div>
+          <div class="t">[KOSA] Spec-up 프로젝트<span class="r">K-Bridge · 수료</span></div>
+          <div class="one">통관 법률 주제로 RAG · LangGraph 기반 팀 프로젝트 진행</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2025.03.24 ~ 2025.08.06</div>
+        <div>
+          <div class="t">[KOSA] 생성형 AI 응용 개발자 양성 과정<span class="r">960h · KOCRUIT 팀장 · 과정 내 1위 · 수료</span></div>
+          <div class="one">Java · Spring · FastAPI 백엔드, React, Docker · AWS RDS, Transformer · RAG · LangGraph</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2022.05.06 ~ 2022.06.02</div>
+        <div>
+          <div class="t">[코드스테이츠] AI 심화 NLP 과정<span class="r">3주</span></div>
+          <div class="one">BERT · GPT · BART 임베딩 구조, PyTorch로 BERT를 파인튜닝해 문장 유사도(STS) 계산</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2021.09.09 ~ 2022.04.05</div>
+        <div>
+          <div class="t">[코드스테이츠] AI 부트캠프 7기<span class="r">1,120h · 수료</span></div>
+          <div class="one">통계 · 미분, 데이터 EDA, 머신러닝 · 딥러닝(PyTorch), NLP, Flask · MySQL · MongoDB</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d">2015.03 ~ 2020.02</div>
+        <div>
+          <div class="t">명지대학교 컴퓨터공학과 학사<span class="r">졸업</span></div>
+          <div class="one">데이터베이스 설계 · 자료구조 · 컴퓨터 보안 · 인공지능</div>
+        </div>
+      </div>
+    </div>
+
+    <span class="pno-l">최지현 · 이력서</span><span class="pno">1 / 3</span>
+  </section>
+
+  <!-- ============ 2쪽 - 프로젝트 ============ -->
+  <section class="page">
+    <div class="sec" style="margin-top:0">
+      <h2 class="sec-h"><span class="star">★</span>PROJECTS<small>개인 프로젝트는 Claude Code 에이전트와 함께 개발 · 상세는
+          ttogle918.github.io</small></h2>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>QMesh</h3><span class="kick">회사가 다른 AI 에이전트끼리 일을 맡기는 연결 계층 (A2A)</span>
+          <a class="lnk" href="https://github.com/ttogle918/QMesh">github.com/ttogle918/QMesh</a>
+        </div>
+        <div class="pj-meta">2026.08 ~ 진행 중 · 개인 1인 · NIPA·NVIDIA 과정 프로젝트</div>
+        <ul>
+          <li>금융(FinAllQ) · 보험(InsuQ) · 설비 보전(MaintQ) 에이전트를 서로 다른 회사로 가정하고, 셋이 서로 호출하도록 연결했습니다.</li>
+          <li>계약(Agent Card 3종 · Task 스키마 13종)만 한곳에 모으고, 약속에 없는 값은 오류(502)로 돌려 틀린 값이 다른 회사로 넘어가지 않게 했습니다.</li>
+          <li>보낸 회사와 자료 주인을 확인하고, 돈이 움직이는 요청은 공장 팀장 · 공장 재무팀 · 은행 결재의 사람 승인 세 번을 거칩니다.</li>
+          <li>세 시스템을 실제로 띄워, 회사 간 연결 7개 경로가 끝까지 실행되는 것을 확인했습니다.</li>
+        </ul>
+        <div class="tech">Python FastAPI · Spring MVC · A2A · JSON Schema · Docker Compose</div>
+      </article>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>MaintQ</h3><span class="kick">설비 진단 → 부품 발주 AI 에이전트</span><span class="badge">NVIDIA 해커톤 예선 통과 · 상위
+            10팀</span>
+          <a class="lnk" href="https://github.com/ttogle918/MaintQ-NemoClaw">github.com/ttogle918/MaintQ-NemoClaw</a>
+        </div>
+        <div class="pj-meta">2026.07 ~ 진행 중 · 개인 1인</div>
+        <ul>
+          <li>MCP 도구 25종으로 에러 진단부터 부품 특정 · 재고 · 발주 초안까지 잇고, 쓰기 도구는 초안만 만들어 승인 · 서명은 사람이 합니다.</li>
+          <li>"틀린 부품을 확신"과 "답을 안 냄"을 따로 세는 평가로 바꾸고, 프롬프트 비교 실험(각 120회)으로 틀린 부품 확신을 16.7%에서 1.1%로 줄였습니다.</li>
+          <li>해커톤에서는 영문 매뉴얼뿐인 새 기종을 추가하여 코드 추출 · 샌드박스 에이전트(Nemotron) · 사람 확정 순서로 온보딩했습니다.</li>
+        </ul>
+        <div class="tech">Python FastAPI · MCP · PostgreSQL(pgvector) · Next.js · NemoClaw · OpenShell</div>
+      </article>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>SecureAI Engine</h3><span class="kick">AI 기반 코드 보안 분석 플랫폼</span>
+        </div>
+        <div class="pj-meta">~ 2026.07 · 개인 1인 · Claude Code 멀티 에이전트로 개발</div>
+        <ul>
+          <li>코드에서 찾은 취약점을 격리된 환경에서 직접 재현해 확인하고, 수정안과 보고서까지 이어지는 분석 흐름을 LangGraph로 만들었습니다.</li>
+          <li>오진 원인별로 프레임워크 규칙을 넣어 OWASP Benchmark 탐지율 96.6% · 오탐률 27.1%를 냈습니다(Sonnet 4.6, 961건).</li>
+          <li>총괄 · 기획 · 개발 · 리뷰 · 문서로 역할을 나눈 Claude Code 에이전트를 동시에 돌리며 진행했습니다.</li>
+        </ul>
+        <div class="tech">Spring Boot · FastAPI · LangGraph · Claude API · MCP · PostgreSQL · Redis · Next.js</div>
+      </article>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>K-Bridge</h3><span class="kick">HS코드 기반 수출입 규제 분석</span>
+        </div>
+        <div class="pj-meta">2025.08 ~ 10 · 팀 4인 (기여 25%) · 담당: 요건 분석 · 교차 검증 · 프론트엔드</div>
+        <ul>
+          <li>요건 검색: HS코드와 규제 기관을 잇는 매핑 DB를 설계하고, FastAPI와 LangGraph로 요건 검색 노드를 만들었습니다.</li>
+          <li>근거 제한: 공공 데이터 API(FDA · EPA 등)와 공식 웹페이지에서만 근거를 모으고, 규정 요약마다 원문 링크를 붙였습니다.</li>
+          <li>교차 검증: 추출한 요건을 팀원의 판례 분석 결과와 대조해 신뢰도 등급을 매기고, 낮으면 관세사 검토로 넘깁니다.</li>
+          <li>프론트엔드: 화면 설계를 React 코드로 옮기고 기능별 모듈로 나눴습니다.</li>
+        </ul>
+        <div class="tech">Spring Boot · FastAPI · LangGraph · PostgreSQL · Redis · React</div>
+      </article>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>KOCRUIT</h3><span class="kick">AI 에이전트 기반 채용 관리 시스템</span><span class="badge">과정 내 1위</span>
+        </div>
+        <div class="pj-meta">2025.06 ~ 07 · 팀 4인 · 팀장 (기여 40%) · 담당: 전체 아키텍처 · 면접 시스템 · STT</div>
+        <ul>
+          <li>면접 질문 생성: 지원서가 들어오면 LangGraph와 GPT-4o로 회사 · 직무 · 인성 · 개인 맞춤 질문과 평가표를 면접 전에 미리 만듭니다.</li>
+          <li>음성 분석: Whisper 전사 · Pyannote 화자 분리 · Librosa 억양과 속도 분석을 잇고, 면접 중에는 WebSocket으로 실시간 기록합니다.</li>
+          <li>평가 리포트: 언어 · 행동 · 심리 · 인지 · 직무 · 신뢰도 6개 항목 평가와 PDF 리포트를 만듭니다. 합격 여부는 면접관이 정합니다.</li>
+          <li>구조: 충돌하던 PyTorch 계열과 TensorFlow 계열 분석을 컨테이너로 나누고, 백엔드를 Spring Boot에서 FastAPI로 옮겼습니다.</li>
+        </ul>
+        <div class="tech">FastAPI · Spring Boot · LangGraph · Whisper · Pyannote · MySQL · Docker · React</div>
+      </article>
+
+      <article class="pj">
+        <div class="pj-top">
+          <h3>KeyLens</h3><span class="kick">개인 개발자용 자격증명 관리 도구</span><span class="badge">2026 오픈소스 개발자대회 출품</span>
+          <a class="lnk" href="https://github.com/ttogle918/key-manager">github.com/ttogle918/key-manager</a>
+        </div>
+        <div class="pj-meta">2026.06 ~ 진행 중 · 개인 1인 · v0.5.1 MIT 공개</div>
+        <ul>
+          <li>앞부분으로 알 수 있는 키는 바로 판별하고, 모양이 같은 값은 화면 캡처를 OCR로 읽어 옆 이름표와 주소 구조로 구분합니다.</li>
+          <li>서버 없이 내 컴퓨터에만 암호화해 저장합니다(Argon2id + AES-256-GCM).</li>
+        </ul>
+        <div class="tech">Python FastAPI · RapidOCR · SQLite · React · Electron</div>
+      </article>
+    </div>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>MORE</h2>
+      <div class="more">
+        <div><b>SpendQ</b><span class="m">2026.08 ~ 09 · 개인</span>AI 에이전트 역경매와 블록체인 에스크로 결제입니다. 지출 한도를 블록체인 계정에 걸어 한도 초과
+          거래를 막았습니다.</div>
+        <div><b>보리</b><span class="m">2026.10 · 팀 · NIPA·Intel</span>채팅 · 음성으로 시키는 과자 옮기는 로봇팔입니다. Physical AI Studio에서
+          공용 GPU로 학습한 정책을 노트북 CPU에서 돌렸습니다.</div>
+        <div><b>AI 하네스</b><span class="m">개인 · 8개 레포</span>Claude Code 작업 규칙 틀입니다. 검토 AI에는 읽기 도구만 주고, 정답 파일 쓰기는 hook이
+          막습니다.</div>
+      </div>
+    </div>
+
+    <span class="pno-l">최지현 · 이력서</span><span class="pno">2 / 3</span>
+  </section>
+
+  <!-- ============ 3쪽 - 자격 · 어학 · 수상 · 자기소개 ============ -->
+  <section class="page">
+    <div class="sec" style="margin-top:0">
+      <h2 class="sec-h"><span class="star">★</span>ACTIVITY</h2>
+      <div class="row">
+        <div class="d">2026.03 ~ 현재</div>
+        <div>
+          <div class="t">KOSA 현직 IT 강사 대상 AI 보수교육<span class="r">실습 보조강사 · 주말 과정</span></div>
+          <ul>
+            <li>수강생 12~20명의 실습에서 코드 오류와 개발 환경 문제를 함께 찾고, 직접 고치시도록 확인 순서를 설명합니다.</li>
+            <li>담당 강의 16개: Spring AI · MCP Server 개발 · LangGraph 자율 에이전트 · Claude Code 등</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>CERTIFICATE · LANGUAGE · AWARD</h2>
+      <table class="ctab">
+        <tr>
+          <td class="d">2026.08</td>
+          <td><span class="g">자격</span>NVIDIA DLI Certificate of Competency 5개 (RAG Agents · LLM 앱 등)</td>
+          <td class="o">NVIDIA DLI</td>
+        </tr>
+        <tr>
+          <td class="d">2026.07.02</td>
+          <td><span class="g">자격</span>AI-POT (AI 프롬프트 활용능력) 1급</td>
+          <td class="o">한국생산성본부</td>
+        </tr>
+        <tr>
+          <td class="d">2026.07</td>
+          <td><span class="g">자격</span>정보보안기사 필기 합격</td>
+          <td class="o">한국인터넷진흥원</td>
+        </tr>
+        <tr>
+          <td class="d">2023.10.06</td>
+          <td><span class="g">자격</span>SQL개발자 (SQLD)</td>
+          <td class="o">한국데이터산업진흥원</td>
+        </tr>
+        <tr>
+          <td class="d">2022.12.23</td>
+          <td><span class="g">자격</span>빅데이터분석기사</td>
+          <td class="o">한국데이터산업진흥원</td>
+        </tr>
+        <tr>
+          <td class="d">2020.08.28</td>
+          <td><span class="g">자격</span>정보처리기사</td>
+          <td class="o">한국산업인력공단</td>
+        </tr>
+        <tr>
+          <td class="d">2019.01</td>
+          <td><span class="g">자격</span>한국사능력검정시험 2급</td>
+          <td class="o">국사편찬위원회</td>
+        </tr>
+        <tr>
+          <td class="d">2025.09.12</td>
+          <td><span class="g">어학</span>OPIc 영어 IH (유효 ~ 2027.09.11)</td>
+          <td class="o">ACTFL</td>
+        </tr>
+        <tr>
+          <td class="d">2019.12.12</td>
+          <td><span class="g">수상</span>총장상 · TOPCIT 우수 성적</td>
+          <td class="o">명지대학교</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sec">
+      <h2 class="sec-h"><span class="star">★</span>SELF-INTRODUCTION</h2>
+
+
+      <article class="qa">
+        <h3>Agent끼리 소통하게 한다면?</h3>
+        <p>금융·보험·제조 세 분야를 각각 다른 회사로 가정해 에이전트를 만든 뒤, 이들이 서로 일을 주고받게 하는 A2A 연결 계층(QMesh)을 만들었습니다. 예를 들어 공장이 중고 설비를 담보로 대출을
+          요청하면, 은행이 담보 가치를 평가하다 그 설비의 화재보험이 유효한지 보험사에 다시 조회합니다. 모인 근거는 심사자에게 보여 주고, 승인은 사람이 합니다. 언어도 저장소도 다른 세 시스템은 서로의
+          코드를 붙이지 않고 계약만으로 이었습니다. 각 에이전트가 할 수 있는 일을 적은 소개서(Agent Card)와 요청 양식 13종을 어느 서비스에도 속하지 않는 한 곳에서만 관리하고, 약속에 없는
+          값이 오면 조용히 넘기지 않고 오류로 알리게 했습니다. 까다로웠던 것은 신원 확인이었습니다. 요청을 보낸 쪽과 그 요청이 다루는 자료의 주인을 나눠 확인하고 나서야 조회·심사·자금 이동 순으로
+          권한을 좁힐 수 있었습니다.</p>
+      </article>
+
+      <article class="qa">
+        <h3>에이전트 하나에도 권한을 나눠서</h3>
+        <p>AI 코드 보안 분석 플랫폼(SecureAI Engine)에서는 개인 개발자·팀·기업 보안 조직으로 사용자층을 나눠 계정 권한별로 기능을 분리하고, AI 엔진은 데이터베이스에 직접 닿지 못하게 해
+          권한 확인이 백엔드 한곳에서 이뤄지게 했습니다. 설비 보전 에이전트(MaintQ)에서는 데이터를 쓰는 도구가 초안만 만들게 해 승인은 사람이 하고, 요청자 신원은 서버가 직접 넣어 AI가 신원을
+          꾸밀 수 없게 했습니다.</p>
+      </article>
+
+      <article class="qa">
+        <h3>현업에서는 먼저 배우겠습니다</h3>
+        <p>개인 프로젝트에서는 제가 가정한 회사와 사용자를 기준으로 권한을 나눴지만, 실제 현업의 권한 체계는 규모도 무게도 다를 것이라 생각합니다. 함께하게 되면 기존 구조와 업무를 먼저 배우고, 맡은
+          기능에는 권한 범위를 지키는지 확인하기 위해 테스트를 꼼꼼히 하겠습니다.</p>
+      </article>
+    </div>
+
+    <span class="pno-l">최지현 · 이력서</span><span class="pno">3 / 3</span>
+  </section>
+
+</body>
+
+</html>

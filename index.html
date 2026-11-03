@@ -86,10 +86,12 @@
       </p>
       <p class="hero-role reveal" data-d="2">AI Agent Engineer · Backend</p>
       <div class="hero-links reveal" data-d="3">
-        <!-- PDF 버튼 세 곳(히어로 · 헤더 · 연락처)은 모두 16:9 슬라이드판(tools/build_deck_pdf.py)을 내려준다.
-             웹 그대로 PDF(_web)와 인쇄본 A4(portfolio.pdf)는 파일만 남아 있다 -->
+        <!-- 포트폴리오 PDF 버튼 세 곳(히어로 · 헤더 · 연락처)은 모두 16:9 슬라이드판(tools/build_deck_pdf.py)을 내려준다.
+             이력서 PDF 버튼 두 곳(히어로 · 연락처)은 A4 이력서판(cv/, tools/build_cv_pdf.py)을 내려준다. -->
         <a class="hbtn primary" href="uploads/최지현_portfolio.pdf" download="최지현_portfolio.pdf"><span class="ic"
-            data-ic="download"></span><span data-ko="PDF 다운받기" data-en="Download PDF">PDF 다운받기</span></a>
+            data-ic="download"></span><span data-ko="포트폴리오 PDF" data-en="Portfolio PDF">포트폴리오 PDF</span></a>
+        <a class="hbtn primary" href="uploads/최지현_이력서.pdf" download="최지현_이력서.pdf"><span class="ic"
+            data-ic="download"></span><span data-ko="이력서 PDF" data-en="Resume PDF">이력서 PDF</span></a>
         <a class="hbtn" href="https://github.com/ttogle918" target="_blank" rel="noopener"><span class="ic"
             data-ic="github"></span>GitHub</a>
         <a class="hbtn" href="mailto:ttogle918@gmail.com"><span class="ic" data-ic="mail"></span>Email</a>
@@ -181,9 +183,10 @@
             <span class="chip">MySQL · Oracle</span>
             <span class="chip">AWS EC2 / RDS</span>
             <span class="chip">GitHub Actions</span>
+            <span class="chip">Next.js / React / TS</span>
           </div>
         </div>
-        <div class="skill-card reveal" data-d="2">
+        <div class="skill-card skill-card-wide reveal" data-d="2">
           <div class="sc-h"><span class="star">★</span> <span data-ko="ML · NLP · 데이터" data-en="ML / NLP / Data">ML ·
               NLP · 데이터</span></div>
           <div class="chips">
@@ -197,21 +200,6 @@
             <span class="chip">OpenVINO · INT8 양자화</span>
             <span class="chip">YOLO · ACT(로봇 정책)</span>
             <span class="chip">NER · 개인정보 익명화</span>
-          </div>
-        </div>
-        <div class="skill-card reveal" data-d="3">
-          <div class="sc-h"><span class="star">★</span> <span data-ko="보안 · 관측성 · 클라이언트"
-              data-en="Security / Observability / Client">보안 · 관측성 · 클라이언트</span></div>
-          <div class="chips">
-            <span class="chip key">SAST / DAST (OWASP ZAP)</span>
-            <span class="chip">Prometheus · Grafana</span>
-            <span class="chip">Jaeger / OpenTelemetry</span>
-            <span class="chip">AES-256-GCM · Argon2id</span>
-            <span class="chip">CWE / OWASP 매핑</span>
-            <span class="chip">SBOM · NVD CVE</span>
-            <span class="chip">Next.js / React / TS</span>
-            <span class="chip">VSCode Extension</span>
-            <span class="chip">Android (Kotlin·Compose)</span>
           </div>
         </div>
       </div>
@@ -997,10 +985,10 @@
               <h3 class="pc-title">QMesh <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★
                   AI AGENT 대표작</span></h3>
               <div class="pc-meta"
-                data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 크로스도메인 종단 검증 단독"
+                data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 회사 간 연결 확인까지 혼자"
                 data-en="Since Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> contract design, adapters and cross-domain verification">
                 2026.08 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 계약 설계 · 어댑터 구현 ·
-                크로스도메인 종단 검증 단독</div>
+                회사 간 연결 확인까지 혼자</div>
               <div class="pc-hash mono">
                 <span>#A2A</span><span>#MultiAgent</span><span>#ProtocolDesign</span><span>#HumanInTheLoop</span>
               </div>
@@ -1017,12 +1005,12 @@
                     <p data-ko="보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하니, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야 하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다."
                       data-en="After building insurance, finance and maintenance agents, I wanted to connect them. Treating each as a separate company, the first wall was how far to trust a request from another side and what to show it. MCP is about an agent using its own tools, so identity checks and waiting for human approval between companies had to be designed separately.">보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하니, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야 하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다.</p>
                   </div>
-                  <!-- 종단 검증 7경로(m-qmesh-paths)를 한 공장의 이야기로 엮었다. 7경로는 각각 따로 확인한 것이라 "예를 들어"로 시작한다 -->
+                  <!-- 실행 확인 7경로(m-qmesh-paths)를 한 공장의 이야기로 엮었다. 7경로는 각각 따로 확인한 것이라 "예를 들어"로 시작한다 -->
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="구현한 시나리오" data-en="What runs today">구현한 시나리오</span>
                     </div>
-                    <p data-ko="예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지를 하나씩 목킹 없이 실제 시스템끼리 끝까지 돌려 확인했습니다."
-                      data-en="Say a machine breaks down at a factory. The factory's maintenance AI (MaintQ) asks the insurer's AI (InsuQ) and gets back the relevant policy clauses with citations. Ordering the replacement part lands a payment withdrawal request in the bank's (FinAllQ) approval inbox; the withdrawal is designed to happen only after three human approvals: the factory team lead, the factory finance team and the bank's sign-off. When existing equipment is put up as loan collateral, the bank's AI in turn checks the collateral insurance with the insurer's AI, sets an appraisal and returns a verdict. When equipment is disposed of, a settlement with the bank lifts the disposal block and the insurer is notified, but the final signature is still a person's. Each of the seven connections in this story was run end to end, one at a time, between the real systems without mocks.">예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지를 하나씩 목킹 없이 실제 시스템끼리 끝까지 돌려 확인했습니다.</p>
+                    <p data-ko="예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지는 세 시스템을 실제로 띄워 하나씩 끝까지 실행해 확인했습니다."
+                      data-en="Say a machine breaks down at a factory. The factory's maintenance AI (MaintQ) asks the insurer's AI (InsuQ) and gets back the relevant policy clauses with citations. Ordering the replacement part lands a payment withdrawal request in the bank's (FinAllQ) approval inbox; the withdrawal is designed to happen only after three human approvals: the factory team lead, the factory finance team and the bank's sign-off. When existing equipment is put up as loan collateral, the bank's AI in turn checks the collateral insurance with the insurer's AI, sets an appraisal and returns a verdict. When equipment is disposed of, a settlement with the bank lifts the disposal block and the insurer is notified, but the final signature is still a person's. Each of the seven connections in this story was run end to end, one at a time, between the real systems without mocks.">예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지는 세 시스템을 실제로 띄워 하나씩 끝까지 실행해 확인했습니다.</p>
                     <div class="featlist">
                       <button class="feat" data-modal="m-qmesh-paths" data-ko="일곱 구간별 근거 보기"
                         data-en="Evidence for each of the seven legs">일곱 구간별 근거 보기</button>
@@ -1384,10 +1372,10 @@
                       <div class="sub-body">
                         <div class="sub-inner">
                           <div class="block">
-                            <p data-ko="일이 시작되는 공장입니다. 설비가 고장 나면 보험사(InsuQ)에 약관 보장 여부를, 은행(FinAllQ)에 부품 대금 출금과 설비 담보 대출 심사를 요청합니다. 보내는 6경로를 종단 검증했습니다. 받는 요청은 설계상 없습니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 나중에 할 일이 아니라 하지 않기로 한 일입니다. NVIDIA 해커톤 예선을 통과한(상위 10팀) 제출작이기도 해서 MaintQ 자체의 설계, 측정, 해커톤 내용은 별도 프로젝트 카드로 옮겼습니다."
+                            <p data-ko="일이 시작되는 공장입니다. 설비가 고장 나면 보험사(InsuQ)에 약관 보장 여부를, 은행(FinAllQ)에 부품 대금 출금과 설비 담보 대출 심사를 요청합니다. 보내는 6경로가 끝까지 실행되는 것을 확인했습니다. 받는 요청은 설계상 없습니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 나중에 할 일이 아니라 하지 않기로 한 일입니다. NVIDIA 해커톤 예선을 통과한(상위 10팀) 제출작이기도 해서 MaintQ 자체의 설계, 측정, 해커톤 내용은 별도 프로젝트 카드로 옮겼습니다."
                               data-en="The factory where work begins. When equipment fails it asks the insurer (InsuQ) whether a clause covers it, and the bank (FinAllQ) for the parts payment and an equipment-backed loan assessment. The six outbound paths are verified end to end. Receiving is out by design: maintenance is where work starts, not where it lands, so that is a decision not to build, not a backlog item. MaintQ is also an NVIDIA hackathon entry that passed the preliminaries (top 10 teams), so its own design, measurements and hackathon work moved to a separate project card.">
                               일이 시작되는 공장입니다. 설비가 고장 나면 보험사(InsuQ)에 약관 보장 여부를, 은행(FinAllQ)에 부품 대금 출금과 설비 담보 대출 심사를 요청합니다. 보내는
-                              6경로를 종단 검증했습니다. 받는 요청은 설계상 없습니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 나중에 할 일이 아니라 하지 않기로 한
+                              6경로가 끝까지 실행되는 것을 확인했습니다. 받는 요청은 설계상 없습니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 나중에 할 일이 아니라 하지 않기로 한
                               일입니다. NVIDIA 해커톤 예선을 통과한(상위 10팀) 제출작이기도 해서 MaintQ 자체의 설계, 측정, 해커톤 내용은 별도 프로젝트 카드로 옮겼습니다.</p>
                           </div>
                           <div class="pc-actions">
@@ -1418,7 +1406,7 @@
                     </div>
                     <div class="metric" data-modal="m-qmesh-paths" role="button" tabindex="0">
                       <div class="mv"><span data-count="7">0</span>경로</div>
-                      <div class="ml" data-ko="종단 검증" data-en="verified end to end">종단 검증</div>
+                      <div class="ml" data-ko="실행 확인 경로" data-en="verified end to end">실행 확인 경로</div>
                     </div>
                     <div class="metric" data-modal="m-qmesh-tests" role="button" tabindex="0">
                       <div class="mv"><span data-count="123">0</span>건</div>
@@ -1574,10 +1562,10 @@
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="QMesh에서 맡은 역할"
                         data-en="Its role in QMesh">QMesh에서 맡은 역할</span></div>
-                    <p data-ko="QMesh로 연결하면 MaintQ는 은행(FinAllQ)과 보험사(InsuQ)에 요청을 <b>보내기만</b> 합니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로는 종단 검증했고, 샌드박스 안에서는 시연하지 않았습니다. <a href=&quot;#qmesh&quot;>QMesh 카드</a>에서 연결 전체를 볼 수 있습니다."
+                    <p data-ko="QMesh로 연결하면 MaintQ는 은행(FinAllQ)과 보험사(InsuQ)에 요청을 <b>보내기만</b> 합니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가 아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로가 끝까지 실행되는 것은 확인했고, 샌드박스 안에서는 시연하지 않았습니다. <a href=&quot;#qmesh&quot;>QMesh 카드</a>에서 연결 전체를 볼 수 있습니다."
                       data-en="Connected through QMesh, MaintQ only <b>sends</b> requests to the bank (FinAllQ) and the insurer (InsuQ). Maintenance is where work starts, not where it is received, so receiving is a decision not to build, not a backlog item. The six outbound paths are verified end to end; they are not demonstrated inside the sandbox. See the <a href=&quot;#qmesh&quot;>QMesh card</a> for the whole connection.">
                       QMesh로 연결하면 MaintQ는 은행(FinAllQ)과 보험사(InsuQ)에 요청을 <b>보내기만</b> 합니다. 설비 보전은 일이 시작되는 자리이지 받는 자리가
-                      아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로는 종단 검증했고, 샌드박스 안에서는 시연하지
+                      아니라서, 받는 쪽은 나중에 할 일이 아니라 하지 않기로 한 일입니다. 보내는 요청 6경로가 끝까지 실행되는 것은 확인했고, 샌드박스 안에서는 시연하지
                       않았습니다. <a href="#qmesh">QMesh 카드</a>에서 연결 전체를 볼 수 있습니다.</p>
                   </div>
 
@@ -2115,10 +2103,10 @@
                   <div class="block">
                     <div class="bh"><span class="star">◆</span> <span data-ko="문제" data-en="Problem">문제</span>
                     </div>
-                    <p data-ko="SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음 배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다."
-                      data-en="An SO-ARM101 arm had to pick only the Oranda snacks out of a mixed tray and move them to an empty one. There were two days to learn the arm from scratch, record demonstrations and train a model, and training GPU time was capped.">
+                    <p data-ko="SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음 배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습은 과정에서 함께 쓰는 공용 GPU라 쓸 수 있는 시간이 정해져 있었습니다."
+                      data-en="An SO-ARM101 arm had to pick only the Oranda snacks out of a mixed tray and move them to an empty one. There were two days to learn the arm from scratch, record demonstrations and train a model, and training ran on a shared GPU with capped time.">
                       SO-ARM101 로봇팔이 여러 과자가 섞인 트레이에서 오란다만 골라 빈 트레이로 옮겨야 했습니다. 주어진 시간은 2일이었고, 그 안에 로봇팔 다루기를 처음
-                      배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습용 GPU도 쓸 수 있는 시간이 정해져 있었습니다.</p>
+                      배우면서 시범 동작 녹화와 모델 학습까지 끝내야 했습니다. 학습은 과정에서 함께 쓰는 공용 GPU라 쓸 수 있는 시간이 정해져 있었습니다.</p>
                   </div>
 
                   <div class="block">
@@ -2134,9 +2122,9 @@
                         data-en="<b>Split the jobs</b>: an ACT policy picks and places from camera images alone; code counts how many were moved and when to stop; the language model only chooses tone and lines, and cannot pick anything outside three allowed values.">
                         <b>맡은 일을 나눴습니다</b>: 집고 놓는 동작은 ACT 정책이 카메라 영상만 보고 하고, 몇 개 옮겼는지와 언제 쉴지는 코드가 셉니다. 언어 모델은 말투와 대사만 정하고,
                         정해진 세 값 밖의 행동은 고를 수 없습니다.</li>
-                      <li data-ko="<b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음 한 번에 0.14~0.23초가 걸렸습니다."
-                        data-en="<b>Ran on the laptop CPU</b>: the trained policy was exported to OpenVINO. The Intel GPU took 55-65 s to compile each policy, so the CPU was chosen; one 100-step chunk took 0.14-0.23 s.">
-                        <b>노트북 CPU에서 돌렸습니다</b>: 학습한 정책을 OpenVINO로 내보냈습니다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음
+                      <li data-ko="<b>노트북 CPU에서 돌렸습니다</b>: 정책은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 공용 GPU로 학습하고 OpenVINO로 내보냈습니다. 노트북의 Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음 한 번에 0.14~0.23초가 걸렸습니다."
+                        data-en="<b>Ran on the laptop CPU</b>: the policy was trained on a shared GPU in Intel's open-source Physical AI Studio and exported to OpenVINO. The laptop's Intel GPU took 55-65 s to compile each policy, so the CPU was chosen; one 100-step chunk took 0.14-0.23 s.">
+                        <b>노트북 CPU에서 돌렸습니다</b>: 정책은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 공용 GPU로 학습하고 OpenVINO로 내보냈습니다. 노트북의 Intel GPU는 정책마다 컴파일에 55~65초가 걸려 CPU로 정했고, 100스텝 묶음
                         한 번에 0.14~0.23초가 걸렸습니다.</li>
                       <li data-ko="<b>실패해도 멈추지 않게 했습니다</b>: 외부 API(대화 · 음성)에는 전부 시간 제한을 두고, 모두 실패하면 준비된 대사와 Windows 음성으로 넘어갑니다. 비상정지는 힘을 빼지 않고 그 자리에 멈춥니다."
                         data-en="<b>Kept it running through failures</b>: every external API (chat, voice) has a timeout, and when all fail it falls back to prepared lines and the Windows voice. Emergency stop holds position with torque on.">
@@ -2732,6 +2720,8 @@
               data-ic="velog"></span>velog</a>
           <a class="clink" href="uploads/최지현_portfolio.pdf" target="_blank" rel="noopener"><span class="ic"
               data-ic="file"></span>Portfolio (PDF)</a>
+          <a class="clink" href="uploads/최지현_이력서.pdf" target="_blank" rel="noopener"><span class="ic"
+              data-ic="file"></span>Resume (PDF)</a>
         </div>
       </div>
     </div>
@@ -2856,8 +2846,8 @@
           </ol>
           <figure class="fmodal-fig">
             <img data-src="assets/qmesh/request-settlement.gif" alt="request-settlement end-to-end demo">
-            <figcaption data-ko="실 DB · 실 인증으로 촬영한 종단 검증 경로"
-              data-en="Captured end to end against live data and real auth">실 DB · 실 인증으로 촬영한 종단 검증 경로</figcaption>
+            <figcaption data-ko="실 DB · 실 인증으로 촬영한 실행 확인 경로"
+              data-en="Captured end to end against live data and real auth">실 DB · 실 인증으로 촬영한 실행 확인 경로</figcaption>
           </figure>
         </section>
 
@@ -3144,10 +3134,10 @@
 
         <section id="m-qmesh-paths" hidden>
           <div class="fmodal-kicker mono">QMESH · 결과</div>
-          <h4 class="fmodal-title" data-ko="종단 검증 7경로" data-en="7 paths verified end to end">종단 검증 7경로</h4>
-          <p data-ko="목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에 완주했다."
+          <h4 class="fmodal-title" data-ko="실행 확인 7경로" data-en="7 paths verified end to end">실행 확인 7경로</h4>
+          <p data-ko="상대 시스템을 실제로 띄워 직접 요청을 보내고, 처음부터 끝까지 실행되는 것을 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에 완주했다."
             data-en="Paths run end to end against the real partner systems without mocks - 1 to 5 between 2026-08-24 and 09-03, 6 and 7 completed on 2026-09-11.">
-            목킹 없이 상대 시스템에 직접 요청을 보내 처음부터 끝까지 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에
+            상대 시스템을 실제로 띄워 직접 요청을 보내고, 처음부터 끝까지 실행되는 것을 확인한 통신 경로다. 1~5번은 2026-08-24~09-03에 확인해 09-08에 정리했고, 6·7번은 2026-09-11에
             완주했다.</p>
           <div class="mtable-wrap">
             <table class="mtable">
@@ -3825,7 +3815,7 @@
               <path class="dg-a" d="M596 66 V76" />
               <text class="dg-g" x="16" y="100">계약 13종 중 유일하게 input-required 를 쓰는 스킬이다</text>
               <text class="dg-g" x="16" y="120">requires_human_approval: true 는 계산 경로 없이 리터럴로만 존재한다 - 우회할 수 없다</text>
-              <text class="dg-s" x="16" y="142">전 생애주기를 mock 없이 실제 로그인·API 호출로 검증했고, 산정값은 손계산과 전부 일치했다</text>
+              <text class="dg-s" x="16" y="142">전 생애주기를 실제 로그인·API 호출로 처음부터 끝까지 확인했고, 산정값은 손계산과 전부 일치했다</text>
             </svg>
           </div>
           <p data-ko="A2A 계약 <b>13종 중 유일하게 <span class=&quot;mono&quot;>input-required</span> 상태를 쓰는 스킬</b>이다. 한 번의 요청/응답으로 끝나지 않고 <b>작업이 사람 앞에서 멈췄다가 재개된다</b> - 보험금을 산정해 Task를 발급하고, 심사역이 로그인해 전자서명으로 승인하면 <span class=&quot;mono&quot;>completed</span>로 전이하고, 호출자가 재폴링해 결과를 수령한다."
@@ -3834,9 +3824,9 @@
             계약 <b>13종 중 유일하게 <span class="mono">input-required</span> 상태를 쓰는 스킬</b>이다. 한 번의 요청/응답으로 끝나지 않고 <b>작업이 사람 앞에서
               멈췄다가 재개된다</b> - 보험금을 산정해 Task를 발급하고, 심사역이 로그인해 전자서명으로 승인하면 <span class="mono">completed</span>로 전이하고,
             호출자가 재폴링해 결과를 수령한다.</p>
-          <p data-ko="<b>전 생애주기를 mock 없이 실제 로그인·API 호출로 검증</b>했고 산정값은 손계산과 전부 일치했다. <span class=&quot;mono&quot;>requires_human_approval: true</span>는 <b>계산 경로 없이 리터럴로만 존재해 우회할 수 없다</b> - 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼진다."
+          <p data-ko="<b>전 생애주기를 실제 로그인·API 호출로 처음부터 끝까지 확인</b>했고 산정값은 손계산과 전부 일치했다. <span class=&quot;mono&quot;>requires_human_approval: true</span>는 <b>계산 경로 없이 리터럴로만 존재해 우회할 수 없다</b> - 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼진다."
             data-en="<b>The whole lifecycle was verified with real logins and real API calls, no mocks</b>, and every computed amount matched a hand calculation. <span class=&quot;mono&quot;>requires_human_approval: true</span> <b>exists as a literal with no code path that could compute it otherwise</b> - a value that can be switched on will eventually be switched off.">
-            <b>전 생애주기를 mock 없이 실제 로그인·API 호출로 검증</b>했고 산정값은 손계산과 전부 일치했다. <span class="mono">requires_human_approval:
+            <b>전 생애주기를 실제 로그인·API 호출로 처음부터 끝까지 확인</b>했고 산정값은 손계산과 전부 일치했다. <span class="mono">requires_human_approval:
               true</span>는 <b>계산 경로 없이 리터럴로만 존재해 우회할 수 없다</b> - 조건에 따라 켜지고 꺼지는 값이면 언젠가 꺼진다.
           </p>
           <figure class="fmodal-fig">
@@ -6116,9 +6106,9 @@
             언어 모델은 로봇을 직접 움직이지 않는다. <span class="mono">oranda_pickup</span> · <span class="mono">dori_dori</span> ·
             <span class="mono">done</span> 셋 중 하나와 대사만 내고, 벗어나면 규칙이 대신 정한다. 외부 API는 모두 시간 제한이 있고, 전부 실패해도 로봇 루프는 준비된
             대사로 계속 돈다.</p>
-          <p data-ko="학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초, 100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class=&quot;mono&quot;>--dry-run</span> 모드를 두었다."
-            data-en="The trained policy was exported to OpenVINO and run on the laptop. The Intel GPU needed 55-65 s to compile each policy, too slow to restart mid-demo; the CPU loaded in about 6 s and ran one 100-step chunk in 0.14-0.23 s, so the CPU won. A <span class=&quot;mono&quot;>--dry-run</span> mode replays real recordings so the whole flow could be built without the robot.">
-            학습한 정책은 OpenVINO로 내보내 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초,
+          <p data-ko="Physical AI Studio가 OpenVINO로 내보낸 정책을 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초, 100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class=&quot;mono&quot;>--dry-run</span> 모드를 두었다."
+            data-en="The policy that Physical AI Studio exported to OpenVINO ran on the laptop. The Intel GPU needed 55-65 s to compile each policy, too slow to restart mid-demo; the CPU loaded in about 6 s and ran one 100-step chunk in 0.14-0.23 s, so the CPU won. A <span class=&quot;mono&quot;>--dry-run</span> mode replays real recordings so the whole flow could be built without the robot.">
+            Physical AI Studio가 OpenVINO로 내보낸 정책을 노트북에서 돌렸다. Intel GPU는 정책마다 컴파일에 55~65초가 걸려 시연 중 다시 띄우기 어려웠다. CPU는 불러오는 데 약 6초,
             100스텝 묶음 한 번에 0.14~0.23초라 CPU로 정했다. 로봇 없이도 개발할 수 있게 실제 녹화를 재생하는 <span class="mono">--dry-run</span> 모드를 두었다.</p>
         </section>
 
@@ -6155,10 +6145,11 @@
               data-en="oranda_pickup loss - training stopped while validation loss (right) was still falling">
               oranda_pickup 손실 - 검증 손실(오른쪽)이 끝까지 내려가는 중에 학습을 멈췄다</figcaption>
           </figure>
-          <p data-ko="시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111 프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다."
-            data-en="Three teammates recorded the demonstrations; training onward was mine. ACT (resnet18, chunk 100) was trained in physical-ai-studio. The Oranda model saw 31 episodes, 9,111 frames, for only <b>5 epochs</b> (train 0.35 / val 0.66). GPU time was capped, so it could not run longer, and that is the most likely cause of the missed picks.">
-            시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. physical-ai-studio로 ACT(resnet18, chunk 100)를 학습했다. 오란다 모델은 31 에피소드 9,111
-            프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). GPU를 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다.</p>
+          <p data-ko="시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. 학습은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 했다. 과정의 공용 GPU에서 ACT(resnet18, chunk 100) 설정을 고르고 화면에서 실행한 뒤, 결과를 OpenVINO로 내보냈다. 오란다 모델은 31 에피소드 9,111 프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). 공용 GPU라 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다."
+            data-en="Three teammates recorded the demonstrations; training onward was mine. Training ran in Intel's open-source Physical AI Studio: on the course's shared GPU I picked the ACT settings (resnet18, chunk 100), ran it from the UI and exported the result to OpenVINO. The Oranda model saw 31 episodes, 9,111 frames, for only <b>5 epochs</b> (train 0.35 / val 0.66). Shared GPU time was capped, so it could not run longer, and that is the most likely cause of the missed picks.">
+            시범 녹화는 팀원 셋이 함께 했고, 학습부터는 내가 맡았다. 학습은 Intel의 오픈소스 플랫폼 Physical AI Studio에서 했다. 과정의 공용 GPU에서 ACT(resnet18,
+            chunk 100) 설정을 고르고 화면에서 실행한 뒤, 결과를 OpenVINO로 내보냈다. 오란다 모델은 31 에피소드 9,111
+            프레임으로 <b>5 epoch</b>만 돌렸다(train 0.35 / val 0.66). 공용 GPU라 쓸 수 있는 시간이 정해져 있어 더 돌리지 못했고, 집기 실패의 가장 큰 원인으로 본다.</p>
         </section>
 
         <section id="f-kbridge-verify" hidden>

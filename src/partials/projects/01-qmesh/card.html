@@ -8,10 +8,10 @@
       <h3 class="pc-title">QMesh <span class="pc-featured" data-ko="★ AI AGENT 대표작" data-en="★ FLAGSHIP AGENT">★
           AI AGENT 대표작</span></h3>
       <div class="pc-meta"
-        data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 크로스도메인 종단 검증 단독"
+        data-ko="2026.08 ~ 진행 중 <span class=&quot;sep&quot;>·</span> <b>개인 1인</b> <span class=&quot;sep&quot;>·</span> 계약 설계 · 어댑터 구현 · 회사 간 연결 확인까지 혼자"
         data-en="Since Aug 2026 <span class=&quot;sep&quot;>·</span> <b>solo</b> <span class=&quot;sep&quot;>·</span> contract design, adapters and cross-domain verification">
         2026.08 ~ 진행 중 <span class="sep">·</span> <b>개인 1인</b> <span class="sep">·</span> 계약 설계 · 어댑터 구현 ·
-        크로스도메인 종단 검증 단독</div>
+        회사 간 연결 확인까지 혼자</div>
       <div class="pc-hash mono">
         <span>#A2A</span><span>#MultiAgent</span><span>#ProtocolDesign</span><span>#HumanInTheLoop</span>
       </div>
@@ -28,12 +28,12 @@
             <p data-ko="보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하니, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야 하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다."
               data-en="After building insurance, finance and maintenance agents, I wanted to connect them. Treating each as a separate company, the first wall was how far to trust a request from another side and what to show it. MCP is about an agent using its own tools, so identity checks and waiting for human approval between companies had to be designed separately.">보험, 금융, 설비 보전 에이전트를 만들고 나서 이것들을 엮어 보고 싶었습니다. 세 시스템을 각자 다른 회사라고 가정하니, 한쪽에서 온 요청을 어디까지 믿고 무엇까지 보여 줘야 하는지부터 막혔습니다. MCP는 AI가 자기 도구를 쓰는 방식이라, 다른 회사 AI에게 일을 맡길 때 필요한 신원 확인이나 사람의 승인 대기는 따로 설계해야 했습니다.</p>
           </div>
-          <!-- 종단 검증 7경로(m-qmesh-paths)를 한 공장의 이야기로 엮었다. 7경로는 각각 따로 확인한 것이라 "예를 들어"로 시작한다 -->
+          <!-- 실행 확인 7경로(m-qmesh-paths)를 한 공장의 이야기로 엮었다. 7경로는 각각 따로 확인한 것이라 "예를 들어"로 시작한다 -->
           <div class="block">
             <div class="bh"><span class="star">◆</span> <span data-ko="구현한 시나리오" data-en="What runs today">구현한 시나리오</span>
             </div>
-            <p data-ko="예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지를 하나씩 목킹 없이 실제 시스템끼리 끝까지 돌려 확인했습니다."
-              data-en="Say a machine breaks down at a factory. The factory's maintenance AI (MaintQ) asks the insurer's AI (InsuQ) and gets back the relevant policy clauses with citations. Ordering the replacement part lands a payment withdrawal request in the bank's (FinAllQ) approval inbox; the withdrawal is designed to happen only after three human approvals: the factory team lead, the factory finance team and the bank's sign-off. When existing equipment is put up as loan collateral, the bank's AI in turn checks the collateral insurance with the insurer's AI, sets an appraisal and returns a verdict. When equipment is disposed of, a settlement with the bank lifts the disposal block and the insurer is notified, but the final signature is still a person's. Each of the seven connections in this story was run end to end, one at a time, between the real systems without mocks.">예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지를 하나씩 목킹 없이 실제 시스템끼리 끝까지 돌려 확인했습니다.</p>
+            <p data-ko="예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지는 세 시스템을 실제로 띄워 하나씩 끝까지 실행해 확인했습니다."
+              data-en="Say a machine breaks down at a factory. The factory's maintenance AI (MaintQ) asks the insurer's AI (InsuQ) and gets back the relevant policy clauses with citations. Ordering the replacement part lands a payment withdrawal request in the bank's (FinAllQ) approval inbox; the withdrawal is designed to happen only after three human approvals: the factory team lead, the factory finance team and the bank's sign-off. When existing equipment is put up as loan collateral, the bank's AI in turn checks the collateral insurance with the insurer's AI, sets an appraisal and returns a verdict. When equipment is disposed of, a settlement with the bank lifts the disposal block and the insurer is notified, but the final signature is still a person's. Each of the seven connections in this story was run end to end, one at a time, between the real systems without mocks.">예를 들어 한 공장에서 설비가 고장 나면, 공장의 정비 AI(MaintQ)가 보험사 AI(InsuQ)에 물어 관련 약관 조항을 근거와 함께 받아 옵니다. 교체 부품을 발주하면 대금 출금 요청이 은행(FinAllQ) 결재함에 도착합니다. 출금은 공장 팀장·공장 재무팀·은행 결재까지 사람이 세 번 승인해야 이뤄지도록 설계했습니다. 쓰던 설비를 담보로 대출을 신청하면 은행 AI가 다시 보험사 AI에 담보 보험을 확인하고, 감정가를 매겨 판정을 돌려줍니다. 설비를 처분할 때는 은행과 정산해 처분 제한을 풀고 보험사에 처분 사실을 알리지만, 최종 서명은 여전히 사람이 합니다. 이 이야기에 나오는 연결 7가지는 세 시스템을 실제로 띄워 하나씩 끝까지 실행해 확인했습니다.</p>
             <div class="featlist">
               <button class="feat" data-modal="m-qmesh-paths" data-ko="일곱 구간별 근거 보기"
                 data-en="Evidence for each of the seven legs">일곱 구간별 근거 보기</button>
@@ -213,7 +213,7 @@
             </div>
             <div class="metric" data-modal="m-qmesh-paths" role="button" tabindex="0">
               <div class="mv"><span data-count="7">0</span>경로</div>
-              <div class="ml" data-ko="종단 검증" data-en="verified end to end">종단 검증</div>
+              <div class="ml" data-ko="실행 확인 경로" data-en="verified end to end">실행 확인 경로</div>
             </div>
             <div class="metric" data-modal="m-qmesh-tests" role="button" tabindex="0">
               <div class="mv"><span data-count="123">0</span>건</div>
